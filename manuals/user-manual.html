@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Operations & Dashboard Manual - GEMS</title>
+  <meta name="description" content="Complete user guide for GEMS: Dashboard PowerFlow hero, historical charts, Flanders peak monitor, network scanner, native OCPP EV charging, and PDF exports.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <svg width="20" height="20"><use href="assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">User Manual</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Search documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-search"></use></svg>
+          <span>Search dashboard, PowerFlow, OCPP, charts...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuration</span>
+      </a>
+      <a href="devices.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="assets/icons.svg#icon-sun"></use></svg>
+        <span>Devices</span>
+      </a>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Toggle color theme">
+        <svg width="18" height="18"><use href="assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">User Operations Guide</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="user-manual.html#dashboard-powerflow" class="sidebar-link active">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-bolt"></use></svg>
+              <span>Dashboard & PowerFlow Hero</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#historical-charts" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
+              <span>Click-to-Reveal History & Overlays</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#flanders-gauge" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
+              <span>Flanders Peak Capacity Monitor</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#device-management" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-sun"></use></svg>
+              <span>Device Management Wizard</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#network-scanner" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-wifi"></use></svg>
+              <span>Zero-Dependency Network Scanner</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#modbus-probe" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-wrench"></use></svg>
+              <span>Modbus Reachability Probe</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#ocpp-server" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-charger"></use></svg>
+              <span>Native OCPP EV Charger Server</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#logs-updates" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-terminal"></use></svg>
+              <span>Logger, PDF Reports & Updates</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Other Manuals</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-book"></use></svg>
+              <span>Documentation Hub</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Installation Manual</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-settings"></use></svg>
+              <span>Configuration Reference</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-sun"></use></svg>
+              <span>Device Templates</span>
+              <span class="badge">90</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-wrench"></use></svg>
+              <span>Troubleshooting & FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">User Operations Guide</span>
+        </nav>
+
+        <h1>User Operations & Dashboard Manual</h1>
+        <p class="hero-lead">
+          Explore everyday operations in GEMS: navigating the animated PowerFlow hero element, inspecting high-resolution history modals, connecting EV chargers over Native OCPP, and generating PDF energy reports.
+        </p>
+
+        <!-- Dashboard & Hero PowerFlow -->
+        <h2 id="dashboard-powerflow">1. Dashboard & Hero Interactive PowerFlow</h2>
+        <p>
+          The <strong>Dashboard</strong> is the central nerve center of GEMS, visualizing real-time power flows with animated particle lines that reflect energy speed and direction.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="assets/screenshots/dashboard.png" alt="GEMS Desktop PowerFlow Dashboard" loading="lazy">
+          <div class="doc-screenshot-caption">Desktop Dashboard: Dynamic 5-Node Power Flow hero card, Flanders peak capacity progress bar, and instant telemetry gauges.</div>
+        </div>
+
+        <div class="doc-screenshot-card" style="max-width: 420px; margin: 1.5rem auto;">
+          <img src="assets/screenshots/dashboard_mobile.png" alt="GEMS Mobile Responsive Dashboard" loading="lazy">
+          <div class="doc-screenshot-caption">Mobile Viewport (375x812): Fully responsive vertical stack for smartphone and touchscreen kiosk monitoring.</div>
+        </div>
+
+        <h3>Dynamic Node Visibility</h3>
+        <p>
+          In accordance with strict UI directives, hardware nodes (Grid, Solar Inverters, Battery Storage, EV Chargers, Heat Pump, Smart Relays) appear <strong>only when configured and physically communicating</strong>. If your installation has no battery or EV charger, those cards are cleanly hidden, keeping your dashboard clutter-free.
+        </p>
+
+        <!-- Historical Charts & Overlays -->
+        <h2 id="historical-charts">2. Click-to-Reveal Historical Charts & Grid Overlays</h2>
+        <p>
+          Clicking directly on any node in the PowerFlow diagram (e.g. clicking the Solar or Battery node) triggers the high-resolution <strong>Historical Analytics Modal</strong>.
+        </p>
+
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/dashboard_modal_battery.png" alt="Battery Telemetry and Mode Control Modal" loading="lazy">
+            <div class="doc-screenshot-caption">Battery Modal: SOC charge/discharge history and instant Mode Switching (Auto / Hold / Force Charge).</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/dashboard_modal_solar.png" alt="Solar Production Curve Modal" loading="lazy">
+            <div class="doc-screenshot-caption">Solar Modal: 24-hour PV production curve and inverter DC voltage metrics.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/dashboard_modal_grid.png" alt="Grid Import/Export History Modal" loading="lazy">
+            <div class="doc-screenshot-caption">Grid Modal: Import/export balance with Flanders peak demand overlay.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/dashboard_modal_charger.png" alt="EV Charger Session History Modal" loading="lazy">
+            <div class="doc-screenshot-caption">EV Charger Modal: Live charging amperage, session total kWh, and Eco/Max charge mode overrides.</div>
+          </div>
+        </div>
+
+        <div class="alert alert-tip">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="assets/icons.svg#icon-check"></use></svg>
+            <span>Compare Grid Power Overlay</span>
+          </div>
+          <p>
+            Inside any node's historical chart modal, click the <strong>⚡ Compare Grid Power</strong> button to overlay your real-time grid import and export curves directly over solar production or battery charging. This immediately reveals how spikes in household consumption correlated with battery discharge or grid draw.
+          </p>
+        </div>
+
+        <h3>Timeframe Resolution Selector</h3>
+        <ul>
+          <li><strong>Last 1 Hour (1m resolution):</strong> Sub-minute granularity for analyzing instantaneous load spikes and appliance startup surges.</li>
+          <li><strong>Last 24 Hours (5m resolution):</strong> Daily solar production curve, battery state of charge (SOC) cycling, and EV charging sessions.</li>
+          <li><strong>Last 7 Days (15m resolution):</strong> Weekly self-consumption trends and Flanders quarter-hour peak distributions.</li>
+          <li><strong>Last 30 Days (1h resolution):</strong> Monthly energy balances and billing period imports/exports.</li>
+        </ul>
+
+        <!-- Flanders Peak Monitor -->
+        <h2 id="flanders-gauge">3. Flanders Quarter-Hour Peak Demand Monitor</h2>
+        <p>
+          Located directly beneath the PowerFlow hero element, the Flanders Capacity Monitor tracks your digital smart meter's 15-minute average power demand in real time.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Status Badge</th>
+                <th>Condition</th>
+                <th>EMS Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge-pill badge-green">NORMAL</span></td>
+                <td>Projected peak &lt; 80% of <code>capacity_peak_limit_kw</code></td>
+                <td>Standard operation. All EV chargers and batteries run at configured setpoints.</td>
+              </tr>
+              <tr>
+                <td><span class="badge-pill badge-amber">WARNING</span></td>
+                <td>Projected peak between 80% and 99% of contract limit</td>
+                <td>Proactive warning. Charging setpoint expansion is paused to prevent overshoot.</td>
+              </tr>
+              <tr>
+                <td><span class="badge-pill badge-red">THROTTLED</span></td>
+                <td>Projected peak &ge; 100% of contract limit</td>
+                <td>Active peak shaving engaged! EV chargers stepped down (16A &rarr; 10A &rarr; 6A &rarr; 0A); home battery discharged to cover household spike.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Device Management -->
+        <h2 id="device-management">4. Device Management & Configuration Wizard</h2>
+        <p>
+          To add new hardware or reconfigure existing devices, navigate to <strong>Settings &rarr; Device Management</strong>.
+        </p>
+
+        <ol>
+          <li>Click the <strong>Add Device</strong> button in the top right corner.</li>
+          <li>Select your hardware template from the catalog of 90 pre-configured manufacturer plugins (e.g. <em>Huawei Hybrid Inverter</em>, <em>RAEDIAN Wallbox</em>, <em>Fluvius P1 Smart Meter</em>, <em>Shelly Pro 3EM</em>).</li>
+          <li>Enter the IP Host or Hostname, Port (default <code>502</code> for Modbus TCP), and Modbus Slave ID. (<em>Note: For OCPP EV Chargers, simply enter your ChargePoint ID</em>).</li>
+          <li>Click <strong>Test Connection</strong> to verify reachability.</li>
+          <li>Click <strong>Save Device</strong>. The Go backend poller will immediately begin background metric polling.</li>
+        </ol>
+
+        <!-- Network Scanner -->
+        <h2 id="network-scanner">5. Zero-Dependency Local Network Scanner</h2>
+        <p>
+          Finding the IP addresses of newly installed solar inverters or EV chargers is simple with the built-in network scanner.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="assets/screenshots/scanner.png" alt="Local Network Subnet Scanner" loading="lazy">
+          <div class="doc-screenshot-caption">Network Scanner: One-click local subnet discovery mapping IP addresses, hostnames, MAC OUI vendor tags, and open ports.</div>
+        </div>
+
+        <ul>
+          <li>Click <strong>Scan Network</strong> inside the Device Management panel.</li>
+          <li>The Go backend executes an ARP and ping discovery scan across your local subnet (e.g. <code>192.168.1.0/24</code>).</li>
+          <li>The scanner matches hardware MAC addresses against an embedded Organizationally Unique Identifier (OUI) table to automatically tag devices like <em>Huawei Dongle</em>, <em>SMA Solar</em>, <em>Shelly</em>, or <em>HomeWizard</em>.</li>
+          <li>Click <strong>Import</strong> next to any discovered device to pre-populate the Add Device form!</li>
+        </ul>
+
+        <!-- Modbus Reachability Probe -->
+        <h2 id="modbus-probe">6. Modbus TCP Reachability Probe (`Test Connection`)</h2>
+        <p>
+          Before committing device configuration to SQLite, GEMS allows executing a 1-shot connection diagnostic probe:
+        </p>
+        <ul>
+          <li>Sends a synthetic TCP handshake to the target IP and port.</li>
+          <li>Measures response round-trip latency in milliseconds ($ms$).</li>
+          <li>Attempts to read the Modbus common SunSpec identifier (Register <code>40001</code> / <code>0x9C41</code>) to confirm the configured Slave ID is responding.</li>
+        </ul>
+
+        <!-- Native OCPP Server -->
+        <h2 id="ocpp-server">7. Native OCPP 1.6 / 2.0.1 EV Charging Server</h2>
+        <p>
+          GEMS includes an embedded WebSocket OCPP server, allowing standard EV chargers (Easee, Alfen, Wallbox, Peblar, Schneider, Keba, Zaptec, etc.) to connect directly without third-party cloud subscriptions.
+        </p>
+
+        <div class="alert alert-important">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="assets/icons.svg#icon-charger"></use></svg>
+            <span>Direct Local Communication — Zero Cloud Dependency</span>
+          </div>
+          <p>
+            Third-party CSMS proxying is intentionally excluded. The EV charger communicates directly with the Raspberry Pi over local WebSockets, guaranteeing dynamic load balancing continues uninterrupted even during internet outages.
+          </p>
+        </div>
+
+        <h3>Connecting Your Charger to GEMS</h3>
+        <ol>
+          <li>Open your EV Charger's installer app (e.g. <em>Easee Installer</em>, <em>Alfen ACE Service Installer</em>, or <em>Wallbox App</em>).</li>
+          <li>Navigate to <strong>Connectivity &rarr; OCPP / CSMS Settings</strong>.</li>
+          <li>Set the Server URL / WebSocket Endpoint to:
+            <div class="code-block-wrapper">
+              <div class="code-header">
+                <span class="code-lang">OCPP Endpoint</span>
+                <button class="copy-code-btn" aria-label="Copy endpoint">
+                  <svg width="14" height="14"><use href="assets/icons.svg#icon-copy"></use></svg>
+                  <span>Copy</span>
+                </button>
+              </div>
+              <pre><code>ws://&lt;raspberry-pi-ip&gt;:8080/api/ocpp/&lt;Your-Charger-ID&gt;
+
+# Example for charger ID "CP001" on Pi IP 192.168.1.50:
+ws://192.168.1.50:8080/api/ocpp/CP001</code></pre>
+            </div>
+          </li>
+          <li>In GEMS, add a device using the <strong>Native OCPP Charger</strong> template and set the Host field to <code>CP001</code>.</li>
+          <li>Save the device. The charger will send a <code>BootNotification</code> and immediately reflect active charging power on your dashboard.</li>
+        </ol>
+
+        <!-- Logger, PDF Reports & Updates -->
+        <h2 id="logs-updates">8. Real-Time Logger, PDF Energy Reports & System Updates</h2>
+
+        <h3>Real-Time Logger (`Logger.vue`)</h3>
+        <p>
+          Access live system diagnostics via the <strong>Logs</strong> tab in the navigation bar. Filter by severity level (<code>INFO</code>, <code>WARN</code>, <code>ERROR</code>, <code>DEBUG</code>) or search for specific device names. Click <strong>Export Logs</strong> to download a structured <code>.txt</code> technical report.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="assets/screenshots/logger.png" alt="Real-Time System Logger & Diagnostics Console" loading="lazy">
+          <div class="doc-screenshot-caption">Live Diagnostics Logger: Real-time telemetry feed, severity filter chips, pause stream toggle, and technical text report export.</div>
+        </div>
+
+        <h3>Visual PDF Energy Reports</h3>
+        <p>
+          Generate publication-ready PDF energy reports from the Dashboard by clicking <strong>Export PDF Report</strong>. Choose from <em>Last Week</em>, <em>Last Month</em>, <em>Last 12 Months</em>, or <em>All Time</em> to export summary graphs, solar yield totals, and self-consumption statistics.
+        </p>
+
+        <h3>Online & Manual Software Updates</h3>
+        <p>
+          GEMS provides two convenient methods for upgrading your system to the latest firmware release:
+        </p>
+        <ul>
+          <li><strong>Online Over-The-Air (OTA) Updates:</strong> Automatically queries the GitHub Releases API for new release tags. When a new version is available, click <strong>Download & Install</strong>. The backend downloads the <code>.deb</code> package and applies it via <code>dpkg -i</code> while streaming real-time installation logs.</li>
+          <li><strong>Manual Package Upload:</strong> In air-gapped or offline installations, you can drag and drop any pre-built Debian package (<code>.deb</code>, max 64MB) into the manual upload area and click <strong>Upload & Install Update</strong>.</li>
+        </ul>
+        <p>
+          During the update process, the system displays live console logs from the package installer. Once complete, the system automatically reboots and reloads the web interface.
+        </p>
+
+        <!-- Navigation Footer -->
+        <div class="page-nav-footer">
+          <a href="configuration.html" class="page-nav-card">
+            <span class="page-nav-label">Previous</span>
+            <span class="page-nav-title">&larr; Configuration Reference</span>
+          </a>
+          <a href="devices.html" class="page-nav-card" style="text-align:right;">
+            <span class="page-nav-label">Next Guide</span>
+            <span class="page-nav-title">Supported Device Templates (90) &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">On This Page</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#dashboard-powerflow" class="toc-link">Dashboard & PowerFlow</a></li>
+        <li class="toc-item"><a href="#historical-charts" class="toc-link">Historical Charts & Overlays</a></li>
+        <li class="toc-item"><a href="#flanders-gauge" class="toc-link">Flanders Peak Monitor</a></li>
+        <li class="toc-item"><a href="#device-management" class="toc-link">Device Management</a></li>
+        <li class="toc-item"><a href="#network-scanner" class="toc-link">Network Scanner</a></li>
+        <li class="toc-item"><a href="#modbus-probe" class="toc-link">Modbus Reachability Probe</a></li>
+        <li class="toc-item"><a href="#ocpp-server" class="toc-link">Native OCPP Server</a></li>
+        <li class="toc-item"><a href="#logs-updates" class="toc-link">Logger, Reports & Updates</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search documentation, parameters, guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Close search">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Use <kbd class="kbd-shortcut">↑</kbd> <kbd class="kbd-shortcut">↓</kbd> to navigate</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> to select</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> to dismiss</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>GEMS (The New Energy Grid) Documentation &bull; Built with Go, SQLite, Vue 3, and Tailwind CSS &bull; Optimized for Raspberry Pi</p>
+  </footer>
+
+  <script src="js/search-index.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+/* ==========================================================================
+   GEMS Documentation Site - Print Stylesheet
+   Optimized for clean, legible PDF exporting and printing
+   ========================================================================== */
+
+@media print {
+  :root {
+    --bg-primary: #ffffff !important;
+    --bg-secondary: #ffffff !important;
+    --text-primary: #000000 !important;
+    --text-secondary: #222222 !important;
+    --border-color: #cccccc !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Hide UI elements that are unnecessary in print */
+  .site-header,
+  .docs-sidebar,
+  .docs-toc,
+  .sidebar-backdrop,
+  .search-modal-backdrop,
+  .copy-code-btn,
+  .page-nav-footer,
+  .site-footer,
+  .mobile-menu-btn {
+    display: none !important;
+  }
+
+  .docs-container {
+    display: block !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .docs-content {
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .content-wrapper {
+    max-width: 100% !important;
+  }
+
+  /* Headings & Page breaks */
+  h1, h2, h3 {
+    color: #000000 !important;
+    page-break-after: avoid;
+  }
+
+  h1 {
+    font-size: 20pt !important;
+    margin-top: 0 !important;
+  }
+
+  h2 {
+    font-size: 15pt !important;
+    border-bottom: 1px solid #999999 !important;
+    margin-top: 24pt !important;
+  }
+
+  h3 {
+    font-size: 13pt !important;
+    margin-top: 18pt !important;
+  }
+
+  /* Code blocks in print */
+  .code-block-wrapper {
+    background: #f4f4f4 !important;
+    border: 1px solid #cccccc !important;
+    page-break-inside: avoid;
+  }
+
+  .code-header {
+    background: #e8e8e8 !important;
+    color: #333333 !important;
+    border-bottom: 1px solid #cccccc !important;
+  }
+
+  pre {
+    color: #000000 !important;
+  }
+
+  code {
+    background: #f0f0f0 !important;
+    color: #000000 !important;
+  }
+
+  /* Alerts in print */
+  .alert {
+    page-break-inside: avoid;
+    border-left: 4px solid #333333 !important;
+    background: #f9f9f9 !important;
+    color: #000000 !important;
+  }
+
+  /* Tables in print */
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  th, td {
+    border: 1px solid #dddddd !important;
+    color: #000000 !important;
+    padding: 6pt !important;
+  }
+
+  thead {
+    background: #eeeeee !important;
+  }
+
+  /* Card Grids */
+  .card-grid {
+    display: block !important;
+  }
+
+  .card {
+    border: 1px solid #cccccc !important;
+    margin-bottom: 12pt !important;
+    page-break-inside: avoid;
+  }
+
+  /* Print link destination */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #555555;
+  }
+
+  a {
+    color: #000000 !important;
+    text-decoration: underline !important;
+  }
+}

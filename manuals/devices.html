@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supported Device Templates & Step-by-Step Hardware Manual - GEMS</title>
+  <meta name="description" content="Complete step-by-step onboarding manuals for all 90 supported hardware templates in GEMS: Huawei, SMA, Solis, Fronius, SolarEdge, Sungrow, Victron, RAEDIAN, EVBox, Mennekes, go-e, P1 DSMR, HomeWizard, Shelly, Eastron, and more.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <svg width="20" height="20"><use href="assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">90 Templates</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Search documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-search"></use></svg>
+          <span>Search 90 hardware templates, ports, Modbus IDs, OCPP...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuration</span>
+      </a>
+      <a href="user-manual.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
+        <span>User Manual</span>
+      </a>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Toggle color theme">
+        <svg width="18" height="18"><use href="assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Device Manuals</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="devices.html#onboarding-workflow" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-bolt"></use></svg>
+              <span>Onboarding Workflow</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html#inverters" class="sidebar-link active">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-sun"></use></svg>
+              <span>Inverters & Batteries</span>
+              <span class="badge">24</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html#ev-chargers" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-charger"></use></svg>
+              <span>EV Chargers</span>
+              <span class="badge">38</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html#smart-meters" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
+              <span>Smart Meters & Grid</span>
+              <span class="badge">26</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html#smart-relays" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-relay"></use></svg>
+              <span>Relays & Actuators</span>
+              <span class="badge">2</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html#diagnostics" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-check"></use></svg>
+              <span>Live Health Checks</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html#adding-template" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-wrench"></use></svg>
+              <span>Plugin Architecture</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Other Manuals</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-book"></use></svg>
+              <span>Documentation Hub</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Installation Manual</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-settings"></use></svg>
+              <span>Configuration Reference</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
+              <span>User Operations Guide</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-wrench"></use></svg>
+              <span>Troubleshooting & FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Device Configuration Manuals</span>
+        </nav>
+
+        <h1>Supported Device Templates & Step-by-Step Configuration Guides</h1>
+        <p class="hero-lead">
+          GEMS includes <strong>90 native hardware integration templates</strong> spanning 80+ leading manufacturers across solar inverters, home battery storage systems, EV charging stations, digital smart meters, and smart contactors.
+        </p>
+
+        <!-- Device Management UI Overview -->
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/settings_devices.png" alt="Active Device Management Interface" loading="lazy">
+            <div class="doc-screenshot-caption">Devices View: Categorized active devices displaying IP/serial endpoints, Modbus Slave IDs, real-time online status badges, and quick-action edit/delete controls.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/settings_devices_add_modal.png" alt="Add Device Category & Template Wizard" loading="lazy">
+            <div class="doc-screenshot-caption">Add Device Wizard: Interactive category cards, template dropdown, protocol-specific parameter fields, and instant input validation.</div>
+          </div>
+        </div>
+
+        <!-- Universal 4-Step Onboarding Workflow -->
+        <h2 id="onboarding-workflow">Universal 4-Step Device Onboarding Workflow</h2>
+        <p>Adding and configuring any device in GEMS follows a simple, fully UI-driven 4-step process without touching any config files:</p>
+
+        <div class="workflow-steps">
+          <div class="workflow-step-card">
+            <div class="step-badge">Step 1</div>
+            <h4>Physical Connection & Local Network</h4>
+            <p>Connect your device via Ethernet LAN, Wi-Fi, RS485 bus, or USB P1 cable. Ensure the device and GEMS are on the same local subnet. Use the built-in <strong>Scanner</strong> (accessible from the sidebar) to instantly discover your device IP address and MAC OUI vendor.</p>
+          </div>
+
+          <div class="workflow-step-card">
+            <div class="step-badge">Step 2</div>
+            <h4>Vendor App / Hardware Preparation</h4>
+            <p>On your device or vendor mobile app, enable the communication protocol: enable <em>Modbus TCP</em> (e.g. in Huawei FusionSolar, SMA Speedwire, or SolarEdge SetApp), point your EV Charger's <em>OCPP Server URL</em> to GEMS, or toggle <em>Local API</em> on your HomeWizard or Shelly device.</p>
+          </div>
+
+          <div class="workflow-step-card">
+            <div class="step-badge">Step 3</div>
+            <h4>Add Device in GEMS UI</h4>
+            <p>In GEMS, navigate to <strong>Settings &rarr; Devices &rarr; + Add Device</strong>. Select your category (<em>Solar & Inverters</em>, <em>EV Chargers</em>, <em>Grid & Smart Meters</em>, or <em>Smart Relays</em>), select your hardware template, enter the IP host/port or ChargeBox ID, and click <strong>Save Device</strong>.</p>
+          </div>
+
+          <div class="workflow-step-card">
+            <div class="step-badge">Step 4</div>
+            <h4>Verify Real-Time Polling Health</h4>
+            <p>The background poller immediately starts querying your hardware. Check that the device card displays a green <span class="badge-pill badge-green">● Online</span> status. Head to the <strong>Dashboard</strong> to watch live energy flow animations and verify register telemetry in the <strong>Logger</strong>.</p>
+          </div>
+        </div>
+
+        <!-- 1. Solar & Hybrid Inverters -->
+        <h2 id="inverters">1. Solar & Hybrid Inverters (24 Templates)</h2>
+        <p>
+          Inverter templates communicate directly via Modbus TCP (Ethernet / Wi-Fi dongle), SunSpec standards, or local HTTP APIs. They monitor real-time solar generation (PV), battery State of Charge (SOC %), charge/discharge wattage, and support active power curtailment.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Brand / Model</th>
+                <th>Protocol</th>
+                <th>Default Port</th>
+                <th>Default Slave ID</th>
+                <th>Battery Support</th>
+                <th>Curtailment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Huawei SUN2000</strong> (L1/M1/M2/M3/MB0)</td>
+                <td>Modbus TCP (SDongleA/SmartLogger)</td>
+                <td><code>502</code></td>
+                <td><code>1</code> (or <code>2</code>)</td>
+                <td><span class="badge-pill badge-green">Yes (LUNA2000)</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>SMA Sunny Boy / Tripower / Storage</strong></td>
+                <td>Modbus TCP (Speedwire / SunSpec)</td>
+                <td><code>502</code></td>
+                <td><code>126</code> (or <code>3</code>)</td>
+                <td><span class="badge-pill badge-green">Yes (BYD/LG)</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Solis Hybrid</strong> (RHI / S5 / S6)</td>
+                <td>Modbus TCP</td>
+                <td><code>502</code> (or <code>8899</code>)</td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Fronius Gen24 / Symo / Primo</strong></td>
+                <td>Modbus TCP (SunSpec)</td>
+                <td><code>502</code></td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes (BYD HVS/HVM)</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>GoodWe Hybrid</strong> (ET / EH / ES / EM)</td>
+                <td>Modbus TCP / UDP</td>
+                <td><code>502</code> (or <code>8899</code>)</td>
+                <td><code>247</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Growatt</strong> (SPH / MIN / MOD / MID)</td>
+                <td>Modbus TCP (ShineLAN-X)</td>
+                <td><code>502</code></td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>SolarEdge 3-Phase & 1-Phase</strong></td>
+                <td>Modbus TCP (SunSpec SetApp)</td>
+                <td><code>1502</code> (or <code>502</code>)</td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes (Energy Bank)</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>SolaX Hybrid</strong> (X1 / X3 Gen 2/3/4)</td>
+                <td>Modbus TCP (Pocket LAN/Wi-Fi)</td>
+                <td><code>502</code></td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes (Triple Power)</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>SofarSolar</strong> (HYD / G3 / AMASS)</td>
+                <td>Modbus TCP</td>
+                <td><code>8899</code> (or <code>502</code>)</td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Sungrow Hybrid</strong> (SH5.0 - SH10RT)</td>
+                <td>Modbus TCP</td>
+                <td><code>502</code></td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes (SBR096-256)</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Victron GX / MultiPlus-II</strong></td>
+                <td>Modbus TCP (Venus OS)</td>
+                <td><code>502</code></td>
+                <td><code>100</code> (GX) / <code>228</code></td>
+                <td><span class="badge-pill badge-green">Yes (Victron ESS)</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Deye / Sunsynk Hybrid</strong></td>
+                <td>Modbus TCP (LAN/Wi-Fi Stick)</td>
+                <td><code>502</code> (or <code>8899</code>)</td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>FoxESS Hybrid</strong> (H1 / H3 / H3-Pro)</td>
+                <td>Modbus TCP</td>
+                <td><code>502</code></td>
+                <td><code>1</code> (or <code>247</code>)</td>
+                <td><span class="badge-pill badge-green">Yes (ECS/Mira)</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>SAJ eSolar</strong> (H1 / H2 / R5 / R6)</td>
+                <td>Modbus TCP</td>
+                <td><code>502</code></td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes (B1/B2)</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Senergy Hybrid</strong> (SE Series)</td>
+                <td>Modbus TCP</td>
+                <td><code>502</code></td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Sigenergy SigenStor</strong> (5-in-1 ESS)</td>
+                <td>Modbus TCP</td>
+                <td><code>502</code></td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes (Sigen Battery)</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Enerlution Hybrid ESS</strong></td>
+                <td>Modbus TCP</td>
+                <td><code>502</code></td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Alpha ESS Storion</strong> (SMILE5/T10)</td>
+                <td>Modbus TCP</td>
+                <td><code>502</code> (or <code>8502</code>)</td>
+                <td><code>85</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Anker SOLIX X1 Hybrid</strong></td>
+                <td>Modbus TCP</td>
+                <td><code>502</code></td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Afore Hybrid</strong> (AF-T / AF-S)</td>
+                <td>Modbus TCP</td>
+                <td><code>502</code></td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Marstek Storage</strong> (Venus / Jupiter)</td>
+                <td>Modbus TCP</td>
+                <td><code>502</code></td>
+                <td><code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>LG ESS Home</strong> (8 / 10 / 15)</td>
+                <td>Local HTTP REST</td>
+                <td><code>80</code> / <code>443</code></td>
+                <td>—</td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Enphase IQ Gateway / Envoy</strong></td>
+                <td>Local HTTP REST (Token Auth)</td>
+                <td><code>80</code> / <code>443</code></td>
+                <td>—</td>
+                <td><span class="badge-pill badge-green">Yes (IQ Battery)</span></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Detailed Inverter Step-by-Step Guides -->
+        <h3>Step-by-Step Configuration Guides for Popular Inverters</h3>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>Huawei SUN2000 Hybrid Inverters (with LUNA2000 Battery)</h4>
+            <span class="badge-pill badge-blue">Template: huawei_inverter</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>Enable Modbus TCP on SDongleA:</strong> Open the Huawei <em>FusionSolar</em> app as Installer. Navigate to <strong>Device Management &rarr; Dongle &rarr; Set Parameters &rarr; Modbus TCP</strong>. Set to <em>Enable (Unrestricted)</em> and confirm port <code>502</code> is open.</li>
+              <li><strong>Network Connection:</strong> Connect the SDongleA to your router via Ethernet or Wi-Fi. Find its IP address (e.g. <code>192.168.1.105</code>) using the GEMS <em>Scanner</em> tab.</li>
+              <li><strong>Add in GEMS:</strong> In GEMS, click <strong>Settings &rarr; Devices &rarr; + Add Device</strong>.
+                <ul>
+                  <li><strong>Category:</strong> <em>Inverters & Solar</em></li>
+                  <li><strong>Template:</strong> <em>Huawei Hybrid Inverter</em></li>
+                  <li><strong>Device Name:</strong> <code>Huawei SUN2000</code></li>
+                  <li><strong>Host IP:</strong> <code>192.168.1.105</code> &nbsp;|&nbsp; <strong>Port:</strong> <code>502</code> &nbsp;|&nbsp; <strong>Modbus ID:</strong> <code>1</code> (or <code>2</code> if cascading)</li>
+                  <li><strong>Rated Power (kW):</strong> Enter your inverter AC rating (e.g. <code>6.0</code>)</li>
+                  <li><strong>Allow Curtailment:</strong> Check box if using Netherlands Zero-Export or capacity limits</li>
+                </ul>
+              </li>
+              <li><strong>Verify:</strong> Click <strong>Save Device</strong>. Within 5 seconds, status will switch to green <span class="badge-pill badge-green">● Online</span>. PV production, battery SOC %, and battery charging/discharging power will populate on the Dashboard.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>SMA Sunny Boy / Sunny Tripower / Sunny Island</h4>
+            <span class="badge-pill badge-blue">Template: sma_inverter</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>Enable Modbus & SunSpec:</strong> Open the SMA Web UI in a browser using your installer password. Go to <strong>Device Parameters &rarr; External Communication &rarr; Modbus &rarr; TCP Server</strong>. Enable <em>TCP Server</em> and verify <em>Port 502</em>. Set <em>Unit ID</em> to <code>126</code> (default) or <code>3</code>.</li>
+              <li><strong>Add in GEMS:</strong> In GEMS, go to <strong>Settings &rarr; Devices &rarr; + Add Device</strong>.
+                <ul>
+                  <li><strong>Category:</strong> <em>Inverters & Solar</em></li>
+                  <li><strong>Template:</strong> <em>SMA Sunny Boy / Tripower</em></li>
+                  <li><strong>Host:</strong> SMA Inverter IP (e.g. <code>192.168.1.110</code>) &nbsp;|&nbsp; <strong>Port:</strong> <code>502</code> &nbsp;|&nbsp; <strong>Modbus ID:</strong> <code>126</code></li>
+                  <li><strong>Rated Power (kW):</strong> e.g. <code>8.0</code></li>
+                </ul>
+              </li>
+              <li><strong>Verify:</strong> Status becomes <span class="badge-pill badge-green">● Online</span>. Real-time active generation and connected battery telemetry are streamed to the Dashboard.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>SolarEdge Inverters (Single-Phase & 3-Phase with SetApp)</h4>
+            <span class="badge-pill badge-blue">Template: solaredge_inverter / solaredge_3phase</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>Enable SunSpec in SetApp:</strong> Open the SolarEdge <em>SetApp</em> mobile application, connect to the inverter's Wi-Fi hotspot, navigate to <strong>Communication &rarr; Modbus TCP</strong>. Toggle to <em>Enabled</em> and set port to <code>1502</code> (standard SolarEdge default) or <code>502</code>. Verify Device ID is set to <code>1</code>.</li>
+              <li><strong>Add in GEMS:</strong> Choose template <em>SolarEdge Inverter</em> (single phase) or <em>SolarEdge 3-Phase Inverter</em>. Enter Host IP, Port <code>1502</code>, Modbus ID <code>1</code>.</li>
+              <li><strong>Verify:</strong> Real-time SunSpec telemetry will flow immediately to GEMS.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>Victron GX (Cerbo GX / MultiPlus-II / Venus OS)</h4>
+            <span class="badge-pill badge-blue">Template: victron_inverter</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>Enable Modbus TCP in Venus OS:</strong> Access the Victron Remote Console (via browser or Touch 50/70). Go to <strong>Settings &rarr; Services &rarr; Modbus TCP</strong> and switch to <em>ON</em>.</li>
+              <li><strong>Add in GEMS:</strong> Template <em>Victron Inverter/GX</em>. Set Host IP, Port <code>502</code>, Modbus ID <code>100</code> (system overview) or <code>228</code> (grid inverter).</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>Sungrow Hybrid Inverter (SH5.0 - SH10RT)</h4>
+            <span class="badge-pill badge-blue">Template: sungrow_inverter</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>Direct LAN Port Connection:</strong> For reliable, fast Modbus TCP polling, connect your Ethernet cable directly to the inverter's internal LAN RJ45 port (under the lower cover), rather than the external WiNet-S dongle.</li>
+              <li><strong>Add in GEMS:</strong> Select <em>Sungrow Inverter</em>. Host IP, Port <code>502</code>, Modbus ID <code>1</code>.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- 2. EV Charging Stations -->
+        <h2 id="ev-chargers">2. EV Charging Stations & Wallboxes (38 Templates)</h2>
+        <p>
+          GEMS supports EV chargers via <strong>Universal Native OCPP (1.6-J & 2.0.1)</strong> WebSocket server, <strong>Modbus TCP</strong> direct fieldbus, and <strong>Local REST / Cloud APIs</strong>. Chargers support automated Eco mode (excess solar charging), Flanders capacity peak shaving, and 1-phase / 3-phase dynamic power adjustment.
+        </p>
+
+        <!-- Native OCPP Setup Banner -->
+        <div class="alert-box alert-note">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="assets/icons.svg#icon-charger"></use></svg>
+            <strong>Native OCPP Server (Port 8887 / 8080)</strong>
+          </div>
+          <div class="alert-content">
+            GEMS runs a built-in Native OCPP 1.6-J & 2.0.1 WebSocket server. No cloud broker or third-party subscription is required. In your charger's installer app, set the Central System / Backend URL to:
+            <div class="code-block" style="margin-top:8px;">
+              <code>ws://&lt;GEMS-IP&gt;:8887/&lt;ChargePointID&gt;</code>
+            </div>
+            <em>Example:</em> If GEMS IP is <code>192.168.1.188</code> and your charger ID is <code>EVB-P201948</code>, set URL to <code>ws://192.168.1.188:8887/EVB-P201948</code>.
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Brand / Model</th>
+                <th>Type</th>
+                <th>Connection Method</th>
+                <th>Default Port / URL</th>
+                <th>Dynamic Current Throttling</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>RAEDIAN NEO / NEX / Gemini</strong></td>
+                <td>Modbus TCP</td>
+                <td>Direct LAN/Wi-Fi</td>
+                <td>Port <code>502</code>, ID <code>1</code> (or <code>2</code>)</td>
+                <td><span class="badge-pill badge-green">Yes (6A - 32A)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Huawei FusionCharge</strong> (SCharger-7KS/22KT)</td>
+                <td>OCPP 1.6-J</td>
+                <td>Native WebSocket</td>
+                <td><code>ws://&lt;EMS-IP&gt;:8887/&lt;ID&gt;</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>EVBox Elvi / Livo / BusinessLine</strong></td>
+                <td>OCPP 1.6-J</td>
+                <td>Native WebSocket</td>
+                <td><code>ws://&lt;EMS-IP&gt;:8887/&lt;ID&gt;</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Mennekes AMTRON</strong> (4You/4Business/ACU)</td>
+                <td>OCPP 1.6-J</td>
+                <td>Native WebSocket</td>
+                <td><code>ws://&lt;EMS-IP&gt;:8887/&lt;ID&gt;</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Mennekes AMTRON</strong> (Xtra / Premium / HCC3)</td>
+                <td>Modbus TCP</td>
+                <td>Direct LAN</td>
+                <td>Port <code>502</code>, ID <code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>go-e Charger Gemini / HOMEfix / PRO</strong></td>
+                <td>Local REST</td>
+                <td>HTTP API v2</td>
+                <td>Port <code>80</code> (Local IP)</td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>SMA EV Charger</strong> (7.4 / 22 / eCharger)</td>
+                <td>OCPP 1.6-J</td>
+                <td>Native WebSocket</td>
+                <td><code>ws://&lt;EMS-IP&gt;:8887/&lt;ID&gt;</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Schneider Electric EVlink</strong> (Wallbox/Pro AC)</td>
+                <td>OCPP 1.6-J</td>
+                <td>Native WebSocket</td>
+                <td><code>ws://&lt;EMS-IP&gt;:8887/&lt;ID&gt;</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Siemens VersiCharge GEN3</strong></td>
+                <td>OCPP 1.6-J</td>
+                <td>Native WebSocket</td>
+                <td><code>ws://&lt;EMS-IP&gt;:8887/&lt;ID&gt;</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Elli / VW / Skoda / SEAT</strong> (ID. Charger)</td>
+                <td>OCPP 1.6-J</td>
+                <td>Configuration Manager</td>
+                <td><code>ws://&lt;EMS-IP&gt;:8887/&lt;ID&gt;</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>KEBA KeContact P30 / P40</strong></td>
+                <td>Modbus TCP / UDP</td>
+                <td>Direct LAN</td>
+                <td>Port <code>502</code>, ID <code>255</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>ABB Terra AC Wallbox</strong></td>
+                <td>OCPP 1.6-J</td>
+                <td>TerraConfig App</td>
+                <td><code>ws://&lt;EMS-IP&gt;:8887/&lt;ID&gt;</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Alpitronic Hypercharger (HYC)</strong></td>
+                <td>OCPP 1.6-J</td>
+                <td>Direct LAN</td>
+                <td><code>ws://&lt;EMS-IP&gt;:8887/&lt;ID&gt;</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Autel MaxiCharger AC</strong></td>
+                <td>OCPP 1.6-J</td>
+                <td>Autel Charge App</td>
+                <td><code>ws://&lt;EMS-IP&gt;:8887/&lt;ID&gt;</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Peblar EV Charger</strong> (Home / Business / Plus)</td>
+                <td>Modbus TCP</td>
+                <td>Direct LAN</td>
+                <td>Port <code>502</code>, ID <code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Phoenix Contact EV-CC / CHARX</strong></td>
+                <td>Modbus TCP</td>
+                <td>Direct LAN</td>
+                <td>Port <code>502</code>, ID <code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Veton / Phoenix CharX</strong></td>
+                <td>Modbus TCP</td>
+                <td>Direct LAN</td>
+                <td>Port <code>502</code>, ID <code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Webasto Next / Live</strong></td>
+                <td>Modbus TCP</td>
+                <td>Direct LAN / Wi-Fi</td>
+                <td>Port <code>502</code>, ID <code>1</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>SmartEVSE v2 / v3</strong></td>
+                <td>Local REST / Modbus</td>
+                <td>HTTP API (<code>/add</code>)</td>
+                <td>Port <code>80</code></td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Wallbox Pulsar Plus / Commander</strong></td>
+                <td>Cloud REST</td>
+                <td>Wallbox Cloud API</td>
+                <td>Cloud Credentials</td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Zaptec Go / Pro</strong></td>
+                <td>Cloud REST</td>
+                <td>Zaptec Cloud API</td>
+                <td>Cloud Credentials</td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+              <tr>
+                <td><strong>Easee Home / Charge</strong></td>
+                <td>Cloud REST</td>
+                <td>Easee Cloud API</td>
+                <td>Cloud Credentials</td>
+                <td><span class="badge-pill badge-green">Yes</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Detailed EV Charger Step-by-Step Guides -->
+        <h3>Step-by-Step Guides for EV Chargers</h3>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>RAEDIAN NEO / NEX / Gemini AC Wallbox (Modbus TCP)</h4>
+            <span class="badge-pill badge-blue">Template: raedian_charger</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>Network Connection:</strong> Connect your RAEDIAN wallbox to your home Wi-Fi or Ethernet network. Use the RAEDIAN app to confirm its local IP address (e.g. <code>192.168.1.120</code>). Modbus TCP port <code>502</code> is enabled by default.</li>
+              <li><strong>Add in GEMS:</strong> In GEMS, go to <strong>Settings &rarr; Devices &rarr; + Add Device</strong>.
+                <ul>
+                  <li><strong>Category:</strong> <em>EV Chargers</em></li>
+                  <li><strong>Template:</strong> <em>RAEDIAN NEO / NEX AC Wallbox</em></li>
+                  <li><strong>Device Name:</strong> <code>RAEDIAN Wallbox 22kW</code></li>
+                  <li><strong>Host IP:</strong> <code>192.168.1.120</code> &nbsp;|&nbsp; <strong>Port:</strong> <code>502</code> &nbsp;|&nbsp; <strong>Modbus ID:</strong> <code>1</code> (or <code>2</code> for Connector B)</li>
+                  <li><strong>Charging Mode:</strong> Choose <em>Eco (Solar Priority)</em> or <em>Fast</em>.</li>
+                </ul>
+              </li>
+              <li><strong>Verify:</strong> Click <strong>Save Device</strong>. The status switches to <span class="badge-pill badge-green">● Online</span>. When a vehicle plugs in, GEMS monitors real-time charging wattage and automatically modulates current setpoints between 6A and 32A according to your solar excess and Flanders peak capacity limits.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>Universal OCPP 1.6-J Charger (Huawei FusionCharge, EVBox, Mennekes, SMA, Siemens)</h4>
+            <span class="badge-pill badge-blue">Template: ocpp / huawei_scharger / evbox_charger / mennekes_ocpp</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>Determine ChargePoint ID:</strong> Identify the unique ChargePoint ID of your wallbox (e.g., serial number or custom string like <code>WALLBOX-01</code>).</li>
+              <li><strong>Configure CSMS Backend in Wallbox:</strong> In your wallbox configuration app or web interface, set the Central System URL to:
+                <div class="code-block" style="margin:6px 0;"><code>ws://192.168.1.188:8887/WALLBOX-01</code></div>
+                <em>(Replace <code>192.168.1.188</code> with your GEMS IP address, and <code>WALLBOX-01</code> with your ChargePoint ID).</em>
+              </li>
+              <li><strong>Add in GEMS:</strong> In GEMS, select <strong>Settings &rarr; Devices &rarr; + Add Device</strong> &rarr; <em>EV Chargers</em> &rarr; Select your brand template (e.g. <em>EVBox Elvi</em> or <em>Huawei FusionCharge</em>). Enter your <strong>ChargePoint ID</strong>.</li>
+              <li><strong>Verify:</strong> GEMS accepts the WebSocket handshake, registers the charger heartbeat, and displays live charging metrics.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>go-e Charger Gemini / HOMEfix / PRO (Local HTTP REST)</h4>
+            <span class="badge-pill badge-blue">Template: goe_charger</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>Enable Local HTTP API v2:</strong> Open the go-e Charger mobile app &rarr; <strong>Settings &rarr; Connectivity &rarr; Advanced &rarr; Local HTTP API v2</strong>. Toggle to <em>Enabled</em>.</li>
+              <li><strong>Add in GEMS:</strong> In GEMS, select <em>go-e Charger Gemini</em>. Enter the local IP address (e.g. <code>192.168.1.125</code>) and port <code>80</code>.</li>
+              <li><strong>Verify:</strong> Real-time 3-phase currents, power, and authorization states update automatically.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- 3. Smart Meters & Grid -->
+        <h2 id="smart-meters">3. Grid & Smart Meters (26 Templates)</h2>
+        <p>
+          Grid meters provide real-time household import/export wattage, 3-phase currents (L1, L2, L3), voltages, and peak tariff counters. Fast sub-second metering is crucial for responsive peak shaving and zero-export control.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Brand / Model</th>
+                <th>Interface Type</th>
+                <th>Port / Connection</th>
+                <th>Baud Rate / Slave ID</th>
+                <th>Phase Mode</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>P1 Smart Meter (USB / Serial)</strong></td>
+                <td>Serial DSMR</td>
+                <td><code>/dev/ttyUSB0</code></td>
+                <td><code>115200</code> (DSMR 5/4) / <code>9600</code> (DSMR 2/3)</td>
+                <td>1-Phase / 3-Phase</td>
+              </tr>
+              <tr>
+                <td><strong>P1 Smart Meter (Network / TCP Bridge)</strong></td>
+                <td>Network TCP Bridge</td>
+                <td>IP:Port (e.g. <code>23</code>, <code>8088</code>, <code>8234</code>)</td>
+                <td>Raw DSMR Telegram Stream</td>
+                <td>1-Phase / 3-Phase</td>
+              </tr>
+              <tr>
+                <td><strong>HomeWizard Wi-Fi P1 Meter</strong></td>
+                <td>Local HTTP REST</td>
+                <td>Port <code>80</code> (<code>/api/v1/data</code>)</td>
+                <td>Local REST API</td>
+                <td>1-Phase / 3-Phase</td>
+              </tr>
+              <tr>
+                <td><strong>Homey Energy Dongle (P1)</strong></td>
+                <td>Local Network Broadcast</td>
+                <td>Port <code>80</code> / Broadcast</td>
+                <td>UDP / HTTP</td>
+                <td>1-Phase / 3-Phase</td>
+              </tr>
+              <tr>
+                <td><strong>Shelly 3EM (Gen 1 3-Phase)</strong></td>
+                <td>Local HTTP REST</td>
+                <td>Port <code>80</code> (<code>/status</code>)</td>
+                <td>Local REST API</td>
+                <td>3-Phase CT Clamp</td>
+              </tr>
+              <tr>
+                <td><strong>Shelly Pro 3EM / Gen3 3EM-63T</strong></td>
+                <td>Local Gen 2/3 REST</td>
+                <td>Port <code>80</code> (<code>/rpc/EM.GetStatus</code>)</td>
+                <td>Local REST API</td>
+                <td>3-Phase CT Clamp</td>
+              </tr>
+              <tr>
+                <td><strong>Eastron SDM120 / SDM220 / SDM230</strong></td>
+                <td>Modbus TCP / RTU Gateway</td>
+                <td>Port <code>502</code></td>
+                <td>Slave ID <code>1</code> (Baud <code>9600</code>)</td>
+                <td>1-Phase Direct</td>
+              </tr>
+              <tr>
+                <td><strong>Eastron SDM630 / SDM72D / SMART X96</strong></td>
+                <td>Modbus TCP / RTU Gateway</td>
+                <td>Port <code>502</code></td>
+                <td>Slave ID <code>1</code> (Baud <code>9600</code>)</td>
+                <td>3-Phase Direct / CT</td>
+              </tr>
+              <tr>
+                <td><strong>Carlo Gavazzi EM112 / EM340 / EM540</strong></td>
+                <td>Modbus TCP / RS485</td>
+                <td>Port <code>502</code></td>
+                <td>Slave ID <code>1</code> (Baud <code>9600</code>)</td>
+                <td>1-Phase / 3-Phase</td>
+              </tr>
+              <tr>
+                <td><strong>ABB A43 / A44 / B23 / B24 Meter</strong></td>
+                <td>Modbus TCP / RS485</td>
+                <td>Port <code>502</code></td>
+                <td>Slave ID <code>1</code></td>
+                <td>3-Phase Direct / CT</td>
+              </tr>
+              <tr>
+                <td><strong>Schneider Electric Acti9 iEM3000 / PM3200</strong></td>
+                <td>Modbus TCP / RS485</td>
+                <td>Port <code>502</code></td>
+                <td>Slave ID <code>1</code></td>
+                <td>3-Phase Direct / CT</td>
+              </tr>
+              <tr>
+                <td><strong>Siemens SENTRON PAC2200 / 7KT1665</strong></td>
+                <td>Modbus TCP</td>
+                <td>Port <code>502</code></td>
+                <td>Slave ID <code>1</code></td>
+                <td>3-Phase Direct</td>
+              </tr>
+              <tr>
+                <td><strong>SMA Energy Meter 2.0 / Data Manager M</strong></td>
+                <td>Modbus TCP</td>
+                <td>Port <code>502</code></td>
+                <td>Slave ID <code>2</code></td>
+                <td>3-Phase Direct</td>
+              </tr>
+              <tr>
+                <td><strong>Socomec COUNTIS E24/E34/E44 / DIRIS A-40</strong></td>
+                <td>Modbus TCP / RS485</td>
+                <td>Port <code>502</code></td>
+                <td>Slave ID <code>1</code></td>
+                <td>3-Phase Direct / CT</td>
+              </tr>
+              <tr>
+                <td><strong>WAGO 879 Series</strong> (879-3000 / 3020 / 3040)</td>
+                <td>Modbus TCP</td>
+                <td>Port <code>502</code></td>
+                <td>Slave ID <code>1</code></td>
+                <td>3-Phase Direct</td>
+              </tr>
+              <tr>
+                <td><strong>Eltako DSZ15DZMOD / DSZ16 Meter</strong></td>
+                <td>Modbus TCP / RS485</td>
+                <td>Port <code>502</code></td>
+                <td>Slave ID <code>1</code></td>
+                <td>3-Phase Direct</td>
+              </tr>
+              <tr>
+                <td><strong>Finder 7M.24 / 7M.38 Meter</strong></td>
+                <td>Modbus TCP / RS485</td>
+                <td>Port <code>502</code></td>
+                <td>Slave ID <code>1</code></td>
+                <td>3-Phase Direct</td>
+              </tr>
+              <tr>
+                <td><strong>Inepro PRO380-MOD / PRO1-MOD</strong></td>
+                <td>Modbus TCP / RS485</td>
+                <td>Port <code>502</code></td>
+                <td>Slave ID <code>1</code></td>
+                <td>1-Phase / 3-Phase</td>
+              </tr>
+              <tr>
+                <td><strong>Lovato DMG610 3-Phase Meter</strong></td>
+                <td>Modbus TCP / RS485</td>
+                <td>Port <code>502</code></td>
+                <td>Slave ID <code>1</code></td>
+                <td>3-Phase Direct / CT</td>
+              </tr>
+              <tr>
+                <td><strong>Acrel ADW300 3-Phase Meter</strong></td>
+                <td>Modbus TCP / RS485</td>
+                <td>Port <code>502</code></td>
+                <td>Slave ID <code>1</code></td>
+                <td>3-Phase Wireless/LAN</td>
+              </tr>
+              <tr>
+                <td><strong>ESPHome DSMR / DLMS Smart Meter</strong></td>
+                <td>Local HTTP REST</td>
+                <td>Port <code>80</code></td>
+                <td>JSON Telemetry</td>
+                <td>1-Phase / 3-Phase</td>
+              </tr>
+              <tr>
+                <td><strong>Loxone Miniserver</strong></td>
+                <td>Local HTTP JSON</td>
+                <td>Port <code>80</code> / <code>443</code></td>
+                <td>Miniserver API</td>
+                <td>Multi-Zone Submeter</td>
+              </tr>
+              <tr>
+                <td><strong>Niko Home Control (NHC II)</strong></td>
+                <td>Local Hobby API</td>
+                <td>Port <code>8884</code> / <code>80</code></td>
+                <td>NHC JSON Telemetry</td>
+                <td>Energy Module</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Detailed Smart Meter Guides -->
+        <h3>Step-by-Step Guides for Smart Meters</h3>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>P1 Smart Meter (USB / Serial Cable for Fluvius & Dutch DSMR)</h4>
+            <span class="badge-pill badge-blue">Template: p1_serial</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>Hardware Wiring:</strong> Plug your RJ12 P1 cable into the digital smart meter P1 port (Fluvius Belgium, Enexis/Liander Netherlands). Plug the USB end into any USB port on your Raspberry Pi.
+                <div class="tip-box" style="margin-top:6px;">
+                  <strong>Fluvius Belgium users:</strong> Make sure the P1 customer port is activated via the online <em>Mijn Fluvius</em> portal!
+                </div>
+              </li>
+              <li><strong>Add in GEMS:</strong> In GEMS, click <strong>Settings &rarr; Devices &rarr; + Add Device</strong>.
+                <ul>
+                  <li><strong>Category:</strong> <em>Grid & Smart Meters</em></li>
+                  <li><strong>Template:</strong> <em>P1 Smart Meter (USB/Serial)</em></li>
+                  <li><strong>Serial Port:</strong> Select <code>/dev/ttyUSB0</code> (auto-detected by GEMS)</li>
+                  <li><strong>Baud Rate:</strong> <code>115200</code> (Standard for DSMR 4.x & 5.x) or <code>9600</code> (older DSMR 2.x/3.x)</li>
+                  <li><strong>Poll Interval:</strong> <code>2</code> seconds</li>
+                </ul>
+              </li>
+              <li><strong>Verify:</strong> Status turns <span class="badge-pill badge-green">● Online</span>. Grid import/export power, voltage per phase, and total kWh meter counters appear on the Dashboard Grid node.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>HomeWizard Wi-Fi P1 Meter & Energy Socket</h4>
+            <span class="badge-pill badge-blue">Template: homewizard_meter</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>Enable Local API in HomeWizard App:</strong> In the HomeWizard Energy mobile app, go to <strong>Settings &rarr; Meters &rarr; Your P1 Meter &rarr; Local API</strong> and switch the toggle to <strong>ON</strong>.</li>
+              <li><strong>Add in GEMS:</strong> Select <em>HomeWizard Meter</em> template. Enter the HomeWizard IP (e.g. <code>192.168.1.130</code>) and Port <code>80</code>.</li>
+              <li><strong>Verify:</strong> GEMS reads <code>/api/v1/data</code> every 2 seconds with zero cloud latency.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>Shelly Pro 3EM / Gen3 3EM-63T (3-Phase Submeter)</h4>
+            <span class="badge-pill badge-blue">Template: shelly_pro_3em</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>Physical Installation:</strong> Clamp CT transformers onto Phase A, B, and C in the correct current flow direction (K &rarr; L). Connect the device to Ethernet or Wi-Fi.</li>
+              <li><strong>Add in GEMS:</strong> Select template <em>Shelly Pro 3EM / Gen3 3EM-63T</em>. Enter IP address (e.g. <code>192.168.1.140</code>) and port <code>80</code>.</li>
+              <li><strong>Verify:</strong> Active power across all 3 phases is read instantly via Gen 2/3 RPC.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- 4. Smart Relays & Contactors -->
+        <h2 id="smart-relays">4. Smart Relays & Actuators (2 Templates)</h2>
+        <p>
+          Smart relays control thermal loads (heat pumps via SG-Ready contactors, domestic hot water boilers, electric heaters, and pool pumps) dynamically based on excess solar production and dynamic EPEX spot price thresholds.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Brand / Model</th>
+                <th>Protocol</th>
+                <th>Port</th>
+                <th>Endpoints</th>
+                <th>Power Monitoring</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Shelly Plus 1PM / Pro 1PM / Plug S</strong></td>
+                <td>Local Gen 2 REST</td>
+                <td><code>80</code></td>
+                <td><code>/rpc/Switch.Set</code>, <code>/rpc/Switch.GetStatus</code></td>
+                <td><span class="badge-pill badge-green">Yes (Real-Time Watts & Total kWh)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Generic HTTP Relay</strong> (ESP / Tasmota / Custom)</td>
+                <td>REST JSON</td>
+                <td><code>80</code> / <code>8080</code></td>
+                <td>Configurable State & Toggle URLs</td>
+                <td>Optional</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>Shelly Plus 1PM / Pro 1PM (SG-Ready Heat Pump Contactor)</h4>
+            <span class="badge-pill badge-blue">Template: shelly_plus_1pm</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>Wiring SG-Ready Input:</strong> Wire the potential-free relay contact (Shelly Pro 1PM or contactor driven by Plus 1PM) across the Heat Pump SG-Ready terminals (Operating State 3: Boost mode).</li>
+              <li><strong>Add in GEMS:</strong> Go to <strong>Settings &rarr; Devices &rarr; + Add Device</strong> &rarr; <em>Smart Relays & Contactors</em> &rarr; <em>Shelly Plus 1PM / Pro 1PM</em>. Enter Host IP (e.g. <code>192.168.1.150</code>) and port <code>80</code>.</li>
+              <li><strong>Configure Automation Thresholds:</strong> In <strong>Settings &rarr; Strategy &rarr; Relay Settings</strong>, set <em>Appliance Turn-On Solar Excess</em> (e.g. <code>1500W</code>) and <em>Thermal Hysteresis</em> (e.g. <code>15 minutes</code>) to prevent rapid on/off cycling.</li>
+              <li><strong>Verify:</strong> Relay state toggles automatically when solar export exceeds 1500W for 2 minutes, boosting your hot water tank with 100% free green energy!</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- 5. Diagnostics & Health -->
+        <h2 id="diagnostics">5. Live Health Verification & Diagnostic Logger</h2>
+        <p>GEMS provides real-time diagnostics on every communication cycle:</p>
+
+        <div class="doc-screenshot-card" style="margin-bottom:24px;">
+          <img src="assets/screenshots/logger.png" alt="Diagnostic Logger" loading="lazy">
+          <div class="doc-screenshot-caption">Diagnostics Logger: Color-coded live log stream detailing Modbus register packets, OCPP WebSocket heartbeats, strategy control setpoints, and error codes.</div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Status Indicator</th>
+                <th>Meaning</th>
+                <th>Recommended Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge-pill badge-green">● Online</span></td>
+                <td>Device responds normally within polling timeout (< 1000ms).</td>
+                <td>No action needed. System is operating at peak health.</td>
+              </tr>
+              <tr>
+                <td><span class="badge-pill badge-red">● Error</span></td>
+                <td>Consecutive polling timeouts or connection refused (TCP reset).</td>
+                <td>Check IP address, verify physical cable/Wi-Fi signal, confirm Modbus ID. Check <em>Logger</em> tab for raw error codes.</td>
+              </tr>
+              <tr>
+                <td><span class="badge-pill" style="background:#64748b; color:#fff;">● Offline</span></td>
+                <td>Device disabled or initialization in progress.</td>
+                <td>Verify power supply to hardware and ensure network router is reachable.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 6. Plugin Architecture -->
+        <h2 id="adding-template">6. Plugin Architecture & Contributing Templates</h2>
+        <p>
+          GEMS is architected as an extensible Go plugin framework located in <a href="file:///home/koen/Git/GEMS/backend/internal/templates"><code>backend/internal/templates/</code></a>. Every hardware template implements the unified <code>DevicePoller</code> interface:
+        </p>
+
+        <div class="code-block">
+          <pre><code>package templates
+
+import (
+    "nems/internal/models"
+)
+
+type MyDevicePoller struct {
+    device models.Device
+}
+
+func init() {
+    Register(Template{
+        Metadata: TemplateMetadata{
+            ID:       "my_device_template",
+            Name:     "Brand Model Inverter/Charger",
+            Type:     "modbus", // "modbus", "ocpp", "rest", "serial", "network", "cloud"
+            Category: "Inverters & Solar",
+            Vendor:   "BrandName",
+        },
+        NewPoller: func(d models.Device) models.DevicePoller {
+            return &MyDevicePoller{device: d}
+        },
+    })
+}
+
+func (p *MyDevicePoller) Poll() (models.Telemetry, error) {
+    // Read Modbus registers or REST endpoint and return standardized Telemetry struct
+}</code></pre>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-modal-header">
+        <svg width="20" height="20"><use href="assets/icons.svg#icon-search"></use></svg>
+        <input type="text" id="search-input" placeholder="Search 90 hardware templates, Modbus IDs, OCPP..." autocomplete="off">
+        <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+      </div>
+      <div class="search-results-list" id="search-results-list">
+        <!-- Dynamically populated -->
+      </div>
+      <div class="search-modal-footer">
+        <span><kbd>&uarr;</kbd> <kbd>&darr;</kbd> Navigate</span>
+        <span><kbd>Enter</kbd> Select</span>
+        <span><kbd>Esc</kbd> Close</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/search-index.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

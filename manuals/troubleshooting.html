@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Troubleshooting, Diagnostics & FAQ - GEMS</title>
+  <meta name="description" content="Comprehensive troubleshooting guide and FAQ for GEMS: Modbus errors, P1 telegram debugging, OCPP WebSocket issues, SQLite WAL diagnostics, and alerts.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <svg width="20" height="20"><use href="assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Troubleshooting</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Search documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-search"></use></svg>
+          <span>Search errors, diagnostics, FAQ...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="installation.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+        <span>Installation</span>
+      </a>
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuration</span>
+      </a>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Toggle color theme">
+        <svg width="18" height="18"><use href="assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Troubleshooting Manual</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="troubleshooting.html#modbus-troubleshooting" class="sidebar-link active">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-wrench"></use></svg>
+              <span>Modbus TCP & RTU Errors</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#p1-troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
+              <span>P1 Smart Meter Issues</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#ocpp-troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-charger"></use></svg>
+              <span>OCPP WebSocket Diagnostics</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#nvme-troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-bolt"></use></svg>
+              <span>NVMe SSD & Bootloader</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#sd-card-sqlite" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-shield"></use></svg>
+              <span>SQLite & Storage Health</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#alerts-troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-wifi"></use></svg>
+              <span>Alerts & Webhooks</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#faq" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-book"></use></svg>
+              <span>Frequently Asked Questions</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Other Manuals</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-book"></use></svg>
+              <span>Documentation Hub</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Installation Manual</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-settings"></use></svg>
+              <span>Configuration Reference</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
+              <span>User Operations Guide</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-sun"></use></svg>
+              <span>Device Templates</span>
+              <span class="badge">90</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Troubleshooting & FAQ</span>
+        </nav>
+
+        <h1>Troubleshooting, Diagnostics & FAQ Manual</h1>
+        <p class="hero-lead">
+          Step-by-step diagnostic workflows, common error codes, hardware bus inspection commands, and answers to frequently asked questions.
+        </p>
+
+        <!-- Modbus Troubleshooting -->
+        <h2 id="modbus-troubleshooting">1. Modbus TCP & RTU Troubleshooting</h2>
+        <p>
+          When a device fails to communicate, the real-time Logger will output descriptive error messages. Review the matrix below to resolve the root cause:
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="assets/screenshots/logger.png" alt="Diagnostics Logger Real-Time Error Inspection" loading="lazy">
+          <div class="doc-screenshot-caption">Live Diagnostics Logger: Live streaming Modbus poll attempts, CRC check warnings, and instant log export.</div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Error Message</th>
+                <th>Underlying Cause</th>
+                <th>Resolution Step</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>connection refused (ECONNREFUSED)</code></td>
+                <td>Target IP is reachable, but Modbus TCP service is disabled or listening on a different port.</td>
+                <td>Enable Modbus TCP in inverter settings (e.g. Huawei FusionSolar &rarr; Dongle Settings &rarr; Modbus TCP: Unrestricted). Check port (typically <code>502</code> or <code>1502</code>).</td>
+              </tr>
+              <tr>
+                <td><code>i/o timeout</code></td>
+                <td>Target IP is offline, blocked by firewall, or device is in deep sleep.</td>
+                <td>Verify IP with <code>ping &lt;ip&gt;</code>. Inverters shut down communication during nighttime if AC grid power is disconnected or solar panels produce 0W.</td>
+              </tr>
+              <tr>
+                <td><code>modbus: response slave id mismatch</code></td>
+                <td>The inverter is configured with a different Modbus Slave Unit ID.</td>
+                <td>Huawei default is <code>1</code> or <code>2</code>; SMA is <code>126</code> or <code>3</code>; SolarEdge is <code>1</code>; GoodWe is <code>247</code>. Check device manual.</td>
+              </tr>
+              <tr>
+                <td><code>modbus: exception 'Illegal Data Address'</code></td>
+                <td>The template requested a holding/input register not supported by your inverter firmware.</td>
+                <td>Upgrade inverter firmware via manufacturer installer app or verify standard SunSpec 16-bit register offset.</td>
+              </tr>
+              <tr>
+                <td><code>CRC check failed / framing error</code></td>
+                <td>RS485 electrical noise, incorrect baud rate, or missing termination.</td>
+                <td>Check RS485 baud rate (9600 vs 19200 vs 115200), install 120&Omega; termination resistors at both bus ends, and verify shielded twisted pair wiring.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- P1 Smart Meter Debugging -->
+        <h2 id="p1-troubleshooting">2. P1 DSMR Smart Meter Diagnostics</h2>
+
+        <div class="alert alert-warning">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="assets/icons.svg#icon-alert-triangle"></use></svg>
+            <span>Baud Rate & Inversion Discrepancy</span>
+          </div>
+          <p>
+            Standard DSMR 5.0 meters (Fluvius Belgium, Dutch Smart Meters) operate at <strong>115200 baud, 8 data bits, no parity, 1 stop bit (8N1)</strong> and output <em>inverted</em> serial data. Older DSMR 2.2 / 3.0 meters operate at <strong>9600 baud, 7 data bits, even parity, 1 stop bit (7E1)</strong>. Ensure your USB optical probe features active signal inversion circuitry.
+          </p>
+        </div>
+
+        <h3>Testing P1 Data Stream in Terminal</h3>
+        <p>Access Cockpit Terminal on port <code>9090</code> and execute the following commands:</p>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Bash / Terminal</span>
+            <button class="copy-code-btn" aria-label="Copy commands">
+              <svg width="14" height="14"><use href="assets/icons.svg#icon-copy"></use></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <pre><code># 1. Verify USB serial device is detected
+ls -l /dev/ttyUSB*
+
+# 2. Configure serial port speed (DSMR 5.0)
+stty -F /dev/ttyUSB0 115200 cs8 -cstopb -parenb
+
+# 3. Read raw telegram output (should stream valid text starting with '/')
+cat /dev/ttyUSB0
+
+# Example expected output:
+# /FLU5\253769484_A
+# 1-0:1.8.1(001234.567*kWh)
+# 1-0:1.7.0(01.250*kW)
+# 1-0:31.7.0(005*A)
+# !52C1</code></pre>
+        </div>
+
+        <!-- OCPP WebSocket Diagnostics -->
+        <h2 id="ocpp-troubleshooting">3. OCPP EV Charger Connection Diagnostics</h2>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Symptom</th>
+                <th>Root Cause</th>
+                <th>Diagnostic Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Charger status stays "Offline"</strong></td>
+                <td>EV Charger cannot reach WebSocket URL or DNS lookup failed.</td>
+                <td>Ensure the charger configuration uses the raw IP: <code>ws://192.168.1.50:8080/api/ocpp/&lt;ChargerID&gt;</code> instead of <code>ems.local</code> if the charger does not support mDNS resolution.</td>
+              </tr>
+              <tr>
+                <td><strong>WebSocket 404 / 400 Bad Request</strong></td>
+                <td>ChargePoint ID in URL does not match the configured Host field in GEMS.</td>
+                <td>Verify that the ID appended to <code>/api/ocpp/&lt;ID&gt;</code> exactly matches the Host value entered in the GEMS Add Device dialog.</td>
+              </tr>
+              <tr>
+                <td><strong>Charging current not changing</strong></td>
+                <td>Charger ignores <code>SetChargingProfile</code> commands.</td>
+                <td>Ensure the charger is in "Auto" or "External CSMS" mode in the manufacturer app. If set to manual override, external control profiles are rejected.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="doc-screenshot-card">
+          <img src="assets/screenshots/scanner.png" alt="Local Subnet Network Scanner & Port Analyzer" loading="lazy">
+          <div class="doc-screenshot-caption">Network Scanner Diagnostic: Validating local IP addresses, hostname bindings, and open ports (502 Modbus, 80/443 HTTP, 8080 OCPP).</div>
+        </div>
+
+        <!-- NVMe SSD & Bootloader Diagnostics -->
+        <h2 id="nvme-troubleshooting">4. NVMe SSD & Bootloader Diagnostics (Patriot P300 & Pi 5)</h2>
+        <p>
+          If your Raspberry Pi 5 does not detect the <strong>Patriot P300 128GB M.2 SSD</strong> or fails to boot from the NVMe HAT, work through the diagnostic matrix below:
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Symptom</th>
+                <th>Root Cause</th>
+                <th>Diagnostic & Resolution Command</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Pi boots to blank screen / ACT LED doesn't flash</strong></td>
+                <td>EEPROM is set to factory <code>BOOT_ORDER=0xf41</code> and not configured for PCIe probe.</td>
+                <td>Flash the official <strong>Bootloader &rarr; NVMe/PCIe Boot</strong> image to a MicroSD card using Raspberry Pi Imager, boot for 5s until HDMI screen turns solid green.</td>
+              </tr>
+              <tr>
+                <td><strong><code>lspci</code> shows no NVMe device</strong></td>
+                <td>FPC ribbon cable is inverted, loose, or <code>dtparam=pciex1</code> is missing.</td>
+                <td>Ensure gold pins face inward toward USB/Ethernet ports on Pi 5. Verify <code>/boot/firmware/config.txt</code> contains <code>dtparam=pciex1</code> and <code>dtparam=pciex1_gen=2</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>Kernel dmesg: <code>pcieport link down</code></strong></td>
+                <td>Signal integrity failure or power supply sag.</td>
+                <td>Ensure you are using the official <strong>27W USB-C PD power supply</strong> (included in db-tronic kit). 15W phone chargers will brownout during PCIe link training.</td>
+              </tr>
+              <tr>
+                <td><strong><code>lsblk</code> shows no <code>/dev/nvme0n1</code></strong></td>
+                <td>SSD not seated in M.2 key or missing kernel driver module.</td>
+                <td>Re-seat the Patriot P300 SSD at a 30° angle, tighten M2 screw. Run <code>sudo modprobe nvme</code> and <code>sudo dmesg | grep -i nvme</code> in Cockpit terminal.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">NVMe Inspection Commands (Cockpit Terminal)</span>
+            <button class="copy-code-btn" aria-label="Copy commands">
+              <svg width="14" height="14"><use href="assets/icons.svg#icon-copy"></use></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <pre><code># 1. Check if PCIe Controller detects Silicon Motion / Patriot NVMe:
+lspci -v
+
+# 2. Check if NVMe block device is registered:
+lsblk -f
+
+# 3. Check EEPROM boot order and PCIe probe status:
+sudo rpi-eeprom-config
+
+# 4. View real-time PCIe kernel link state:
+sudo dmesg | grep -i -E "pci|nvme"</code></pre>
+        </div>
+
+        <!-- SQLite & SD Card Health -->
+        <h2 id="sd-card-sqlite">5. SQLite & Storage Health Diagnostics</h2>
+        <p>
+          GEMS employs SQLite Write-Ahead Logging (WAL) and memory caching to prevent SD card corruption. You can inspect database health directly via terminal:
+        </p>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">SQLite Diagnostic Commands</span>
+            <button class="copy-code-btn" aria-label="Copy commands">
+              <svg width="14" height="14"><use href="assets/icons.svg#icon-copy"></use></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <pre><code># Open SQLite database
+sqlite3 /opt/nems/gems.db
+
+-- 1. Check WAL mode status (should return 'wal')
+PRAGMA journal_mode;
+
+-- 2. Verify database integrity (should return 'ok')
+PRAGMA integrity_check;
+
+-- 3. Check WAL checkpoint status
+PRAGMA wal_checkpoint(PASSIVE);
+
+-- 4. Check total recorded measurement count
+SELECT COUNT(*) FROM measurements;
+
+.exit</code></pre>
+        </div>
+
+        <!-- Alerts & Webhooks -->
+        <h2 id="alerts-troubleshooting">6. Alerting & Webhook Diagnostics</h2>
+        <p>
+          To test whether your configured <code>alert_webhook_url</code> is accepting payloads:
+        </p>
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Test Webhook Curl</span>
+            <button class="copy-code-btn" aria-label="Copy curl">
+              <svg width="14" height="14"><use href="assets/icons.svg#icon-copy"></use></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <pre><code># Dispatch synthetic test alert through GEMS API:
+curl -X POST http://localhost:8080/api/notifications/test \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Test alert notification from GEMS"}'</code></pre>
+        </div>
+
+        <!-- Frequently Asked Questions -->
+        <h2 id="faq">7. Frequently Asked Questions (FAQ)</h2>
+
+        <div class="card-grid">
+          <div class="card">
+            <h3 class="card-title">Why is there no vehicle API or car SOC tracking?</h3>
+            <p class="card-text">
+              By design philosophy, GEMS operates exclusively on real-time local hardware measurements. Proprietary car cloud APIs are notoriously brittle, subject to frequent breaking changes, battery drain, and rate limits. The EMS controls EV charging reliably via native EV charger hardware setpoints.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Why is CPU usage not displayed in System Info?</h3>
+            <p class="card-text">
+              GEMS is strictly optimized for minimal memory and CPU overhead on Raspberry Pi boards. CPU telemetry polling is intentionally excluded from the frontend to preserve system lightness. Full hardware diagnostics remain accessible via Cockpit on port 9090.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">How fast does zero-export response happen?</h3>
+            <p class="card-text">
+              Smart meters are queried on a fast 1-second ticker. When grid export is detected, active inverter curtailment setpoints and EV charging commands are dispatched immediately to keep export as close to 0 W as physically possible.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">How do I reset the Cockpit admin password?</h3>
+            <p class="card-text">
+              Access the terminal via SSH or an attached keyboard and run <code>sudo passwd admin</code>. Enter your new password twice.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">How to recover from an interrupted system update?</h3>
+            <p class="card-text">
+              If an over-the-air update was interrupted by a power failure, run <code>sudo dpkg --configure -a</code> followed by <code>sudo apt-get install -f</code> in Cockpit Terminal.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Does the system work without internet access?</h3>
+            <p class="card-text">
+              Yes! All local control loops (Eco mode, Flanders peak shaving, Zero-export, Modbus polling, and Native OCPP) execute 100% locally on the Raspberry Pi without any cloud dependency. Day-Ahead EPEX spot prices simply retain the last fetched 24-hour table if internet is disconnected.
+            </p>
+          </div>
+        </div>
+
+        <!-- Navigation Footer -->
+        <div class="page-nav-footer">
+          <a href="devices.html" class="page-nav-card">
+            <span class="page-nav-label">Previous</span>
+            <span class="page-nav-title">&larr; Supported Device Templates (90)</span>
+          </a>
+          <a href="index.html" class="page-nav-card" style="text-align:right;">
+            <span class="page-nav-label">Back to Start</span>
+            <span class="page-nav-title">Documentation Hub &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">On This Page</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#modbus-troubleshooting" class="toc-link">Modbus TCP & RTU Errors</a></li>
+        <li class="toc-item"><a href="#p1-troubleshooting" class="toc-link">P1 Smart Meter Issues</a></li>
+        <li class="toc-item"><a href="#ocpp-troubleshooting" class="toc-link">OCPP WebSocket Diagnostics</a></li>
+        <li class="toc-item"><a href="#nvme-troubleshooting" class="toc-link">NVMe SSD & Bootloader</a></li>
+        <li class="toc-item"><a href="#sd-card-sqlite" class="toc-link">SQLite & Storage Health</a></li>
+        <li class="toc-item"><a href="#alerts-troubleshooting" class="toc-link">Alerts & Webhooks</a></li>
+        <li class="toc-item"><a href="#faq" class="toc-link">Frequently Asked Questions</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search documentation, parameters, guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Close search">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Use <kbd class="kbd-shortcut">↑</kbd> <kbd class="kbd-shortcut">↓</kbd> to navigate</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> to select</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> to dismiss</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>GEMS (The New Energy Grid) Documentation &bull; Built with Go, SQLite, Vue 3, and Tailwind CSS &bull; Optimized for Raspberry Pi</p>
+  </footer>
+
+  <script src="js/search-index.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

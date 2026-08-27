@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuration & Settings Reference Manual - GEMS</title>
+  <meta name="description" content="Exhaustive configuration reference for GEMS: Site optimization strategies, Flanders peak shaving, Netherlands zero-export, battery arbitrage, tariffs, and smart relays.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <svg width="20" height="20"><use href="assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Configuration</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Search documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-search"></use></svg>
+          <span>Search settings parameters, strategies, tariffs...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="installation.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+        <span>Installation</span>
+      </a>
+      <a href="user-manual.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
+        <span>User Manual</span>
+      </a>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Toggle color theme">
+        <svg width="18" height="18"><use href="assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Configuration Reference</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="configuration.html#strategy-modes" class="sidebar-link active">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-bolt"></use></svg>
+              <span>Site Optimization Strategies</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#flanders-peak-shaving" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
+              <span>Flanders Peak Shaving</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#netherlands-zero-export" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-sun"></use></svg>
+              <span>Netherlands Zero-Export</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#battery-arbitrage" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-battery"></use></svg>
+              <span>EPEX Arbitrage & Battery</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#energy-contracts" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-settings"></use></svg>
+              <span>Contracts & Provider Tariffs</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#phase-balancing" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-shield"></use></svg>
+              <span>Phase Balancing & Safety</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#relay-automation" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-relay"></use></svg>
+              <span>Relays & SG-Ready Rules</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#alerts-reporting" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-wifi"></use></svg>
+              <span>Alerts & Notifications</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Other Manuals</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-book"></use></svg>
+              <span>Documentation Hub</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Installation Manual</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
+              <span>User Operations Guide</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-sun"></use></svg>
+              <span>Device Templates</span>
+              <span class="badge">90</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-wrench"></use></svg>
+              <span>Troubleshooting & FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Configuration Reference</span>
+        </nav>
+
+        <h1>Configuration & Settings Reference Manual</h1>
+        <p class="hero-lead">
+          This manual provides an exhaustive reference for every configuration parameter in GEMS. All settings map directly to the system engine and are configured exclusively via the web UI.
+        </p>
+
+        <!-- Site Optimization Strategies -->
+        <h2 id="strategy-modes">1. Site Optimization Strategies (`strategy_mode`)</h2>
+        <p>
+          The strategy engine runs an evaluation cycle every second to orchestrate solar inverters, battery storage, and EV charging points based on your operational goal.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="assets/screenshots/settings_strategy.png" alt="Optimization Strategy & Peak Shaving Settings Tab" loading="lazy">
+          <div class="doc-screenshot-caption">Strategy Tab: Optimization mode selector (Eco, Flanders, Netherlands Zero-Export), peak shaving buffer, and battery arbitrage schedules.</div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Mode</th>
+                <th>Target Goal</th>
+                <th>Primary Control Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><code>eco</code></strong></td>
+                <td>Maximize Solar Self-Consumption</td>
+                <td>Directs excess solar yield first to home battery, then to EV chargers, and lastly to thermal hot water relays. Does not restrict grid import/export unless arbitrage schedules are active.</td>
+              </tr>
+              <tr>
+                <td><strong><code>flanders</code></strong></td>
+                <td>Capaciteitstarief Peak Shaving</td>
+                <td>Monitors rolling 15-minute average grid import. Dynamically throttles EV chargers and discharges battery storage to cap quarterly billing peaks.</td>
+              </tr>
+              <tr>
+                <td><strong><code>netherlands</code></strong></td>
+                <td>Zero-Export & Smart Saldering</td>
+                <td>Prevents solar feed-in penalties. Sinks solar into local batteries/EV chargers or actively throttles solar inverter active power when export prices are negative.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Flanders Peak Shaving -->
+        <h2 id="flanders-peak-shaving">2. Flanders Peak Shaving (`flanders`)</h2>
+        <p>
+          In Flanders (Belgium), the capacity tariff (<em>capaciteitstarief</em>) bills residential consumers based on their monthly peak 15-minute average grid power draw (minimum 2.5 kW baseline).
+        </p>
+
+        <h3>Predictive Instantaneous Power Allowance Formula</h3>
+        <p>
+          Instead of waiting for an overshoot to occur, GEMS computes the maximum allowed instantaneous power $P_{\text{allowed}}(t)$ based on the elapsed time $t$ (in seconds) within the current synchronized 15-minute quarter-hour:
+        </p>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Algorithm Logic</span>
+            <button class="copy-code-btn" aria-label="Copy code">
+              <svg width="14" height="14"><use href="assets/icons.svg#icon-copy"></use></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <pre><code>// Target: Keep 15-min average <= capacity_peak_limit_kw
+// t = elapsed seconds in current 15-min window [0 .. 900]
+// E_accumulated = kWh imported in window so far
+
+E_max_allowed = (capacity_peak_limit_kw * 0.25) - (peak_shaving_buffer_w / 4000.0)
+E_remaining   = E_max_allowed - E_accumulated
+Time_left_hrs = (900 - t) / 3600.0
+
+P_instantaneous_cap = E_remaining / Time_left_hrs</code></pre>
+        </div>
+
+        <h3>Key Flanders Parameters</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Setting Key</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>capacity_peak_limit_kw</code></td>
+                <td>Float (kW)</td>
+                <td><code>2.50</code></td>
+                <td>The hard ceiling for the 15-minute average quarter-hour grid import.</td>
+              </tr>
+              <tr>
+                <td><code>peak_shaving_buffer_w</code></td>
+                <td>Integer (W)</td>
+                <td><code>200</code></td>
+                <td>Safety margin subtracted from the target limit to account for short load spikes.</td>
+              </tr>
+              <tr>
+                <td><code>peak_shaving_rampup_w</code></td>
+                <td>Integer (W)</td>
+                <td><code>250</code></td>
+                <td>Limits how quickly throttled devices (e.g. EV chargers) are allowed to ramp back up when grid load drops.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Netherlands Zero-Export -->
+        <h2 id="netherlands-zero-export">3. Netherlands Zero-Export & Smart Saldering (`netherlands`)</h2>
+        <p>
+          With the phaseout of net metering (<em>salderingsregeling</em>) and the rise of feed-in penalty fees (<em>terugleverboetes</em>), Netherlands mode prevents unwanted or unprofitable grid export.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Setting Key</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>allowed_grid_export_kw</code></td>
+                <td>Float (kW)</td>
+                <td><code>0.0</code></td>
+                <td>Hard limit on continuous grid export. Set to <code>0.0</code> for strict zero-export.</td>
+              </tr>
+              <tr>
+                <td><code>active_inverter_curtailment</code></td>
+                <td>Boolean</td>
+                <td><code>true</code></td>
+                <td>Allows the Go backend to dispatch Modbus active power limits (SunSpec <code>WMaxLimPct</code>) to inverters when local storage is full.</td>
+              </tr>
+              <tr>
+                <td><code>min_profitable_export_price</code></td>
+                <td>Float (&euro;/kWh)</td>
+                <td><code>0.00</code></td>
+                <td>When Day-Ahead spot prices drop below this threshold (or turn negative), active curtailment engages automatically to avoid injection penalties.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Dynamic Pricing & Battery Arbitrage -->
+        <h2 id="battery-arbitrage">4. Day-Ahead EPEX Spot Price Arbitrage</h2>
+        <p>
+          GEMS automatically fetches hourly Day-Ahead market spot prices at 14:00 CET daily for all European bidding zones (EPEX Spot Belgium, Netherlands, Germany, France, Luxembourg).
+        </p>
+
+        <h3>Battery Grid Charging Strategies (`battery_grid_charge_strategy`)</h3>
+        <ul>
+          <li><strong><code>price_only</code>:</strong> Charges from grid whenever the hourly spot price is below <code>force_charge_below_euro</code>; discharges to grid when price is above <code>force_discharge_above_euro</code>.</li>
+          <li><strong><code>super_dal_only</code>:</strong> Restricts grid charging strictly to supplier-optimized cheap off-peak contract windows (e.g., Engie Superdal).</li>
+          <li><strong><code>hybrid</code>:</strong> Combines threshold price charging with supplier off-peak windows.</li>
+          <li><strong><code>dynamic_forecast</code>:</strong> The most sophisticated mode. Computes an optimal 24-hour linear schedule by combining EPEX hourly spot prices with Open-Meteo solar irradiance forecasts and household baseline load (<code>home_base_load_w</code>).</li>
+        </ul>
+
+        <div class="alert alert-important">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="assets/icons.svg#icon-battery"></use></svg>
+            <span>Battery Degradation Wear Modeling</span>
+          </div>
+          <p>
+            To prevent premature battery degradation, GEMS factors the user's configured battery cycle degradation cost (e.g., &euro;0.05 / kWh cycled) into the arbitrage spread calculation. A discharge cycle is executed <em>only</em> if the price spread between the charging hour and the discharging hour exceeds the round-trip battery degradation cost.
+          </p>
+        </div>
+
+        <!-- Contracts & Provider Tariffs -->
+        <h2 id="energy-contracts">5. Energy Contracts & Regional Provider Formulas</h2>
+        <p>
+          To calculate true real-time electricity costs, GEMS allows mapping your exact supplier bill structure to the dynamic EPEX spot price.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="assets/screenshots/settings_contract.png" alt="Energy Contract & Tariff Settings Tab" loading="lazy">
+          <div class="doc-screenshot-caption">Energy Contract Tab: Dynamic EPEX Day-Ahead tariff configuration, regional provider formulas (Engie, Luminus, Eneco, Frank, EnergyZero, Enovos), and consumption markups.</div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Provider Profile</th>
+                <th>Region</th>
+                <th>Configured Formula Parameters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>EnergyZero</strong></td>
+                <td>Netherlands</td>
+                <td>Direct EPEX spot price + EnergyZero fixed markup + Dutch energy tax (<code>tax_kwh</code>) + 21% VAT.</td>
+              </tr>
+              <tr>
+                <td><strong>Engie Flextime</strong></td>
+                <td>Belgium</td>
+                <td><code>engie_markup_peak</code>, <code>engie_markup_off_peak</code>, <code>engie_markup_super_off_peak</code>, <code>engie_multiplier</code>, <code>engie_inject_multiplier</code>, <code>engie_base_fee</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>Luminus Dynamic</strong></td>
+                <td>Belgium</td>
+                <td><code>luminus_markup</code>, <code>luminus_multiplier</code>, <code>luminus_inject_multiplier</code>, <code>luminus_base_fee</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>Eneco / Frank / Ecopower</strong></td>
+                <td>BE / NL</td>
+                <td>Customizable linear multipliers, injection retain margins, and monthly fixed platform subscriptions.</td>
+              </tr>
+              <tr>
+                <td><strong>Enovos</strong></td>
+                <td>Luxembourg</td>
+                <td><code>enovos_markup</code>, <code>enovos_multiplier</code>, <code>enovos_inject_multiplier</code>, Creos distribution fees.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Phase Balancing & Safety -->
+        <h2 id="phase-balancing">6. 3-Phase Phase-Aware Load Balancing & Safety</h2>
+        <p>
+          To prevent tripping main incoming utility breakers, GEMS continuously tracks per-phase current ($L_1, L_2, L_3$) from 3-phase P1 smart meters or Modbus analyzers.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Setting Key</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>grid_nominal_current_a</code></td>
+                <td>Integer (A)</td>
+                <td><code>32</code></td>
+                <td>Main grid breaker amperage (e.g., 25A, 32A, 40A, 63A). Throttles EV chargers if total load nears breaker limit.</td>
+              </tr>
+              <tr>
+                <td><code>phase_limit_amps</code></td>
+                <td>Float (A)</td>
+                <td><code>25.0</code></td>
+                <td>Maximum current allowed on any single phase ($L_1, L_2, \text{or } L_3$). Prevents severe phase unbalance tripping single-phase breakers.</td>
+              </tr>
+              <tr>
+                <td><code>grid_system</code></td>
+                <td>Enum</td>
+                <td><code>three_phase_400v</code></td>
+                <td><code>single_phase_230v</code>, <code>three_phase_400v</code> (with neutral), or <code>three_phase_230v</code> (without neutral / Belgian 3x230V Delta grid).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Relays & SG-Ready Rules -->
+        <h2 id="relay-automation">7. Smart Relays & SG-Ready Heat Pump Automation</h2>
+        <p>
+          Create autonomous control rules for Shelly relays, Modbus contactors, and domestic hot water boilers under <strong>Settings &rarr; Relay Automation Rules</strong>.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="assets/screenshots/settings_relays.png" alt="Smart Relays and SG-Ready Rules Configuration Tab" loading="lazy">
+          <div class="doc-screenshot-caption">Relays & Switches Tab: Rule-based trigger definitions, minimum run/cooldown hysteresis, and SG-Ready heat pump thermal boost mappings.</div>
+        </div>
+
+        <h3>Rule Parameters</h3>
+        <ul>
+          <li><strong>Condition Type:</strong>
+            <ul>
+              <li><code>solar_export_exceeds</code>: Triggers ON when solar grid export exceeds threshold (e.g. &gt; 1500 W).</li>
+              <li><code>grid_import_below</code>: Triggers ON when grid import is below threshold (e.g. &lt; 200 W).</li>
+              <li><code>price_below</code>: Triggers ON when Day-Ahead electricity price drops below threshold (e.g. &lt; &euro;0.05 / kWh).</li>
+            </ul>
+          </li>
+          <li><strong><code>min_run_time_seconds</code> (Default: 300s):</strong> Forces relay to stay ON for at least 5 minutes to prevent rapid cycling wear on compressors and contactors.</li>
+          <li><strong><code>min_off_time_seconds</code> (Default: 300s):</strong> Enforces a 5-minute cooldown before reactivation.</li>
+        </ul>
+
+        <h3>SG-Ready Heat Pump 4-State Mapping</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>SG-Ready State</th>
+                <th>Relay 1 (K1)</th>
+                <th>Relay 2 (K2)</th>
+                <th>Heat Pump Operating Behavior</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>State 1: Lockout (EVU-Sperre)</strong></td>
+                <td>Closed</td>
+                <td>Open</td>
+                <td>Forced OFF during extreme peak tariff hours (max 2 hours continuous).</td>
+              </tr>
+              <tr>
+                <td><strong>State 2: Normal Operation</strong></td>
+                <td>Open</td>
+                <td>Open</td>
+                <td>Operates under standard internal heating curve / room thermostat.</td>
+              </tr>
+              <tr>
+                <td><strong>State 3: Solar Boost</strong></td>
+                <td>Open</td>
+                <td>Closed</td>
+                <td>Increases flow and hot water storage setpoints to store excess PV power as thermal energy.</td>
+              </tr>
+              <tr>
+                <td><strong>State 4: Forced Thermal Storage</strong></td>
+                <td>Closed</td>
+                <td>Closed</td>
+                <td>Forces maximum compressor output during negative spot price hours.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Alerts & Reporting -->
+        <h2 id="alerts-reporting">8. Webhook Alerts, Email Reports & Diagnostic Logging</h2>
+
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/settings_notifications.png" alt="Webhook, Email Alerts and Logging Settings Tab" loading="lazy">
+            <div class="doc-screenshot-caption">Notifications Tab: Real-time Discord/Slack webhook alerting, SMTP relay credentials, scheduled weekly PDF reports, and debug log level control.</div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Setting Key</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Alerts</strong></td>
+                <td><code>alert_webhook_url</code></td>
+                <td>HTTP POST endpoint for automated alerts: capacity peak &ge; 90%, 3 consecutive device polling failures, or tariff fetch timeout.</td>
+              </tr>
+              <tr>
+                <td><strong>Email Reports</strong></td>
+                <td><code>weekly_report_enabled</code></td>
+                <td>Toggles automated weekly PDF energy generation and outbound email dispatch.</td>
+              </tr>
+              <tr>
+                <td><strong>SMTP Server</strong></td>
+                <td><code>smtp_host</code>, <code>smtp_port</code>, <code>smtp_username</code>, <code>smtp_password</code>, <code>smtp_sender</code>, <code>report_email</code></td>
+                <td>Outbound SMTP mail server credentials for sending PDF reports.</td>
+              </tr>
+              <tr>
+                <td><strong>OTA Updates</strong></td>
+                <td><code>github_token</code></td>
+                <td>Personal Access Token (classic) to query GitHub API for release checks without experiencing IP rate limits.</td>
+              </tr>
+              <tr>
+                <td><strong>Diagnostic Logs</strong></td>
+                <td><code>log_level</code></td>
+                <td>System log verbosity level (<code>INFO</code> for standard operations, <code>DEBUG</code> for verbose diagnostics).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Navigation Footer -->
+        <div class="page-nav-footer">
+          <a href="installation.html" class="page-nav-card">
+            <span class="page-nav-label">Previous</span>
+            <span class="page-nav-title">&larr; Installation Manual</span>
+          </a>
+          <a href="user-manual.html" class="page-nav-card" style="text-align:right;">
+            <span class="page-nav-label">Next Guide</span>
+            <span class="page-nav-title">User Operations Guide &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">On This Page</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#strategy-modes" class="toc-link">Site Optimization Strategies</a></li>
+        <li class="toc-item"><a href="#flanders-peak-shaving" class="toc-link">Flanders Peak Shaving</a></li>
+        <li class="toc-item"><a href="#netherlands-zero-export" class="toc-link">Netherlands Zero-Export</a></li>
+        <li class="toc-item"><a href="#battery-arbitrage" class="toc-link">EPEX Spot Arbitrage</a></li>
+        <li class="toc-item"><a href="#energy-contracts" class="toc-link">Contracts & Tariffs</a></li>
+        <li class="toc-item"><a href="#phase-balancing" class="toc-link">Phase Load Balancing</a></li>
+        <li class="toc-item"><a href="#relay-automation" class="toc-link">Smart Relays & SG-Ready</a></li>
+        <li class="toc-item"><a href="#alerts-reporting" class="toc-link">Alerts & Reporting</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search documentation, parameters, guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Close search">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Use <kbd class="kbd-shortcut">↑</kbd> <kbd class="kbd-shortcut">↓</kbd> to navigate</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> to select</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> to dismiss</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>GEMS (The New Energy Grid) Documentation &bull; Built with Go, SQLite, Vue 3, and Tailwind CSS &bull; Optimized for Raspberry Pi</p>
+  </footer>
+
+  <script src="js/search-index.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

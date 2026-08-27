@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS (The New Energy Grid) Documentation Hub</title>
+  <meta name="description" content="Comprehensive documentation, installation guide, configuration manual, and user guides for GEMS (The New Energy Grid).">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <svg width="20" height="20"><use href="assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">v9.1 Release</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Search documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-search"></use></svg>
+          <span>Search documentation, settings, devices...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="installation.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+        <span>Install</span>
+      </a>
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="assets/icons.svg#icon-settings"></use></svg>
+        <span>Config</span>
+      </a>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Toggle color theme">
+        <svg width="18" height="18"><use href="assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Getting Started</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link active">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-book"></use></svg>
+              <span>Documentation Hub</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#architecture" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-grid"></use></svg>
+              <span>Architecture & Data Flow</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#requirements" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-shield"></use></svg>
+              <span>Hardware Requirements</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#quickstart" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-bolt"></use></svg>
+              <span>5-Minute Quickstart</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Manuals & Guides</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Installation Manual</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-settings"></use></svg>
+              <span>Configuration Reference</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
+              <span>User Operations Guide</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-sun"></use></svg>
+              <span>Device Templates</span>
+              <span class="badge">90</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-wrench"></use></svg>
+              <span>Troubleshooting & FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">System Tools</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="installation.html#cockpit" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-terminal"></use></svg>
+              <span>Cockpit Terminal (9090)</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#rpi-connect" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-wifi"></use></svg>
+              <span>Raspberry Pi Connect</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+          <span>Docs</span>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Hub Overview</span>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="hero-banner">
+          <h1 class="hero-title">GEMS Documentation</h1>
+          <p class="hero-lead">
+            GEMS (The New Energy Grid) is a lightweight, highly responsive, fully UI-driven Energy Management System engineered specifically for Raspberry Pi hardware and residential/small-scale installations.
+          </p>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <a href="installation.html" class="tab-btn active" style="border-radius:var(--radius-md); display:inline-flex; align-items:center; gap:0.5rem; background:var(--brand-primary); color:#ffffff; padding:0.6rem 1.2rem;">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Get Started Installation</span>
+            </a>
+            <button class="search-trigger-btn" style="width:auto; padding:0.6rem 1.2rem;">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-search"></use></svg>
+              <span>Search Manuals (Ctrl+K)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- UI Overview Screenshot -->
+        <div class="doc-screenshot-card">
+          <img src="assets/screenshots/dashboard.png" alt="GEMS Real-Time Power Flow Dashboard Interface" loading="lazy">
+          <div class="doc-screenshot-caption">GEMS Live Dashboard &mdash; Animated interactive power flow, Flanders capacity peak tracking, and instantaneous sub-second metrics.</div>
+        </div>
+
+        <!-- Quick Navigation Cards -->
+        <h2 id="documentation-sections">Documentation Sections</h2>
+        <p>Explore the full suite of manuals tailored for system administrators, installers, and home users:</p>
+
+        <div class="card-grid">
+          <a href="installation.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="assets/icons.svg#icon-download"></use></svg>
+            </div>
+            <h3 class="card-title">Installation Manual</h3>
+            <p class="card-text">Step-by-step flashing of the custom Raspberry Pi OS image, Debian <code>.deb</code> package setup, Cockpit web console, and RS485/P1 wiring diagrams.</p>
+            <span class="card-link">Read Installation Guide &rarr;</span>
+          </a>
+
+          <a href="configuration.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="assets/icons.svg#icon-settings"></use></svg>
+            </div>
+            <h3 class="card-title">Configuration Reference</h3>
+            <p class="card-text">Comprehensive guide for Flanders Peak Shaving, Netherlands Zero-Export, Dynamic EPEX Arbitrage, Energy Contract formulas, and Smart Relays.</p>
+            <span class="card-link">Explore Settings &rarr;</span>
+          </a>
+
+          <a href="user-manual.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="assets/icons.svg#icon-gauge"></use></svg>
+            </div>
+            <h3 class="card-title">User Operations Guide</h3>
+            <p class="card-text">Interactive PowerFlow hero diagram, click-to-reveal historical analytics modals, network discovery scanner, and native OCPP EV charger integration.</p>
+            <span class="card-link">View User Guide &rarr;</span>
+          </a>
+
+          <a href="devices.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="assets/icons.svg#icon-sun"></use></svg>
+            </div>
+            <h3 class="card-title">Device Templates (90)</h3>
+            <p class="card-text">Step-by-step guides and Modbus/OCPP/REST profiles for Huawei, SMA, Solis, Fronius, SolarEdge, Sungrow, Victron, RAEDIAN, EVBox, Mennekes, HomeWizard, Shelly, Eastron, and more.</p>
+            <span class="card-link">Browse Device Library &rarr;</span>
+          </a>
+
+          <a href="troubleshooting.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="assets/icons.svg#icon-wrench"></use></svg>
+            </div>
+            <h3 class="card-title">Troubleshooting & FAQ</h3>
+            <p class="card-text">Diagnostic procedures for Modbus timeouts, P1 baud rate discrepancies, OCPP connection handshakes, SQLite WAL integrity, and system logs.</p>
+            <span class="card-link">View Diagnostics &rarr;</span>
+          </a>
+
+          <a href="installation.html#cockpit" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="assets/icons.svg#icon-terminal"></use></svg>
+            </div>
+            <h3 class="card-title">Remote Administration</h3>
+            <p class="card-text">Access the embedded Cockpit web terminal on port 9090 and pair Raspberry Pi Connect for cloudless screen sharing directly to the Wayfire kiosk.</p>
+            <span class="card-link">Configure Remote Access &rarr;</span>
+          </a>
+        </div>
+
+        <!-- Architecture & Core Philosophy -->
+        <h2 id="architecture">System Architecture & Core Philosophy</h2>
+        <p>
+          GEMS is architected as a cohesive, high-performance monolith designed to run continuously with near-zero resource consumption.
+        </p>
+
+        <div class="alert alert-note">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="assets/icons.svg#icon-info"></use></svg>
+            <span>Raspberry Pi SD Card Optimization</span>
+          </div>
+          <p>
+            Database writes are buffered in memory and batched into 1-minute atomic transactions. Combined with SQLite Write-Ahead Logging (<code>WAL</code> mode) and memory-backed temporary storage, SD card write cycles are reduced by over 98% compared to standard logging daemons.
+          </p>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Layer</th>
+                <th>Technology</th>
+                <th>Core Responsibilities</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Backend Engine</strong></td>
+                <td>Go (Golang 1.24)</td>
+                <td>Unified HTTP server, hardware polling tickers (1s/5s), control loops, Day-Ahead spot price fetching, and native OCPP WebSocket server.</td>
+              </tr>
+              <tr>
+                <td><strong>Database & Timeseries</strong></td>
+                <td>SQLite 3 (WAL mode)</td>
+                <td>Low-overhead local storage, in-memory aggregation buffers, automated 90-day retention pruning worker.</td>
+              </tr>
+              <tr>
+                <td><strong>Frontend SPA</strong></td>
+                <td>Vue 3 + TypeScript + Tailwind CSS</td>
+                <td>Reactive dashboard, animated SVG PowerFlow vectors, Chart.js time-series graphs, and zero-YAML UI configuration.</td>
+              </tr>
+              <tr>
+                <td><strong>Realtime Telemetry</strong></td>
+                <td>Server-Sent Events (SSE)</td>
+                <td>Unidirectional sub-second metric streaming (<code>/api/live</code>) eliminating client AJAX polling overhead.</td>
+              </tr>
+              <tr>
+                <td><strong>OS & Display</strong></td>
+                <td>Wayfire + Chromium Kiosk</td>
+                <td>Minimal Wayland display server autostarting Chromium targeting <code>http://ems.local</code> with zero desktop bloat.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Hardware Requirements -->
+        <h2 id="requirements">Hardware & Compatibility Matrix</h2>
+        <p>GEMS runs smoothly on all standard 64-bit ARM Raspberry Pi boards:</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Hardware Model & Storage</th>
+                <th>RAM</th>
+                <th>Recommended Role & Storage Configuration</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Raspberry Pi 5 Reference Kit</strong><br>
+                  <span style="font-size:0.85rem; color:var(--text-muted);">db-tronic NVMe Kit + Patriot P300 128GB SSD</span>
+                </td>
+                <td>4GB</td>
+                <td>Official reference platform. Ultra-fast NVMe boot (<8s), zero SD card wear, active cooling.</td>
+                <td><span class="badge-pill badge-green">Official Reference</span></td>
+              </tr>
+              <tr>
+                <td><strong>Raspberry Pi 5 (4GB / 8GB)</strong></td>
+                <td>4GB+</td>
+                <td>Heavy installations with high-speed kiosk display and 10+ Modbus devices</td>
+                <td><span class="badge-pill badge-green">Recommended</span></td>
+              </tr>
+              <tr>
+                <td><strong>Raspberry Pi 4 Model B</strong></td>
+                <td>2GB / 4GB</td>
+                <td>Standard residential installations with touchscreen or headless deployment</td>
+                <td><span class="badge-pill badge-green">Recommended</span></td>
+              </tr>
+              <tr>
+                <td><strong>Raspberry Pi 3 Model B+</strong></td>
+                <td>1GB</td>
+                <td>Headless residential energy management (without heavy kiosk display)</td>
+                <td><span class="badge-pill badge-blue">Supported</span></td>
+              </tr>
+              <tr>
+                <td><strong>Raspberry Pi Zero 2 W</strong></td>
+                <td>512MB</td>
+                <td>Ultra-compact headless installation with minimal connected devices</td>
+                <td><span class="badge-pill badge-amber">Headless Only</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 5-Minute Quickstart -->
+        <h2 id="quickstart">5-Minute Quickstart Guide</h2>
+        <p>Get your GEMS system online in three simple steps:</p>
+
+        <div class="tab-container">
+          <div class="tab-nav">
+            <button class="tab-btn active" data-tab="tab-os-img">Step 1: Flash OS Image</button>
+            <button class="tab-btn" data-tab="tab-boot">Step 2: Boot & Access UI</button>
+            <button class="tab-btn" data-tab="tab-devices">Step 3: Discover Devices</button>
+          </div>
+
+          <div class="tab-pane active" id="tab-os-img">
+            <h4>Flash the Pre-Built Raspberry Pi Image</h4>
+            <p>Download the latest release archive and write it to an 8GB+ MicroSD card using BalenaEtcher:</p>
+            <div class="code-block-wrapper">
+              <div class="code-header">
+                <span class="code-lang">Bash / Terminal</span>
+                <button class="copy-code-btn" aria-label="Copy code snippet">
+                  <svg width="14" height="14"><use href="assets/icons.svg#icon-copy"></use></svg>
+                  <span>Copy</span>
+                </button>
+              </div>
+              <pre><code># 1. Download release image from GitHub
+curl -LO https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/latest/download/gems-os-image.img.xz
+
+# 2. Flash to SD Card using BalenaEtcher or Raspberry Pi Imager
+# (Select gems-os-image.img.xz directly without manual extraction)</code></pre>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab-boot">
+            <h4>Insert SD Card and Boot</h4>
+            <p>Connect your Raspberry Pi to your local home network via Ethernet (or configure Wi-Fi). Power on the device.</p>
+            <p>Open a web browser on any phone, tablet, or PC connected to the same network and navigate to:</p>
+            <div class="code-block-wrapper">
+              <div class="code-header">
+                <span class="code-lang">Browser URL</span>
+                <button class="copy-code-btn" aria-label="Copy URL">
+                  <svg width="14" height="14"><use href="assets/icons.svg#icon-copy"></use></svg>
+                  <span>Copy</span>
+                </button>
+              </div>
+              <pre><code>http://ems.local
+# Or directly via IP:
+http://&lt;raspberry-pi-ip&gt;:8080</code></pre>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab-devices">
+            <h4>Add & Discover Your Hardware</h4>
+            <ol>
+              <li>Navigate to <strong>Settings</strong> &rarr; <strong>Device Management</strong>.</li>
+              <li>Click <strong>Scan Network</strong> to instantly discover local Modbus inverters, smart meters, and EV chargers.</li>
+              <li>Click <strong>Add Device</strong>, choose your hardware template (e.g., <em>Huawei SUN2000</em> or <em>P1 Smart Meter</em>), test connection, and save.</li>
+              <li>Return to <strong>Dashboard</strong> to observe your live PowerFlow diagram!</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="alert alert-tip">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="assets/icons.svg#icon-check"></use></svg>
+            <span>Zero Configuration Files Required</span>
+          </div>
+          <p>
+            GEMS never requires manual YAML or JSON file edits. All device parameters, Modbus registers, pricing contracts, and strategy limits are managed dynamically through the intuitive web interface.
+          </p>
+        </div>
+
+        <!-- Navigation Footer -->
+        <div class="page-nav-footer">
+          <div></div>
+          <a href="installation.html" class="page-nav-card" style="text-align:right;">
+            <span class="page-nav-label">Next Guide</span>
+            <span class="page-nav-title">Installation & Hardware Setup &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">On This Page</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#documentation-sections" class="toc-link">Documentation Sections</a></li>
+        <li class="toc-item"><a href="#architecture" class="toc-link">System Architecture</a></li>
+        <li class="toc-item"><a href="#requirements" class="toc-link">Hardware Requirements</a></li>
+        <li class="toc-item"><a href="#quickstart" class="toc-link">5-Minute Quickstart</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal (Ctrl+K) -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search documentation, parameters, guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Close search">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results">
+        <!-- Results populated dynamically via js/search-index.js & main.js -->
+      </ul>
+      <div class="search-footer">
+        <span>Use <kbd class="kbd-shortcut">↑</kbd> <kbd class="kbd-shortcut">↓</kbd> to navigate</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> to select</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> to dismiss</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>GEMS (The New Energy Grid) Documentation &bull; Built with Go, SQLite, Vue 3, and Tailwind CSS &bull; Optimized for Raspberry Pi</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/search-index.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
