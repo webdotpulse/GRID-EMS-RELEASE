@@ -35,7 +35,7 @@ The custom OS image comes pre-configured with:
 - A minimal Wayland desktop environment (`wayfire`) autostarting Chromium in kiosk mode pointing directly to `http://ems.local`.
 - `rpi-connect` and `rpi-connect-wayvnc` user-level systemd services.
 - **Automatic Screen Sharing Acceptance**: Incoming screen sharing requests via Raspberry Pi Connect are accepted automatically by the device without requiring physical confirmation on the Pi screen.
-- Session lingering enabled (`loginctl enable-linger nems`) so screen sharing services run unattended on boot without requiring a physical monitor attached.
+- Session lingering enabled (`loginctl enable-linger gems`) so screen sharing services run unattended on boot without requiring a physical monitor attached.
 
 ### Initial Setup & Pairing
 To link your device to your Raspberry Pi ID:
@@ -43,7 +43,7 @@ To link your device to your Raspberry Pi ID:
 1. **Access the Terminal:** Use SSH or the terminal provided by **Cockpit** (on port 9090).
 2. **Ensure Services are Active:**
    ```bash
-   loginctl enable-linger nems
+   loginctl enable-linger gems
    systemctl --user enable --now rpi-connect
    systemctl --user enable --now rpi-connect-wayvnc
    ```

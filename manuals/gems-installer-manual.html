@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS Installer & Commissioning Manual</title>
+  <meta name="description" content="Official Installer & Field Commissioning Manual for GEMS (Grid Energy Management System) on Raspberry Pi.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 15mm 15mm 18mm 15mm;
+      @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #64748b;
+      }
+      @bottom-left {
+        content: "GEMS Installer & Commissioning Manual • v9.4.0";
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #64748b;
+      }
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 10pt;
+      line-height: 1.55;
+    }
+
+    .manual-page {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 960px;
+      padding: 40px 20px 20px 20px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 30px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0284c7;
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 9pt;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 0 0 12px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 14pt;
+      color: #475569;
+      margin: 0 0 28px 0;
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+
+    .cover-meta-val {
+      font-size: 10pt;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+      margin: 20px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 8.5pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Section Styles */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 6px;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      page-break-after: avoid;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 24px;
+      margin-bottom: 10px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #0284c7;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #334155;
+    }
+
+    /* Screenshot Container */
+    .manual-screenshot {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 16px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .manual-screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .manual-screenshot-caption {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .manual-screenshot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+      page-break-inside: avoid;
+    }
+
+    /* Callout Boxes */
+    .callout {
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+      font-size: 9.5pt;
+    }
+
+    .callout-info {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      color: #0369a1;
+    }
+
+    .callout-tip {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #15803d;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #b45309;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 8.5pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #e2e8f0;
+      padding: 7px 10px;
+      text-align: left;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* Code Blocks */
+    .terminal-box {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: 'Fira Code', monospace;
+      font-size: 8.5pt;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      overflow-x: hidden;
+      line-height: 1.45;
+    }
+
+    .terminal-box code {
+      color: #38bdf8;
+    }
+
+    .toc-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 18px 24px;
+      margin-bottom: 28px;
+      page-break-inside: avoid;
+    }
+
+    .toc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13pt;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      column-count: 2;
+      column-gap: 24px;
+    }
+
+    .toc-list li {
+      margin-bottom: 6px;
+      font-size: 9pt;
+      color: #334155;
+    }
+
+    .toc-list a {
+      color: #0284c7;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+  </style>
+</head>
+<body>
+
+<div class="manual-page">
+
+  <!-- ==================== COVER PAGE ==================== -->
+  <div class="cover-page">
+    <div>
+      <div class="cover-badge">⚡ FIELD INSTALLATION & COMMISSIONING MANUAL</div>
+      <h1 class="cover-title">GEMS Installer Manual</h1>
+      <div class="cover-subtitle">Hardware Setup, Network Discovery, Device Integration, and Optimization Strategy Configuration</div>
+
+      <div class="cover-meta-grid">
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">System Firmware / Build</span>
+          <span class="cover-meta-val">v9.4.0-release (Official Tag)</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Target Hardware Architecture</span>
+          <span class="cover-meta-val">Raspberry Pi 5 (ARM64) + M.2 NVMe HAT</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Target Audience</span>
+          <span class="cover-meta-val">Electricians, Solar & ESS Installers, Integrators</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Revision Date</span>
+          <span class="cover-meta-val">September 2026</span>
+        </div>
+      </div>
+
+      <div class="cover-hero-img">
+        <img src="assets/screenshots/dashboard.png" alt="GEMS Dashboard Desktop">
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <span>GEMS Energy Management System (GRID-EMS)</span>
+      <span>Confidential Field Reference • Documentation v9.4</span>
+    </div>
+  </div>
+
+  <!-- ==================== TABLE OF CONTENTS ==================== -->
+  <div class="toc-box">
+    <div class="toc-title">Table of Contents</div>
+    <ul class="toc-list">
+      <li><strong>1.</strong> <a href="#sec-overview">System Architecture & Hardware BOM</a></li>
+      <li><strong>2.</strong> <a href="#sec-nvme">NVMe Bootloader & EEPROM Setup</a></li>
+      <li><strong>3.</strong> <a href="#sec-deployment">OS Deployment & System Services</a></li>
+      <li><strong>4.</strong> <a href="#sec-remote">Remote Access (Cockpit, VNC, Nginx)</a></li>
+      <li><strong>5.</strong> <a href="#sec-scanner">Subnet Hardware Discovery</a></li>
+      <li><strong>6.</strong> <a href="#sec-devices">Adding & Configuring Devices</a></li>
+      <li><strong>7.</strong> <a href="#sec-grid">Grid Connection & Multi-Phase Setup</a></li>
+      <li><strong>8.</strong> <a href="#sec-contracts">Dynamic Contracts & Tariff Curve</a></li>
+      <li><strong>9.</strong> <a href="#sec-strategy">Peak Shaving & Flemish GSC Protection</a></li>
+      <li><strong>10.</strong> <a href="#sec-relays">Smart Relays & Heat Pump SG-Ready</a></li>
+      <li><strong>11.</strong> <a href="#sec-alerts">Alerts, Webhooks & Automated Reports</a></li>
+      <li><strong>12.</strong> <a href="#sec-maint">System Diagnostics & OTA Updates</a></li>
+    </ul>
+  </div>
+
+  <!-- ==================== 1. SYSTEM OVERVIEW & HARDWARE BOM ==================== -->
+  <h1 class="section-title" id="sec-overview">1. System Architecture & Hardware BOM</h1>
+  <p>
+    GEMS (Grid Energy Management System) is an autonomous, lightweight, fully UI-driven energy manager developed in Go and Vue 3. It runs directly on the local residential network on a Raspberry Pi without requiring cloud subscription dependencies. To eliminate SD card wear and ensure decades of reliable operation, GEMS runs from an M.2 NVMe SSD using SQLite configured in Write-Ahead Logging (WAL) mode.
+  </p>
+
+  <h2 class="subsection-title">Reference Hardware Bill of Materials (BOM)</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Specification</th>
+        <th>Installer Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Host Computer</strong></td>
+        <td>Raspberry Pi 5 (4GB or 8GB RAM, Broadcom BCM2712)</td>
+        <td>Provides hardware PCIe 2.0 interface. CPU usage stays &lt; 5% during full polling.</td>
+      </tr>
+      <tr>
+        <td><strong>Internal Storage</strong></td>
+        <td>Patriot P300 128GB M.2 PCIe Gen 3 x4 NVMe SSD</td>
+        <td>Low power consumption, durable TLC flash. Write speed up to 600 MB/s.</td>
+      </tr>
+      <tr>
+        <td><strong>M.2 PCIe HAT</strong></td>
+        <td>Raspberry Pi 5 M.2 HAT+ (or db-tronic Bottom PCIe Base)</td>
+        <td>Connects to the 16-pin FPC PCIe ribbon connector. Ensure gold pins face correctly.</td>
+      </tr>
+      <tr>
+        <td><strong>Power Supply</strong></td>
+        <td>Official Raspberry Pi 27W USB-C PD (5.1V / 5.0A)</td>
+        <td>Mandatory to power both the Pi 5 and the NVMe SSD without brownouts.</td>
+      </tr>
+      <tr>
+        <td><strong>Cooling Enclosure</strong></td>
+        <td>Aluminium armor metal case with PWM Active Cooler</td>
+        <td>Ensures sustained 24/7 operating temperatures below 48°C in electrical cabinets.</td>
+      </tr>
+      <tr>
+        <td><strong>Serial Interface</strong></td>
+        <td>FTDI USB-to-RS485 Isolated Converter or P1 RJ12 cable</td>
+        <td>Connects to DSMR P1 digital meters or Modbus RTU serial buses (A/B lines).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 2. NVME BOOTLOADER SETUP ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-nvme">2. NVMe Bootloader & EEPROM Setup</h1>
+  <p>
+    Brand new Raspberry Pi 5 boards ship with a factory EEPROM configured to boot solely from MicroSD (`BOOT_ORDER=0xf41`). When booting with the Patriot P300 NVMe SSD, the PCIe bus must be enabled via the bootloader.
+  </p>
+
+  <div class="callout callout-tip">
+    <div class="callout-title">🌟 3-Minute Quick Fix (Using Raspberry Pi Imager)</div>
+    <ol style="margin: 6px 0 0 16px; padding: 0;">
+      <li>Insert any MicroSD card into your laptop.</li>
+      <li>Open <strong>Raspberry Pi Imager</strong> &rarr; Choose Device: <strong>Raspberry Pi 5</strong> &rarr; Choose OS: <strong>Misc utility images &rarr; Bootloader &rarr; NVMe/PCIe Boot</strong>.</li>
+      <li>Choose the SD card, click <strong>Write</strong>, and insert into the Pi 5.</li>
+      <li>Power on with the official 27W power supply. Within 5 seconds, the green ACT LED will flash rapidly and the HDMI screen will turn <strong>solid green</strong>.</li>
+      <li>Unplug power and discard/remove the MicroSD card. The EEPROM is now permanently set to `BOOT_ORDER=0xf461` and `PCIE_PROBE=1`.</li>
+    </ol>
+  </div>
+
+  <!-- ==================== 3. OS DEPLOYMENT & SERVICES ==================== -->
+  <h1 class="section-title" id="sec-deployment">3. OS Deployment & System Services</h1>
+  <p>
+    GEMS provides two official deployment methods for installers:
+  </p>
+
+  <h2 class="subsection-title">Option A: Pre-built Custom Raspberry Pi OS Image (Recommended)</h2>
+  <p>
+    Download <code>gems-os-image.img.xz</code> from the GitHub release. Flash it directly to the Patriot P300 SSD via an external USB NVMe enclosure using BalenaEtcher or Raspberry Pi Imager. The pre-built image includes:
+  </p>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Nginx Proxy:</strong> Routes port 80/443 to the GEMS backend on port 8080 with WebSocket and SSE support.</li>
+    <li><strong>Kiosk Mode:</strong> Minimal Wayland compositor (Wayfire) displaying Chromium in fullscreen pointing to <code>http://localhost</code>.</li>
+    <li><strong>Cockpit Web Console:</strong> Available on port <code>9090</code> for browser-based root terminal access.</li>
+    <li><strong>Raspberry Pi Connect:</strong> Pre-installed daemon for secure browser-based remote screen viewing.</li>
+  </ul>
+
+  <h2 class="subsection-title">Option B: Debian Package (.deb) on Existing OS</h2>
+  <div class="terminal-box">
+    # Download and install the latest ARM64 Debian package<br>
+    sudo dpkg -i gems_9.4.0_arm64.deb<br>
+    sudo apt-get install -f<br>
+    <br>
+    # Verify service status<br>
+    sudo systemctl status gems.service
+  </div>
+  <p>
+    The package automatically provisions a dedicated system user (<code>gems</code>), installs binaries to <code>/opt/gems</code>, and enables the systemd service.
+  </p>
+
+  <!-- ==================== 4. REMOTE ACCESS & COCKPIT ==================== -->
+  <h1 class="section-title" id="sec-remote">4. Remote Access & Diagnostics Console</h1>
+  <p>
+    Technicians can manage the installation without keyboard or monitor:
+  </p>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Web UI:</strong> <code>http://ems.local</code> or <code>http://&lt;IP-ADDRESS&gt;</code> (Default port 80 or 8080).</li>
+    <li><strong>Cockpit Web Terminal:</strong> <code>https://&lt;IP-ADDRESS&gt;:9090</code> (Default User: <code>admin</code>, Password: <code>manufacturer</code>). Offers web terminal, storage SMART metrics, system reboot, and networking.</li>
+    <li><strong>Remote Screen Sharing:</strong> Run <code>rpi-connect signin</code> in Cockpit to link the Pi to your Raspberry Pi ID for one-click remote desktop view.</li>
+  </ul>
+
+  <!-- ==================== 5. SUBNET HARDWARE DISCOVERY ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-scanner">5. Subnet Hardware Discovery (Scanner)</h1>
+  <p>
+    Before configuring devices, use the built-in <strong>Scanner</strong> in the sidebar. The scanner performs a parallel ARP sweep and TCP port scan across the local /24 subnet, matching MAC addresses against known solar and meter vendors (Huawei, SMA, Eastron, Shelly, Alfen, Easee).
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="assets/screenshots/scanner.png" alt="Local Network Subnet Scanner">
+    <div class="manual-screenshot-caption">Figure 5.1: GEMS Network Scanner identifying inverter dongles, smart meters, and EV chargers with open ports.</div>
+  </div>
+
+  <h2 class="subsection-title">Scanner Usage Steps</h2>
+  <ol style="margin: 6px 0 12px 18px; padding: 0;">
+    <li>Click <strong>Scanner</strong> in the primary left navigation.</li>
+    <li>Click the blue <strong>Scan Subnet</strong> button.</li>
+    <li>Review the discovered hosts: note the detected IP, open ports (e.g. 502 for Modbus TCP, 80 for REST), and vendor tags.</li>
+  </ol>
+
+  <!-- ==================== 6. DEVICE CONFIGURATION ==================== -->
+  <h1 class="section-title" id="sec-devices">6. Adding & Configuring Devices (UI-Driven)</h1>
+  <p>
+    GEMS includes <strong>90 native hardware templates</strong>. Devices are added exclusively through the web interface with zero YAML file editing.
+  </p>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="assets/screenshots/settings_devices.png" alt="Configured Devices Tab">
+      <div class="manual-screenshot-caption">Figure 6.1: Active Devices list with live health tags.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="assets/screenshots/settings_devices_add_modal.png" alt="Add Device Category Selector">
+      <div class="manual-screenshot-caption">Figure 6.2: Device category picker wizard.</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Step-by-Step Onboarding Procedures</h2>
+
+  <h3 class="step-title">A. Solar & Hybrid Inverters (Modbus TCP)</h3>
+  <p>
+    Supported brands include Huawei SUN2000, SMA Sunny Boy / Tripower, Solis 5G/S6, Fronius Gen24, SolarEdge, Sungrow, GoodWe, and Victron GX.
+  </p>
+  <div class="manual-screenshot">
+    <img src="assets/screenshots/settings_devices_inverter_form.png" alt="Inverter Form">
+    <div class="manual-screenshot-caption">Figure 6.3: Solar Inverter Modbus TCP configuration modal.</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Field</th>
+        <th>Typical Value</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>Template</code></td>
+        <td>Huawei SUN2000 / SMA / Solis</td>
+        <td>Selects the pre-mapped SunSpec/Modbus register map.</td>
+      </tr>
+      <tr>
+        <td><code>Host IP</code></td>
+        <td><code>192.168.1.120</code></td>
+        <td>IP address of the Wi-Fi/Ethernet dongle (e.g. Huawei SDongleA-05).</td>
+      </tr>
+      <tr>
+        <td><code>Port</code></td>
+        <td><code>502</code> or <code>1502</code></td>
+        <td>Modbus TCP port. Huawei uses 502; some third-party bridges use 1502.</td>
+      </tr>
+      <tr>
+        <td><code>Modbus Slave ID</code></td>
+        <td><code>1</code> (Huawei/SMA), <code>126</code> (SolarEdge)</td>
+        <td>Slave ID configured on the inverter internal bus.</td>
+      </tr>
+      <tr>
+        <td><code>Rated Power (kW)</code></td>
+        <td>e.g. <code>10.0</code></td>
+        <td>Maximum rated AC output power of the inverter.</td>
+      </tr>
+      <tr>
+        <td><code>Has Battery</code></td>
+        <td>Checked (if LUNA2000/BYD present)</td>
+        <td>Enables battery telemetry, SOC tracking, and charge/discharge control.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+  <h3 class="step-title">B. Grid Smart Meters (P1 / Modbus)</h3>
+  <div class="manual-screenshot">
+    <img src="assets/screenshots/settings_devices_meter_form.png" alt="Smart Meter Form">
+    <div class="manual-screenshot-caption">Figure 6.4: Grid Smart Meter configuration modal (P1 USB, TCP Bridge, SDM630, Shelly 3EM).</div>
+  </div>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Fluvius / DSMR P1 Serial:</strong> Set host to <code>/dev/ttyUSB0</code>, Baud rate <code>115200</code> (DSMR 5.0).</li>
+    <li><strong>P1 Wi-Fi Dongle (HomeWizard / TCP Bridge):</strong> Set host to dongle IP (e.g. <code>192.168.1.121</code>), port <code>80</code> or <code>8080</code>.</li>
+    <li><strong>Eastron SDM630 (Modbus):</strong> Connect RS485 A/B lines to USB converter, select template <code>Eastron SDM630 3-Phase</code>, Slave ID <code>1</code>.</li>
+  </ul>
+
+  <h3 class="step-title">C. EV Charging Stations (Native OCPP 1.6-J / 2.0.1 Server)</h3>
+  <div class="manual-screenshot">
+    <img src="assets/screenshots/settings_devices_charger_form.png" alt="EV Charger Form">
+    <div class="manual-screenshot-caption">Figure 6.5: EV Charger configuration modal supporting native OCPP server and Modbus TCP.</div>
+  </div>
+  <div class="callout callout-info">
+    <div class="callout-title">🔌 Native OCPP Server Setup</div>
+    <p>
+      GEMS runs a native WebSocket OCPP server on port <strong>8887</strong>. To connect any OCPP 1.6-J or 2.0.1 charger (Easee, Alfen Eve, EVBox, ABB Terra, Webasto, Mennekes):
+    </p>
+    <div class="terminal-box">
+      Central System URL: ws://&lt;GEMS-IP&gt;:8887/&lt;ChargePointID&gt;<br>
+      Example: ws://192.168.1.150:8887/CP001
+    </div>
+    <p>
+      In GEMS: Add device &rarr; EV Charger &rarr; Template: <code>OCPP 1.6J / 2.0.1 Smart EV Charger</code>. Enter the same <code>ChargePointID</code>. Once the charger initiates its WebSocket handshake, status immediately turns green: <strong>● Online</strong>.
+    </p>
+  </div>
+
+  <!-- ==================== 7. GRID CONNECTION & LIMITS ==================== -->
+  <h1 class="section-title" id="sec-grid">7. Grid Connection & Multi-Phase Setup</h1>
+  <p>
+    Navigate to <strong>Settings &rarr; Strategy &rarr; Grid Connection & Limits</strong> to specify electrical supply constraints:
+  </p>
+  <div class="manual-screenshot">
+    <img src="assets/screenshots/settings_strategy.png" alt="Grid Connection Settings">
+    <div class="manual-screenshot-caption">Figure 7.1: Grid connection parameters, phase limit amps, and maximum import/export allowance.</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Format</th>
+        <th>Field Explanation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>Grid System</code></td>
+        <td>Dropdown</td>
+        <td><code>Single Phase 230V</code>, <code>3-Phase 400V+N</code>, or <code>3-Phase 230V Delta (No Neutral)</code>.</td>
+      </tr>
+      <tr>
+        <td><code>Nominal Current (A)</code></td>
+        <td>Float (Amps)</td>
+        <td>Main circuit breaker rating (e.g. <code>25A</code>, <code>32A</code>, <code>40A</code>, <code>63A</code>).</td>
+      </tr>
+      <tr>
+        <td><code>Phase Limit (A)</code></td>
+        <td>Float (Amps)</td>
+        <td>Hard safety ceiling per phase. The EMS throttles EV charging if any phase exceeds this limit.</td>
+      </tr>
+      <tr>
+        <td><code>Allowed Grid Import (kW)</code></td>
+        <td>Float (kW)</td>
+        <td>Maximum instantaneous import power allowed by the connection.</td>
+      </tr>
+      <tr>
+        <td><code>Allowed Grid Export (kW)</code></td>
+        <td>Float (kW)</td>
+        <td>Maximum grid feed-in allowed by DNO contract. Set to <code>0.0</code> for strict zero-export.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 8. DYNAMIC CONTRACTS & TARIFFS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-contracts">8. Dynamic Contracts & 24h Tariff Curve</h1>
+  <p>
+    Under <strong>Settings &rarr; Energy Contract</strong>, configure the customer's utility contract. GEMS fetches hourly EPEX Spot Day-Ahead prices daily at 13:00 CET and calculates true retail prices including supplier markup, DNO distribution tariffs, and taxes.
+  </p>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="assets/screenshots/settings_contract.png" alt="Energy Contract Tab">
+      <div class="manual-screenshot-caption">Figure 8.1: Belgian supplier contract presets and tax formulas.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="assets/screenshots/settings_contract_tariffs.png" alt="Tariff Visualizer Detail">
+      <div class="manual-screenshot-caption">Figure 8.2: 24-Hour effective retail tariff breakdown visualizer.</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Supported Contract Models & Supplier Presets</h2>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Dynamic EPEX Spot:</strong> TotalEnergies Pixel Dynamic, Mega Smart/Cosy Dynamic, Bolt Dynamisch, Engie Dynamic / Flextime, Luminus, Eneco, Frank Energie.</li>
+    <li><strong>DNO Network Tariff Presets:</strong> Fluvius (Flanders), SIBELGA (Brussels), ORES / RESA (Wallonia).</li>
+    <li><strong>Fixed & Dual-Tariff (Peak / Off-Peak):</strong> Configurable peak kWh, off-peak kWh, and fixed injection tariff.</li>
+    <li><strong>Taxes & VAT:</strong> Configurable federal excise duty (default €0.0204/kWh) and Belgian 6% residential VAT.</li>
+  </ul>
+
+  <!-- ==================== 9. OPTIMIZATION STRATEGY & GSC PROTECTION ==================== -->
+  <h1 class="section-title" id="sec-strategy">9. Optimization Strategy & Flemish GSC Protection</h1>
+  <p>
+    Navigate to <strong>Settings &rarr; Strategy</strong> to configure peak shaving, active inverter curtailment, and green certificate value protection.
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="assets/screenshots/settings_strategy_modes.png" alt="Strategy Modes & Curtailment Detail">
+    <div class="manual-screenshot-caption">Figure 9.1: Flanders Peak Shaving, Smart Adaptive Ceiling, and Flemish GSC Value presets.</div>
+  </div>
+
+  <h2 class="subsection-title">Flanders Capacity Tariff (Capaciteitstarief)</h2>
+  <p>
+    In Flanders, grid distribution fees are calculated based on the homeowner's monthly peak 15-minute average import power (minimum baseline 2.5 kW).
+  </p>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><code>capacity_peak_limit_kw</code>: Hard billing ceiling (default <strong>2.50 kW</strong>).</li>
+    <li><code>peak_shaving_buffer_w</code>: Safety margin (default <strong>200 W</strong>) to account for appliance startup spikes.</li>
+    <li><code>peak_shaving_rampup_w</code>: Re-acceleration hysteresis rate (default <strong>150 W</strong>).</li>
+    <li><strong>Smart Adaptive Ceiling:</strong> If a unavoidable household peak occurs (e.g. 4.2 kW from oven + heat pump), GEMS dynamically adapts its operational ceiling to 4.2 kW for the remainder of that calendar month. This allows maximum EV charging speed and solar self-consumption without raising the monthly electricity bill!</li>
+  </ul>
+
+  <h2 class="subsection-title">Active Inverter Curtailment & Groenestroomcertificaten (GSC) Value Protection</h2>
+  <p>
+    During negative spot price hours, exporting solar energy can result in financial penalties. However, legacy Flemish PV systems receive guaranteed <strong>Groenestroomcertificaten (GSC)</strong> (e.g. €250, €350, or €450 per 1,000 kWh).
+  </p>
+
+  <div class="callout callout-tip">
+    <div class="callout-title">💶 How GSC Protection Prevents Financial Loss</div>
+    <p>
+      If a customer receives <strong>€250/certificaat (€0.250/kWh)</strong>, solar injection remains profitable even if the market injection price drops to <strong>-€0.20/kWh (-200 €/MWh)</strong> because the homeowner still nets +€0.05/kWh!
+    </p>
+    <div class="terminal-box">
+      Effective Curtailment Threshold = min_profitable_export_price - (gsc_value_eur_mwh / 1000.0)<br>
+      Example: €0.00 - (€250 / 1000) = -0.250 €/kWh (-250.0 €/MWh)
+    </div>
+    <p>
+      GEMS will <strong>NOT</strong> curtail the inverter during moderately negative hours. Curtailment only engages if the negative price drops below -250.0 €/MWh (e.g. at -251.0 €/MWh), maximizing the customer's total subsidy earnings!
+    </p>
+  </div>
+
+  <!-- ==================== 10. SMART RELAYS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-relays">10. Smart Relays & Heat Pump SG-Ready Automation</h1>
+  <p>
+    GEMS integrates Shelly Pro 2 and Shelly Plus 1PM contactors to automate thermal loads (heat pumps, hot water boilers) based on real-time solar surplus or negative spot pricing.
+  </p>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="assets/screenshots/settings_relays.png" alt="Relays Tab">
+      <div class="manual-screenshot-caption">Figure 10.1: Configured relays and real-time ON/OFF state.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="assets/screenshots/settings_relays_rules.png" alt="Relay Automation Rules">
+      <div class="manual-screenshot-caption">Figure 10.2: Excess solar and negative spot price trigger rules.</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Typical Automation Trigger Scenarios</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Rule Type</th>
+        <th>Trigger Condition</th>
+        <th>Action</th>
+        <th>Hysteresis</th>
+        <th>Application</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>excess_solar</code></td>
+        <td>Surplus &gt; 1,200 W</td>
+        <td>Turn ON</td>
+        <td>10 Minutes</td>
+        <td>SG-Ready Heat Pump thermal boost to elevate buffer tank temperature.</td>
+      </tr>
+      <tr>
+        <td><code>negative_spot_price</code></td>
+        <td>Tariff &le; €0.02/kWh</td>
+        <td>Turn ON</td>
+        <td>15 Minutes</td>
+        <td>Domestic hot water boiler electrical resistance element heating.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 11. ALERTS & NOTIFICATIONS ==================== -->
+  <h1 class="section-title" id="sec-alerts">11. Alerts, Webhooks & Automated Reports</h1>
+  <p>
+    Configure external monitoring under <strong>Settings &rarr; Notifications</strong>:
+  </p>
+  <div class="manual-screenshot">
+    <img src="assets/screenshots/settings_notifications.png" alt="Notifications Settings Tab">
+    <div class="manual-screenshot-caption">Figure 11.1: Discord/Slack webhook URLs, email SMTP configuration, and weekly report recipient.</div>
+  </div>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Discord / Slack / Teams Webhooks:</strong> Real-time alerts on consecutive device polling failures, Modbus communication timeouts, and monthly capacity peak ceiling breaches.</li>
+    <li><strong>Weekly Homeowner Email:</strong> Automatic delivery of a weekly performance summary with total solar generation, self-consumption percentage, and peak grid import.</li>
+  </ul>
+
+  <!-- ==================== 12. DIAGNOSTICS & MAINTENANCE ==================== -->
+  <h1 class="section-title" id="sec-maint">12. System Diagnostics, Logger & OTA Updates</h1>
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="assets/screenshots/logger.png" alt="System Logger">
+      <div class="manual-screenshot-caption">Figure 12.1: Real-time system diagnostics logger.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="assets/screenshots/settings_system_info.png" alt="System Info Tab">
+      <div class="manual-screenshot-caption">Figure 12.2: NVMe SSD health, build version, and OTA update tool.</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Field Commissioning Checklist</h2>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li>[ ] Inverter Modbus TCP responding with valid solar wattage on the Dashboard.</li>
+    <li>[ ] Smart meter (P1 or SDM630) reporting import/export power consistent with utility meter.</li>
+    <li>[ ] EV Charger connected to native OCPP WebSocket (<code>ws://&lt;IP&gt;:8887/&lt;CP-ID&gt;</code>) and showing Online.</li>
+    <li>[ ] Flanders Capacity Tariff limit set according to customer agreement (default 2.50 kW).</li>
+    <li>[ ] GSC certificate value configured if the installation is eligible for Flemish green certificates.</li>
+    <li>[ ] Energy contract provider and distribution DNO selected under Energy Contract tab.</li>
+    <li>[ ] Weekly report email address tested and saved.</li>
+  </ul>
+
+</div>
+
+</body>
+</html>

@@ -1,37 +1,35 @@
-# ⚡ GEMS — Grid Energy Management System
+<h1 align="center">⚡ GEMS (Grid Energy Management System)</h1>
 
-<div align="center">
+<p align="center">A lightweight, highly responsive, fully UI-driven Energy Management System (EMS) optimized for Raspberry Pi to monitor, control, automate, and optimize residential solar, battery, EV charging, and grid energy ecosystems.</p>
 
-[![Go Version](https://img.shields.io/badge/Go-1.24+-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
-[![Vue 3](https://img.shields.io/badge/Vue.js-3.x-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white)](https://vuejs.org/)
-[![SQLite](https://img.shields.io/badge/SQLite-WAL%20Mode-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
-[![Target Platform](https://img.shields.io/badge/Platform-Raspberry%20Pi%205%20%2F%20ARM64-C51A4A?style=for-the-badge&logo=raspberrypi&logoColor=white)](https://www.raspberrypi.com/)
-[![OCPP Protocol](https://img.shields.io/badge/OCPP-1.6--J%20%26%202.0.1-FF6F00?style=for-the-badge&logo=socketdotio&logoColor=white)](https://openchargealliance.org/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+<p align="center">
+  <a href="https://go.dev/"><img alt="Go Version" src="https://img.shields.io/badge/Go-1.24+-00ADD8?style=for-the-badge&logo=go&logoColor=white" /></a>
+  <a href="https://vuejs.org/"><img alt="Vue 3" src="https://img.shields.io/badge/Vue.js-3.x-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white" /></a>
+  <a href="https://www.sqlite.org/"><img alt="SQLite" src="https://img.shields.io/badge/SQLite-WAL%20Mode-003B57?style=for-the-badge&logo=sqlite&logoColor=white" /></a>
+  <a href="https://www.raspberrypi.com/"><img alt="Target Platform" src="https://img.shields.io/badge/Platform-Raspberry%20Pi%205%20%2F%20ARM64-C51A4A?style=for-the-badge&logo=raspberrypi&logoColor=white" /></a>
+  <a href="https://openchargealliance.org/"><img alt="OCPP Protocol" src="https://img.shields.io/badge/OCPP-1.6--J%20%26%202.0.1-FF6F00?style=for-the-badge&logo=socketdotio&logoColor=white" /></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" /></a>
+</p>
 
-**A high-performance, local-first, UI-driven Energy Management System (EMS) engineered for Raspberry Pi 5 & Linux ARM64.**
+<p align="center">
+  <a href="GEMS-Installer-Manual.pdf"><img alt="Installer Manual PDF" src="https://img.shields.io/badge/📕_Installer_Manual-PDF_(5.6MB)-0284c7?style=for-the-badge" /></a>
+  <a href="GEMS-User-Manual.pdf"><img alt="User Manual PDF" src="https://img.shields.io/badge/📗_User_Manual-PDF_(3.4MB)-10b981?style=for-the-badge" /></a>
+  <a href="manuals/index.html"><img alt="Documentation Hub" src="https://img.shields.io/badge/💻_Documentation-Hub-8b5cf6?style=for-the-badge" /></a>
+</p>
 
-*Coordinate Solar, Home Batteries, EV Charging, Smart Meters, and Relays with intelligent peak shaving and dynamic tariff arbitrage — 100% offline-capable, zero YAML configuration.*
+## Key Features
 
-[🌟 Key Features](#-key-features) • [📸 Visual Showcase](#-user-interface-showcase) • [🔌 Supported Hardware](#-supported-devices--step-by-step-onboarding) • [🛠️ Hardware Requirements](#-hardware-platform) • [🚀 Quick Start](#-deployment--installation) • [📖 Documentation](#-documentation-library)
-
----
-
-</div>
-
-## 🌟 Key Features
-
-- **Hardware Target**: Deeply optimized for **Raspberry Pi 5** (Debian/Linux ARM64). CPU information is intentionally excluded from the UI to maintain a lightweight system profile. The system uses the release tag (`git describe --tags --always`) as its build number.
-- **Monolithic Single-Binary Architecture**: A cohesive monolith featuring a Go backend acting as a unified API and web server, paired with a modern Vue 3 Single Page Application (SPA).
-- **Minimal Storage & SD Wear**: Utilizes a highly tuned local SQLite database configured with Write-Ahead Logging (WAL) mode and batched, in-memory transactional writes.
+- **Hardware Target**: Deeply optimized for Raspberry Pi (Debian/Linux ARM64). CPU information is intentionally excluded from the UI to maintain a lightweight system profile. The system uses the release tag (`git describe --tags --always`) as its build number.
+- **Monolithic Architecture**: A cohesive monolith featuring a Go (Golang) backend acting as a unified API and web server, paired with a modern Vue 3 Single Page Application (SPA).
+- **Minimal SD Card Wear**: Utilizes a highly tuned local SQLite database configured with Write-Ahead Logging (WAL) mode and batched, in-memory transactional writes.
 - **Fully UI-Driven**: Zero YAML configuration required. Add, configure, and remove hardware devices entirely through an intuitive frontend UI.
 - **90+ Native Hardware Templates**: Native support for 80+ leading manufacturers covering Solar Inverters, Batteries, EV Chargers (OCPP 1.6-J / 2.0.1, Modbus TCP, REST), P1 Smart Meters, and Smart Relays.
 - **Dynamic Site Optimization Strategies**:
   - *Eco Mode*: Maximizes self-consumption of solar energy and prioritizes local storage over grid feed-in.
-  - *Flanders Mode (Predictive Peak Shaving & Monthly Peak Tracking)*: Continuously tracks 15-minute rolling average grid import in SQLite. Proactively throttles EV chargers and discharges home batteries to keep the projected quarter peak under `capacity_peak_limit_kw`. Features a **Smart Adaptive Ceiling** that dynamically adapts to the month's maximum peak so homeowner charging speed is maximized without increasing capacity tariff costs.
+  - *Flanders Mode (Predictive Peak Shaving & Monthly Peak Tracking)*: Continuously tracks 15-minute rolling average grid import in SQLite. Proactively throttles EV chargers and discharges home batteries to keep the projected quarter peak under `capacity_peak_limit_kw`. Features a **Smart Adaptive Ceiling** that dynamically adapts to the month's maximum peak so homeowner charging speed is maximized without increasing capacity tariff costs. Protects legacy Flemish solar systems with **Groenestroomcertificaten (GSC)** value protection presets (€90, €210, €230, €250, €270, €330, €350, €450/MWh), ensuring solar feed-in remains profitable during negative spot hours.
   - *Netherlands Mode (Smart Saldering & Zero-Export)*: Zero-export constraint logic to limit solar feed-in, including `min_profitable_export_price` and negative injection fee protection.
   - *Dynamic Battery Arbitrage*: Integrates EPEX Spot Day-Ahead prices to force charge batteries during cheap/negative hours and discharge during peak market pricing.
-- **Belgian Energy Market & Regional Provider Presets**: Native calculation models for TotalEnergies Pixel Dynamic, Mega Smart/Cosy Dynamic, Bolt Dynamisch, Engie Dynamic / Flextime, Luminus Dynamic, Eneco Dynamic, Frank Energie, Ecopower, Dats 24, Octa+, Trevion, Aspiravi, and Belgian Dual-Tariff (Piek/Dal + 6% BTW), with DNO distribution presets for Fluvius, ORES, RESA, and SIBELGA.
+- **Belgian Energy Market & Regional Provider Presets**: Native calculation models for TotalEnergies Pixel Dynamic, Mega Smart/Cosy Dynamic, Bolt Dynamisch, Engie Dynamic / Flextime, Luminus Dynamic, Eneco Dynamic, Frank Energie, Ecopower, Dats 24, Octa+, Trevion, Aspiravi, and Belgian Dual-Tariff (Piek/Dal + 6% BTW), with DNO distribution presets for Flanders (Fluvius), Brussels (SIBELGA), and Wallonia (ORES, RESA).
 - **Live 24-Hour Effective Tariff Curve Visualizer**: Interactive stacked cost breakdown displaying wholesale spot, supplier markup, DNO network tariffs, excise & 6% VAT, dynamic solar injection price, and negative price curtailment warnings.
 - **Native OCPP 1.6-J / 2.0.1 Server**: Built-in OCPP WebSocket server (`ws://<ems-ip>:8887/<ChargePointID>`) allows EV chargers to connect directly to the EMS with zero cloud dependencies.
 - **Subnet Network Scanner**: Zero-dependency local network scanner leveraging localized MAC OUI maps to instantly discover and identify supported hardware on your network.
@@ -114,36 +112,37 @@ GEMS includes **90 native hardware templates**. Adding a device requires 4 simpl
 
 ---
 
-## 🛠️ Hardware Platform
+## 🛠️ Official Reference Hardware
 
-GEMS is engineered to run smoothly on standard embedded hardware:
+GEMS is designed, tested, and validated on the following reference hardware:
 
-| Component | Basic Specification |
-| :--- | :--- |
-| **Host System** | **Raspberry Pi 5** (ARM64, 4GB RAM or higher recommended) |
-| **Storage** | **NVMe SSD** (via M.2 PCIe HAT) or high-endurance **MicroSD Card** |
-| **Power Supply** | **27W USB-C PD** (5V / 5A) power adapter |
-| **Network** | Gigabit Ethernet (recommended) or 2.4/5GHz Wi-Fi |
-| **Peripherals** | RJ12 P1 DSMR cable or USB-to-RS485 adapter (if connecting wired meters/inverters) |
+| Component | Hardware Specification | Purchase Reference |
+| :--- | :--- | :--- |
+| **Complete System Kit** | **db-tronic Raspberry Pi 5 4GB NVMe Kit**<br>• Raspberry Pi 5 (4GB RAM)<br>• Official 27W USB-C PD Power Supply<br>• Metal Enclosure with Active Cooler<br>• M.2 NVMe PCIe HAT / Base & 16-pin FPC cable<br>• 64GB MicroSD Card + 4K Micro-HDMI cable | [Amazon BE: db-tronic RPi 5 Kit](https://www.amazon.com.be/-/en/dp/B0GZ65XG3G?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1) |
+| **Internal High-Speed Storage** | **Patriot P300 128GB M.2 PCIe Gen 3 x4 NVMe SSD**<br>• Model: `P300P128GM28`<br>• Low power consumption, high endurance<br>• Read: up to 1600 MB/s / Write: up to 600 MB/s | [Amazon BE: Patriot P300 128GB SSD](https://www.amazon.com.be/-/en/dp/B0822Y6N1C?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1) |
+
+> 📖 **Full Hardware Specifications & Pinouts**: See [docs/hardware_reference.md](docs/hardware_reference.md).
 
 ---
 
-## ⚡ NVMe Bootloader Setup (Raspberry Pi 5)
+## ⚡ NVMe SSD Bootloader Setup (Fixing Patriot P300 Detection)
 
-When using a Raspberry Pi 5 with an NVMe PCIe HAT, configure the board's EEPROM to probe PCIe storage and enable fast NVMe booting.
+When using a brand-new Raspberry Pi 5 with an NVMe HAT and the Patriot P300 SSD, the board's factory EEPROM is set to boot exclusively from SD card (`BOOT_ORDER=0xf41`) and does not probe PCIe storage.
 
-### 🌟 Quick Setup (Using Raspberry Pi Imager)
-1. Insert a MicroSD card into your computer.
+### 🌟 3-Minute Quick Fix (Using Raspberry Pi Imager)
+1. Insert the 64GB MicroSD card into your computer.
 2. Open **[Raspberry Pi Imager](https://www.raspberrypi.com/software/)** &rarr; Choose Device: **Raspberry Pi 5** &rarr; Choose OS: **Misc utility images** &rarr; **Bootloader** &rarr; **NVMe/PCIe Boot**.
 3. Choose your MicroSD card and click **Write**.
-4. Insert the MicroSD card into the Raspberry Pi 5 and connect power.
+4. Assemble the Patriot P300 SSD onto the Pi 5 NVMe HAT, insert the MicroSD card, and connect the official 27W power supply.
 5. In ~5 seconds, the ACT LED flashes rapidly and the HDMI screen turns **solid green**, confirming the EEPROM is updated (`BOOT_ORDER=0xf461`, `PCIE_PROBE=1`).
-6. Unplug power, remove the MicroSD card, and flash `gems-os-image.img.xz` directly to your NVMe SSD.
-7. Power on—the system boots from NVMe in under 8 seconds.
+6. Unplug power, remove the MicroSD card, and flash `gems-os-image.img.xz` directly to the Patriot P300 SSD (or see [docs/nvme_boot_guide.md](docs/nvme_boot_guide.md) to flash from terminal).
+7. Power on without the SD card—the system boots from the Patriot P300 SSD in under 8 seconds!
+
+> 📖 **Detailed NVMe Troubleshooting & Diagnostics**: See [docs/nvme_boot_guide.md](docs/nvme_boot_guide.md).
 
 ---
 
-## 🚀 Deployment & Installation
+## Deployment & Installation
 
 GEMS is primarily deployed via automated GitHub release artifacts: a pre-configured custom Raspberry Pi OS image and a Debian (`.deb`) package.
 
@@ -152,8 +151,8 @@ GEMS is primarily deployed via automated GitHub release artifacts: a pre-configu
 The easiest way to deploy GEMS is flashing the pre-built custom Raspberry Pi OS Lite (Bookworm ARM64) image onto an SD card or NVMe SSD.
 
 1. Download `gems-os-image.img.xz` from the latest GitHub release tag (`v*`).
-2. Flash the `.img.xz` archive directly using [Raspberry Pi Imager](https://www.raspberrypi.com/software/) or [BalenaEtcher](https://etcher.balena.io/).
-3. Insert the media into your Raspberry Pi 5 and boot.
+2. Flash the `.img.xz` archive directly using [BalenaEtcher](https://etcher.balena.io/) or [Raspberry Pi Imager](https://www.raspberrypi.com/software/).
+3. Insert the media into your Raspberry Pi and boot.
 
 **Out-of-the-Box Setup**:
 - **Hostname**: `ems` (accessible at `http://ems` or `http://ems.local`).
@@ -169,7 +168,7 @@ See [Remote Access Documentation](docs/remote_access.md) for details on Cockpit 
 
 ### Option B: Install via Debian Package (.deb)
 
-If you have an existing Debian/Ubuntu ARM64 installation on your Raspberry Pi 5:
+If you have an existing Debian/Ubuntu ARM64 installation on your Raspberry Pi:
 
 1. Download the latest `gems_*_arm64.deb` package from the release assets.
 2. Install the package:
@@ -202,22 +201,26 @@ cd GRID-EMS
 
 ---
 
-## 📖 Documentation Library
+## Documentation Library
 
 | Guide | Description |
 | :--- | :--- |
-| 💻 [Interactive HTML Documentation](manuals/index.html) | Rich web documentation suite with full-text search (open in browser) |
+| 📕 **[Installer & Commissioning Manual (PDF)](GEMS-Installer-Manual.pdf)** | **Official printable PDF guide for installers** (Hardware BOM, NVMe setup, onboarding 90+ devices, grid limits, Flanders peak shaving, GSC protection, and webhook alerts) |
+| 📗 **[Homeowner & User Manual (PDF)](GEMS-User-Manual.pdf)** | **Official printable PDF guide for end-users** (PowerFlow hero diagram, click-to-reveal modals, EV charging modes, 24h tariff visualizer, smart relays, and PDF reports) |
+| 💻 [Interactive HTML Documentation Hub](manuals/index.html) | Rich web documentation suite with full-text search (open in browser) |
+| 🛠️ [Interactive Installer Manual (HTML)](manuals/gems-installer-manual.html) | Comprehensive field commissioning guide with high-res screenshots and hardware wiring |
+| 🏠 [Interactive User Manual (HTML)](manuals/gems-user-manual.html) | Illustrated homeowner operations manual with interactive modals and tariff breakdown |
 | 🔌 [Device Manuals & Templates](manuals/devices.html) | Complete step-by-step guides for all 90 supported hardware templates |
-| 📘 [User Manual](docs/user_manual.md) | End-user operations, PowerFlow diagram, OCPP server setup |
+| 📘 [User Manual (Markdown)](docs/user_manual.md) | End-user operations, PowerFlow diagram, OCPP server setup |
 | 📖 [Advanced Operational Manual](docs/advanced_manual.md) | Technical deep-dive on algorithms, formulas, and SG-Ready contactors |
-| ⚡ [NVMe Boot & Setup Manual](docs/nvme_boot_guide.md) | Complete setup guide for Raspberry Pi 5 NVMe SSD booting |
-| 🛠️ [Hardware Reference](docs/hardware_reference.md) | Basic hardware platform specifications, power requirements, RS485/P1 pinouts |
+| ⚡ [NVMe Boot & Setup Manual](docs/nvme_boot_guide.md) | Complete guide for Raspberry Pi 5 + Patriot P300 NVMe SSD |
+| 🛠️ [Hardware Reference BOM](docs/hardware_reference.md) | Tested reference BOM, power requirements, RS485/P1 pinouts |
 | 🌐 [Remote Access Guide](docs/remote_access.md) | Cockpit terminal on port 9090 and Raspberry Pi Connect pairing |
 | ⚙️ [Settings & Strategy Reference](docs/settings.md) | Full reference of all UI parameters, contract formulas, and tariff curves |
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 GRID-EMS/
@@ -239,7 +242,7 @@ GRID-EMS/
 ├── scripts/
 │   ├── capture_screenshots.js # Automated Chromium screenshot capture suite
 │   └── setup-remote-access.sh # Remote access setup utility script
-├── docs/                  # Architecture, User Manual, NVMe Guide, Hardware Reference
+├── docs/                  # Architecture, User Manual, NVMe Guide, Hardware BOM
 ├── manuals/               # Interactive HTML documentation suite with search
 └── build.sh               # Local build script for ARM64 release bundling
 ```

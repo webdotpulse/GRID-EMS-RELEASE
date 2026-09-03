@@ -1,6 +1,6 @@
 # GEMS: Settings Documentation
 
-This document provides a comprehensive and detailed explanation of all configuration parameters within the EMS. These settings correspond directly to the `SiteSettings` struct and dictate how GEMS manages, optimizes, and interacts with your energy ecosystem.
+This document provides a comprehensive and detailed explanation of all configuration parameters within GEMS (Grid Energy Management System). These settings correspond directly to the `SiteSettings` model and dictate how GEMS manages, optimizes, and interacts with your home energy ecosystem.
 
 ---
 
@@ -8,152 +8,162 @@ This document provides a comprehensive and detailed explanation of all configura
 
 This group of settings defines the core behavior of the EMS, governing how it interacts with the grid, limits import/export, and prioritizes energy distribution among devices.
 
-![Strategy Tab](../screenshots/settings_strategy.png)
+| Strategy Tab Overview | Operational Strategy Modes |
+| :---: | :---: |
+| ![Strategy Tab](../screenshots/settings_strategy.png) | ![Strategy Modes](../screenshots/settings_strategy_modes.png) |
 
-*   **`strategy_mode`**
-    *   **Description:** The primary operational behavior of the system.
-    *   **Values:**
-        *   `eco`: Prioritizes self-consumption of solar energy and limits reliance on the grid.
-        *   `flanders`: Activates predictive Peak Shaving based on the Belgian/Flanders capacity tariff model, capping the 15-minute rolling average grid import.
-        *   `netherlands`: Focuses on minimizing or eliminating solar feed-in to the grid (zero-export).
-*   **`capacity_peak_limit_kw`**
-    *   **Description:** The absolute maximum average quarter-hour grid import allowed. Critical for Flanders mode to avoid high capacity tariffs.
-*   **`active_inverter_curtailment`**
-    *   **Description:** Allows the system to actively throttle solar inverters' active power limit to respect the `allowed_grid_export_kw` setting. Often used in Netherlands mode for zero-export.
-*   **`min_profitable_export_price`**
-    *   **Description:** In Netherlands mode (Smart Saldering), the system will dynamically curtail solar export only when real-time EPEX spot prices drop below this profitability threshold.
-*   **`battery_grid_charge_strategy`**
-    *   **Description:** Defines how the system uses the grid to charge the battery.
-    *   **Values:**
-        *   `price_only`: Charges based on simple EPEX spot price thresholds (`force_charge_below_euro`).
-        *   `super_dal_only`: Restricts grid charging to specific highly optimized contract windows (like Engie Superdal).
-        *   `hybrid`: Combines price-based charging with Superdal optimization.
-        *   `dynamic_forecast`: Maps optimal hourly charge/discharge behavior based on solar weather forecasts and the home's baseline load.
-*   **`force_charge_below_euro`**
-    *   **Description:** Force charges the battery from the grid when the day-ahead spot price drops below this value (€/kWh). Used in `price_only` and `hybrid` battery strategies.
-*   **`force_discharge_above_euro`**
-    *   **Description:** Force discharges the battery to the grid when the spot price spikes above this value (€/kWh). Used for Day-Ahead BESS Arbitrage.
-*   **`smart_ev_cheapest_hours`**
-    *   **Description:** Automatically identifies the specified number of cheapest hours of the day to charge your EV.
-*   **`grid_nominal_current_a`**
-    *   **Description:** Your household's main grid connection amperage (e.g., 25, 32, 40). The system proactively throttles chargers to protect the main fuse if total load exceeds this limit.
-*   **`phase_limit_amps`**
-    *   **Description:** The maximum current allowed per individual phase. Used by the phase load balancing logic to prevent phase unbalance.
-*   **`grid_system`**
-    *   **Description:** Specifies the physical wiring setup of your grid connection.
-    *   **Values:** E.g., `single_phase_230v` or `three_phase_400v`. Adjusts power-to-amps calculations across the system.
-*   **`allowed_grid_import_kw`**
-    *   **Description:** A hard continuous limit on grid import. Devices will be throttled to respect this threshold.
-*   **`allowed_grid_export_kw`**
-    *   **Description:** A hard continuous limit on solar feed-in to the grid. Set to 0.0 for strict zero-export.
-*   **`peak_shaving_buffer_w`**
-    *   **Description:** The safety margin applied when nearing the capacity peak limit (in Flanders mode) to prevent overshoot.
-*   **`peak_shaving_rampup_w`**
-    *   **Description:** Defines how quickly a throttled device (like an EV charger) is allowed to increase its power consumption when grid capacity frees up.
+* **`strategy_mode`**
+  * **Description:** The primary operational optimization mode of the system.
+  * **Values:**
+    * `eco`: Prioritizes self-consumption of solar energy and limits reliance on the grid.
+    * `flanders`: Activates predictive Peak Shaving based on the Belgian/Flanders capacity tariff model, capping the 15-minute rolling average grid import with Smart Adaptive Ceiling support.
+    * `netherlands`: Focuses on smart saldering, minimum profitable export pricing, and optional zero-export with active inverter curtailment.
+* **`capacity_peak_limit_kw`**
+  * **Description:** The base target 15-minute average grid import ceiling (e.g. 2.5 kW). Essential for Flanders mode to prevent expensive monthly capacity tariff spikes.
+* **`peak_shaving_buffer_w`**
+  * **Description:** Safety margin in Watts (e.g. 200 W) subtracted from the capacity limit to trigger proactive throttling before breaching the quarter-hour ceiling.
+* **`peak_shaving_rampup_w`**
+  * **Description:** Power hysteresis step (e.g. 150 W) required before re-accelerating throttled EV chargers or reducing battery discharge when capacity frees up.
+* **`active_inverter_curtailment`**
+  * **Description:** Allows the EMS to actively throttle solar inverter active power output via Modbus registers to match house load when dynamic market export return is negative and unprofitable. Available across all strategy modes.
+* **`min_profitable_export_price`**
+  * **Description:** Base threshold for profitable solar export (€/kWh). Export is permitted when real-time return is at or above this threshold minus GSC compensation. When below, excess power is sunk into battery/EV storage, and inverters are curtailed if storage is full.
+* **`gsc_value_eur_mwh`**
+  * **Description:** Guaranteed value of Flemish/Belgian Groenestroomcertificaten (GSC) in € per certificate or €/MWh (e.g. 250, 350, 450). Solar generation and injection remain profitable during negative spot price hours as long as the negative price does not outweigh the GSC value. Curtailment only activates when the export price drops below `min_profitable_export_price - (gsc_value_eur_mwh / 1000.0)` (e.g. at -251 €/MWh for a 250 €/MWh GSC).
+* **`battery_grid_charge_strategy`**
+  * **Description:** Controls how the home battery utilizes grid power for charging and arbitrage.
+  * **Values:**
+    * `price_only`: Charges/discharges based strictly on EPEX spot price thresholds (`force_charge_below_euro` / `force_discharge_above_euro`).
+    * `super_dal_only`: Restricts grid charging to supplier off-peak contract windows (e.g. Engie Superdal).
+    * `hybrid`: Combines price-based threshold charging with supplier off-peak windows.
+    * `dynamic_forecast`: Solves a 24-hour cost-optimal charge/discharge curve using Open-Meteo solar forecasts and household base load.
+* **`force_charge_below_euro`**
+  * **Description:** Spot price threshold (€/kWh) to trigger forced grid battery charging.
+* **`force_discharge_above_euro`**
+  * **Description:** Spot price threshold (€/kWh) to allow battery grid feed-in during peak market rates.
+* **`smart_ev_cheapest_hours`**
+  * **Description:** Automatically identifies the specified number of cheapest hours of the day (e.g. 3) to charge your EV.
+* **`grid_nominal_current_a`**
+  * **Description:** Your household's main incoming grid connection amperage (e.g., 25, 32, 40). GEMS throttles chargers to protect the main fuse from tripping.
+* **`phase_limit_amps`**
+  * **Description:** The maximum current allowed per individual phase ($L_1, L_2, L_3$) for phase load balancing.
+* **`grid_system`**
+  * **Description:** Physical electrical grid wiring type.
+  * **Values:** `single_phase_230v`, `three_phase_400v` (400V + Neutral), or `three_phase_230v_delta` (Belgian 3x230V without Neutral).
+* **`allowed_grid_import_kw`**
+  * **Description:** A continuous hard cap on grid import power in kW.
+* **`allowed_grid_export_kw`**
+  * **Description:** A continuous hard cap on solar grid feed-in in kW (set to `0.0` for strict zero-export).
 
 ---
 
 ## 2. System Information and Location
 
-Settings related to the physical location and general system preferences.
+Settings related to the physical location, time synchronization, and general system diagnostics.
 
 ![System Info Tab](../screenshots/settings_system_info.png)
 
-*   **`timezone`**
-    *   **Description:** The timezone of the installation, critical for accurately mapping day-ahead prices and 15-minute billing cycles.
-*   **`log_level`**
-    *   **Description:** Controls the verbosity of backend system logs (e.g., `info`, `debug`, `error`).
-*   **`language`**
-    *   **Description:** The user's preferred language for the UI (managed via vue-i18n, e.g., `en`, `nl`, `fr`).
-*   **`address`**
-    *   **Description:** The physical address of the site, used for geocoding.
-*   **`latitude`** & **`longitude`**
-    *   **Description:** The GPS coordinates of the site. Calculated via OpenStreetMap Nominatim based on the address and used for accurate solar irradiance forecasting.
+* **`timezone`**
+  * **Description:** Installation timezone (e.g., `Europe/Brussels`, `Europe/Amsterdam`), critical for accurate day-ahead price synchronization and quarter-hour billing boundaries.
+* **`address`**
+  * **Description:** Street address of the installation.
+* **`latitude`** & **`longitude`**
+  * **Description:** GPS coordinates automatically resolved via OpenStreetMap Nominatim geocoding, used for Open-Meteo solar irradiance forecasting.
+* **`log_level`**
+  * **Description:** Controls backend diagnostic logging verbosity (`INFO`, `DEBUG`, `WARN`, `ERROR`).
+* **`language`**
+  * **Description:** UI language (`en`, `nl`, `fr`, `de`).
 
 ---
 
-## 3. Energy Contract Configuration
+## 3. Energy Contract & Regional Dynamic Pricing
 
-Maps your actual energy bill parameters to the UI calculations to ensure optimal strategy execution based on true costs.
+Configures your supplier contract formula to calculate real-time net import and export costs.
 
-![Energy Contract Tab](../screenshots/settings_contract.png)
+| Energy Contract Configuration | 24-Hour Tariff Visualizer Curve |
+| :---: | :---: |
+| ![Energy Contract Tab](../screenshots/settings_contract.png) | ![Tariff Visualizer](../screenshots/settings_contract_tariffs.png) |
 
-*   **`contract_type`**
-    *   **Description:** The type of energy contract you have.
-    *   **Values:** `dynamic` (market spot prices) or `fixed` (static peak/off-peak rates).
-*   **`fixed_price_peak_kwh`** & **`fixed_price_off_peak_kwh`**
-    *   **Description:** Your import rates (€/kWh) if `contract_type` is `fixed`.
-*   **`fixed_inject_price_kwh`**
-    *   **Description:** The rate (€/kWh) you receive for feeding solar into the grid on a fixed contract.
-*   **`dynamic_markup_kwh`**
-    *   **Description:** A simple flat markup applied on top of the base EPEX spot price for import.
-*   **`dynamic_inject_multiplier`**
-    *   **Description:** A multiplier applied to spot prices for energy injection, often used to calculate provider feed-in fees.
-*   **Provider-Specific Settings:**
-    *   These settings allow for exact mapping of complex provider formulas. They include base fees, markup structures, and pricing multipliers.
-    *   **Engie:** `engie_markup_peak`, `engie_markup_off_peak`, `engie_markup_super_off_peak`, `engie_multiplier`, `engie_inject_multiplier`, `engie_base_fee`
-    *   **Luminus:** `luminus_markup`, `luminus_multiplier`, `luminus_inject_multiplier`, `luminus_base_fee`
-    *   **Eneco:** `eneco_markup`, `eneco_multiplier`, `eneco_inject_multiplier`, `eneco_base_fee`
-    *   **Frank Energie:** `frank_markup`, `frank_multiplier`, `frank_inject_multiplier`, `frank_base_fee`
-    *   **Ecopower:** `ecopower_markup`, `ecopower_multiplier`, `ecopower_inject_multiplier`, `ecopower_base_fee`
-    *   **Enovos:** `enovos_markup`, `enovos_multiplier`, `enovos_inject_multiplier`, `enovos_base_fee`
-*   **`tax_kwh`**
-    *   **Description:** Country-specific volumetric energy taxes applied per kWh of import.
-*   **`vat_rate`**
-    *   **Description:** The Value Added Tax percentage applied to your energy costs (e.g., 6.0 or 21.0).
+### 3.1 Contract Types (`contract_type`)
+* `totalenergies_dynamic`: TotalEnergies Pixel Dynamic (Belgium EPEX Spot BE pass-through).
+* `mega_dynamic`: Mega Smart / Cosy Dynamic (Belgium).
+* `bolt_dynamic`: Bolt Dynamisch (Belgium 100% local green pass-through).
+* `engie_dynamic`: Engie Dynamic Day-Ahead (Belgium).
+* `engie_flextime`: Engie Flextime Time-of-Use structure.
+* `luminus_dynamic`: Luminus Dynamic (Belgium).
+* `eneco_dynamic`: Eneco Dynamic (Belgium / Netherlands).
+* `frank_energie_dynamic`: Frank Energie Dynamic (BE / NL).
+* `ecopower_dynamic`: Ecopower Dynamic (Belgium).
+* `dats24_dynamic`: Dats 24 Dynamisch (Belgium).
+* `octa_dynamic`: Octa+ Dynamic (Belgium).
+* `trevion_dynamic`: Trevion Dynamisch (Belgium).
+* `aspiravi_dynamic`: Aspiravi Dynamisch (Belgium).
+* `belgian_dual_tariff`: Belgian Fixed Peak/Off-Peak (Piek/Dal + 6% BTW).
+* `fixed`: Generic Fixed Rate structure.
+* `dynamic`: Generic EPEX Dynamic structure.
+* `enovos_dynamic`: Enovos Dynamic (Luxembourg).
+
+### 3.2 Dynamic Formula Parameters
+For Belgian dynamic contracts, the effective import price is calculated as:
+$$\text{Price}_{\text{import}} = \left( (\text{EPEX} \times \text{Multiplier}) + \text{Markup} + \frac{\text{BaseFee}}{8760} + \text{DNO}_{\text{tax}} \right) \times (1 + \text{VAT})$$
+
+And dynamic solar export return:
+$$\text{Price}_{\text{export}} = (\text{EPEX} \times \text{InjectMultiplier}) - \text{InjectMarkup}$$
+
+* **`tax_kwh`**: Distribution grid & transmission taxes per consumed kWh (e.g., `0.0204` €/kWh for Fluvius Flanders, `0.0950` €/kWh for ORES Wallonia).
+* **`vat_rate`**: Value Added Tax rate entered as a decimal (e.g., `0.06` for 6% BTW in Belgium, `0.21` for 21% in the Netherlands).
+* **Provider Multipliers & Markups**: Dedicated parameters for each supplier (e.g. `totalenergies_multiplier`, `totalenergies_markup`, `totalenergies_base_fee`, `totalenergies_inject_multiplier`, `totalenergies_inject_markup`).
 
 ---
 
 ## 4. Custom Schedules & Optimization
 
-Manual overrides and specific provider logic for targeted battery/EV charging.
+Manual overrides and scheduled charging windows.
 
-*   **`custom_charge_schedule`**
-    *   **Description:** A JSON string defining configurable forced-charge windows, utilizing a start time, end time, and target State of Charge (SOC).
-*   **`superdal_optimization_enabled`**
-    *   **Description:** Enables specific provider logic (like Engie Superdal) to charge the battery exactly during predefined cheap tariff slots.
-*   **`superdal_target_soc`**
-    *   **Description:** The desired State of Charge to reach by the end of the optimized time window when Superdal optimization is active.
-
----
-
-## 5. Dynamic Forecast
-
-Settings used exclusively by the `dynamic_forecast` battery strategy.
-
-*   **`home_base_load_w`**
-    *   **Description:** The estimated average background consumption of your house. Used to predict future battery depletion rates alongside solar weather forecasts.
+* **`custom_charge_schedule`**
+  * **Description:** A JSON string defining forced battery charging intervals with start time, end time, and target State of Charge (SOC) (e.g. `[{"start":"02:00","end":"05:00","target_soc":90}]`).
+* **`superdal_optimization_enabled`**
+  * **Description:** Enables provider off-peak target optimization (like Engie Superdal).
+* **`superdal_target_soc`**
+  * **Description:** Target State of Charge (SOC %) to achieve by the end of the off-peak window.
+* **`home_base_load_w`**
+  * **Description:** Household background base consumption (Watts), used by the dynamic forecast solver to predict battery depletion.
 
 ---
 
-## 6. System Update
+## 5. System Update & Remote Diagnostics
 
-Configuration for over-the-air updates.
+Configuration for automated OTA updates and GitHub release tracking.
 
-*   **`github_token`**
-    *   **Description:** A Personal Access Token (classic) to authenticate update queries against the GitHub API, preventing IP rate limits when checking for the latest GEMS releases.
+* **`github_token`**
+  * **Description:** Optional GitHub Personal Access Token (classic) to prevent IP rate limiting when querying the release repository for new GEMS versions.
 
 ---
 
-## 7. Alerts & Notifications
+## 6. Alerts & Webhook Notifications
 
-Configuration for external notifications and webhook alerting.
+Configuration for external webhook alerts and capacity threshold warnings.
 
 ![Notifications Tab](../screenshots/settings_notifications.png)
 
-*   **`alert_webhook_url`**
-    *   **Description:** An external URL where the EMS sends HTTP POST payloads for proactive alerts, such as consecutive device polling failures or when the capacity peak is nearing 90%.
+* **`alert_webhook_url`**
+  * **Description:** HTTP(S) Webhook URL (e.g. Discord, Slack, Home Assistant) where GEMS posts instant notifications for device offline events, consecutive poll failures, or when the 15-minute capacity peak approaches 90% of the limit.
+* **`weekly_report_enabled`**
+  * **Description:** Toggles automatic generation and delivery of weekly PDF energy summaries.
+* **`report_email`**
+  * **Description:** Destination email address for automated reports.
+* **SMTP Settings (`smtp_host`, `smtp_port`, `smtp_username`, `smtp_password`, `smtp_sender`)**
+  * **Description:** Outbound mail server credentials for report delivery.
 
 ---
 
-## 8. Reporting
+## 7. Smart Relays & Actuators
 
-Settings for generating and delivering energy reports.
+Configuration for contactors, SG-Ready heat pumps, and electric water heaters.
 
-*   **`weekly_report_enabled`**
-    *   **Description:** Toggles whether the EMS should automatically generate and email weekly PDF energy reports.
-*   **`report_email`**
-    *   **Description:** The destination email address for the generated reports.
-*   **SMTP Configuration:**
-    *   **Description:** Credentials and server details required for the EMS to send outbound emails.
-    *   **Fields:** `smtp_host`, `smtp_port`, `smtp_username`, `smtp_password`, `smtp_sender`
+| Smart Relays Management | Relay Automation Rules |
+| :---: | :---: |
+| ![Relays Tab](../screenshots/settings_relays.png) | ![Relay Rules](../screenshots/settings_relays_rules.png) |
+
+* **Relay Rules Engine**: Configurable trigger conditions (`excess_solar`, `negative_spot_price`, `time_schedule`), threshold values, hysteresis delays (`min_run_time`, `min_off_time`), and automated actions (`turn_on`, `turn_off`).
+

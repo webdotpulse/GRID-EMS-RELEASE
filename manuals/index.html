@@ -20,7 +20,7 @@
         <span class="logo-badge">⚡</span>
         <span>GEMS Docs</span>
       </a>
-      <span class="version-tag">v9.1 Release</span>
+      <span class="version-tag">v9.4 Release</span>
     </div>
 
     <div class="header-center">
@@ -122,6 +122,26 @@
       </div>
 
       <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Official PDF Manuals</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-installer-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Installer Manual (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">5.6 MB</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>User Manual (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">3.4 MB</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
         <div class="sidebar-group-title">System Tools</div>
         <ul class="sidebar-links">
           <li>
@@ -173,6 +193,58 @@
         <div class="doc-screenshot-card">
           <img src="assets/screenshots/dashboard.png" alt="GEMS Real-Time Power Flow Dashboard Interface" loading="lazy">
           <div class="doc-screenshot-caption">GEMS Live Dashboard &mdash; Animated interactive power flow, Flanders capacity peak tracking, and instantaneous sub-second metrics.</div>
+        </div>
+
+        <!-- Official PDF Field Manuals Banner -->
+        <div style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.08), rgba(16, 185, 129, 0.08)); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; margin: 2rem 0;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <h2 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: var(--text-primary);">📕 Official Printable Field Manuals (PDF)</h2>
+              <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; color: var(--text-secondary);">Comprehensive vector PDF manuals compiled with high-resolution system screenshots, hardware pinouts, and field checklists.</p>
+            </div>
+            <span class="badge" style="background: var(--brand-primary); color: #fff; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600;">v9.4 Edition</span>
+          </div>
+          <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin: 0;">
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">
+                  <svg width="22" height="22"><use href="assets/icons.svg#icon-tool"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Installer Manual</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Hardware, Devices, Flemish GSC & Strategy</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Step-by-step field commissioning for electricians and solar installers: Raspberry Pi 5 NVMe setup, Modbus TCP inverters, P1 smart meters, native OCPP, and Flanders peak shaving.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-installer-manual.pdf" target="_blank" class="tab-btn active" style="background: #0284c7; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="assets/icons.svg#icon-download"></use></svg>
+                  <span>Download PDF (5.6 MB)</span>
+                </a>
+                <a href="gems-installer-manual.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">View Online</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+                  <svg width="22" height="22"><use href="assets/icons.svg#icon-home"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Homeowner & User Manual</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Daily Operations, EV Modes & Energy Reports</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Homeowner operation guide: Interactive PowerFlow hero diagram, click-to-reveal historical analytics modals, EV charging modes, negative price protection, and PDF reports.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-user-manual.pdf" target="_blank" class="tab-btn active" style="background: #10b981; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="assets/icons.svg#icon-download"></use></svg>
+                  <span>Download PDF (3.4 MB)</span>
+                </a>
+                <a href="gems-user-manual.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">View Online</a>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Quick Navigation Cards -->

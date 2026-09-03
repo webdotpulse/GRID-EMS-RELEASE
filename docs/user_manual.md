@@ -1,19 +1,26 @@
 # GEMS User Manual
 
-Welcome to the comprehensive user manual for GEMS (Energy Management System). GEMS is a lightweight, highly responsive, and fully UI-driven Energy Management System optimized for low-power devices like the Raspberry Pi. This manual details how to set up, configure, and optimize your smart home energy usage using the available features and parameters.
+Welcome to the comprehensive user manual for GEMS (Grid Energy Management System by The New Energy Grid). GEMS is a lightweight, highly responsive, and fully UI-driven Energy Management System optimized for low-power devices like the Raspberry Pi. This manual details how to set up, configure, and optimize your smart home energy usage using the available features and parameters.
+
+> [!TIP]
+> **Download Official Field Manuals (PDF):**
+> - 📕 **[GEMS Installer & Commissioning Manual (PDF)](../GEMS-Installer-Manual.pdf)** (5.6 MB)
+> - 📗 **[GEMS Homeowner & User Manual (PDF)](../GEMS-User-Manual.pdf)** (3.4 MB)
+> - 💻 **[Interactive Documentation Hub](../manuals/index.html)**
+
 
 ---
 
 ## 1. Introduction & Architecture Overview
 
-GEMS serves as the brain of your home energy ecosystem, integrating Grid, Solar, Battery, and EV Charger hardware. By seamlessly monitoring realtime power usage and acting upon defined optimization strategies, it helps reduce electricity costs, maximize self-consumption, and protect you from high capacity grid tariffs.
+GEMS serves as the central brain of your home energy ecosystem, integrating Grid, Solar, Battery, EV Charger, and Smart Relay hardware. By seamlessly monitoring real-time power usage and acting upon defined optimization strategies, it helps reduce electricity costs, maximize self-consumption, and protect you from high capacity grid tariffs.
 
 ### Core Philosophy
-* **Fully UI-Driven:** No YAML or configuration file editing is required. Every hardware device and optimization rule is configured straight from the frontend interface.
-* **90+ Native Hardware Templates:** Out-of-the-box support for 80+ leading manufacturers across Solar Inverters, Batteries, EV Chargers, Digital P1 Meters, and Smart Relays.
-* **Responsive Architecture:** A highly optimized Go backend paired with an embedded SQLite database and a modern Vue 3 SPA guarantees snappy updates using Server-Sent Events (SSE).
-* **Minimal Wear:** Database writes are batched and buffered to maximize the lifespan of your device's SD Card.
-* **Privacy First:** Your data never leaves your home.
+* **Fully UI-Driven:** Zero YAML or text configuration file editing is required. Every hardware device and optimization rule is configured straight from the frontend interface.
+* **90+ Native Hardware Templates:** Out-of-the-box support for 80+ leading manufacturers across Solar Inverters, Batteries, EV Chargers (OCPP / Modbus TCP / REST), Digital P1 Meters, and Smart Relays.
+* **Responsive Architecture:** A highly optimized Go backend paired with an embedded SQLite database and a modern Vue 3 SPA guarantees snappy updates using Server-Sent Events (SSE) and WebSockets.
+* **Minimal Wear:** Database writes are batched and buffered with SQLite WAL mode to maximize the lifespan of your device's SD Card or NVMe SSD.
+* **Privacy First:** All data is processed and stored locally inside your home.
 
 ---
 
@@ -49,12 +56,12 @@ The `gems.service` systemd daemon will start automatically on port `8080`.
 
 ## 3. Dashboard & Real-Time Monitoring
 
-The primary **Dashboard** visualizes your energy distribution in real-time.
+| Desktop PowerFlow Dashboard | Mobile Responsive View |
+| :---: | :---: |
+| ![GEMS Dashboard](../screenshots/dashboard.png) | ![Mobile Dashboard](../screenshots/dashboard_mobile.png) |
 
-![GEMS Dashboard](../screenshots/dashboard.png)
-
-* **Power Flow Interactive Graphic:** Displays active power nodes (Grid, Solar, Battery, Charger, Home). Nodes are intelligently hidden if not configured.
-* **Click-to-Reveal:** Clicking any individual node in the power flow diagram reveals detailed historical line charts and statistics unique to that device category.
+* **Power Flow Interactive Graphic:** Displays active power nodes (Grid, Solar, Battery, Charger, Home). Nodes are intelligently hidden if not configured or inactive.
+* **Click-to-Reveal:** Clicking any individual node in the power flow diagram reveals detailed historical line charts, energy breakdown metrics, and time-range selections (Day, Week, Month, Year).
 
 | Solar History Modal | Battery Telemetry Modal |
 | :---: | :---: |
@@ -74,19 +81,18 @@ Access the **Settings** view from the top navigation bar to configure system-wid
 
 ### 4.1 Site Optimization (Strategy Mode)
 
-![Strategy Tab](../screenshots/settings_strategy.png)
+| Strategy Settings Overview | Operational Strategy Modes |
+| :---: | :---: |
+| ![Strategy Tab](../screenshots/settings_strategy.png) | ![Strategy Modes](../screenshots/settings_strategy_modes.png) |
 
 * **`strategy_mode`**: Selects the primary operational behavior of the system.
   * **Eco:** Maximizes self-consumption of solar energy. Prioritizes home loads, battery charging, and EV charging with solar excess before grid export.
   * **Flanders:** Activates predictive Peak Shaving based on the Belgian/Flanders capacity tariff model. Calculates rolling 15-minute projected quarter peaks and dynamically throttles EV chargers and batteries to keep the peak under `capacity_peak_limit_kw`.
-  * **Netherlands:** Focuses on minimizing or completely eliminating solar feed-in to the grid (zero-export), actively curtailing inverters if export reaches `allowed_grid_export_kw`.
-* **`capacity_peak_limit_kw`**: The maximum allowed average quarter-hour grid import (e.g. `2.5` kW).
+  * **Netherlands:** Focuses on minimizing or completely eliminating solar feed-in to the grid (zero-export), actively curtailing inverters if export reaches `allowed_grid_export_kw` or if feed-in pricing is negative.
+* **`capacity_peak_limit_kw`**: The base maximum allowed average quarter-hour grid import (e.g. `2.5` kW).
 * **`peak_shaving_buffer_w`**: The safety buffer applied when nearing the capacity peak limit (e.g. `200` W).
 * **`peak_shaving_rampup_w`**: Ramp-up step power when capacity frees up (e.g. `150` W).
-* **`grid_nominal_current_a`**: Main fuse limit (e.g. `40` A) protecting the grid connection from overload.
-* **`grid_system`**: `single_phase_230v` or `three_phase_400v`.
-* **`allowed_grid_import_kw`** / **`allowed_grid_export_kw`**: Hard caps on grid import and feed-in.
-* **`active_inverter_curtailment`**: Allows the system to actively throttle solar inverters.
+* **Smart Adaptive Ceiling**: Dynamically adapts the peak shaving ceiling to the highest 15-minute peak already incurred in the current calendar month, maximizing charging speed without increasing your capacity tariff bill.
 
 ### 4.2 Battery Arbitrage & Schedules
 
@@ -98,12 +104,15 @@ Access the **Settings** view from the top navigation bar to configure system-wid
 * **`force_charge_below_euro`**: Spot price threshold (€/kWh) to trigger forced grid charging.
 * **`force_discharge_above_euro`**: Spot price threshold (€/kWh) to allow battery feed-in during peak pricing.
 
-### 4.3 Energy Contracts & Pricing
+### 4.3 Energy Contracts & 24-Hour Tariff Visualizer
 
-![Energy Contract Tab](../screenshots/settings_contract.png)
+| Energy Contract Configuration | 24-Hour Tariff Visualizer Curve |
+| :---: | :---: |
+| ![Energy Contract Tab](../screenshots/settings_contract.png) | ![Tariff Visualizer](../screenshots/settings_contract_tariffs.png) |
 
-* **`contract_type`**: `dynamic` (market spot prices) or `fixed` (peak/off-peak).
-* **Dynamic Contract Variables**: Select energy provider (Engie, Luminus, Eneco, Frank Energie, Ecopower) and configure markup (`dynamic_markup_kwh`) and injection multiplier (`dynamic_inject_multiplier`).
+* **`contract_type`**: Support for Belgian dynamic contracts (**TotalEnergies Pixel Dynamic, Mega Smart/Cosy Dynamic, Bolt Dynamisch, Engie Dynamic / Flextime, Luminus Dynamic, Eneco Dynamic, Frank Energie, Ecopower, Dats 24, Octa+, Trevion, Aspiravi**), Belgian Dual-Tariff (Piek/Dal + 6% BTW), and generic fixed/dynamic rates.
+* **DNO Distribution Fees**: Built-in regional presets for Fluvius (Flanders), ORES (Wallonia), RESA (Liège), and SIBELGA (Brussels).
+* **Live 24-Hour Tariff Visualizer**: Real-time stacked cost breakdown curve displaying wholesale EPEX spot price, supplier markup, DNO network fees, taxes & 6% VAT, dynamic solar injection price, and negative price curtailment warnings.
 
 ---
 
@@ -111,7 +120,9 @@ Access the **Settings** view from the top navigation bar to configure system-wid
 
 GEMS includes **90 native hardware templates**. Adding hardware is 100% UI-driven.
 
-![Devices Tab](../screenshots/settings_devices.png)
+| Configured Devices Management | Add Device Category Wizard |
+| :---: | :---: |
+| ![Devices Tab](../screenshots/settings_devices.png) | ![Add Device Modal](../screenshots/settings_devices_add_modal.png) |
 
 ### Universal 4-Step Onboarding Process
 
@@ -121,13 +132,15 @@ GEMS includes **90 native hardware templates**. Adding hardware is 100% UI-drive
 
 2. **Hardware Preparation:**
    * **Modbus Inverters:** Enable Modbus TCP in your inverter dongle or app (e.g. Huawei FusionSolar SDongleA Modbus TCP: Unrestricted, SMA Speedwire / SunSpec, SolarEdge SetApp Port 1502).
-   * **OCPP Chargers:** Set the Central System URL in your charger app to `ws://<PULSE-EMS-IP>:8887/<ChargePointID>`.
+   * **OCPP Chargers:** Set the Central System URL in your charger app to `ws://<GEMS-IP>:8887/<ChargePointID>`.
    * **Local REST Meters/Relays:** Toggle "Local API" in HomeWizard Energy app, or enable Gen2 RPC in Shelly devices.
    * **Serial P1 Meters:** Plug RJ12 cable into smart meter P1 port and USB into Raspberry Pi (`/dev/ttyUSB0`).
 
 3. **Add Device in UI:** Click **Settings &rarr; Devices &rarr; + Add Device**. Choose category, select template, enter parameters, and click **Save Device**.
 
-   ![Add Device Modal](../screenshots/settings_devices_add_modal.png)
+| Inverter Modbus Setup | Smart Meter P1 Setup | EV Charger OCPP Setup |
+| :---: | :---: | :---: |
+| ![Inverter Form](../screenshots/settings_devices_inverter_form.png) | ![Meter Form](../screenshots/settings_devices_meter_form.png) | ![Charger Form](../screenshots/settings_devices_charger_form.png) |
 
 4. **Verify Health:** Confirm the device card shows <span style="color:#10b981; font-weight:bold;">● Online</span> and verify live power on the Dashboard.
 
@@ -164,7 +177,7 @@ GEMS includes **90 native hardware templates**. Adding hardware is 100% UI-drive
 #### Native OCPP 1.6-J / 2.0.1 EV Chargers
 Set the Central System URL in your charger mobile app / web console to:
 ```
-ws://<PULSE-EMS-IP>:8887/<ChargePointID>
+ws://<GEMS-IP>:8887/<ChargePointID>
 ```
 * **Supported Models:** Huawei FusionCharge (SCharger-7KS/22KT), EVBox (Elvi/Livo/BusinessLine), Mennekes AMTRON (4You/4Business/ACU), SMA EV Charger (7.4/22), Schneider Electric EVlink (Wallbox/Pro AC), Siemens VersiCharge GEN3, Elli / VW / Skoda / SEAT (ID. Charger Connect/Pro), ABB Terra AC Wallbox, Alpitronic Hypercharger, Autel MaxiCharger, Hager witty, BMW Wallbox Plus, Mercedes-Benz Wallbox, Porsche Wallbox, Plugchoice, Fronius Wattpilot, Easee.
 * **In GEMS UI:** Select EV Chargers &rarr; Choose Template &rarr; Enter your `ChargePointID` (e.g. `WALLBOX-01`).
@@ -207,7 +220,9 @@ Direct local LAN control with dynamic phase and current setpoints (6A - 32A):
 
 ### 5.4 Smart Relays & Contactors (2 Templates)
 
-![Relays Tab](../screenshots/settings_relays.png)
+| Smart Relays Management | Relay Automation Rules |
+| :---: | :---: |
+| ![Relays Tab](../screenshots/settings_relays.png) | ![Relay Rules](../screenshots/settings_relays_rules.png) |
 
 * **Shelly Plus 1PM / Pro 1PM / Plug S:** Template `shelly_plus_1pm`. Host IP, Port `80`. Controls SG-Ready heat pump boost contactors and electric boilers based on solar excess threshold (e.g. >1500W) and thermal hysteresis timers.
 * **Generic HTTP Relay:** Template `generic_relay`. Configurable state and toggle URLs for ESPHome, Tasmota, and custom actuators.
@@ -216,7 +231,9 @@ Direct local LAN control with dynamic phase and current setpoints (6A - 32A):
 
 ## 6. System Diagnostics & Updates
 
-![System Info Tab](../screenshots/settings_system_info.png)
+| Hardware System Info & NVMe Health | Webhook Alerts & Reporting |
+| :---: | :---: |
+| ![System Info Tab](../screenshots/settings_system_info.png) | ![Notifications Tab](../screenshots/settings_notifications.png) |
 
 * **Real-Time Logger:** Live diagnostic stream of Modbus packets, register reads, OCPP WebSocket heartbeats, and strategy control decisions.
 * **One-Click OTA Updates:** System queries GitHub releases for updates. Clicking *Install Update* downloads and installs the latest `.deb` package seamlessly with live log output.

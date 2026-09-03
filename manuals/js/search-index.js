@@ -52,8 +52,8 @@ window.DOCS_SEARCH_INDEX = [
     title: "Debian Package (.deb) Installation",
     category: "Installation",
     url: "installation.html#deb-package",
-    snippet: "Installing NEMS on existing Debian or Ubuntu ARM64 distributions via dpkg -i nems_*_arm64.deb and managing nems.service.",
-    keywords: ["deb", "debian", "dpkg", "apt", "package", "systemd", "nems.service", "ubuntu"]
+    snippet: "Installing GEMS on existing Debian or Ubuntu ARM64 distributions via dpkg -i gems_*_arm64.deb and managing gems.service.",
+    keywords: ["deb", "debian", "dpkg", "apt", "package", "systemd", "gems.service", "ubuntu"]
   },
   {
     title: "Building from Source",

@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /* --- Theme Management --- */
 function initTheme() {
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
-  const storedTheme = localStorage.getItem('nems-docs-theme');
+  const storedTheme = localStorage.getItem('gems-docs-theme');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   
   const currentTheme = storedTheme || (prefersDark ? 'dark' : 'light');
@@ -27,14 +27,14 @@ function initTheme() {
       const activeTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('nems-docs-theme', newTheme);
+      localStorage.setItem('gems-docs-theme', newTheme);
       updateThemeIcon(newTheme);
     });
   }
 
   // Listen for OS system theme changes
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('nems-docs-theme')) {
+    if (!localStorage.getItem('gems-docs-theme')) {
       const newTheme = e.matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', newTheme);
       updateThemeIcon(newTheme);

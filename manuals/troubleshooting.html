@@ -360,7 +360,7 @@ sudo dmesg | grep -i -E "pci|nvme"</code></pre>
             </button>
           </div>
           <pre><code># Open SQLite database
-sqlite3 /opt/nems/gems.db
+sqlite3 /opt/gems/gems.db
 
 -- 1. Check WAL mode status (should return 'wal')
 PRAGMA journal_mode;

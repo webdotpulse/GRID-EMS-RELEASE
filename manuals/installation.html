@@ -156,6 +156,26 @@
           </li>
         </ul>
       </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Official PDF Manuals</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-installer-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Installer Manual (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">5.6 MB</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>User Manual (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">3.4 MB</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </aside>
 
     <!-- Main Content Area -->
@@ -173,6 +193,21 @@
         <p class="hero-lead">
           Comprehensive deployment instructions for GEMS on Raspberry Pi ARM64 hardware, covering pre-built OS images, Debian package management, source builds, and physical communication wiring.
         </p>
+
+        <!-- PDF Manual Download Banner -->
+        <div class="alert alert-tip" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0;">
+          <div>
+            <div class="alert-header">
+              <svg width="18" height="18"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Download Official Printable Installer Manual (PDF)</span>
+            </div>
+            <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem;">Need a complete printable PDF for the electrical cabinet or field handover? Download the official <strong>GEMS Installer & Commissioning Manual (PDF)</strong> with full-color wiring diagrams, step-by-step device onboarding, and commissioning checklist.</p>
+          </div>
+          <a href="gems-installer-manual.pdf" target="_blank" class="tab-btn active" style="background: #0284c7; color: #fff; text-decoration: none; padding: 0.45rem 0.9rem; font-size: 0.85rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap;">
+            <svg width="14" height="14"><use href="assets/icons.svg#icon-download"></use></svg>
+            <span>Installer Manual PDF (5.6 MB)</span>
+          </a>
+        </div>
 
         <!-- Reference Hardware BOM -->
         <h2 id="hardware-reference">Official Tested Reference Hardware</h2>
@@ -359,7 +394,7 @@ sudo apt-get install -f -y</code></pre>
 
         <h3>2. Systemd Service Management</h3>
         <p>
-          The Debian package creates a dedicated system user <code>nems</code>, installs binaries and assets to <code>/opt/nems</code>, and registers the <code>gems.service</code> systemd daemon:
+          The Debian package creates a dedicated system user <code>gems</code>, installs binaries and assets to <code>/opt/gems</code>, and registers the <code>gems.service</code> systemd daemon:
         </p>
 
         <div class="table-wrapper">
@@ -426,7 +461,7 @@ cd GRID-EMS
 
 # The script compiles the Vue 3 frontend to backend/dist/
 # and generates the statically linked ARM64 binary:
-# Output artifact: build/nems-release-arm64.tar.gz</code></pre>
+# Output artifact: build/gems-release-arm64.tar.gz</code></pre>
         </div>
 
         <!-- Cockpit Administration -->
@@ -470,7 +505,7 @@ cd GRID-EMS
                   <span>Copy</span>
                 </button>
               </div>
-              <pre><code>loginctl enable-linger nems
+              <pre><code>loginctl enable-linger gems
 rpi-connect signin</code></pre>
             </div>
           </li>

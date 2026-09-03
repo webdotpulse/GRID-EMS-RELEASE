@@ -1,6 +1,13 @@
 # 📖 GEMS - Advanced Operational Manual
 
-Welcome to the **GEMS Advanced Operational Manual**. This document provides an exhaustive, step-by-step guide explaining how every feature, configuration setting, regional strategy, automation rule, and diagnostic tool in GEMS functions.
+Welcome to the **GEMS Advanced Operational Manual**. This document provides an exhaustive, step-by-step guide explaining how every feature, configuration setting, regional strategy, automation rule, dynamic contract engine, and diagnostic tool in GEMS functions.
+
+> [!TIP]
+> **Download Official Field Manuals (PDF):**
+> - 📕 **[GEMS Installer & Commissioning Manual (PDF)](../GEMS-Installer-Manual.pdf)** (5.6 MB)
+> - 📗 **[GEMS Homeowner & User Manual (PDF)](../GEMS-User-Manual.pdf)** (3.4 MB)
+> - 💻 **[Interactive Documentation Hub](../manuals/index.html)**
+
 
 ---
 
@@ -18,20 +25,22 @@ Welcome to the **GEMS Advanced Operational Manual**. This document provides an e
 
 ## 1. Architecture & System Overview
 
-GEMS (The New Energy Grid) is engineered for minimal memory consumption and maximal performance on Raspberry Pi hardware (Debian/Linux ARM64).
+GEMS (Grid Energy Management System by The New Energy Grid) is engineered for minimal memory consumption and maximal performance on Raspberry Pi hardware (Debian/Linux ARM64).
 
 ```mermaid
 graph TD
     subgraph Frontend ["Vue 3 Single Page Application"]
         PowerFlow["Hero PowerFlow Diagram"]
-        DashGauge["Flanders Peak Gauge"]
+        DashGauge["Flanders Peak & Monthly History"]
+        TariffVis["24-Hour Tariff Curve Visualizer"]
         SettingsUI["UI Configuration & Relay Rules"]
         LogsUI["Real-time Logger"]
     end
 
     subgraph Backend ["Go (Golang) Micro-Kernel Engine"]
-        Poller["Device Poller & Templates"]
+        Poller["Device Poller & 90 Templates"]
         Strategy["Regional Strategy Engine"]
+        Pricing["EPEX Spot & Regional Contracts"]
         State["State Manager & Dispatcher"]
         Pruning["SQLite Retention Worker"]
     end
@@ -41,7 +50,8 @@ graph TD
     end
 
     Poller -->|1s / 5s Metrics| State
-    State -->|Publish via WebSockets| Frontend
+    Pricing -->|24h Tariffs & Breakdown| State
+    State -->|Publish via WebSockets/SSE| Frontend
     Strategy -->|Issue Throttling / Control| Poller
     State -->|1m Buffered Flushes| DB
     Pruning -->|Prune >90d / WAL Checkpoint| DB
@@ -56,47 +66,57 @@ graph TD
 
 The **Dashboard** is the primary monitoring screen of GEMS.
 
-![Dashboard Hero](../screenshots/dashboard.png)
+| Desktop PowerFlow Dashboard | Mobile Responsive View |
+| :---: | :---: |
+| ![Dashboard Hero](../screenshots/dashboard.png) | ![Mobile Dashboard](../screenshots/dashboard_mobile.png) |
 
 ### 2.1 Hero Interactive Power Flow Chart (`PowerFlow.vue`)
-* **Dynamic Node Rendering:** Grid, Solar Inverter, Battery Storage, EV Charger, Heat Pump, and Smart Relays are displayed **only** if configured and active.
+* **Dynamic Node Rendering:** Grid, Solar Inverter, Battery Storage, EV Charger, and Smart Relays are displayed **only** if configured and active.
 * **Animated Power Vectors:** Moving particle lines indicate real-time direction and velocity of energy flow.
-* **Click-to-Reveal History Modal:** Clicking any node (e.g. Grid or Battery) opens a high-resolution historical chart modal.
+* **Click-to-Reveal History Modal:** Clicking any node (e.g. Grid, Battery, Solar, EV Charger) opens a high-resolution historical chart modal with energy totals, self-consumption ratios, and date range filters (Day, Week, Month, Year).
 
-![Battery History Modal](../screenshots/dashboard_modal_battery.png)
+| Battery Telemetry Modal | Solar Production Modal |
+| :---: | :---: |
+| ![Battery History Modal](../screenshots/dashboard_modal_battery.png) | ![Solar History Modal](../screenshots/dashboard_modal_solar.png) |
 
-* **⚡ Compare Grid Power Overlay:** Clicking the compare button in the modal overlays real-time grid import/export curves on top of solar or battery graphs for immediate load correlation.
+| Grid Import/Export Modal | EV Charger History Modal |
+| :---: | :---: |
+| ![Grid History Modal](../screenshots/dashboard_modal_grid.png) | ![Charger Modal](../screenshots/dashboard_modal_charger.png) |
 
 ### 2.2 Flanders Quarter-Hour Peak Demand Monitor (`capaciteitstarief`)
 * **Ground-Truth OBIS 1.6.0 Ingestion:** Ingests the digital meter's current quarter-hourly maximum demand reading.
-* **Projected Quarter Peak Calculation:** Mathematically projects the expected 15-minute average power based on elapsed seconds and current grid draw.
+* **Projected Quarter Peak Calculation:** Mathematically projects the expected 15-minute average power based on elapsed seconds and current grid draw:
+  $$P_{\text{projected}} = \frac{E_{\text{elapsed}} + P_{\text{inst}} \times (900 - t_{\text{elapsed}})}{900}$$
+* **Monthly Peak Tracking & Smart Adaptive Ceiling:** GEMS tracks the true monthly peak in SQLite (`/api/peaks/monthly`). If a high peak is incurred during the month, the ceiling dynamically elevates to allow maximum charging speed without exceeding that peak.
 * **Status Badges:**
   * **NORMAL (Green):** Projected peak $<80\%$ of contract limit (`capacity_peak_limit_kw`).
   * **WARNING (Amber):** Projected peak between $80\%$ and $99\%$ of contract limit.
   * **THROTTLED (Red):** Projected peak $\ge 100\%$ of contract limit; active throttling engaged.
 
 ### 2.3 Visual PDF Energy Report Exporter
-* Generates downloadable PDF reports directly from [Dashboard.vue](file:///home/koenaelbrecht/Git/GEMS/frontend/src/components/Dashboard.vue).
+* Generates downloadable PDF reports directly from the Dashboard.
 * Options for **Last Week**, **Last Month**, **Last 12 Months**, and **All Time** summary metrics.
 
 ---
 
 ## 3. Regional Strategy Engine
 
-Select your active operational strategy under **Settings -> Site Optimization**:
+Select your active operational strategy under **Settings &rarr; Site Optimization**:
 
-![Strategy Settings Tab](../screenshots/settings_strategy.png)
+| Strategy Settings Overview | Operational Strategy Modes |
+| :---: | :---: |
+| ![Strategy Settings Tab](../screenshots/settings_strategy.png) | ![Strategy Modes](../screenshots/settings_strategy_modes.png) |
 
 ```mermaid
 flowchart TD
-    Start["Control Loop (Every 1-5s)"] --> ReadState["Read Grid, Solar, Battery & EV State"]
+    Start["Control Loop (Every 1s)"] --> ReadState["Read Grid, Solar, Battery & EV State"]
     ReadState --> ModeCheck{"Strategy Mode?"}
 
     ModeCheck -->|Eco| EcoMode["Prioritize Solar Excess -> Battery -> EV Charger"]
-    ModeCheck -->|Flanders| FlandersMode["Check 15-min Projected Peak vs Limit"]
-    ModeCheck -->|Netherlands| NLMode["Check Dynamic Price vs Injection Threshold"]
+    ModeCheck -->|Flanders| FlandersMode["Check 15-min Projected Peak vs Adaptive Limit"]
+    ModeCheck -->|Netherlands| NLMode["Check Dynamic Price vs MinProfitableExport"]
 
-    FlandersMode -->|Peak Overshoot Risk| Throttling["Step Down EV Charger (16A -> 10A -> 6A -> 0A)"]
+    FlandersMode -->|Peak Overshoot Risk| Throttling["Step Down EV Charger (16A -> 10A -> 6A -> 0A) & Discharge Battery"]
     NLMode -->|Price < MinProfitableExport| Curtailment["Curtail Inverter Active Power Output"]
 ```
 
@@ -107,7 +127,7 @@ flowchart TD
 ### 3.2 Flanders Peak Shaving Strategy (`flanders`)
 * Designed for Belgium (Flanders) capacity tariff regulations.
 * Monitors the 15-minute rolling average grid import.
-* Dynamically throttles EV chargers and postpones battery charging when total household demand threatens to push the quarter-hourly peak above `capacity_peak_limit_kw`.
+* Dynamically throttles EV chargers and commands battery discharge when total household demand threatens to push the quarter-hourly peak above `capacity_peak_limit_kw`.
 * Enforces `peak_shaving_buffer_w` and gradual `peak_shaving_rampup_w` when demand stabilizes.
 
 ### 3.3 Netherlands Smart Saldering & Zero-Export (`netherlands`)
@@ -127,9 +147,11 @@ flowchart TD
 
 ## 4. Smart Relay & SG-Ready Automation
 
-Configure automated switching rules for domestic hot water boilers, heat pumps, and heavy appliances in **Settings -> Relay Automation Rules**.
+Configure automated switching rules for domestic hot water boilers, heat pumps, and heavy appliances in **Settings &rarr; Relays**.
 
-![Smart Relays & Switches](../screenshots/settings_relays.png)
+| Smart Relays Management | Relay Automation Rules |
+| :---: | :---: |
+| ![Smart Relays & Switches](../screenshots/settings_relays.png) | ![Relay Rules](../screenshots/settings_relays_rules.png) |
 
 ### 4.1 Automation Rule Parameters
 * **Condition Types:**
@@ -153,24 +175,39 @@ GEMS maps relay contactor states to standard SG-Ready heat pump inputs:
 
 GEMS calculates real-time effective energy pricing by applying regional tax and provider formulas to raw Day-Ahead EPEX spot prices.
 
-![Energy Contract Tab](../screenshots/settings_contract.png)
+| Energy Contract Configuration | 24-Hour Tariff Visualizer Curve |
+| :---: | :---: |
+| ![Energy Contract Tab](../screenshots/settings_contract.png) | ![Tariff Visualizer](../screenshots/settings_contract_tariffs.png) |
 
-### Supported Contract Providers
-* **EnergyZero (Netherlands):** Direct EPEX spot prices with Dutch energy tax and VAT.
-* **Engie Flextime (Belgium):** Peak, off-peak, and super-off-peak markups, provider fees, and Flanders distribution tariffs.
-* **Luminus, Eneco, Frank Energie, Ecopower:** Customized formula multipliers and fixed injection margins.
-* **Enovos (Luxembourg):** Dynamic pricing with Luxembourg distribution fees.
+### 5.1 Supported Regional Provider Presets
+* **TotalEnergies Pixel Dynamic (BE):** EPEX Spot BE + multiplier + markup + base subscription fee.
+* **Mega Smart / Cosy Dynamic (BE):** Configurable consumption multiplier, retail markup, and injection fees.
+* **Bolt Dynamisch (BE):** 100% local green dynamic contract with pass-through spot pricing.
+* **Engie Dynamic & Flextime (BE):** Spot pass-through and multi-tier time-of-use markups.
+* **Luminus, Eneco, Frank Energie, Ecopower, Dats 24, Octa+, Trevion, Aspiravi:** Regional Belgian formulas.
+* **Belgian Dual-Tariff (Piek/Dal):** Standard peak/off-peak rates with 6% BTW and DNO presets.
+* **Enovos (Luxembourg):** Dynamic pricing with Creos distribution fees.
+
+### 5.2 Live 24-Hour Effective Tariff Curve Visualizer
+The embedded visualizer breaks down electricity costs into 4 stacked components for every hour:
+1. **Raw EPEX Spot Wholesale**
+2. **Supplier Markup & Base Fee**
+3. **DNO Grid & Transmission (Fluvius / ORES / RESA / SIBELGA)**
+4. **Taxes & 6% VAT (BTW)**
+Plus an overlaid stepped curve of **Solar Injection Return** with automated **Negative Price Curtailment Warnings**.
 
 ---
 
 ## 6. Device Management & Modbus Diagnostics
 
-Manage all system hardware from **Settings -> Device Management**.
+Manage all system hardware from **Settings &rarr; Devices**.
 
-![Devices Management Tab](../screenshots/settings_devices.png)
+| Configured Devices Management | Add Device Wizard |
+| :---: | :---: |
+| ![Devices Management Tab](../screenshots/settings_devices.png) | ![Add Device Modal](../screenshots/settings_devices_add_modal.png) |
 
 ### 6.1 Network Scanner
-* Click **Scan Network** to discover connected IP devices across your local subnet.
+* Click **Scanner** in the sidebar to discover connected IP devices across your local subnet.
 * Uses OUI MAC matching to highlight solar inverters, smart meters, and EV chargers automatically.
 
 ![Network Scanner](../screenshots/scanner.png)
@@ -183,15 +220,15 @@ Manage all system hardware from **Settings -> Device Management**.
 
 ## 7. Native OCPP EV Charging Server
 
-GEMS includes an embedded, zero-dependency **OCPP 1.6 / 2.0.1 Server**.
+GEMS includes an embedded, zero-dependency **OCPP 1.6-J / 2.0.1 Server**.
 
 ```mermaid
 sequenceDiagram
-    participant EVSE as EV Charger (Easee / Alfen / Wallbox)
+    participant EVSE as EV Charger (Easee / Alfen / Wallbox / Mennekes)
     participant GEMS as GEMS Native OCPP Server
     participant Logic as EMS Strategy Engine
 
-    EVSE->>GEMS: WebSocket Connect (ws://<pi-ip>:8080/api/ocpp/<ID>)
+    EVSE->>GEMS: WebSocket Connect (ws://<pi-ip>:8887/<ChargePointID>)
     GEMS->>EVSE: BootNotification Response (Accepted)
     loop Every 5s
         EVSE->>GEMS: StatusNotification / MeterValues (Power W, Current A)
@@ -208,18 +245,22 @@ sequenceDiagram
 
 ## 8. System Maintenance, Logs & Updates
 
+| Hardware System Info & Storage | Webhook Alerts & Reporting |
+| :---: | :---: |
+| ![System Info Tab](../screenshots/settings_system_info.png) | ![Notifications Tab](../screenshots/settings_notifications.png) |
+
 ### 8.1 Real-Time Logger & Technical Export (`Logger.vue`)
 * View system logs filtered by severity (`INFO`, `WARN`, `ERROR`, `DEBUG`).
-* Export full technical logs via `journalctl` integration or fallback CSV export.
+* Export full technical logs via structured JSON or CSV download.
 
 ![Diagnostics Logger](../screenshots/logger.png)
 
 ### 8.2 Cockpit Web Terminal Shortcut
-* Access web-based Linux terminal and system performance monitoring by clicking the **Terminal** icon in the header bar (directs to `http://<pi-ip>:9090`).
+* Access web-based Linux terminal and system performance monitoring by clicking the **Terminal** link in the navigation header (directs to `http://<pi-ip>:9090`).
 
 ### 8.3 One-Click Over-The-Air System Updates
-* Navigate to **Settings -> System Info** to check for new release tags on GitHub (`git describe --tags --always`).
+* Navigate to **Settings &rarr; System Info** to check for new release tags on GitHub (`git describe --tags --always`).
 * Click **Install Update** to transparently download and update the system via `.deb` package execution without losing database settings.
 
 ---
-*Manual Version 6.6 — GEMS Documentation Team*
+*Manual Version 9.2.0 — GEMS Documentation Team*

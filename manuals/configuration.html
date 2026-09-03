@@ -144,6 +144,27 @@
           </li>
         </ul>
       </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Official PDF Manuals</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-installer-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Installer Manual (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">5.6 MB</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>User Manual (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">3.4 MB</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      </div>
     </aside>
 
     <!-- Main Content Area -->
@@ -168,9 +189,15 @@
           The strategy engine runs an evaluation cycle every second to orchestrate solar inverters, battery storage, and EV charging points based on your operational goal.
         </p>
 
-        <div class="doc-screenshot-card">
-          <img src="assets/screenshots/settings_strategy.png" alt="Optimization Strategy & Peak Shaving Settings Tab" loading="lazy">
-          <div class="doc-screenshot-caption">Strategy Tab: Optimization mode selector (Eco, Flanders, Netherlands Zero-Export), peak shaving buffer, and battery arbitrage schedules.</div>
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/settings_strategy.png" alt="Optimization Strategy & Peak Shaving Settings Tab" loading="lazy">
+            <div class="doc-screenshot-caption">Strategy Tab: Optimization parameters, peak shaving buffer, dynamic EV charging hours, and phase balancing limits.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/settings_strategy_modes.png" alt="Strategy Operational Modes Selection" loading="lazy">
+            <div class="doc-screenshot-caption">Strategy Modes: Switch between Flanders Capacity Tariff, Eco Self-Consumption, Netherlands Zero-Export, and EPEX Arbitrage.</div>
+          </div>
         </div>
 
         <div class="table-wrapper">
@@ -203,7 +230,7 @@
         </div>
 
         <!-- Flanders Peak Shaving -->
-        <h2 id="flanders-peak-shaving">2. Flanders Peak Shaving (`flanders`)</h2>
+        <h2 id="flanders-peak-shaving">2. Flanders Peak Shaving & Monthly Peak Tracking (`flanders`)</h2>
         <p>
           In Flanders (Belgium), the capacity tariff (<em>capaciteitstarief</em>) bills residential consumers based on their monthly peak 15-minute average grid power draw (minimum 2.5 kW baseline).
         </p>
@@ -230,6 +257,16 @@ E_remaining   = E_max_allowed - E_accumulated
 Time_left_hrs = (900 - t) / 3600.0
 
 P_instantaneous_cap = E_remaining / Time_left_hrs</code></pre>
+        </div>
+
+        <div class="alert alert-important">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="assets/icons.svg#icon-gauge"></use></svg>
+            <span>Smart Adaptive Ceiling in Flanders Mode</span>
+          </div>
+          <p>
+            GEMS tracks the true 15-minute rolling average import peak for the calendar month in SQLite (<code>/api/peaks/monthly</code>). If an unavoidable peak occurs (e.g., 4.2 kW from multiple kitchen appliances), GEMS dynamically adapts its operational ceiling up to 4.2 kW for the remainder of the month, maximizing EV charging speed and solar self-consumption without increasing your capacity tariff bill.
+          </p>
         </div>
 
         <h3>Key Flanders Parameters</h3>
@@ -259,19 +296,25 @@ P_instantaneous_cap = E_remaining / Time_left_hrs</code></pre>
               <tr>
                 <td><code>peak_shaving_rampup_w</code></td>
                 <td>Integer (W)</td>
-                <td><code>250</code></td>
+                <td><code>150</code></td>
                 <td>Limits how quickly throttled devices (e.g. EV chargers) are allowed to ramp back up when grid load drops.</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <!-- Netherlands Zero-Export -->
-        <h2 id="netherlands-zero-export">3. Netherlands Zero-Export & Smart Saldering (`netherlands`)</h2>
+        <!-- Active Inverter Curtailment & GSC Protection -->
+        <h2 id="active-curtailment">3. Active Inverter Curtailment & Flemish GSC Value Protection</h2>
         <p>
-          With the phaseout of net metering (<em>salderingsregeling</em>) and the rise of feed-in penalty fees (<em>terugleverboetes</em>), Netherlands mode prevents unwanted or unprofitable grid export.
+          During periods of extreme renewable surplus across Europe, Day-Ahead spot prices on the EPEX Spot exchange can turn deeply negative. To protect homeowners from paying feed-in penalties while ensuring that subsidized systems continue earning their maximum subsidies, GEMS features <strong>smart threshold curtailment</strong>.
         </p>
 
+        <div class="doc-screenshot-card">
+          <img src="assets/screenshots/settings_strategy_modes.png" alt="GEMS Optimization Strategy Modes & Flemish GSC Settings" loading="lazy">
+          <div class="doc-screenshot-caption">Optimization Strategy Settings &mdash; Flanders Peak Shaving, Active Inverter Curtailment, and Flemish GSC Value Presets with real-time threshold calculation.</div>
+        </div>
+
+        <h3>Active Curtailment & Regional Parameters</h3>
         <div class="table-wrapper">
           <table>
             <thead>
@@ -284,25 +327,54 @@ P_instantaneous_cap = E_remaining / Time_left_hrs</code></pre>
             </thead>
             <tbody>
               <tr>
+                <td><code>region</code></td>
+                <td>String</td>
+                <td><code>flanders</code></td>
+                <td>Target regulatory region (<code>flanders</code>, <code>brussels</code>, <code>wallonia</code>, or <code>netherlands</code>).</td>
+              </tr>
+              <tr>
                 <td><code>allowed_grid_export_kw</code></td>
                 <td>Float (kW)</td>
                 <td><code>0.0</code></td>
-                <td>Hard limit on continuous grid export. Set to <code>0.0</code> for strict zero-export.</td>
+                <td>Hard limit on continuous grid export. Set to <code>0.0</code> for strict zero-export in the Netherlands.</td>
               </tr>
               <tr>
                 <td><code>active_inverter_curtailment</code></td>
                 <td>Boolean</td>
                 <td><code>true</code></td>
-                <td>Allows the Go backend to dispatch Modbus active power limits (SunSpec <code>WMaxLimPct</code>) to inverters when local storage is full.</td>
+                <td>Allows the Go backend to dispatch Modbus active power limits (SunSpec <code>WMaxLimPct</code>) to inverters when export becomes unprofitable.</td>
               </tr>
               <tr>
                 <td><code>min_profitable_export_price</code></td>
                 <td>Float (&euro;/kWh)</td>
                 <td><code>0.00</code></td>
-                <td>When Day-Ahead spot prices drop below this threshold (or turn negative), active curtailment engages automatically to avoid injection penalties.</td>
+                <td>Base export price threshold below which power export is considered loss-making.</td>
+              </tr>
+              <tr>
+                <td><code>gsc_value_eur_mwh</code></td>
+                <td>Float (&euro;/MWh)</td>
+                <td><code>0.0</code></td>
+                <td>Groenestroomcertificaten (GSC) subsidy value in &euro; per 1,000 kWh (e.g. 250 &euro;/certificaat). Offsets the curtailment threshold.</td>
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <div class="alert alert-tip">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="assets/icons.svg#icon-zap"></use></svg>
+            <span>Flemish Groenestroomcertificaten (GSC) Value Protection Presets</span>
+          </div>
+          <p>
+            Homeowners in Flanders with PV systems commissioned before 2021 receive guaranteed green certificates (GSC). If a customer receives <strong>&euro;250/certificaat (&euro;0.250/kWh)</strong>, solar injection remains profitable even at negative spot prices down to <strong>-250.0 &euro;/MWh (-&euro;0.250/kWh)</strong>!
+          </p>
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.75rem 1rem; font-family: monospace; font-size: 0.85rem; margin: 0.5rem 0;">
+            Effective Curtailment Threshold = min_profitable_export_price - (gsc_value_eur_mwh / 1000.0)<br>
+            Example: &euro;0.00 - (&euro;250 / 1000) = -&euro;0.250/kWh (-250.0 &euro;/MWh)
+          </div>
+          <p style="margin-bottom: 0;">
+            GEMS includes quick-select buttons for all standard Flemish GSC tiers: <strong>&euro;0, &euro;90, &euro;210, &euro;230, &euro;250, &euro;270, &euro;330, &euro;350, &euro;450/MWh</strong>. Curtailment will ONLY trigger if market penalties exceed your GSC income.
+          </p>
         </div>
 
         <!-- Dynamic Pricing & Battery Arbitrage -->
@@ -335,11 +407,18 @@ P_instantaneous_cap = E_remaining / Time_left_hrs</code></pre>
           To calculate true real-time electricity costs, GEMS allows mapping your exact supplier bill structure to the dynamic EPEX spot price.
         </p>
 
-        <div class="doc-screenshot-card">
-          <img src="assets/screenshots/settings_contract.png" alt="Energy Contract & Tariff Settings Tab" loading="lazy">
-          <div class="doc-screenshot-caption">Energy Contract Tab: Dynamic EPEX Day-Ahead tariff configuration, regional provider formulas (Engie, Luminus, Eneco, Frank, EnergyZero, Enovos), and consumption markups.</div>
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/settings_contract.png" alt="Energy Contract & Tariff Settings Tab with 24-Hour Tariff Visualizer" loading="lazy">
+            <div class="doc-screenshot-caption">Energy Contract Tab: Belgian dynamic provider presets (TotalEnergies, Mega, Bolt, Engie, Luminus, Eneco), DNO distribution presets, and contract math formulas.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/settings_contract_tariffs.png" alt="24-Hour Tariff Curve Visualizer" loading="lazy">
+            <div class="doc-screenshot-caption">24-Hour Tariff Visualizer: Interactive breakdown showing wholesale EPEX spot price, supplier markup, distribution taxes, 6% BTW, and dynamic injection curve.</div>
+          </div>
         </div>
 
+        <h3>Supported Regional Contract Providers</h3>
         <div class="table-wrapper">
           <table>
             <thead>
@@ -351,33 +430,54 @@ P_instantaneous_cap = E_remaining / Time_left_hrs</code></pre>
             </thead>
             <tbody>
               <tr>
-                <td><strong>EnergyZero</strong></td>
-                <td>Netherlands</td>
-                <td>Direct EPEX spot price + EnergyZero fixed markup + Dutch energy tax (<code>tax_kwh</code>) + 21% VAT.</td>
-              </tr>
-              <tr>
-                <td><strong>Engie Flextime</strong></td>
+                <td><strong>TotalEnergies Pixel Dynamic</strong></td>
                 <td>Belgium</td>
-                <td><code>engie_markup_peak</code>, <code>engie_markup_off_peak</code>, <code>engie_markup_super_off_peak</code>, <code>engie_multiplier</code>, <code>engie_inject_multiplier</code>, <code>engie_base_fee</code>.</td>
+                <td>EPEX Spot BE pass-through + multiplier (<code>totalenergies_multiplier</code>) + markup (<code>totalenergies_markup</code>) + annual base fee (<code>totalenergies_base_fee</code>).</td>
               </tr>
               <tr>
-                <td><strong>Luminus Dynamic</strong></td>
+                <td><strong>Mega Smart / Cosy Dynamic</strong></td>
                 <td>Belgium</td>
-                <td><code>luminus_markup</code>, <code>luminus_multiplier</code>, <code>luminus_inject_multiplier</code>, <code>luminus_base_fee</code>.</td>
+                <td>EPEX Spot BE + multiplier (<code>mega_multiplier</code>) + retail markup (<code>mega_markup</code>) + annual subscription (<code>mega_base_fee</code>).</td>
               </tr>
               <tr>
-                <td><strong>Eneco / Frank / Ecopower</strong></td>
+                <td><strong>Bolt Dynamisch</strong></td>
+                <td>Belgium</td>
+                <td>100% local green power with direct EPEX Spot BE pass-through and transparent platform markup.</td>
+              </tr>
+              <tr>
+                <td><strong>Engie Dynamic / Flextime</strong></td>
+                <td>Belgium</td>
+                <td>Direct EPEX Day-Ahead pass-through or time-of-use markups (peak, off-peak, super-off-peak).</td>
+              </tr>
+              <tr>
+                <td><strong>Luminus / Eneco / Frank / Ecopower</strong></td>
                 <td>BE / NL</td>
                 <td>Customizable linear multipliers, injection retain margins, and monthly fixed platform subscriptions.</td>
               </tr>
               <tr>
-                <td><strong>Enovos</strong></td>
+                <td><strong>Belgian Dual-Tariff (Piek/Dal)</strong></td>
+                <td>Belgium</td>
+                <td>Standard residential day/night rate schedules combined with 6% BTW and DNO grid fee presets.</td>
+              </tr>
+              <tr>
+                <td><strong>Enovos Dynamic</strong></td>
                 <td>Luxembourg</td>
                 <td><code>enovos_markup</code>, <code>enovos_multiplier</code>, <code>enovos_inject_multiplier</code>, Creos distribution fees.</td>
               </tr>
             </tbody>
           </table>
         </div>
+
+        <h3>Distribution Network Operator (DNO) Presets</h3>
+        <p>
+          GEMS includes one-click presets for regional distribution and transmission grid fees per kWh:
+        </p>
+        <ul>
+          <li><strong>Fluvius (Flanders):</strong> &euro;0.0204 / kWh + 6% BTW (VAT).</li>
+          <li><strong>ORES (Wallonia):</strong> &euro;0.0950 / kWh + 6% BTW.</li>
+          <li><strong>RESA (Li&egrave;ge):</strong> &euro;0.0920 / kWh + 6% BTW.</li>
+          <li><strong>SIBELGA (Brussels):</strong> &euro;0.0820 / kWh + 6% BTW.</li>
+        </ul>
 
         <!-- Phase Balancing & Safety -->
         <h2 id="phase-balancing">6. 3-Phase Phase-Aware Load Balancing & Safety</h2>
@@ -424,9 +524,15 @@ P_instantaneous_cap = E_remaining / Time_left_hrs</code></pre>
           Create autonomous control rules for Shelly relays, Modbus contactors, and domestic hot water boilers under <strong>Settings &rarr; Relay Automation Rules</strong>.
         </p>
 
-        <div class="doc-screenshot-card">
-          <img src="assets/screenshots/settings_relays.png" alt="Smart Relays and SG-Ready Rules Configuration Tab" loading="lazy">
-          <div class="doc-screenshot-caption">Relays & Switches Tab: Rule-based trigger definitions, minimum run/cooldown hysteresis, and SG-Ready heat pump thermal boost mappings.</div>
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/settings_relays.png" alt="Smart Relays and SG-Ready Rules Configuration Tab" loading="lazy">
+            <div class="doc-screenshot-caption">Relays & Switches Tab: Configured smart relays, switches, and contactors overview.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/settings_relays_rules.png" alt="Smart Relay Automation Rules Editor" loading="lazy">
+            <div class="doc-screenshot-caption">Relay Automation Rules: Rule-based trigger definitions, minimum run/cooldown hysteresis, and SG-Ready heat pump thermal boost mappings.</div>
+          </div>
         </div>
 
         <h3>Rule Parameters</h3>

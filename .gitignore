@@ -1,7 +1,11 @@
 build/
 backend/testbin
-nems.db
-nems.db-shm
-nems.db-wal
-nems-server-local
+gems-server-local
+*.db
+*.db-shm
+*.db-wal
+*.deb
+dist/
 node_modules/
+
+

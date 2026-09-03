@@ -207,6 +207,11 @@
           Inverter templates communicate directly via Modbus TCP (Ethernet / Wi-Fi dongle), SunSpec standards, or local HTTP APIs. They monitor real-time solar generation (PV), battery State of Charge (SOC %), charge/discharge wattage, and support active power curtailment.
         </p>
 
+        <div class="doc-screenshot-card" style="margin-bottom:1.5rem;">
+          <img src="assets/screenshots/settings_devices_inverter_form.png" alt="Inverter & Solar Configuration Form" loading="lazy">
+          <div class="doc-screenshot-caption">Inverter Configuration Form: Modbus TCP host IP, port, slave ID, rated power (kW), curtailment permissions, and hybrid battery capacity.</div>
+        </div>
+
         <div class="table-wrapper">
           <table>
             <thead>
@@ -502,6 +507,11 @@
           GEMS supports EV chargers via <strong>Universal Native OCPP (1.6-J & 2.0.1)</strong> WebSocket server, <strong>Modbus TCP</strong> direct fieldbus, and <strong>Local REST / Cloud APIs</strong>. Chargers support automated Eco mode (excess solar charging), Flanders capacity peak shaving, and 1-phase / 3-phase dynamic power adjustment.
         </p>
 
+        <div class="doc-screenshot-card" style="margin-bottom:1.5rem;">
+          <img src="assets/screenshots/settings_devices_charger_form.png" alt="EV Charger Configuration Form" loading="lazy">
+          <div class="doc-screenshot-caption">EV Charger Configuration Form: Charge modes (Eco, PV Only, Fast, Off), max charge current (A), and native OCPP server parameters.</div>
+        </div>
+
         <!-- Native OCPP Setup Banner -->
         <div class="alert-box alert-note">
           <div class="alert-header">
@@ -749,6 +759,11 @@
         <p>
           Grid meters provide real-time household import/export wattage, 3-phase currents (L1, L2, L3), voltages, and peak tariff counters. Fast sub-second metering is crucial for responsive peak shaving and zero-export control.
         </p>
+
+        <div class="doc-screenshot-card" style="margin-bottom:1.5rem;">
+          <img src="assets/screenshots/settings_devices_meter_form.png" alt="Smart Meter Configuration Form" loading="lazy">
+          <div class="doc-screenshot-caption">Smart Meter Configuration Form: Serial port selection (/dev/ttyUSB0), baud rate (115200 / 9600), or Network TCP bridge host & port.</div>
+        </div>
 
         <div class="table-wrapper">
           <table>
@@ -1083,7 +1098,7 @@
           <pre><code>package templates
 
 import (
-    "nems/internal/models"
+    "gems/internal/models"
 )
 
 type MyDevicePoller struct {
