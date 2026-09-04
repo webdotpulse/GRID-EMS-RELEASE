@@ -339,23 +339,41 @@
           <li>Attempts to read the Modbus common SunSpec identifier (Register <code>40001</code> / <code>0x9C41</code>) to confirm the configured Slave ID is responding.</li>
         </ul>
 
-        <!-- Native OCPP Server -->
-        <h2 id="ocpp-server">7. Native OCPP 1.6 / 2.0.1 EV Charging Server</h2>
+        <!-- EV Charging: Modbus TCP (Preferred) & Native OCPP Server -->
+        <h2 id="ev-charging">7. EV Charging: Modbus TCP (Preferred) & Native OCPP Server</h2>
         <p>
-          GEMS includes an embedded WebSocket OCPP server, allowing standard EV chargers (Easee, Alfen, Wallbox, Peblar, Schneider, Keba, Zaptec, etc.) to connect directly without third-party cloud subscriptions.
+          GEMS coordinates EV charging in real-time to maximize solar self-consumption and prevent Flanders capacity peaks. Chargers can be connected via <strong>Modbus TCP (preferred)</strong> or the embedded <strong>Native OCPP Server</strong>.
         </p>
+
+        <div class="alert alert-success" style="border-left: 4px solid #10b981; background: var(--bg-card, #f0fdf4); margin-bottom: 1.25rem;">
+          <div class="alert-header" style="color: #059669;">
+            <svg width="18" height="18"><use href="assets/icons.svg#icon-charger"></use></svg>
+            <strong>⚡ Modbus TCP Integration (Recommended & Preferred)</strong>
+          </div>
+          <p>
+            <strong>Modbus TCP is the preferred method for EV charging control:</strong>
+          </p>
+          <ul style="margin: 6px 0 10px 18px;">
+            <li><strong>Instantaneous Sub-Second Throttling:</strong> Modbus registers allow GEMS to read phase currents and write amperage limits (6A to 32A) immediately without WebSocket latency, crucial for stopping quarter-hour grid peaks before they occur.</li>
+            <li><strong>Employer Split-Billing & CPO Coexistence:</strong> If your wallbox connects to an employer billing platform (E-Flux, Road, Optimile, Easee Cloud) via OCPP, you do <em>not</em> need to disconnect it. GEMS controls charging power locally over Modbus TCP while billing continues undisturbed over OCPP.</li>
+            <li><strong>Supported Brands:</strong> Alfen Eve, Keba KeContact P30, Mennekes Amtron, Webasto Live/Next, ABB Terra AC, Raedian Gemini/Neo, Phoenix Contact Charx, Veton, SolarEdge Home EVSE, and generic Modbus TCP chargers.</li>
+          </ul>
+          <p style="margin-bottom: 0;">
+            To connect: Enable Modbus TCP in your charger app/portal (port <code>502</code>), then add the device in GEMS under <strong>Settings &rarr; Devices &rarr; EV Charger</strong> with its IP and Modbus Slave ID (usually <code>1</code>).
+          </p>
+        </div>
 
         <div class="alert alert-important">
           <div class="alert-header">
             <svg width="18" height="18"><use href="assets/icons.svg#icon-charger"></use></svg>
-            <span>Direct Local Communication — Zero Cloud Dependency</span>
+            <strong>Native OCPP 1.6 / 2.0.1 Server (Direct Alternative)</strong>
           </div>
           <p>
-            Third-party CSMS proxying is intentionally excluded. The EV charger communicates directly with the Raspberry Pi over local WebSockets, guaranteeing dynamic load balancing continues uninterrupted even during internet outages.
+            For chargers without Modbus TCP or standalone residential setups without third-party CPO billing platforms, GEMS runs an embedded WebSocket OCPP server on port <strong>8887</strong> (and <code>/api/ocpp/</code>). The charger connects directly to the Raspberry Pi over local WebSockets with zero cloud dependencies.
           </p>
         </div>
 
-        <h3>Connecting Your Charger to GEMS</h3>
+        <h3>Connecting Your Charger via Native OCPP</h3>
         <ol>
           <li>Open your EV Charger's installer app (e.g. <em>Easee Installer</em>, <em>Alfen ACE Service Installer</em>, or <em>Wallbox App</em>).</li>
           <li>Navigate to <strong>Connectivity &rarr; OCPP / CSMS Settings</strong>.</li>
@@ -368,13 +386,13 @@
                   <span>Copy</span>
                 </button>
               </div>
-              <pre><code>ws://&lt;raspberry-pi-ip&gt;:8080/api/ocpp/&lt;Your-Charger-ID&gt;
+              <pre><code>ws://&lt;raspberry-pi-ip&gt;:8887/&lt;Your-Charger-ID&gt;
 
 # Example for charger ID "CP001" on Pi IP 192.168.1.50:
-ws://192.168.1.50:8080/api/ocpp/CP001</code></pre>
+ws://192.168.1.50:8887/CP001</code></pre>
             </div>
           </li>
-          <li>In GEMS, add a device using the <strong>Native OCPP Charger</strong> template and set the Host field to <code>CP001</code>.</li>
+          <li>In GEMS, add a device using the <strong>OCPP 1.6J / 2.0.1 Smart EV Charger</strong> template and enter <code>CP001</code> as the ChargePointID.</li>
           <li>Save the device. The charger will send a <code>BootNotification</code> and immediately reflect active charging power on your dashboard.</li>
         </ol>
 
@@ -433,7 +451,7 @@ ws://192.168.1.50:8080/api/ocpp/CP001</code></pre>
         <li class="toc-item"><a href="#device-management" class="toc-link">Device Management</a></li>
         <li class="toc-item"><a href="#network-scanner" class="toc-link">Network Scanner</a></li>
         <li class="toc-item"><a href="#modbus-probe" class="toc-link">Modbus Reachability Probe</a></li>
-        <li class="toc-item"><a href="#ocpp-server" class="toc-link">Native OCPP Server</a></li>
+        <li class="toc-item"><a href="#ev-charging" class="toc-link">EV Charging (Modbus TCP & OCPP)</a></li>
         <li class="toc-item"><a href="#logs-updates" class="toc-link">Logger, Reports & Updates</a></li>
       </ul>
     </aside>

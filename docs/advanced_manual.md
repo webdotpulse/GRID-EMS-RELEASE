@@ -218,13 +218,36 @@ Manage all system hardware from **Settings &rarr; Devices**.
 
 ---
 
-## 7. Native OCPP EV Charging Server
+## 7. EV Charging: Modbus TCP & Native OCPP Server
 
-GEMS includes an embedded, zero-dependency **OCPP 1.6-J / 2.0.1 Server**.
+### 7.1 Modbus TCP Fieldbus Control (Recommended & Preferred)
+**Modbus TCP is the preferred connection option for EV chargers**:
+* **Sub-Second Response:** Modbus registers allow GEMS to read phase currents and write amperage limits (6A to 32A) immediately without WebSocket latency, essential for reactive Flanders capacity peak shaving and real-time solar curtailment tracking.
+* **CPO / Split-Billing Coexistence:** If your charger connects to an employer billing reimbursement platform or commercial CPO (E-Flux, Road, Optimile, Easee Cloud) via OCPP, GEMS controls charging power locally over Modbus TCP *without disconnecting or interfering with your cloud billing service*.
 
 ```mermaid
 sequenceDiagram
-    participant EVSE as EV Charger (Easee / Alfen / Wallbox / Mennekes)
+    participant EVSE as EV Charger (Alfen / Keba / Mennekes / Webasto / ABB)
+    participant GEMS as GEMS Modbus TCP Poller
+    participant Logic as EMS Strategy Engine
+    participant CPO as Cloud Billing / CPO (Optional)
+
+    Note over EVSE,CPO: OCPP Connection to Cloud Billing (Unchanged)
+    loop Every 1s - 5s
+        GEMS->>EVSE: Read Holding/Input Registers (Active Power, Currents L1/L2/L3)
+        EVSE-->>GEMS: Telemetry Data
+        GEMS->>Logic: Update SiteState (Aggregate Grid + Solar + EV)
+        Logic->>GEMS: Calculate Flanders Peak Ceiling or Solar Excess Amps
+        GEMS->>EVSE: Write Holding Register (Current Limit Amps: 6A - 32A)
+    end
+```
+
+### 7.2 Native OCPP 1.6-J / 2.0.1 Server (Direct Alternative)
+For chargers without Modbus TCP or standalone residential setups without third-party CPO billing platforms, GEMS includes an embedded, zero-dependency **OCPP 1.6-J / 2.0.1 Server**:
+
+```mermaid
+sequenceDiagram
+    participant EVSE as EV Charger (Easee / Wallbox / Huawei / Plugchoice)
     participant GEMS as GEMS Native OCPP Server
     participant Logic as EMS Strategy Engine
 
@@ -239,7 +262,7 @@ sequenceDiagram
 ```
 
 > [!IMPORTANT]
-> **No Cloud Dependency:** Third-party corporate CSMS proxying is disabled. EV chargers communicate directly with the local Raspberry Pi over WebSockets, ensuring charging continues even during internet outages.
+> **No Cloud Dependency:** Third-party corporate CSMS proxying is disabled. EV chargers communicate directly with the local Raspberry Pi over local Modbus TCP or local WebSockets, ensuring charging continues even during internet outages.
 
 ---
 

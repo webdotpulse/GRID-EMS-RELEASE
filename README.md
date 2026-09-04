@@ -31,7 +31,7 @@
   - *Dynamic Battery Arbitrage*: Integrates EPEX Spot Day-Ahead prices to force charge batteries during cheap/negative hours and discharge during peak market pricing.
 - **Belgian Energy Market & Regional Provider Presets**: Native calculation models for TotalEnergies Pixel Dynamic, Mega Smart/Cosy Dynamic, Bolt Dynamisch, Engie Dynamic / Flextime, Luminus Dynamic, Eneco Dynamic, Frank Energie, Ecopower, Dats 24, Octa+, Trevion, Aspiravi, and Belgian Dual-Tariff (Piek/Dal + 6% BTW), with DNO distribution presets for Flanders (Fluvius), Brussels (SIBELGA), and Wallonia (ORES, RESA).
 - **Live 24-Hour Effective Tariff Curve Visualizer**: Interactive stacked cost breakdown displaying wholesale spot, supplier markup, DNO network tariffs, excise & 6% VAT, dynamic solar injection price, and negative price curtailment warnings.
-- **Native OCPP 1.6-J / 2.0.1 Server**: Built-in OCPP WebSocket server (`ws://<ems-ip>:8887/<ChargePointID>`) allows EV chargers to connect directly to the EMS with zero cloud dependencies.
+- **EV Charger Integration (Preferred Modbus TCP & Native OCPP)**: Direct local control supporting sub-second dynamic current throttling (6A–32A) for Flanders peak shaving and solar matching. **Modbus TCP** is preferred for instantaneous response and allows chargers to remain connected to cloud CPO / split-billing platforms (E-Flux, Road, Optimile, Easee Cloud) over OCPP simultaneously. Alternatively, a built-in native **OCPP 1.6-J / 2.0.1** WebSocket server (`ws://<ems-ip>:8887/<ChargePointID>`) is available for standalone chargers.
 - **Subnet Network Scanner**: Zero-dependency local network scanner leveraging localized MAC OUI maps to instantly discover and identify supported hardware on your network.
 - **Interactive Energy Flow Chart**: Hero element on the dashboard showing active power flow between Grid, Solar, Battery, and Chargers. Clicking any node opens dedicated historical charts and detailed metrics.
 - **Reporting & Data Exporting**: Export structured technical logs (`.txt`) via Logger UI and visual energy reports (Daily, Weekly, Monthly, Yearly) in PDF format.
@@ -75,7 +75,7 @@
 | :---: | :---: |
 | ![Inverter Form](screenshots/settings_devices_inverter_form.png) | ![Meter Form](screenshots/settings_devices_meter_form.png) |
 
-| EV Charger Native OCPP Server Setup | Smart Relays & Automation Rules |
+| EV Charger Setup (Modbus TCP & OCPP) | Smart Relays & Automation Rules |
 | :---: | :---: |
 | ![Charger Form](screenshots/settings_devices_charger_form.png) | ![Relays Rules](screenshots/settings_relays_rules.png) |
 
@@ -95,7 +95,7 @@
 GEMS includes **90 native hardware templates**. Adding a device requires 4 simple steps in the web UI:
 
 1. **Scan Subnet**: Go to **Scanner** in the sidebar to discover your device IP and MAC vendor.
-2. **Prepare Hardware**: Enable Modbus TCP in your inverter dongle (e.g. Huawei SDongleA, SMA Speedwire, SolarEdge SetApp), configure your EV charger's OCPP Server URL (`ws://<GEMS-IP>:8887/<ID>`), or toggle *Local API* in your HomeWizard/Shelly app.
+2. **Prepare Hardware**: Enable Modbus TCP in your inverter dongle (e.g. Huawei SDongleA, SMA Speedwire, SolarEdge SetApp), enable Modbus TCP in your EV charger (preferred for sub-second throttling & CPO billing coexistence) or configure the charger's OCPP Server URL (`ws://<GEMS-IP>:8887/<ID>`), or toggle *Local API* in your HomeWizard/Shelly app.
 3. **Add Device in UI**: Navigate to **Settings &rarr; Devices &rarr; + Add Device**, select the category, choose the template, and enter the IP/serial parameters.
 4. **Verify Telemetry**: Verify that the device card displays <span style="color:#10b981; font-weight:bold;">● Online</span> and watch real-time energy flow on the Dashboard.
 
@@ -104,7 +104,7 @@ GEMS includes **90 native hardware templates**. Adding a device requires 4 simpl
 | Category | Supported Brands & Templates | Primary Protocols | Key Setup Parameters |
 | :--- | :--- | :--- | :--- |
 | **Solar & Hybrid Inverters** *(24 templates)* | Huawei SUN2000, SMA Sunny Boy/Tripower, Solis Hybrid, Fronius Gen24/Symo, GoodWe, Growatt, SolarEdge, SolaX, SofarSolar, Sungrow, Victron GX, Deye, Sunsynk, FoxESS, SAJ, Senergy, Sigenergy, Enerlution, Alpha ESS, Anker, Afore, Marstek, LG ESS, Enphase | Modbus TCP (Port 502 / 1502), SunSpec, REST | Host IP, Port, Modbus Slave ID (e.g. `1` or `126`), Rated kW |
-| **EV Charging Stations** *(38 templates)* | **OCPP 1.6-J / 2.0.1**: Huawei FusionCharge, EVBox Elvi/Livo, Mennekes AMTRON, SMA EV Charger, Schneider EVlink, Siemens VersiCharge, Elli/VW ID. Charger, ABB Terra AC, Alpitronic, Autel, Hager, BMW, Mercedes, Porsche, Plugchoice, Fronius Wattpilot, Easee.<br>**Modbus TCP**: RAEDIAN NEO/NEX/Gemini, KEBA P30/P40, Webasto, Peblar, Phoenix Contact, Veton, GoodWe HCA, Sigenergy, ABL, Enovates, ETEK, Etrel.<br>**REST / Cloud**: go-e Charger Gemini, SmartEVSE, Wallbox Pulsar, Zaptec Go | Native OCPP WebSocket, Modbus TCP, HTTP REST, Cloud API | ChargePoint ID (for OCPP) or Host IP & Port (for Modbus/REST), Charge Mode |
+| **EV Charging Stations** *(38 templates)* | **Modbus TCP (Preferred)**: RAEDIAN NEO/NEX/Gemini, KEBA P30/P40, Webasto Live/Next, Peblar, Phoenix Contact Charx, Veton, Alfen Eve, Mennekes AMTRON, ABB Terra AC, SolarEdge Home EVSE, ABL, Sigenergy, GoodWe HCA, Enovates, ETEK, Etrel.<br>**OCPP 1.6-J / 2.0.1**: Huawei FusionCharge, EVBox Elvi/Livo, SMA EV Charger, Schneider EVlink, Siemens VersiCharge, Elli/VW ID. Charger, Alpitronic, Autel, Hager, BMW, Mercedes, Porsche, Fronius Wattpilot, Easee.<br>**REST / Cloud**: go-e Charger Gemini, SmartEVSE, Wallbox Pulsar, Zaptec Go | Modbus TCP (Port 502, Preferred for sub-second throttling & CPO coexistence), Native OCPP WebSocket (Port 8887), HTTP REST | Host IP & Modbus Slave ID (for Modbus TCP) or ChargePoint ID (for OCPP), Charge Mode |
 | **Grid & Smart Meters** *(26 templates)* | P1 DSMR USB/Serial, P1 Network TCP Bridge, HomeWizard Wi-Fi P1, Homey Energy Dongle, Shelly 3EM, Shelly Pro 3EM / Gen3 3EM-63T, Eastron (SDM120/230/630/72D/X96), Carlo Gavazzi (EM112/340/540/24), ABB (A43/B23), Schneider Acti9, Siemens PAC2200, SMA Energy Meter 2.0, Socomec, WAGO 879, Eltako, Finder, Inepro, Lovato, Acrel, ESPHome, Loxone, Niko | Serial DSMR, Modbus TCP, Local REST, UDP | Serial Port (`/dev/ttyUSB0`) & Baud (`115200`), or Host IP & Port |
 | **Smart Relays & Contactors** *(2 templates)* | Shelly Plus 1PM, Pro 1PM, Plug S, Generic HTTP Relay | Local Gen 2 REST, HTTP JSON | Host IP, Port 80, Excess Solar Threshold (W) |
 

@@ -132,13 +132,13 @@ GEMS includes **90 native hardware templates**. Adding hardware is 100% UI-drive
 
 2. **Hardware Preparation:**
    * **Modbus Inverters:** Enable Modbus TCP in your inverter dongle or app (e.g. Huawei FusionSolar SDongleA Modbus TCP: Unrestricted, SMA Speedwire / SunSpec, SolarEdge SetApp Port 1502).
-   * **OCPP Chargers:** Set the Central System URL in your charger app to `ws://<GEMS-IP>:8887/<ChargePointID>`.
+   * **EV Chargers:** Enable Modbus TCP in your charger (preferred for sub-second throttling & CPO billing coexistence), or set the Central System URL in your charger app to `ws://<GEMS-IP>:8887/<ChargePointID>` for native OCPP.
    * **Local REST Meters/Relays:** Toggle "Local API" in HomeWizard Energy app, or enable Gen2 RPC in Shelly devices.
    * **Serial P1 Meters:** Plug RJ12 cable into smart meter P1 port and USB into Raspberry Pi (`/dev/ttyUSB0`).
 
 3. **Add Device in UI:** Click **Settings &rarr; Devices &rarr; + Add Device**. Choose category, select template, enter parameters, and click **Save Device**.
 
-| Inverter Modbus Setup | Smart Meter P1 Setup | EV Charger OCPP Setup |
+| Inverter Modbus Setup | Smart Meter P1 Setup | EV Charger Setup |
 | :---: | :---: | :---: |
 | ![Inverter Form](../screenshots/settings_devices_inverter_form.png) | ![Meter Form](../screenshots/settings_devices_meter_form.png) | ![Charger Form](../screenshots/settings_devices_charger_form.png) |
 
@@ -174,23 +174,30 @@ GEMS includes **90 native hardware templates**. Adding hardware is 100% UI-drive
 
 ### 5.2 EV Charging Stations (38 Templates)
 
-#### Native OCPP 1.6-J / 2.0.1 EV Chargers
-Set the Central System URL in your charger mobile app / web console to:
-```
-ws://<GEMS-IP>:8887/<ChargePointID>
-```
-* **Supported Models:** Huawei FusionCharge (SCharger-7KS/22KT), EVBox (Elvi/Livo/BusinessLine), Mennekes AMTRON (4You/4Business/ACU), SMA EV Charger (7.4/22), Schneider Electric EVlink (Wallbox/Pro AC), Siemens VersiCharge GEN3, Elli / VW / Skoda / SEAT (ID. Charger Connect/Pro), ABB Terra AC Wallbox, Alpitronic Hypercharger, Autel MaxiCharger, Hager witty, BMW Wallbox Plus, Mercedes-Benz Wallbox, Porsche Wallbox, Plugchoice, Fronius Wattpilot, Easee.
-* **In GEMS UI:** Select EV Chargers &rarr; Choose Template &rarr; Enter your `ChargePointID` (e.g. `WALLBOX-01`).
+#### Modbus TCP EV Chargers (Recommended & Preferred)
+**Modbus TCP is the preferred connection option for EV chargers**:
+* **Sub-Second Throttling:** Direct register writes allow instantaneous current adjustments (6A to 32A), critical for Flanders capacity tariff peak shaving and rapid solar curtailment.
+* **CPO / Billing Coexistence:** If your charger connects to an employer billing reimbursement platform or CPO (E-Flux, Road, Optimile, Easee Cloud) via OCPP, GEMS controls charging power locally over Modbus TCP *without interfering with or disconnecting your cloud billing service*.
+* **Supported Models:**
+  * **RAEDIAN NEO / NEX / Gemini AC Wallbox:** Template `raedian_charger`, Port `502`, Slave ID `1` (or `2` for Gemini Dual).
+  * **KEBA KeContact P30 / P40:** Template `keba_charger`, Port `502`, Slave ID `255`.
+  * **Mennekes AMTRON Xtra / Premium:** Template `mennekes_modbus`, Port `502`, Slave ID `1`.
+  * **Webasto Next / Live:** Template `webasto_charger`, Port `502`, Slave ID `1`.
+  * **ABB Terra AC Wallbox:** Template `abb_charger`, Port `502`, Slave ID `1`.
+  * **Alfen Eve Single / Double Pro-Line:** Template `alfen_charger`, Port `502`, Slave ID `1`.
+  * **Peblar EV Charger:** Template `peblar_charger`, Port `502`, Slave ID `1`.
+  * **Phoenix Contact EV-CC / CHARX / Veton:** Template `phoenix_contact_evcc`, Port `502`, Slave ID `1`.
+  * **GoodWe HCA Wallbox / Sigenergy SigenStor EVAC:** Template `goodwe_charger` / `sigenergy_evac`.
+  * **SolarEdge Home EVSE:** Template `solaredge_evse`, Port `502`, Slave ID `1`.
 
-#### Modbus TCP EV Chargers
-Direct local LAN control with dynamic phase and current setpoints (6A - 32A):
-* **RAEDIAN NEO / NEX / Gemini AC Wallbox:** Template `raedian_charger`, Port `502`, Slave ID `1` (or `2` for Gemini Dual).
-* **KEBA KeContact P30 / P40:** Template `keba_charger`, Port `502`, Slave ID `255`.
-* **Mennekes AMTRON Xtra / Premium:** Template `mennekes_modbus`, Port `502`, Slave ID `1`.
-* **Webasto Next / Live:** Template `webasto_charger`, Port `502`, Slave ID `1`.
-* **Peblar EV Charger:** Template `peblar_charger`, Port `502`, Slave ID `1`.
-* **Phoenix Contact EV-CC / CHARX / Veton:** Template `phoenix_contact_evcc`, Port `502`, Slave ID `1`.
-* **GoodWe HCA Wallbox / Sigenergy SigenStor EVAC:** Template `goodwe_charger` / `sigenergy_evac`.
+#### Native OCPP 1.6-J / 2.0.1 EV Chargers (Direct Alternative)
+For chargers without Modbus TCP or standalone residential setups without third-party CPO billing platforms:
+* Set the Central System URL in your charger mobile app / web console to:
+  ```
+  ws://<GEMS-IP>:8887/<ChargePointID>
+  ```
+* **Supported Models:** Huawei FusionCharge (SCharger-7KS/22KT), EVBox (Elvi/Livo/BusinessLine), Mennekes AMTRON (4You/4Business/ACU), SMA EV Charger (7.4/22), Schneider Electric EVlink (Wallbox/Pro AC), Siemens VersiCharge GEN3, Elli / VW / Skoda / SEAT (ID. Charger Connect/Pro), Alpitronic Hypercharger, Autel MaxiCharger, Hager witty, BMW Wallbox Plus, Mercedes-Benz Wallbox, Porsche Wallbox, Fronius Wattpilot, Easee.
+* **In GEMS UI:** Select EV Chargers &rarr; Choose Template: `OCPP 1.6J / 2.0.1 Smart EV Charger` &rarr; Enter your `ChargePointID` (e.g. `WALLBOX-01`).
 
 #### REST & Cloud EV Chargers
 * **go-e Charger Gemini / HOMEfix / PRO:** Template `goe_charger`, Local HTTP REST Port `80` (enable Local API v2 in go-e app).

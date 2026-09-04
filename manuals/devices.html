@@ -504,26 +504,43 @@
         <!-- 2. EV Charging Stations -->
         <h2 id="ev-chargers">2. EV Charging Stations & Wallboxes (38 Templates)</h2>
         <p>
-          GEMS supports EV chargers via <strong>Universal Native OCPP (1.6-J & 2.0.1)</strong> WebSocket server, <strong>Modbus TCP</strong> direct fieldbus, and <strong>Local REST / Cloud APIs</strong>. Chargers support automated Eco mode (excess solar charging), Flanders capacity peak shaving, and 1-phase / 3-phase dynamic power adjustment.
+          GEMS supports EV chargers via <strong>Modbus TCP direct fieldbus (preferred)</strong>, <strong>Universal Native OCPP (1.6-J & 2.0.1)</strong> WebSocket server, and <strong>Local REST APIs</strong>. Chargers support automated Eco mode (excess solar charging), Flanders capacity peak shaving, and dynamic 1-phase / 3-phase power throttling.
         </p>
 
         <div class="doc-screenshot-card" style="margin-bottom:1.5rem;">
           <img src="assets/screenshots/settings_devices_charger_form.png" alt="EV Charger Configuration Form" loading="lazy">
-          <div class="doc-screenshot-caption">EV Charger Configuration Form: Charge modes (Eco, PV Only, Fast, Off), max charge current (A), and native OCPP server parameters.</div>
+          <div class="doc-screenshot-caption">EV Charger Configuration Form: Charge modes (Eco, PV Only, Fast, Off), max charge current (A), Modbus TCP parameters, and native OCPP server parameters.</div>
+        </div>
+
+        <!-- Preferred Modbus TCP Setup Banner -->
+        <div class="alert-box alert-success" style="border-left: 4px solid #10b981; background: var(--bg-card, #f0fdf4); margin-bottom: 1.25rem;">
+          <div class="alert-header" style="color: #059669;">
+            <svg width="18" height="18"><use href="assets/icons.svg#icon-charger"></use></svg>
+            <strong>⚡ Modbus TCP Integration (Recommended & Preferred)</strong>
+          </div>
+          <div class="alert-content">
+            <p><strong>Modbus TCP is the preferred connection method for EV chargers</strong> due to significant technical advantages:</p>
+            <ul style="margin: 6px 0 10px 18px;">
+              <li><strong>Sub-Second Real-Time Throttling:</strong> Direct Modbus register writes allow instantaneous current adjustments (6A to 32A), critical for Flanders capacity tariff peak shaving and rapid solar curtailment.</li>
+              <li><strong>Simultaneous CPO / Reimbursement Coexistence:</strong> If your charger is tied to an employer charge card, split-billing system, or external Charge Point Operator (e.g. E-Flux, Road, Optimile, Easee Cloud) over OCPP, GEMS controls charge speed locally via Modbus TCP <em>without interfering with or disconnecting your cloud billing connection</em>.</li>
+              <li><strong>Robust Local Operation:</strong> Deterministic, low-overhead communication over standard TCP port 502 with zero cloud dependencies.</li>
+            </ul>
+            <p><strong>How to configure:</strong> Enable Modbus TCP in your charger's web portal or installer app. In GEMS, click <strong>Add Device &rarr; EV Charger</strong>, select your brand template (e.g. <em>Alfen Eve</em>, <em>Keba KeContact P30</em>, <em>Mennekes Amtron</em>, <em>Webasto Live/Next</em>, <em>ABB Terra AC</em>, <em>Raedian Gemini/Neo</em>, <em>Phoenix Contact Charx</em>, <em>Veton</em>, <em>SolarEdge Home EVSE</em>, or <em>Generic Modbus TCP Charger</em>), enter the charger's local IP address, Port <code>502</code>, and Modbus Slave ID (typically <code>1</code>).</p>
+          </div>
         </div>
 
         <!-- Native OCPP Setup Banner -->
         <div class="alert-box alert-note">
           <div class="alert-header">
             <svg width="18" height="18"><use href="assets/icons.svg#icon-charger"></use></svg>
-            <strong>Native OCPP Server (Port 8887 / 8080)</strong>
+            <strong>Native OCPP Server (Port 8887 / 8080) (Alternative)</strong>
           </div>
           <div class="alert-content">
-            GEMS runs a built-in Native OCPP 1.6-J & 2.0.1 WebSocket server. No cloud broker or third-party subscription is required. In your charger's installer app, set the Central System / Backend URL to:
+            For chargers without Modbus TCP or standalone residential setups without third-party CPO billing platforms, GEMS runs a built-in Native OCPP 1.6-J & 2.0.1 WebSocket server on port 8887:
             <div class="code-block" style="margin-top:8px;">
               <code>ws://&lt;GEMS-IP&gt;:8887/&lt;ChargePointID&gt;</code>
             </div>
-            <em>Example:</em> If GEMS IP is <code>192.168.1.188</code> and your charger ID is <code>EVB-P201948</code>, set URL to <code>ws://192.168.1.188:8887/EVB-P201948</code>.
+            <em>Example:</em> If GEMS IP is <code>192.168.1.188</code> and your charger ID is <code>EVB-P201948</code>, set URL to <code>ws://192.168.1.188:8887/EVB-P201948</code>. Select the <em>OCPP 1.6J / 2.0.1 Smart EV Charger</em> template in GEMS and enter the same ID.
           </div>
         </div>
 

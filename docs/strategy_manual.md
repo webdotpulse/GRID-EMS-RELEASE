@@ -81,10 +81,12 @@ Users can define multiple custom charging windows with precise start/end times a
 
 ---
 
-## 4. Smart EV Charging & Native OCPP Server
+## 4. Smart EV Charging (Preferred Modbus TCP & Native OCPP)
 
-GEMS includes a native OCPP 1.6-J / 2.0.1 WebSocket server (`ws://<EMS-IP>:8887/<ChargePointID>`) that allows direct local control of smart EV chargers.
+GEMS controls smart EV charging stations via **Modbus TCP fieldbus (preferred)** or its embedded **Native OCPP 1.6-J / 2.0.1 WebSocket server** (`ws://<EMS-IP>:8887/<ChargePointID>`):
 
+- **Why Modbus TCP is Preferred**: Modbus register writes provide instantaneous, sub-second current throttling (6A to 32A). This is essential for reactive Flanders capacity peak shaving and solar surplus matching. Crucially, it allows home or fleet wallboxes to remain connected to employer reimbursement / CPO backends (E-Flux, Road, Optimile, Easee Cloud) over OCPP without interference.
+- **Native OCPP Server**: Available for chargers without Modbus TCP or installations requiring standalone, zero-cloud residential charging.
 - **`smart_ev_cheapest_hours`**: Automatically scans the 24-hour EPEX tariff curve and boosts EV charging current during the $N$ cheapest hours of the day.
 - **Dynamic Load Balancing**: Continuously balances EV setpoints against main grid fuse limits (`grid_nominal_current_a`) and phase imbalances (`phase_limit_amps`).
 

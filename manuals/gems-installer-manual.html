@@ -11,18 +11,6 @@
     @page {
       size: A4;
       margin: 15mm 15mm 18mm 15mm;
-      @bottom-right {
-        content: "Page " counter(page) " of " counter(pages);
-        font-family: 'Inter', sans-serif;
-        font-size: 8pt;
-        color: #64748b;
-      }
-      @bottom-left {
-        content: "GEMS Installer & Commissioning Manual • v9.4.0";
-        font-family: 'Inter', sans-serif;
-        font-size: 8pt;
-        color: #64748b;
-      }
     }
 
     body {
@@ -337,14 +325,17 @@
   <!-- ==================== COVER PAGE ==================== -->
   <div class="cover-page">
     <div>
-      <div class="cover-badge">⚡ FIELD INSTALLATION & COMMISSIONING MANUAL</div>
+      <div class="cover-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px;">
+        <img src="assets/new_energy_grid_logo.png" alt="New Energy Grid" style="height: 42px; width: auto; object-fit: contain;">
+        <div class="cover-badge" style="margin-bottom: 0;">⚡ FIELD INSTALLATION & COMMISSIONING MANUAL</div>
+      </div>
       <h1 class="cover-title">GEMS Installer Manual</h1>
       <div class="cover-subtitle">Hardware Setup, Network Discovery, Device Integration, and Optimization Strategy Configuration</div>
 
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.4.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.4.2-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Target Hardware Architecture</span>
@@ -477,7 +468,7 @@
   <h2 class="subsection-title">Option B: Debian Package (.deb) on Existing OS</h2>
   <div class="terminal-box">
     # Download and install the latest ARM64 Debian package<br>
-    sudo dpkg -i gems_9.4.0_arm64.deb<br>
+    sudo dpkg -i gems_9.4.2_arm64.deb<br>
     sudo apt-get install -f<br>
     <br>
     # Verify service status<br>
@@ -598,22 +589,38 @@
     <li><strong>Eastron SDM630 (Modbus):</strong> Connect RS485 A/B lines to USB converter, select template <code>Eastron SDM630 3-Phase</code>, Slave ID <code>1</code>.</li>
   </ul>
 
-  <h3 class="step-title">C. EV Charging Stations (Native OCPP 1.6-J / 2.0.1 Server)</h3>
+  <h3 class="step-title">C. EV Charging Stations (Modbus TCP & Native OCPP)</h3>
   <div class="manual-screenshot">
     <img src="assets/screenshots/settings_devices_charger_form.png" alt="EV Charger Form">
-    <div class="manual-screenshot-caption">Figure 6.5: EV Charger configuration modal supporting native OCPP server and Modbus TCP.</div>
+    <div class="manual-screenshot-caption">Figure 6.5: EV Charger configuration modal supporting preferred Modbus TCP direct integration and native OCPP server.</div>
   </div>
-  <div class="callout callout-info">
-    <div class="callout-title">🔌 Native OCPP Server Setup</div>
+
+  <div class="callout callout-success" style="border-left: 4px solid #10b981; background: #f0fdf4;">
+    <div class="callout-title" style="color: #065f46;">⚡ Modbus TCP Integration (Recommended & Preferred)</div>
     <p>
-      GEMS runs a native WebSocket OCPP server on port <strong>8887</strong>. To connect any OCPP 1.6-J or 2.0.1 charger (Easee, Alfen Eve, EVBox, ABB Terra, Webasto, Mennekes):
+      <strong>Modbus TCP is the preferred connection method for EV chargers.</strong> Connecting via Modbus TCP (Port 502) offers critical advantages over OCPP:
+    </p>
+    <ul style="margin: 6px 0 10px 18px; padding: 0;">
+      <li><strong>Sub-Second Setpoint Control:</strong> Direct register writes allow instantaneous charge throttling (6A to 32A), essential for reactive Flanders capacity peak shaving and real-time solar curtailment tracking.</li>
+      <li><strong>Simultaneous CPO / Billing Coexistence:</strong> If the charger is already connected to an external Charge Point Operator (CPO) or employer billing reimbursement backend (e.g. E-Flux, Road, Optimile, Easee Cloud) via OCPP, GEMS controls the charger locally over Modbus TCP <em>without disconnecting or interfering with the cloud billing service</em>.</li>
+      <li><strong>Zero WebSocket Latency:</strong> Deterministic master-slave fieldbus polling on the local LAN with zero external broker dependencies.</li>
+    </ul>
+    <p>
+      <strong>Setup Steps:</strong> In your EV charger's web interface or installer tool, enable <em>Modbus TCP</em> (default port <code>502</code>) and note the Unit/Slave ID (typically <code>1</code>). In GEMS, click <strong>Add Device &rarr; EV Charger</strong>, choose your hardware template (e.g. <em>Alfen Eve</em>, <em>Keba KeContact P30</em>, <em>Mennekes Amtron</em>, <em>Webasto Live/Next</em>, <em>ABB Terra AC</em>, <em>Raedian Gemini/Neo</em>, <em>Phoenix Contact Charx</em>, <em>Veton</em>, <em>SolarEdge Home EVSE</em>, or <em>Generic Modbus TCP Charger</em>), enter the charger's local IP address, Port <code>502</code>, and Slave ID.
+    </p>
+  </div>
+
+  <div class="callout callout-info" style="margin-top: 14px;">
+    <div class="callout-title">🔌 Native OCPP 1.6-J / 2.0.1 WebSocket Server (Alternative)</div>
+    <p>
+      For chargers without Modbus TCP capability or installations without third-party CPO billing backends, GEMS runs an embedded WebSocket OCPP server on port <strong>8887</strong>:
     </p>
     <div class="terminal-box">
       Central System URL: ws://&lt;GEMS-IP&gt;:8887/&lt;ChargePointID&gt;<br>
       Example: ws://192.168.1.150:8887/CP001
     </div>
     <p>
-      In GEMS: Add device &rarr; EV Charger &rarr; Template: <code>OCPP 1.6J / 2.0.1 Smart EV Charger</code>. Enter the same <code>ChargePointID</code>. Once the charger initiates its WebSocket handshake, status immediately turns green: <strong>● Online</strong>.
+      In GEMS: <strong>Add Device &rarr; EV Charger &rarr; Template: OCPP 1.6J / 2.0.1 Smart EV Charger</strong>. Enter the matching <code>ChargePointID</code>. Once the charger establishes the WebSocket handshake, status turns to <strong>● Online</strong>.
     </p>
   </div>
 
@@ -808,7 +815,7 @@
   <ul style="margin: 6px 0 12px 18px; padding: 0;">
     <li>[ ] Inverter Modbus TCP responding with valid solar wattage on the Dashboard.</li>
     <li>[ ] Smart meter (P1 or SDM630) reporting import/export power consistent with utility meter.</li>
-    <li>[ ] EV Charger connected to native OCPP WebSocket (<code>ws://&lt;IP&gt;:8887/&lt;CP-ID&gt;</code>) and showing Online.</li>
+    <li>[ ] EV Charger connected via Modbus TCP (preferred) or native OCPP WebSocket (<code>ws://&lt;IP&gt;:8887/&lt;CP-ID&gt;</code>) and reporting live current setpoint.</li>
     <li>[ ] Flanders Capacity Tariff limit set according to customer agreement (default 2.50 kW).</li>
     <li>[ ] GSC certificate value configured if the installation is eligible for Flemish green certificates.</li>
     <li>[ ] Energy contract provider and distribution DNO selected under Energy Contract tab.</li>

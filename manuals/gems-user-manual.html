@@ -11,18 +11,6 @@
     @page {
       size: A4;
       margin: 15mm 15mm 18mm 15mm;
-      @bottom-right {
-        content: "Page " counter(page) " of " counter(pages);
-        font-family: 'Inter', sans-serif;
-        font-size: 8pt;
-        color: #64748b;
-      }
-      @bottom-left {
-        content: "GEMS Homeowner & User Operation Manual • v9.4.0";
-        font-family: 'Inter', sans-serif;
-        font-size: 8pt;
-        color: #64748b;
-      }
     }
 
     body {
@@ -310,14 +298,17 @@
   <!-- ==================== COVER PAGE ==================== -->
   <div class="cover-page">
     <div>
-      <div class="cover-badge">⚡ USER OPERATION & HOMEOWNER MANUAL</div>
+      <div class="cover-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px;">
+        <img src="assets/new_energy_grid_logo.png" alt="New Energy Grid" style="height: 42px; width: auto; object-fit: contain;">
+        <div class="cover-badge" style="margin-bottom: 0;">⚡ USER OPERATION & HOMEOWNER MANUAL</div>
+      </div>
       <h1 class="cover-title">GEMS User Manual</h1>
       <div class="cover-subtitle">Real-Time Power Flow Monitoring, Energy Optimization, EV Charging Controls, and Daily Savings</div>
 
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.4.0</span>
+          <span class="cover-meta-val">GEMS v9.4.2</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Target Audience</span>
@@ -457,8 +448,18 @@
   <!-- ==================== 4. EV CHARGING MODES ==================== -->
   <h1 class="section-title" id="sec-ev">4. Managing EV Charging Modes</h1>
   <p>
-    GEMS coordinates directly with your EV charger to optimize charging based on solar production, capacity tariffs, and dynamic electricity prices:
+    GEMS coordinates directly with your EV charger to optimize charging based on solar production, capacity tariffs, and dynamic electricity prices. Chargers can connect via <strong>Modbus TCP (preferred)</strong> or <strong>Native OCPP 1.6-J / 2.0.1</strong>:
   </p>
+
+  <div class="callout callout-success" style="border-left: 4px solid #10b981; background: #f0fdf4; margin-bottom: 14px;">
+    <div class="callout-title" style="color: #065f46;">💡 Why Modbus TCP is Preferred for EV Chargers</div>
+    <p style="margin-bottom: 6px;">
+      Connecting your charger via <strong>Modbus TCP</strong> provides instantaneous sub-second current throttling, allowing GEMS to react immediately when household appliances turn on or solar dips.
+    </p>
+    <p style="margin: 0;">
+      <strong>Company Car & Split-Billing Compatibility:</strong> If you use an employer charge card or billing subscription (e.g. E-Flux, Road, Optimile, Easee Cloud), your charger can continue using its cloud OCPP connection for billing while GEMS optimizes charging locally via Modbus TCP.
+    </p>
+  </div>
 
   <table class="data-table">
     <thead>
