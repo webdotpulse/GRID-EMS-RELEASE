@@ -130,6 +130,13 @@
             </a>
           </li>
           <li>
+            <a href="cloud-server.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-cloud"></use></svg>
+              <span>Cloud Server Connection</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NEW</span>
+            </a>
+          </li>
+          <li>
             <a href="devices.html" class="sidebar-link">
               <svg width="16" height="16"><use href="assets/icons.svg#icon-sun"></use></svg>
               <span>Device Templates</span>
@@ -152,18 +159,22 @@
             <a href="gems-installer-manual.pdf" class="sidebar-link" target="_blank">
               <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
               <span>Installer Manual (PDF)</span>
-              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">5.6 MB</span>
             </a>
           </li>
           <li>
             <a href="gems-user-manual.pdf" class="sidebar-link" target="_blank">
               <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
               <span>User Manual (PDF)</span>
-              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">3.4 MB</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-server-connection-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Server Manual (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NEW</span>
             </a>
           </li>
         </ul>
-      </div>
       </div>
     </aside>
 
@@ -637,15 +648,71 @@ P_instantaneous_cap = E_remaining / Time_left_hrs</code></pre>
           </table>
         </div>
 
+        <!-- Central Cloud & GRID-EMS-SERVER -->
+        <h2 id="cloud-server">9. Central Cloud & GRID-EMS-SERVER Integration</h2>
+        <p>
+          Configure outbound mirroring and fleet synchronization to <strong>GRID-EMS-SERVER</strong> under <strong>Settings &rarr; Cloud Server</strong>. For detailed architectural specifications and packet schemas, consult the dedicated <a href="cloud-server.html">GRID-EMS-SERVER Connection Manual</a>.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="assets/screenshots/settings_cloud.png" alt="Central Cloud Server Settings Tab" loading="lazy">
+          <div class="doc-screenshot-caption">Cloud Server Tab: Live edge pairing, round-trip sync latency, pairing token input, and dispatched cloud command audit trail.</div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Setting Key</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>cloud_enabled</code></td>
+                <td>Boolean</td>
+                <td><code>false</code></td>
+                <td>Enables or disables outbound telemetry synchronization with GRID-EMS-SERVER.</td>
+              </tr>
+              <tr>
+                <td><code>cloud_server_url</code></td>
+                <td>String (URL)</td>
+                <td><code>https://ems.newenergygrid.com</code></td>
+                <td>Central cloud server endpoint. Can point to a custom or self-hosted instance.</td>
+              </tr>
+              <tr>
+                <td><code>cloud_pairing_token</code></td>
+                <td>String</td>
+                <td>Empty</td>
+                <td>16-character hardware pairing token generated in the central fleet portal.</td>
+              </tr>
+              <tr>
+                <td><code>cloud_serial_number</code></td>
+                <td>String</td>
+                <td>Auto-detected</td>
+                <td>Unique edge hardware serial number (e.g. <code>TCG-EMS-2026-XXXX</code>).</td>
+              </tr>
+              <tr>
+                <td><code>cloud_sync_interval_sec</code></td>
+                <td>Integer (s)</td>
+                <td><code>5</code></td>
+                <td>Telemetry transmission cadence (2 to 60 seconds).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <!-- Navigation Footer -->
         <div class="page-nav-footer">
           <a href="installation.html" class="page-nav-card">
             <span class="page-nav-label">Previous</span>
             <span class="page-nav-title">&larr; Installation Manual</span>
           </a>
-          <a href="user-manual.html" class="page-nav-card" style="text-align:right;">
+          <a href="cloud-server.html" class="page-nav-card" style="text-align:right;">
             <span class="page-nav-label">Next Guide</span>
-            <span class="page-nav-title">User Operations Guide &rarr;</span>
+            <span class="page-nav-title">Cloud Server Connection &rarr;</span>
           </a>
         </div>
 
@@ -664,6 +731,7 @@ P_instantaneous_cap = E_remaining / Time_left_hrs</code></pre>
         <li class="toc-item"><a href="#phase-balancing" class="toc-link">Phase Load Balancing</a></li>
         <li class="toc-item"><a href="#relay-automation" class="toc-link">Smart Relays & SG-Ready</a></li>
         <li class="toc-item"><a href="#alerts-reporting" class="toc-link">Alerts & Reporting</a></li>
+        <li class="toc-item"><a href="#cloud-server" class="toc-link">Central Cloud Integration</a></li>
       </ul>
     </aside>
   </div>

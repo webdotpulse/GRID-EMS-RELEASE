@@ -12,8 +12,9 @@
 </p>
 
 <p align="center">
-  <a href="GEMS-Installer-Manual.pdf"><img alt="Installer Manual PDF" src="https://img.shields.io/badge/📕_Installer_Manual-PDF_(5.6MB)-0284c7?style=for-the-badge" /></a>
-  <a href="GEMS-User-Manual.pdf"><img alt="User Manual PDF" src="https://img.shields.io/badge/📗_User_Manual-PDF_(3.4MB)-10b981?style=for-the-badge" /></a>
+  <a href="manuals/gems-installer-manual.pdf"><img alt="Installer Manual PDF" src="https://img.shields.io/badge/📕_Installer_Manual-PDF_(5.7MB)-0284c7?style=for-the-badge" /></a>
+  <a href="manuals/gems-user-manual.pdf"><img alt="User Manual PDF" src="https://img.shields.io/badge/📗_User_Manual-PDF_(3.5MB)-10b981?style=for-the-badge" /></a>
+  <a href="manuals/gems-server-connection-manual.pdf"><img alt="Server Manual PDF" src="https://img.shields.io/badge/☁️_Server_Manual-PDF_(1.1MB)-0284c7?style=for-the-badge" /></a>
   <a href="manuals/index.html"><img alt="Documentation Hub" src="https://img.shields.io/badge/💻_Documentation-Hub-8b5cf6?style=for-the-badge" /></a>
 </p>
 
@@ -21,6 +22,7 @@
 
 - **Hardware Target**: Deeply optimized for Raspberry Pi (Debian/Linux ARM64). CPU information is intentionally excluded from the UI to maintain a lightweight system profile. The system uses the release tag (`git describe --tags --always`) as its build number.
 - **Monolithic Architecture**: A cohesive monolith featuring a Go (Golang) backend acting as a unified API and web server, paired with a modern Vue 3 Single Page Application (SPA).
+- **GRID-EMS-SERVER Cloud Integration**: Outbound-only TLS 1.3 mirroring to the central cloud platform (`https://ems.newenergygrid.com`). Supports periodic high-frequency telemetry ingestion, remote command dispatch (`set_strategy_mode`, `set_battery_mode`, `throttle_ev_charger`, `set_relay`), cryptographic device secret authentication, and zero-inbound-port security.
 - **Minimal SD Card Wear**: Utilizes a highly tuned local SQLite database configured with Write-Ahead Logging (WAL) mode and batched, in-memory transactional writes.
 - **Fully UI-Driven**: Zero YAML configuration required. Add, configure, and remove hardware devices entirely through an intuitive frontend UI.
 - **90+ Native Hardware Templates**: Native support for 80+ leading manufacturers covering Solar Inverters, Batteries, EV Chargers (OCPP 1.6-J / 2.0.1, Modbus TCP, REST), P1 Smart Meters, and Smart Relays.
@@ -79,7 +81,7 @@
 | :---: | :---: |
 | ![Charger Form](screenshots/settings_devices_charger_form.png) | ![Relays Rules](screenshots/settings_relays_rules.png) |
 
-### 🛠️ Diagnostics, System Info & Webhook Alerts
+### 🛠️ Diagnostics, System Info, Webhook Alerts & Central Cloud
 | Subnet Hardware Scanner | Real-Time Diagnostics Logger |
 | :---: | :---: |
 | ![Network Scanner](screenshots/scanner.png) | ![Logger](screenshots/logger.png) |
@@ -87,6 +89,10 @@
 | Hardware Info & NVMe Wear Diagnostics | Webhook Alerts & Automated Reports |
 | :---: | :---: |
 | ![System Info Tab](screenshots/settings_system_info.png) | ![Notifications Tab](screenshots/settings_notifications.png) |
+
+| Central Cloud Server (GRID-EMS-SERVER) | |
+| :---: | :---: |
+| ![Cloud Settings](screenshots/settings_cloud.png) | |
 
 ---
 
@@ -205,11 +211,13 @@ cd GRID-EMS
 
 | Guide | Description |
 | :--- | :--- |
-| 📕 **[Installer & Commissioning Manual (PDF)](GEMS-Installer-Manual.pdf)** | **Official printable PDF guide for installers** (Hardware BOM, NVMe setup, onboarding 90+ devices, grid limits, Flanders peak shaving, GSC protection, and webhook alerts) |
-| 📗 **[Homeowner & User Manual (PDF)](GEMS-User-Manual.pdf)** | **Official printable PDF guide for end-users** (PowerFlow hero diagram, click-to-reveal modals, EV charging modes, 24h tariff visualizer, smart relays, and PDF reports) |
+| 📕 **[Installer & Commissioning Manual (PDF)](manuals/gems-installer-manual.pdf)** | **Official printable PDF guide for installers** (Hardware BOM, NVMe setup, onboarding 90+ devices, grid limits, Flanders peak shaving, GSC protection, and webhook alerts) |
+| 📗 **[Homeowner & User Manual (PDF)](manuals/gems-user-manual.pdf)** | **Official printable PDF guide for end-users** (PowerFlow hero diagram, click-to-reveal modals, EV charging modes, 24h tariff visualizer, smart relays, and PDF reports) |
+| ☁️ **[GRID-EMS-SERVER Connection Manual (PDF)](manuals/gems-server-connection-manual.pdf)** | **Official printable PDF guide for cloud & fleet integration** (Outbound TLS 1.3 architecture, hardware token pairing, JSON telemetry ingestion, and remote commands) |
 | 💻 [Interactive HTML Documentation Hub](manuals/index.html) | Rich web documentation suite with full-text search (open in browser) |
 | 🛠️ [Interactive Installer Manual (HTML)](manuals/gems-installer-manual.html) | Comprehensive field commissioning guide with high-res screenshots and hardware wiring |
 | 🏠 [Interactive User Manual (HTML)](manuals/gems-user-manual.html) | Illustrated homeowner operations manual with interactive modals and tariff breakdown |
+| ☁️ [Interactive Cloud Server Manual (HTML)](manuals/cloud-server.html) | Web guide for connecting edge GEMS units to central GRID-EMS-SERVER |
 | 🔌 [Device Manuals & Templates](manuals/devices.html) | Complete step-by-step guides for all 90 supported hardware templates |
 | 📘 [User Manual (Markdown)](docs/user_manual.md) | End-user operations, PowerFlow diagram, OCPP server setup |
 | 📖 [Advanced Operational Manual](docs/advanced_manual.md) | Technical deep-dive on algorithms, formulas, and SG-Ready contactors |

@@ -4,8 +4,9 @@ This manual provides an in-depth guide to configuring and using the strategy eng
 
 > [!TIP]
 > **Download Official Field Manuals (PDF):**
-> - 📕 **[GEMS Installer & Commissioning Manual (PDF)](../GEMS-Installer-Manual.pdf)** (5.6 MB)
-> - 📗 **[GEMS Homeowner & User Manual (PDF)](../GEMS-User-Manual.pdf)** (3.4 MB)
+> - 📕 **[GEMS Installer & Commissioning Manual (PDF)](../manuals/gems-installer-manual.pdf)** (5.7 MB)
+> - 📗 **[GEMS Homeowner & User Manual (PDF)](../manuals/gems-user-manual.pdf)** (3.5 MB)
+> - ☁️ **[GEMS GRID-EMS-SERVER Connection Manual (PDF)](../manuals/gems-server-connection-manual.pdf)** (1.1 MB)
 > - 💻 **[Interactive Documentation Hub](../manuals/index.html)**
 
 
