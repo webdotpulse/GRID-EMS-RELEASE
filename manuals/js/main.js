@@ -1,5 +1,5 @@
 /**
- * GEMS (The New Energy Grid) Documentation Site Core JavaScript
+ * GEMS (New Energy Grid) Documentation Site Core JavaScript
  * Handles themes, mobile drawer, search modal, tabs, code copying, and scrollspy.
  */
 

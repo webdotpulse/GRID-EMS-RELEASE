@@ -1,5 +1,5 @@
 /**
- * GEMS (The New Energy Grid) Documentation Search Index
+ * GEMS (New Energy Grid) Documentation Search Index
  * Provides instant client-side full-text search across all documentation pages.
  */
 window.DOCS_SEARCH_INDEX = [
@@ -8,7 +8,7 @@ window.DOCS_SEARCH_INDEX = [
     title: "Documentation Overview & Architecture",
     category: "Overview",
     url: "index.html",
-    snippet: "High-level architecture of GEMS (The New Energy Grid), monolith Go backend, Vue 3 SPA, SQLite WAL storage, and system overview.",
+    snippet: "High-level architecture of GEMS (New Energy Grid), monolith Go backend, Vue 3 SPA, SQLite WAL storage, and system overview.",
     keywords: ["overview", "architecture", "monolith", "golang", "vue3", "sqlite", "wal", "raspberry pi", "introduction"]
   },
   {

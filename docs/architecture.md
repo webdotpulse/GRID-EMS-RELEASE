@@ -1,6 +1,6 @@
 # Architecture Overview
 
-GEMS (Grid Energy Management System by The New Energy Grid) is designed as a lightweight, embedded Energy Management System (EMS) optimized for running on low-powered ARM hardware (like a Raspberry Pi) without wearing out the SD card.
+GEMS (Grid Energy Management System by New Energy Grid) is designed as a lightweight, embedded Energy Management System (EMS) optimized for running on low-powered ARM hardware (like a Raspberry Pi) without wearing out the SD card.
 
 ## High-Level Architecture
 

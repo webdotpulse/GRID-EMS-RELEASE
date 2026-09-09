@@ -12,9 +12,9 @@
 </p>
 
 <p align="center">
-  <a href="manuals/gems-installer-manual.pdf"><img alt="Installer Manual PDF" src="https://img.shields.io/badge/📕_Installer_Manual-PDF_(5.7MB)-0284c7?style=for-the-badge" /></a>
-  <a href="manuals/gems-user-manual.pdf"><img alt="User Manual PDF" src="https://img.shields.io/badge/📗_User_Manual-PDF_(3.5MB)-10b981?style=for-the-badge" /></a>
-  <a href="manuals/gems-server-connection-manual.pdf"><img alt="Server Manual PDF" src="https://img.shields.io/badge/☁️_Server_Manual-PDF_(1.1MB)-0284c7?style=for-the-badge" /></a>
+  <a href="manuals/gems-installer-manual.pdf"><img alt="Installer Manual PDF" src="https://img.shields.io/badge/📕_Installer_Manual-PDF_(5.8MB)-0284c7?style=for-the-badge" /></a>
+  <a href="manuals/gems-user-manual.pdf"><img alt="User Manual PDF" src="https://img.shields.io/badge/📗_User_Manual-PDF_(3.6MB)-10b981?style=for-the-badge" /></a>
+  <a href="manuals/gems-server-connection-manual.pdf"><img alt="Server Manual PDF" src="https://img.shields.io/badge/☁️_Server_Manual-PDF_(1.0MB)-0284c7?style=for-the-badge" /></a>
   <a href="manuals/index.html"><img alt="Documentation Hub" src="https://img.shields.io/badge/💻_Documentation-Hub-8b5cf6?style=for-the-badge" /></a>
 </p>
 

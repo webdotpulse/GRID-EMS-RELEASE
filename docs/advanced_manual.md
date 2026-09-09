@@ -26,7 +26,7 @@ Welcome to the **GEMS Advanced Operational Manual**. This document provides an e
 
 ## 1. Architecture & System Overview
 
-GEMS (Grid Energy Management System by The New Energy Grid) is engineered for minimal memory consumption and maximal performance on Raspberry Pi hardware (Debian/Linux ARM64).
+GEMS (Grid Energy Management System by New Energy Grid) is engineered for minimal memory consumption and maximal performance on Raspberry Pi hardware (Debian/Linux ARM64).
 
 ```mermaid
 graph TD

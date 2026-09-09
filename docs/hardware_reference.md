@@ -1,6 +1,6 @@
 # Hardware Reference Specification
 
-This document provides the official reference hardware Bill of Materials (BOM), specifications, wiring requirements, and hardware considerations for deploying **GEMS (The New Energy Grid)**.
+This document provides the official reference hardware Bill of Materials (BOM), specifications, wiring requirements, and hardware considerations for deploying **GEMS (New Energy Grid)**.
 
 ---
 
