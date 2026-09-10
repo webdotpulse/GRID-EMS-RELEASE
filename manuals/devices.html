@@ -720,7 +720,7 @@
         <div class="device-guide-card">
           <div class="guide-header">
             <h4>RAEDIAN NEO / NEX / Gemini AC Wallbox (Modbus TCP)</h4>
-            <span class="badge-pill badge-blue">Template: raedian_charger</span>
+            <span class="badge-pill badge-blue">Template: raedian_charger / raedian_gemini</span>
           </div>
           <div class="guide-body">
             <ol>
@@ -728,13 +728,13 @@
               <li><strong>Add in GEMS:</strong> In GEMS, go to <strong>Settings &rarr; Devices &rarr; + Add Device</strong>.
                 <ul>
                   <li><strong>Category:</strong> <em>EV Chargers</em></li>
-                  <li><strong>Template:</strong> <em>RAEDIAN NEO / NEX AC Wallbox</em></li>
-                  <li><strong>Device Name:</strong> <code>RAEDIAN Wallbox 22kW</code></li>
-                  <li><strong>Host IP:</strong> <code>192.168.1.120</code> &nbsp;|&nbsp; <strong>Port:</strong> <code>502</code> &nbsp;|&nbsp; <strong>Modbus ID:</strong> <code>1</code> (or <code>2</code> for Connector B)</li>
+                  <li><strong>Template:</strong> Choose <em>RAEDIAN NEO / NEX AC Wallbox</em> (single socket) or <em>RAEDIAN Gemini AC Wallbox</em> (dual socket).</li>
+                  <li><strong>Device Name:</strong> <code>RAEDIAN Wallbox</code></li>
+                  <li><strong>Host IP:</strong> <code>192.168.1.120</code> &nbsp;|&nbsp; <strong>Port:</strong> <code>502</code> &nbsp;|&nbsp; <strong>Modbus ID:</strong> <code>1</code></li>
                   <li><strong>Charging Mode:</strong> Choose <em>Eco (Solar Priority)</em> or <em>Fast</em>.</li>
                 </ul>
               </li>
-              <li><strong>Verify:</strong> Click <strong>Save Device</strong>. The status switches to <span class="badge-pill badge-green">● Online</span>. When a vehicle plugs in, GEMS monitors real-time charging wattage and automatically modulates current setpoints between 6A and 32A according to your solar excess and Flanders peak capacity limits.</li>
+              <li><strong>Verify:</strong> Click <strong>Save Device</strong>. The status switches to <span class="badge-pill badge-green">● Online</span>. When a vehicle plugs in, GEMS monitors real-time charging wattage and automatically modulates current setpoints (6A–32A for NEO/NEX, 0A–64A for Gemini) according to your solar excess and Flanders peak capacity limits.</li>
             </ol>
           </div>
         </div>

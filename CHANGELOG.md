@@ -16,8 +16,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Continuous Automated Releases:** Enabled automated releases on every push to `main` with semantic versioning. Changes are automatically categorized based on update impact (patch for fixes, minor for new features, major for breaking changes), generating ready-to-use Debian packages, Raspberry Pi OS images, and updated manuals.
 - **Release Repository Changelog Synchronization:** Synchronized system changelogs directly to the public release repository and attached them to GitHub release packages, ensuring installers and users can inspect complete version history from the documentation and release hub.
 
+### Changed
+- **RAEDIAN Charger Modbus Protocol V0.7 Support:** Updated the RAEDIAN NEO, NEX, and Gemini AC Wallbox templates to match the latest Modbus protocol specification. RAEDIAN Gemini dual chargers now support continuous 0–64A dynamic current modulation for optimal solar self-consumption, replacing stepped presets and automatically balancing current across both sockets.
+- **Single-Read Telemetry Batching for RAEDIAN Chargers:** Optimized Modbus communication for RAEDIAN chargers to retrieve all 3-phase currents, voltages, power, energy, session statuses, and error codes in a single request, reducing network latency and bus traffic.
+
 ### Fixed
 - **Changelog Staging in Release Pipeline:** Resolved an issue where `CHANGELOG.md` was inadvertently omitted during release repository synchronization, ensuring release notes are always published alongside documentation updates.
+- **RAEDIAN NEO / NEX Charge Session Control:** Corrected the Modbus control registers used for start, stop, and current limiting on RAEDIAN NEO and NEX wallboxes to align with official protocol registers, restoring reliable automated pausing and dynamic solar current adjustments.
+- **RAEDIAN Gemini Phase Current Measurement:** Corrected an issue where RAEDIAN Gemini dual-socket phase 3 current aggregation referenced an invalid connector field, restoring accurate combined phase current calculations and build stability.
 
 ---
 
