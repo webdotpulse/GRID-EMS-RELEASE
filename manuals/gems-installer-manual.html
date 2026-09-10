@@ -335,7 +335,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.7.1-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.7.2-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Target Hardware Architecture</span>
@@ -358,7 +358,7 @@
 
     <div class="cover-footer">
       <span>GEMS Energy Management System (GRID-EMS)</span>
-      <span>Confidential Field Reference • Documentation v9.7.1</span>
+      <span>Confidential Field Reference • Documentation v9.7.2</span>
     </div>
   </div>
 
@@ -404,12 +404,12 @@
       </tr>
       <tr>
         <td><strong>Internal Storage</strong></td>
-        <td>Patriot P300 128GB M.2 PCIe Gen 3 x4 NVMe SSD</td>
-        <td>Low power consumption, durable TLC flash. Write speed up to 600 MB/s.</td>
+        <td>128GB+ M.2 PCIe Gen 3 x4 NVMe SSD</td>
+        <td>Low power consumption, durable TLC flash. Write speed up to 600+ MB/s.</td>
       </tr>
       <tr>
         <td><strong>M.2 PCIe HAT</strong></td>
-        <td>Raspberry Pi 5 M.2 HAT+ (or db-tronic Bottom PCIe Base)</td>
+        <td>Raspberry Pi 5 M.2 PCIe HAT+ or Bottom NVMe Base</td>
         <td>Connects to the 16-pin FPC PCIe ribbon connector. Ensure gold pins face correctly.</td>
       </tr>
       <tr>
@@ -434,7 +434,7 @@
   <div class="page-break"></div>
   <h1 class="section-title" id="sec-nvme">2. NVMe Bootloader & EEPROM Setup</h1>
   <p>
-    Brand new Raspberry Pi 5 boards ship with a factory EEPROM configured to boot solely from MicroSD (`BOOT_ORDER=0xf41`). When booting with the Patriot P300 NVMe SSD, the PCIe bus must be enabled via the bootloader.
+    Brand new Raspberry Pi 5 boards ship with a factory EEPROM configured to boot solely from MicroSD (`BOOT_ORDER=0xf41`). When booting with an M.2 NVMe SSD, the PCIe bus must be enabled via the bootloader.
   </p>
 
   <div class="callout callout-tip">
@@ -449,6 +449,7 @@
   </div>
 
   <!-- ==================== 3. OS DEPLOYMENT & SERVICES ==================== -->
+  <div class="page-break"></div>
   <h1 class="section-title" id="sec-deployment">3. OS Deployment & System Services</h1>
   <p>
     GEMS provides two official deployment methods for installers:
@@ -456,7 +457,7 @@
 
   <h2 class="subsection-title">Option A: Pre-built Custom Raspberry Pi OS Image (Recommended)</h2>
   <p>
-    Download <code>gems-os-image.img.xz</code> from the GitHub release. Flash it directly to the Patriot P300 SSD via an external USB NVMe enclosure using BalenaEtcher or Raspberry Pi Imager. The pre-built image includes:
+    Download <code>gems-os-image.img.xz</code> from the GitHub release. Flash it directly to the M.2 NVMe SSD via an external USB NVMe enclosure using BalenaEtcher or Raspberry Pi Imager. The pre-built image includes:
   </p>
   <ul style="margin: 6px 0 12px 18px; padding: 0;">
     <li><strong>Nginx Proxy:</strong> Routes port 80/443 to the GEMS backend on port 8080 with WebSocket and SSE support.</li>
@@ -468,7 +469,7 @@
   <h2 class="subsection-title">Option B: Debian Package (.deb) on Existing OS</h2>
   <div class="terminal-box">
     # Download and install the latest ARM64 Debian package<br>
-    sudo dpkg -i gems_9.7.1_arm64.deb<br>
+    sudo dpkg -i gems_9.7.2_arm64.deb<br>
     sudo apt-get install -f<br>
     <br>
     # Verify service status<br>

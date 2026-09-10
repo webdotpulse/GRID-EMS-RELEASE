@@ -1,13 +1,13 @@
 # NVMe SSD Setup & Troubleshooting Manual
-## Raspberry Pi 5 + db-tronic NVMe Kit + Patriot P300 SSD
+## Raspberry Pi 5 + M.2 NVMe PCIe Base + M.2 NVMe SSD
 
-This manual provides a complete, step-by-step resolution for enabling NVMe boot and resolving SSD detection issues with the **Patriot P300 128GB M.2 NVMe SSD** installed in the **db-tronic Raspberry Pi 5 NVMe Kit**.
+This manual provides a complete, step-by-step resolution for enabling NVMe boot and resolving SSD detection issues with an **M.2 NVMe SSD** installed via an **M.2 PCIe HAT / Base** on the Raspberry Pi 5.
 
 ---
 
-## 🔍 Root Cause Analysis: Why the Pi 5 Doesn't See the Patriot SSD
+## 🔍 Root Cause Analysis: Why the Pi 5 Doesn't See the NVMe SSD
 
-When you assemble a Raspberry Pi 5 with an NVMe HAT and insert a fresh Patriot P300 SSD, the Pi will fail to boot or detect the SSD due to three primary reasons:
+When you assemble a Raspberry Pi 5 with an NVMe HAT and insert a fresh NVMe SSD, the Pi will fail to boot or detect the SSD due to three primary reasons:
 
 1. **Factory Bootloader Sequence (`BOOT_ORDER`):**
    * Factory Raspberry Pi 5 EEPROMs are configured with `BOOT_ORDER=0xf41` (SD Card first `0x1`, then USB `0x4`, then reboot loop `0xf`).
@@ -15,7 +15,7 @@ When you assemble a Raspberry Pi 5 with an NVMe HAT and insert a fresh Patriot P
 2. **Missing PCIe Device Tree Parameter in OS (`config.txt`):**
    * Linux on Raspberry Pi 5 does not activate the 16-pin PCIe header unless `dtparam=pciex1` is declared in `/boot/firmware/config.txt`.
 3. **PCIe Gen 3 Link Negotiation vs Gen 2:**
-   * The Patriot P300 is a PCIe Gen 3.0 x4 drive. Raspberry Pi 5's PCIe interface officially operates at PCIe Gen 2.0 (5.0 GT/s). While Pi 5 can operate in Gen 3 mode, initial link training may fail unless PCIe Gen 2 compatibility (`dtparam=pciex1_gen=2`) is active.
+   * Most NVMe SSDs are PCIe Gen 3.0 or Gen 4.0 drives. Raspberry Pi 5's PCIe interface officially operates at PCIe Gen 2.0 (5.0 GT/s). While Pi 5 can operate in Gen 3 mode, initial link training may fail unless PCIe Gen 2 compatibility (`dtparam=pciex1_gen=2`) is active.
 4. **Physical FPC Ribbon Cable Seating:**
    * The 16-pin 0.5mm pitch flexible flat cable (FFC/FPC) must be correctly oriented and firmly seated with the black locking tabs latched.
 
@@ -32,7 +32,7 @@ You can choose either **Method 1 (Recommended - No Linux knowledge needed)** or 
 This is the fastest, cleanest, and most reliable way to configure your Raspberry Pi 5 for NVMe boot without typing commands.
 
 #### Step 1: Flash the EEPROM Bootloader Update Card
-1. Insert the **64GB MicroSD card** (included in the db-tronic kit) into your PC/Mac.
+1. Insert a **MicroSD card** into your PC/Mac.
 2. Download and launch **[Raspberry Pi Imager](https://www.raspberrypi.com/software/)**.
 3. Click **Choose Device** &rarr; Select **Raspberry Pi 5**.
 4. Click **Choose OS** &rarr; Scroll down and select **Misc utility images** &rarr; **Bootloader** &rarr; **NVMe/PCIe Boot**.
@@ -49,7 +49,7 @@ This is the fastest, cleanest, and most reliable way to configure your Raspberry
 ```
 
 #### Step 2: Apply the EEPROM Update on the Pi 5
-1. Ensure the **Patriot P300 SSD** and **NVMe HAT** are assembled onto the Raspberry Pi 5.
+1. Ensure the **M.2 NVMe SSD** and **NVMe HAT** are assembled onto the Raspberry Pi 5.
 2. Insert the prepared MicroSD card into the Raspberry Pi 5.
 3. Connect the official **27W USB-C power supply**.
 4. Observe the green **ACT LED** on the Pi 5:
@@ -58,12 +58,12 @@ This is the fastest, cleanest, and most reliable way to configure your Raspberry
 5. Once the screen is solid green (or ACT LED blinks regularly), disconnect the power.
 6. **Remove the MicroSD card.** The Pi 5 EEPROM is now permanently configured to boot from NVMe (`BOOT_ORDER=0xf461`, `PCIE_PROBE=1`)!
 
-#### Step 3: Flash GEMS to the Patriot P300 SSD
-1. Connect the **Patriot P300 128GB SSD** to your PC using a USB-to-NVMe enclosure/adapter (or proceed to Method 2 below if you don't have an external adapter).
+#### Step 3: Flash GEMS to the M.2 NVMe SSD
+1. Connect the **M.2 NVMe SSD** to your PC using a USB-to-NVMe enclosure/adapter (or proceed to Method 2 below if you don't have an external adapter).
 2. Download `gems-os-image.img.xz` from the [Latest GitHub Release](https://github.com/webdotpulse/GRID-EMS-RELEASE/releases).
-3. In Raspberry Pi Imager (or BalenaEtcher), select `gems-os-image.img.xz` directly as the OS and choose the Patriot P300 SSD as the storage target.
+3. In Raspberry Pi Imager (or BalenaEtcher), select `gems-os-image.img.xz` directly as the OS and choose the NVMe SSD as the storage target.
 4. Click **Write**.
-5. Once flashed, install the Patriot P300 back into the db-tronic NVMe HAT on the Pi 5.
+5. Once flashed, install the NVMe SSD back into the M.2 NVMe HAT on the Pi 5.
 6. Power on the Raspberry Pi 5 (without any MicroSD card inserted).
 7. The system will boot from the NVMe SSD within 8 seconds! Access `http://ems.local` in your browser.
 
@@ -71,11 +71,11 @@ This is the fastest, cleanest, and most reliable way to configure your Raspberry
 
 ### 💻 Method 2: Configure EEPROM & Flash NVMe via Cockpit Terminal
 
-If you do not have a separate USB-to-NVMe adapter for your PC, you can configure everything directly on the Raspberry Pi using the included 64GB MicroSD card.
+If you do not have a separate USB-to-NVMe adapter for your PC, you can configure everything directly on the Raspberry Pi using a MicroSD card.
 
 #### Step 1: Boot from MicroSD Card
-1. Flash `gems-os-image.img.xz` (or standard Raspberry Pi OS Lite Bookworm 64-bit) onto the 64GB MicroSD card.
-2. Assemble the Patriot P300 SSD in the db-tronic HAT on the Pi 5.
+1. Flash `gems-os-image.img.xz` (or standard Raspberry Pi OS Lite Bookworm 64-bit) onto the MicroSD card.
+2. Assemble the M.2 NVMe SSD in the NVMe HAT on the Pi 5.
 3. Insert the MicroSD card and power on.
 4. Open a browser and navigate to **Cockpit Web Terminal** at:
    ```
@@ -92,7 +92,7 @@ If you do not have a separate USB-to-NVMe adapter for your PC, you can configure
    ```ini
    # Enable Raspberry Pi 5 PCIe header & NVMe support
    dtparam=pciex1
-   # Enforce PCIe Gen 2 link stability for Patriot P300
+   # Enforce PCIe Gen 2 link stability for NVMe drive
    dtparam=pciex1_gen=2
    ```
 3. Press `Ctrl+O`, `Enter` to save, then `Ctrl+X` to exit.
@@ -123,7 +123,7 @@ If you do not have a separate USB-to-NVMe adapter for your PC, you can configure
    ```
 
 #### Step 4: Verify NVMe SSD Detection
-Once rebooted, re-open Cockpit Terminal and verify that the Patriot P300 SSD is detected:
+Once rebooted, re-open Cockpit Terminal and verify that the NVMe SSD is detected:
 
 1. **Check PCIe bus enumeration:**
    ```bash
@@ -157,7 +157,7 @@ Download and write the GEMS image to the NVMe SSD directly from the terminal:
 # 1. Download the latest GEMS image
 curl -LO https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/latest/download/gems-os-image.img.xz
 
-# 2. Decompress and flash directly to the Patriot P300 SSD
+# 2. Decompress and flash directly to the NVMe SSD
 xzcat gems-os-image.img.xz | sudo dd of=/dev/nvme0n1 bs=4M status=progress conv=fsync
 
 # 3. Mount the newly flashed NVMe boot partition to verify PCIe configuration
@@ -182,7 +182,7 @@ sudo poweroff
 1. Disconnect the USB-C power cable.
 2. **Eject and remove the MicroSD card.**
 3. Power on the Raspberry Pi 5.
-4. The Raspberry Pi 5 will boot directly from the **Patriot P300 NVMe SSD** in under 8 seconds.
+4. The Raspberry Pi 5 will boot directly from the **M.2 NVMe SSD** in under 8 seconds.
 
 ---
 
@@ -191,7 +191,7 @@ sudo poweroff
 If the NVMe SSD is still not detected after following the software steps, inspect the physical connection:
 
 ```
-Raspberry Pi 5 Mainboard                       db-tronic NVMe Base
+Raspberry Pi 5 Mainboard                       M.2 NVMe Base / HAT
 +-------------------------+                    +-------------------------+
 | [USB] [ETH] [PCIe Port] |                    | [ M.2 NVMe SSD Slot ]   |
 |                 |       |   FPC Ribbon       |       |                 |
@@ -207,11 +207,11 @@ Raspberry Pi 5 Mainboard                       db-tronic NVMe Base
    * Gently lift the dark locking collar straight up by 1mm.
    * Slide the ribbon cable in so that the **gold contacts face INWARD (toward the USB and Ethernet ports)**.
    * Push the black locking collar back down evenly to clamp the ribbon cable.
-2. **FPC Ribbon Orientation on db-tronic NVMe HAT:**
+2. **FPC Ribbon Orientation on M.2 NVMe HAT / Base:**
    * Ensure the ribbon is completely parallel and not inserted at an angle.
    * Lock the collar firmly.
 3. **M.2 Stand-off & Screw:**
-   * Ensure the Patriot P300 SSD is fully inserted into the M.2 key slot at a 30-degree angle, pressed flat, and secured with the included M2 screw.
+   * Ensure the M.2 NVMe SSD is fully inserted into the M.2 key slot at a 30-degree angle, pressed flat, and secured with the included M2 screw.
 4. **Power Supply:**
    * Always use the official **27W USB-C PD power supply**. 15W phone chargers will drop voltage when the NVMe SSD spins up, causing PCIe link failures.
 
@@ -231,4 +231,4 @@ Raspberry Pi 5 Mainboard                       db-tronic NVMe Base
 
 ## 🏁 Summary
 
-With the EEPROM updated (`BOOT_ORDER=0xf461`, `PCIE_PROBE=1`) and `dtparam=pciex1` declared in `config.txt`, your **Patriot P300 128GB SSD** provides ultra-fast read/write speeds, zero SD-card corruption, and reliable 24/7 autonomous operation for **GEMS**.
+With the EEPROM updated (`BOOT_ORDER=0xf461`, `PCIE_PROBE=1`) and `dtparam=pciex1` declared in `config.txt`, your **M.2 NVMe SSD** provides ultra-fast read/write speeds, zero SD-card corruption, and reliable 24/7 autonomous operation for **GEMS**.

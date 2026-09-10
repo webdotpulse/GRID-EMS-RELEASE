@@ -28,14 +28,14 @@ GEMS serves as the central brain of your home energy ecosystem, integrating Grid
 ## 2. Reference Hardware & Installation
 
 ### Official Tested Reference Platform
-* **Kit:** [db-tronic Raspberry Pi 5 4GB NVMe Kit](https://www.amazon.com.be/-/en/dp/B0GZ65XG3G?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1) (includes 27W Power Supply, metal case, active cooler, NVMe HAT, and 64GB MicroSD).
-* **Storage:** [Patriot P300 128GB M.2 NVMe SSD](https://www.amazon.com.be/-/en/dp/B0822Y6N1C?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1) (PCIe Gen 3 x4).
+* **System Controller:** Raspberry Pi 5 (4GB or 8GB RAM) with official 27W USB-C PD power supply, aluminum metal case, active cooler, and M.2 NVMe PCIe HAT/Base.
+* **Storage:** 128GB+ M.2 2280 NVMe SSD (PCIe Gen 3.0 / Gen 2.0 x4).
 * See [Hardware Reference BOM](hardware_reference.md) for full specs and pinouts.
 
 ### Deployment Method A: High-Speed NVMe M.2 SSD (Recommended)
-Booting GEMS from the Patriot P300 NVMe SSD delivers maximum speed and eliminates SD card wear:
-1. **Update Pi 5 Bootloader (1-time):** Use Raspberry Pi Imager to write *Misc utility images* &rarr; *Bootloader* &rarr; *NVMe/PCIe Boot* onto the 64GB MicroSD card. Insert into the Pi 5 and power on for 5 seconds until the screen turns green (`BOOT_ORDER=0xf461`, `PCIE_PROBE=1`).
-2. **Flash GEMS Image:** Flash `gems-os-image.img.xz` to the Patriot P300 SSD.
+Booting GEMS from an M.2 NVMe SSD delivers maximum speed and eliminates SD card wear:
+1. **Update Pi 5 Bootloader (1-time):** Use Raspberry Pi Imager to write *Misc utility images* &rarr; *Bootloader* &rarr; *NVMe/PCIe Boot* onto a MicroSD card. Insert into the Pi 5 and power on for 5 seconds until the screen turns green (`BOOT_ORDER=0xf461`, `PCIE_PROBE=1`).
+2. **Flash GEMS Image:** Flash `gems-os-image.img.xz` to the NVMe SSD.
 3. Remove the MicroSD card and power on. System boots in under 8 seconds.
 *For step-by-step instructions and terminal commands, see the dedicated [NVMe Boot & Setup Manual](nvme_boot_guide.md).*
 

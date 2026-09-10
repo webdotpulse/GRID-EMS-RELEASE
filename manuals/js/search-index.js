@@ -31,15 +31,15 @@ window.DOCS_SEARCH_INDEX = [
     title: "Official Tested Reference Hardware BOM",
     category: "Installation",
     url: "installation.html#hardware-reference",
-    snippet: "BOM for db-tronic Raspberry Pi 5 4GB NVMe Kit, Patriot P300 128GB M.2 NVMe SSD, official 27W USB-C PD power supply, and RS485/P1 pinouts.",
-    keywords: ["hardware", "db-tronic", "patriot p300", "nvme ssd", "27w power supply", "bom", "reference kit", "m.2 2280", "rpi 5 kit"]
+    snippet: "BOM for Raspberry Pi 5 4GB NVMe hardware reference, M.2 NVMe SSD, official 27W USB-C PD power supply, and RS485/P1 pinouts.",
+    keywords: ["hardware", "raspberry pi 5", "nvme ssd", "27w power supply", "bom", "reference kit", "m.2 2280", "rpi 5 kit"]
   },
   {
     title: "NVMe M.2 SSD Setup & EEPROM Bootloader Configuration",
     category: "Installation",
     url: "installation.html#nvme-setup",
-    snippet: "Fixing Raspberry Pi 5 Patriot P300 NVMe SSD detection, BOOT_ORDER=0xf461, PCIE_PROBE=1, dtparam=pciex1, Raspberry Pi Imager EEPROM utility, and dd flashing.",
-    keywords: ["nvme setup", "patriot p300", "eeprom", "boot order", "pcie_probe", "dtparam=pciex1", "pciex1_gen", "imager bootloader", "ssd not detected", "m.2 boot"]
+    snippet: "Fixing Raspberry Pi 5 NVMe SSD detection, BOOT_ORDER=0xf461, PCIE_PROBE=1, dtparam=pciex1, Raspberry Pi Imager EEPROM utility, and dd flashing.",
+    keywords: ["nvme setup", "nvme ssd", "eeprom", "boot order", "pcie_probe", "dtparam=pciex1", "pciex1_gen", "imager bootloader", "ssd not detected", "m.2 boot"]
   },
   {
     title: "Custom Raspberry Pi OS Image (Recommended)",
@@ -291,8 +291,8 @@ window.DOCS_SEARCH_INDEX = [
     title: "NVMe SSD Not Detected & Bootloader Diagnostics",
     category: "Troubleshooting",
     url: "troubleshooting.html#nvme-troubleshooting",
-    snippet: "Troubleshooting Patriot P300 SSD detection on Raspberry Pi 5, PCIe ribbon cable seating, 27W PSU brownouts, lspci, and EEPROM settings.",
-    keywords: ["nvme error", "ssd not detected", "pcieport link down", "patriot p300", "pi 5 nvme", "blank screen", "bootloader", "lspci", "lsblk", "rpi-eeprom-config"]
+    snippet: "Troubleshooting NVMe SSD detection on Raspberry Pi 5, PCIe ribbon cable seating, 27W PSU brownouts, lspci, and EEPROM settings.",
+    keywords: ["nvme error", "ssd not detected", "pcieport link down", "nvme ssd", "pi 5 nvme", "blank screen", "bootloader", "lspci", "lsblk", "rpi-eeprom-config"]
   },
   {
     title: "SQLite & Storage Health Diagnostics",

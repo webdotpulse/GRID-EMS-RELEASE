@@ -59,7 +59,7 @@ graph TD
 ```
 
 > [!NOTE]
-> **Raspberry Pi Optimization & NVMe Storage:** GEMS is officially verified on the [db-tronic Raspberry Pi 5 NVMe Kit](https://www.amazon.com.be/-/en/dp/B0GZ65XG3G?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1) and [Patriot P300 128GB M.2 NVMe SSD](https://www.amazon.com.be/-/en/dp/B0822Y6N1C?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1). Database writes are buffered in memory and written in 1-minute transaction batches. SQLite Write-Ahead Logging (`WAL`) and periodic non-blocking downsampling prevent SD card wear and ensure sub-millisecond query latency on NVMe storage.
+> **Raspberry Pi Optimization & NVMe Storage:** GEMS is officially verified on Raspberry Pi 5 with an M.2 NVMe PCIe Base and high-endurance 128GB+ M.2 NVMe SSD. Database writes are buffered in memory and written in 1-minute transaction batches. SQLite Write-Ahead Logging (`WAL`) and periodic non-blocking downsampling prevent SD card wear and ensure sub-millisecond query latency on NVMe storage.
 
 ---
 

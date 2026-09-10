@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Release Repository Changelog Synchronization:** Synchronized system changelogs directly to the public release repository and attached them to GitHub release packages, ensuring installers and users can inspect complete version history from the documentation and release hub.
 
 ### Changed
+- **Generic Reference Hardware Specifications:** Updated documentation, deployment manuals, and interactive troubleshooting guides to use vendor-neutral, generic hardware specifications (standard Raspberry Pi 5 platform, standard M.2 NVMe PCIe base, and high-speed NVMe storage) and removed store-specific commercial links, providing open hardware guidance for homeowners and installers.
 - **RAEDIAN Charger Modbus Protocol V0.7 Support:** Updated the RAEDIAN NEO, NEX, and Gemini AC Wallbox templates to match the latest Modbus protocol specification. RAEDIAN Gemini dual chargers now support continuous 0–64A dynamic current modulation for optimal solar self-consumption, replacing stepped presets and automatically balancing current across both sockets.
 - **Single-Read Telemetry Batching for RAEDIAN Chargers:** Optimized Modbus communication for RAEDIAN chargers to retrieve all 3-phase currents, voltages, power, energy, session statuses, and error codes in a single request, reducing network latency and bus traffic.
 

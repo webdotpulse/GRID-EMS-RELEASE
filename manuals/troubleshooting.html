@@ -317,9 +317,9 @@ cat /dev/ttyUSB0
         </div>
 
         <!-- NVMe SSD & Bootloader Diagnostics -->
-        <h2 id="nvme-troubleshooting">4. NVMe SSD & Bootloader Diagnostics (Patriot P300 & Pi 5)</h2>
+        <h2 id="nvme-troubleshooting">4. NVMe SSD & Bootloader Diagnostics (Raspberry Pi 5)</h2>
         <p>
-          If your Raspberry Pi 5 does not detect the <strong>Patriot P300 128GB M.2 SSD</strong> or fails to boot from the NVMe HAT, work through the diagnostic matrix below:
+          If your Raspberry Pi 5 does not detect the <strong>M.2 NVMe SSD</strong> or fails to boot from the NVMe HAT, work through the diagnostic matrix below:
         </p>
 
         <div class="table-wrapper">
@@ -345,12 +345,12 @@ cat /dev/ttyUSB0
               <tr>
                 <td><strong>Kernel dmesg: <code>pcieport link down</code></strong></td>
                 <td>Signal integrity failure or power supply sag.</td>
-                <td>Ensure you are using the official <strong>27W USB-C PD power supply</strong> (included in db-tronic kit). 15W phone chargers will brownout during PCIe link training.</td>
+                <td>Ensure you are using the official <strong>27W USB-C PD power supply</strong> (5.1V / 5.0A). 15W phone chargers will brownout during PCIe link training.</td>
               </tr>
               <tr>
                 <td><strong><code>lsblk</code> shows no <code>/dev/nvme0n1</code></strong></td>
                 <td>SSD not seated in M.2 key or missing kernel driver module.</td>
-                <td>Re-seat the Patriot P300 SSD at a 30° angle, tighten M2 screw. Run <code>sudo modprobe nvme</code> and <code>sudo dmesg | grep -i nvme</code> in Cockpit terminal.</td>
+                <td>Re-seat the M.2 NVMe SSD at a 30° angle, tighten M2 screw. Run <code>sudo modprobe nvme</code> and <code>sudo dmesg | grep -i nvme</code> in Cockpit terminal.</td>
               </tr>
             </tbody>
           </table>
@@ -364,7 +364,7 @@ cat /dev/ttyUSB0
               <span>Copy</span>
             </button>
           </div>
-          <pre><code># 1. Check if PCIe Controller detects Silicon Motion / Patriot NVMe:
+          <pre><code># 1. Check if PCIe Controller detects NVMe device:
 lspci -v
 
 # 2. Check if NVMe block device is registered:

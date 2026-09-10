@@ -220,37 +220,37 @@
             <thead>
               <tr>
                 <th>Component</th>
-                <th>Product & Model</th>
-                <th>Specifications</th>
-                <th>Purchase Reference</th>
+                <th>Hardware Specification</th>
+                <th>Technical Details</th>
+                <th>Standard & Compatibility</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Complete System Kit</strong></td>
-                <td><strong>db-tronic Raspberry Pi 5 4GB NVMe Kit</strong></td>
+                <td><strong>System Controller & Base</strong></td>
+                <td><strong>Raspberry Pi 5 Reference Hardware</strong></td>
                 <td>
                   • Raspberry Pi 5 (4GB RAM, Quad-Core Cortex-A76 @ 2.4GHz)<br>
                   • Official Raspberry Pi 27W USB-C PD Power Supply<br>
                   • Custom Aluminum Metal Enclosure with Active Cooler<br>
                   • M.2 NVMe PCIe HAT / Base & 16-pin FPC ribbon cable<br>
-                  • 64GB MicroSD Card + 4K Micro-HDMI cable
+                  • MicroSD Card (for initial bootloader flashing)
                 </td>
                 <td>
-                  <a href="https://www.amazon.com.be/-/en/dp/B0GZ65XG3G?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1" target="_blank" rel="noopener" class="badge-pill badge-blue">Amazon BE Link &rarr;</a>
+                  <span class="badge-pill badge-green">Official Reference Platform</span>
                 </td>
               </tr>
               <tr>
                 <td><strong>High-Speed NVMe Storage</strong></td>
-                <td><strong>Patriot P300 128GB M.2 NVMe SSD</strong><br><code>P300P128GM28</code></td>
+                <td><strong>128GB+ M.2 NVMe SSD</strong></td>
                 <td>
-                  • M.2 2280 PCIe Gen 3.0 x4 (NVMe 1.3)<br>
-                  • Read up to 1,600 MB/s / Write up to 600 MB/s<br>
+                  • M.2 2280 PCIe Gen 3.0 / Gen 2.0 x4 (NVMe 1.3+)<br>
+                  • Read up to 1,600+ MB/s / Write up to 600+ MB/s<br>
                   • Ultra-low power consumption for 24/7 reliability<br>
                   • High endurance, zero SD card wear
                 </td>
                 <td>
-                  <a href="https://www.amazon.com.be/-/en/dp/B0822Y6N1C?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1" target="_blank" rel="noopener" class="badge-pill badge-blue">Amazon BE Link &rarr;</a>
+                  <span class="badge-pill badge-green">Verified NVMe Storage</span>
                 </td>
               </tr>
             </tbody>
@@ -260,13 +260,13 @@
         <!-- NVMe Setup & EEPROM Configuration -->
         <h2 id="nvme-setup">⚡ NVMe M.2 SSD Installation & EEPROM Bootloader Setup</h2>
         <p>
-          When setting up a Raspberry Pi 5 with an NVMe Base (such as the db-tronic kit) and the Patriot P300 128GB SSD, <strong>the Pi 5 will not boot or see the SSD out of the box</strong> because factory EEPROMs are programmed to boot exclusively from MicroSD (<code>BOOT_ORDER=0xf41</code>) and do not probe the PCIe bus at early boot.
+          When setting up a Raspberry Pi 5 with an M.2 NVMe PCIe Base and an M.2 NVMe SSD, <strong>the Pi 5 will not boot or see the SSD out of the box</strong> because factory EEPROMs are programmed to boot exclusively from MicroSD (<code>BOOT_ORDER=0xf41</code>) and do not probe the PCIe bus at early boot.
         </p>
 
         <div class="alert alert-important">
           <div class="alert-header">
             <svg width="18" height="18"><use href="assets/icons.svg#icon-alert-triangle"></use></svg>
-            <span>Why the Pi 5 doesn't see the Patriot P300 SSD</span>
+            <span>Why the Pi 5 doesn't see the M.2 NVMe SSD</span>
           </div>
           <p>
             1. <strong>EEPROM Boot Order:</strong> Factory Pi 5 bootloader ignores NVMe storage unless NVMe boot mode (<code>0x6</code>) and <code>PCIE_PROBE=1</code> are activated in EEPROM.<br>
@@ -277,17 +277,17 @@
 
         <h3>Method 1: The 3-Minute Quick Fix (Using Raspberry Pi Imager EEPROM Utility)</h3>
         <ol>
-          <li>Insert the included <strong>64GB MicroSD card</strong> into your PC/Mac.</li>
+          <li>Insert a <strong>MicroSD card</strong> into your PC/Mac.</li>
           <li>Open <strong><a href="https://www.raspberrypi.com/software/" target="_blank" rel="noopener">Raspberry Pi Imager</a></strong> &rarr; Choose Device: <strong>Raspberry Pi 5</strong>.</li>
           <li>Click <strong>Choose OS</strong> &rarr; <strong>Misc utility images</strong> &rarr; <strong>Bootloader</strong> &rarr; <strong>NVMe/PCIe Boot</strong>.</li>
           <li>Choose your MicroSD card and click <strong>Write</strong>.</li>
-          <li>Insert the card into the Raspberry Pi 5 (with Patriot P300 SSD assembled in the HAT) and plug in the official <strong>27W Power Supply</strong>.</li>
+          <li>Insert the card into the Raspberry Pi 5 (with M.2 NVMe SSD assembled in the HAT) and plug in the official <strong>27W Power Supply</strong>.</li>
           <li>In 5–10 seconds, the green ACT LED flashes rapidly and the HDMI screen turns <strong>solid green</strong>, confirming the EEPROM is permanently updated (<code>BOOT_ORDER=0xf461</code>, <code>PCIE_PROBE=1</code>).</li>
-          <li>Unplug power, <strong>remove the MicroSD card</strong>, flash <code>gems-os-image.img.xz</code> directly to the Patriot P300 SSD, and power on. The system will boot from NVMe in under 8 seconds!</li>
+          <li>Unplug power, <strong>remove the MicroSD card</strong>, flash <code>gems-os-image.img.xz</code> directly to the NVMe SSD, and power on. The system will boot from NVMe in under 8 seconds!</li>
         </ol>
 
         <h3>Method 2: Flash NVMe Directly via Cockpit Web Terminal</h3>
-        <p>If you don't have a separate USB-to-NVMe enclosure for your PC, you can configure the bootloader and flash the Patriot P300 SSD directly using Cockpit terminal (<code>http://ems.local:9090</code>) while booted from the MicroSD card:</p>
+        <p>If you don't have a separate USB-to-NVMe enclosure for your PC, you can configure the bootloader and flash the NVMe SSD directly using Cockpit terminal (<code>http://ems.local:9090</code>) while booted from the MicroSD card:</p>
 
         <div class="code-block-wrapper">
           <div class="code-header">
@@ -301,7 +301,7 @@
 sudo rpi-eeprom-config --edit
 # Ensure BOOT_ORDER=0xf461 and PCIE_PROBE=1 are set, save and exit (Ctrl+O, Ctrl+X)
 
-# 2. Download and flash GEMS directly to the Patriot P300 SSD (/dev/nvme0n1)
+# 2. Download and flash GEMS directly to the NVMe SSD (/dev/nvme0n1)
 curl -LO https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/latest/download/gems-os-image.img.xz
 xzcat gems-os-image.img.xz | sudo dd of=/dev/nvme0n1 bs=4M status=progress conv=fsync
 

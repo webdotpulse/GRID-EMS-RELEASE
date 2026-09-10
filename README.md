@@ -122,27 +122,27 @@ GEMS includes **90 native hardware templates**. Adding a device requires 4 simpl
 
 GEMS is designed, tested, and validated on the following reference hardware:
 
-| Component | Hardware Specification | Purchase Reference |
+| Component | Hardware Specification | Standard / Requirement |
 | :--- | :--- | :--- |
-| **Complete System Kit** | **db-tronic Raspberry Pi 5 4GB NVMe Kit**<br>• Raspberry Pi 5 (4GB RAM)<br>• Official 27W USB-C PD Power Supply<br>• Metal Enclosure with Active Cooler<br>• M.2 NVMe PCIe HAT / Base & 16-pin FPC cable<br>• 64GB MicroSD Card + 4K Micro-HDMI cable | [Amazon BE: db-tronic RPi 5 Kit](https://www.amazon.com.be/-/en/dp/B0GZ65XG3G?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1) |
-| **Internal High-Speed Storage** | **Patriot P300 128GB M.2 PCIe Gen 3 x4 NVMe SSD**<br>• Model: `P300P128GM28`<br>• Low power consumption, high endurance<br>• Read: up to 1600 MB/s / Write: up to 600 MB/s | [Amazon BE: Patriot P300 128GB SSD](https://www.amazon.com.be/-/en/dp/B0822Y6N1C?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1) |
+| **System Controller & Base** | **Raspberry Pi 5 Reference Hardware**<br>• Raspberry Pi 5 (4GB or 8GB RAM)<br>• Official 27W USB-C PD Power Supply (5V / 5A)<br>• Aluminum Enclosure with Active Cooler<br>• M.2 NVMe PCIe HAT / Base & 16-pin FPC cable<br>• MicroSD Card (for initial bootloader setup) | Recommended reference hardware platform |
+| **Internal High-Speed Storage** | **128GB+ M.2 NVMe SSD**<br>• Form Factor: M.2 2280 (or 2230/2242) M-Key<br>• Interface: PCIe Gen 3.0 / Gen 2.0 x4 NVMe<br>• High endurance, low power consumption<br>• Read: up to 1,600+ MB/s / Write: up to 600+ MB/s | Solid-state NVMe storage for zero wear & sub-second latency |
 
 > 📖 **Full Hardware Specifications & Pinouts**: See [docs/hardware_reference.md](docs/hardware_reference.md).
 
 ---
 
-## ⚡ NVMe SSD Bootloader Setup (Fixing Patriot P300 Detection)
+## ⚡ NVMe SSD Bootloader Setup (Enabling NVMe Storage & Boot)
 
-When using a brand-new Raspberry Pi 5 with an NVMe HAT and the Patriot P300 SSD, the board's factory EEPROM is set to boot exclusively from SD card (`BOOT_ORDER=0xf41`) and does not probe PCIe storage.
+When using a brand-new Raspberry Pi 5 with an NVMe HAT and an M.2 NVMe SSD, the board's factory EEPROM is set to boot exclusively from SD card (`BOOT_ORDER=0xf41`) and does not probe PCIe storage.
 
 ### 🌟 3-Minute Quick Fix (Using Raspberry Pi Imager)
-1. Insert the 64GB MicroSD card into your computer.
+1. Insert a MicroSD card into your computer.
 2. Open **[Raspberry Pi Imager](https://www.raspberrypi.com/software/)** &rarr; Choose Device: **Raspberry Pi 5** &rarr; Choose OS: **Misc utility images** &rarr; **Bootloader** &rarr; **NVMe/PCIe Boot**.
 3. Choose your MicroSD card and click **Write**.
-4. Assemble the Patriot P300 SSD onto the Pi 5 NVMe HAT, insert the MicroSD card, and connect the official 27W power supply.
+4. Assemble the M.2 NVMe SSD onto the Pi 5 NVMe HAT, insert the MicroSD card, and connect the official 27W power supply.
 5. In ~5 seconds, the ACT LED flashes rapidly and the HDMI screen turns **solid green**, confirming the EEPROM is updated (`BOOT_ORDER=0xf461`, `PCIE_PROBE=1`).
-6. Unplug power, remove the MicroSD card, and flash `gems-os-image.img.xz` directly to the Patriot P300 SSD (or see [docs/nvme_boot_guide.md](docs/nvme_boot_guide.md) to flash from terminal).
-7. Power on without the SD card—the system boots from the Patriot P300 SSD in under 8 seconds!
+6. Unplug power, remove the MicroSD card, and flash `gems-os-image.img.xz` directly to the NVMe SSD (or see [docs/nvme_boot_guide.md](docs/nvme_boot_guide.md) to flash from terminal).
+7. Power on without the SD card—the system boots from the NVMe SSD in under 8 seconds!
 
 > 📖 **Detailed NVMe Troubleshooting & Diagnostics**: See [docs/nvme_boot_guide.md](docs/nvme_boot_guide.md).
 
@@ -221,7 +221,7 @@ cd GRID-EMS
 | 🔌 [Device Manuals & Templates](manuals/devices.html) | Complete step-by-step guides for all 90 supported hardware templates |
 | 📘 [User Manual (Markdown)](docs/user_manual.md) | End-user operations, PowerFlow diagram, OCPP server setup |
 | 📖 [Advanced Operational Manual](docs/advanced_manual.md) | Technical deep-dive on algorithms, formulas, and SG-Ready contactors |
-| ⚡ [NVMe Boot & Setup Manual](docs/nvme_boot_guide.md) | Complete guide for Raspberry Pi 5 + Patriot P300 NVMe SSD |
+| ⚡ [NVMe Boot & Setup Manual](docs/nvme_boot_guide.md) | Complete guide for Raspberry Pi 5 + M.2 NVMe SSD |
 | 🛠️ [Hardware Reference BOM](docs/hardware_reference.md) | Tested reference BOM, power requirements, RS485/P1 pinouts |
 | 🌐 [Remote Access Guide](docs/remote_access.md) | Cockpit terminal on port 9090 and Raspberry Pi Connect pairing |
 | ⚙️ [Settings & Strategy Reference](docs/settings.md) | Full reference of all UI parameters, contract formulas, and tariff curves |
