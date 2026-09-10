@@ -14,7 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.8.0] - 2026-09-10
+## [v9.8.1] - 2026-09-10
+
+### Added
+- **Comprehensive Hardware Integration Reference (`Supported_devices.md`):** Published an exhaustive, detailed reference covering all 101 native hardware templates supported across inverters, dedicated battery storage systems, EV chargers, smart meters, and smart relays. Details exact communication protocols (Modbus TCP, OCPP 1.6-J/2.0.1, REST, P1 serial/network), register telemetry read, writable control setpoints, and practical real-world automated actions executed by the GEMS strategy engine (self-consumption optimization, Flanders capacity peak shaving, negative spot price protection, and dynamic load balancing).
 
 ### Changed
 - **Generic Reference Hardware Specifications:** Updated documentation, deployment manuals, and interactive troubleshooting guides to use vendor-neutral, generic hardware specifications (standard Raspberry Pi 5 platform, standard M.2 NVMe PCIe base, and high-speed NVMe storage) and removed store-specific commercial links, providing open hardware guidance for homeowners and installers.
