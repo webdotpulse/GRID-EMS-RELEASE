@@ -14,15 +14,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.8.1] - 2026-09-10
+## [v9.9.0] - 2026-09-12
 
 ### Added
+- **Hardware Diagnostic Probe & Cloud Superadmin Dispatch:** Added an integrated device diagnostic probing engine directly to the Device Management interface. Installers and homeowners can trigger on-demand live diagnostic probes on any configured inverter, battery, EV charger, smart meter, or relay to test TCP socket reachability, measure network latency, verify active poller cycle execution, inspect live decoded telemetry metrics (active power, battery power, grid power, energy totals, state of charge, 3-phase currents, and voltages), and view chronological timestamped diagnostic trace logs.
+- **One-Click Diagnostic Submission to GRID-EMS-SERVER:** Introduced a secure, direct diagnostic submission channel from the edge unit to the central cloud platform. If a template encounters register offsets or communication errors, users can package probe findings and observations (with all private passwords and tokens automatically stripped) and dispatch them directly to central engineering for analysis and template correction.
+- **Central Cloud Fleet Command Synchronization (`GRID-EMS-SERVER`):** Added native execution support for remote site configuration updates (`UPDATE_SETTINGS`), on-demand subnet hardware discovery (`TRIGGER_NETWORK_SCAN`), immediate telemetry forcing (`FORCE_TELEMETRY`), and capacity peak optimization evaluation triggered from the central management platform. Discovered hardware devices from subnet sweeps are now automatically reported back to the cloud console.
+- **Monthly Capacity Peak Telemetry Streaming:** Added transmission of the active monthly capacity tariff peak and configured ceiling limit in edge telemetry payloads, keeping central fleet overviews continuously synchronized with local grid metrics.
 - **Comprehensive Hardware Integration Reference (`Supported_devices.md`):** Published an exhaustive, detailed reference covering all 101 native hardware templates supported across inverters, dedicated battery storage systems, EV chargers, smart meters, and smart relays. Details exact communication protocols (Modbus TCP, OCPP 1.6-J/2.0.1, REST, P1 serial/network), register telemetry read, writable control setpoints, and practical real-world automated actions executed by the GEMS strategy engine (self-consumption optimization, Flanders capacity peak shaving, negative spot price protection, and dynamic load balancing).
 
 ### Changed
 - **Generic Reference Hardware Specifications:** Updated documentation, deployment manuals, and interactive troubleshooting guides to use vendor-neutral, generic hardware specifications (standard Raspberry Pi 5 platform, standard M.2 NVMe PCIe base, and high-speed NVMe storage) and removed store-specific commercial links, providing open hardware guidance for homeowners and installers.
 
 ### Fixed
+- **EV Charger Category Synchronization in Cloud Engine:** Corrected device category filtering in the cloud management module so all wallbox and EV charging station templates (including RAEDIAN, Alfen, Easee, and Zaptec) respond reliably to remote charging mode commands and accurately aggregate daily charging energy totals.
+- **Subnet Discovery Resource Safety:** Hardened the local network sweep to strictly bound IP iteration to a standard local subnet limit and utilize a bounded concurrent worker pool, preventing excessive system resource utilization on complex home networks.
 - **Release Changelog Automation & Synchronization:** Resolved an issue where release entries remained unmigrated in public release documentation by implementing automated version promotion and release notes generation in the release pipeline, guaranteeing that every new tagged release accurately publishes its version history to `GRID-EMS-RELEASE`.
 
 ---
