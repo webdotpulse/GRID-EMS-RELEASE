@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS P1 Port Connection & DIY Cable Manual</title>
+  <meta name="description" content="Complete guide to connecting GEMS to the P1 Port of digital smart meters (Fluvius, DSMR), assembling DIY USB-to-RJ11/RJ12 cables, inverter schematics, and serial diagnostics.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 14mm 16mm 14mm;
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.55;
+    }
+
+    .manual-page {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 20px 18px;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 960px;
+      padding: 36px 20px 20px 20px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 28px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0284c7;
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 8.5pt;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 30pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 0 0 10px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 13pt;
+      color: #475569;
+      margin: 0 0 24px 0;
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 3px;
+    }
+
+    .cover-meta-val {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);
+      margin: 16px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 8pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Headings */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 6px;
+      margin-top: 32px;
+      margin-bottom: 14px;
+      page-break-after: avoid;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 22px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #0284c7;
+      margin-top: 16px;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #334155;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+      font-size: 9pt;
+    }
+
+    .callout-info {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      color: #0369a1;
+    }
+
+    .callout-tip {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #15803d;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #b45309;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 8.5pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #e2e8f0;
+      padding: 7px 10px;
+      text-align: left;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* Code Blocks */
+    .terminal-box {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: 'Fira Code', monospace;
+      font-size: 8.5pt;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      overflow-x: hidden;
+      line-height: 1.45;
+    }
+
+    .terminal-box code {
+      color: #38bdf8;
+    }
+
+    /* Schematics / Diagram Box */
+    .schematic-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 16px 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 8pt;
+      line-height: 1.35;
+      color: #1e293b;
+      page-break-inside: avoid;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .pinout-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+    }
+
+    .toc-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 18px 24px;
+      margin-bottom: 26px;
+      page-break-inside: avoid;
+    }
+
+    .toc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12pt;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      column-count: 2;
+      column-gap: 24px;
+    }
+
+    .toc-list li {
+      margin-bottom: 5px;
+      font-size: 8.5pt;
+      color: #334155;
+    }
+
+    .toc-list a {
+      color: #0284c7;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+  </style>
+</head>
+<body>
+
+<div class="manual-page">
+
+  <!-- ==================== COVER PAGE ==================== -->
+  <div class="cover-page">
+    <div>
+      <div class="cover-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <img src="assets/new_energy_grid_logo.png" alt="New Energy Grid" style="height: 40px; width: auto; object-fit: contain;">
+        <div class="cover-badge" style="margin-bottom: 0;">⚡ HARDWARE INTEGRATION & DIY CABLE MANUAL</div>
+      </div>
+      <h1 class="cover-title">GEMS P1 Port Connection & DIY Cable Guide</h1>
+      <div class="cover-subtitle">Connecting GEMS to Digital Electricity Meters via P1 Port, DIY USB-to-RJ11/RJ12 Cable Assembly, Inverter Schematics & Fluvius e-MUCS / DSMR Telemetry</div>
+
+      <div class="cover-meta-grid">
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">System Firmware</span>
+          <span class="cover-meta-val">v9.14.1-release (Official Tag)</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Supported Standards</span>
+          <span class="cover-meta-val">DSMR 5.0.2 / Belgian e-MUCS v1.4 / SMR 5.0</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Physical Interface</span>
+          <span class="cover-meta-val">RJ12 (6P6C) or RJ11 (6P4C) to USB-UART</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Target Audience</span>
+          <span class="cover-meta-val">Electricians, Installers & DIY Homeowners</span>
+        </div>
+      </div>
+
+      <div class="cover-hero-img">
+        <img src="assets/screenshots/settings_devices_meter_form.png" alt="GEMS Smart Meter Configuration">
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <span>GEMS Energy Management System (GRID-EMS)</span>
+      <span>Official Hardware Guide • P1 Smart Meter Interface</span>
+    </div>
+  </div>
+
+  <!-- ==================== TABLE OF CONTENTS ==================== -->
+  <div class="toc-box">
+    <div class="toc-title">Table of Contents</div>
+    <ul class="toc-list">
+      <li><strong>1.</strong> <a href="#sec-intro">Understanding the P1 User Port</a></li>
+      <li><strong>2.</strong> <a href="#sec-meters">Supported Smart Meters & Grid Operators</a></li>
+      <li><strong>3.</strong> <a href="#sec-pinout">RJ12 vs RJ11 Pinout & Electrical Specs</a></li>
+      <li><strong>4.</strong> <a href="#sec-inversion">Inverted Logic & Open-Collector Explained</a></li>
+      <li><strong>5.</strong> <a href="#sec-bom">Bill of Materials (BOM) & Tools Required</a></li>
+      <li><strong>6.</strong> <a href="#sec-hardware-inverter">Method A: Hardware Transistor Inverter</a></li>
+      <li><strong>7.</strong> <a href="#sec-ftdi-inverter">Method B: FTDI Software Inversion (Clean)</a></li>
+      <li><strong>8.</strong> <a href="#sec-assembly">Step-by-Step Cable Assembly & Testing</a></li>
+      <li><strong>9.</strong> <a href="#sec-activation">Activating the P1 Port (Mijn Fluvius / DNO)</a></li>
+      <li><strong>10.</strong> <a href="#sec-linux">Linux Recognition & Raw Serial Verification</a></li>
+      <li><strong>11.</strong> <a href="#sec-ui">Configuring the P1 Meter in GEMS UI</a></li>
+      <li><strong>12.</strong> <a href="#sec-obis">OBIS Telegram Decoding & Flanders Peaks</a></li>
+      <li><strong>13.</strong> <a href="#sec-troubleshoot">Comprehensive Troubleshooting & FAQ</a></li>
+    </ul>
+  </div>
+
+  <!-- ==================== 1. UNDERSTANDING THE P1 USER PORT ==================== -->
+  <h1 class="section-title" id="sec-intro">1. Understanding the P1 User Port</h1>
+  <p>
+    Every modern digital utility electricity meter installed by distribution grid operators in Belgium (Fluvius, Sibelga, ORES, RESA), the Netherlands (Liander, Enexis, Stedin), and Luxembourg (Creos Smarty) features a physical customer port labeled <strong>P1</strong>.
+  </p>
+  <p>
+    The P1 port is a standardized serial communication interface designed specifically for homeowners and energy management systems. Unlike closed utility optical ports, the P1 port provides a unidirectional, real-time data stream directly from the utility revenue meter into GEMS.
+  </p>
+
+  <h2 class="subsection-title">What Data Does GEMS Read from the P1 Port?</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Telemetry Metric</th>
+        <th>Frequency</th>
+        <th>Role in GEMS Optimization</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Active Import Power (Watts)</strong></td>
+        <td>Every 1 second</td>
+        <td>Instantaneous grid import. Used by the Flanders peak shaving controller to detect sudden load spikes (e.g. induction cooktop, tumble dryer) and trigger immediate battery discharge or EV throttling.</td>
+      </tr>
+      <tr>
+        <td><strong>Active Export Power (Watts)</strong></td>
+        <td>Every 1 second</td>
+        <td>Solar energy surplus exported to the grid. GEMS modulates EV charging currents (6A–32A) and turns on smart relays (SG-Ready heat pumps) to capture 100% of this surplus locally.</td>
+      </tr>
+      <tr>
+        <td><strong>Per-Phase Current (A) & Voltage (V)</strong></td>
+        <td>Every 1 second</td>
+        <td>Monitors Phase L1, L2, and L3 to prevent domestic main fuse trips and calculate unbalanced phase loads.</td>
+      </tr>
+      <tr>
+        <td><strong>Fiscal Peak Active Demand (kW)</strong><br><code>OBIS 1-0:1.6.0</code></td>
+        <td>Every telegram</td>
+        <td>Authoritative maximum 15-minute average power demand recorded during the current calendar month by the utility. GEMS uses this for its <strong>Smart Adaptive Ceiling</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>Energy Counters (kWh)</strong><br>Import T1, T2 & Export T1, T2</td>
+        <td>Cumulative</td>
+        <td>Official utility billing registers. Recorded in GEMS historical database to generate 100% accurate energy reports matching your electric utility bill.</td>
+      </tr>
+      <tr>
+        <td><strong>Gas Meter Consumption (m³)</strong></td>
+        <td>Every 5 minutes</td>
+        <td>Sub-metered gas consumption transmitted wirelessly over M-Bus from the digital gas meter to the electricity meter.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 2. SUPPORTED SMART METERS ==================== -->
+  <h1 class="section-title" id="sec-meters">2. Supported Smart Meters & Grid Operators</h1>
+  <p>
+    GEMS supports all smart meter models deployed under the Dutch Smart Meter Requirements (DSMR 4.0, 4.2, 5.0.2) and Belgian companion specifications (e-MUCS v1.4):
+  </p>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Grid Operator / Region</th>
+        <th>Meter Manufacturer & Models</th>
+        <th>Standard</th>
+        <th>Baud Rate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Fluvius (Flanders, Belgium)</strong></td>
+        <td>Sagemcom T211 (3-phase), S211 (single-phase)<br>Landis+Gyr E360</td>
+        <td>e-MUCS v1.4 / DSMR 5.0.2</td>
+        <td><strong>115,200 baud</strong> (8N1)</td>
+      </tr>
+      <tr>
+        <td><strong>Sibelga (Brussels, Belgium)</strong></td>
+        <td>Sagemcom T211 / S211</td>
+        <td>e-MUCS v1.4 / DSMR 5.0.2</td>
+        <td><strong>115,200 baud</strong> (8N1)</td>
+      </tr>
+      <tr>
+        <td><strong>ORES & RESA (Wallonia, Belgium)</strong></td>
+        <td>Sagemcom T211 / Landis+Gyr E360</td>
+        <td>e-MUCS v1.4 / DSMR 5.0.2</td>
+        <td><strong>115,200 baud</strong> (8N1)</td>
+      </tr>
+      <tr>
+        <td><strong>Liander, Enexis, Stedin (Netherlands)</strong></td>
+        <td>Landis+Gyr (E350, E360), Kaifa (MA105, MA304), Iskra (ME382, MT382), Kamstrup</td>
+        <td>DSMR 5.0.2<br>DSMR 4.0 / 4.2</td>
+        <td><strong>115,200 baud</strong> (DSMR 5)<br><strong>9,600 baud</strong> (DSMR 4 / older)</td>
+      </tr>
+      <tr>
+        <td><strong>Creos (Luxembourg)</strong></td>
+        <td>Smarty (Sagemcom T210-D)</td>
+        <td>e-MUCS / DSMR 5.0</td>
+        <td><strong>115,200 baud</strong> (8N1)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 3. RJ12 VS RJ11 PINOUT & ELECTRICAL SPECS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-pinout">3. RJ12 vs RJ11 Pinout & Electrical Specifications</h1>
+  <p>
+    The physical P1 receptacle on the smart meter is a standard <strong>6-position, 6-contact (6P6C) modular socket</strong> (commonly referred to as an <strong>RJ12</strong> socket).
+  </p>
+
+  <div class="callout callout-info">
+    <div class="callout-title">💡 Can You Use an RJ11 (6P4C) Cable?</div>
+    <p>
+      <strong>Yes!</strong> A standard telephone plug is physically an <strong>RJ11 (6P4C)</strong> connector. It has 6 plastic pin slots but only the center 4 slots contain metal contacts (corresponding to Pins 2, 3, 4, and 5 of the RJ12 socket).
+    </p>
+    <p>
+      Because Pin 2 (RTS / Request) and Pin 5 (Data) and Pin 3 (GND) are all located on the center pins, <strong>an RJ11 4-wire cable works perfectly</strong> for reading telemetry into GEMS! The only pin omitted on RJ11 is Pin 1 (+5V power output). Because GEMS connects to the Raspberry Pi's USB port, the USB dongle draws its 5V power from the Pi anyway, making Pin 1 optional!
+    </p>
+  </div>
+
+  <h2 class="subsection-title">Official P1 Interface Pinout (DSMR 5.0 / e-MUCS)</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Pin #</th>
+        <th>Signal Name</th>
+        <th>Electrical Description</th>
+        <th>RJ12 (6P6C)</th>
+        <th>RJ11 (6P4C)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Pin 1</strong></td>
+        <td><strong>+5V Power</strong></td>
+        <td>+5 VDC Output (up to 250 mA on DSMR 5.0 meters). Powers external dongles.</td>
+        <td>Connected</td>
+        <td><em>Not present</em> (Not needed)</td>
+      </tr>
+      <tr>
+        <td><strong>Pin 2</strong></td>
+        <td><strong>Data Request (RTS)</strong></td>
+        <td>Control input. <strong>Must be pulled HIGH (+5V)</strong> to start telegram streaming.</td>
+        <td>Connected</td>
+        <td>Connected (Pin 1 on 4-wire)</td>
+      </tr>
+      <tr>
+        <td><strong>Pin 3</strong></td>
+        <td><strong>Data Ground (GND)</strong></td>
+        <td>Signal ground reference.</td>
+        <td>Connected</td>
+        <td>Connected (Pin 2 on 4-wire)</td>
+      </tr>
+      <tr>
+        <td><strong>Pin 4</strong></td>
+        <td><strong>Reserved (NC)</strong></td>
+        <td>No connection / Reserved.</td>
+        <td>Connected / NC</td>
+        <td>Connected / NC</td>
+      </tr>
+      <tr>
+        <td><strong>Pin 5</strong></td>
+        <td><strong>Data Output (TxD)</strong></td>
+        <td>Open-collector data output (Inverted UART, 0V = Mark, 5V = Space).</td>
+        <td>Connected</td>
+        <td>Connected (Pin 4 on 4-wire)</td>
+      </tr>
+      <tr>
+        <td><strong>Pin 6</strong></td>
+        <td><strong>Power Ground (GND)</strong></td>
+        <td>Ground reference (internally tied to Pin 3 on the meter).</td>
+        <td>Connected</td>
+        <td><em>Not present</em></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pinout-card">
+    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px;">Physical Pin Orientation (Looking into the Plug with Gold Contacts Facing You, Cable Pointing Down):</div>
+    <div class="schematic-box">
+       RJ12 (6P6C) Modular Plug                RJ11 (6P4C) Modular Plug
+      ┌─────────────────────────┐             ┌─────────────────────────┐
+      │  [1] [2] [3] [4] [5] [6]│             │  [ ] [1] [2] [3] [4] [ ]│
+      │   │   │   │   │   │   │ │             │       │   │   │   │     │
+      │  +5V RTS GND  NC TXD GND│             │      RTS GND  NC TXD    │
+      │                         │             │                         │
+      │       Plastic Clip      │             │       Plastic Clip      │
+      │       (on backside)     │             │       (on backside)     │
+      └───────────┬─┬───────────┘             └───────────┬─┬───────────┘
+                  │ │                                     │ │
+              Flat Cable                              Flat Cable
+    </div>
+  </div>
+
+  <!-- ==================== 4. INVERTED LOGIC EXPLAINED ==================== -->
+  <h1 class="section-title" id="sec-inversion">4. Understanding Inverted Logic & Open-Collector</h1>
+  <p>
+    The most common reason why DIY P1 cables fail is <strong>signal inversion</strong>.
+  </p>
+  <p>
+    Standard TTL serial UART (e.g. from an Arduino or standard USB adapter) uses non-inverted logic:
+  </p>
+  <ul style="margin: 6px 0 10px 18px; padding: 0;">
+    <li>Idle line = High (+5V / +3.3V) &rarr; Logic 1</li>
+    <li>Active start bit = Low (0V) &rarr; Logic 0</li>
+  </ul>
+  <p>
+    However, the DSMR / Fluvius P1 specification utilizes an <strong>open-collector output with inverted logic</strong>:
+  </p>
+  <ul style="margin: 6px 0 10px 18px; padding: 0;">
+    <li>Idle line = Pulled Low (0V) &rarr; Logic 1</li>
+    <li>Active transmission = Pulled High (+5V) &rarr; Logic 0</li>
+  </ul>
+  <p>
+    If you connect Pin 5 directly to the RX pin of a standard USB serial converter, the operating system reads flipped 1s and 0s, resulting in completely garbled binary noise (framing errors, gibberish characters like <code>\xff\xfc\x00</code>).
+  </p>
+  <p>
+    <strong>To fix this, the signal must be inverted.</strong> GEMS gives you two clean options:
+  </p>
+  <ol style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Method A (Hardware Transistor Inverter):</strong> Place a single inexpensive NPN transistor (e.g. BC547) and a pull-up resistor between Pin 5 and the USB RX pin. Works with <em>any</em> USB-serial adapter (CH340, CP2102, FTDI, PL2303).</li>
+    <li><strong>Method B (FTDI Software Inversion):</strong> Use an authentic FTDI FT232RL or FT232R USB adapter. FTDI chips contain internal logic gates that can invert the RX polarity in hardware EEPROM without adding any external transistors!</li>
+  </ol>
+
+  <!-- ==================== 5. BILL OF MATERIALS (BOM) ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-bom">5. Bill of Materials (BOM) & Tools Required</h1>
+  <p>
+    Building your own professional USB-to-P1 cable takes about 15 minutes and costs under €5 in parts.
+  </p>
+
+  <h2 class="subsection-title">Required Components</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Recommended Part</th>
+        <th>Approx. Cost</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>USB-to-Serial UART Board</strong></td>
+        <td>FTDI FT232RL USB UART Adapter (or CH340G / CP2102) with 5V logic jumper</td>
+        <td>€3.50 – €6.00</td>
+        <td>Translates serial bits to USB for the Raspberry Pi. FTDI is recommended for software inversion.</td>
+      </tr>
+      <tr>
+        <td><strong>Modular Cable & Plug</strong></td>
+        <td>RJ12 (6P6C) or RJ11 (6P4C) crimp plug with 1–2 meter 4-core or 6-core flat modular cable (or CAT5/CAT6 UTP cable)</td>
+        <td>€1.00</td>
+        <td>Physical plug that inserts into the smart meter P1 socket.</td>
+      </tr>
+      <tr>
+        <td><strong>NPN Transistor</strong><br><em>(Method A only)</em></td>
+        <td>BC547, BC548, 2N3904, or 2N2222 general-purpose NPN bipolar transistor</td>
+        <td>€0.15</td>
+        <td>Inverts the open-collector signal from the meter before reaching the UART RX pin.</td>
+      </tr>
+      <tr>
+        <td><strong>Resistor R1 (Pull-up)</strong><br><em>(Method A only)</em></td>
+        <td>1 kΩ (or 2.2 kΩ) 1/4W metal film resistor</td>
+        <td>€0.05</td>
+        <td>Pulls the transistor collector to +5V.</td>
+      </tr>
+      <tr>
+        <td><strong>Resistor R2 (Base)</strong><br><em>(Method A only)</em></td>
+        <td>10 kΩ (or 4.7 kΩ) 1/4W metal film resistor</td>
+        <td>€0.05</td>
+        <td>Limits base current from P1 Data output into the transistor.</td>
+      </tr>
+      <tr>
+        <td><strong>Heat-shrink Tubing</strong></td>
+        <td>3mm and 6mm polyolefin heat-shrink sleeve</td>
+        <td>€0.20</td>
+        <td>Insulates soldered joints and prevents accidental short circuits.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="subsection-title">Required Tools</h2>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Modular Crimping Tool:</strong> For crimping RJ11 / RJ12 connectors. (Alternatively, you can cut an existing telephone cable in half and strip the bare wires!).</li>
+    <li><strong>Wire Stripper & Flush Cutters:</strong> For cleanly exposing inner conductor strands.</li>
+    <li><strong>Soldering Iron & Lead-Free Solder:</strong> For soldering components to the USB adapter header pins.</li>
+    <li><strong>Digital Multimeter:</strong> For checking continuity and ensuring 0.00V shorts do not exist between 5V and GND.</li>
+  </ul>
+
+  <!-- ==================== 6. METHOD A: HARDWARE TRANSISTOR INVERTER ==================== -->
+  <h1 class="section-title" id="sec-hardware-inverter">6. Method A: Hardware Transistor Inverter Build</h1>
+  <p>
+    This circuit works universally with <strong>every USB-serial chip on the market</strong> (CH340G, CP2102, PL2303, FTDI, Raspberry Pi GPIO UART).
+  </p>
+
+  <h2 class="subsection-title">Circuit Schematic</h2>
+  <div class="schematic-box">
+  SMART METER P1 PORT                               USB-UART ADAPTER (e.g. CH340 / FTDI)
+  ===================                               ====================================
+
+  [ Pin 2: RTS ] ─────────────────────────────────────────── [ +5V VCC Pin ]
+                                                      (Pulls RTS HIGH to activate streaming)
+
+  [ Pin 3: GND ] ─────────────────────────────────────────── [ GND Pin ]
+                                                      (Common Signal Ground)
+
+                                  +5V (from USB)
+                                       │
+                                      ┌┴┐
+                                      │ │ R1 (1 kΩ Pull-up)
+                                      └┬┘
+                                       ├──────────── [ RXD Pin ] (Inverted TTL Input)
+                                       │
+                                     C │
+  [ Pin 5: TXD ] ────[ 10 kΩ R2 ]────┤  BC547 (NPN Transistor)
+                                     B ╲
+                                       │ E
+                                       │
+  [ Pin 3/6: GND ] ────────────────────┴──────────── [ GND Pin ]
+  </div>
+
+  <h2 class="subsection-title">How the Transistor Circuit Operates</h2>
+  <ol style="margin: 6px 0 12px 18px; padding: 0;">
+    <li>When P1 Pin 5 is <strong>Low (0V / Idle)</strong>, no current flows into the base of the BC547. The transistor is OFF (open). Resistor R1 pulls the USB adapter's RXD pin up to <strong>+5V (High)</strong>. This matches the standard UART idle state!</li>
+    <li>When P1 Pin 5 is <strong>High (+5V / Bit 0)</strong>, current flows through R2 into the base, turning the transistor ON (saturated). The collector pulls the USB adapter's RXD pin directly to <strong>0V (Ground)</strong>.</li>
+    <li>The logic is cleanly inverted at nanosecond speed, perfectly recreating the standard 115,200 baud UART waveform!</li>
+  </ol>
+
+  <!-- ==================== 7. METHOD B: FTDI SOFTWARE INVERSION ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-ftdi-inverter">7. Method B: FTDI Software Inversion (Zero Extra Components!)</h1>
+  <p>
+    If you use an official <strong>FTDI FT232R</strong> USB-UART adapter, you do not need any transistors or resistors! The FT232R silicon has internal configurable inverter gates built into its I/O pads.
+  </p>
+
+  <h2 class="subsection-title">Clean 3-Wire Connection Diagram</h2>
+  <div class="schematic-box">
+  SMART METER P1 PORT (RJ11 or RJ12)                FTDI FT232RL USB ADAPTER
+  ==================================                ========================
+
+  [ Pin 2: Data Request (RTS) ] ──────────────────── [ +5V (VCC) ] (Pulls RTS High)
+
+  [ Pin 3: Data GND ] ────────────────────────────── [ GND ]
+
+  [ Pin 5: Data TxD ] ────────────────────────────── [ RXD ] (Direct connection!)
+  </div>
+
+  <h2 class="subsection-title">Configuring FTDI RX Inversion via Linux (ftdi_eeprom)</h2>
+  <p>
+    You can permanently configure the FTDI adapter's EEPROM on your Raspberry Pi in 60 seconds:
+  </p>
+
+  <div class="terminal-box">
+    # 1. Install the open-source ftdi-eeprom utility<br>
+    <code>sudo apt-get update &amp;&amp; sudo apt-get install -y ftdi-eeprom</code><br><br>
+    # 2. Create a temporary configuration file<br>
+    <code>cat &lt;&lt; 'EOF' &gt; ftdi_p1.conf<br>
+vendor_id=0x0403<br>
+product_id=0x6001<br>
+invert_rxd=true<br>
+EOF</code><br><br>
+    # 3. Flash the inversion flag into the FTDI EEPROM<br>
+    <code>sudo ftdi_eeprom --flash-eeprom ftdi_p1.conf</code><br><br>
+    # 4. Unplug and replug the USB adapter<br>
+    <code># The adapter now natively inverts incoming serial bits in hardware!</code>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-title">🌟 Flashing via Windows (FT_Prog)</div>
+    <p>
+      If you are on Windows, download the free <strong>FT_Prog</strong> utility from FTDI's official website. Plug in the adapter &rarr; Click <strong>Scan and Parse</strong> &rarr; Expand <strong>Hardware Specific &rarr; Invert RS232 Signals</strong> &rarr; Check the box for <strong>Invert RXD</strong> &rarr; Click <strong>Program</strong> (lightning bolt icon). Done!
+    </p>
+  </div>
+
+  <!-- ==================== 8. STEP-BY-STEP CABLE ASSEMBLY ==================== -->
+  <h1 class="section-title" id="sec-assembly">8. Step-by-Step Cable Assembly & Verification</h1>
+
+  <h3 class="step-title">Step 1: Strip and Prepare the Cable</h3>
+  <p>
+    Remove 25 mm of the outer jacket from the telephone/UTP cable. Do not nick the inner conductor insulation. Strip 4 mm of insulation from each conductor strand.
+  </p>
+
+  <h3 class="step-title">Step 2: Crimp the RJ11 / RJ12 Connector</h3>
+  <p>
+    Hold the clear modular connector with the <strong>plastic locking tab facing away from you (down)</strong> and the gold contact blades facing up. Insert the wires from left to right:
+  </p>
+  <ul style="margin: 4px 0 10px 18px; padding: 0;">
+    <li><strong>For RJ12 (6P6C):</strong> Pin 1 (Leftmost, +5V optional) &bull; Pin 2 (RTS Request) &bull; Pin 3 (GND) &bull; Pin 4 (NC) &bull; Pin 5 (TxD Data) &bull; Pin 6 (Rightmost, GND).</li>
+    <li><strong>For RJ11 (4-wire flat cable):</strong> Wire 1 &rarr; Pin 2 (RTS) &bull; Wire 2 &rarr; Pin 3 (GND) &bull; Wire 3 &rarr; Pin 4 (NC) &bull; Wire 4 &rarr; Pin 5 (TxD Data).</li>
+  </ul>
+  <p>
+    Push wires firmly until they bottom out against the front plastic end. Squeeze the crimper firmly until the ratchet releases.
+  </p>
+
+  <h3 class="step-title">Step 3: Solder the USB Adapter Connections</h3>
+  <p>
+    Connect the cable wires to your USB UART board according to Method A (with transistor) or Method B (direct FTDI). Ensure the voltage selection jumper on your USB-UART board is set to <strong>5V</strong> (not 3.3V).
+  </p>
+
+  <h3 class="step-title">Step 4: Pre-Power Multimeter Verification (Crucial Safety Step!)</h3>
+  <div class="callout callout-warning">
+    <div class="callout-title">⚠️ Mandatory Multimeter Check Before Plugging In</div>
+    <p>
+      Before inserting the cable into your utility smart meter, take your digital multimeter and set it to <strong>Continuity / Resistance (Ω) mode</strong>:
+    </p>
+    <ul style="margin: 4px 0 0 18px; padding: 0;">
+      <li>Probe between <strong>+5V (Pin 2 / USB 5V)</strong> and <strong>GND (Pin 3)</strong>: Ensure there is <strong>NO short circuit</strong> (resistance must be infinite / OL).</li>
+      <li>Probe between <strong>TxD (Pin 5)</strong> and <strong>GND</strong>: Ensure no short circuit exists.</li>
+    </ul>
+    <p style="margin-top: 6px;">
+      A short between +5V and GND could trip the smart meter internal polyfuse or damage your Raspberry Pi USB bus!
+    </p>
+  </div>
+
+  <!-- ==================== 9. ACTIVATING THE P1 PORT ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-activation">9. Activating the P1 Port with Your Grid Operator</h1>
+  <p>
+    In Belgium (Fluvius), the P1 user port is <strong>electronically locked by default</strong> to protect consumer privacy. You must request activation via the web portal before the meter will transmit data.
+  </p>
+
+  <h2 class="subsection-title">Fluvius Activation Steps (Flanders, Belgium)</h2>
+  <ol style="margin: 6px 0 14px 18px; padding: 0;">
+    <li>Go to <strong><a href="https://www.fluvius.be" target="_blank">www.fluvius.be</a></strong> and log in to your personal <strong>"Mijn Fluvius"</strong> portal.</li>
+    <li>Navigate to <strong>Meters &amp; Aansluitingen</strong> &rarr; Select your digital electricity meter (EAN code).</li>
+    <li>Look for the section labeled <strong>"Poorten digitaal beheer (P1 en S1)"</strong>.</li>
+    <li>Click <strong>"Activeer gebruikerspoorten"</strong> and accept the privacy terms.</li>
+    <li><strong>Activation Time:</strong> The cellular grid network transmits an over-the-air activation command to your smart meter. This typically completes within <strong>15 minutes to 72 hours</strong>.</li>
+    <li><strong>Visual Verification on Meter LCD:</strong> Look at your smart meter's digital display.
+      <ul style="margin: 4px 0 0 16px; padding: 0;">
+        <li>When <strong>LOCKED</strong>: A solid yellow/black <strong>padlock icon (🔒)</strong> appears above "P1".</li>
+        <li>When <strong>ACTIVE</strong>: The padlock icon disappears, and a small <strong>downward triangle (▼)</strong> appears above "P1", indicating the port is open and streaming!</li>
+      </ul>
+    </li>
+  </ol>
+
+  <div class="callout callout-info">
+    <div class="callout-title">💡 Netherlands Smart Meters (Liander, Enexis, Stedin)</div>
+    <p>
+      In the Netherlands, smart meters under DSMR 4 and DSMR 5 have their P1 ports <strong>open and active by default out-of-the-box</strong>. No online activation request is required.
+    </p>
+  </div>
+
+  <!-- ==================== 10. LINUX RECOGNITION & SERIAL TESTING ==================== -->
+  <h1 class="section-title" id="sec-linux">10. Linux Recognition & Raw Serial Verification</h1>
+  <p>
+    Plug your completed USB cable into any free USB port on your GEMS Raspberry Pi 5.
+  </p>
+
+  <h2 class="subsection-title">1. Verify USB Device Enumeration</h2>
+  <p>Open Cockpit terminal on port 9090 or SSH into your Raspberry Pi and run:</p>
+  <div class="terminal-box">
+    <code>dmesg | grep -E "ttyUSB|FTDI|ch341"</code>
+  </div>
+  <p>You should see output similar to:</p>
+  <div class="terminal-box" style="color: #4ade80;">
+    [ 124.512] usb 1-1.2: FTDI USB Serial Device converter detected<br>
+    [ 124.513] usb 1-1.2: Detected FT232RL<br>
+    [ 124.514] usb 1-1.2: FTDI USB Serial Device converter now attached to ttyUSB0
+  </div>
+
+  <h2 class="subsection-title">2. Test Raw Telegram Stream in Terminal</h2>
+  <p>
+    Configure the serial terminal parameters (115,200 baud, 8 data bits, no parity, 1 stop bit) and read the live telegrams:
+  </p>
+  <div class="terminal-box">
+    <code>stty -F /dev/ttyUSB0 115200 cs8 -cstopb -parenb</code><br>
+    <code>cat /dev/ttyUSB0</code>
+  </div>
+  <p>
+    Within 1 to 2 seconds, clean ASCII text telegrams will print on your screen:
+  </p>
+  <div class="terminal-box" style="color: #38bdf8; font-size: 8pt; line-height: 1.3;">
+    /FLU5\253769484_A<br><br>
+    0-0:96.1.4(50217)<br>
+    0-0:96.1.1(3153414733313030313233343536)<br>
+    0-0:1.0.0(260912224500S)<br>
+    1-0:1.8.1(004218.412*kWh)<br>
+    1-0:1.8.2(003189.102*kWh)<br>
+    1-0:2.8.1(001890.871*kWh)<br>
+    1-0:2.8.2(000652.319*kWh)<br>
+    1-0:1.7.0(01.850*kW)<br>
+    1-0:2.7.0(00.000*kW)<br>
+    1-0:1.6.0(260908183000S)(02.450*kW)<br>
+    1-0:31.7.0(008.2*A)<br>
+    1-0:32.7.0(231.4*V)<br>
+    !5F2A
+  </div>
+
+  <p>
+    If you see readable text beginning with <code>/FLU5...</code> and ending with <code>!CRC</code>, <strong>your DIY cable is 100% working!</strong>
+  </p>
+
+  <!-- ==================== 11. UI CONFIGURATION IN GEMS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-ui">11. Configuring the P1 Meter in GEMS UI</h1>
+  <p>
+    With the cable connected and tested, adding the smart meter to GEMS requires zero coding:
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="assets/screenshots/settings_devices_meter_form.png" alt="Smart Meter Device Configuration in GEMS">
+    <div class="manual-screenshot-caption">Figure 11.1: Configuring the DSMR P1 Smart Meter in GEMS Settings &rarr; Devices.</div>
+  </div>
+
+  <h2 class="subsection-title">Step-by-Step Onboarding Workflow</h2>
+  <ol style="margin: 6px 0 14px 18px; padding: 0;">
+    <li>Open your web browser and navigate to <strong><code>http://ems.local</code></strong>.</li>
+    <li>Click <strong>Settings</strong> in the navigation sidebar, then click the <strong>Devices</strong> tab.</li>
+    <li>Click the <strong>+ Add Device</strong> button.</li>
+    <li>Select the <strong>Smart Meter</strong> category card.</li>
+    <li>In the <strong>Template</strong> dropdown, select:
+      <ul style="margin: 4px 0 4px 16px; padding: 0;">
+        <li><strong>DSMR P1 RJ12 Serial Dongle (/dev/ttyUSB0)</strong> &mdash; for direct USB cable connection.</li>
+        <li><em>(Or "Fluvius / DSMR P1 Smart Meter (Wi-Fi/USB)" if using a wireless network dongle like HomeWizard).</em></li>
+      </ul>
+    </li>
+    <li>Configure the connection fields:
+      <table class="data-table" style="margin-top: 8px;">
+        <thead>
+          <tr>
+            <th>Setting Name</th>
+            <th>Recommended Value</th>
+            <th>Installer Guidance & Explanation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Device Name</strong></td>
+            <td><code>Grid Main Smart Meter</code></td>
+            <td>A clear descriptive label displayed on the dashboard and device list.</td>
+          </tr>
+          <tr>
+            <td><strong>Serial Port Path</strong></td>
+            <td><code>/dev/ttyUSB0</code></td>
+            <td>The Linux serial device node. GEMS automatically detects available serial ports.</td>
+          </tr>
+          <tr>
+            <td><strong>Baud Rate</strong></td>
+            <td><code>115200</code></td>
+            <td>Choose <strong>115200</strong> for Fluvius (Belgium) and DSMR 5.0 (Netherlands). Only select <strong>9600</strong> if connecting to legacy Dutch DSMR 2/3/4 meters.</td>
+          </tr>
+          <tr>
+            <td><strong>Poll Interval</strong></td>
+            <td><code>1</code> (or <code>2</code> seconds)</td>
+            <td>How often GEMS parses incoming telegrams. A 1-second interval ensures sub-second reaction for peak shaving.</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>Click <strong>Add Device</strong>. The device card will immediately appear with a green <span style="color:#10b981; font-weight:bold;">● Online</span> badge, and live grid power will flow into your Dashboard!</li>
+  </ol>
+
+  <!-- ==================== 12. OBIS TELEGRAM DECODING ==================== -->
+  <h1 class="section-title" id="sec-obis">12. OBIS Telegram Decoding & Flanders Peaks</h1>
+  <p>
+    The P1 data stream adheres to the international <strong>OBIS (Object Identification System)</strong> standard. GEMS parses every telegram and extracts the following key registers:
+  </p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>OBIS Code</th>
+        <th>Field Description</th>
+        <th>Example Value</th>
+        <th>How GEMS Uses This</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong><code>1-0:1.7.0</code></strong></td>
+        <td>Actual Active Power Import (+P)</td>
+        <td><code>01.850*kW</code> (1,850 W)</td>
+        <td>Real-time grid import power. Plotted on dashboard and monitored for peak shaving.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:2.7.0</code></strong></td>
+        <td>Actual Active Power Export (-P)</td>
+        <td><code>00.000*kW</code> (0 W)</td>
+        <td>Real-time solar surplus feed-in. Used for EV dynamic charging and relay boosting.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:1.6.0</code></strong></td>
+        <td><strong>Maximum Monthly Peak Active Demand</strong></td>
+        <td><code>(260908183000S)(02.450*kW)</code></td>
+        <td><strong>Authoritative Fluvius monthly peak demand</strong> recorded on 2026-09-08 at 18:30. GEMS extracts both the exact timestamp and wattage to drive the Smart Adaptive Ceiling!</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:1.4.0</code></strong></td>
+        <td>Current Quarter-Hour Average Demand</td>
+        <td><code>01.920*kW</code> (1,920 W)</td>
+        <td>Running average demand for the active 15-minute billing quarter.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:1.8.1</code></strong></td>
+        <td>Energy Import Tariff 1 (Day / Peak)</td>
+        <td><code>004218.412*kWh</code></td>
+        <td>Fiscal daytime consumption counter for energy billing audits.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:1.8.2</code></strong></td>
+        <td>Energy Import Tariff 2 (Night / Off-Peak)</td>
+        <td><code>003189.102*kWh</code></td>
+        <td>Fiscal night/weekend consumption counter.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:2.8.1</code></strong></td>
+        <td>Energy Export Tariff 1 (Day / Peak)</td>
+        <td><code>001890.871*kWh</code></td>
+        <td>Solar energy injected into the grid during daytime hours.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:2.8.2</code></strong></td>
+        <td>Energy Export Tariff 2 (Night / Off-Peak)</td>
+        <td><code>000652.319*kWh</code></td>
+        <td>Solar energy injected during off-peak hours.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:31.7.0</code></strong></td>
+        <td>Instantaneous Current Phase L1</td>
+        <td><code>008.2*A</code></td>
+        <td>Current draw on Phase 1 for fuse overload protection.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:32.7.0</code></strong></td>
+        <td>Instantaneous Voltage Phase L1</td>
+        <td><code>231.4*V</code></td>
+        <td>Mains voltage monitoring (detects solar grid overvoltage &gt; 253V).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 13. TROUBLESHOOTING & FAQ ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-troubleshoot">13. Exhaustive Troubleshooting & Common Mistakes</h1>
+
+  <h2 class="subsection-title">Issue 1: Terminal shows completely garbled characters or question marks</h2>
+  <p><strong>Cause:</strong> Signal inversion is missing or incorrect baud rate.</p>
+  <ul style="margin: 4px 0 10px 18px; padding: 0;">
+    <li><strong>Fix:</strong> Ensure your hardware inverter transistor (Method A) is correctly wired with collector pulled up to +5V and base driven through a 10 kΩ resistor. If using Method B, verify that <code>invert_rxd=true</code> was successfully flashed to the FTDI EEPROM.</li>
+    <li><strong>Baud Rate:</strong> Verify baud rate is set to <code>115200</code> for Fluvius/DSMR 5. If your meter is an older DSMR 3 or 4, switch baud rate to <code>9600</code>.</li>
+  </ul>
+
+  <h2 class="subsection-title">Issue 2: <code>cat /dev/ttyUSB0</code> prints nothing at all (cursor just sits there)</h2>
+  <p><strong>Cause:</strong> Pin 2 (Data Request / RTS) is not pulled HIGH, or P1 port is electronically locked.</p>
+  <ul style="margin: 4px 0 10px 18px; padding: 0;">
+    <li><strong>Check RTS Pin 2:</strong> Measure voltage between Pin 2 and Pin 3 with your multimeter. It <strong>must be +5.0V</strong>. If it is 0V, the smart meter will remain silent! Connect Pin 2 directly to the USB adapter's +5V VCC line.</li>
+    <li><strong>Check P1 Lock:</strong> Look at your meter display. If there is a padlock icon (🔒) above "P1", the port is locked by the grid operator. Log into "Mijn Fluvius" and request port activation.</li>
+  </ul>
+
+  <h2 class="subsection-title">Issue 3: Linux reports "Permission denied" accessing <code>/dev/ttyUSB0</code></h2>
+  <p><strong>Cause:</strong> The <code>gems</code> system user needs membership in the <code>dialout</code> group.</p>
+  <ul style="margin: 4px 0 10px 18px; padding: 0;">
+    <li><strong>Fix:</strong> Run: <code>sudo usermod -a -G dialout gems &amp;&amp; sudo systemctl restart gems</code>.</li>
+  </ul>
+
+  <h2 class="subsection-title">Issue 4: USB device name changes between reboots (e.g. from <code>ttyUSB0</code> to <code>ttyUSB1</code>)</h2>
+  <p><strong>Cause:</strong> Multiple USB serial adapters plugged into the Raspberry Pi.</p>
+  <ul style="margin: 4px 0 10px 18px; padding: 0;">
+    <li><strong>Fix:</strong> Use the persistent hardware serial path instead of generic <code>/dev/ttyUSB0</code>. In terminal, run:
+      <div class="terminal-box">
+        <code>ls -l /dev/serial/by-id/</code>
+      </div>
+      Copy the permanent path (e.g. <code>/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A50285BI-if00-port0</code>) and paste it directly into the Serial Port field in GEMS!
+    </li>
+  </ul>
+
+  <div class="callout callout-tip">
+    <div class="callout-title">🛠️ Summary Checklist for a Flawless P1 Installation</div>
+    <ul style="margin: 4px 0 0 16px; padding: 0;">
+      <li>[✓] P1 port activated on Mijn Fluvius (padlock icon gone, triangle visible).</li>
+      <li>[✓] Pin 2 (RTS) pulled to +5V.</li>
+      <li>[✓] Signal inverted (via BC547 transistor or FTDI EEPROM).</li>
+      <li>[✓] Baud rate set to 115,200 (8N1).</li>
+      <li>[✓] Multimeter verified no 5V-to-GND shorts before plugging into meter.</li>
+      <li>[✓] GEMS device template added with poll interval of 1 second.</li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>

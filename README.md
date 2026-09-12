@@ -12,9 +12,10 @@
 </p>
 
 <p align="center">
-  <a href="manuals/gems-installer-manual.pdf"><img alt="Installer Manual PDF" src="https://img.shields.io/badge/📕_Installer_Manual-PDF_(5.8MB)-0284c7?style=for-the-badge" /></a>
+  <a href="manuals/gems-installer-manual.pdf"><img alt="Installer Manual PDF" src="https://img.shields.io/badge/📕_Installer_Manual-PDF_(6.0MB)-0284c7?style=for-the-badge" /></a>
   <a href="manuals/gems-user-manual.pdf"><img alt="User Manual PDF" src="https://img.shields.io/badge/📗_User_Manual-PDF_(3.6MB)-10b981?style=for-the-badge" /></a>
   <a href="manuals/gems-server-connection-manual.pdf"><img alt="Server Manual PDF" src="https://img.shields.io/badge/☁️_Server_Manual-PDF_(1.0MB)-0284c7?style=for-the-badge" /></a>
+  <a href="manuals/gems-p1-meter-manual.pdf"><img alt="P1 Meter Manual PDF" src="https://img.shields.io/badge/⚡_P1_Meter_Manual-PDF_(1.3MB)-10b981?style=for-the-badge" /></a>
   <a href="manuals/index.html"><img alt="Documentation Hub" src="https://img.shields.io/badge/💻_Documentation-Hub-8b5cf6?style=for-the-badge" /></a>
 </p>
 
@@ -25,7 +26,7 @@
 - **GRID-EMS-SERVER Cloud Integration**: Outbound-only TLS 1.3 mirroring to the central cloud platform (`https://ems.newenergygrid.com`). Supports periodic high-frequency telemetry ingestion, remote command dispatch (`set_strategy_mode`, `set_battery_mode`, `throttle_ev_charger`, `set_relay`), cryptographic device secret authentication, and zero-inbound-port security.
 - **Minimal SD Card Wear**: Utilizes a highly tuned local SQLite database configured with Write-Ahead Logging (WAL) mode and batched, in-memory transactional writes.
 - **Fully UI-Driven**: Zero YAML configuration required. Add, configure, and remove hardware devices entirely through an intuitive frontend UI.
-- **90+ Native Hardware Templates**: Native support for 80+ leading manufacturers covering Solar Inverters, Batteries, EV Chargers (OCPP 1.6-J / 2.0.1, Modbus TCP, REST), P1 Smart Meters, and Smart Relays.
+- **140+ Native Hardware Templates**: Native support for 80+ leading manufacturers covering Solar Inverters, Batteries, EV Chargers (OCPP 1.6-J / 2.0.1, Modbus TCP, REST), P1 Smart Meters, and Smart Relays.
 - **Dynamic Site Optimization Strategies**:
   - *Eco Mode*: Maximizes self-consumption of solar energy and prioritizes local storage over grid feed-in.
   - *Flanders Mode (Predictive Peak Shaving & Monthly Peak Tracking)*: Continuously tracks 15-minute rolling average grid import in SQLite. Proactively throttles EV chargers and discharges home batteries to keep the projected quarter peak under `capacity_peak_limit_kw`. Features a **Smart Adaptive Ceiling** that dynamically adapts to the month's maximum peak so homeowner charging speed is maximized without increasing capacity tariff costs. Protects legacy Flemish solar systems with **Groenestroomcertificaten (GSC)** value protection presets (€90, €210, €230, €250, €270, €330, €350, €450/MWh), ensuring solar feed-in remains profitable during negative spot hours.
@@ -98,7 +99,7 @@
 
 ## 🔌 Supported Devices & Step-by-Step Onboarding
 
-GEMS includes **90 native hardware templates**. Adding a device requires 4 simple steps in the web UI:
+GEMS includes **140 native hardware templates**. Adding a device requires 4 simple steps in the web UI:
 
 1. **Scan Subnet**: Go to **Scanner** in the sidebar to discover your device IP and MAC vendor.
 2. **Prepare Hardware**: Enable Modbus TCP in your inverter dongle (e.g. Huawei SDongleA, SMA Speedwire, SolarEdge SetApp), enable Modbus TCP in your EV charger (preferred for sub-second throttling & CPO billing coexistence) or configure the charger's OCPP Server URL (`ws://<GEMS-IP>:8887/<ID>`), or toggle *Local API* in your HomeWizard/Shelly app.
@@ -128,6 +129,31 @@ GEMS is designed, tested, and validated on the following reference hardware:
 | **Internal High-Speed Storage** | **128GB+ M.2 NVMe SSD**<br>• Form Factor: M.2 2280 (or 2230/2242) M-Key<br>• Interface: PCIe Gen 3.0 / Gen 2.0 x4 NVMe<br>• High endurance, low power consumption<br>• Read: up to 1,600+ MB/s / Write: up to 600+ MB/s | Solid-state NVMe storage for zero wear & sub-second latency |
 
 > 📖 **Full Hardware Specifications & Pinouts**: See [docs/hardware_reference.md](docs/hardware_reference.md).
+
+---
+
+## ⚡ Connecting to a Grid Operator Smart Meter (P1 Port & DIY Cable Guide)
+
+GEMS reads real-time grid import, injection, voltage, and phase currents directly from your grid operator's smart meter (e.g., Fluvius in Belgium, Enexis/Liander/Stedin in the Netherlands, or any DSMR 5.0.2 / e-MUCS v1.4 compliant meter).
+
+### 🛠️ What You Need (Bill of Materials)
+- **USB-to-UART Serial Dongle**: FTDI FT232R (preferred) or CP2102.
+- **RJ11 (6P4C) or RJ12 (6P6C) Telephone Cable**: Standard 4-wire or 6-wire flat telephone cable.
+- **Signal Inverter**: The P1 port uses open-collector inverted logic (0V = 1, 5V = 0).
+  - *Hardware Inversion*: 1x BC547 NPN transistor, 1x 1kΩ resistor, 1x 10kΩ resistor.
+  - *Software Inversion (FTDI only)*: FT232R configured via `ftdi_eeprom` with `invert_rxd=true`.
+
+### 📌 P1 Port Pinout Mapping
+| RJ12 Pin | RJ11 Wire | Function | GEMS / USB Connection |
+| :---: | :---: | :--- | :--- |
+| **Pin 1** | *N/A* | +5V Power Supply | Not needed (Raspberry Pi powers the USB dongle) |
+| **Pin 2** | Wire 1 | Data Request (RTS) | Connect to USB +5V (activates continuous data streaming) |
+| **Pin 3** | Wire 2 | Data Ground (GND) | Connect to USB GND |
+| **Pin 4** | Wire 3 | Not Connected (NC) | Unused |
+| **Pin 5** | Wire 4 | Data Line (TxD) | Inverted signal to USB RXD |
+| **Pin 6** | *N/A* | Power Ground (GND) | Tied to Pin 3 / USB GND |
+
+> 📖 **Complete Step-by-Step DIY Assembly Guide**: For full circuit schematics, breadboard layouts, multimeter safety checks, Fluvius port activation, and testing commands, read the dedicated **[P1 Meter Manual (PDF)](manuals/gems-p1-meter-manual.pdf)**, **[Interactive P1 Web Guide](manuals/p1-meter.html)**, or **[Markdown P1 Manual](docs/p1_port_manual.md)**.
 
 ---
 
@@ -211,16 +237,19 @@ cd GRID-EMS
 
 | Guide | Description |
 | :--- | :--- |
-| 📕 **[Installer & Commissioning Manual (PDF)](manuals/gems-installer-manual.pdf)** | **Official printable PDF guide for installers** (Hardware BOM, NVMe setup, onboarding 90+ devices, grid limits, Flanders peak shaving, GSC protection, and webhook alerts) |
+| 📕 **[Installer & Commissioning Manual (PDF)](manuals/gems-installer-manual.pdf)** | **Official printable PDF guide for installers** (Hardware BOM, NVMe setup, onboarding 140+ devices, grid limits, Flanders peak shaving, GSC protection, and webhook alerts) |
 | 📗 **[Homeowner & User Manual (PDF)](manuals/gems-user-manual.pdf)** | **Official printable PDF guide for end-users** (PowerFlow hero diagram, click-to-reveal modals, EV charging modes, 24h tariff visualizer, smart relays, and PDF reports) |
 | ☁️ **[GRID-EMS-SERVER Connection Manual (PDF)](manuals/gems-server-connection-manual.pdf)** | **Official printable PDF guide for cloud & fleet integration** (Outbound TLS 1.3 architecture, hardware token pairing, JSON telemetry ingestion, and remote commands) |
+| ⚡ **[P1 Smart Meter & DIY Cable Manual (PDF)](manuals/gems-p1-meter-manual.pdf)** | **Official printable PDF guide for smart meters** (Fluvius/DSMR standard, RJ12/RJ11 pinouts, DIY USB cable assembly with BC547/FTDI, port activation, and GEMS onboarding) |
 | 💻 [Interactive HTML Documentation Hub](manuals/index.html) | Rich web documentation suite with full-text search (open in browser) |
 | 🛠️ [Interactive Installer Manual (HTML)](manuals/gems-installer-manual.html) | Comprehensive field commissioning guide with high-res screenshots and hardware wiring |
 | 🏠 [Interactive User Manual (HTML)](manuals/gems-user-manual.html) | Illustrated homeowner operations manual with interactive modals and tariff breakdown |
 | ☁️ [Interactive Cloud Server Manual (HTML)](manuals/cloud-server.html) | Web guide for connecting edge GEMS units to central GRID-EMS-SERVER |
-| 🔌 [Device Manuals & Templates](manuals/devices.html) | Complete step-by-step guides for all 90 supported hardware templates |
+| ⚡ [Interactive P1 Meter & DIY Cable Guide (HTML)](manuals/p1-meter.html) | Complete step-by-step DIY guide with electrical diagrams and component shopping list |
+| 🔌 [Device Manuals & Templates](manuals/devices.html) | Complete step-by-step guides for all 140 supported hardware templates |
 | 📘 [User Manual (Markdown)](docs/user_manual.md) | End-user operations, PowerFlow diagram, OCPP server setup |
 | 📖 [Advanced Operational Manual](docs/advanced_manual.md) | Technical deep-dive on algorithms, formulas, and SG-Ready contactors |
+| ⚡ [P1 Smart Meter Port Guide (Markdown)](docs/p1_port_manual.md) | Comprehensive P1 port connection, cable pinout, and DIY assembly manual |
 | ⚡ [NVMe Boot & Setup Manual](docs/nvme_boot_guide.md) | Complete guide for Raspberry Pi 5 + M.2 NVMe SSD |
 | 🛠️ [Hardware Reference BOM](docs/hardware_reference.md) | Tested reference BOM, power requirements, RS485/P1 pinouts |
 | 🌐 [Remote Access Guide](docs/remote_access.md) | Cockpit terminal on port 9090 and Raspberry Pi Connect pairing |

@@ -4,25 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GEMS Homeowner & User Operation Manual</title>
-  <meta name="description" content="Official Homeowner & User Guide for GEMS (Grid Energy Management System).">
+  <meta name="description" content="Official Homeowner & Everyday User Guide for GEMS (Grid Energy Management System).">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/print.css" media="print">
   <style>
     @page {
       size: A4;
-      margin: 15mm 15mm 18mm 15mm;
+      margin: 14mm 14mm 16mm 14mm;
     }
 
     body {
       background: #ffffff;
       color: #0f172a;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: 10pt;
+      font-size: 9.5pt;
       line-height: 1.55;
     }
 
     .manual-page {
-      max-width: 880px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 24px 20px;
     }
@@ -32,7 +32,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 960px;
+      min-height: 980px;
       padding: 40px 20px 20px 20px;
       page-break-after: always;
       border-bottom: 2px solid #e2e8f0;
@@ -45,18 +45,18 @@
       gap: 8px;
       background: #10b981;
       color: #ffffff;
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 9999px;
       font-size: 9pt;
-      font-weight: 700;
-      letter-spacing: 0.05em;
+      font-weight: 800;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       margin-bottom: 24px;
     }
 
     .cover-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 32pt;
+      font-size: 34pt;
       font-weight: 800;
       line-height: 1.15;
       color: #0f172a;
@@ -65,22 +65,22 @@
     }
 
     .cover-subtitle {
-      font-size: 14pt;
+      font-size: 13.5pt;
       color: #475569;
-      margin: 0 0 28px 0;
-      line-height: 1.4;
+      margin: 0 0 26px 0;
+      line-height: 1.45;
       font-weight: 400;
     }
 
     .cover-meta-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: 14px;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 24px;
+      padding: 18px 20px;
+      margin-bottom: 22px;
     }
 
     .cover-meta-item {
@@ -91,15 +91,15 @@
     .cover-meta-label {
       font-size: 8pt;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
       font-weight: 700;
       color: #64748b;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .cover-meta-val {
-      font-size: 10pt;
-      font-weight: 600;
+      font-size: 9.5pt;
+      font-weight: 700;
       color: #0f172a;
     }
 
@@ -108,7 +108,7 @@
       overflow: hidden;
       border: 1px solid #cbd5e1;
       box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
-      margin: 20px 0;
+      margin: 18px 0;
     }
 
     .cover-hero-img img {
@@ -126,26 +126,35 @@
       justify-content: space-between;
     }
 
-    /* Headings */
+    /* Section Headings */
     h1.section-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 18pt;
+      font-size: 17pt;
       font-weight: 800;
       color: #0f172a;
       border-bottom: 2px solid #10b981;
       padding-bottom: 6px;
       margin-top: 36px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       page-break-after: avoid;
     }
 
     h2.subsection-title {
       font-family: 'Outfit', sans-serif;
-      font-size: 13pt;
+      font-size: 12.5pt;
       font-weight: 700;
       color: #1e293b;
-      margin-top: 24px;
-      margin-bottom: 10px;
+      margin-top: 22px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #047857;
+      margin-top: 14px;
+      margin-bottom: 6px;
       page-break-after: avoid;
     }
 
@@ -154,13 +163,62 @@
       color: #334155;
     }
 
+    /* Decision Box */
+    .decision-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-left: 4px solid #10b981;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    .decision-title {
+      font-size: 9pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #047857;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .decision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 8.5pt;
+      margin-top: 6px;
+    }
+
+    .decision-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 10px;
+    }
+
+    .decision-item-title {
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 2px;
+    }
+
+    .decision-item-desc {
+      color: #475569;
+      line-height: 1.4;
+    }
+
     /* Screenshots */
     .manual-screenshot {
       background: #f8fafc;
       border: 1px solid #cbd5e1;
       border-radius: 10px;
       padding: 10px;
-      margin: 16px 0;
+      margin: 14px 0;
       page-break-inside: avoid;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }
@@ -185,17 +243,17 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin: 16px 0;
+      margin: 14px 0;
       page-break-inside: avoid;
     }
 
     /* Callouts */
     .callout {
       border-radius: 8px;
-      padding: 12px 16px;
-      margin: 14px 0;
+      padding: 12px 14px;
+      margin: 12px 0;
       page-break-inside: avoid;
-      font-size: 9.5pt;
+      font-size: 9pt;
     }
 
     .callout-info {
@@ -228,15 +286,16 @@
     .data-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 14px 0;
+      margin: 12px 0;
       font-size: 8.5pt;
       page-break-inside: avoid;
     }
 
     .data-table th, .data-table td {
       border: 1px solid #e2e8f0;
-      padding: 7px 10px;
+      padding: 7px 9px;
       text-align: left;
+      vertical-align: top;
     }
 
     .data-table th {
@@ -276,7 +335,7 @@
 
     .toc-list li {
       margin-bottom: 6px;
-      font-size: 9pt;
+      font-size: 8.5pt;
       color: #334155;
     }
 
@@ -300,27 +359,27 @@
     <div>
       <div class="cover-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px;">
         <img src="assets/new_energy_grid_logo.png" alt="New Energy Grid" style="height: 42px; width: auto; object-fit: contain;">
-        <div class="cover-badge" style="margin-bottom: 0;">⚡ USER OPERATION & HOMEOWNER MANUAL</div>
+        <div class="cover-badge" style="margin-bottom: 0;">⚡ USER OPERATION &amp; HOMEOWNER MANUAL</div>
       </div>
       <h1 class="cover-title">GEMS User Manual</h1>
-      <div class="cover-subtitle">Real-Time Power Flow Monitoring, Energy Optimization, EV Charging Controls, and Daily Savings</div>
+      <div class="cover-subtitle">Your Complete Guide to Real-Time Energy Flow Monitoring, Smart EV Charging, Home Battery Optimization, Dynamic Tariffs, and Daily Cost Savings</div>
 
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.14.0</span>
+          <span class="cover-meta-val">GEMS v9.14.1</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Target Audience</span>
-          <span class="cover-meta-val">Homeowners, Residents & Energy Managers</span>
+          <span class="cover-meta-val">Homeowners, Residents &amp; Energy Managers</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Supported Hardware</span>
           <span class="cover-meta-val">Solar Inverters, Batteries, EV Chargers, Relays</span>
         </div>
         <div class="cover-meta-item">
-          <span class="cover-meta-label">Date Published</span>
-          <span class="cover-meta-val">September 2026</span>
+          <span class="cover-meta-label">Documentation Edition</span>
+          <span class="cover-meta-val">September 2026 • Everyday User Reference</span>
         </div>
       </div>
 
@@ -331,7 +390,7 @@
 
     <div class="cover-footer">
       <span>GEMS Energy Management System (GRID-EMS)</span>
-      <span>Homeowner Guide • Free Local Energy Optimization</span>
+      <span>Homeowner Operating Guide • 100% Free Local Automation</span>
     </div>
   </div>
 
@@ -339,268 +398,492 @@
   <div class="toc-box">
     <div class="toc-title">Table of Contents</div>
     <ul class="toc-list">
-      <li><strong>1.</strong> <a href="#sec-intro">Welcome to GEMS</a></li>
-      <li><strong>2.</strong> <a href="#sec-powerflow">The Interactive PowerFlow Hero</a></li>
-      <li><strong>3.</strong> <a href="#sec-modals">Click-to-Reveal History Deep Dives</a></li>
-      <li><strong>4.</strong> <a href="#sec-ev">Managing EV Charging Modes</a></li>
-      <li><strong>5.</strong> <a href="#sec-battery">Home Battery Storage & SOC</a></li>
-      <li><strong>6.</strong> <a href="#sec-tariffs">Dynamic Tariffs & Negative Prices</a></li>
-      <li><strong>7.</strong> <a href="#sec-gsc">Flemish GSC Subsidy Protection</a></li>
-      <li><strong>8.</strong> <a href="#sec-relays">Smart Relays & Heat Pump Automation</a></li>
-      <li><strong>9.</strong> <a href="#sec-reports">Energy Reports & PDF Exporting</a></li>
-      <li><strong>10.</strong> <a href="#sec-mobile">Mobile Access & Tablet Kiosk</a></li>
-      <li><strong>11.</strong> <a href="#sec-faq">Homeowner FAQ & Tips</a></li>
+      <li><strong>1.</strong> <a href="#sec-intro">Welcome to GEMS: What It Does &amp; Why</a></li>
+      <li><strong>2.</strong> <a href="#sec-powerflow">The Interactive PowerFlow Dashboard</a></li>
+      <li><strong>3.</strong> <a href="#sec-metrics">Understanding Every Number on Your Screen</a></li>
+      <li><strong>4.</strong> <a href="#sec-modals">Click-to-Reveal History Deep Dives</a></li>
+      <li><strong>5.</strong> <a href="#sec-ev">Managing EV Charging Modes: When to Use Each</a></li>
+      <li><strong>6.</strong> <a href="#sec-battery">Home Battery Storage &amp; Peak Shaving</a></li>
+      <li><strong>7.</strong> <a href="#sec-tariffs">Dynamic Tariffs &amp; Negative Electricity Prices</a></li>
+      <li><strong>8.</strong> <a href="#sec-gsc">Flemish GSC Subsidy Value Protection</a></li>
+      <li><strong>9.</strong> <a href="#sec-elia">Belgian Elia Green Grid Sync Boost</a></li>
+      <li><strong>10.</strong> <a href="#sec-relays">Smart Relays &amp; Heat Pump Automation</a></li>
+      <li><strong>11.</strong> <a href="#sec-reports">Energy Reports &amp; Instant PDF Downloads</a></li>
+      <li><strong>12.</strong> <a href="#sec-mobile">Mobile Phone Experience &amp; Wall Tablets</a></li>
+      <li><strong>13.</strong> <a href="#sec-faq">Homeowner Frequently Asked Questions</a></li>
     </ul>
   </div>
 
   <!-- ==================== 1. WELCOME TO GEMS ==================== -->
-  <h1 class="section-title" id="sec-intro">1. Welcome to GEMS</h1>
+  <h1 class="section-title" id="sec-intro">1. Welcome to GEMS: What It Does &amp; Why It's in Your Home</h1>
   <p>
-    GEMS (Grid Energy Management System) is your autonomous home energy manager. Installed in your electrical cabinet on a dedicated microcomputer (Raspberry Pi 5 with ultra-fast NVMe storage), GEMS runs <strong>100% locally</strong> inside your home.
+    Welcome to <strong>GEMS (Grid Energy Management System)</strong>! Installed directly in your electrical panel on a dedicated compact computer (Raspberry Pi 5 with an ultra-reliable solid-state NVMe drive), GEMS is the intelligent central brain of your home energy setup.
   </p>
   <p>
-    Unlike cloud-dependent commercial systems, GEMS has zero recurring subscriptions, keeps all your energy data private on your own network, and keeps running even during internet outages. It continuously balances solar generation, home battery charging, domestic appliance consumption, and electric vehicle charging to minimize your electricity bills.
+    In a modern home, you have several powerful electrical systems: solar panels on the roof, an electric vehicle in the driveway, a home battery storage unit, a heat pump or boiler, and everyday kitchen and laundry appliances. Without an energy manager, these systems work completely blindly:
+  </p>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li>Your car might start charging at full speed from the expensive utility grid just as your oven turns on, causing an expensive capacity peak.</li>
+    <li>Your solar panels might inject cheap or even negatively priced electricity into the grid while your home battery sits half empty.</li>
+    <li>Your heat pump might run at night when electricity is pricey instead of pre-heating your water with free solar energy at noon.</li>
+  </ul>
+  <p>
+    <strong>GEMS solves all of this automatically.</strong> It measures every watt generated and consumed in your home every single second. It directs free solar power straight to where it saves you the most money, caps expensive grid import peaks, and schedules your EV charging during the cheapest hours—all 100% automatically.
   </p>
 
-  <!-- ==================== 2. THE POWERFLOW HERO ==================== -->
+  <div class="callout callout-tip">
+    <div class="callout-title">🔒 100% Local &amp; Private: Zero Subscriptions, Zero Cloud Dependency</div>
+    <p>
+      Unlike commercial smart home products that require expensive monthly subscriptions and send your private data to remote servers, GEMS runs <strong>entirely inside your own house</strong>. If your internet connection goes down, GEMS continues balancing your solar, battery, and car without skipping a beat!
+    </p>
+  </div>
+
+  <!-- ==================== 2. THE POWERFLOW DASHBOARD ==================== -->
+  <div class="page-break"></div>
   <h1 class="section-title" id="sec-powerflow">2. The Interactive PowerFlow Dashboard</h1>
   <p>
-    The heart of GEMS is the animated <strong>PowerFlow Chart</strong> on your main dashboard. It visually illustrates every watt flowing between your energy components in real-time:
+    The central feature of GEMS is the animated <strong>PowerFlow Hero</strong> at the top of your dashboard. It gives you an instant, intuitive picture of where electricity is coming from and where it is going right now:
   </p>
 
   <div class="manual-screenshot">
     <img src="assets/screenshots/dashboard.png" alt="GEMS Dashboard PowerFlow Hero">
-    <div class="manual-screenshot-caption">Figure 2.1: Real-time PowerFlow hero showing 4.8 kW solar output feeding home load, charging the battery, and export.</div>
+    <div class="manual-screenshot-caption">Figure 2.1: Real-time PowerFlow hero showing 4.8 kW solar output supplying the house, charging the battery, and exporting surplus.</div>
   </div>
 
-  <h2 class="subsection-title">Understanding the PowerFlow Nodes</h2>
+  <h2 class="subsection-title">Understanding the PowerFlow Circles (Nodes)</h2>
   <table class="data-table">
     <thead>
       <tr>
-        <th>Node</th>
-        <th>Visual Color</th>
-        <th>What It Represents</th>
+        <th style="width: 20%;">Circle Node</th>
+        <th style="width: 20%;">Color Badge</th>
+        <th style="width: 60%;">What It Tells You in Plain Language</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><strong>Solar</strong></td>
-        <td>Amber / Gold</td>
-        <td>Real-time PV generation from your solar panels and inverters.</td>
+        <td><span style="color:#d97706; font-weight:bold;">● Gold / Amber</span></td>
+        <td>
+          The total instantaneous power generated by your roof solar panels (e.g. <code>4.8 kW</code>). At night, this naturally displays <code>0 W</code>.
+        </td>
       </tr>
       <tr>
         <td><strong>Battery</strong></td>
-        <td>Emerald Green</td>
-        <td>Current charging power (arrow down &darr;) or discharging power (arrow up &uarr;) and State-of-Charge (SOC %).</td>
+        <td><span style="color:#10b981; font-weight:bold;">● Emerald Green</span></td>
+        <td>
+          Shows whether your home battery is <strong>charging</strong> (green arrow pointing down into the battery) or <strong>discharging</strong> (arrow pointing up to supply the home). Also displays the live battery percentage (State of Charge, e.g. <code>85%</code>).
+        </td>
       </tr>
       <tr>
         <td><strong>Grid</strong></td>
-        <td>Cobalt Blue</td>
-        <td>Active utility grid interaction. Shows power imported from the grid or power exported into the grid.</td>
+        <td><span style="color:#0284c7; font-weight:bold;">● Cobalt Blue</span></td>
+        <td>
+          Shows your interaction with the utility company. When importing electricity, arrows point inward toward your home. When exporting surplus solar, arrows point outward toward the street.
+        </td>
       </tr>
       <tr>
-        <td><strong>Home</strong></td>
-        <td>Teal Green</td>
-        <td>Current total household consumption (kitchen, lights, electronics, HVAC).</td>
+        <td><strong>Home (Load)</strong></td>
+        <td><span style="color:#0d9488; font-weight:bold;">● Teal Green</span></td>
+        <td>
+          The total electricity being used by your household right now (kitchen appliances, lights, TV, computer, ventilation).
+        </td>
       </tr>
       <tr>
         <td><strong>EV Charger</strong></td>
-        <td>Purple</td>
-        <td>Power delivered to your electric vehicle and the active charging mode (e.g. ECO).</td>
+        <td><span style="color:#8b5cf6; font-weight:bold;">● Purple</span></td>
+        <td>
+          Shows the power flowing into your electric vehicle (e.g. <code>7.4 kW</code>) and the current charging mode (e.g. <code>ECO</code> or <code>FAST</code>). Only visible when an EV charger is connected.
+        </td>
       </tr>
       <tr>
-        <td><strong>Appliance / Relay</strong></td>
-        <td>Orange</td>
-        <td>SG-Ready Heat Pump or domestic hot water boiler state (ON / OFF).</td>
+        <td><strong>Relay / Heating</strong></td>
+        <td><span style="color:#ea580c; font-weight:bold;">● Orange</span></td>
+        <td>
+          Shows whether your smart water heater or heat pump is switched <strong>ON</strong> or <strong>OFF</strong>. Only visible when smart relays are configured.
+        </td>
       </tr>
     </tbody>
   </table>
 
-  <!-- ==================== 3. CLICK-TO-REVEAL HISTORY MODALS ==================== -->
-  <div class="page-break"></div>
-  <h1 class="section-title" id="sec-modals">3. Click-to-Reveal Historical Deep Dives</h1>
+  <h2 class="subsection-title">What the Animated Flowing Bubbles Mean</h2>
   <p>
-    Every circle on the PowerFlow diagram is interactive! Clicking any node opens a dedicated analytical view showing detailed telemetry, 24-hour charts, and technical parameters for that specific component.
+    The moving colored dots between the circles show the path electricity is taking:
+  </p>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Dots moving from Solar &rarr; Home:</strong> Your house is running on 100% free sunshine!</li>
+    <li><strong>Dots moving from Solar &rarr; Battery:</strong> Extra solar power is being stored for tonight.</li>
+    <li><strong>Dots moving from Solar &rarr; EV Charger:</strong> Your electric car is charging directly from your roof for free.</li>
+    <li><strong>Dots moving from Battery &rarr; Home:</strong> In the evening, your battery is powering your appliances without taking costly power from the grid.</li>
+    <li><strong>Dots moving from Grid &rarr; Home:</strong> Solar and battery are currently not enough to cover your appliances; the difference is pulled from the utility grid.</li>
+  </ul>
+
+  <!-- ==================== 3. METRICS EXPLAINED ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-metrics">3. Understanding Every Number on Your Screen</h1>
+  <p>
+    Across the top and sides of the dashboard, GEMS displays key performance indicators (KPIs). Here is what each number means and why it matters to your wallet:
+  </p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width: 25%;">Dashboard Metric</th>
+        <th style="width: 20%;">Typical Value</th>
+        <th style="width: 55%;">Plain Language Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Solar Today (kWh)</strong></td>
+        <td><code>15.4 kWh</code></td>
+        <td>Total energy generated by your solar panels since midnight. High in summer, lower in winter.</td>
+      </tr>
+      <tr>
+        <td><strong>Grid Import Today (kWh)</strong></td>
+        <td><code>3.2 kWh</code></td>
+        <td>Electricity purchased from the utility grid today. The lower this number, the more money you saved!</td>
+      </tr>
+      <tr>
+        <td><strong>Grid Export Today (kWh)</strong></td>
+        <td><code>8.6 kWh</code></td>
+        <td>Surplus solar energy injected back into the grid for feed-in compensation.</td>
+      </tr>
+      <tr>
+        <td><strong>Self-Consumption (%)</strong></td>
+        <td><code>78%</code></td>
+        <td>
+          <strong>The efficiency badge:</strong> Percentage of your solar production that was used directly in your home, stored in your battery, or put into your car, instead of exported to the grid. <em>Higher is better!</em>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Self-Sufficiency (%)</strong></td>
+        <td><code>92%</code></td>
+        <td>
+          <strong>Your independence score:</strong> Percentage of your total household consumption that was supplied by your own solar and battery. 100% means you relied zero on the grid today!
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Monthly Peak (Flanders)</strong></td>
+        <td><code>2.50 kW</code></td>
+        <td>
+          The highest 15-minute rolling average grid import recorded this calendar month. GEMS automatically holds your grid draw below this line to keep your network capacity bill at the lowest possible minimum!
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Current Spot Price</strong></td>
+        <td><code>0.124 €/kWh</code></td>
+        <td>If you have a dynamic contract, this shows the exact wholesale electricity price for the current hour.</td>
+      </tr>
+      <tr>
+        <td><strong>Belgian Renewable Share</strong></td>
+        <td><code>72.4% Renewable</code></td>
+        <td>Live national wind + solar share on the Belgian grid via Elia. When this is green, national clean energy is abundant.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 4. CLICK TO REVEAL MODALS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-modals">4. Click-to-Reveal Historical Deep Dives</h1>
+  <p>
+    Every circle on the PowerFlow diagram is interactive! If you click on any circle, a detailed analytical modal opens instantly, revealing 24-hour charts, daily records, and technical breakdowns:
   </p>
 
   <div class="manual-screenshot-grid">
     <div class="manual-screenshot">
       <img src="assets/screenshots/dashboard_modal_solar.png" alt="Solar History Modal">
-      <div class="manual-screenshot-caption">Figure 3.1: Solar History: Daily generation curve, peak solar wattage, and curtailment events.</div>
+      <div class="manual-screenshot-caption">Figure 4.1: Solar Modal: Today's solar bell curve, peak production wattage, and curtailment events.</div>
     </div>
     <div class="manual-screenshot">
       <img src="assets/screenshots/dashboard_modal_battery.png" alt="Battery History Modal">
-      <div class="manual-screenshot-caption">Figure 3.2: Battery History: State of charge %, charging/discharging power, and battery mode.</div>
+      <div class="manual-screenshot-caption">Figure 4.2: Battery Modal: 24-hour State-of-Charge (SOC %), charging speed, and energy stored.</div>
     </div>
   </div>
 
   <div class="manual-screenshot-grid">
     <div class="manual-screenshot">
       <img src="assets/screenshots/dashboard_modal_grid.png" alt="Grid History Modal">
-      <div class="manual-screenshot-caption">Figure 3.3: Grid History: Import/export balance and Flanders 15-min capacity peak tracking.</div>
+      <div class="manual-screenshot-caption">Figure 4.3: Grid Modal: Import vs export balance and Flanders 15-minute capacity peak tracking.</div>
     </div>
     <div class="manual-screenshot">
       <img src="assets/screenshots/dashboard_modal_charger.png" alt="EV Charger Modal">
-      <div class="manual-screenshot-caption">Figure 3.4: EV Charger History: Real-time charging setpoint, session energy, and current limits.</div>
+      <div class="manual-screenshot-caption">Figure 4.4: EV Charger Modal: Real-time charging setpoint, session energy added, and mode toggle.</div>
     </div>
   </div>
 
-  <!-- ==================== 4. EV CHARGING MODES ==================== -->
-  <h1 class="section-title" id="sec-ev">4. Managing EV Charging Modes</h1>
+  <!-- ==================== 5. EV CHARGING MODES ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-ev">5. Managing EV Charging Modes: When to Use Each</h1>
   <p>
-    GEMS coordinates directly with your EV charger to optimize charging based on solar production, capacity tariffs, and dynamic electricity prices. Chargers can connect via <strong>Modbus TCP (preferred)</strong> or <strong>Native OCPP 1.6-J / 2.0.1</strong>:
+    GEMS talks directly to your EV charger (using high-speed Modbus TCP or native OCPP). You can change your charging mode at any time with a single tap on the dashboard:
   </p>
 
-  <div class="callout callout-success" style="border-left: 4px solid #10b981; background: #f0fdf4; margin-bottom: 14px;">
-    <div class="callout-title" style="color: #065f46;">💡 Why Modbus TCP is Preferred for EV Chargers</div>
-    <p style="margin-bottom: 6px;">
-      Connecting your charger via <strong>Modbus TCP</strong> provides instantaneous sub-second current throttling, allowing GEMS to react immediately when household appliances turn on or solar dips.
-    </p>
-    <p style="margin: 0;">
-      <strong>Company Car & Split-Billing Compatibility:</strong> If you use an employer charge card or billing subscription (e.g. E-Flux, Road, Optimile, Easee Cloud), your charger can continue using its cloud OCPP connection for billing while GEMS optimizes charging locally via Modbus TCP.
+  <div class="decision-box">
+    <div class="decision-title">🚗 Which Charging Mode Should You Choose?</div>
+    <div class="decision-grid">
+      <div class="decision-item" style="border-left: 3px solid #10b981;">
+        <div class="decision-item-title">1. ECO / Solar Only Mode</div>
+        <div class="decision-item-desc">
+          <strong>When to choose:</strong> Sunny weekends, working from home, or whenever the car is parked for several hours.<br>
+          <strong>What GEMS does:</strong> Charges strictly using excess solar production. If clouds roll in, charging throttles or pauses automatically. You get <strong>100% free solar kilometers</strong> without pulling costly electricity from the grid!
+        </div>
+      </div>
+      <div class="decision-item" style="border-left: 3px solid #ef4444;">
+        <div class="decision-item-title">2. FAST / Max Power Mode</div>
+        <div class="decision-item-desc">
+          <strong>When to choose:</strong> You arrive home with an empty battery and need to leave again in 1 hour.<br>
+          <strong>What GEMS does:</strong> Immediately supplies the maximum rated current your car and fuse box allow (e.g. 11 kW or 22 kW), drawing simultaneously from solar, battery, and grid.
+        </div>
+      </div>
+    </div>
+    <div class="decision-grid" style="margin-top: 10px;">
+      <div class="decision-item" style="border-left: 3px solid #0284c7;">
+        <div class="decision-item-title">3. SMART Dynamic Mode</div>
+        <div class="decision-item-desc">
+          <strong>When to choose:</strong> Cloudy winter days if you have a dynamic electricity contract.<br>
+          <strong>What GEMS does:</strong> Automatically schedules charging during the 1 to 8 cheapest spot hours of the night (typically between 01:00 and 05:00) when electricity costs only a few cents.
+        </div>
+      </div>
+      <div class="decision-item" style="border-left: 3px solid #64748b;">
+        <div class="decision-item-title">4. OFF / Paused Mode</div>
+        <div class="decision-item-desc">
+          <strong>When to choose:</strong> The car is plugged in, but you do not want it to charge right now (e.g. reserving battery power for household dinner cooking).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-title">💡 Why EV Charging Requires at Least 6 Amps</div>
+    <p>
+      Under international automotive standards (IEC 61851), electric vehicles cannot charge at less than <strong>6 Amps</strong> per phase (approximately 1.4 kW on single-phase, or 4.1 kW on three-phase). In Solar-Only mode, GEMS waits until you have at least 1.4 kW of steady solar surplus before starting charging. If solar drops below this threshold for more than a few minutes, GEMS pauses charging cleanly to prevent drawing from the grid.
     </p>
   </div>
 
-  <table class="data-table">
-    <thead>
-      <tr>
-        <th>Charging Mode</th>
-        <th>Description & Operation</th>
-        <th>When to Use</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>ECO / Solar Only</strong></td>
-        <td>Charges exclusively using excess solar power. Charging speed automatically adjusts between 6A and 16A/32A. If solar drops, charging pauses to avoid pulling costly power from the grid.</td>
-        <td>Ideal on sunny days or weekends when the vehicle is parked and you want 100% free solar kilometers.</td>
-      </tr>
-      <tr>
-        <td><strong>FAST / Boost</strong></td>
-        <td>Charges at the maximum rated current of your vehicle or circuit breaker (e.g. 16A or 32A three-phase, up to 11 kW or 22 kW), drawing from solar, battery, and grid simultaneously.</td>
-        <td>Use when you need to depart urgently with a full battery.</td>
-      </tr>
-      <tr>
-        <td><strong>Smart Dynamic</strong></td>
-        <td>Automatically schedules charging during the lowest-priced hours of your dynamic Day-Ahead electricity contract (often between 01:00 and 05:00, or negative price hours midday).</td>
-        <td>Ideal during winter months or cloudy days with dynamic energy contracts.</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="callout callout-tip">
+    <div class="callout-title">💳 Company Cars &amp; Employer Split-Billing Compatibility</div>
+    <p>
+      Do you drive a company car with an employer charge card or billing subscription (e.g. E-Flux, Road, Optimile, Easee Cloud)? GEMS connects to your charger via <strong>Modbus TCP</strong> on your home network. This means GEMS can optimize your charging speed and solar self-consumption <strong>without disconnecting your employer's billing service</strong>! Both run happily side-by-side.
+    </p>
+  </div>
 
-  <!-- ==================== 5. BATTERY TELEMETRY ==================== -->
+  <!-- ==================== 6. BATTERY STORAGE ==================== -->
   <div class="page-break"></div>
-  <h1 class="section-title" id="sec-battery">5. Home Battery Storage & Peak Shaving</h1>
+  <h1 class="section-title" id="sec-battery">6. Home Battery Storage &amp; Peak Shaving</h1>
   <p>
-    Your home battery (e.g. Huawei LUNA2000, BYD, Victron) acts as a flexible buffer. GEMS intelligently manages your battery according to three principles:
+    Your home battery (such as Huawei LUNA2000, BYD, or Victron) is your personal energy buffer. GEMS manages it automatically 24 hours a day based on three golden rules:
+  </p>
+
+  <h2 class="subsection-title">1. Day-to-Night Solar Buffering</h2>
+  <p>
+    During the day, your roof panels often generate more electricity than your refrigerator and lights need. Instead of dumping this power into the street for a tiny feed-in fee, GEMS pours every surplus watt into your home battery. In the evening, when the sun sets and your family turns on the oven, television, and lights, GEMS automatically discharges the battery to keep your grid meter at zero.
+  </p>
+
+  <h2 class="subsection-title">2. Peak Shaving: Protecting You from the Flanders Capacity Tariff</h2>
+  <p>
+    In Flanders, your grid network fees are determined by the <strong>highest 15-minute average power</strong> you draw from the grid each month (the <em>Capaciteitstarief</em>, with a minimum baseline of 2.50 kW). If you turn on the washing machine, tumble dryer, and kettle at the same time, your power demand might spike to 4.5 kW.
+  </p>
+  <p>
+    <strong>How GEMS Protects You:</strong> The millisecond your home demand rises toward your 2.50 kW ceiling, GEMS commands your home battery to discharge the difference (2.0 kW). The utility grid meter never sees the spike, keeping your monthly electricity bill at the absolute minimum baseline!
+  </p>
+
+  <h2 class="subsection-title">3. Smart Adaptive Ceiling: No Panic If a Peak Occurs</h2>
+  <p>
+    What happens if your battery happens to be empty on a dark winter day and an unavoidable spike reaches 4.2 kW?
+  </p>
+  <p>
+    In simple systems, the controller would keep strictly limiting you. But in GEMS, the <strong>Smart Adaptive Ceiling</strong> takes over:
   </p>
   <ul style="margin: 6px 0 12px 18px; padding: 0;">
-    <li><strong>Solar Buffering:</strong> Storing daytime solar yield to power your home during the evening and night.</li>
-    <li><strong>Peak Shaving:</strong> If heavy domestic loads (oven, heat pump, tumble dryer) spike above your Flanders capacity tariff ceiling (e.g. 2.5 kW), the battery instantly discharges to cap the grid draw.</li>
-    <li><strong>Smart Adaptive Ceiling:</strong> If an unavoidable high power spike occurs (e.g. 4.2 kW), GEMS dynamically elevates its ceiling to 4.2 kW for the rest of that month, maximizing your charging speed without incurring any extra capacity fees!</li>
+    <li>GEMS recognizes that because a 4.2 kW peak was already registered in the meter, the network operator will bill you for 4.2 kW for this calendar month anyway.</li>
+    <li>GEMS <strong>temporarily elevates its working ceiling to 4.2 kW for the rest of that month</strong>!</li>
+    <li>This allows you to charge your car faster and enjoy greater convenience without increasing your bill by a single euro!</li>
+    <li>On midnight on the 1st of the next month, the ceiling automatically drops back down to 2.50 kW.</li>
   </ul>
 
-  <!-- ==================== 6. DYNAMIC TARIFFS & NEGATIVE PRICING ==================== -->
-  <h1 class="section-title" id="sec-tariffs">6. Dynamic Tariffs & 24-Hour Effective Tariff Curve</h1>
+  <!-- ==================== 7. DYNAMIC TARIFFS & NEGATIVE PRICES ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-tariffs">7. Dynamic Tariffs &amp; Negative Electricity Prices</h1>
   <p>
-    If you have a dynamic electricity contract (such as TotalEnergies Pixel Dynamic, Mega, Bolt, or Engie Dynamic), electricity prices change every hour based on the European EPEX Spot market.
+    If you have an hourly dynamic electricity contract (such as TotalEnergies Pixel Dynamic, Mega, Bolt, or Engie Dynamic), your price per kilowatt-hour changes every single hour according to the European EPEX Spot auction.
   </p>
 
   <div class="manual-screenshot">
-    <img src="assets/screenshots/settings_contract_tariffs.png" alt="24-Hour Tariff Curve Visualizer">
-    <div class="manual-screenshot-caption">Figure 6.1: 24-Hour effective retail tariff visualizer showing spot prices, distribution fees, and solar injection returns.</div>
+    <img src="assets/screenshots/settings_contract_tariffs.png" alt="24-Hour Tariff Visualizer">
+    <div class="manual-screenshot-caption">Figure 7.1: 24-Hour effective retail tariff breakdown curve showing hourly spot prices, network fees, and injection returns.</div>
   </div>
 
   <h2 class="subsection-title">What are Negative Electricity Prices?</h2>
   <p>
-    On sunny and windy days, excess renewable energy across Europe can push wholesale electricity prices below zero. Under dynamic contracts, exporting power during these hours can result in feed-in fees (you have to pay to export power!).
+    On sunny, windy weekend afternoons, Europe's wind turbines and solar roofs often produce far more electricity than factories and homes are consuming. When this happens, wholesale electricity prices drop below zero: <strong>the grid literally pays you to consume electricity!</strong>
   </p>
   <p>
-    <strong>How GEMS Protects You:</strong>
+    Conversely, if you export solar power to the grid during negative price hours, <em>you could be charged an injection penalty</em> (you pay the utility company to take your solar power!).
   </p>
-  <ol style="margin: 6px 0 12px 18px; padding: 0;">
-    <li><strong>Absorb:</strong> GEMS first directs excess solar to charge your home battery to 100% and speeds up EV charging.</li>
-    <li><strong>Thermal Boost:</strong> GEMS turns on domestic hot water boiler elements or signals your heat pump to store thermal heat.</li>
-    <li><strong>Curtail:</strong> If batteries and vehicles are full, GEMS actively curtails solar inverter output to match your household consumption, preventing costly export penalties!</li>
+
+  <h2 class="subsection-title">The 4-Step GEMS Protection Strategy During Negative Hours</h2>
+  <p>
+    Whenever electricity prices drop below zero, GEMS automatically steps through a 4-tier financial defense:
+  </p>
+  <ol style="margin: 6px 0 14px 18px; padding: 0;">
+    <li><strong>Tier 1 — Fill Your Home Battery:</strong> GEMS directs all solar power to charge your home battery to 100%. If prices are deeply negative, GEMS even charges your battery from the grid, earning you money while charging!</li>
+    <li><strong>Tier 2 — Boost Your EV:</strong> If your car is plugged in, GEMS switches to maximum charging speed to absorb the cheap or negative energy into your vehicle's large battery.</li>
+    <li><strong>Tier 3 — Heat Your Hot Water:</strong> GEMS activates smart relays connected to your domestic water heater or heat pump buffer tank, storing the cheap energy as hot water for your evening shower.</li>
+    <li><strong>Tier 4 — Active Inverter Curtailment:</strong> If your battery, car, and water tanks are all completely full and exporting would cause a financial loss, GEMS <strong>throttles your solar inverter</strong> down to match your exact home load, preventing a single cent of export penalties!</li>
   </ol>
 
-  <!-- ==================== 7. FLEMISH GSC PROTECTION ==================== -->
-  <h1 class="section-title" id="sec-gsc">7. Flemish GSC Subsidy Protection</h1>
+  <!-- ==================== 8. FLEMISH GSC SUBSIDY PROTECTION ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-gsc">8. Flemish Groenestroomcertificaten (GSC) Subsidy Protection</h1>
   <p>
-    Homeowners in Flanders with solar panels installed before 2021 often receive <strong>Groenestroomcertificaten (GSC)</strong> (green certificates) worth €90, €250, €350, or €450 for every 1,000 kWh of solar energy produced.
+    Homeowners in Flanders with solar installations built before 2021 often receive guaranteed <strong>Groenestroomcertificaten (GSC)</strong> (green certificates) worth €90, €250, €350, or €450 for every 1,000 kWh of solar energy produced.
   </p>
 
   <div class="callout callout-info">
-    <div class="callout-title">💡 Why GSC Keeps Solar Profitable During Negative Prices</div>
+    <div class="callout-title">💶 How GSC Value Protects You From Losing Money</div>
     <p>
-      Simple systems blindly shut down solar inverters whenever the feed-in tariff is negative (e.g. -€0.10/kWh). But if you receive <strong>€250/certificaat (€0.250/kWh)</strong> in GSC subsidy, you are actually still earning a net <strong>+€0.150/kWh</strong>!
+      If your solar system receives <strong>€250/certificaat (€0.250/kWh)</strong> from Fluvius, you earn €0.250 for every kWh your panels generate, regardless of what happens on the grid.
     </p>
     <p>
-      GEMS knows your GSC value. It only curtails your inverter if the negative injection penalty outweighs your subsidy certificate earnings (e.g. below -250.0 €/MWh), guaranteeing you never lose subsidy revenue!
+      If the wholesale market price drops to <strong>-€0.10/kWh</strong>, an unsmart system would panic and shut down your solar panels. But GEMS knows your GSC value! It calculates:
+    </p>
+    <div style="background:#ffffff; border:1px solid #cbd5e1; border-radius:6px; padding:8px 12px; margin:8px 0; font-family:monospace; font-weight:bold;">
+      Net Return = GSC Subsidy (+€0.250) + Market Price (-€0.100) = +€0.150/kWh Net Profit!
+    </div>
+    <p>
+      Because you are still making a net profit of 15 cents per kWh, GEMS <strong>keeps your solar panels producing at 100%</strong>. Curtailment will only activate if the negative price drops below -€0.250/kWh (-250 €/MWh), guaranteeing you never miss a single euro of your hard-earned green subsidies!
     </p>
   </div>
 
-  <div class="manual-screenshot">
-    <img src="assets/screenshots/settings_strategy_modes.png" alt="GSC Curtailment Protection Settings">
-    <div class="manual-screenshot-caption">Figure 7.1: GSC presets (€250) and effective curtailment threshold calculation.</div>
-  </div>
+  <!-- ==================== 9. ELIA GREEN GRID SYNC ==================== -->
+  <h1 class="section-title" id="sec-elia">9. Belgian Elia Green Grid Sync Boost</h1>
+  <p>
+    GEMS connects directly to the Belgian high-voltage transmission grid operator <strong>Elia</strong> via live Open Data feeds:
+  </p>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li>GEMS tracks the real-time share of wind and solar electricity powering the Belgian national grid.</li>
+    <li>When the national green share exceeds your configured threshold (e.g. <strong>65% Renewable</strong>), GEMS triggers the <strong>Green Grid Sync Boost</strong>.</li>
+    <li>Your EV charger and battery will prioritize charging during these high-renewable windows, helping stabilize the national power grid while charging your car with genuinely green electricity!</li>
+  </ul>
 
-  <!-- ==================== 8. SMART RELAYS ==================== -->
+  <!-- ==================== 10. SMART RELAYS & HEATING ==================== -->
   <div class="page-break"></div>
-  <h1 class="section-title" id="sec-relays">8. Smart Relays & Home Automation</h1>
+  <h1 class="section-title" id="sec-relays">10. Smart Relays &amp; Heat Pump Automation</h1>
   <p>
-    GEMS supports smart switches and contactors (like Shelly Pro 2 or Shelly Plus 1PM) to turn heavy household appliances on or off automatically:
+    GEMS can control smart switches (like Shelly Pro or Shelly Plus contactors) to turn heavy electrical appliances on and off automatically based on your solar surplus or cheap dynamic hours:
+  </p>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="assets/screenshots/settings_relays.png" alt="Smart Relays Tab">
+      <div class="manual-screenshot-caption">Figure 10.1: Configured relays and live ON / OFF status.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="assets/screenshots/settings_relays_rules.png" alt="Relay Automation Rules">
+      <div class="manual-screenshot-caption">Figure 10.2: Excess solar and spot price automation rules.</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Typical Home Automation Setups</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Connected Appliance</th>
+        <th>Automatic Trigger Condition</th>
+        <th>Homeowner Benefit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>SG-Ready Heat Pump</strong></td>
+        <td>Excess solar &gt; <code>1,200 Watts</code> for 10 minutes</td>
+        <td>Boosts the heat pump into thermal storage mode, pre-heating your living room or hot water tank for free.</td>
+      </tr>
+      <tr>
+        <td><strong>Electric Hot Water Boiler</strong></td>
+        <td>Dynamic price &le; <code>0.02 €/kWh</code> or Solar &gt; <code>1,500 W</code></td>
+        <td>Stores 3,000 Watts of free or ultra-cheap heat in your hot water cylinder.</td>
+      </tr>
+      <tr>
+        <td><strong>Swimming Pool Filter Pump</strong></td>
+        <td>Daily solar surplus &gt; <code>800 Watts</code></td>
+        <td>Circulates your pool water only when the sun is shining, saving hundreds of euros per summer season.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 11. REPORTS & PDF DOWNLOADS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-reports">11. Energy Reports &amp; Instant PDF Downloads</h1>
+  <p>
+    GEMS makes it effortless to review and share your home energy accomplishments:
+  </p>
+
+  <h2 class="subsection-title">1. One-Click Printable PDF Energy Reports</h2>
+  <p>
+    Right from your main dashboard, click the <strong>"Export PDF"</strong> button. GEMS instantly generates a publication-quality, color-coded PDF energy summary covering:
   </p>
   <ul style="margin: 6px 0 12px 18px; padding: 0;">
-    <li><strong>Hot Water Boilers:</strong> Heated during the cheapest dynamic hours or with free midday solar surplus.</li>
-    <li><strong>SG-Ready Heat Pumps:</strong> Boosted to maximum thermal storage when excess solar exceeds your configured threshold (e.g. 1,200 W for 10 minutes).</li>
+    <li>Total solar kilowatt-hours generated and peak wattage reached.</li>
+    <li>Self-consumption and self-sufficiency percentages.</li>
+    <li>Grid import vs. grid export balance.</li>
+    <li>Total capacity peak recorded during the billing period.</li>
   </ul>
 
-  <!-- ==================== 9. REPORTS & PDF EXPORT ==================== -->
-  <h1 class="section-title" id="sec-reports">9. Energy Reports & Data Exporting</h1>
+  <h2 class="subsection-title">2. Automated Sunday Evening Summary Email</h2>
   <p>
-    GEMS makes it easy to review and share your energy performance:
-  </p>
-  <ul style="margin: 6px 0 12px 18px; padding: 0;">
-    <li><strong>Automated Weekly Email:</strong> Receive an email every Sunday evening summarizing total solar yield, grid import/export, and battery utilization.</li>
-    <li><strong>Visual PDF Reports:</strong> Download printable PDF Energy Reports for any day, week, month, or year directly from the dashboard.</li>
-    <li><strong>Technical Logs:</strong> Export complete SQLite event logs for technician review via the Logger UI.</li>
-  </ul>
-
-  <!-- ==================== 10. MOBILE EXPERIENCE ==================== -->
-  <h1 class="section-title" id="sec-mobile">10. Mobile Access & Tablet Kiosk</h1>
-  <p>
-    GEMS is designed as a responsive Single Page Application. It adapts cleanly to smartphones, tablets, and dedicated wall-mounted touchscreen displays:
+    If configured under <strong>Settings &rarr; Notifications</strong>, GEMS automatically emails you an executive summary every Sunday evening at 20:00, keeping you effortlessly informed about your home's energy performance.
   </p>
 
-  <div class="manual-screenshot" style="max-width: 360px; margin: 16px auto;">
+  <!-- ==================== 12. MOBILE & TABLET ==================== -->
+  <h1 class="section-title" id="sec-mobile">12. Mobile Phone Experience &amp; Wall Tablets</h1>
+  <p>
+    GEMS is built with a responsive mobile interface that looks and feels like a native smartphone application:
+  </p>
+
+  <div class="manual-screenshot" style="max-width: 380px; margin: 16px auto;">
     <img src="assets/screenshots/dashboard_mobile.png" alt="Mobile Dashboard View">
-    <div class="manual-screenshot-caption">Figure 10.1: GEMS responsive mobile dashboard layout on smartphone.</div>
+    <div class="manual-screenshot-caption">Figure 12.1: GEMS responsive layout on smartphone.</div>
   </div>
 
   <div class="callout callout-tip">
-    <div class="callout-title">📱 Add GEMS to Your Phone Home Screen</div>
-    <p>
-      Open your mobile browser (Safari on iPhone, Chrome on Android), navigate to <code>http://ems.local</code>, tap <strong>Share</strong> (or the three dots menu), and select <strong>"Add to Home Screen"</strong>. GEMS will launch as a standalone fullscreen app without browser address bars!
-    </p>
+    <div class="callout-title">📱 How to Install GEMS on Your Phone Home Screen</div>
+    <ol style="margin: 6px 0 0 16px; padding: 0;">
+      <li>Connect your smartphone to your home Wi-Fi.</li>
+      <li>Open your web browser (Safari on iPhone, Chrome on Android) and type: <code>http://ems.local</code></li>
+      <li>Tap the <strong>Share button</strong> (on iOS) or the <strong>three dots menu</strong> (on Android).</li>
+      <li>Select <strong>"Add to Home Screen"</strong>.</li>
+      <li>A GEMS icon will appear on your phone. Tapping it opens GEMS in full-screen mode without browser address bars!</li>
+    </ol>
   </div>
 
-  <!-- ==================== 11. FAQ ==================== -->
-  <h1 class="section-title" id="sec-faq">11. Frequently Asked Questions & Homeowner Tips</h1>
+  <!-- ==================== 13. FAQ ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-faq">13. Homeowner Frequently Asked Questions &amp; Everyday Tips</h1>
 
-  <h2 class="subsection-title">Q: What happens if my internet connection goes down?</h2>
+  <h2 class="subsection-title">Q: What happens if our home internet goes down?</h2>
   <p>
-    GEMS runs 100% locally on your home network. Even if your internet is completely disconnected, peak shaving, solar self-consumption, battery charging, and EV charging controls continue running without interruption.
+    <strong>Nothing stops working!</strong> Because GEMS runs 100% locally on your Raspberry Pi microcomputer inside your electrical cabinet, solar self-consumption, battery peak shaving, and EV charging controls continue running normally. When internet is restored, GEMS simply fetches the newest Day-Ahead price forecast.
   </p>
 
-  <h2 class="subsection-title">Q: How do I access GEMS when I am away from home?</h2>
+  <h2 class="subsection-title">Q: When does my Flanders capacity peak reset?</h2>
   <p>
-    For security reasons, GEMS does not open insecure ports to the public internet. You can access GEMS securely from anywhere using Raspberry Pi Connect or a local VPN (such as Tailscale or WireGuard on your home router).
+    In Flanders, the <em>Capaciteitstarief</em> billing cycle is measured per calendar month. At midnight on the 1st of every month (00:00), GEMS automatically resets its peak counter and begins tracking the new month's baseline.
   </p>
 
-  <h2 class="subsection-title">Q: When does the Flanders capacity peak reset?</h2>
+  <h2 class="subsection-title">Q: How can I access GEMS when I am away from home?</h2>
   <p>
-    The capacity tariff billing cycle resets on the 1st day of every calendar month at 00:00. GEMS automatically begins tracking the new month's baseline peak.
+    For safety and privacy, GEMS does not expose open ports to the public internet. You can access GEMS securely from outside your home using <strong>Raspberry Pi Connect</strong> (which requires zero router configuration) or via a private home VPN (such as WireGuard or Tailscale).
+  </p>
+
+  <h2 class="subsection-title">Q: Why did my EV stop charging when the sun was still shining?</h2>
+  <p>
+    If your charger is set to <strong>ECO / Solar Only</strong> mode, your car requires at least 1.4 kW (single-phase) or 4.1 kW (three-phase) of continuous surplus. If heavy domestic appliances (such as an oven or washing machine) turned on, or if heavy clouds rolled in, GEMS temporarily paused your EV to prevent drawing costly power from the utility grid. Charging resumes as soon as solar surplus stabilizes!
+  </p>
+
+  <h2 class="subsection-title">Q: Can I adjust settings myself without calling the installer?</h2>
+  <p>
+    Yes! Everyday settings—such as changing your EV charging mode (Eco vs Fast), reviewing energy graphs, downloading PDF reports, or toggling smart relays—can be performed directly from the main dashboard at any time.
   </p>
 
 </div>

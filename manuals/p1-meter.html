@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P1 Port Smart Meter Connection & DIY Cable Manual - GEMS</title>
+  <meta name="description" content="Complete guide to connecting GEMS to digital electricity meters via the P1 port, assembling DIY USB-to-RJ11/RJ12 cables, signal inversion, and Fluvius e-MUCS telemetry.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <svg width="20" height="20"><use href="assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">P1 Meter Guide</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Search documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-search"></use></svg>
+          <span>Search P1 port, RJ11 wiring, schematics, Fluvius...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="installation.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+        <span>Installation</span>
+      </a>
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuration</span>
+      </a>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Toggle color theme">
+        <svg width="18" height="18"><use href="assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Getting Started</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-book"></use></svg>
+              <span>Documentation Hub</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">P1 Meter Manual</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="#p1-overview" class="sidebar-link active">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
+              <span>P1 Port Overview</span>
+            </a>
+          </li>
+          <li>
+            <a href="#supported-meters" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-grid"></use></svg>
+              <span>Supported Meters</span>
+            </a>
+          </li>
+          <li>
+            <a href="#pinout-specs" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-terminal"></use></svg>
+              <span>RJ12 vs RJ11 Pinout</span>
+            </a>
+          </li>
+          <li>
+            <a href="#signal-inversion" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-shield"></use></svg>
+              <span>Inverted Logic Physics</span>
+            </a>
+          </li>
+          <li>
+            <a href="#bill-of-materials" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-wrench"></use></svg>
+              <span>Bill of Materials (BOM)</span>
+            </a>
+          </li>
+          <li>
+            <a href="#method-hardware" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-bolt"></use></svg>
+              <span>Method A: Transistor</span>
+            </a>
+          </li>
+          <li>
+            <a href="#method-ftdi" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-chip"></use></svg>
+              <span>Method B: FTDI Software</span>
+            </a>
+          </li>
+          <li>
+            <a href="#cable-assembly" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-tool"></use></svg>
+              <span>Assembly & Verification</span>
+            </a>
+          </li>
+          <li>
+            <a href="#port-activation" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-check"></use></svg>
+              <span>Fluvius Port Activation</span>
+            </a>
+          </li>
+          <li>
+            <a href="#gems-ui-setup" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-settings"></use></svg>
+              <span>GEMS UI Configuration</span>
+            </a>
+          </li>
+          <li>
+            <a href="#troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-alert"></use></svg>
+              <span>Troubleshooting & FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Official PDF Manuals</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-p1-meter-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>P1 Meter Manual (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NEW</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-installer-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Installer Manual (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>User Manual (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-server-connection-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Server Manual (PDF)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">P1 Port Smart Meter Manual</span>
+        </nav>
+
+        <h1 id="p1-overview">P1 Port Smart Meter Connection & DIY Cable Manual</h1>
+        <p class="hero-lead">
+          Connect your GEMS Energy Management System directly to the utility digital electricity meter. Read high-frequency 1-second grid telemetry, monitor fiscal 15-minute capacity peaks, and learn how to build your own reliable USB-to-RJ11/RJ12 cable for under €5.
+        </p>
+
+        <!-- P1 Port Overview -->
+        <div class="callout callout-tip" style="margin-bottom: 2rem;">
+          <div class="callout-title">⚡ Why the P1 Port is the Ultimate Grid Meter Sensor</div>
+          <p>
+            While external Modbus energy meters (such as Eastron SDM630 or Shelly Pro 3EM) are great, the utility <strong>P1 Smart Meter Port</strong> provides the exact fiscal measurements used to calculate your electricity bill and Flanders capacity tariff (<em>capaciteitstarief</em>).
+          </p>
+          <p>
+            By connecting GEMS directly to the P1 port, GEMS reads the official <code>OBIS 1-0:1.6.0</code> maximum monthly peak register with zero deviation from your utility statement.
+          </p>
+        </div>
+
+        <div class="doc-screenshot-card" style="margin-bottom: 2rem;">
+          <img src="assets/screenshots/settings_devices_meter_form.png" alt="GEMS Smart Meter Form" loading="lazy">
+          <div class="doc-screenshot-caption">DSMR P1 Smart Meter configuration in GEMS Device Management (/dev/ttyUSB0 at 115,200 baud).</div>
+        </div>
+
+        <!-- Section 2: Supported Meters -->
+        <h2 id="supported-meters">1. Supported Meters & Regional Standards</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Region / Grid Operator</th>
+                <th>Meter Hardware</th>
+                <th>Protocol Standard</th>
+                <th>Serial Baud Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Fluvius (Flanders, Belgium)</strong></td>
+                <td>Sagemcom T211 (3-phase) / S211 (1-phase), Landis+Gyr E360</td>
+                <td>e-MUCS v1.4 / DSMR 5.0.2</td>
+                <td><strong>115,200 baud</strong> (8 data bits, no parity, 1 stop bit)</td>
+              </tr>
+              <tr>
+                <td><strong>Sibelga (Brussels, Belgium)</strong></td>
+                <td>Sagemcom T211 / S211</td>
+                <td>e-MUCS v1.4 / DSMR 5.0.2</td>
+                <td><strong>115,200 baud</strong> (8N1)</td>
+              </tr>
+              <tr>
+                <td><strong>ORES & RESA (Wallonia, Belgium)</strong></td>
+                <td>Sagemcom T211 / Landis+Gyr E360</td>
+                <td>e-MUCS v1.4 / DSMR 5.0.2</td>
+                <td><strong>115,200 baud</strong> (8N1)</td>
+              </tr>
+              <tr>
+                <td><strong>Liander, Enexis, Stedin (Netherlands)</strong></td>
+                <td>Landis+Gyr E350/E360, Kaifa MA105/MA304, Iskra ME382</td>
+                <td>DSMR 5.0.2 (recent)<br>DSMR 4.0 / 4.2 (legacy)</td>
+                <td><strong>115,200 baud</strong> (DSMR 5)<br><strong>9,600 baud</strong> (DSMR 4/3/2)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Section 3: Pinouts -->
+        <h2 id="pinout-specs">2. RJ12 (6P6C) vs RJ11 (6P4C) Physical Pinouts</h2>
+        <p>
+          The meter's P1 receptacle is a 6-contact modular socket. A standard 4-wire telephone cable (<strong>RJ11 6P4C</strong>) plugs directly into the center 4 pins of this 6-pin socket:
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Socket Pin</th>
+                <th>Signal</th>
+                <th>Electrical Function</th>
+                <th>RJ12 (6P6C)</th>
+                <th>RJ11 (6P4C)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Pin 1</strong></td>
+                <td><strong>+5V Power</strong></td>
+                <td>+5 VDC Output (up to 250 mA on DSMR 5.0). Powers external dongles.</td>
+                <td>Wire 1</td>
+                <td><em>Not used (USB powered)</em></td>
+              </tr>
+              <tr>
+                <td><strong>Pin 2</strong></td>
+                <td><strong>Data Request (RTS)</strong></td>
+                <td>Control input. <strong>Must be pulled HIGH (+5V)</strong> to start telegram streaming.</td>
+                <td>Wire 2</td>
+                <td><strong>Wire 1</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Pin 3</strong></td>
+                <td><strong>Data Ground (GND)</strong></td>
+                <td>Signal reference ground.</td>
+                <td>Wire 3</td>
+                <td><strong>Wire 2</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Pin 4</strong></td>
+                <td><strong>Reserved (NC)</strong></td>
+                <td>Not connected.</td>
+                <td>Wire 4</td>
+                <td>Wire 3</td>
+              </tr>
+              <tr>
+                <td><strong>Pin 5</strong></td>
+                <td><strong>Data Output (TxD)</strong></td>
+                <td>Inverted open-collector data line.</td>
+                <td>Wire 5</td>
+                <td><strong>Wire 4</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Pin 6</strong></td>
+                <td><strong>Power Ground (GND)</strong></td>
+                <td>Ground reference (internally tied to Pin 3).</td>
+                <td>Wire 6</td>
+                <td><em>Not used</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Section 4: Signal Inversion -->
+        <h2 id="signal-inversion">3. Signal Inversion Explained (Why Direct Connection Fails)</h2>
+        <p>
+          Unlike standard TTL serial ports where an idle line sits at +5V and a binary 0 pulls to 0V, the DSMR / Fluvius P1 interface uses <strong>inverted open-collector logic</strong>:
+        </p>
+        <ul>
+          <li><strong>Idle Line:</strong> Transistor open / pulled to 0V &rarr; Logic 1</li>
+          <li><strong>Active Transmission:</strong> Pulled to +5V &rarr; Logic 0</li>
+        </ul>
+        <p>
+          If you connect Pin 5 directly to an ordinary USB serial adapter, Linux reads reversed bits, producing framing errors and garbled symbols. You must invert the signal either in <strong>hardware (Method A)</strong> or in <strong>FTDI EEPROM firmware (Method B)</strong>.
+        </p>
+
+        <!-- Section 5: BOM -->
+        <h2 id="bill-of-materials">4. Bill of Materials (BOM) & Tools</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Recommended Model</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>USB-UART Adapter</strong></td>
+                <td>FTDI FT232RL (or CH340G / CP2102) with 5V logic</td>
+                <td>Translates serial bits to USB for Raspberry Pi.</td>
+              </tr>
+              <tr>
+                <td><strong>Modular Cable & Plug</strong></td>
+                <td>RJ12 (6P6C) or RJ11 (6P4C) crimp plug with 1–2m 4-core cable</td>
+                <td>Plugs into the smart meter P1 port.</td>
+              </tr>
+              <tr>
+                <td><strong>NPN Transistor</strong> <em>(Method A)</em></td>
+                <td>BC547, BC548, or 2N3904</td>
+                <td>Hardware logic inverter.</td>
+              </tr>
+              <tr>
+                <td><strong>Resistor R1 (1 kΩ)</strong> <em>(Method A)</em></td>
+                <td>1 kΩ 1/4W resistor</td>
+                <td>Pull-up resistor to +5V.</td>
+              </tr>
+              <tr>
+                <td><strong>Resistor R2 (10 kΩ)</strong> <em>(Method A)</em></td>
+                <td>10 kΩ 1/4W resistor</td>
+                <td>Transistor base current limiting.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Section 6: Method A -->
+        <h2 id="method-hardware">5. Method A: Hardware Transistor Inverter Build</h2>
+        <p>This schematic works universally with any USB-UART adapter:</p>
+        <pre class="terminal-box" style="background:#0f172a; color:#38bdf8; font-family:'Fira Code',monospace; padding:1rem; border-radius:8px; line-height:1.4;">
+P1 PORT (RJ11/RJ12)                             USB-UART ADAPTER
+===================                             ================
+
+[ Pin 2: RTS ] ────────────────────────────────── [ +5V VCC ] (Pulls RTS High)
+
+[ Pin 3: GND ] ────────────────────────────────── [ GND ]
+
+                                +5V (from USB)
+                                     │
+                                    ┌┴┐
+                                    │ │ R1 (1 kΩ Pull-up)
+                                    └┬┘
+                                     ├─────────── [ RXD Pin ] (Inverted TTL)
+                                     │
+                                   C │
+[ Pin 5: TXD ] ────[ 10 kΩ R2 ]────┤  BC547 NPN
+                                   B ╲
+                                     │ E
+                                     │
+[ Pin 3/6: GND ] ────────────────────┴─────────── [ GND Pin ]
+        </pre>
+
+        <!-- Section 7: Method B -->
+        <h2 id="method-ftdi">6. Method B: Clean 3-Wire FTDI Software Inversion (Zero Extra Parts!)</h2>
+        <p>
+          If you use an official <strong>FTDI FT232RL</strong> adapter, you can invert the RX pin in EEPROM software without any transistors:
+        </p>
+        <pre class="terminal-box" style="background:#0f172a; color:#4ade80; font-family:'Fira Code',monospace; padding:1rem; border-radius:8px; line-height:1.4;">
+P1 PORT (RJ11/RJ12)                             FTDI FT232RL ADAPTER
+===================                             ====================
+
+[ Pin 2: RTS ] ────────────────────────────────── [ +5V VCC ] (Pulls RTS High)
+
+[ Pin 3: GND ] ────────────────────────────────── [ GND ]
+
+[ Pin 5: TXD ] ────────────────────────────────── [ RXD ] (Direct wire!)
+        </pre>
+
+        <h3>60-Second Linux EEPROM Flash</h3>
+        <pre class="terminal-box" style="background:#0f172a; color:#f8fafc; font-family:'Fira Code',monospace; padding:1rem; border-radius:8px; line-height:1.4;">
+sudo apt-get update && sudo apt-get install -y ftdi-eeprom
+
+cat &lt;&lt; 'EOF' &gt; ftdi_p1.conf
+vendor_id=0x0403
+product_id=0x6001
+invert_rxd=true
+EOF
+
+sudo ftdi_eeprom --flash-eeprom ftdi_p1.conf
+# Unplug and replug the USB dongle. Done!
+        </pre>
+
+        <!-- Section 8: Port Activation -->
+        <h2 id="port-activation">7. Activating the P1 Port (Mijn Fluvius)</h2>
+        <p>In Flanders (Belgium), the P1 port must be activated through the utility portal:</p>
+        <ol>
+          <li>Log into <strong><a href="https://www.fluvius.be" target="_blank" style="color:var(--brand-primary); font-weight:600;">Mijn Fluvius</a></strong>.</li>
+          <li>Go to <strong>Meters &amp; Aansluitingen</strong> &rarr; Select your electricity meter EAN.</li>
+          <li>Under <strong>Poorten digitaal beheer (P1 en S1)</strong>, click <strong>Activeer gebruikerspoorten</strong>.</li>
+          <li>Activation completes over-the-air in 15 minutes to 72 hours.</li>
+          <li><strong>Confirmation on Meter Display:</strong> The padlock icon (🔒) above "P1" disappears and is replaced by a small triangle (▼).</li>
+        </ol>
+
+        <!-- Section 9: GEMS Setup -->
+        <h2 id="gems-ui-setup">8. Configuring the Smart Meter in GEMS UI</h2>
+        <ol>
+          <li>Open GEMS at <code>http://ems.local</code> &rarr; <strong>Settings</strong> &rarr; <strong>Devices</strong>.</li>
+          <li>Click <strong>+ Add Device</strong> &rarr; Select <strong>Smart Meter</strong>.</li>
+          <li>Choose template <strong>DSMR P1 RJ12 Serial Dongle (/dev/ttyUSB0)</strong>.</li>
+          <li>Set Baud Rate to <strong>115200</strong> and Poll Interval to <strong>1s</strong>.</li>
+          <li>Click <strong>Add Device</strong>. Verify the green <span style="color:#10b981; font-weight:bold;">● Online</span> status and watch live power flow on the Dashboard!</li>
+        </ol>
+
+        <!-- Section 10: Troubleshooting -->
+        <h2 id="troubleshooting">9. Troubleshooting & Common Pitfalls</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Symptom</th>
+                <th>Root Cause</th>
+                <th>Solution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Garbled characters in terminal</strong></td>
+                <td>Signal not inverted or incorrect baud rate</td>
+                <td>Check transistor circuit or FTDI <code>invert_rxd</code>. Set baud to 115200.</td>
+              </tr>
+              <tr>
+                <td><strong>No data / cursor hangs on <code>cat /dev/ttyUSB0</code></strong></td>
+                <td>Pin 2 (RTS) not pulled to +5V, or P1 port locked</td>
+                <td>Verify Pin 2 has 5.0V with multimeter. Check meter LCD for padlock icon.</td>
+              </tr>
+              <tr>
+                <td><strong>Linux "Permission denied" on /dev/ttyUSB0</strong></td>
+                <td><code>gems</code> user missing dialout group</td>
+                <td>Run <code>sudo usermod -a -G dialout gems && sudo systemctl restart gems</code>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
