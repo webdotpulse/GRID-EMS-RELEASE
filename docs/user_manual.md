@@ -18,7 +18,7 @@ GEMS serves as the central brain of your home energy ecosystem, integrating Grid
 
 ### Core Philosophy
 * **Fully UI-Driven:** Zero YAML or text configuration file editing is required. Every hardware device and optimization rule is configured straight from the frontend interface.
-* **90+ Native Hardware Templates:** Out-of-the-box support for 80+ leading manufacturers across Solar Inverters, Batteries, EV Chargers (OCPP / Modbus TCP / REST), Digital P1 Meters, and Smart Relays.
+* **140+ Native Hardware Templates:** Out-of-the-box support for 100+ leading manufacturers across Solar Inverters, Batteries, EV Chargers (OCPP / Modbus TCP / REST), Digital P1 Meters, and Smart Relays.
 * **Responsive Architecture:** A highly optimized Go backend paired with an embedded SQLite database and a modern Vue 3 SPA guarantees snappy updates using Server-Sent Events (SSE) and WebSockets.
 * **Minimal Wear:** Database writes are batched and buffered with SQLite WAL mode to maximize the lifespan of your device's SD Card or NVMe SSD.
 * **Privacy First:** All data is processed and stored locally inside your home.
@@ -119,7 +119,7 @@ Access the **Settings** view from the top navigation bar to configure system-wid
 
 ## 5. Device Management & Step-by-Step Onboarding
 
-GEMS includes **90 native hardware templates**. Adding hardware is 100% UI-driven.
+GEMS includes **140 native hardware templates**. Adding hardware is 100% UI-driven.
 
 | Configured Devices Management | Add Device Category Wizard |
 | :---: | :---: |
@@ -147,7 +147,7 @@ GEMS includes **90 native hardware templates**. Adding hardware is 100% UI-drive
 
 ---
 
-### 5.1 Solar & Hybrid Inverters (24 Templates)
+### 5.1 Solar & Hybrid Inverters (32 Templates)
 
 | Template | Brand & Series | Protocol | Default Port | Slave ID | Curtailment |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -168,12 +168,20 @@ GEMS includes **90 native hardware templates**. Adding hardware is 100% UI-drive
 | `enerlution_inverter` | Enerlution Hybrid Inverter | Modbus TCP | `502` | `1` | Yes |
 | `alpha_ess_inverter` | Alpha ESS Storion (SMILE5 / SMILE-T10) | Modbus TCP | `502` / `8502` | `85` | Yes |
 | `anker_inverter` | Anker SOLIX X1 Hybrid | Modbus TCP | `502` | `1` | Yes |
+| `abb_fimer_inverter` | ABB / Fimer Solar & Hybrid (UNO-DM/REACT 2) | Modbus SunSpec | `502` | `1` | Yes |
+| `autarco_inverter` | Autarco SX / MX / LX Series Inverters | Modbus TCP | `502` | `1` | Yes |
+| `chisage_ess` | Chisage ESS Hybrid Inverters (3kW–50kW) | Modbus TCP | `502` | `1` | Yes |
+| `delta_inverter` | Delta M6A / M8A / M10A / RPI Series | Modbus SunSpec | `502` | `1` | Yes |
+| `hyxipower_inverter` | HYXiPOWER Residential & C&I Inverters | Modbus TCP | `502` | `1` | Yes |
+| `kstar_inverter` | KSTAR BluE Series Hybrid Inverters | Modbus TCP | `502` | `1` | Yes |
+| `solinteg_inverter` | Solinteg Integ M OHT/OMT Series (3kW–50kW) | Modbus TCP | `502` | `1` | Yes |
+| `solplanet_inverter` | Solplanet / AISWEI Single & 3-Phase | Modbus TCP | `502` | `1` | Yes |
 | `lg_ess` | LG ESS Home (8 / 10 / 15) | Local REST | `80` / `443` | — | Yes |
 | `enphase_envoy` | Enphase IQ Gateway / Envoy-S | Local REST | `80` / `443` | — | Yes |
 
 ---
 
-### 5.2 EV Charging Stations (38 Templates)
+### 5.2 EV Charging Stations (53 Templates)
 
 #### Modbus TCP EV Chargers (Recommended & Preferred)
 **Modbus TCP is the preferred connection option for EV chargers**:
@@ -182,12 +190,15 @@ GEMS includes **90 native hardware templates**. Adding hardware is 100% UI-drive
 * **Supported Models:**
   * **RAEDIAN NEO / NEX AC Wallbox:** Template `raedian_charger`, Port `502`, Slave ID `1`.
   * **RAEDIAN Gemini Dual AC Wallbox:** Template `raedian_gemini`, Port `502`, Slave ID `1` (supports dual sockets and dynamic 0–64A load balancing).
+  * **Volt Time Source / Source Pro:** Template `volttime_source`, Port `502`, Slave ID `1`.
+  * **SolaX Smart EV Charger:** Template `solax_evcharger`, Port `502`, Slave ID `1`.
   * **KEBA KeContact P30 / P40:** Template `keba_charger`, Port `502`, Slave ID `255`.
   * **Mennekes AMTRON Xtra / Premium:** Template `mennekes_modbus`, Port `502`, Slave ID `1`.
   * **Webasto Next / Live:** Template `webasto_charger`, Port `502`, Slave ID `1`.
   * **ABB Terra AC Wallbox:** Template `abb_charger`, Port `502`, Slave ID `1`.
   * **Alfen Eve Single / Double Pro-Line:** Template `alfen_charger`, Port `502`, Slave ID `1`.
   * **Peblar EV Charger:** Template `peblar_charger`, Port `502`, Slave ID `1`.
+  * **Kempower Fast Charging Infrastructure:** Template `kempower_charger`, Port `502`, Slave ID `1`.
   * **Phoenix Contact EV-CC / CHARX / Veton:** Template `phoenix_contact_evcc`, Port `502`, Slave ID `1`.
   * **GoodWe HCA Wallbox / Sigenergy SigenStor EVAC:** Template `goodwe_charger` / `sigenergy_evac`.
   * **SolarEdge Home EVSE:** Template `solaredge_evse`, Port `502`, Slave ID `1`.
@@ -198,22 +209,26 @@ For chargers without Modbus TCP or standalone residential setups without third-p
   ```
   ws://<GEMS-IP>:8887/<ChargePointID>
   ```
-* **Supported Models:** Huawei FusionCharge (SCharger-7KS/22KT), EVBox (Elvi/Livo/BusinessLine), Mennekes AMTRON (4You/4Business/ACU), SMA EV Charger (7.4/22), Schneider Electric EVlink (Wallbox/Pro AC), Siemens VersiCharge GEN3, Elli / VW / Skoda / SEAT (ID. Charger Connect/Pro), Alpitronic Hypercharger, Autel MaxiCharger, Hager witty, BMW Wallbox Plus, Mercedes-Benz Wallbox, Porsche Wallbox, Fronius Wattpilot, Easee.
+* **Supported Models:** Huawei FusionCharge (SCharger-7KS/22KT), Wallbox Pulsar Plus / Commander (OCPP `wallbox_ocpp`), Teltonika TeltoCharge (`teltonika_teltocharge`), EVBox (Elvi/Livo/BusinessLine), Mennekes AMTRON (4You/4Business/ACU), SMA EV Charger (7.4/22), Schneider Electric EVlink (Wallbox/Pro AC), Siemens VersiCharge GEN3, Elli / VW / Skoda / SEAT (ID. Charger Connect/Pro), Alpitronic Hypercharger, Autel MaxiCharger, Hager witty, BMW Wallbox Plus, Mercedes-Benz Wallbox, Porsche Wallbox, Fronius Wattpilot, Easee.
 * **In GEMS UI:** Select EV Chargers &rarr; Choose Template: `OCPP 1.6J / 2.0.1 Smart EV Charger` &rarr; Enter your `ChargePointID` (e.g. `WALLBOX-01`).
 
 #### REST & Cloud EV Chargers
 * **go-e Charger Gemini / HOMEfix / PRO:** Template `goe_charger`, Local HTTP REST Port `80` (enable Local API v2 in go-e app).
+* **MyEnergi Zappi EV Charger:** Template `myenergi_zappi`, Local HTTP REST / CGI Port `80`.
 * **SmartEVSE v2 / v3:** Template `smartevse_charger`, Local REST Port `80`.
+* **FLEXeCHARGE Gateway:** Template `flexecharge_gateway`, Local REST Port `80`.
 * **Wallbox Pulsar Plus / Commander / Zaptec Go:** Cloud REST templates with API credentials.
 
 ---
 
-### 5.3 Grid & Smart Meters (26 Templates)
+### 5.3 Grid & Smart Meters (36 Templates)
 
 * **P1 Smart Meter (USB / Serial):** Template `p1_serial`. Serial port `/dev/ttyUSB0`, Baud `115200` (DSMR 4/5) or `9600` (DSMR 2/3). Plug RJ12 cable into meter and USB into Raspberry Pi.
 * **P1 Smart Meter (Network / TCP Bridge):** Template `p1_network`. Host IP and Port (e.g. `23`, `8088`, `8234`).
 * **HomeWizard Wi-Fi P1 Meter:** Template `homewizard_meter`. Host IP, Port `80`. (Enable *Local API* in HomeWizard Energy app).
+* **YouLess LS120 Pulse & P1 Meter:** Template `youless_ls120`. Host IP, Port `80`.
 * **Homey Energy Dongle:** Template `homey_p1`. Local network P1 broadcast.
+* **Chint DTSU666 / DTSU666-H 3-Phase Meter:** Template `chint_dtsu666`. Modbus TCP Port `502`, Slave ID `1`.
 * **Shelly 3EM / Pro 3EM / Gen3 3EM-63T:** Templates `shelly_3em`, `shelly_pro_3em`. Host IP, Port `80`.
 * **Eastron SDM120 / SDM230 / SDM630 / SDM72D / SMART X96:** Templates `eastron_sdm120_230`, `eastron_sdm630`, `eastron_sdm72_x96`. Modbus TCP Port `502`, Slave ID `1`.
 * **Carlo Gavazzi EM112 / EM340 / EM540 / EM24:** Templates `carlogavazzi_em340`, `carlogavazzi_em24`. Modbus TCP Port `502`, Slave ID `1`.
@@ -223,17 +238,21 @@ For chargers without Modbus TCP or standalone residential setups without third-p
 * **SMA Energy Meter 2.0 / Data Manager M:** Template `sma_energymeter`. Modbus TCP Port `502`, Slave ID `2`.
 * **Socomec COUNTIS E24/E34/E44 / DIRIS A-40:** Template `socomec_meter`. Modbus TCP Port `502`, Slave ID `1`.
 * **WAGO 879 Series (879-3000/3020/3040):** Template `wago_879`. Modbus TCP Port `502`, Slave ID `1`.
-* **Eltako DSZ15DZMOD / Finder 7M / Inepro PRO380 / Lovato DMG610 / Acrel ADW300 / ESPHome / Loxone / Niko.**
+* **Accuenergy Acuvim/AcuRev, Algodue UPM, Hager ECM/ECR, Janitza UMG, Kamstrup, Landis+Gyr, Phoenix Contact EMpro, Weidmüller, Eltako, Finder, Inepro, Lovato, Acrel.**
 
 ---
 
-### 5.4 Smart Relays & Contactors (2 Templates)
+### 5.4 Smart Relays & Contactors (6 Templates)
 
 | Smart Relays Management | Relay Automation Rules |
 | :---: | :---: |
 | ![Relays Tab](../screenshots/settings_relays.png) | ![Relay Rules](../screenshots/settings_relays_rules.png) |
 
 * **Shelly Plus 1PM / Pro 1PM / Plug S:** Template `shelly_plus_1pm`. Host IP, Port `80`. Controls SG-Ready heat pump boost contactors and electric boilers based on solar excess threshold (e.g. >1500W) and thermal hysteresis timers.
+* **Shelly Plus 1 / Pro 1 (Dry Contact):** Template `shelly_plus_1`. Potential-free contact switching for heat pump inputs, gate triggers, or external lock signals.
+* **Shelly Plus 2PM / Pro 2PM (Dual Relay & Meter):** Template `shelly_plus_2pm`. Dual independent channel control and active power metering.
+* **SG-Ready Heat Pump Boost:** Template `sgready_heatpump`. Commands State 2 (Normal) vs State 3 (Thermal Boost) during solar surplus or negative spot tariff windows.
+* **Modbus Digital I/O Relay Module:** Template `modbus_relay`. Industrial-grade contactor switching via Modbus RTU/TCP coils for high-current loads and peak shaving.
 * **Generic HTTP Relay:** Template `generic_relay`. Configurable state and toggle URLs for ESPHome, Tasmota, and custom actuators.
 
 ---
