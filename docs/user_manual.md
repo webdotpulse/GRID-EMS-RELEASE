@@ -186,7 +186,7 @@ GEMS includes **140 native hardware templates**. Adding hardware is 100% UI-driv
 #### Modbus TCP EV Chargers (Recommended & Preferred)
 **Modbus TCP is the preferred connection option for EV chargers**:
 * **Sub-Second Throttling:** Direct register writes allow instantaneous current adjustments (6A to 32A), critical for Flanders capacity tariff peak shaving and rapid solar curtailment.
-* **CPO / Billing Coexistence:** If your charger connects to an employer billing reimbursement platform or CPO (E-Flux, Road, Optimile, Easee Cloud) via OCPP, GEMS controls charging power locally over Modbus TCP *without interfering with or disconnecting your cloud billing service*.
+* **CPO / Billing Coexistence:** If your charger connects to an employer billing reimbursement platform or external CPO via OCPP, GEMS controls charging power locally over Modbus TCP *without interfering with or disconnecting your cloud billing service*.
 * **Supported Models:**
   * **RAEDIAN NEO / NEX AC Wallbox:** Template `raedian_charger`, Port `502`, Slave ID `1`.
   * **RAEDIAN Gemini Dual AC Wallbox:** Template `raedian_gemini`, Port `502`, Slave ID `1` (supports dual sockets and dynamic 0–64A load balancing).

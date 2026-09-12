@@ -224,7 +224,7 @@ Manage all system hardware from **Settings &rarr; Devices**.
 ### 7.1 Modbus TCP Fieldbus Control (Recommended & Preferred)
 **Modbus TCP is the preferred connection option for EV chargers**:
 * **Sub-Second Response:** Modbus registers allow GEMS to read phase currents and write amperage limits (6A to 32A) immediately without WebSocket latency, essential for reactive Flanders capacity peak shaving and real-time solar curtailment tracking.
-* **CPO / Split-Billing Coexistence:** If your charger connects to an employer billing reimbursement platform or commercial CPO (E-Flux, Road, Optimile, Easee Cloud) via OCPP, GEMS controls charging power locally over Modbus TCP *without disconnecting or interfering with your cloud billing service*.
+* **CPO / Split-Billing Coexistence:** If your charger connects to an employer billing reimbursement platform or commercial CPO via OCPP, GEMS controls charging power locally over Modbus TCP *without disconnecting or interfering with your cloud billing service*.
 
 ```mermaid
 sequenceDiagram

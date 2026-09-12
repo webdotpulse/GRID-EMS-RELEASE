@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.14.1] - 2026-09-12
+## [v9.14.2] - 2026-09-12
 
 ### Added
 - **Comprehensive Beginner-Friendly Installer & User Manuals (HTML & Vector PDF):** Completely overhauled and massively expanded the official GEMS Installer and User manuals (`manuals/gems-installer-manual.pdf` and `manuals/gems-user-manual.pdf`), writing in clear, non-technical language to explain every screen, every metric, every setting, and every trade-off. Features dedicated decision matrices ("When to Choose This Option"), recommended defaults, and common pitfalls for all 140 hardware templates, grid limits, multi-phase systems (Single Phase, 3-Phase 400V, and Belgian 3-Phase 230V Delta), the 5 energy contract wizards, Flanders capacity peak shaving math, Flemish GSC €90–€450 protection, and compressor anti-short-cycling timers.
@@ -52,6 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Comprehensive Hardware Integration Reference (`Supported_devices.md`):** Updated the canonical hardware reference with full documentation and detailed technical specifications for all 140 native templates.
 
 ### Changed
+- **Brand Guidelines & System Directives Harmonization:** Aligned system guidelines, technical documentation, and user manuals with native brand directives. Enforced vendor-neutral terminology for external charge point operators and employer billing coexistence, established Raedian and Enerlution as primary reference hardware for UI illustrations, and reinforced programmatic edge-to-cloud bidirectional synchronization standards between GRID-EMS and GRID-EMS-SERVER.
 - **In-Memory Caching for Control Loop Performance:** Implemented thread-safe in-memory caching for site settings and relay automation rules. Eliminates over 129,000 redundant SQLite queries per day on the Raspberry Pi during the 2-second control loop, significantly reducing CPU wakeups and SD card flash wear.
 - **Dynamic Price Cache Invalidation:** Connected site settings updates to immediate strategy pricing and tariff cache invalidation, ensuring changes to tariffs, markups, or thresholds take effect instantly rather than waiting for hourly boundaries.
 - **Generic Reference Hardware Specifications:** Updated documentation, deployment manuals, and interactive troubleshooting guides to use vendor-neutral, generic hardware specifications (standard Raspberry Pi 5 platform, standard M.2 NVMe PCIe base, and high-speed NVMe storage) and removed store-specific commercial links, providing open hardware guidance for homeowners and installers.
