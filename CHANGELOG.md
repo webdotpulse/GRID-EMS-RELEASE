@@ -14,9 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.12.0] - 2026-09-12
+## [v9.13.2] - 2026-09-12
 
 ### Added
+- **Independent Multi-Charger Control & Historical Telemetry:** Enhanced the interactive Power Flow dashboard to support independent management for installations with multiple EV chargers or dual-socket charging stations. Homeowners and installers can select individual wallboxes to inspect dedicated historical power curves, monitor real-time charging wattage, independently toggle operating modes (`Off`, `Eco`, and `Fast`), and apply settings across all chargers simultaneously with one click.
+- **Belgian Elia Green Energy Sync Boost:** Introduced an automated charging boost engine driven by the Belgian Transmission System Operator (Elia) Open Data public API. When national Belgian renewable power generation (wind and solar) exceeds a user-configured threshold (e.g. 65%), connected EV chargers and home batteries automatically receive a clean energy charging boost to absorb green national surplus, while strictly respecting domestic main fuse and capacity peak shaving limits. Displays transparent controller decision explanations on the dashboard when active.
 - **Fluvius Telecontrole via IEC 60870-5-104 (IEC 104):** Integrated an embedded IEC 60870-5-104 controlled station server for Belgian grid compliance (Synergrid C10/11 and Fluvius telecontrole requirements). The EMS automatically responds to remote curtailment setpoints (kW and percentage limits) and emergency plant disconnect/trip signals, while streaming cyclic telemetry (active power, reactive power, and voltage) back to the distribution grid operator. Includes an installer testing suite in the UI to verify telecontrol compliance during commissioning.
 - **Rule-Based Battery Cost Optimization Engine:** Added a dedicated rule-based battery management engine with customizable priority rules. Installers and homeowners can configure targeted charge, discharge, hold, and self-consumption behaviors triggered by dynamic electricity price thresholds, time-of-day schedules, days of the week, and battery state-of-charge (SoC) limits. Includes one-click presets for negative price absorption, evening peak arbitrage, low-tariff night pre-charging, and weekend solar preservation.
 - **Clearer Scheduler Explanations & Real-Time Decision Card:** Added a dedicated Controller Decisions & Constraints card to the dashboard that provides clear, plain-language explanations of why specific setpoints and power allocations are applied. Displays active constraints (such as capacity peak ceilings, price-floor triggers, or rule overrides) and setpoint summaries across all device categories (Battery, Solar Inverter, EV Charger, Smart Relays, and Grid).
@@ -56,6 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **EnergyZero Bidding Zone Isolation:** Guarded dynamic tariff fallback ingestion so Dutch EnergyZero spot prices are strictly prevented from contaminating Belgian bidding zone (`BE`) price profiles.
 - **EV Charger Category Synchronization in Cloud Engine:** Corrected device category filtering in the cloud management module so all wallbox and EV charging station templates (including RAEDIAN, Alfen, Easee, and Zaptec) respond reliably to remote charging mode commands and accurately aggregate daily charging energy totals.
 - **Subnet Discovery Resource Safety:** Hardened the local network sweep to strictly bound IP iteration to a standard local subnet limit and utilize a bounded concurrent worker pool, preventing excessive system resource utilization on complex home networks.
+- **Backend Build Compilation & History Query Dependencies:** Resolved missing standard library imports (`strconv` in device state history filtering and `fmt` in automated regression tests), restoring clean native Go compilation and test suite execution.
 - **Release Changelog Automation & Synchronization:** Resolved an issue where release entries remained unmigrated in public release documentation by implementing automated version promotion and release notes generation in the release pipeline.
 
 ---
