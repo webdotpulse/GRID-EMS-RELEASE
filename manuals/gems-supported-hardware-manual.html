@@ -179,7 +179,13 @@
       font-weight: 700;
       color: #1e293b;
       margin-top: 18px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    /* Prevent page break between subsection title, introductory paragraph, and the table */
+    h2.subsection-title + p {
       page-break-after: avoid;
       break-after: avoid;
     }
@@ -222,12 +228,13 @@
       font-size: 7.2pt;
     }
 
-    /* Tables */
+    /* Tables - Configured for natural pagination across pages */
     .table-container {
       width: 100%;
-      margin: 12px 0 18px 0;
+      margin: 10px 0 16px 0;
       page-break-inside: auto;
       break-inside: auto;
+      overflow: visible;
     }
 
     table.matrix-table {
@@ -237,8 +244,12 @@
       line-height: 1.32;
       background: #ffffff;
       border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      overflow: hidden;
+      page-break-inside: auto;
+      break-inside: auto;
+    }
+
+    table.matrix-table thead {
+      display: table-header-group;
     }
 
     table.matrix-table th {
@@ -498,7 +509,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Software Version</span>
-          <span class="cover-meta-val">v9.14.3-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.14.4-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Native Templates</span>
@@ -3017,8 +3028,8 @@
   </p>
 
   
-    <div class="page-break"></div>
-    <h2 class="subsection-title" style="font-size: 13pt; border-bottom: 2px solid #0284c7; padding-bottom: 4px; margin-top: 22px;">
+    
+    <h2 class="subsection-title" style="font-size: 13pt; border-bottom: 2px solid #0284c7; padding-bottom: 4px; margin-top: 16px;">
       ☀️ Category 1: Solar & Hybrid Inverters (32 Native Templates)
     </h2>
     <p>Inverter templates interface via Modbus TCP (SunSpec or vendor-specific registers) or local HTTP REST APIs. They continuously report photovoltaic (PV) generation, battery charge/discharge wattage, state of charge (SOC %), and grid flow. Advanced units support real-time active power curtailment for negative spot price protection and battery force-charge/discharge commands for day-ahead spot arbitrage.</p>

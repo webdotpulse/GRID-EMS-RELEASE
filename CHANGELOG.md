@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.14.3] - 2026-09-13
+## [v9.14.4] - 2026-09-13
 
 ### Added
 - **Official Supported Hardware & Devices Compatibility Reference Manual (HTML & Vector PDF):** Published an exhaustive, publication-grade 53-page field reference manual (`manuals/gems-supported-hardware-manual.pdf` and `manuals/gems-supported-hardware-manual.html`) covering all 140 native hardware templates supported by GEMS across five core categories (32 Solar & Hybrid Inverters, 13 Dedicated Battery Energy Storage Systems, 53 EV Charging Stations & Wallboxes, 36 Grid Smart Meters & Energy Analyzers, and 6 Smart Relays & Actuators). For every hardware template, the manual details exact communication protocols and connection setup, real-time telemetry read out (instantaneous power, per-phase currents, voltages, battery SoC, cumulative energy, and quarter-hour peak demand registers), controllable setpoints (dynamic current throttling from 6A to 32A, automated 1-phase/3-phase switching, active solar curtailment limits, forced battery charge/discharge setpoints, and relay contact states), and real-world closed-loop automation roles (Eco Mode solar surplus tracking, Flanders capacity tariff peak shaving and dynamic adaptive ceiling, Netherlands zero-export compliance, dynamic day-ahead spot market arbitrage, and main fuse protection). Features Raedian (flagship EVSE) and Enerlution (flagship hybrid inverters/BESS) as primary reference platforms.
