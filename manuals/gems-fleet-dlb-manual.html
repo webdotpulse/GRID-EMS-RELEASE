@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS - EV Fleet Cluster & Dynamic Load Balancing (DLB) Manual</title>
+  <meta name="description" content="Official Field Engineering & Operator Manual for EV Fleet Clustering, Autonomous Edge Dynamic Load Balancing, Per-Phase Grid Defense, and Straight-Through OCPP Proxying in GEMS.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 12mm 16mm 12mm;
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9pt;
+      line-height: 1.5;
+    }
+
+    .manual-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 980px;
+      padding: 24px 16px 16px 16px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 24px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.25);
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 27pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 16px 0 8px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 11.5pt;
+      color: #475569;
+      margin: 0 0 18px 0;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    .cover-meta-val {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 8px 20px -4px rgba(0,0,0,0.08);
+      margin: 12px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 7.5pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Section Styles */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #7c3aed;
+      padding-bottom: 5px;
+      margin-top: 30px;
+      margin-bottom: 12px;
+      page-break-after: avoid;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11.5pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #4f46e5;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #334155;
+    }
+
+    /* Screenshot Container */
+    .manual-screenshot {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .manual-screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .manual-screenshot-caption {
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      font-size: 8.5pt;
+      line-height: 1.45;
+    }
+
+    .callout-info {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #166534;
+    }
+
+    .callout-purple {
+      background: #f5f3ff;
+      border-left: 4px solid #7c3aed;
+      color: #5b21b6;
+    }
+
+    .callout-tip {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      color: #0369a1;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #92400e;
+    }
+
+    .callout-danger {
+      background: #fef2f2;
+      border-left: 4px solid #ef4444;
+      color: #991b1b;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 8pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #e2e8f0;
+      padding: 6px 8px;
+      text-align: left;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* Terminal & Code Blocks */
+    pre.code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: 7.5pt;
+      line-height: 1.4;
+      overflow-x: auto;
+      margin: 8px 0;
+      page-break-inside: avoid;
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 8pt;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    /* Architecture / ASCII Box */
+    .arch-box {
+      background: #0f172a;
+      color: #38bdf8;
+      font-family: 'Fira Code', monospace;
+      font-size: 7pt;
+      line-height: 1.3;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 10px 0;
+      page-break-inside: avoid;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .math-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #6366f1;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-family: 'Fira Code', monospace;
+      font-size: 8pt;
+      color: #1e293b;
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+
+    .badge-vip {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
+    .badge-high {
+      background: #e0e7ff;
+      color: #3730a3;
+      border: 1px solid #c7d2fe;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
+    .badge-norm {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
+    .badge-solar {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="manual-page">
+
+    <!-- ==================== COVER PAGE ==================== -->
+    <div class="cover-page">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <img src="assets/new_energy_grid_logo.png" alt="New Energy Grid Logo" style="height: 38px; width: auto; object-fit: contain;">
+          <div class="cover-badge">
+            <span>⚡ EV Fleet Cluster & Dynamic Load Balancing Manual</span>
+          </div>
+        </div>
+
+        <h1 class="cover-title">GEMS EV Fleet Cluster &<br>Dynamic Load Balancing (DLB)</h1>
+        <div class="cover-subtitle">
+          Comprehensive Engineering, Installation & Commissioning Manual for Multi-Station EV Charging Clusters, Autonomous 1-Second Edge Dynamic Load Balancing, Main Fuse Phase Defense, Solar Surplus Routing, and Straight-Through OCPP Proxying.
+        </div>
+
+        <div class="cover-meta-grid">
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Document Reference</span>
+            <span class="cover-meta-val">GEMS-MAN-FLT-2026</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Applicable Release</span>
+            <span class="cover-meta-val">v9.17.0-release (Official Tag)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Balancing Engine Cycle</span>
+            <span class="cover-meta-val">1.0s Autonomous Edge Loop (100% Outage Immune)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Maximum Cluster Capacity</span>
+            <span class="cover-meta-val">Up to 32 Stations (64 on Raspberry Pi 5)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Preferred Reference Hardware</span>
+            <span class="cover-meta-val">Raedian Smart EV Chargers (OCPP 1.6-J / 2.0.1 & Modbus TCP)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Straight-Through Proxy Support</span>
+            <span class="cover-meta-val">Bidirectional Pipe with Autonomous DLB Profile Arbitration</span>
+          </div>
+        </div>
+
+        <div class="cover-hero-img">
+          <img src="assets/screenshots/fleet_dashboard.png" alt="GEMS EV Fleet Cluster Cockpit Interface">
+        </div>
+      </div>
+
+      <div class="cover-footer">
+        <span>© 2026 New Energy Grid • Confidential Field Reference</span>
+        <span>Documentation v9.17.0</span>
+      </div>
+    </div>
+
+    <!-- ==================== TABLE OF CONTENTS ==================== -->
+    <h1 class="section-title">Manual Overview & Table of Contents</h1>
+    <p>This technical field manual is written for licensed electricians, commercial electrical installers, charge point operators (CPOs), and facility managers. It details the architecture, electrical mathematics, software configuration, straight-through OCPP proxying, and diagnostic procedures for the <strong>GEMS Autonomous EV Fleet Cluster & Dynamic Load Balancing (DLB)</strong> system.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Section</th>
+          <th style="width: 50%;">Topic</th>
+          <th style="width: 35%;">Target Audience</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Section 1</strong></td>
+          <td>Architectural Foundations & Communications Topology</td>
+          <td>Systems Engineers, Electrical Designers</td>
+        </tr>
+        <tr>
+          <td><strong>Section 2</strong></td>
+          <td>Electrical Engineering, Fuse Protection & Standards</td>
+          <td>Licensed Electricians, Commissioning Engineers</td>
+        </tr>
+        <tr>
+          <td><strong>Section 3</strong></td>
+          <td>Dynamic Load Balancing (DLB) Engine & Operating Modes</td>
+          <td>Energy Managers, System Operators</td>
+        </tr>
+        <tr>
+          <td><strong>Section 4</strong></td>
+          <td>Straight-Through OCPP Smart Forwarder (Proxy Engine)</td>
+          <td>Fleet Managers, CPO Integrators</td>
+        </tr>
+        <tr>
+          <td><strong>Section 5</strong></td>
+          <td>Zero-Touch Auto-Onboarding & Raedian Reference Provisioning</td>
+          <td>Field Technicians, Installers</td>
+        </tr>
+        <tr>
+          <td><strong>Section 6</strong></td>
+          <td>Fleet Cockpit Interface & Bay-Level Controls</td>
+          <td>Facility Managers, Fleet Dispatchers</td>
+        </tr>
+        <tr>
+          <td><strong>Section 7</strong></td>
+          <td>Field Commissioning, Verification & Overload Testing</td>
+          <td>Lead Commissioning Electricians</td>
+        </tr>
+        <tr>
+          <td><strong>Section 8</strong></td>
+          <td>Troubleshooting, Diagnostics & Safety Fault Codes</td>
+          <td>Field Support Engineers, Technicians</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-purple">
+      <div class="callout-title">
+        <span>🛡️ Complete Edge Autonomy Directive</span>
+      </div>
+      <div>
+        The GEMS Dynamic Load Balancing engine runs <strong>100% locally on the edge controller</strong> (Raspberry Pi). Unlike cloud-managed load balancers that risk tripping site breakers when broadband or internet connectivity fails, GEMS calculates and executes amperage setpoints every second directly against connected wallboxes without requiring an active internet connection.
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 1 ==================== -->
+    <h1 class="section-title">Section 1: Architectural Foundations & System Topology</h1>
+    
+    <h2 class="subsection-title">1.1 Multi-Station Fleet Clustering on Raspberry Pi</h2>
+    <p>GEMS transforms an off-the-shelf Raspberry Pi 4 or Raspberry Pi 5 into a carrier-grade, industrial multi-bay EV charge controller. A single GEMS edge node orchestrates up to <strong>32 charging stations</strong> (expandable to 64 bays on Raspberry Pi 5) under a tightly coordinated global electrical ceiling.</p>
+    <p>The cluster controller monitors total site consumption in real time via a smart meter (P1 telegram or Modbus energy meter), calculates instantaneous non-charger base loads, and dynamically distributes all remaining electrical capacity across all active charging bays.</p>
+
+    <h2 class="subsection-title">1.2 Baseline Load Subtraction & Per-Phase Distribution</h2>
+    <p>Every electrical installation has unpredictable non-EV baseline loads: heat pumps, air conditioning, commercial lighting, kitchen appliances, and industrial machinery. GEMS subtracts these background loads in real time so the EV fleet can utilize every remaining available Ampere without exceeding the main service breaker.</p>
+
+    <div class="arch-box">
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                        PHYSICAL ELECTRICAL & DATA TOPOLOGY                             │
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                        │
+│   [ UTILITY GRID ] ──── 3-Phase Service (e.g. 3x63A / 400V)                            │
+│           │                                                                            │
+│   [ MAIN BREAKER ]                                                                     │
+│           │                                                                            │
+│   [ P1 / MODBUS METER ] ─── Real-Time L1/L2/L3 Current (Every 1s) ─────┐               │
+│           │                                                            │               │
+│           ├───────────────── Commercial / Household Baseline Loads    │               │
+│           │                                                            │               │
+│   [ CLUSTER SUB-PANEL ] ──── Shared EV Fleet Breaker (e.g. 50A)        │               │
+│           │                                                            │               │
+│           ├────── Bay 01: Raedian Smart EVSE (3-Phase / 16A) ──────────┼─ Modbus/OCPP  │
+│           ├────── Bay 02: Raedian Smart EVSE (3-Phase / 16A) ──────────┼─ Modbus/OCPP  │
+│           ├────── Bay 03: Raedian Smart EVSE (3-Phase / 16A) ──────────┼─ Modbus/OCPP  │
+│           ├────── Bay 04: Raedian Smart EVSE (1-Phase / 16A) ──────────┼─ Modbus/OCPP  │
+│           └────── Bay 05: Raedian Smart EVSE (1-Phase / 16A) ──────────┼─ Modbus/OCPP  │
+│                                                                        │               │
+│                                              Local Subnet (LAN)        │               │
+│                                         ┌──────────────────────────────┴───────────┐   │
+│                                         │   GEMS EDGE CONTROLLER (Raspberry Pi)    │   │
+│                                         │   • 1-Second Autonomous DLB Loop         │   │
+│                                         │   • Per-Phase Fuse Defense Engine        │   │
+│                                         │   • Straight-Through OCPP Proxy Server   │   │
+│                                         └──────────────────────────────┬───────────┘   │
+│                                                                        │ Outbound TLS  │
+│                                                                        ▼               │
+│                                             [ EXTERNAL CPO / BILLING PLATFORM ]        │
+│                                             (Driver RFID Auth & Employer Split Billing)│
+└────────────────────────────────────────────────────────────────────────────────────────┘
+    </div>
+
+    <h2 class="subsection-title">1.3 Communication Protocol Support</h2>
+    <p>GEMS supports a hybrid, flexible communication architecture across all charging stations in the cluster:</p>
+    <ul>
+      <li><strong>OCPP 1.6-J (JSON over WebSockets):</strong> Native charge point server listening on port <code>8080</code> (or <code>8887</code>). Chargers connect to <code>ws://&lt;gems-ip&gt;:8080/api/ocpp/{chargePointId}</code>. Full support for charging profiles, meter values, and transaction states.</li>
+      <li><strong>OCPP 2.0.1:</strong> Modern protocol support with enhanced device model variables and secure credential exchange.</li>
+      <li><strong>Modbus TCP / RTU:</strong> Direct register-level reading and writing of charging current limits (holding registers) for industrial wallboxes such as Raedian Modbus, Alfen Eve, or Phoenix Contact controllers.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 2 ==================== -->
+    <h1 class="section-title">Section 2: Electrical Engineering, Fuse Protection & Standards</h1>
+
+    <h2 class="subsection-title">2.1 Mathematical Formulations of the GEMS DLB Engine</h2>
+    <p>To provide guaranteed protection against thermal breaker trips while maximizing energy transfer, GEMS evaluates the following mathematical model every 1,000 milliseconds:</p>
+
+    <div class="math-box">
+// 1. Defend Main Service Breaker with 10% Safety Cushion:
+SafeLimitA = PhaseLimitAmps * 0.90
+
+// 2. Real-Time Non-EV Base Load Extraction per Phase:
+TotalCurrentEvA = ∑ (ActiveBayPowerW_i / PhaseMultiplier_i * 230V)
+NonChargerPhaseA = Max(0, MaxMeasuredPhaseA - TotalCurrentEvA)
+
+// 3. Available Grid Amperage Headroom:
+GridHeadroomA = Max(0, SafeLimitA - NonChargerPhaseA)
+
+// 4. Autonomous Cluster Ceiling Enforcement:
+AvailableClusterA = Min(FleetMaxCurrentA, GridHeadroomA)
+
+// 5. Solar Surplus Conversion:
+SolarSurplusA = TotalGridExportW / (PhaseMultiplier * 230V)
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Variable Name</th>
+          <th style="width: 20%;">Default Value</th>
+          <th style="width: 55%;">Engineering Function & Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>PhaseLimitAmps</code></td>
+          <td>40.0 A</td>
+          <td>Rating of the main physical utility circuit breaker per phase. Configured in Site Settings.</td>
+        </tr>
+        <tr>
+          <td><code>SafeLimitA</code></td>
+          <td>36.0 A (0.90x)</td>
+          <td>Continuous safety threshold. The 10% margin prevents nuisance tripping caused by inductive startup spikes.</td>
+        </tr>
+        <tr>
+          <td><code>FleetMaxCurrentA</code></td>
+          <td>32.0 A</td>
+          <td>Global current ceiling for the EV sub-panel. Restricts total simultaneous charging across all bays.</td>
+        </tr>
+        <tr>
+          <td><code>MinStationAmps</code></td>
+          <td>6.0 A</td>
+          <td>Mandatory minimum current defined by <strong>IEC 61851-1</strong>. Current below 6A cannot be commanded to an EV.</td>
+        </tr>
+        <tr>
+          <td><code>PhaseMultiplier</code></td>
+          <td>1.0 or 3.0</td>
+          <td>Multiplier based on single-phase (230V) vs. three-phase (400V star) connection of the vehicle.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">2.2 IEC 61851-1 Compliance & Shedding Guardrails</h2>
+    <p>International standard <strong>IEC 61851-1</strong> dictates that the Control Pilot (CP) PWM duty cycle must correspond to at least <strong>6.0 Amperes</strong> (approx. 10% duty cycle) for an EV to initiate or maintain charging. An EVSE cannot legally or safely command 2A, 3A, or 5A.</p>
+
+    <div class="callout callout-warning">
+      <div class="callout-title">
+        <span>⚠️ Critical Rule: The 6-Ampere Minimum Threshold</span>
+      </div>
+      <div>
+        If total available cluster headroom drops below <code>6.0A × Number of Active Stations</code>, the GEMS algorithm <strong>never throttles chargers below 6.0A</strong>. Doing so causes vehicle onboard chargers to error out or disconnect. Instead, GEMS intelligently pauses/sheds the lowest priority bays (setting pilot to 0A) while maintaining 6A+ on the remaining active bays.
+      </div>
+    </div>
+
+    <h2 class="subsection-title">2.3 Phase Imbalance & Asymmetric Load Defense</h2>
+    <p>In mixed installations, some vehicles charge on 1 phase (drawing up to 16A or 32A on L1 only) while others charge on 3 phases (L1, L2, L3). If unmanaged, L1 can easily overload and trip the main fuse while L2 and L3 sit idle.</p>
+    <p>GEMS evaluates <code>MaxPhaseA = max(L1_A, L2_A, L3_A)</code> from the smart meter on every cycle. The bottleneck phase determines the available headroom, guaranteeing that no single phase ever breaches the thermal fuse curve.</p>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 3 ==================== -->
+    <h1 class="section-title">Section 3: Dynamic Load Balancing (DLB) Engine & Modes</h1>
+
+    <p>GEMS features three distinct operational strategies to accommodate residential multi-car garages, corporate fleets, visitor parking, and solar-heavy commercial sites.</p>
+
+    <h2 class="subsection-title">3.1 Mode 1: Equal Share (Balanced Distribution)</h2>
+    <p><strong>Goal:</strong> Treat all connected vehicles equally. Ideal for public, employee, or residential parking where all drivers share available power proportionally.</p>
+    <ul>
+      <li>Calculates <code>ShareA = AvailableClusterA / ActiveStations</code>.</li>
+      <li>If local solar surplus is available, solar Amperes are distributed equally on top of grid headroom.</li>
+      <li><strong>Automatic Shedding Protection:</strong> If <code>ShareA &lt; 6.0A</code>, GEMS calculates <code>MaxSupported = floor(AvailableClusterA / 6.0A)</code>. It allocates full available current across the first <em>MaxSupported</em> stations and safely suspends the remainder until headroom increases.</li>
+    </ul>
+
+    <h2 class="subsection-title">3.2 Mode 2: Priority Queue (VIP First)</h2>
+    <p><strong>Goal:</strong> Guarantee rapid charging for critical vehicles (e.g. delivery vans, emergency vehicles, or executive management) while non-priority cars charge with whatever power remains.</p>
+    <p>GEMS sorts all connected stations by priority tier on every cycle:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Priority Tier</th>
+          <th style="width: 15%;">Weight</th>
+          <th style="width: 35%;">Allocation Behavior</th>
+          <th style="width: 35%;">Typical Field Application</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge-vip">VIP</span></td>
+          <td>Weight 4</td>
+          <td>Receives full rated current (up to max station Amps) first. Never shed unless entire building is at risk.</td>
+          <td>Fleet vans on tight delivery schedule, on-call doctor, executive bay.</td>
+        </tr>
+        <tr>
+          <td><span class="badge-high">HIGH</span></td>
+          <td>Weight 3</td>
+          <td>Receives power immediately after VIP stations have been satisfied.</td>
+          <td>Key staff, scheduled company pool cars.</td>
+        </tr>
+        <tr>
+          <td><span class="badge-norm">NORMAL</span></td>
+          <td>Weight 2</td>
+          <td>Shares remaining cluster headroom equally among all normal bays. Throttled or shed during peak site load.</td>
+          <td>Standard employee parking, visitor chargers, overnight residential bays.</td>
+        </tr>
+        <tr>
+          <td><span class="badge-solar">SOLAR ONLY</span></td>
+          <td>Weight 1</td>
+          <td>Receives 0A from grid. Operates strictly when PV export exceeds 1,400W.</td>
+          <td>Secondary vehicles, long-dwell airport or hotel parking.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">3.3 Mode 3: Solar First (Surplus PV Harvesting)</h2>
+    <p><strong>Goal:</strong> Maximize self-consumption of rooftop solar panels and eliminate grid import fees.</p>
+    <ul>
+      <li>GEMS monitors live grid export from the P1/Modbus meter. When export exceeds <strong>1,400 Watts</strong> (6A single-phase minimum), the DLB engine allocates surplus solar current to charging bays.</li>
+      <li>If solar export increases (e.g. passing clouds clear), Amperes ramp up instantaneously. If export drops below 1,400W, non-VIP bays are paused.</li>
+      <li><strong>VIP Override:</strong> Stations assigned to <strong>VIP Priority</strong> retain full access to grid power even in Solar First mode, ensuring critical vehicles are charged regardless of weather.</li>
+    </ul>
+
+    <div class="manual-screenshot">
+      <img src="assets/screenshots/fleet_dashboard.png" alt="GEMS Fleet Cockpit with 6 Raedian Bays">
+      <div class="manual-screenshot-caption">Figure 3.1: GEMS EV Fleet Cockpit showing real-time multi-bay power, available headroom (18.5A), 3-phase currents, and individual bay priority selectors.</div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 4 ==================== -->
+    <h1 class="section-title">Section 4: Straight-Through OCPP Smart Forwarder (Proxy)</h1>
+
+    <h2 class="subsection-title">4.1 The Integration Challenge in Commercial & Fleet EV Charging</h2>
+    <p>Most commercial fleets and company car programs require drivers to badge with an RFID token so their charging costs can be reimbursed by their employer or billed through an external charge point operator (CPO). However, external cloud CPOs are completely blind to local building electrical loads: they do not know when the building's heat pumps kick on or when solar production drops. If the external CPO commands full charging power, the local main circuit breaker trips.</p>
+
+    <h2 class="subsection-title">4.2 The GEMS Transparent Solution</h2>
+    <p>GEMS solves this dilemma through its <strong>Straight-Through OCPP Smart Forwarder (Proxy Engine)</strong>:</p>
+    <ul>
+      <li>The physical EV wallbox points its WebSocket URL to GEMS on the local LAN.</li>
+      <li>GEMS establishes a transparent, secure upstream WebSocket pipe to the external CPO billing platform (e.g. <code>wss://cpo.thechargegrid.com/ocpp/{chargePointId}</code>).</li>
+      <li>Driver RFID authorization requests, billing transactions (<code>StartTransaction</code>, <code>StopTransaction</code>), and meter value telemetry are forwarded upstream transparently.</li>
+      <li><strong>Autonomous DLB Profile Arbitration:</strong> When the external CPO sends a <code>SetChargingProfile</code> command, GEMS intercepts the frame. If the CPO requests 32A but the local grid only has 16A of headroom, GEMS safely caps the limit to 16A before passing it to the wallbox.</li>
+      <li><strong>Outage Immunity:</strong> If the building loses internet connectivity or the upstream CPO suffers downtime, GEMS continues to govern local electrical load balancing without interruption.</li>
+    </ul>
+
+    <div class="arch-box">
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                   STRAIGHT-THROUGH OCPP PROXY DATA FLOW & ARBITRATION                  │
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                        │
+│   [ RAEDIAN EVSE ]                [ GEMS EDGE CONTROLLER ]          [ EXTERNAL CPO ]   │
+│          │                                   │                              │          │
+│          │─── Authorize.req (RFID Card) ────►│─── Transparent Pass-thru ───►│          │
+│          │                                   │                              │          │
+│          │◄── Authorize.conf (Accepted) ─────│◄── Transparent Pass-thru ────│          │
+│          │                                   │                              │          │
+│          │─── StartTransaction.req ─────────►│─── Transparent Pass-thru ───►│          │
+│          │                                   │                              │          │
+│          │                                   │◄── SetChargingProfile (32A) ─│          │
+│          │                                   │                              │          │
+│          │                              [ INSPECT & ARBITRATE ]             │          │
+│          │                              Local Headroom = 14.5A              │          │
+│          │                              32A &gt; 14.5A -&gt; CLAMP TO 14.5A       │          │
+│          │                                   │                              │          │
+│          │◄── SetChargingProfile (14.5A) ────│                              │          │
+│          │                                   │                              │          │
+│          │─── MeterValues (Every 10s) ──────►│─── Snooped for Local DLB     │          │
+│          │                                   │─── Forwarded Upstream ──────►│          │
+│                                                                                        │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+    </div>
+
+    <h2 class="subsection-title">4.3 Configuring the Straight-Through Proxy in GEMS</h2>
+    <p>Open <strong>EV Fleet Cluster</strong> on the GEMS dashboard and click <strong>Cluster Settings</strong>:</p>
+    <ol>
+      <li>Enable <strong>Straight-Through OCPP Smart Forwarder (Proxy)</strong>.</li>
+      <li>Enter the <strong>Upstream CPO WebSocket URL</strong>. Use the template token <code>{chargePointId}</code> which GEMS automatically substitutes with each wallbox's unique serial number:
+        <pre class="code-block">wss://cpo.thechargegrid.com/ocpp/{chargePointId}</pre>
+      </li>
+      <li>Enter an optional <strong>Authorization Header</strong> if required by the upstream server:
+        <pre class="code-block">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</pre>
+      </li>
+      <li>Click <strong>Save Configuration</strong>. GEMS connects all provisioned wallboxes to the upstream endpoint within 5 seconds.</li>
+    </ol>
+
+    <div class="manual-screenshot">
+      <img src="assets/screenshots/fleet_settings_modal.png" alt="GEMS Cluster Configuration Modal">
+      <div class="manual-screenshot-caption">Figure 4.1: GEMS EV Fleet Cluster Configuration Modal showing Max Cluster Current, DLB Mode, Zero-Touch Auto-Onboarding, and Straight-Through OCPP Proxy parameters.</div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 5 ==================== -->
+    <h1 class="section-title">Section 5: Zero-Touch Auto-Onboarding & Raedian Reference Provisioning</h1>
+
+    <h2 class="subsection-title">5.1 Zero-Touch Auto-Onboarding Workflow</h2>
+    <p>GEMS eliminates tedious manual database entry when commissioning charging stations. When <strong>Zero-Touch Auto-Onboarding</strong> is enabled in Cluster Settings:</p>
+    <ol>
+      <li>An installer powers on a new wallbox connected to the local network.</li>
+      <li>The wallbox is configured to point its Central System URL to GEMS (<code>ws://&lt;GEMS_IP&gt;:8080/api/ocpp/CP_SERIAL</code>).</li>
+      <li>The wallbox dispatches an initial OCPP <code>BootNotification</code> packet containing its vendor and model.</li>
+      <li>GEMS inspects the vendor: if the unit is a <strong>Raedian</strong> charger, it automatically binds the <code>raedian_gemini</code> template.</li>
+      <li>GEMS automatically reserves the next available Bay number (e.g. <code>Bay 07</code>), assigns a default 16A rating in <code>eco</code> mode with <code>normal</code> priority, and initializes live polling immediately.</li>
+    </ol>
+
+    <h2 class="subsection-title">5.2 Bulk Station Provisioning Wizard</h2>
+    <p>For installations with 4 to 32 charging stations installed simultaneously, use the <strong>Bulk Add Stations</strong> wizard in the EV Fleet Cockpit:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Form Parameter</th>
+          <th style="width: 25%;">Recommended Setting</th>
+          <th style="width: 50%;">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Station Name Prefix</td>
+          <td><code>Raedian Bay</code></td>
+          <td>Prefix applied to all created stations, followed by sequential numbers (01, 02, 03...).</td>
+        </tr>
+        <tr>
+          <td>Hardware Template</td>
+          <td><code>Raedian (OCPP 1.6 / 2.0.1)</code></td>
+          <td>Preferred driver template supporting dynamic Amperage adjustments and phase sensing.</td>
+        </tr>
+        <tr>
+          <td>Number of Stations</td>
+          <td>e.g. <code>8</code></td>
+          <td>Number of charging bays to generate and provision into the cluster.</td>
+        </tr>
+        <tr>
+          <td>Starting Port / Modbus ID</td>
+          <td><code>8887</code> (or 1 for Modbus)</td>
+          <td>Base port or Modbus Slave ID incremented for each successive bay.</td>
+        </tr>
+        <tr>
+          <td>Max Station Current</td>
+          <td><code>16 A</code> (or 32 A)</td>
+          <td>Individual nameplate rating of the circuit breaker feeding each specific wallbox.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">5.3 Raedian Reference Hardware Configuration</h2>
+    <p><strong>Raedian</strong> is the preferred reference hardware for GEMS EV charging clusters due to its rock-solid OCPP 1.6-J / 2.0.1 implementation, rapid sub-second setpoint execution, and optional Modbus TCP failover.</p>
+
+    <div class="manual-screenshot">
+      <img src="assets/screenshots/settings_devices_charger_form.png" alt="Raedian Hardware Configuration Form">
+      <div class="manual-screenshot-caption">Figure 5.1: Device configuration form for RAEDIAN Smart Wallbox showing IP address, Modbus/OCPP settings, and maximum charging current limits.</div>
+    </div>
+
+    <h3 class="step-title">Configuring Raedian Chargers to Connect to GEMS:</h3>
+    <ol>
+      <li>Connect a laptop or tablet to the Raedian installer Wi-Fi or access its web configuration portal.</li>
+      <li>Navigate to <strong>Network / Central System Settings</strong>.</li>
+      <li>Set <strong>Protocol</strong> to <code>OCPP 1.6-J</code> (or <code>OCPP 2.0.1</code>).</li>
+      <li>Set <strong>Server URL / WebSocket Endpoint</strong> to:
+        <pre class="code-block">ws://&lt;GEMS_LOCAL_IP&gt;:8080/api/ocpp/{chargePointId}</pre>
+        <em>(Example: <code>ws://192.168.1.150:8080/api/ocpp/RD-NEO-08412</code>)</em>
+      </li>
+      <li>Disable internal wallbox offline load balancing to ensure GEMS has sole, unified authority over Amperage allocation.</li>
+      <li>Reboot the wallbox. Within 15 seconds, the bay appears active on the GEMS Fleet Cockpit.</li>
+    </ol>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 6 ==================== -->
+    <h1 class="section-title">Section 6: Fleet Cockpit Operation & Bay-Level Controls</h1>
+
+    <h2 class="subsection-title">6.1 Top Metrics Bar Overview</h2>
+    <p>The GEMS Fleet Cockpit (accessible via the left sidebar or at <code>/#fleet</code>) gives facility operators a comprehensive real-time view of electrical performance:</p>
+    <ul>
+      <li><strong>Total Fleet Power (kW):</strong> Instantaneous cumulative active power drawn across all connected vehicles.</li>
+      <li><strong>Cluster Current Headroom (A):</strong> Amperes remaining before reaching the cluster or main fuse ceiling. Features a color-coded percentage bar.</li>
+      <li><strong>Phase Currents (L1 / L2 / L3):</strong> Live measurement of each utility phase. Allows instant detection of phase imbalance.</li>
+      <li><strong>DLB Balancing Mode:</strong> Live selector permitting immediate switching between <em>Equal Share</em>, <em>Priority First</em>, and <em>Solar First</em> without restarting the system.</li>
+    </ul>
+
+    <h2 class="subsection-title">6.2 Multi-Bay Card Telemetry & Controls</h2>
+    <p>Each provisioned charging station is represented by an interactive bay card:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 20%;">Visual Element</th>
+          <th style="width: 30%;">Possible States</th>
+          <th style="width: 50%;">Description & Operator Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Status Badge</strong></td>
+          <td>
+            <span style="color: #16a34a; font-weight: bold;">CHARGING</span><br>
+            <span style="color: #2563eb; font-weight: bold;">AVAILABLE</span><br>
+            <span style="color: #d97706; font-weight: bold;">SUSPENDED</span><br>
+            <span style="color: #64748b; font-weight: bold;">OFFLINE</span>
+          </td>
+          <td>
+            <strong>CHARGING:</strong> Vehicle connected and drawing power.<br>
+            <strong>AVAILABLE:</strong> EVSE ready, no cable plugged in.<br>
+            <strong>SUSPENDED:</strong> Paused by DLB engine to defend main breaker.<br>
+            <strong>OFFLINE:</strong> Communication lost.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Active Power (kW)</strong></td>
+          <td>0.0 kW to 22.0 kW</td>
+          <td>Real-time active charging power delivered to vehicle battery.</td>
+        </tr>
+        <tr>
+          <td><strong>Current & Setpoint</strong></td>
+          <td>e.g. <code>10.7 A / 11.0 A (SP)</code></td>
+          <td>Displays actual current draw versus the commanded target setpoint generated by the DLB engine.</td>
+        </tr>
+        <tr>
+          <td><strong>Phase Mode</strong></td>
+          <td><code>1-Phase</code> or <code>3-Phase</code></td>
+          <td>Automatically detected from live phase voltage and current telemetry.</td>
+        </tr>
+        <tr>
+          <td><strong>Energy Today</strong></td>
+          <td>kWh (Cumulative)</td>
+          <td>Total kilowatt-hours delivered since midnight (00:00). Resets automatically daily.</td>
+        </tr>
+        <tr>
+          <td><strong>Priority Buttons</strong></td>
+          <td><code>VIP</code> | <code>HIGH</code> | <code>NORM</code> | <code>SOLAR</code></td>
+          <td>Instant bay priority override. Operator can promote a vehicle to VIP status with a single click.</td>
+        </tr>
+        <tr>
+          <td><strong>Mode Buttons</strong></td>
+          <td><code>Eco</code> | <code>Solar</code> | <code>Boost</code> | <code>Off</code></td>
+          <td>
+            <strong>Eco:</strong> Follows global DLB schedule.<br>
+            <strong>Solar:</strong> Strict PV-only charging.<br>
+            <strong>Boost:</strong> Immediate maximum charging.<br>
+            <strong>Off:</strong> Disables socket output entirely.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-info">
+      <div class="callout-title">
+        <span>💡 Instant Touch-Friendly Override</span>
+      </div>
+      <div>
+        Facility managers can promote any vehicle to <strong>VIP Priority</strong> directly from their smartphone or tablet by clicking the <code>VIP</code> button on that bay's card. GEMS instantly re-runs the DLB algorithm on the next 1-second tick, throttling other bays to allocate maximum power to the promoted vehicle.
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 7 ==================== -->
+    <h1 class="section-title">Section 7: Field Commissioning, Verification & Overload Testing</h1>
+
+    <h2 class="subsection-title">7.1 Pre-Power-On Mechanical & Electrical Checklist</h2>
+    <ul>
+      <li>[ ] Verify all wallbox sub-breakers match cable gauge ratings (minimum 2.5 mm² for 16A, 6.0 mm² for 32A).</li>
+      <li>[ ] Verify Phase rotation (L1, L2, L3) is consistent across all wallboxes and the main utility meter.</li>
+      <li>[ ] Verify that the P1 meter cable or Modbus RS485 energy meter is connected to the GEMS Raspberry Pi and reporting live voltage and current on the Dashboard.</li>
+      <li>[ ] Confirm that <code>PhaseLimitAmps</code> in <strong>Settings → Contract & Grid</strong> exactly matches the physical upstream utility fuse rating.</li>
+    </ul>
+
+    <h2 class="subsection-title">7.2 Step-by-Step Commissioning Procedure</h2>
+    <ol>
+      <li><strong>Boot GEMS Edge Node:</strong> Ensure the Raspberry Pi is booted and the green LED on the GEMS Dashboard indicates system health.</li>
+      <li><strong>Enable Fleet Cluster:</strong> Navigate to <code>/#fleet</code>, click <strong>Cluster Settings</strong>, and check <em>Enable Fleet Cluster</em>. Enter the shared electrical sub-panel limit (e.g. <code>50 A</code>).</li>
+      <li><strong>Power Up Wallboxes:</strong> Power up the first Raedian EVSE. Check the GEMS Fleet Cockpit to confirm that Zero-Touch Auto-Onboarding registers the unit as <code>Bay 01</code>. Repeat for remaining wallboxes.</li>
+      <li><strong>Configure Upstream Proxy (If required):</strong> If billing through an external CPO platform, enter the upstream WebSocket URL and save. Verify that the proxy badge displays <span style="color: #0284c7; font-weight: bold;">Proxy Active</span>.</li>
+    </ol>
+
+    <h2 class="subsection-title">7.3 Full Overload Defense Stress Test</h2>
+    <p>Before leaving the site, the commissioning electrician must conduct a physical overload defense test:</p>
+
+    <div class="callout callout-danger">
+      <div class="callout-title">
+        <span>🛑 Mandatory Safety Verification Procedure</span>
+      </div>
+      <div>
+        <ol style="margin: 4px 0 0 0; padding-left: 18px;">
+          <li>Connect test loads or electric vehicles to at least three charging bays simultaneously.</li>
+          <li>Observe on the Fleet Cockpit that all three bays ramp up charging current (e.g. 16A each = 48A total).</li>
+          <li>Turn on a high-power building baseline load (e.g. heat pump backup element, oven, or resistive load bank) drawing 20A on Phase 1.</li>
+          <li><strong>Observe GEMS Response:</strong> Within 1 to 2 seconds, GEMS must detect the reduction in headroom and throttle the charging bays down (e.g. from 16A to 10A or 8A) to keep total utility import below <code>PhaseLimitAmps * 0.90</code>.</li>
+          <li>Turn off the building load. GEMS must automatically ramp the charging bays back up to full power.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 8 ==================== -->
+    <h1 class="section-title">Section 8: Troubleshooting, Diagnostics & Safety Codes</h1>
+
+    <h2 class="subsection-title">8.1 Symptom Resolution Matrix</h2>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Observed Symptom</th>
+          <th style="width: 35%;">Probable Root Cause</th>
+          <th style="width: 40%;">Corrective Field Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Charger remains at <strong>0A (Suspended)</strong> despite cable connected.</td>
+          <td>Available cluster headroom is below the mandatory <strong>6.0A</strong> IEC 61851-1 minimum threshold.</td>
+          <td>Check building baseline power draw. Verify if <code>FleetMaxCurrentA</code> is set too low or if high-priority VIP bays are consuming all available headroom.</td>
+        </tr>
+        <tr>
+          <td>Charger stays stuck at exactly <strong>6.0 A</strong> and refuses to ramp up.</td>
+          <td>Mode is set to <code>Solar First</code> without sufficient PV export, or vehicle onboard charger is limited to 1 phase.</td>
+          <td>Switch mode to <code>Eco</code> or click <code>Boost</code>. Verify solar production on the main GEMS Dashboard.</td>
+        </tr>
+        <tr>
+          <td>OCPP Proxy shows <strong>Disconnected / 0 active</strong>.</td>
+          <td>Upstream CPO URL is incorrect, network firewall blocks outbound port 443, or invalid Auth token.</td>
+          <td>Verify that the upstream URL includes <code>{chargePointId}</code>. Test network connectivity by running <code>curl -I https://...</code> from the terminal.</td>
+        </tr>
+        <tr>
+          <td>Main utility fuse trips during simultaneous charging.</td>
+          <td><code>PhaseLimitAmps</code> is set higher than physical breaker, or P1 meter update interval is delayed.</td>
+          <td>Immediately decrease <code>PhaseLimitAmps</code> in Settings. Verify that P1 smart meter cable is delivering telegrams every second.</td>
+        </tr>
+        <tr>
+          <td>New wallbox is not auto-onboarded.</td>
+          <td>Zero-Touch Auto-Onboarding is disabled, or maximum cluster capacity (32 stations) has been reached.</td>
+          <td>Open Cluster Settings, ensure <em>Zero-Touch Auto Onboarding</em> is checked, and verify station count.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">8.2 Real-Time Diagnostic Inspection via GEMS Logger</h2>
+    <p>All DLB arbitration events, Amperage throttles, and proxy communications are logged with microsecond precision in GEMS. Technicians can view live logs directly in the UI under the <strong>Logger</strong> tab or via system terminal:</p>
+
+    <pre class="code-block">
+# View live GEMS Fleet & DLB logs via systemd:
+sudo journalctl -u gems.service -f | grep -E "(Fleet|DLB|OCPP|Proxy)"
+
+# Sample Output during Dynamic Load Balancing throttle:
+[INFO] ⚡ Fleet Auto-Onboarding: Registered new station 'Raedian Bay 04' (Bay 4, CPID: RD-NEO-08412)
+[INFO] OCPP Straight-Through Proxy CP RD-NEO-08412 connected to external CPO (subprotocol: ocpp1.6)
+[INFO] DLB Safety Arbitration: Capping external CPO limit (32.0 A) to local fuse headroom (13.5 A)
+[INFO] Cluster Setpoints Dispatched: Bay 01=16.0A, Bay 02=16.0A, Bay 03=11.0A, Bay 04=13.5A
+    </pre>
+
+    <div class="callout callout-tip">
+      <div class="callout-title">
+        <span>📞 Technical Support & Firmware Updates</span>
+      </div>
+      <div>
+        For technical assistance, hardware templates, or firmware updates, visit the central fleet management console at <strong>ems.newenergygrid.com</strong> or refer to the official documentation hub.
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
