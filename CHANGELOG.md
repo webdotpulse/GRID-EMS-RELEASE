@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.17.1] - 2026-09-14
+## [v9.17.2] - 2026-09-14
 
 ### Added
 - **Official EV Fleet Cluster & Dynamic Load Balancing (DLB) Field Manual (HTML & Printable Vector PDF):** Published a comprehensive, carrier-grade 8-page field engineering and operator manual (`manuals/gems-fleet-dlb-manual.pdf` and `manuals/gems-fleet-dlb-manual.html`) covering multi-bay EV charging cluster management. Details autonomous 1-second edge dynamic load balancing (DLB) mathematics, main fuse headroom defense, real-time baseline load subtraction, IEC 61851 6.0A minimum pilot current enforcement, asymmetric 3-phase load protection, operational balancing modes (`Equal Share`, `Priority Queue` with VIP prioritization, and `Solar First` surplus harvesting), the Straight-Through OCPP Smart Forwarder (Proxy) with autonomous DLB profile arbitration for external CPO billing platforms and employer reimbursement, Zero-Touch Auto-Onboarding, and multi-bay Fleet Cockpit operation. Features Raedian as the primary reference EV charging hardware platform.
@@ -56,6 +56,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Comprehensive Hardware Integration Reference (`Supported_devices.md`):** Updated the canonical hardware reference with full documentation and detailed technical specifications for all 140 native templates.
 
 ### Changed
+- **EV Fleet Cluster & DLB Rebranded as Optional Module with Dynamic Sidebar:** Redesigned the EV Fleet Cluster and Dynamic Load Balancing (DLB) capabilities into an optional, modular extension. For standard residential installations with 1 or 2 EV chargers, the module remains deactivated and hidden from the main sidebar by default, keeping the EMS navigation uncluttered and focused on domestic solar self-consumption and peak shaving. Installers and commercial site operators can activate the module on demand under **Settings → Devices**, dynamically revealing the EV Fleet cockpit in the sidebar, unlocking multi-station cluster limits, VIP priority arbitration queues, zero-touch onboarding, and the straight-through OCPP proxy forwarder. Direct URL hash navigation to `/#fleet` automatically redirects to the main dashboard when the module is deactivated.
 - **Brand Guidelines & System Directives Harmonization:** Aligned system guidelines, technical documentation, and user manuals with native brand directives. Enforced vendor-neutral terminology for external charge point operators and employer billing coexistence, established Raedian and Enerlution as primary reference hardware for UI illustrations, and reinforced programmatic edge-to-cloud bidirectional synchronization standards between GRID-EMS and GRID-EMS-SERVER.
 - **In-Memory Caching for Control Loop Performance:** Implemented thread-safe in-memory caching for site settings and relay automation rules. Eliminates over 129,000 redundant SQLite queries per day on the Raspberry Pi during the 2-second control loop, significantly reducing CPU wakeups and SD card flash wear.
 - **Dynamic Price Cache Invalidation:** Connected site settings updates to immediate strategy pricing and tariff cache invalidation, ensuring changes to tariffs, markups, or thresholds take effect instantly rather than waiting for hourly boundaries.
