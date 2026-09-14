@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.15.0] - 2026-09-14
+## [v9.15.1] - 2026-09-14
 
 ### Added
 - **Straight-Through OCPP Smart Forwarder (Proxy) for External Billing & Dynamic Load Balancing:** Added a bidirectional straight-through OCPP proxy engine enabling charging stations (such as Raedian and other OCPP 1.6-J / 2.0.1 wallboxes) to connect directly to external CPO billing platforms and employer reimbursement services for driver RFID authorization and transaction accounting. GEMS transparently pipelines all OCPP messages to the upstream server while simultaneously snooping real-time meter values, socket status notifications, and transaction events to execute autonomous 1-second Dynamic Load Balancing (DLB). Safely arbitrates upstream charging profiles by capping external setpoints to local physical fuse limits and solar surplus headroom. Complete outage autonomy—if upstream cloud connectivity drops, local edge load balancing continues uninterrupted to protect site electrical infrastructure. Configurable with upstream WebSocket URL templating (`{chargePointId}`) and optional HTTP authorization headers via both local edge UI and central cloud fleet management.
