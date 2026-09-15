@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.17.5] - 2026-09-15
+## [v9.17.6] - 2026-09-15
 
 ### Changed
 - **Updated System Directives & Operating Protocols (AGENTS.md):** Established strict, top-priority operating standards for assistive and autonomous agents across the project. Formally codified zero-leakage protection for proprietary commercial intellectual property, automated documentation and printable PDF manual synchronization triggers, and the clean-slate protocol for repository hygiene and production build integrity.
