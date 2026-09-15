@@ -14,7 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.17.4] - 2026-09-15
+## [v9.17.5] - 2026-09-15
+
+### Changed
+- **Updated System Directives & Operating Protocols (AGENTS.md):** Established strict, top-priority operating standards for assistive and autonomous agents across the project. Formally codified zero-leakage protection for proprietary commercial intellectual property, automated documentation and printable PDF manual synchronization triggers, and the clean-slate protocol for repository hygiene and production build integrity.
 
 ### Added
 - **Official EV Fleet Cluster & Dynamic Load Balancing (DLB) Field Manual (HTML & Printable Vector PDF):** Published a comprehensive, carrier-grade 8-page field engineering and operator manual (`manuals/gems-fleet-dlb-manual.pdf` and `manuals/gems-fleet-dlb-manual.html`) covering multi-bay EV charging cluster management. Details autonomous 1-second edge dynamic load balancing (DLB) mathematics, main fuse headroom defense, real-time baseline load subtraction, IEC 61851 6.0A minimum pilot current enforcement, asymmetric 3-phase load protection, operational balancing modes (`Equal Share`, `Priority Queue` with VIP prioritization, and `Solar First` surplus harvesting), the Straight-Through OCPP Smart Forwarder (Proxy) with autonomous DLB profile arbitration for external CPO billing platforms and employer reimbursement, Zero-Touch Auto-Onboarding, and multi-bay Fleet Cockpit operation. Features Raedian as the primary reference EV charging hardware platform.
