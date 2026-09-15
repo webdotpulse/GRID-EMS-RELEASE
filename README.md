@@ -12,11 +12,12 @@
 </p>
 
 <p align="center">
-  <a href="manuals/gems-installer-manual.pdf"><img alt="Installer Manual PDF" src="https://img.shields.io/badge/📕_Installer_Manual-PDF_(6.4MB)-0284c7?style=for-the-badge" /></a>
-  <a href="manuals/gems-user-manual.pdf"><img alt="User Manual PDF" src="https://img.shields.io/badge/📗_User_Manual-PDF_(4.1MB)-10b981?style=for-the-badge" /></a>
+  <a href="manuals/gems-installer-manual.pdf"><img alt="Installer Manual PDF" src="https://img.shields.io/badge/📕_Installer_Manual-PDF_(6.3MB)-0284c7?style=for-the-badge" /></a>
+  <a href="manuals/gems-user-manual.pdf"><img alt="User Manual PDF" src="https://img.shields.io/badge/📗_User_Manual-PDF_(4.0MB)-10b981?style=for-the-badge" /></a>
   <a href="manuals/gems-server-connection-manual.pdf"><img alt="Server Manual PDF" src="https://img.shields.io/badge/☁️_Server_Manual-PDF_(1.1MB)-0284c7?style=for-the-badge" /></a>
   <a href="manuals/gems-p1-meter-manual.pdf"><img alt="P1 Meter Manual PDF" src="https://img.shields.io/badge/⚡_P1_Meter_Manual-PDF_(1.3MB)-10b981?style=for-the-badge" /></a>
-  <a href="manuals/gems-supported-hardware-manual.pdf"><img alt="Hardware Reference PDF" src="https://img.shields.io/badge/🔌_Hardware_Reference-PDF_(4.0MB)-0284c7?style=for-the-badge" /></a>
+  <a href="manuals/gems-supported-hardware-manual.pdf"><img alt="Hardware Reference PDF" src="https://img.shields.io/badge/🔌_Hardware_Reference-PDF_(3.9MB)-0284c7?style=for-the-badge" /></a>
+  <a href="manuals/gems-fleet-dlb-manual.pdf"><img alt="EV Fleet & DLB Manual PDF" src="https://img.shields.io/badge/🚗_Fleet_DLB_Manual-PDF_(2.3MB)-10b981?style=for-the-badge" /></a>
   <a href="manuals/index.html"><img alt="Documentation Hub" src="https://img.shields.io/badge/💻_Documentation-Hub-8b5cf6?style=for-the-badge" /></a>
 </p>
 
@@ -30,7 +31,7 @@
 - **140+ Native Hardware Templates**: Native support for 80+ leading manufacturers covering Solar Inverters, Batteries, EV Chargers (OCPP 1.6-J / 2.0.1, Modbus TCP, REST), P1 Smart Meters, and Smart Relays.
 - **Preferred Reference Hardware Platforms**: Per system architecture guidelines, **RAEDIAN** (NEO, NEX, and Gemini series) is established as the primary reference template for EV Charging Stations and dynamic load balancing, and **Enerlution** (L3–L12 series) is established as the primary reference template for hybrid solar inverters and battery energy storage.
 - **Straight-Through OCPP Smart Forwarder (Proxy) for External Billing & DLB**: Bidirectional straight-through OCPP proxy engine enabling charging stations (such as Raedian and OCPP 1.6-J / 2.0.1 wallboxes) to connect directly to external CPO billing platforms and employer reimbursement services. GEMS transparently pipelines all OCPP messages while simultaneously snooping meter values, socket status notifications, and transaction events to execute autonomous 1-second Dynamic Load Balancing (DLB). Edge-resilient: if internet connectivity drops, local edge load balancing continues uninterrupted to protect site physical electrical infrastructure.
-- **Autonomous EV Fleet Cluster & Dynamic Load Balancing (DLB)**: Multi-station fleet management supporting clusters of up to 32 charging bays (expandable to 64 on Raspberry Pi 5) under a shared electrical ceiling with three operational strategies (`Equal Share`, `Priority Queue`, and `Solar First`), zero-touch auto-onboarding, and a dedicated multi-bay Fleet Cockpit view with real-time per-phase electrical balance monitoring.
+- **Autonomous EV Fleet Cluster & Dynamic Load Balancing (DLB) (Optional Module)**: Multi-station fleet management supporting clusters of up to 32 charging bays (expandable to 64 on Raspberry Pi 5) under a shared electrical ceiling with three operational strategies (`Equal Share`, `Priority Queue`, and `Solar First`), zero-touch auto-onboarding, and a dedicated multi-bay Fleet Cockpit view. Can be activated or deactivated as an optional module under Settings &rarr; Devices so standard residential setups remain uncluttered.
 - **Dynamic Site Optimization Strategies**:
   - *Eco Mode*: Maximizes self-consumption of solar energy and prioritizes local storage over grid feed-in.
   - *Flanders Mode (Predictive Peak Shaving & Monthly Peak Tracking)*: Continuously tracks 15-minute rolling average grid import in SQLite. Proactively throttles EV chargers and discharges home batteries to keep the projected quarter peak under `capacity_peak_limit_kw`. Features a **Smart Adaptive Ceiling** that dynamically adapts to the month's maximum peak so homeowner charging speed is maximized without increasing capacity tariff costs. Protects legacy Flemish solar systems with **Groenestroomcertificaten (GSC)** value protection presets (€90, €210, €230, €250, €270, €330, €350, €450/MWh), ensuring solar feed-in remains profitable during negative spot hours.
@@ -53,6 +54,11 @@
 | Desktop PowerFlow Dashboard | Mobile Responsive View |
 | :---: | :---: |
 | ![Dashboard](screenshots/dashboard.png) | ![Mobile Dashboard](screenshots/dashboard_mobile.png) |
+
+### 🚗 EV Fleet Cluster & Dynamic Load Balancing (Optional Module)
+| Multi-Station Fleet Cockpit | Fleet Arbitration & Dynamic Limits |
+| :---: | :---: |
+| ![Fleet Cockpit](screenshots/fleet_dashboard.png) | ![Fleet Settings](screenshots/fleet_settings_modal.png) |
 
 ### 🔍 Click-to-Reveal Historical Modals
 | Solar Production & Curtailment | Battery Telemetry & State-of-Charge |
