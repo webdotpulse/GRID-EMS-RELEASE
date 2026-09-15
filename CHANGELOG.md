@@ -14,7 +14,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.17.6] - 2026-09-15
+## [v9.17.7] - 2026-09-15
+
+### Fixed
+- **Energy Metric Integration Accuracy in Daily & Weekly Rollups:** Corrected energy integration in rollup aggregation routines, ensuring that high-frequency hardware polling samples (2–5 seconds) are accurately averaged per device within 1-minute buckets before conversion to kilowatt-hours (kWh). Restores precise measurement tracking across daily and weekly energy performance summaries and exported reports.
+- **P1 Smart Meter Driver Resilience & Reconnection:** Eliminated non-reentrant mutex locks in the P1 serial and network meter pollers, ensuring that smart meter communication recovers instantly following temporary network drops or cable disconnections without freezing telemetry.
+- **Enhanced System Update Package Validation:** Hardened package upload validation by verifying Debian archive format integrity and restricting installation exclusively to authorized GEMS packages with verified naming and origin security.
+- **Cross-Origin Request Protection & Administrative Safeguards:** Implemented origin filtering and mandatory confirmation checks for administrative actions and database operations, safeguarding local edge units against unauthorized cross-site requests.
+- **Solar Diversion & EV Charging Threshold Precision:** Refined solar surplus routing to prevent false diversion triggers during net grid import periods. In PV-only charging mode, idle EV chargers now strictly require surplus power meeting the IEC 61851 6.0A minimum threshold before starting, preventing unintentional grid draw.
+- **Chronological Dynamic Battery Arbitrage Simulation:** Upgraded the 24-hour battery arbitrage optimizer to forward state-space simulation, guaranteeing that battery charging strictly precedes peak-hour discharging while respecting virtual state of charge, round-trip efficiency, and battery cell protection.
+- **Multi-Charger Dynamic Load Balancing Step-Down:** Enhanced electrical main breaker defense by distributing fuse headroom reductions across multiple active chargers sequentially and pausing charging if the physical fuse limit is reached.
+- **Subnet Scanner Concurrent Resolution:** Accelerated local network device discovery sweeps by executing reverse DNS lookups concurrently with bounded timeouts, drastically reducing scan latency on residential and commercial subnets.
+- **Control Loop Spot Price In-Memory Caching:** Cached day-ahead spot market prices and cheapest hour indices in memory during clock rollovers, eliminating redundant disk queries during the 2-second edge control loop to protect flash storage.
+- **Stacked Tariff Breakdown Component Reconciliation:** Harmonized variable price components within the retail tariff breakdown chart so that stacked spot price, supplier markup, grid operator fees, and energy taxes sum exactly to the published net consumer price.
 
 ### Changed
 - **Updated System Directives & Operating Protocols (AGENTS.md):** Established strict, top-priority operating standards for assistive and autonomous agents across the project. Formally codified zero-leakage protection for proprietary commercial intellectual property, automated documentation and printable PDF manual synchronization triggers, and the clean-slate protocol for repository hygiene and production build integrity.
