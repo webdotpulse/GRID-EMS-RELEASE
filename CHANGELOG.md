@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.17.7] - 2026-09-15
+## [v9.17.8] - 2026-09-15
 
 ### Fixed
 - **Energy Metric Integration Accuracy in Daily & Weekly Rollups:** Corrected energy integration in rollup aggregation routines, ensuring that high-frequency hardware polling samples (2–5 seconds) are accurately averaged per device within 1-minute buckets before conversion to kilowatt-hours (kWh). Restores precise measurement tracking across daily and weekly energy performance summaries and exported reports.
