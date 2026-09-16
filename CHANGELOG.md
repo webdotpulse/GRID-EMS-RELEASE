@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.17.8] - 2026-09-15
+## [v9.17.9] - 2026-09-16
 
 ### Fixed
 - **Energy Metric Integration Accuracy in Daily & Weekly Rollups:** Corrected energy integration in rollup aggregation routines, ensuring that high-frequency hardware polling samples (2–5 seconds) are accurately averaged per device within 1-minute buckets before conversion to kilowatt-hours (kWh). Restores precise measurement tracking across daily and weekly energy performance summaries and exported reports.
@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Stacked Tariff Breakdown Component Reconciliation:** Harmonized variable price components within the retail tariff breakdown chart so that stacked spot price, supplier markup, grid operator fees, and energy taxes sum exactly to the published net consumer price.
 
 ### Changed
+- **Comprehensive UI/UX Theme & Accessibility Overhaul (WCAG AA Compliance):** Modernized theme architecture with centralized `useTheme` state and an anti-FOUC initialization script. Refactored all 24 UI views, settings tabs, modals, and hardware templates to eliminate hardcoded dark colors in favor of dynamic semantic tokens (`bg-card`, `bg-background`, `bg-sidebar`, `dark:bg-slate-900`). Enhanced typography and border contrast ratios (>4.5:1 for typography, >3:1 for borders) across both crisp Light mode and deep Dark mode. Implemented reactive Chart.js canvas adaptation across the Dashboard, Mobile Dashboard, Power Flow telemetry modals, and the 24-hour Tariff Visualizer.
 - **Updated System Directives & Operating Protocols (AGENTS.md):** Established strict, top-priority operating standards for assistive and autonomous agents across the project. Formally codified zero-leakage protection for proprietary commercial intellectual property, automated documentation and printable PDF manual synchronization triggers, and the clean-slate protocol for repository hygiene and production build integrity.
 
 ### Added
