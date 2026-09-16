@@ -391,7 +391,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.17.9-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.18.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -596,7 +596,7 @@
     wget https://github.com/webdotpulse/GRID-EMS/releases/download/v9.13.2-release/gems_9.13.2_arm64.deb<br>
     <br>
     # 2. Install package and dependencies<br>
-    sudo dpkg -i gems_9.17.9_arm64.deb<br>
+    sudo dpkg -i gems_9.18.0_arm64.deb<br>
     sudo apt-get install -f<br>
     <br>
     # 3. Verify systemd background service<br>
@@ -716,6 +716,13 @@
     <li>Configure the communication parameters according to the tables below.</li>
     <li>Click <strong>"Save Device"</strong>. The backend initiates immediate polling and updates status to <strong>● Online</strong>.</li>
   </ol>
+
+  <div class="callout callout-tip" style="margin: 10px 0 16px 0;">
+    <div class="callout-title">Testing & Simulation: 1-Click Demo Devices</div>
+    <div class="callout-body">
+      To test the EMS control loop, verify dynamic load balancing, or demonstrate the hero energy flow diagram before physical hardware is connected, click <strong>"🧪 Quick Add Demo Kit"</strong> in the Devices tab. This provisions a coordinated 4-device test suite (Smart Meter, Solar Inverter, Battery Storage, and EV Wallbox) running realistic physics simulations with variable real-life values. Individual demo templates (<code>demo_meter</code>, <code>demo_solar</code>, <code>demo_battery</code>, <code>demo_charger</code>, <code>demo_relay</code>) can also be selected directly from each category picker.
+    </div>
+  </div>
 
   <!-- Inverters -->
   <h2 class="subsection-title">Category A: Solar & Hybrid Inverters (Modbus TCP)</h2>
