@@ -314,7 +314,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.19.0-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.20.0-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Central Cloud Service</span>
@@ -341,7 +341,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.19.0</span>
+        <span>Documentation v9.20.0</span>
       </div>
     </div>
 
@@ -511,7 +511,7 @@
     <h2 class="subsection-title">3.1 Step-by-Step Pairing Workflow</h2>
     <ol>
       <li><strong>Acquire Pairing Token:</strong> Log in to the central fleet management portal at <code>https://ems.newenergygrid.com</code>. Navigate to <strong>Sites &rarr; Add New EMS Node</strong> and copy the generated 16-character hardware pairing token (e.g., <code>PAIR-8821-X9K2</code>).</li>
-      <li><strong>Detect or Confirm Serial Number:</strong> GEMS automatically extracts the hardware serial number from the Raspberry Pi SoC via <code>/proc/cpuinfo</code> (format: <code>TCG-EMS-RPI-XXXX</code>). If running on generic x86/ARM hardware, GEMS generates a unique pseudo-random tag (e.g., <code>TCG-EMS-2026-9402</code>).</li>
+      <li><strong>Detect or Confirm Serial Number:</strong> GEMS automatically extracts the persistent hardware serial number from the Raspberry Pi SoC via <code>/proc/cpuinfo</code> and prefixes it with <code>TCG-EMS-</code> (e.g., <code>TCG-EMS-83daf13d05f1adad</code> for asset tag <code>83daf13d05f1adad</code>). The Hardware Serial Number is permanently locked to the edge processor asset tag to maintain cryptographic hardware identity.</li>
       <li><strong>Submit Credentials in GEMS UI:</strong> Open GEMS Settings &rarr; <strong>Cloud Server</strong> tab. Paste the pairing token into the input field.</li>
       <li><strong>Initiate Handshake:</strong> Click <strong>Pair & Connect Now</strong>. The backend immediately dispatches the registration payload:</li>
     </ol>
@@ -523,7 +523,7 @@ Content-Type: application/json
 User-Agent: GRID-EMS-Agent/9.4.0
 
 {
-  "serial_number": "TCG-EMS-2026-9402",
+  "serial_number": "TCG-EMS-83daf13d05f1adad",
   "pairing_token": "PAIR-8821-X9K2",
   "model": "GEMS v9.4 Pro",
   "firmware_version": "v9.4.2",
@@ -556,7 +556,7 @@ POST /api/v1/device/telemetry HTTP/1.1
 Host: ems.newenergygrid.com
 Content-Type: application/json
 X-Device-Secret: sec_live_9f82a1e0b5c43d88192a0e447b9101c5
-X-Device-Serial: TCG-EMS-2026-9402
+X-Device-Serial: TCG-EMS-83daf13d05f1adad
 User-Agent: GRID-EMS-Agent/9.4.0
 
 {
@@ -748,7 +748,7 @@ sqlite3 /var/lib/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.19.0
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.20.0
     </div>
 
   </div>
