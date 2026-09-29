@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.21.0] - 2026-09-29
+## [v9.21.1] - 2026-09-29
 
 ### Fixed
 - **EV Charge Mode Control & Immediate Hardware Throttling:** Resolved an issue where switching EV chargers to "Off" or "Eco" mode allowed charging to continue at full speed. PollerManager now fully synchronizes operating parameters (including `charge_mode` and `max_charge_current_a`) into live in-memory state. Setting a charger to "Off" now immediately commands physical and simulated charging stations to 0.0A. In "Eco" mode, charging from the grid is strictly blocked unless an active dynamic tariff window or renewable energy boost is detected, reserving charging strictly for excess solar generation. Additionally, the Flanders peak shaving control engine now respects charger operating modes, eliminating unintended current ramp-ups on idle or disabled wallboxes.
@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Subnet Scanner Concurrent Resolution:** Accelerated local network device discovery sweeps by executing reverse DNS lookups concurrently with bounded timeouts, drastically reducing scan latency on residential and commercial subnets.
 - **Control Loop Spot Price In-Memory Caching:** Cached day-ahead spot market prices and cheapest hour indices in memory during clock rollovers, eliminating redundant disk queries during the 2-second edge control loop to protect flash storage.
 - **Stacked Tariff Breakdown Component Reconciliation:** Harmonized variable price components within the retail tariff breakdown chart so that stacked spot price, supplier markup, grid operator fees, and energy taxes sum exactly to the published net consumer price.
+- **Test Suite Concurrency & Race Condition Hardening:** Resolved race conditions detected under Go's race detector (`-race`). Synchronized in-memory SQLite database swapping via `SetGlobalDB` ensuring thread-safe cache invalidation, eliminated unmanaged background webhook alert goroutines in favor of synchronized evaluation, protected asynchronous mock server assertions in cloud pairing and telemetry tests with mutex synchronization, and converted OCPP WebSocket mock call verification to deterministic channel signaling.
 
 ### Changed
 - **Fixed Hardware Serial Number for Cloud Server Connection:** Bound the Cloud Server connection "Hardware Serial Number" permanently to the edge hardware asset tag (prefixed with `TCG-EMS-`, e.g., `TCG-EMS-83daf13d05f1adad`). Eliminated arbitrary serial number generation and replaced the generator button with a one-click clipboard copy utility, ensuring immutable hardware identity lockstep with central fleet management.
