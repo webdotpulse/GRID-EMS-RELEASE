@@ -14,9 +14,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.21.3] - 2026-09-29
+## [v9.22.0] - 2026-10-02
+
+### Added
+- **Industrial Multi-Vector Network Discovery Engine:** Upgraded network scanner with multi-layer device discovery: Layer 2 MAC OUI vendor resolution covering leading European hardware manufacturers (including SolarEdge, SMA, Fronius, GoodWe, Huawei, Sungrow, Victron, Enerlution, Alfen, Wallbox, Easee, Mennekes, EVBox, Raedian, Zaptec, HomeWizard, Eastron, and Shelly), active ARP subnet scanning, Modbus TCP SunSpec standard base register probing (`0x53756E53`), P1 DSMR REST API identification, local HTTP smart relay discovery, and OCPP WebSocket gateway discovery. Automatically outputs structured hardware profiles with capability mapping for seamless 1-click onboarding.
+- **European & Benelux Grid Compliance & SteuVE Dimming Engine:** Enforced strict regulatory compliance algorithms across the edge control loop:
+  - *Belgium (Flanders - Fluvius / VREG):* Exact trapezoidal numerical integration of the 15-minute rolling average capacity tariff with mandatory statutory 2.5 kW billing floor and four-quadrant reactive power metering ($Q_1$ to $Q_4$).
+  - *Germany (EnWG §14a):* Grid operator dimming dispatch support, automatically capping controllable consumption devices (*SteuVE* - EV chargers and battery force-charge) to $\le 4.2\text{ kW}$.
+  - *Netherlands (ACM / Netbeheerders):* Negative spot price active solar curtailment to house load, eliminating export penalties, and dynamic fuse headroom limiting.
+  - *EV Charging Safety (IEC 61851-1):* Strict current range enforcement (clamping sub-6A requests to 0A standby) and 20-second contactor anti-welding cooldown at 0A before 1-phase/3-phase relay switching under load.
+  - *Fast Dynamic Load Balancing Dispatch:* Sub-2-second reactive dispatch loop triggered immediately upon smart meter telemetry spikes.
 
 ### Fixed
+- **Production Hardware Driver Implementations:** Eliminated placeholder routines across Easee, SMA, Solis, Huawei, and Generic Modbus templates, replacing them with production-grade protocol implementations for real-world active power limiting, battery charge/discharge control, and dynamic current modulation.
 - **EV Charger Eco Mode Grid Draw & Hardware Command Dispatch Safeguard:** Fixed an issue where EV wallboxes in Eco mode drew up to 11 kW of grid power despite low solar generation while Controller Decisions indicated "0 A (Standby)". Introduced deterministic command dispatch tracking (`chargerCommandDispatched`) so the strategy engine always issues initial setpoints to chargers on boot, eliminated premature setpoint caching that suppressed command execution, enforced active stop commands whenever desired current is 0 A and measured charger load exceeds 50 W, and aligned demo wallbox initial state to standby (State B, 0 A).
 - **Closed-Loop Solar Surplus Routing & Fast-Mode Phase Protection:** Upgraded the solar surplus routing engine to compute available solar surplus accounting for power already consumed by solar-modulating chargers (`availableSurplusW = netGridSurplus + currentSolarEvPowerW`), eliminating on/off setpoint hunting when EV charging absorbs the grid export. Gated automatic 1-phase/3-phase switching strictly to Eco and PV-only modes, safeguarding Fast ("Now") chargers from being demoted to single-phase charging.
 - **EV Controller Decision Transparency & User Off Mode Status:** Updated transparent scheduler explanations to distinguish between chargers paused for solar/price windows ("Standby") and chargers explicitly disabled by the user ("0 A (Off)"), ensuring complete clarity on the dashboard.
