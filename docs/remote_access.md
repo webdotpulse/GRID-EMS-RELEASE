@@ -1,6 +1,24 @@
 # Remote Access Documentation
 
-GEMS custom OS images include two powerful tools to help you manage your Raspberry Pi and access your dashboard remotely: **Cockpit** and **Raspberry Pi Connect**.
+GEMS provides multiple methods to manage your Raspberry Pi and access your energy dashboard remotely:
+- **GRID-EMS-SERVER (Official Cloud Integration - 100% Optional)**: Centralized cloud portal for mobile/desktop dashboard mirroring and fleet management.
+- **Cockpit Web Console**: Web-based graphical Linux system administration and terminal on port `9090`.
+- **Raspberry Pi Connect**: Browser-based remote desktop screen sharing.
+
+---
+
+## GRID-EMS-SERVER (Official Cloud Platform - 100% Optional)
+
+GEMS is architected with a **local-first principle**: all solar balancing, battery optimization, EV charging, and grid protection loops execute 100% locally on the Raspberry Pi edge hardware. Cloud connectivity is completely optional and never required for normal operation.
+
+If you or your installer wish to access the live dashboard from outside your home network, manage multiple installations, or receive remote assistance, GEMS can be linked to **GRID-EMS-SERVER** (`https://ems.newenergygrid.com`).
+
+### Features & Security
+* **Outbound-Only TLS 1.3:** GEMS initiates all connections outbound over encrypted HTTPS. No port forwarding, DDNS, or router firewall changes are ever required.
+* **Instant Pairing:** Generate a 16-character pairing token in the cloud portal, enter it under **Settings &rarr; Cloud Server**, and click *Pair & Connect Now*.
+* **Remote Fleet Management:** Adjust strategy modes, view live metrics, and inspect historical performance logs from anywhere in the world.
+
+---
 
 ## Cockpit
 

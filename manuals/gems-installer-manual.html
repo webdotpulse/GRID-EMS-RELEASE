@@ -391,7 +391,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.22.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.23.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -596,7 +596,7 @@
     wget https://github.com/webdotpulse/GRID-EMS/releases/download/v9.13.2-release/gems_9.13.2_arm64.deb<br>
     <br>
     # 2. Install package and dependencies<br>
-    sudo dpkg -i gems_9.22.0_arm64.deb<br>
+    sudo dpkg -i gems_9.23.0_arm64.deb<br>
     sudo apt-get install -f<br>
     <br>
     # 3. Verify systemd background service<br>
@@ -647,6 +647,12 @@
         <td>Daily energy dashboard, device configuration, tariffs, and strategy rules.</td>
       </tr>
       <tr>
+        <td><strong>GRID-EMS-SERVER (Cloud)</strong></td>
+        <td><code>https://ems.newenergygrid.com</code></td>
+        <td>Pairing Token (Settings &rarr; Cloud)</td>
+        <td>Optional remote multi-site fleet management, remote client diagnostics, and mobile app access.</td>
+      </tr>
+      <tr>
         <td><strong>Cockpit Web Console</strong></td>
         <td><code>https://&lt;IP-ADDRESS&gt;:9090</code></td>
         <td>User: <code>admin</code><br>Pass: <code>manufacturer</code></td>
@@ -660,6 +666,22 @@
       </tr>
     </tbody>
   </table>
+
+  <h2 class="subsection-title">4.1 Optional Cloud Synchronization (GRID-EMS-SERVER)</h2>
+  <p>
+    Installers can link customer units to the central cloud platform <strong>GRID-EMS-SERVER</strong> (<code>https://ems.newenergygrid.com</code>). 
+  </p>
+  <div class="callout callout-info">
+    <div class="callout-title">💡 Edge Autonomy &amp; 100% Optional Cloud Connectivity</div>
+    <p>
+      GEMS is built with a <strong>local-first architectural guarantee</strong>. Cloud connectivity is <strong>100% optional</strong>: the unit operates with full autonomy, executing sub-second DLB, inverter curtailment, battery arbitrage, and relay automation with zero cloud dependency. When paired, it adds encrypted remote fleet oversight and remote command dispatch without requiring open router ports.
+    </p>
+  </div>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Fast Commissioning:</strong> Navigate to <strong>Settings &rarr; Cloud Server</strong>, enter the 16-character pairing token, and click <em>Pair &amp; Connect Now</em>. Registration completes in under 15 seconds.</li>
+    <li><strong>Outbound-Only TLS 1.3:</strong> Edge controllers initiate outbound HTTPS telemetry pushes. Inbound router port forwarding, static public IPs, and DDNS are strictly unnecessary.</li>
+    <li><strong>Remote Fleet Orchestration:</strong> Fleet managers can remotely update strategy modes, adjust battery operational states, throttle EV charging currents, and trigger diagnostics.</li>
+  </ul>
 
   <!-- ==================== 5. SUBNET HARDWARE DISCOVERY ==================== -->
   <div class="page-break"></div>
@@ -1056,7 +1078,7 @@
         <div class="decision-item-title">Mode 3: Netherlands Mode (Smart Saldering)</div>
         <div class="decision-item-desc">
           <strong>Best for:</strong> The Netherlands.<br>
-          Actively monitors dynamic feed-in fees (terugleverkosten) and prioritizes local storage over grid injection during low or negative price intervals.
+          Actively monitors dynamic feed-in fees (<em>terugleverkosten</em>) and prioritizes local storage over grid injection during low or negative price intervals. Setting country to NL or choosing a Dutch contract automatically synchronizes regional parameters and completely suppresses Belgian-specific features (Flanders Capaciteitstarief peak shaving and Elia Green Grid Boost) across the entire UI.
         </div>
       </div>
     </div>

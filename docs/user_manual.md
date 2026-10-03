@@ -265,6 +265,31 @@ For chargers without Modbus TCP or standalone residential setups without third-p
 
 * **Real-Time Logger:** Live diagnostic stream of Modbus packets, register reads, OCPP WebSocket heartbeats, and strategy control decisions.
 * **One-Click OTA Updates:** System queries GitHub releases for updates. Clicking *Install Update* downloads and installs the latest `.deb` package seamlessly with live log output.
-* **Webhook & Notifications:** Automated Discord/Slack/Custom webhook notifications on 90% capacity warnings, polling timeouts, and price fetch errors.
-
 ![Diagnostics Logger](../screenshots/logger.png)
+
+---
+
+## 7. Central Cloud Platform & Regional Optimization
+
+### 7.1 GRID-EMS-SERVER Integration (100% Optional)
+
+GEMS is designed with a **local-first philosophy**: all dynamic load balancing, battery scheduling, solar diversion, and grid protection loops execute autonomously on the Raspberry Pi edge hardware. Cloud connectivity is completely optional.
+
+If you or your installer wish to manage your installation remotely:
+* **Endpoint:** `https://ems.newenergygrid.com`
+* **Zero Router Configuration:** Outbound-only TLS 1.3 connections eliminate the need for port forwarding, dynamic DNS, or public IP addresses.
+* **Simple Pairing:** Go to **Settings &rarr; Cloud Server**, enter the 16-character pairing token provided by your cloud account or installer, and click **Pair & Connect Now**.
+* **Fleet Management & Diagnostics:** Remotely inspect live power flows, receive push alerts, and adjust strategy modes from any web browser or mobile device.
+
+### 7.2 Regional Intelligence: Netherlands vs. Belgium
+
+GEMS automatically tailors its optimization engine and user interface according to your site location and energy contract:
+* **🇳🇱 Netherlands Mode (`country: 'NL'` / `strategy_mode: 'netherlands'`):**
+  * Optimizes for dynamic contracts (Tibber, NextEnergy, Frank Energie, ANWB, Zonneplan, etc.) using the EPEX Spot NL bidding zone.
+  * Injects Dutch statutory energy taxes (*Energiebelasting*) and supplier markups into tariff calculations.
+  * Protects against feed-in penalty fees (*terugleverkosten*) and curtails PV inverter export during negative Day-Ahead pricing.
+  * Automatically suppresses Belgian-specific interface elements (Flanders Capacity Tariff gauges and Elia Green Grid Share).
+* **🇧🇪 Belgium / Flanders Mode (`country: 'BE'` / `strategy_mode: 'flanders'`):**
+  * Implements 15-minute rolling average *Capaciteitstarief* peak shaving to minimize monthly network distribution costs.
+  * Supports Belgian dynamic contracts (TotalEnergies, Mega, Bolt, Engie) via the EPEX Spot BE bidding zone.
+  * Includes the Elia Green Grid Sync Boost to maximize EV charging and thermal storage when national renewable energy production is abundant.

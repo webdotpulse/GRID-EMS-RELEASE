@@ -14,9 +14,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.22.0] - 2026-10-02
+## [v9.23.0] - 2026-10-03
 
 ### Added
+- **Cloud Multi-Site Energy Clustering & Intra-Portfolio Energy Sharing Specification (`CLUSTER_ENRGY.MD`):** Authored an advanced architectural prompt and engineering specification enabling energy suppliers and multi-tenant administrators to group distributed edge units into virtual energy clusters. Outlines real-time peer-to-peer energy matching, bilateral surplus routing (transferring excess solar/battery energy from Location A to flexible EV/battery loads at Location B), PostgreSQL multi-tenant data schemas, high-frequency dispatch algorithms, local-first safety invariants, and 15-minute market settlement accounting.
+- **Comprehensive System & Code Audit Specification (`REVISION.MD`):** Authored an exhaustive master review prompt covering core directives compliance, physical and electrical safety guardrails (DLB, main fuse, IEC 61851 6A clamping, anti-short cycling), mathematical rigor (Flanders 15-min rolling window integration, Dutch Dynamic contract pricing and Salderingsregeling), Go backend concurrency safety (WAL mode, mutex locking), edge-to-cloud lockstep protocol, and frontend responsive UX.
+- **Mobile Bottom Navigation Bar & Ergonomic Navigation:** Introduced a persistent bottom navigation bar for mobile screens, enabling 1-tap switching between Dashboard, Devices, Strategy, and Settings, alongside responsive sidebar tooltips and drawer backdrop scroll-locking.
+- **Dedicated Mobile Dashboard Experience:** Redesigned mobile dashboard view (`MobileDashboard.vue`) with a borderless PowerFlow hero, four high-contrast summary tiles (Solar Production, Home Consumption, Net Grid, Battery), real-time decision engine summary card, and single-tap Strategy Mode switcher.
+
+### Fixed
+- **Regional Interface & Optimization Isolation (Netherlands vs. Belgium):** Resolved an issue where installations in the Netherlands or with Dutch energy contracts (`dynamic_nl`) displayed the Belgian Elia Green Energy Share and Flanders Capacity Tariff cards. Implemented automatic parameter synchronization across backend settings (`DetermineBiddingZoneFromSettings`), strategy engine, and frontend (`Dashboard.vue`, `StrategyTab.vue`, `ContractTab.vue`) to ensure Dutch setups strictly evaluate EPEX Spot NL pricing, apply Smart Saldering and feed-in fee protections, and completely suppress Belgian-specific widgets.
+- **Mobile Responsive Layout & Viewport Padding:** Resolved CSS padding conflicts in `App.vue` that squashed cards on narrow viewports (<640px), optimized Topbar header density, and ensured clean touch ergonomics across all screens.
+
+### Changed
+- **Field Manuals & Documentation Cloud Synchronization:** Updated user, installer, and connection manuals (`gems-user-manual.html`, `gems-installer-manual.html`, `gems-server-connection-manual.html`, `docs/remote_access.md`, `docs/user_manual.md`) to explicitly detail that cloud connection to `GRID-EMS-SERVER` (`https://ems.newenergygrid.com`) is **possible and 100% optional** while retaining full edge autonomy, and documented regional operating differences between Netherlands and Belgium. Recompiled all 6 production PDF manuals using the automated Puppeteer pipeline.
+
 - **Industrial Multi-Vector Network Discovery Engine:** Upgraded network scanner with multi-layer device discovery: Layer 2 MAC OUI vendor resolution covering leading European hardware manufacturers (including SolarEdge, SMA, Fronius, GoodWe, Huawei, Sungrow, Victron, Enerlution, Alfen, Wallbox, Easee, Mennekes, EVBox, Raedian, Zaptec, HomeWizard, Eastron, and Shelly), active ARP subnet scanning, Modbus TCP SunSpec standard base register probing (`0x53756E53`), P1 DSMR REST API identification, local HTTP smart relay discovery, and OCPP WebSocket gateway discovery. Automatically outputs structured hardware profiles with capability mapping for seamless 1-click onboarding.
 - **European & Benelux Grid Compliance & SteuVE Dimming Engine:** Enforced strict regulatory compliance algorithms across the edge control loop:
   - *Belgium (Flanders - Fluvius / VREG):* Exact trapezoidal numerical integration of the 15-minute rolling average capacity tariff with mandatory statutory 2.5 kW billing floor and four-quadrant reactive power metering ($Q_1$ to $Q_4$).

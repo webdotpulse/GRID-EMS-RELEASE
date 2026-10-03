@@ -367,7 +367,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.22.0</span>
+          <span class="cover-meta-val">GEMS v9.23.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Target Audience</span>
@@ -404,13 +404,14 @@
       <li><strong>4.</strong> <a href="#sec-modals">Click-to-Reveal History Deep Dives</a></li>
       <li><strong>5.</strong> <a href="#sec-ev">Managing EV Charging Modes: When to Use Each</a></li>
       <li><strong>6.</strong> <a href="#sec-battery">Home Battery Storage &amp; Peak Shaving</a></li>
-      <li><strong>7.</strong> <a href="#sec-tariffs">Dynamic Tariffs &amp; Negative Electricity Prices</a></li>
+      <li><strong>7.</strong> <a href="#sec-tariffs">Dynamic Tariffs &amp; Regional Optimization (Netherlands &amp; Belgium)</a></li>
       <li><strong>8.</strong> <a href="#sec-gsc">Flemish GSC Subsidy Value Protection</a></li>
       <li><strong>9.</strong> <a href="#sec-elia">Belgian Elia Green Grid Sync Boost</a></li>
       <li><strong>10.</strong> <a href="#sec-relays">Smart Relays &amp; Heat Pump Automation</a></li>
       <li><strong>11.</strong> <a href="#sec-reports">Energy Reports &amp; Instant PDF Downloads</a></li>
-      <li><strong>12.</strong> <a href="#sec-mobile">Mobile Phone Experience &amp; Wall Tablets</a></li>
-      <li><strong>13.</strong> <a href="#sec-faq">Homeowner Frequently Asked Questions</a></li>
+      <li><strong>12.</strong> <a href="#sec-mobile">Mobile Experience &amp; Bottom Navigation</a></li>
+      <li><strong>13.</strong> <a href="#sec-cloud">Optional Cloud Remote Access (GRID-EMS-SERVER)</a></li>
+      <li><strong>14.</strong> <a href="#sec-faq">Homeowner Frequently Asked Questions</a></li>
     </ul>
   </div>
 
@@ -435,6 +436,13 @@
     <div class="callout-title">🔒 100% Local &amp; Private: Zero Subscriptions, Zero Cloud Dependency</div>
     <p>
       Unlike commercial smart home products that require expensive monthly subscriptions and send your private data to remote servers, GEMS runs <strong>entirely inside your own house</strong>. If your internet connection goes down, GEMS continues balancing your solar, battery, and car without skipping a beat!
+    </p>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-title">☁️ Optional Remote Cloud Access: GRID-EMS-SERVER</div>
+    <p>
+      While GEMS functions <strong>100% autonomously at the edge</strong> with zero cloud dependency, you can optionally connect your unit to <strong>GRID-EMS-SERVER</strong> (<code>https://ems.newenergygrid.com</code>). This optional integration allows you to check your live dashboard from your smartphone anywhere in the world, view historical fleet statistics, and receive remote technical support from your certified installer—completely subscription-free and with zero open router ports.
     </p>
   </div>
 
@@ -686,6 +694,9 @@
   <p>
     <strong>How GEMS Protects You:</strong> The millisecond your home demand rises toward your 2.50 kW ceiling, GEMS commands your home battery to discharge the difference (2.0 kW). The utility grid meter never sees the spike, keeping your monthly electricity bill at the absolute minimum baseline!
   </p>
+  <p style="font-size: 8.5pt; color: #64748b; font-style: italic;">
+    *Regional Note: The Flanders Capaciteitstarief applies strictly to Flemish grid connections. In Dutch installations, GEMS automatically hides capacity peak widgets and focuses battery strategy on Day-Ahead arbitrage and Smart Saldering.*
+  </p>
 
   <h2 class="subsection-title">3. Smart Adaptive Ceiling: No Panic If a Peak Occurs</h2>
   <p>
@@ -703,14 +714,34 @@
 
   <!-- ==================== 7. DYNAMIC TARIFFS & NEGATIVE PRICES ==================== -->
   <div class="page-break"></div>
-  <h1 class="section-title" id="sec-tariffs">7. Dynamic Tariffs &amp; Negative Electricity Prices</h1>
+  <h1 class="section-title" id="sec-tariffs">7. Dynamic Tariffs &amp; Regional Optimization (Netherlands &amp; Belgium)</h1>
   <p>
-    If you have an hourly dynamic electricity contract (such as TotalEnergies Pixel Dynamic, Mega, Bolt, or Engie Dynamic), your price per kilowatt-hour changes every single hour according to the European EPEX Spot auction.
+    If you have an hourly dynamic electricity contract, your price per kilowatt-hour changes every single hour according to the European EPEX Spot auction. GEMS automatically downloads tomorrow's hourly prices every afternoon at 13:00 CET.
   </p>
 
   <div class="manual-screenshot">
     <img src="assets/screenshots/settings_contract_tariffs.png" alt="24-Hour Tariff Visualizer">
     <div class="manual-screenshot-caption">Figure 7.1: 24-Hour effective retail tariff breakdown curve showing hourly spot prices, network fees, and injection returns.</div>
+  </div>
+
+  <h2 class="subsection-title">Regional Optimization: Tailored for Your Country</h2>
+  <p>
+    GEMS features built-in regional intelligence that automatically tailors your dashboard and optimization engine to your exact country and energy contract:
+  </p>
+
+  <div class="decision-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0;">
+    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px;">
+      <h3 style="margin: 0 0 6px 0; font-size: 10pt; color: #0284c7;">🇳🇱 Netherlands (Dynamic-NL &amp; Smart Saldering)</h3>
+      <p style="font-size: 8.5pt; margin: 0; color: #475569;">
+        Supports Dutch dynamic contracts (Tibber, NextEnergy, Frank Energie, ANWB, Zonneplan, EnergyZero, Vandebron) via the EPEX Spot NL bidding zone. Integrates Dutch Energiebelasting (€0.1316/kWh) and accounts for feed-in fees (<em>terugleverkosten</em>). Inverter curtailment protects you from feeding in during negative price hours. Belgian-specific widgets (Elia Green Energy Share and Flanders Capacity Tariff) are automatically suppressed.
+      </p>
+    </div>
+    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px;">
+      <h3 style="margin: 0 0 6px 0; font-size: 10pt; color: #16a34a;">🇧🇪 Belgium (Dynamic-BE &amp; Capaciteitstarief)</h3>
+      <p style="font-size: 8.5pt; margin: 0; color: #475569;">
+        Supports Belgian suppliers (TotalEnergies Pixel Dynamic, Mega, Bolt, Engie Dynamic, Dats 24, Eneco, Luminus) via the EPEX Spot BE bidding zone. Provides 15-minute rolling average Capaciteitstarief peak shaving, Flemish Groenestroomcertificaten (GSC) subsidy protection, and Elia Green Grid Sync Boost during peak renewable hours.
+      </p>
+    </div>
   </div>
 
   <h2 class="subsection-title">What are Negative Electricity Prices?</h2>
@@ -836,15 +867,23 @@
   </p>
 
   <!-- ==================== 12. MOBILE & TABLET ==================== -->
-  <h1 class="section-title" id="sec-mobile">12. Mobile Phone Experience &amp; Wall Tablets</h1>
+  <h1 class="section-title" id="sec-mobile">12. Mobile Experience &amp; Bottom Navigation</h1>
   <p>
-    GEMS is built with a responsive mobile interface that looks and feels like a native smartphone application:
+    GEMS features an ergonomically designed responsive mobile interface that operates with native app fluidity on smartphones and wall-mounted tablets:
   </p>
 
   <div class="manual-screenshot" style="max-width: 380px; margin: 16px auto;">
     <img src="assets/screenshots/dashboard_mobile.png" alt="Mobile Dashboard View">
-    <div class="manual-screenshot-caption">Figure 12.1: GEMS responsive layout on smartphone.</div>
+    <div class="manual-screenshot-caption">Figure 12.1: GEMS responsive mobile dashboard with dedicated touch-friendly cards and bottom navigation.</div>
   </div>
+
+  <h2 class="subsection-title">Key Mobile Interface Features</h2>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Dedicated Mobile Dashboard:</strong> A streamlined PowerFlow hero eliminating nested card borders, paired with four high-contrast summary tiles (Solar Production, Home Consumption, Net Grid, and Battery State).</li>
+    <li><strong>Persistent Bottom Navigation Bar:</strong> Easily switch between <em>Dashboard</em>, <em>Devices</em>, <em>Strategy</em>, and <em>Settings</em> with a single thumb-tap at the bottom of the screen.</li>
+    <li><strong>Quick Strategy Switcher:</strong> Instantly toggle between Eco, Flanders, or Netherlands optimization modes with one touch on the mobile dashboard.</li>
+    <li><strong>Compact Responsive Topbar:</strong> Status indicators and device connectivity adapt cleanly on narrow viewports without cluttering your screen.</li>
+  </ul>
 
   <div class="callout callout-tip">
     <div class="callout-title">📱 How to Install GEMS on Your Phone Home Screen</div>
@@ -857,9 +896,40 @@
     </ol>
   </div>
 
-  <!-- ==================== 13. FAQ ==================== -->
+  <!-- ==================== 13. OPTIONAL CLOUD ACCESS ==================== -->
   <div class="page-break"></div>
-  <h1 class="section-title" id="sec-faq">13. Homeowner Frequently Asked Questions &amp; Everyday Tips</h1>
+  <h1 class="section-title" id="sec-cloud">13. Optional Cloud Remote Access (GRID-EMS-SERVER)</h1>
+  <p>
+    One of the greatest architectural strengths of GEMS is that <strong>cloud connectivity is completely optional</strong>:
+  </p>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>100% Autonomous Edge Operation:</strong> GEMS performs all smart solar diversion, battery balancing, EV charging, and tariff optimization entirely on your local Raspberry Pi. It never requires a cloud account or active internet connection to safeguard your home and minimize electricity costs.</li>
+    <li><strong>Seamless Remote Capabilities (If Desired):</strong> If you want to view your live energy dashboard from work, check charging status on vacation, or allow your certified installer to perform remote diagnostics, you can pair your unit to <strong>GRID-EMS-SERVER</strong> (<code>https://ems.newenergygrid.com</code>).</li>
+  </ul>
+
+  <div class="manual-screenshot">
+    <img src="assets/screenshots/settings_cloud.png" alt="GEMS Cloud Server Settings Interface">
+    <div class="manual-screenshot-caption">Figure 13.1: Settings &rarr; Cloud Server — Simple pairing token entry and live encrypted sync status.</div>
+  </div>
+
+  <h2 class="subsection-title">How to Connect (Pairing in 60 Seconds)</h2>
+  <ol style="margin: 6px 0 14px 18px; padding: 0;">
+    <li>Log in to your GEMS local dashboard and navigate to <strong>Settings &rarr; Cloud Server</strong>.</li>
+    <li>Obtain your 16-character pairing token from your installer or your user account on <code>https://ems.newenergygrid.com</code>.</li>
+    <li>Paste the token into the <strong>Pairing Token</strong> field and click <strong>Pair &amp; Connect Now</strong>.</li>
+    <li>Within seconds, the indicator turns to <span style="color:#10b981; font-weight:bold;">● ONLINE &amp; SYNCED</span>.</li>
+  </ol>
+
+  <div class="callout callout-info">
+    <div class="callout-title">🔒 Outbound-Only Security: Zero Port Forwarding</div>
+    <p>
+      Unlike traditional security cameras or home servers, GEMS connects outbound to GRID-EMS-SERVER over TLS 1.3 encryption. <strong>You never need to open any ports or modify firewall rules on your home router.</strong> Your home network remains 100% shielded from internet scanners.
+    </p>
+  </div>
+
+  <!-- ==================== 14. FAQ ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-faq">14. Homeowner Frequently Asked Questions &amp; Everyday Tips</h1>
 
   <h2 class="subsection-title">Q: What happens if our home internet goes down?</h2>
   <p>
@@ -873,7 +943,7 @@
 
   <h2 class="subsection-title">Q: How can I access GEMS when I am away from home?</h2>
   <p>
-    For safety and privacy, GEMS does not expose open ports to the public internet. You can access GEMS securely from outside your home using <strong>Raspberry Pi Connect</strong> (which requires zero router configuration) or via a private home VPN (such as WireGuard or Tailscale).
+    The simplest and official method is to link your unit to <strong>GRID-EMS-SERVER</strong> (see Section 13). Once paired, you can securely open <code>https://ems.newenergygrid.com</code> from any smartphone, tablet, or laptop worldwide. Alternatively, for local-only setups, you can access your unit via <strong>Raspberry Pi Connect</strong> or a private home VPN (such as WireGuard or Tailscale).
   </p>
 
   <h2 class="subsection-title">Q: Why did my EV stop charging when the sun was still shining?</h2>
