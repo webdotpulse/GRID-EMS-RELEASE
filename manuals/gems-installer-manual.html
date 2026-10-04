@@ -391,7 +391,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.23.1-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.24.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -596,7 +596,7 @@
     wget https://github.com/webdotpulse/GRID-EMS/releases/download/v9.13.2-release/gems_9.13.2_arm64.deb<br>
     <br>
     # 2. Install package and dependencies<br>
-    sudo dpkg -i gems_9.23.1_arm64.deb<br>
+    sudo dpkg -i gems_9.24.0_arm64.deb<br>
     sudo apt-get install -f<br>
     <br>
     # 3. Verify systemd background service<br>
@@ -682,6 +682,45 @@
     <li><strong>Outbound-Only TLS 1.3:</strong> Edge controllers initiate outbound HTTPS telemetry pushes. Inbound router port forwarding, static public IPs, and DDNS are strictly unnecessary.</li>
     <li><strong>Remote Fleet Orchestration:</strong> Fleet managers can remotely update strategy modes, adjust battery operational states, throttle EV charging currents, and trigger diagnostics.</li>
   </ul>
+
+  <h2 class="subsection-title">4.2 Local CA Certificate &amp; Zero-Warning HTTPS (localhost, ems.local &amp; Custom Domains)</h2>
+  <p>
+    Browsers natively reject standard self-signed certificates with security warnings (such as <code>NET::ERR_CERT_AUTHORITY_INVALID</code>). To ensure a smooth, secure customer and technician experience with green padlock verification, GEMS includes a dedicated <strong>Local Certificate Authority (CA) engine</strong>.
+  </p>
+
+  <div class="callout callout-info">
+    <div class="callout-title">🔒 Automatic SAN Coverage &amp; Dynamic Zero-Downtime Reloads</div>
+    <p>
+      GEMS automatically populates Subject Alternative Names (SANs) for all loopback addresses (<code>localhost</code>, <code>127.0.0.1</code>, <code>::1</code>), default mDNS hostnames (<code>ems.local</code>, <code>gems.local</code>, <code>*.ems.local</code>, <code>*.gems.local</code>), active local interface IPs, and any configured custom local domains (e.g. <code>myems.lan</code>). When custom domains are added, GEMS regenerates the certificate on the fly and hot-reloads it with zero service interruption.
+    </p>
+  </div>
+
+  <table class="spec-table" style="margin-top: 12px;">
+    <thead>
+      <tr>
+        <th style="width: 25%;">Task</th>
+        <th style="width: 40%;">Method / Endpoint</th>
+        <th style="width: 35%;">Action Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Download Root CA</strong></td>
+        <td><code>http://&lt;ip&gt;:8080/api/ca.crt</code> (or <code>/ca.crt</code>)</td>
+        <td>Download public Root CA certificate directly to client device or laptop.</td>
+      </tr>
+      <tr>
+        <td><strong>Automated Linux / NSS Setup</strong></td>
+        <td><code>./scripts/setup-local-ca.sh [custom domains...]</code></td>
+        <td>Automates certificate generation and registers CA into Chrome NSS (<code>~/.pki/nssdb</code>) and Firefox.</td>
+      </tr>
+      <tr>
+        <td><strong>Web UI Custom Domains</strong></td>
+        <td><strong>Settings &rarr; System Information &rarr; Local CA &amp; SSL</strong></td>
+        <td>Enter comma-separated domains and click <em>Save &amp; Regenerate Certificate</em>.</td>
+      </tr>
+    </tbody>
+  </table>
 
   <!-- ==================== 5. SUBNET HARDWARE DISCOVERY ==================== -->
   <div class="page-break"></div>

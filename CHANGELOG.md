@@ -14,9 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.23.1] - 2026-10-04
+## [v9.24.0] - 2026-10-04
 
 ### Added
+- **Local Root CA Engine & Zero-Warning HTTPS:** Integrated an embedded Local Root Certificate Authority (CA) management system (`ca.crt` / `ca.key`) and dynamic TLS certificate manager. Automatically signs and serves SSL certificates covering loopback addresses (`localhost`, `127.0.0.1`, `::1`), default hostnames (`ems.local`, `gems.local`, `*.ems.local`, `*.gems.local`), machine network interface IPs, and custom user domains with zero browser security warnings. Features an automated setup script (`scripts/setup-local-ca.sh`) for Chrome/Chromium NSS database and Firefox registration, a public Root CA download endpoint (`GET /api/ca.crt`), and a dedicated settings management card in the System Information UI with on-the-fly custom domain addition and zero-downtime hot reloading.
 - **Fail-Safe Main Fuse & Telemetry Loss Protection:** Introduced an automated 15-second failsafe protection mechanism. If telemetry from the primary utility grid meter becomes stale or offline (>15 seconds), the system automatically commands all active EV charging sessions to 0.0A standby and suspends battery grid charging, preventing unmonitored overcurrent events on the main service connection.
 - **Relay Compressor Anti-Cycling Protection:** Added a 600-second (10-minute) minimum run and off guard timer for heat pump and SG-Ready smart relays, protecting refrigeration compressors from mechanical stress caused by short cycling.
 - **Solar Surplus Cloud Damping & Contactor Protection:** Added an off-delay hysteresis buffer to solar diversion switching, preventing rapid contactor cycling and chatter during intermittent cloud cover.
@@ -33,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Inverter Active Power Setpoint Safeguard:** Ensured all inverter active power limit commands are strictly non-negative, preventing hardware faults on solar inverters.
 - **Background Engine Resilience & Weather Service Timeouts:** Wrapped background worker loops with panic recovery to ensure continuous edge reliability, and added bounded HTTP timeouts to external solar forecast queries.
 - **Regional Interface & Optimization Isolation (Netherlands vs. Belgium):** Resolved an issue where installations in the Netherlands or with Dutch energy contracts (`dynamic_nl`) displayed the Belgian Elia Green Energy Share and Flanders Capacity Tariff cards. Implemented automatic parameter synchronization across backend settings (`DetermineBiddingZoneFromSettings`), strategy engine, and frontend (`Dashboard.vue`, `StrategyTab.vue`, `ContractTab.vue`) to ensure Dutch setups strictly evaluate EPEX Spot NL pricing, apply Smart Saldering and feed-in fee protections, and completely suppress Belgian-specific widgets.
+- **Settings Mobile Responsiveness & Horizontal Layout Viewport Fix:** Fixed a layout clipping issue on mobile screens (<640px) across the Settings interface. Resolved horizontal layout blowout caused by unbounded flex child min-widths, converted the settings navigation tab bar into a smooth horizontally scrollable swipe row with non-wrapping pill buttons, made label-tooltip containers wrap naturally on narrow viewports, refactored DNO preset selection to stack vertically on mobile, and ensured modal action buttons, address lookup, and diagnostic probe triggers remain fully visible, aligned, and touch-friendly within the screen bounds.
 - **Mobile Responsive Layout & Viewport Padding:** Resolved CSS padding conflicts in `App.vue` that squashed cards on narrow viewports (<640px), optimized Topbar header density, and ensured clean touch ergonomics across all screens.
 
 ### Changed

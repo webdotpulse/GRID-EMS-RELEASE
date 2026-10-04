@@ -77,3 +77,18 @@ Once paired:
 1. Go to [connect.raspberrypi.com](https://connect.raspberrypi.com) and log in.
 2. Select your device (`ems`) and click **Screen Sharing**.
 3. The connection will be **automatically accepted** by the device, bringing you straight into the desktop environment where the GEMS UI (`http://ems.local`) is automatically displayed in kiosk mode.
+
+---
+
+## Local CA Certificate & Zero-Warning HTTPS
+
+When accessing the GEMS dashboard over HTTPS on `localhost`, `ems.local`, `gems.local`, or custom local network domains (such as `myems.lan`), browsers normally display a security warning (`NET::ERR_CERT_AUTHORITY_INVALID` or `NET::ERR_CERT_COMMON_NAME_INVALID`) when presented with an untrusted self-signed certificate.
+
+GEMS includes an integrated **Local Certificate Authority (CA)** engine that solves this completely:
+
+1. **Automatic Root CA Generation**: GEMS generates or adopts a local Root CA (`ca.crt`).
+2. **Comprehensive SAN Coverage**: Server certificates (`cert.pem`) are automatically signed with all loopback interfaces (`127.0.0.1`, `::1`), standard hostnames (`localhost`, `ems.local`, `gems.local`, `*.ems.local`, `*.gems.local`), local machine IP addresses, and user-specified custom domains.
+3. **Zero-Warning Local Trust**:
+   - Run `./scripts/setup-local-ca.sh [custom domain]` to automatically register the Root CA in Google Chrome / Chromium's NSS store (`~/.pki/nssdb`) and Firefox.
+   - For phones, tablets, and remote PCs, download the Root CA directly from `http://<ip>:8080/api/ca.crt` or via **Settings &rarr; System Information** and install it as a trusted certificate authority.
+4. **Dynamic Domain Updates**: Add custom domains via **Settings &rarr; System Information &rarr; Local CA & SSL Certificate** or via `POST /api/system/certificate/domains` for immediate on-the-fly certificate regeneration and hot-reloading with zero downtime.
