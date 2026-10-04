@@ -14,15 +14,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.23.0] - 2026-10-03
+## [v9.23.1] - 2026-10-04
 
 ### Added
+- **Fail-Safe Main Fuse & Telemetry Loss Protection:** Introduced an automated 15-second failsafe protection mechanism. If telemetry from the primary utility grid meter becomes stale or offline (>15 seconds), the system automatically commands all active EV charging sessions to 0.0A standby and suspends battery grid charging, preventing unmonitored overcurrent events on the main service connection.
+- **Relay Compressor Anti-Cycling Protection:** Added a 600-second (10-minute) minimum run and off guard timer for heat pump and SG-Ready smart relays, protecting refrigeration compressors from mechanical stress caused by short cycling.
+- **Solar Surplus Cloud Damping & Contactor Protection:** Added an off-delay hysteresis buffer to solar diversion switching, preventing rapid contactor cycling and chatter during intermittent cloud cover.
 - **Cloud Multi-Site Energy Clustering & Intra-Portfolio Energy Sharing Specification (`CLUSTER_ENRGY.MD`):** Authored an advanced architectural prompt and engineering specification enabling energy suppliers and multi-tenant administrators to group distributed edge units into virtual energy clusters. Outlines real-time peer-to-peer energy matching, bilateral surplus routing (transferring excess solar/battery energy from Location A to flexible EV/battery loads at Location B), PostgreSQL multi-tenant data schemas, high-frequency dispatch algorithms, local-first safety invariants, and 15-minute market settlement accounting.
 - **Comprehensive System & Code Audit Specification (`REVISION.MD`):** Authored an exhaustive master review prompt covering core directives compliance, physical and electrical safety guardrails (DLB, main fuse, IEC 61851 6A clamping, anti-short cycling), mathematical rigor (Flanders 15-min rolling window integration, Dutch Dynamic contract pricing and Salderingsregeling), Go backend concurrency safety (WAL mode, mutex locking), edge-to-cloud lockstep protocol, and frontend responsive UX.
 - **Mobile Bottom Navigation Bar & Ergonomic Navigation:** Introduced a persistent bottom navigation bar for mobile screens, enabling 1-tap switching between Dashboard, Devices, Strategy, and Settings, alongside responsive sidebar tooltips and drawer backdrop scroll-locking.
 - **Dedicated Mobile Dashboard Experience:** Redesigned mobile dashboard view (`MobileDashboard.vue`) with a borderless PowerFlow hero, four high-contrast summary tiles (Solar Production, Home Consumption, Net Grid, Battery), real-time decision engine summary card, and single-tap Strategy Mode switcher.
 
 ### Fixed
+- **Single-Phase & 230V Delta Grid Math Precision:** Updated site configuration validation and dynamic load balancing to correctly identify single-phase installations and compute 3-phase 230V Delta grid capacity ($P = \sqrt{3} \times V \times I$), preventing calculation errors on Belgian 3x230V Delta grids without neutral.
+- **Single-Charger Hard Breaker Clamping:** Ensured single active EV chargers step down safely towards the IEC 61851 6.0A minimum floor when approaching breaker limits without triggering multi-charger relief logic.
+- **Battery Energy Storage 10% Reserve Floor Enforcement:** Enforced a mandatory 10% minimum state-of-charge (SoC) reserve floor across dynamic arbitrage, cost-saving, and Flanders capacity peak-shaving control loops, protecting battery cells from deep discharge.
+- **Dynamic Battery Force-Charge Power Clamping:** Dynamic BESS force-charge power now strictly respects configured maximum C-rates, with excess generation automatically routed to inverter curtailment during negative energy price events.
+- **Inverter Active Power Setpoint Safeguard:** Ensured all inverter active power limit commands are strictly non-negative, preventing hardware faults on solar inverters.
+- **Background Engine Resilience & Weather Service Timeouts:** Wrapped background worker loops with panic recovery to ensure continuous edge reliability, and added bounded HTTP timeouts to external solar forecast queries.
 - **Regional Interface & Optimization Isolation (Netherlands vs. Belgium):** Resolved an issue where installations in the Netherlands or with Dutch energy contracts (`dynamic_nl`) displayed the Belgian Elia Green Energy Share and Flanders Capacity Tariff cards. Implemented automatic parameter synchronization across backend settings (`DetermineBiddingZoneFromSettings`), strategy engine, and frontend (`Dashboard.vue`, `StrategyTab.vue`, `ContractTab.vue`) to ensure Dutch setups strictly evaluate EPEX Spot NL pricing, apply Smart Saldering and feed-in fee protections, and completely suppress Belgian-specific widgets.
 - **Mobile Responsive Layout & Viewport Padding:** Resolved CSS padding conflicts in `App.vue` that squashed cards on narrow viewports (<640px), optimized Topbar header density, and ensured clean touch ergonomics across all screens.
 
