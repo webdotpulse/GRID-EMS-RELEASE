@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.25.0] - 2026-10-04
+## [v9.25.2] - 2026-10-11
 
 ### Added
 - **Cloud Multi-Tenant Energy Clustering & Real-Time Inter-Site Energy Sharing Engine:** Introduced multi-tenant energy clustering capabilities enabling energy suppliers, communities, and corporate fleets to interconnect distributed edge installations into synchronized sharing clusters within the same national bidding zone. Features real-time bilateral matching of dispatchable solar and storage surplus to flexible EV charging and battery demand, continuous 15-minute settlement interval reconciliation with CSV/JSON export, automated slew-rate power modulation, and a fail-safe 30-second heartbeat watchdog that guarantees seamless fallback to autonomous local optimization. Includes an interactive Cloud Cluster Cockpit visualization and edge dashboard indicator badges with peer transfer flow nodes.
@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Dedicated Mobile Dashboard Experience:** Redesigned mobile dashboard view (`MobileDashboard.vue`) with a borderless PowerFlow hero, four high-contrast summary tiles (Solar Production, Home Consumption, Net Grid, Battery), real-time decision engine summary card, and single-tap Strategy Mode switcher.
 
 ### Fixed
+- **Scanner Hardware Discovery OUI Mapping:** Resolved a MAC prefix mapping conflict in device discovery by assigning `AC:CF:23` to Solis inverter data loggers and preserving `DC:4F:22` for Shelly smart relays and energy meters.
 - **Single-Phase & 230V Delta Grid Math Precision:** Updated site configuration validation and dynamic load balancing to correctly identify single-phase installations and compute 3-phase 230V Delta grid capacity ($P = \sqrt{3} \times V \times I$), preventing calculation errors on Belgian 3x230V Delta grids without neutral.
 - **Single-Charger Hard Breaker Clamping:** Ensured single active EV chargers step down safely towards the IEC 61851 6.0A minimum floor when approaching breaker limits without triggering multi-charger relief logic.
 - **Battery Energy Storage 10% Reserve Floor Enforcement:** Enforced a mandatory 10% minimum state-of-charge (SoC) reserve floor across dynamic arbitrage, cost-saving, and Flanders capacity peak-shaving control loops, protecting battery cells from deep discharge.
@@ -39,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Mobile Responsive Layout & Viewport Padding:** Resolved CSS padding conflicts in `App.vue` that squashed cards on narrow viewports (<640px), optimized Topbar header density, and ensured clean touch ergonomics across all screens.
 
 ### Changed
+- **Primary Reference Hardware Standard Updated to Solis Hybrid & Retrofit Inverters:** Established **Solis** (S5/S6 single-phase & three-phase hybrid inverters and Solis RAI / S6-EA AC-coupled retrofit storage inverters) as the primary reference hardware standard across system architecture directives, device pollers, network discovery heuristics, manuals, and user interfaces. Enhanced Solis integration drivers with full Modbus TCP sub-second telemetry (solar PV generation power, bidirectional battery charge/discharge power, high-accuracy battery SoC percentage, grid meter power, and 3-phase current/voltage monitoring), active power curtailment for negative spot price protection, and forced battery charge/discharge dispatch for dynamic market arbitrage and Flanders capacity tariff peak shaving.
 - **Field Manuals & Documentation Cloud Synchronization:** Updated user, installer, and connection manuals (`gems-user-manual.html`, `gems-installer-manual.html`, `gems-server-connection-manual.html`, `docs/remote_access.md`, `docs/user_manual.md`) to explicitly detail that cloud connection to `GRID-EMS-SERVER` (`https://ems.newenergygrid.com`) is **possible and 100% optional** while retaining full edge autonomy, and documented regional operating differences between Netherlands and Belgium. Recompiled all 6 production PDF manuals using the automated Puppeteer pipeline.
 
 - **Industrial Multi-Vector Network Discovery Engine:** Upgraded network scanner with multi-layer device discovery: Layer 2 MAC OUI vendor resolution covering leading European hardware manufacturers (including SolarEdge, SMA, Fronius, GoodWe, Huawei, Sungrow, Victron, Enerlution, Alfen, Wallbox, Easee, Mennekes, EVBox, Raedian, Zaptec, HomeWizard, Eastron, and Shelly), active ARP subnet scanning, Modbus TCP SunSpec standard base register probing (`0x53756E53`), P1 DSMR REST API identification, local HTTP smart relay discovery, and OCPP WebSocket gateway discovery. Automatically outputs structured hardware profiles with capability mapping for seamless 1-click onboarding.

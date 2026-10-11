@@ -151,9 +151,10 @@ GEMS includes **140 native hardware templates**. Adding hardware is 100% UI-driv
 
 | Template | Brand & Series | Protocol | Default Port | Slave ID | Curtailment |
 | :--- | :--- | :--- | :--- | :--- | :--- |
+| `solis_hybrid` / `solis_inverter` | **Solis Hybrid (S5 / S6 Single & 3-Phase)** *(Primary Reference)* | Modbus TCP | `502` / `8899` | `1` | Yes |
+| `solis_retrofit` | **Solis Retrofit Inverter (RAI / S6-EA1P AC Storage)** *(Primary Reference)* | Modbus TCP | `502` / `8899` | `1` | Yes |
 | `huawei_inverter` | Huawei SUN2000 (L1/M1/M2/M3/MB0 + LUNA2000) | Modbus TCP | `502` | `1` (or `2`) | Yes |
 | `sma_inverter` | SMA Sunny Boy / Tripower / Storage | Modbus TCP | `502` | `126` (or `3`) | Yes |
-| `solis_inverter` | Solis Hybrid (RHI / S5 / S6) | Modbus TCP | `502` / `8899` | `1` | Yes |
 | `fronius_inverter` | Fronius Gen24 Plus / Symo / Primo | Modbus TCP SunSpec | `502` | `1` | Yes |
 | `solaredge_inverter` / `solaredge_3phase` | SolarEdge Single & 3-Phase (SetApp) | Modbus TCP SunSpec | `1502` (or `502`) | `1` | Yes |
 | `sungrow_inverter` | Sungrow Hybrid (SH5.0 - SH10RT) | Modbus TCP | `502` | `1` | Yes |

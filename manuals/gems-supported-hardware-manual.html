@@ -509,7 +509,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Software Version</span>
-          <span class="cover-meta-val">v9.25.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.25.2-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Native Templates</span>
@@ -566,7 +566,7 @@
       <div class="callout tip">
         <div class="callout-title">⭐ Reference Hardware Preference Directive</div>
         <p style="margin: 0; color: #065f46; font-size: 8.2pt;">
-          Per system architecture standards, <strong>RAEDIAN</strong> is designated as the primary reference template for EV Charging Stations (NEO, NEX, and Gemini dual-socket series), and <strong>Enerlution</strong> is designated as the primary reference template for Hybrid Solar Inverters and Battery Energy Storage Systems. Both vendors feature complete sub-second register control and active curtailment setpoints.
+          Per system architecture standards, <strong>RAEDIAN</strong> is designated as the primary reference template for EV Charging Stations (NEO, NEX, and Gemini dual-socket series), and <strong>Solis</strong> is designated as the primary reference template for Hybrid Solar Inverters and Battery Energy Storage Systems (including S5/S6 Hybrid and Solis Retrofit series). Both vendors feature complete sub-second register control and active curtailment setpoints.
         </p>
       </div>
     </div>
@@ -763,7 +763,6 @@
             <td>
               <strong>Enerlution Hybrid Inverter</strong><br>
               <span style="font-size: 7.2pt; color: #64748b;">Enerlution</span>
-              <br><span class="badge-preferred">⭐ Reference</span>
             </td>
             <td><code>enerlution_inverter</code></td>
             <td>
@@ -1033,18 +1032,18 @@
           
           <tr>
             <td>
-              <strong>Solis Inverter</strong><br>
+              <strong>Solis Hybrid & Retrofit Inverters</strong><br>
               <span style="font-size: 7.2pt; color: #64748b;">Solis</span>
-              
+              <br><span class="badge-preferred">⭐ Reference</span>
             </td>
-            <td><code>solis_inverter</code></td>
+            <td><code>solis_hybrid / solis_retrofit</code></td>
             <td>
               <span class="badge badge-modbus">MODBUS</span><br>
-              <span style="font-size: 7pt; color: #64748b;">Modbus TCP via Ginlong Wi-Fi/LAN stick (Default Port: 502 or 8899</span>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP via direct internal Ethernet / Ginlong Wi-Fi/LAN stick (Default Port: 502 or 8899, Slave ID: 1)</span>
             </td>
-            <td>Solar PV power (W), Battery charge/discharge power (W), Total energy (kWh).</td>
-            <td>Active Power Curtailment Limit (W or % via holding registers).</td>
-            <td>Active inverter curtailment for Dutch negative spot price protection; monitors generation to trigger smart relay contactors when export exceeds user limits.</td>
+            <td>Solar PV Active Generation Power (W, reg 33079), Battery Charge/Discharge Power (W, reg 33149), Battery SOC (%, reg 33139), Grid Meter Active Power (W, reg 33130), Total Cumulative Energy Yield (kWh, reg 33029), 3-Phase AC Currents (0.1A, regs 33073-33075), 3-Phase Voltages (0.1V, regs 33076-33078).</td>
+            <td>Active Power Curtailment Mode and Limit (W / % via holding registers 3051/3052), Forced Battery Charging & Discharging Setpoint (W via registers 43110/43135/43136).</td>
+            <td>Designated primary reference platform for hybrid solar and battery energy storage. Executes sub-second closed-loop active power curtailment during negative spot price hours (Netherlands Mode / Zero-Export), manages automatic solar surplus sinking into battery storage, dynamically throttles charging during Flanders capacity tariff peak shaving, and orchestrates spot market arbitrage (EPEX Day-Ahead price force charging and peak discharging). Solis Retrofit models operate seamlessly as AC-coupled storage units with dedicated battery control and zero solar PV string dependency.</td>
           </tr>
           
           <tr>
@@ -3175,7 +3174,7 @@
       </div>
     </div>
     
-    <div class="device-card preferred-card">
+    <div class="device-card ">
       <div class="device-header">
         <div class="device-title-wrap">
           <span class="device-number">1.5</span>
@@ -3183,7 +3182,7 @@
           <span class="device-template-code">enerlution_inverter</span>
         </div>
         <div class="device-tags">
-          <span class="badge-preferred">⭐ Reference Flagship</span>
+          
           <span class="badge badge-modbus">MODBUS</span>
         </div>
       </div>
@@ -3770,37 +3769,37 @@
       </div>
     </div>
     
-    <div class="device-card ">
+    <div class="device-card preferred-card">
       <div class="device-header">
         <div class="device-title-wrap">
           <span class="device-number">1.22</span>
-          <span class="device-name">Solis Inverter</span>
-          <span class="device-template-code">solis_inverter</span>
+          <span class="device-name">Solis Hybrid & Retrofit Inverters</span>
+          <span class="device-template-code">solis_hybrid, solis_retrofit</span>
         </div>
         <div class="device-tags">
-          
+          <span class="badge-preferred">⭐ Reference Flagship</span>
           <span class="badge badge-modbus">MODBUS</span>
         </div>
       </div>
 
       <div class="device-meta-row">
         <div><strong>Manufacturer / Vendor:</strong> Solis</div>
-        <div><strong>Communication Interface:</strong> Modbus TCP via Ginlong Wi-Fi/LAN stick (Default Port: 502 or 8899, Slave ID: 1)</div>
-        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Solis RHI-(3-6)K-48ES, S5-EH1P, S6-EH3P Series Hybrid Inverters</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP via direct internal Ethernet / Ginlong Wi-Fi/LAN stick (Default Port: 502 or 8899, Slave ID: 1)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Solis S5-EH1P, S6-EH1P Series (Single-Phase Hybrid), S6-EH3P Series (Three-Phase Hybrid 5kW-20kW), Solis RAI-3K-48V-5G, S6-EA1P3.6K-L, S6-EA1P5K-L Series (AC-Coupled Storage Retrofit)</div>
       </div>
 
       <div class="capability-grid">
         <div class="cap-box read">
           <div class="cap-box-title">🔍 Telemetry Read Out</div>
-          <p>Solar PV power (W), Battery charge/discharge power (W), Total energy (kWh).</p>
+          <p>Solar PV Active Generation Power (W, reg 33079), Battery Charge/Discharge Power (W, reg 33149), Battery SOC (%, reg 33139), Grid Meter Active Power (W, reg 33130), Total Cumulative Energy Yield (kWh, reg 33029), 3-Phase AC Currents (0.1A, regs 33073-33075), 3-Phase Voltages (0.1V, regs 33076-33078).</p>
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Active Power Curtailment Limit (W or % via holding registers).</p>
+          <p>Active Power Curtailment Mode and Limit (W / % via holding registers 3051/3052), Forced Battery Charging & Discharging Setpoint (W via registers 43110/43135/43136).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Active inverter curtailment for Dutch negative spot price protection; monitors generation to trigger smart relay contactors when export exceeds user limits.</p>
+          <p>Designated primary reference platform for hybrid solar and battery energy storage. Executes sub-second closed-loop active power curtailment during negative spot price hours (Netherlands Mode / Zero-Export), manages automatic solar surplus sinking into battery storage, dynamically throttles charging during Flanders capacity tariff peak shaving, and orchestrates spot market arbitrage (EPEX Day-Ahead price force charging and peak discharging). Solis Retrofit models operate seamlessly as AC-coupled storage units with dedicated battery control and zero solar PV string dependency.</p>
         </div>
       </div>
     </div>
