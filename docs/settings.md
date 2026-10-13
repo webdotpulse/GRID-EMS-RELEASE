@@ -147,7 +147,7 @@ Configuration for external webhook alerts and capacity threshold warnings.
 ![Notifications Tab](../screenshots/settings_notifications.png)
 
 * **`alert_webhook_url`**
-  * **Description:** HTTP(S) Webhook URL (e.g. Discord, Slack, Home Assistant) where GEMS posts instant notifications for device offline events, consecutive poll failures, or when the 15-minute capacity peak approaches 90% of the limit.
+  * **Description:** HTTP(S) Webhook URL (e.g. Discord, Slack, or custom automation endpoints) where GEMS posts instant notifications for device offline events, consecutive poll failures, or when the 15-minute capacity peak approaches 90% of the limit.
 * **`weekly_report_enabled`**
   * **Description:** Toggles automatic generation and delivery of weekly PDF energy summaries.
 * **`report_email`**

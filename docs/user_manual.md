@@ -260,7 +260,7 @@ For chargers without Modbus TCP or standalone residential setups without third-p
 
 ## 6. System Diagnostics & Updates
 
-| Hardware System Info & NVMe Health | Webhook Alerts & Reporting |
+| System Identity, Network & Build Info | Webhook Alerts & Reporting |
 | :---: | :---: |
 | ![System Info Tab](../screenshots/settings_system_info.png) | ![Notifications Tab](../screenshots/settings_notifications.png) |
 
@@ -286,7 +286,7 @@ If you or your installer wish to manage your installation remotely:
 
 GEMS automatically tailors its optimization engine and user interface according to your site location and energy contract:
 * **🇳🇱 Netherlands Mode (`country: 'NL'` / `strategy_mode: 'netherlands'`):**
-  * Optimizes for dynamic contracts (Tibber, NextEnergy, Frank Energie, ANWB, Zonneplan, etc.) using the EPEX Spot NL bidding zone.
+  * Optimizes for Dutch Day-Ahead dynamic electricity contracts using the EPEX Spot NL bidding zone.
   * Injects Dutch statutory energy taxes (*Energiebelasting*) and supplier markups into tariff calculations.
   * Protects against feed-in penalty fees (*terugleverkosten*) and curtails PV inverter export during negative Day-Ahead pricing.
   * Automatically suppresses Belgian-specific interface elements (Flanders Capacity Tariff gauges and Elia Green Grid Share).

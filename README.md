@@ -8,7 +8,7 @@
   <a href="https://www.sqlite.org/"><img alt="SQLite" src="https://img.shields.io/badge/SQLite-WAL%20Mode-003B57?style=for-the-badge&logo=sqlite&logoColor=white" /></a>
   <a href="https://www.raspberrypi.com/"><img alt="Target Platform" src="https://img.shields.io/badge/Platform-Raspberry%20Pi%205%20%2F%20ARM64-C51A4A?style=for-the-badge&logo=raspberrypi&logoColor=white" /></a>
   <a href="https://openchargealliance.org/"><img alt="OCPP Protocol" src="https://img.shields.io/badge/OCPP-1.6--J%20%26%202.0.1-FF6F00?style=for-the-badge&logo=socketdotio&logoColor=white" /></a>
-  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" /></a>
+  <img alt="License" src="https://img.shields.io/badge/License-Proprietary-0284c7?style=for-the-badge" />
 </p>
 
 <p align="center">
