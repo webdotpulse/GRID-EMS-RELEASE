@@ -78,7 +78,7 @@ The `gems.service` systemd daemon will start automatically on port `8080`.
 
 ## 4. Global Settings & Configurations
 
-Access the **Settings** view from the top navigation bar to configure system-wide rules and energy contracts.
+Access the **Settings** view from the navigation sidebar (which can be collapsed or expanded via the menu button in the main top bar) to configure system-wide rules and energy contracts.
 
 ### 4.1 Site Optimization (Strategy Mode)
 

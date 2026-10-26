@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.25.3] - 2026-10-13
+## [v9.25.4] - 2026-10-26
 
 ### Added
 - **Cloud Multi-Tenant Energy Clustering & Real-Time Inter-Site Energy Sharing Engine:** Introduced multi-tenant energy clustering capabilities enabling energy suppliers, communities, and corporate fleets to interconnect distributed edge installations into synchronized sharing clusters within the same national bidding zone. Features real-time bilateral matching of dispatchable solar and storage surplus to flexible EV charging and battery demand, continuous 15-minute settlement interval reconciliation with CSV/JSON export, automated slew-rate power modulation, and a fail-safe 30-second heartbeat watchdog that guarantees seamless fallback to autonomous local optimization. Includes an interactive Cloud Cluster Cockpit visualization and edge dashboard indicator badges with peer transfer flow nodes.
@@ -44,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Mobile Responsive Layout & Viewport Padding:** Resolved CSS padding conflicts in `App.vue` that squashed cards on narrow viewports (<640px), optimized Topbar header density, and ensured clean touch ergonomics across all screens.
 
 ### Changed
+- **Streamlined Sidebar Toggle Navigation:** Removed all redundant collapse and expand hamburger buttons from inside the left navigation sidebar, retaining only the single sidebar toggle button in the main top header bar for a cleaner desktop interface.
 - **Primary Reference Hardware Standard Updated to Solis Hybrid & Retrofit Inverters:** Established **Solis** (S5/S6 single-phase & three-phase hybrid inverters and Solis RAI / S6-EA AC-coupled retrofit storage inverters) as the primary reference hardware standard across system architecture directives, device pollers, network discovery heuristics, manuals, and user interfaces. Enhanced Solis integration drivers with full Modbus TCP sub-second telemetry (solar PV generation power, bidirectional battery charge/discharge power, high-accuracy battery SoC percentage, grid meter power, and 3-phase current/voltage monitoring), active power curtailment for negative spot price protection, and forced battery charge/discharge dispatch for dynamic market arbitrage and Flanders capacity tariff peak shaving.
 - **Field Manuals & Documentation Cloud Synchronization:** Updated user, installer, and connection manuals (`gems-user-manual.html`, `gems-installer-manual.html`, `gems-server-connection-manual.html`, `docs/remote_access.md`, `docs/user_manual.md`) to explicitly detail that cloud connection to `GRID-EMS-SERVER` (`https://ems.newenergygrid.com`) is **possible and 100% optional** while retaining full edge autonomy, and documented regional operating differences between Netherlands and Belgium. Recompiled all 6 production PDF manuals using the automated Puppeteer pipeline.
 
