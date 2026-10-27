@@ -324,7 +324,7 @@ sudo poweroff</code></pre>
             <li><strong>Optimized Kernel & Filesystem:</strong> SQLite WAL mode tuning, memory-backed scratch partitions, minimal SD card wear.</li>
             <li><strong>Nginx Reverse Proxy:</strong> Automatically listens on Port 80, proxying WebSocket/SSE traffic cleanly to GEMS on port 8080.</li>
             <li><strong>Wayfire Kiosk Desktop:</strong> Ultra-lightweight Wayland compositor autostarting Chromium in full-screen kiosk mode at <code>http://ems.local</code>.</li>
-            <li><strong>Cockpit Web Console:</strong> Full root terminal and hardware monitoring pre-installed on port <code>9090</code> (User: <code>admin</code>, Pass: <code>manufacturer</code>).</li>
+            <li><strong>Cockpit Web Console:</strong> Full root terminal and hardware monitoring pre-installed on port <code>9090</code> (sign in with your provisioned Linux system account).</li>
             <li><strong>Raspberry Pi Connect:</strong> Pre-configured for unattended remote screen sharing with automatic connection acceptance.</li>
           </ul>
         </div>
@@ -476,7 +476,7 @@ cd GRID-EMS
             <span>Default Credentials & Security Notice</span>
           </div>
           <p>
-            Default credentials for Cockpit are <strong>User: <code>admin</code></strong> and <strong>Password: <code>manufacturer</code></strong>. We strongly recommend changing the admin password via Cockpit &rarr; Accounts or through terminal command <code>sudo passwd admin</code> upon initial installation.
+            Sign in to Cockpit using your provisioned Linux system administrator account. We strongly recommend rotating the administrator password upon initial commissioning via Cockpit &rarr; Accounts or terminal command <code>sudo passwd</code>.
           </p>
         </div>
 

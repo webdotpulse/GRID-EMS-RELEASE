@@ -509,7 +509,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Software Version</span>
-          <span class="cover-meta-val">v9.26.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.27.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Native Templates</span>
@@ -583,9 +583,9 @@
     GEMS (Grid Energy Management System) is an edge Energy Management System engineered specifically to execute on local Raspberry Pi hardware without reliance on external cloud servers. The entire system is <strong>local-first</strong>: all automated power balancing, solar surplus tracking, Flanders peak shaving, and main fuse protection algorithms run directly inside the local Go binary (<code>gems</code> daemon), querying connected hardware and recalculating setpoints every single second.
   </p>
 
-  <h2 class="subsection-title">Unified Hardware Interfaces (Go Backend)</h2>
+  <h2 class="subsection-title">Commercial Support Tiers &amp; Unified Hardware Interfaces</h2>
   <p>
-    Rather than hardcoding ad-hoc device logic, every hardware driver in <code>backend/internal/templates/</code> implements one or more universal interfaces defined in <code>backend/internal/models/models.go</code>:
+    Every hardware driver in GEMS is classified into a commercial support tier (<strong>Verified</strong> for field-validated Tier-1 platforms displayed by default, <strong>Experimental</strong> accessible via the Installer Mode toggle, and <strong>Monitor Only</strong> for closed-protocol read-only telemetry) and implements standardized capability interfaces:
   </p>
 
   <div class="strategy-card-grid">
@@ -627,7 +627,7 @@
   <div class="page-break"></div>
   <h1 class="section-title">2. What GEMS Actually Does With Devices (Strategy Engine)</h1>
   <p>
-    GEMS integrates disparate hardware from dozens of manufacturers into a cohesive, intelligent energy ecosystem. Below are the 9 automated closed-loop strategies executed by the GEMS control loop (<code>backend/strategy.go</code>):
+    GEMS integrates disparate hardware from dozens of manufacturers into a cohesive, intelligent energy ecosystem. Below are the 9 automated closed-loop strategies executed every second by the local GEMS control engine:
   </p>
 
   <div class="strategy-card-grid">
@@ -1123,8 +1123,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP / RTU via RS485 Ethernet Gateway (Default Port: 502</span>
             </td>
             <td>Solar PV Active Power (W), Battery Charge / Discharge Power (W), Battery SOC (%), Grid Import / Export Power (W), Cumulative Inverter Energy (kWh).</td>
-            <td>Active Power Output Curtailment (W), Battery Forced Charge / Discharge Power Setpoint (W).</td>
-            <td>Direct C&amp;I and residential hybrid inverter management: schedules dynamic battery charging during negative spot tariff windows and curtails export during negative price periods.</td>
+            <td>Monitor-Only (Read-Only Telemetry — closed register control map).</td>
+            <td>Integrates commercial, industrial, and residential Chisage ESS hybrid solar and battery telemetry into GEMS site load balancing.</td>
           </tr>
           
           <tr>
@@ -1187,8 +1187,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus RTU / TCP via LAN/Wi-Fi stick (Default Port: 502</span>
             </td>
             <td>Solar PV Active Power (W), Battery Charge / Discharge Power (W), Battery SOC (%), Grid Net Exchange Power (W), Cumulative Generation (kWh).</td>
-            <td>Dynamic Inverter Power Curtailment (W), Battery Active Power Setpoints (W).</td>
-            <td>Provides active battery dispatch and export curtailment to safeguard against negative electricity prices and peak grid surcharges.</td>
+            <td>Monitor-Only (Read-Only Telemetry — closed register control map).</td>
+            <td>Streams Solinteg Integ M hybrid solar and battery telemetry into GEMS live load balancing.</td>
           </tr>
           
           <tr>
@@ -1271,8 +1271,8 @@
               <span style="font-size: 7pt; color: #64748b;">Local HTTP REST API v1/v2 (Default Port: 80</span>
             </td>
             <td>Battery charge/discharge wattage (W), Battery SOC (%), Solar PV production (W), Grid feed-in / consumption (W).</td>
-            <td>Read-only REST telemetry poller.</td>
-            <td>Polls sonnen local REST API every 1 second; visualizes sonnen storage node on the live flow chart; prevents grid spikes by coordinating external heavy loads.</td>
+            <td>Force Charge / Discharge Power Setpoints via Sonnen Local REST API v2 (when API Auth Token is configured).</td>
+            <td>Polls sonnen local REST API v2 every 1 second; visualizes sonnen storage node on the live flow chart and executes peak shaving and spot-price arbitrage when authorized.</td>
           </tr>
           
           <tr>
@@ -1287,8 +1287,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus RTU / TCP via Gateway (Default Port: 502</span>
             </td>
             <td>Battery Charge / Discharge Power (W), Battery State of Charge (SOC %), Grid Power Flow (W), Inverter AC Power (W).</td>
-            <td>Dynamic Battery Charge / Discharge Power Limit (W).</td>
-            <td>Automates battery charging cycles for dynamic EPEX spot price arbitrage and peak shaving against the Flemish capacity tariff.</td>
+            <td>Monitor-Only (Read-Only Telemetry).</td>
+            <td>Monitors Duracell residential battery SOC and power exchange for site load balancing and EV solar surplus routing.</td>
           </tr>
           
           <tr>
@@ -1303,7 +1303,7 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus RTU / TCP via Gateway / Inverter BMS Port (Default Port: 502</span>
             </td>
             <td>Battery Charge / Discharge Power (W), Battery State of Charge (SOC %), Total Pack Voltage (V), Current (A), Cell Temperatures (°C).</td>
-            <td>Autonomous / Read-Only telemetry poller.</td>
+            <td>Monitor-Only (Read-Only Telemetry).</td>
             <td>Integrates low-voltage and high-voltage Dyness battery bank BMS telemetry directly into the live flow chart and dashboard.</td>
           </tr>
           
@@ -1319,8 +1319,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via Industrial Gateway (Default Port: 502</span>
             </td>
             <td>Battery Active Power (W), Battery State of Charge (SOC %), Grid Exchange Power (W), Cumulative In / Out Energy (kWh).</td>
-            <td>Active Power Output / Input Setpoints (kW).</td>
-            <td>Large-scale commercial peak demand mitigation and scheduled time-of-use energy arbitrage.</td>
+            <td>Monitor-Only (Read-Only Telemetry).</td>
+            <td>Monitors commercial BESS power flow, state of charge, and cumulative energy on the live dashboard.</td>
           </tr>
           
           <tr>
@@ -1335,8 +1335,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP / RTU via Wi-Fi/Ethernet Module (Default Port: 502</span>
             </td>
             <td>Battery Charge / Discharge Power (W), Battery SOC (%), Grid Power Flow (W), Total Energy (kWh).</td>
-            <td>Charge and Discharge Power Limits (W).</td>
-            <td>Home energy management: manages battery storage dispatch to maximize residential solar self-consumption.</td>
+            <td>Monitor-Only (Read-Only Telemetry).</td>
+            <td>Monitors residential battery storage SOC and power exchange for coordinated EV and relay load balancing.</td>
           </tr>
           
           <tr>
@@ -1351,8 +1351,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus RTU / TCP via CZone Bridge / MasterBus gateway (Default Port: 502</span>
             </td>
             <td>Battery Power (W), Battery SOC (%), Inverter AC Output Power (W), DC Bus Voltage (V), Battery Current (A).</td>
-            <td>Battery Charge / Discharge Current Limits (A).</td>
-            <td>Provides off-grid, mobile, and residential battery system monitoring with dynamic charging control.</td>
+            <td>Monitor-Only (Read-Only Telemetry).</td>
+            <td>Provides off-grid, marine, and residential Mastervolt / CZone battery system telemetry monitoring.</td>
           </tr>
           
           <tr>
@@ -1367,8 +1367,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via BMS/PCS Controller (Default Port: 502</span>
             </td>
             <td>Battery Active Power (W), Battery State of Charge (SOC %), Grid Power Flow (W), Fault Status Registers.</td>
-            <td>Active Power Setpoint (kW).</td>
-            <td>Monitors and manages high-capacity battery units to eliminate peak power surcharges and perform tariff-optimized charging.</td>
+            <td>Monitor-Only (Read-Only Telemetry).</td>
+            <td>Monitors commercial BESS power flow and state of charge on the live GEMS dashboard.</td>
           </tr>
           
           <tr>
@@ -1383,8 +1383,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus RTU / TCP via Gateway (Default Port: 502</span>
             </td>
             <td>Battery Power (W), Battery State of Charge (SOC %), Grid Flow (W), Cumulative In / Out Energy (kWh).</td>
-            <td>Battery Charge / Discharge Power Limits (W).</td>
-            <td>Residential and light-commercial battery scheduling, coordinating storage cycles with PV generation and EV charging.</td>
+            <td>Monitor-Only (Read-Only Telemetry).</td>
+            <td>Monitors residential and light-commercial Poweroad battery storage telemetry.</td>
           </tr>
           
           <tr>
@@ -1399,7 +1399,7 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus RTU / TCP via Inverter Gateway or SC0500/SC1000 controller (Default Port: 502</span>
             </td>
             <td>Battery Charge / Discharge Power (W), State of Charge (SOC %), Pack Voltage (V), Pack Current (A), SOH (%).</td>
-            <td>Autonomous / Read-Only telemetry poller.</td>
+            <td>Monitor-Only (Read-Only Telemetry).</td>
             <td>Reads direct Pylontech BMS status and telemetry into GEMS to accurately reflect battery storage levels on the hero flow chart.</td>
           </tr>
           
@@ -1415,8 +1415,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via Diris Digiware / BESS Controller (Default Port: 502</span>
             </td>
             <td>Battery Active Power (W), Battery SOC (%), Grid Active Power Flow (W), Cumulative Energy (kWh).</td>
-            <td>Active Power Setpoint Dispatch (kW).</td>
-            <td>Industrial microgrid BESS dispatch, peak shaving, and high-reliability demand charge management.</td>
+            <td>Monitor-Only (Read-Only Telemetry).</td>
+            <td>Monitors industrial Socomec SUNSYS BESS active power, SOC, and energy counters.</td>
           </tr>
           
           <tr>
@@ -1431,8 +1431,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via BMS Communication Hub (Default Port: 502</span>
             </td>
             <td>Battery Charge / Discharge Power (W), Battery State of Charge (SOC %), Grid Power Flow (W), Temperature (°C).</td>
-            <td>Charge and Discharge Power Limits (W).</td>
-            <td>Monitors and manages battery state for solar self-consumption optimization and grid peak reduction.</td>
+            <td>Monitor-Only (Read-Only Telemetry).</td>
+            <td>Monitors Sunwoda battery state of charge and power exchange on the live GEMS dashboard.</td>
           </tr>
           
         </tbody>
@@ -2007,12 +2007,12 @@
             </td>
             <td><code>sma_evcharger</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
-              <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887)</span>
+              <span class="badge badge-rest">REST / HTTP</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Local HTTP REST API (Default Port: 80 / 443)</span>
             </td>
-            <td>Active power (W), Cumulative energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts).</td>
-            <td>Dynamic Current Throttling via SetChargingProfile (6A to 32A), Phase Switching (1P / 3P).</td>
-            <td>Native OCPP server connection: overrides cloud delays for responsive solar tracking and capacity tariff peak protection.</td>
+            <td>Active power (W), Cumulative energy (kWh), 3-Phase currents (L1, L2, L3 in Amps).</td>
+            <td>Monitor-Only (Read-Only Telemetry — SMA EV Charger requires SEMP/SHM2 for active current control).</td>
+            <td>Monitors SMA EV Charger real-time power draw and session energy for household load accounting.</td>
           </tr>
           
           <tr>
@@ -2187,7 +2187,7 @@
               <span style="font-size: 7pt; color: #64748b;">Local HTTP REST API v2 (Default Port: 80</span>
             </td>
             <td>Charging power (W), Session energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts), Authorization state.</td>
-            <td>Charging Current Throttling (Amps, 6A to 32A via /api/set?amp=X), Phase Switching (1P / 3P via /api/set?psm=X).</td>
+            <td>Volatile RAM Charging Current Throttling (Amps, 6A to 32A via `/api/set?amx=X` + `frc` pause/resume — zero NVS flash wear), Phase Switching (1P / 3P via `/api/set?psm=X`).</td>
             <td>High-speed local HTTP API: allows GEMS to switch dynamically between 1-phase (from 1.4 kW solar) and 3-phase (up to 22 kW) charging; throttles within milliseconds during domestic power spikes.</td>
           </tr>
           
@@ -2219,8 +2219,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via Kempower Central Controller (Default Port: 502</span>
             </td>
             <td>Real-time Charging Power (W), Session Energy (kWh), 3-Phase Charging Currents (L1, L2, L3 in Amps).</td>
-            <td>Dynamic Charging Current Throttling (Amps, 6A to 80A+).</td>
-            <td>Coordinates high-power C&amp;I commercial DC fast charging with on-site solar production and industrial peak demand limits.</td>
+            <td>Monitor-Only over Modbus TCP (use OCPP 1.6-J template for active charging current control).</td>
+            <td>Monitors high-power C&amp;I commercial DC fast charging power and phase currents on the live GEMS dashboard.</td>
           </tr>
           
           <tr>
@@ -2251,8 +2251,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via Wi-Fi/Ethernet (Default Port: 502</span>
             </td>
             <td>Real-time Charging Power (W), Cumulative Session Energy (kWh), Phase Currents (L1, L2, L3 in Amps).</td>
-            <td>Dynamic Charging Current Throttling (Amps, 6A to 32A).</td>
-            <td>Synchronizes EV charging current directly with SolaX solar inverter production and battery state over Modbus TCP.</td>
+            <td>Monitor-Only over Modbus TCP (use OCPP 1.6-J template for active charging current control).</td>
+            <td>Monitors SolaX EV charger active power, energy, and phase currents over Modbus TCP.</td>
           </tr>
           
           <tr>
@@ -2283,8 +2283,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP / OCPP 1.6-J (Default Port: 502</span>
             </td>
             <td>Real-time Charging Power (W), Cumulative Session Energy (kWh), Phase Currents (L1, L2, L3 in Amps).</td>
-            <td>Dynamic Charging Current Throttling (Amps, 6A to 32A).</td>
-            <td>Dutch-engineered smart wallbox: performs sub-second current throttling over Modbus TCP while preserving concurrent OCPP billing connections.</td>
+            <td>Monitor-Only over Modbus TCP (use OCPP 1.6-J template for active charging current control).</td>
+            <td>Monitors Volt Time Source wallbox power, session energy, and phase currents over Modbus TCP.</td>
           </tr>
           
           <tr>
@@ -3971,11 +3971,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Active Power Output Curtailment (W), Battery Forced Charge / Discharge Power Setpoint (W).</p>
+          <p>Monitor-Only (Read-Only Telemetry — closed register control map).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Direct C&amp;I and residential hybrid inverter management: schedules dynamic battery charging during negative spot tariff windows and curtails export during negative price periods.</p>
+          <p>Integrates commercial, industrial, and residential Chisage ESS hybrid solar and battery telemetry into GEMS site load balancing.</p>
         </div>
       </div>
     </div>
@@ -4111,11 +4111,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Dynamic Inverter Power Curtailment (W), Battery Active Power Setpoints (W).</p>
+          <p>Monitor-Only (Read-Only Telemetry — closed register control map).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Provides active battery dispatch and export curtailment to safeguard against negative electricity prices and peak grid surcharges.</p>
+          <p>Streams Solinteg Integ M hybrid solar and battery telemetry into GEMS live load balancing.</p>
         </div>
       </div>
     </div>
@@ -4259,11 +4259,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only REST telemetry poller.</p>
+          <p>Force Charge / Discharge Power Setpoints via Sonnen Local REST API v2 (when API Auth Token is configured).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Polls sonnen local REST API every 1 second; visualizes sonnen storage node on the live flow chart; prevents grid spikes by coordinating external heavy loads.</p>
+          <p>Polls sonnen local REST API v2 every 1 second; visualizes sonnen storage node on the live flow chart and executes peak shaving and spot-price arbitrage when authorized.</p>
         </div>
       </div>
     </div>
@@ -4294,11 +4294,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Dynamic Battery Charge / Discharge Power Limit (W).</p>
+          <p>Monitor-Only (Read-Only Telemetry).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Automates battery charging cycles for dynamic EPEX spot price arbitrage and peak shaving against the Flemish capacity tariff.</p>
+          <p>Monitors Duracell residential battery SOC and power exchange for site load balancing and EV solar surplus routing.</p>
         </div>
       </div>
     </div>
@@ -4329,7 +4329,7 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Autonomous / Read-Only telemetry poller.</p>
+          <p>Monitor-Only (Read-Only Telemetry).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
@@ -4364,11 +4364,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Active Power Output / Input Setpoints (kW).</p>
+          <p>Monitor-Only (Read-Only Telemetry).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Large-scale commercial peak demand mitigation and scheduled time-of-use energy arbitrage.</p>
+          <p>Monitors commercial BESS power flow, state of charge, and cumulative energy on the live dashboard.</p>
         </div>
       </div>
     </div>
@@ -4399,11 +4399,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Charge and Discharge Power Limits (W).</p>
+          <p>Monitor-Only (Read-Only Telemetry).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Home energy management: manages battery storage dispatch to maximize residential solar self-consumption.</p>
+          <p>Monitors residential battery storage SOC and power exchange for coordinated EV and relay load balancing.</p>
         </div>
       </div>
     </div>
@@ -4434,11 +4434,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Battery Charge / Discharge Current Limits (A).</p>
+          <p>Monitor-Only (Read-Only Telemetry).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Provides off-grid, mobile, and residential battery system monitoring with dynamic charging control.</p>
+          <p>Provides off-grid, marine, and residential Mastervolt / CZone battery system telemetry monitoring.</p>
         </div>
       </div>
     </div>
@@ -4469,11 +4469,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Active Power Setpoint (kW).</p>
+          <p>Monitor-Only (Read-Only Telemetry).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Monitors and manages high-capacity battery units to eliminate peak power surcharges and perform tariff-optimized charging.</p>
+          <p>Monitors commercial BESS power flow and state of charge on the live GEMS dashboard.</p>
         </div>
       </div>
     </div>
@@ -4504,11 +4504,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Battery Charge / Discharge Power Limits (W).</p>
+          <p>Monitor-Only (Read-Only Telemetry).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Residential and light-commercial battery scheduling, coordinating storage cycles with PV generation and EV charging.</p>
+          <p>Monitors residential and light-commercial Poweroad battery storage telemetry.</p>
         </div>
       </div>
     </div>
@@ -4539,7 +4539,7 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Autonomous / Read-Only telemetry poller.</p>
+          <p>Monitor-Only (Read-Only Telemetry).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
@@ -4574,11 +4574,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Active Power Setpoint Dispatch (kW).</p>
+          <p>Monitor-Only (Read-Only Telemetry).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Industrial microgrid BESS dispatch, peak shaving, and high-reliability demand charge management.</p>
+          <p>Monitors industrial Socomec SUNSYS BESS active power, SOC, and energy counters.</p>
         </div>
       </div>
     </div>
@@ -4609,11 +4609,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Charge and Discharge Power Limits (W).</p>
+          <p>Monitor-Only (Read-Only Telemetry).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Monitors and manages battery state for solar self-consumption optimization and grid peak reduction.</p>
+          <p>Monitors Sunwoda battery state of charge and power exchange on the live GEMS dashboard.</p>
         </div>
       </div>
     </div>
@@ -5825,28 +5825,28 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6-J</span>
+          <span class="badge badge-rest">REST / HTTP</span>
         </div>
       </div>
 
       <div class="device-meta-row">
         <div><strong>Manufacturer / Vendor:</strong> SMA</div>
-        <div><strong>Communication Interface:</strong> Native OCPP 1.6-J WebSocket Server (Port: 8887)</div>
-        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> SMA EV Charger 7.4, SMA EV Charger 22, SMA eCharger (OCPP 1.6-J)</div>
+        <div><strong>Communication Interface:</strong> Local HTTP REST API (Default Port: 80 / 443)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> SMA EV Charger 7.4, SMA EV Charger 22</div>
       </div>
 
       <div class="capability-grid">
         <div class="cap-box read">
           <div class="cap-box-title">🔍 Telemetry Read Out</div>
-          <p>Active power (W), Cumulative energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts).</p>
+          <p>Active power (W), Cumulative energy (kWh), 3-Phase currents (L1, L2, L3 in Amps).</p>
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Dynamic Current Throttling via SetChargingProfile (6A to 32A), Phase Switching (1P / 3P).</p>
+          <p>Monitor-Only (Read-Only Telemetry — SMA EV Charger requires SEMP/SHM2 for active current control).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Native OCPP server connection: overrides cloud delays for responsive solar tracking and capacity tariff peak protection.</p>
+          <p>Monitors SMA EV Charger real-time power draw and session energy for household load accounting.</p>
         </div>
       </div>
     </div>
@@ -6227,7 +6227,7 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Charging Current Throttling (Amps, 6A to 32A via /api/set?amp=X), Phase Switching (1P / 3P via /api/set?psm=X).</p>
+          <p>Volatile RAM Charging Current Throttling (Amps, 6A to 32A via `/api/set?amx=X` + `frc` pause/resume — zero NVS flash wear), Phase Switching (1P / 3P via `/api/set?psm=X`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
@@ -6297,11 +6297,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Dynamic Charging Current Throttling (Amps, 6A to 80A+).</p>
+          <p>Monitor-Only over Modbus TCP (use OCPP 1.6-J template for active charging current control).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Coordinates high-power C&amp;I commercial DC fast charging with on-site solar production and industrial peak demand limits.</p>
+          <p>Monitors high-power C&amp;I commercial DC fast charging power and phase currents on the live GEMS dashboard.</p>
         </div>
       </div>
     </div>
@@ -6367,11 +6367,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Dynamic Charging Current Throttling (Amps, 6A to 32A).</p>
+          <p>Monitor-Only over Modbus TCP (use OCPP 1.6-J template for active charging current control).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Synchronizes EV charging current directly with SolaX solar inverter production and battery state over Modbus TCP.</p>
+          <p>Monitors SolaX EV charger active power, energy, and phase currents over Modbus TCP.</p>
         </div>
       </div>
     </div>
@@ -6437,11 +6437,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Dynamic Charging Current Throttling (Amps, 6A to 32A).</p>
+          <p>Monitor-Only over Modbus TCP (use OCPP 1.6-J template for active charging current control).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Dutch-engineered smart wallbox: performs sub-second current throttling over Modbus TCP while preserving concurrent OCPP billing connections.</p>
+          <p>Monitors Volt Time Source wallbox power, session energy, and phase currents over Modbus TCP.</p>
         </div>
       </div>
     </div>
@@ -7983,8 +7983,8 @@
       <p>Standard industrial port 502 (or 5020/8899). Connects directly via local LAN. Supports simultaneous pollers and sub-second update latency. Zero wiring required when devices reside on the same local subnet.</p>
     </div>
     <div class="strategy-card">
-      <h3>Modbus RTU RS485 (Serial USB Dongle)</h3>
-      <p>Requires shielded twisted-pair cable (A+, B&minus;, GND). Connect in a strict daisy-chain topology. Terminate both ends of the bus with a 120&Omega; resistor. Set unique Slave IDs for each device on the same bus.</p>
+      <h3>Modbus RTU RS485 &amp; Persistent USB IDs</h3>
+      <p>Requires shielded twisted-pair cable (A+, B&minus;, GND) in a daisy-chain topology with 120&Omega; end-of-line termination and unique Slave IDs. GEMS shares multi-drop RS485 buses safely and exposes persistent <code>/dev/serial/by-id/*</code> symlinks so USB adapters never swap across reboots.</p>
     </div>
   </div>
 

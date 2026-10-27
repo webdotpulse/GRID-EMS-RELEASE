@@ -325,7 +325,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware</span>
-          <span class="cover-meta-val">v9.26.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.27.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Supported Standards</span>
@@ -903,8 +903,8 @@ EOF</code><br><br>
           </tr>
           <tr>
             <td><strong>Serial Port Path</strong></td>
-            <td><code>/dev/ttyUSB0</code></td>
-            <td>The Linux serial device node. GEMS automatically detects available serial ports.</td>
+            <td><code>/dev/serial/by-id/usb-FTDI_...</code><br><em>(or <code>/dev/ttyUSB0</code>)</em></td>
+            <td>GEMS automatically discovers connected USB serial adapters and displays clickable <strong>persistent <code>/dev/serial/by-id/*</code> quick-select pills</strong> so your P1 cable never swaps port numbers with USB-RS485 adapters after a reboot.</td>
           </tr>
           <tr>
             <td><strong>Baud Rate</strong></td>

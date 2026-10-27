@@ -314,7 +314,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.26.0-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.27.0-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Central Cloud Service</span>
@@ -341,7 +341,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.26.0</span>
+        <span>Documentation v9.27.0</span>
       </div>
     </div>
 
@@ -540,7 +540,7 @@ Content-Type: application/json
 {
   "status": "ok",
   "device_id": 1042,
-  "device_secret": "sec_live_9f82a1e0b5c43d88192a0e447b9101c5",
+  "device_secret": "<YOUR_DEVICE_SECRET>",
   "message": "Device paired successfully"
 }
     </pre>
@@ -548,14 +548,14 @@ Content-Type: application/json
     <p>The GEMS engine securely commits the received <code>device_id</code> and <code>device_secret</code> into the local SQLite database (<code>site_settings</code> table). From this moment forward, the pairing token is retired, and all subsequent communications use the cryptographic device secret.</p>
 
     <!-- ==================== SECTION 4: TELEMETRY SCHEMA ==================== -->
-    <h1 class="section-title">4. Live Telemetry Ingestion Engine</h1>
-    <p>Once paired, the <code>CloudManager</code> goroutine executes a background loop pushing telemetry at the configured sync interval. Every sync packet is formatted according to the standardized GRID-EMS-SERVER JSON schema:</p>
+    <h1 class="section-title">4. Live Telemetry Ingestion &amp; Offline Store-and-Forward Buffer</h1>
+    <p>Once paired, the <code>CloudManager</code> goroutine executes a background loop pushing telemetry at the configured sync interval. If home internet connectivity drops temporarily, GEMS buffers telemetry frames locally in a bounded SQLite store-and-forward queue (<code>cloud_telemetry_queue</code>, up to 10,000 snapshots at 60-second intervals) and replays them automatically once WAN connectivity returns. Every sync packet is formatted according to the standardized GRID-EMS-SERVER JSON schema:</p>
 
     <pre class="code-block">
 POST /api/v1/device/telemetry HTTP/1.1
 Host: ems.newenergygrid.com
 Content-Type: application/json
-X-Device-Secret: sec_live_9f82a1e0b5c43d88192a0e447b9101c5
+X-Device-Secret: &lt;YOUR_DEVICE_SECRET&gt;
 X-Device-Serial: TCG-EMS-83daf13d05f1adad
 User-Agent: GRID-EMS-Agent/9.4.0
 
@@ -748,7 +748,7 @@ sqlite3 /var/lib/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.26.0
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.27.0
     </div>
 
   </div>
