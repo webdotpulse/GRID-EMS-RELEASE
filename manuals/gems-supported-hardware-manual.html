@@ -509,7 +509,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Software Version</span>
-          <span class="cover-meta-val">v9.25.4-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.26.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Native Templates</span>
@@ -763,6 +763,7 @@
             <td>
               <strong>Enerlution Hybrid Inverter</strong><br>
               <span style="font-size: 7.2pt; color: #64748b;">Enerlution</span>
+              
             </td>
             <td><code>enerlution_inverter</code></td>
             <td>
@@ -1032,17 +1033,17 @@
           
           <tr>
             <td>
-              <strong>Solis Hybrid & Retrofit Inverters</strong><br>
+              <strong>Solis Hybrid &amp; Retrofit Inverters (Primary Reference)</strong><br>
               <span style="font-size: 7.2pt; color: #64748b;">Solis</span>
               <br><span class="badge-preferred">⭐ Reference</span>
             </td>
-            <td><code>solis_hybrid / solis_retrofit</code></td>
+            <td><code>solis_hybrid</code></td>
             <td>
               <span class="badge badge-modbus">MODBUS</span><br>
-              <span style="font-size: 7pt; color: #64748b;">Modbus TCP via direct internal Ethernet / Ginlong Wi-Fi/LAN stick (Default Port: 502 or 8899, Slave ID: 1)</span>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP via direct internal Ethernet / Ginlong Wi-Fi/LAN stick (Default Port: 502 or 8899</span>
             </td>
             <td>Solar PV Active Generation Power (W, reg 33079), Battery Charge/Discharge Power (W, reg 33149), Battery SOC (%, reg 33139), Grid Meter Active Power (W, reg 33130), Total Cumulative Energy Yield (kWh, reg 33029), 3-Phase AC Currents (0.1A, regs 33073-33075), 3-Phase Voltages (0.1V, regs 33076-33078).</td>
-            <td>Active Power Curtailment Mode and Limit (W / % via holding registers 3051/3052), Forced Battery Charging & Discharging Setpoint (W via registers 43110/43135/43136).</td>
+            <td>Active Power Curtailment Mode and Limit (W / % via holding registers 3051/3052), Forced Battery Charging &amp; Discharging Setpoint (W via registers 43110/43135/43136).</td>
             <td>Designated primary reference platform for hybrid solar and battery energy storage. Executes sub-second closed-loop active power curtailment during negative spot price hours (Netherlands Mode / Zero-Export), manages automatic solar surplus sinking into battery storage, dynamically throttles charging during Flanders capacity tariff peak shaving, and orchestrates spot market arbitrage (EPEX Day-Ahead price force charging and peak discharging). Solis Retrofit models operate seamlessly as AC-coupled storage units with dedicated battery control and zero solar PV string dependency.</td>
           </tr>
           
@@ -1439,7 +1440,7 @@
     </div>
     
     <h2 class="subsection-title">⚡ 3. EV Charging Stations & Wallboxes (53 Devices)</h2>
-    <p style="font-size: 8.2pt; color: #64748b; margin-bottom: 6px;">EVSE integrations communicate via native local OCPP (1.6-J and 2.0.1 over WebSockets), high-speed Modbus TCP, or local REST APIs. They receive dynamic charge current setpoints (throttling 6A to 32A in 1A increments) calculated every second by the GEMS control loop. Supported units also feature automated 1-phase to 3-phase switching for optimal low-solar surplus harvesting.</p>
+    <p style="font-size: 8.2pt; color: #64748b; margin-bottom: 6px;">EVSE integrations communicate via native local OCPP 1.6-J over WebSockets, high-speed Modbus TCP/RTU, or local REST APIs. They receive dynamic charge current setpoints (throttling 6A to 32A) calculated every second by the GEMS control loop. Supported multi-contactor units also feature opt-in 1-phase to 3-phase switching with a mandatory 20-second anti-welding cooldown.</p>
     <div class="table-container">
       <table class="matrix-table">
         <thead>
@@ -1510,7 +1511,7 @@
             </td>
             <td><code>autel_charger</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887</span>
             </td>
             <td>Real-time charging power (W), Session energy (kWh), Vehicle connection state, 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts).</td>
@@ -1542,7 +1543,7 @@
             </td>
             <td><code>alpitronic_charger</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP / OCPP 1.6-J (Default Port: 502 or 8887</span>
             </td>
             <td>Active DC charging power (kW/W), Cumulative delivered energy (kWh), Connector status.</td>
@@ -1622,7 +1623,7 @@
             </td>
             <td><code>enplus_charger</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887)</span>
             </td>
             <td>Charging power (W), Energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages.</td>
@@ -1654,7 +1655,7 @@
             </td>
             <td><code>evbox_charger</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887</span>
             </td>
             <td>Real-time charging power (W), Total delivered energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts), Connector status.</td>
@@ -1680,7 +1681,7 @@
           
           <tr>
             <td>
-              <strong>Enovates SingleWallBox / Shell Recharge Home Advanced</strong><br>
+              <strong>Enovates SingleWallBox</strong><br>
               <span style="font-size: 7.2pt; color: #64748b;">Enovates</span>
               
             </td>
@@ -1691,7 +1692,7 @@
             </td>
             <td>Charging power (W), Total energy (kWh).</td>
             <td>Dynamic Current Setpoint (Amps, 6A to 32A).</td>
-            <td>Direct local Modbus control; operates in harmony with Shell Recharge billing while GEMS manages local load balancing and peak shaving.</td>
+            <td>Direct local Modbus control; operates in harmony with external CPO billing platforms while GEMS manages local load balancing and peak shaving.</td>
           </tr>
           
           <tr>
@@ -1734,7 +1735,7 @@
             </td>
             <td><code>fronius_wattpilot</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887)</span>
             </td>
             <td>Active power (W), Energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts).</td>
@@ -1766,7 +1767,7 @@
             </td>
             <td><code>hager_charger</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887)</span>
             </td>
             <td>Active power (W), Session energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages.</td>
@@ -1782,7 +1783,7 @@
             </td>
             <td><code>huawei_scharger</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887</span>
             </td>
             <td>Active charging power (W), Session energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts), Plug state.</td>
@@ -1814,7 +1815,7 @@
             </td>
             <td><code>mennekes_ocpp</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887)</span>
             </td>
             <td>Active power (W), Total energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages.</td>
@@ -1846,7 +1847,7 @@
             </td>
             <td><code>mercedes_wallbox</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887)</span>
             </td>
             <td>Active power (W), Energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages.</td>
@@ -1878,11 +1879,11 @@
             </td>
             <td><code>ocpp_charger</code></td>
             <td>
-              <span class="badge badge-modbus">MODBUS</span><br>
-              <span style="font-size: 7pt; color: #64748b;">Native WebSocket Server (Default Port: 8887</span>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (`ws://&lt;EMS-IP&gt;:8887/&lt;ChargePointID&gt;` or `ws://&lt;EMS-IP&gt;:8080/api/ocpp/&lt;ChargePointID&gt;`)</span>
             </td>
             <td>Active power (W), Delivered energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts), Plug and transaction status.</td>
-            <td>Standardized SetChargingProfile (Current Setpoints: 6A to 32A, Phase Mode: 1P / 3P).</td>
+            <td>Standardized OCPP 1.6-J SetChargingProfile (Current Setpoints: 0A pause and 6A to 32A).</td>
             <td>Vendor-agnostic central system: supports hundreds of compliant commercial and residential wallboxes worldwide; coordinates dynamic charging profiles according to GEMS site strategy.</td>
           </tr>
           
@@ -1936,18 +1937,18 @@
           
           <tr>
             <td>
-              <strong>Plugchoice Wallbox (OCPP)</strong><br>
-              <span style="font-size: 7.2pt; color: #64748b;">Plugchoice</span>
+              <strong>External CPO Wallbox (OCPP 1.6-J)</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Generic OCPP</span>
               
             </td>
-            <td><code>plugchoice_charger</code></td>
+            <td><code>generic_cpo_ocpp</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
-              <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887)</span>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (`ws://&lt;EMS-IP&gt;:8080/api/ocpp/&lt;ChargePointID&gt;`)</span>
             </td>
             <td>Active power (W), Delivered energy (kWh), 3-Phase currents and voltages.</td>
-            <td>Dynamic Current Throttling (Amps, 6A to 32A), Phase Switching (1P / 3P).</td>
-            <td>Zero-cloud smart charging; modulates current setpoints based on solar excess.</td>
+            <td>Dynamic Current Throttling (Amps, 6A to 32A).</td>
+            <td>Local smart charging and straight-through OCPP proxy load arbitration with external CPO billing platforms based on solar excess and fuse limits.</td>
           </tr>
           
           <tr>
@@ -1958,7 +1959,7 @@
             </td>
             <td><code>porsche_wallbox</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887)</span>
             </td>
             <td>Active charging power (W), Delivered energy (kWh), 3-Phase currents and voltages.</td>
@@ -2006,7 +2007,7 @@
             </td>
             <td><code>sma_evcharger</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887)</span>
             </td>
             <td>Active power (W), Cumulative energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts).</td>
@@ -2022,7 +2023,7 @@
             </td>
             <td><code>schneider_evlink</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887)</span>
             </td>
             <td>Active charging power (W), Energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages.</td>
@@ -2038,7 +2039,7 @@
             </td>
             <td><code>siemens_versicharge</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887</span>
             </td>
             <td>Real-time power (W), Cumulative energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages.</td>
@@ -2118,7 +2119,7 @@
             </td>
             <td><code>elli_charger</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887</span>
             </td>
             <td>Active charging power (W), Total session energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts), Plug status.</td>
@@ -2192,11 +2193,11 @@
           
           <tr>
             <td>
-              <strong>FLEXeCHARGE Gateway &amp; Load Manager</strong><br>
-              <span style="font-size: 7.2pt; color: #64748b;">FLEXeCHARGE</span>
+              <strong>Generic Local REST EVSE Gateway</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Generic REST</span>
               
             </td>
-            <td><code>flexecharge_gateway</code></td>
+            <td><code>generic_rest_evse</code></td>
             <td>
               <span class="badge badge-rest">REST / HTTP</span><br>
               <span style="font-size: 7pt; color: #64748b;">Local HTTP REST API (Default Port: 80</span>
@@ -2262,7 +2263,7 @@
             </td>
             <td><code>teltonika_teltocharge</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887</span>
             </td>
             <td>Real-time Charging Power (W), Cumulative Session Energy (kWh), 3-Phase Currents (L1, L2, L3 in Amps), Voltages (V).</td>
@@ -2278,7 +2279,7 @@
             </td>
             <td><code>volttime_source</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP / OCPP 1.6-J (Default Port: 502</span>
             </td>
             <td>Real-time Charging Power (W), Cumulative Session Energy (kWh), Phase Currents (L1, L2, L3 in Amps).</td>
@@ -2294,7 +2295,7 @@
             </td>
             <td><code>wallbox_ocpp</code></td>
             <td>
-              <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span><br>
+              <span class="badge badge-ocpp">OCPP 1.6-J</span><br>
               <span style="font-size: 7pt; color: #64748b;">Native OCPP 1.6-J WebSocket Server (Port: 8887</span>
             </td>
             <td>Real-time Charging Power (W), Cumulative Session Energy (kWh), 3-Phase Currents (L1, L2, L3 in Amps), Voltages (V).</td>
@@ -3773,8 +3774,8 @@
       <div class="device-header">
         <div class="device-title-wrap">
           <span class="device-number">1.22</span>
-          <span class="device-name">Solis Hybrid & Retrofit Inverters</span>
-          <span class="device-template-code">solis_hybrid, solis_retrofit</span>
+          <span class="device-name">Solis Hybrid &amp; Retrofit Inverters (Primary Reference)</span>
+          <span class="device-template-code">solis_hybrid</span>
         </div>
         <div class="device-tags">
           <span class="badge-preferred">⭐ Reference Flagship</span>
@@ -3795,7 +3796,7 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Active Power Curtailment Mode and Limit (W / % via holding registers 3051/3052), Forced Battery Charging & Discharging Setpoint (W via registers 43110/43135/43136).</p>
+          <p>Active Power Curtailment Mode and Limit (W / % via holding registers 3051/3052), Forced Battery Charging &amp; Discharging Setpoint (W via registers 43110/43135/43136).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
@@ -4622,7 +4623,7 @@
     <h2 class="subsection-title" style="font-size: 13pt; border-bottom: 2px solid #0284c7; padding-bottom: 4px; margin-top: 22px;">
       ⚡ Category 3: EV Charging Stations & Wallboxes (53 Native Templates)
     </h2>
-    <p>EVSE integrations communicate via native local OCPP (1.6-J and 2.0.1 over WebSockets), high-speed Modbus TCP, or local REST APIs. They receive dynamic charge current setpoints (throttling 6A to 32A in 1A increments) calculated every second by the GEMS control loop. Supported units also feature automated 1-phase to 3-phase switching for optimal low-solar surplus harvesting.</p>
+    <p>EVSE integrations communicate via native local OCPP 1.6-J over WebSockets, high-speed Modbus TCP/RTU, or local REST APIs. They receive dynamic charge current setpoints (throttling 6A to 32A) calculated every second by the GEMS control loop. Supported multi-contactor units also feature opt-in 1-phase to 3-phase switching with a mandatory 20-second anti-welding cooldown.</p>
 
     
     <div class="device-card ">
@@ -4739,7 +4740,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -4809,7 +4810,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -4984,7 +4985,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -5054,7 +5055,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -5119,7 +5120,7 @@
       <div class="device-header">
         <div class="device-title-wrap">
           <span class="device-number">3.15</span>
-          <span class="device-name">Enovates SingleWallBox / Shell Recharge Home Advanced</span>
+          <span class="device-name">Enovates SingleWallBox</span>
           <span class="device-template-code">enovates_charger</span>
         </div>
         <div class="device-tags">
@@ -5131,7 +5132,7 @@
       <div class="device-meta-row">
         <div><strong>Manufacturer / Vendor:</strong> Enovates</div>
         <div><strong>Communication Interface:</strong> Modbus TCP via LAN (Default Port: 502, Slave ID: 1)</div>
-        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Enovates SingleWallBox, Shell Recharge Home Advanced (Modbus TCP)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Enovates SingleWallBox (Modbus TCP)</div>
       </div>
 
       <div class="capability-grid">
@@ -5145,7 +5146,7 @@
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Direct local Modbus control; operates in harmony with Shell Recharge billing while GEMS manages local load balancing and peak shaving.</p>
+          <p>Direct local Modbus control; operates in harmony with external CPO billing platforms while GEMS manages local load balancing and peak shaving.</p>
         </div>
       </div>
     </div>
@@ -5229,7 +5230,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -5299,7 +5300,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -5334,7 +5335,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -5404,7 +5405,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -5474,7 +5475,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -5544,14 +5545,14 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-modbus">MODBUS</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
       <div class="device-meta-row">
         <div><strong>Manufacturer / Vendor:</strong> Generic</div>
-        <div><strong>Communication Interface:</strong> Native WebSocket Server (Default Port: 8887, ws://&lt;EMS-IP&gt;:8887/&lt;ChargePointID&gt;)</div>
-        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Universal Generic OCPP 1.6-J &amp; OCPP 2.0.1 Smart EV Charger (Any compliant hardware)</div>
+        <div><strong>Communication Interface:</strong> Native OCPP 1.6-J WebSocket Server (`ws://&lt;EMS-IP&gt;:8887/&lt;ChargePointID&gt;` or `ws://&lt;EMS-IP&gt;:8080/api/ocpp/&lt;ChargePointID&gt;`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Universal Generic OCPP 1.6-J Smart EV Charger (Any OCPP 1.6-J compliant hardware)</div>
       </div>
 
       <div class="capability-grid">
@@ -5561,7 +5562,7 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Standardized SetChargingProfile (Current Setpoints: 6A to 32A, Phase Mode: 1P / 3P).</p>
+          <p>Standardized OCPP 1.6-J SetChargingProfile (Current Setpoints: 0A pause and 6A to 32A).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
@@ -5679,19 +5680,19 @@
       <div class="device-header">
         <div class="device-title-wrap">
           <span class="device-number">3.31</span>
-          <span class="device-name">Plugchoice Wallbox (OCPP)</span>
-          <span class="device-template-code">plugchoice_charger</span>
+          <span class="device-name">External CPO Wallbox (OCPP 1.6-J)</span>
+          <span class="device-template-code">generic_cpo_ocpp</span>
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
       <div class="device-meta-row">
-        <div><strong>Manufacturer / Vendor:</strong> Plugchoice</div>
-        <div><strong>Communication Interface:</strong> Native OCPP 1.6-J WebSocket Server (Port: 8887)</div>
-        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Plugchoice AC Wallbox Series (OCPP 1.6-J)</div>
+        <div><strong>Manufacturer / Vendor:</strong> Generic OCPP</div>
+        <div><strong>Communication Interface:</strong> Native OCPP 1.6-J WebSocket Server (`ws://&lt;EMS-IP&gt;:8080/api/ocpp/&lt;ChargePointID&gt;`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> AC Wallbox Series compatible with OCPP 1.6-J and External CPO Reimbursement</div>
       </div>
 
       <div class="capability-grid">
@@ -5701,11 +5702,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Dynamic Current Throttling (Amps, 6A to 32A), Phase Switching (1P / 3P).</p>
+          <p>Dynamic Current Throttling (Amps, 6A to 32A).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Zero-cloud smart charging; modulates current setpoints based on solar excess.</p>
+          <p>Local smart charging and straight-through OCPP proxy load arbitration with external CPO billing platforms based on solar excess and fuse limits.</p>
         </div>
       </div>
     </div>
@@ -5719,7 +5720,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -5824,7 +5825,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -5859,7 +5860,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -5894,7 +5895,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -6069,7 +6070,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -6239,8 +6240,8 @@
       <div class="device-header">
         <div class="device-title-wrap">
           <span class="device-number">3.47</span>
-          <span class="device-name">FLEXeCHARGE Gateway &amp; Load Manager</span>
-          <span class="device-template-code">flexecharge_gateway</span>
+          <span class="device-name">Generic Local REST EVSE Gateway</span>
+          <span class="device-template-code">generic_rest_evse</span>
         </div>
         <div class="device-tags">
           
@@ -6249,9 +6250,9 @@
       </div>
 
       <div class="device-meta-row">
-        <div><strong>Manufacturer / Vendor:</strong> FLEXeCHARGE</div>
+        <div><strong>Manufacturer / Vendor:</strong> Generic REST</div>
         <div><strong>Communication Interface:</strong> Local HTTP REST API (Default Port: 80, REST endpoint: /api/v1)</div>
-        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> FLEXeCHARGE Open Local Controller and Gateway</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Open Local REST EVSE Controllers and Load Gateways</div>
       </div>
 
       <div class="capability-grid">
@@ -6384,7 +6385,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -6419,7 +6420,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -6454,7 +6455,7 @@
         </div>
         <div class="device-tags">
           
-          <span class="badge badge-ocpp">OCPP 1.6 / 2.0.1</span>
+          <span class="badge badge-ocpp">OCPP 1.6-J</span>
         </div>
       </div>
 
@@ -7987,14 +7988,14 @@
     </div>
   </div>
 
-  <h2 class="subsection-title">2. Local OCPP 1.6-J / 2.0.1 Server (EVSE)</h2>
+  <h2 class="subsection-title">2. Local OCPP 1.6-J Server (EVSE)</h2>
   <p>
-    GEMS operates a high-performance, embedded local OCPP Central System on port <code>8887</code>. No external cloud subscription or third-party backend is needed for residential installations:
+    GEMS operates a high-performance, embedded local OCPP 1.6-J Central System on both dedicated port <code>8887</code> and reverse-proxy-friendly port <code>8080</code>. No external cloud subscription or third-party backend is needed for standalone installations:
   </p>
   <div class="callout info">
-    <div class="callout-title">Local OCPP Server Connection Endpoint</div>
+    <div class="callout-title">Local OCPP 1.6-J Server Connection Endpoints</div>
     <p style="margin: 0; font-family: 'Fira Code', monospace; font-size: 8.5pt;">
-      ws://&lt;GEMS-IP&gt;:8887/&lt;ChargePointID&gt; &nbsp;&nbsp;(or wss:// for TLS connections)
+      ws://&lt;GEMS-IP&gt;:8887/&lt;ChargePointID&gt; &nbsp;or&nbsp; ws://&lt;GEMS-IP&gt;:8080/api/ocpp/&lt;ChargePointID&gt;
     </p>
   </div>
   <p>

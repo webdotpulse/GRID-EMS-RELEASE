@@ -391,7 +391,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.25.4-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.26.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -596,7 +596,7 @@
     wget https://github.com/webdotpulse/GRID-EMS/releases/download/v9.13.2-release/gems_9.13.2_arm64.deb<br>
     <br>
     # 2. Install package and dependencies<br>
-    sudo dpkg -i gems_9.25.4_arm64.deb<br>
+    sudo dpkg -i gems_9.26.0_arm64.deb<br>
     sudo apt-get install -f<br>
     <br>
     # 3. Verify systemd background service<br>
@@ -911,7 +911,7 @@
   <h2 class="subsection-title">Category C: EV Charging Stations (Modbus TCP vs Native OCPP)</h2>
   <div class="manual-screenshot">
     <img src="assets/screenshots/settings_devices_charger_form.png" alt="EV Charger Configuration Modal">
-    <div class="manual-screenshot-caption">Figure 6.5: EV Charger configuration modal supporting preferred Modbus TCP and native OCPP 1.6-J / 2.0.1.</div>
+    <div class="manual-screenshot-caption">Figure 6.5: EV Charger configuration modal supporting preferred Modbus TCP and native OCPP 1.6-J.</div>
   </div>
 
   <div class="decision-box">
@@ -925,9 +925,9 @@
         </div>
       </div>
       <div class="decision-item" style="border-left: 3px solid #0284c7;">
-        <div class="decision-item-title">Native OCPP 1.6-J / 2.0.1 (Alternative)</div>
+        <div class="decision-item-title">Native OCPP 1.6-J (Alternative / Proxy)</div>
         <div class="decision-item-desc">
-          Use when the charger does not support Modbus TCP, or when no third-party cloud billing service is needed. The charger points its WebSocket directly to GEMS on port <code>8887</code>.
+          Use when the charger does not support Modbus TCP, or when using the Straight-Through OCPP Proxy. The charger points its WebSocket directly to GEMS on port <code>8887</code> (<code>ws://&lt;GEMS-IP&gt;:8887/&lt;ID&gt;</code>) or port <code>8080</code> (<code>ws://&lt;GEMS-IP&gt;:8080/api/ocpp/&lt;ID&gt;</code>).
         </div>
       </div>
     </div>

@@ -575,7 +575,7 @@
         <!-- 2. EV Charging Stations -->
         <h2 id="ev-chargers">2. EV Charging Stations & Wallboxes (38 Templates)</h2>
         <p>
-          GEMS supports EV chargers via <strong>Modbus TCP direct fieldbus (preferred)</strong>, <strong>Universal Native OCPP (1.6-J & 2.0.1)</strong> WebSocket server, and <strong>Local REST APIs</strong>. Chargers support automated Eco mode (excess solar charging), Flanders capacity peak shaving, and dynamic 1-phase / 3-phase power throttling.
+          GEMS supports EV chargers via <strong>Modbus TCP/RTU direct fieldbus (preferred)</strong>, <strong>Universal Native OCPP 1.6-J</strong> WebSocket server, and <strong>Local REST APIs</strong>. Chargers support automated Eco mode (excess solar charging), Flanders capacity peak shaving, per-phase main fuse protection, and opt-in 1-phase / 3-phase power switching on supported hardware.
         </p>
 
         <div class="doc-screenshot-card" style="margin-bottom:1.5rem;">
@@ -604,14 +604,14 @@
         <div class="alert-box alert-note">
           <div class="alert-header">
             <svg width="18" height="18"><use href="assets/icons.svg#icon-charger"></use></svg>
-            <strong>Native OCPP Server (Port 8887 / 8080) (Alternative)</strong>
+            <strong>Native OCPP 1.6-J Server (Port 8887 &amp; 8080) (Alternative)</strong>
           </div>
           <div class="alert-content">
-            For chargers without Modbus TCP or standalone residential setups without third-party CPO billing platforms, GEMS runs a built-in Native OCPP 1.6-J & 2.0.1 WebSocket server on port 8887:
+            For chargers without Modbus TCP or standalone residential setups without third-party CPO billing platforms, GEMS runs a built-in Native OCPP 1.6-J WebSocket server on both port 8887 and port 8080:
             <div class="code-block" style="margin-top:8px;">
-              <code>ws://&lt;GEMS-IP&gt;:8887/&lt;ChargePointID&gt;</code>
+              <code>ws://&lt;GEMS-IP&gt;:8887/&lt;ChargePointID&gt;</code> &nbsp;or&nbsp; <code>ws://&lt;GEMS-IP&gt;:8080/api/ocpp/&lt;ChargePointID&gt;</code>
             </div>
-            <em>Example:</em> If GEMS IP is <code>192.168.1.188</code> and your charger ID is <code>EVB-P201948</code>, set URL to <code>ws://192.168.1.188:8887/EVB-P201948</code>. Select the <em>OCPP 1.6J / 2.0.1 Smart EV Charger</em> template in GEMS and enter the same ID.
+            <em>Example:</em> If GEMS IP is <code>192.168.1.188</code> and your charger ID is <code>EVB-P201948</code>, set URL to <code>ws://192.168.1.188:8887/EVB-P201948</code> (or <code>ws://192.168.1.188:8080/api/ocpp/EVB-P201948</code>). Select the <em>OCPP 1.6-J Smart EV Charger</em> template in GEMS and enter the same ID.
           </div>
         </div>
 

@@ -7,7 +7,7 @@
   <a href="https://vuejs.org/"><img alt="Vue 3" src="https://img.shields.io/badge/Vue.js-3.x-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white" /></a>
   <a href="https://www.sqlite.org/"><img alt="SQLite" src="https://img.shields.io/badge/SQLite-WAL%20Mode-003B57?style=for-the-badge&logo=sqlite&logoColor=white" /></a>
   <a href="https://www.raspberrypi.com/"><img alt="Target Platform" src="https://img.shields.io/badge/Platform-Raspberry%20Pi%205%20%2F%20ARM64-C51A4A?style=for-the-badge&logo=raspberrypi&logoColor=white" /></a>
-  <a href="https://openchargealliance.org/"><img alt="OCPP Protocol" src="https://img.shields.io/badge/OCPP-1.6--J%20%26%202.0.1-FF6F00?style=for-the-badge&logo=socketdotio&logoColor=white" /></a>
+  <a href="https://openchargealliance.org/"><img alt="OCPP Protocol" src="https://img.shields.io/badge/OCPP-1.6--J-FF6F00?style=for-the-badge&logo=socketdotio&logoColor=white" /></a>
   <img alt="License" src="https://img.shields.io/badge/License-Proprietary-0284c7?style=for-the-badge" />
 </p>
 
@@ -28,9 +28,9 @@
 - **GRID-EMS-SERVER Cloud Integration**: Outbound-only TLS 1.3 mirroring to the central cloud platform (`https://ems.newenergygrid.com`). Supports periodic high-frequency telemetry ingestion, remote command dispatch (`set_strategy_mode`, `set_battery_mode`, `throttle_ev_charger`, `set_relay`), cryptographic device secret authentication, and zero-inbound-port security.
 - **Minimal SD Card Wear**: Utilizes a highly tuned local SQLite database configured with Write-Ahead Logging (WAL) mode and batched, in-memory transactional writes.
 - **Fully UI-Driven**: Zero YAML configuration required. Add, configure, and remove hardware devices entirely through an intuitive frontend UI.
-- **140+ Native Hardware Templates**: Native support for 80+ leading manufacturers covering Solar Inverters, Batteries, EV Chargers (OCPP 1.6-J / 2.0.1, Modbus TCP, REST), P1 Smart Meters, and Smart Relays.
+- **140+ Native Hardware Templates**: Native support for 80+ leading manufacturers covering Solar Inverters, Batteries, EV Chargers (OCPP 1.6-J, Modbus TCP/RTU, REST), P1 Smart Meters, and Smart Relays.
 - **Preferred Reference Hardware Platforms**: Per system architecture guidelines, **RAEDIAN** (NEO, NEX, and Gemini series) is established as the primary reference template for EV Charging Stations and dynamic load balancing, and **Solis** (S5/S6 Hybrid series and Solis Retrofit series) is established as the primary reference template for hybrid solar inverters and battery energy storage.
-- **Straight-Through OCPP Smart Forwarder (Proxy) for External Billing & DLB**: Bidirectional straight-through OCPP proxy engine enabling charging stations (such as Raedian and OCPP 1.6-J / 2.0.1 wallboxes) to connect directly to external CPO billing platforms and employer reimbursement services. GEMS transparently pipelines all OCPP messages while simultaneously snooping meter values, socket status notifications, and transaction events to execute autonomous 1-second Dynamic Load Balancing (DLB). Edge-resilient: if internet connectivity drops, local edge load balancing continues uninterrupted to protect site physical electrical infrastructure.
+- **Straight-Through OCPP Smart Forwarder (Proxy) for External Billing & DLB**: Bidirectional straight-through OCPP 1.6-J proxy engine enabling charging stations (such as Raedian and OCPP 1.6-J wallboxes) to connect directly to external CPO billing platforms and employer reimbursement services. GEMS transparently pipelines all OCPP messages while simultaneously snooping meter values, socket status notifications, and transaction events to execute autonomous 1-second Dynamic Load Balancing (DLB). Edge-resilient: if internet connectivity drops, local edge load balancing continues uninterrupted to protect site physical electrical infrastructure.
 - **Autonomous EV Fleet Cluster & Dynamic Load Balancing (DLB) (Optional Module)**: Multi-station fleet management supporting clusters of up to 32 charging bays (expandable to 64 on Raspberry Pi 5) under a shared electrical ceiling with three operational strategies (`Equal Share`, `Priority Queue`, and `Solar First`), zero-touch auto-onboarding, and a dedicated multi-bay Fleet Cockpit view. Can be activated or deactivated as an optional module under Settings &rarr; Devices so standard residential setups remain uncluttered.
 - **Dynamic Site Optimization Strategies**:
   - *Eco Mode*: Maximizes self-consumption of solar energy and prioritizes local storage over grid feed-in.
@@ -39,7 +39,7 @@
   - *Dynamic Battery Arbitrage*: Integrates EPEX Spot Day-Ahead prices to force charge batteries during cheap/negative hours and discharge during peak market pricing.
 - **Belgian Energy Market & Regional Provider Presets**: Native calculation models for TotalEnergies Pixel Dynamic, Mega Smart/Cosy Dynamic, Bolt Dynamisch, Engie Dynamic / Flextime, Luminus Dynamic, Eneco Dynamic, Frank Energie, Ecopower, Dats 24, Octa+, Trevion, Aspiravi, and Belgian Dual-Tariff (Piek/Dal + 6% BTW), with DNO distribution presets for Flanders (Fluvius), Brussels (SIBELGA), and Wallonia (ORES, RESA).
 - **Live 24-Hour Effective Tariff Curve Visualizer**: Interactive stacked cost breakdown displaying wholesale spot, supplier markup, DNO network tariffs, excise & 6% VAT, dynamic solar injection price, and negative price curtailment warnings.
-- **EV Charger Integration (Preferred Modbus TCP & Native OCPP)**: Direct local control supporting sub-second dynamic current throttling (6A–32A) for Flanders peak shaving and solar matching. **Modbus TCP** is preferred for instantaneous response and allows chargers to remain connected to cloud CPO / split-billing platforms (employer reimbursement backends) over OCPP simultaneously. Alternatively, a built-in native **OCPP 1.6-J / 2.0.1** WebSocket server (`ws://<ems-ip>:8887/<ChargePointID>`) is available for standalone chargers.
+- **EV Charger Integration (Preferred Modbus TCP & Native OCPP 1.6-J)**: Direct local control supporting sub-second dynamic current throttling (0A pause & 6A–32A) for Flanders peak shaving and solar matching. **Modbus TCP** is preferred for instantaneous response and allows chargers to remain connected to cloud CPO / split-billing platforms (employer reimbursement backends) over OCPP simultaneously. Alternatively, a built-in native **OCPP 1.6-J** WebSocket server (`ws://<ems-ip>:8887/<ChargePointID>` and `ws://<ems-ip>:8080/api/ocpp/<ChargePointID>`) is available for standalone and proxy chargers.
 - **Subnet Network Scanner**: Zero-dependency local network scanner leveraging localized MAC OUI maps to instantly discover and identify supported hardware on your network.
 - **Interactive Energy Flow Chart**: Hero element on the dashboard showing active power flow between Grid, Solar, Battery, and Chargers. Clicking any node opens dedicated historical charts and detailed metrics.
 - **Reporting & Data Exporting**: Export structured technical logs (`.txt`) via Logger UI and visual energy reports (Daily, Weekly, Monthly, Yearly) in PDF format.
@@ -122,7 +122,7 @@ GEMS includes **140 native hardware templates**. Adding a device requires 4 simp
 | :--- | :--- | :--- | :--- |
 | **Solar & Hybrid Inverters** *(32 templates)* | **Solis (Primary Reference)**, Huawei SUN2000, SMA Sunny Boy/Tripower, Fronius Gen24/Symo, GoodWe, Growatt, SolarEdge, SolaX, SofarSolar, Sungrow, Victron GX, Deye, Sunsynk, FoxESS, SAJ, Senergy, Sigenergy, Enerlution, Alpha ESS, Anker, Afore, Marstek, LG ESS, Enphase, ABB / Fimer, Autarco, Chisage ESS, Delta, HYXiPOWER, KSTAR BluE, Solinteg, Solplanet | Modbus TCP (Port 502 / 1502), SunSpec, REST | Host IP, Port, Modbus Slave ID (e.g. `1` or `126`), Rated kW |
 | **Dedicated Battery Energy Storage (BESS)** *(13 templates)* | **Solis Retrofit & Easyway BESS (Primary Reference)**, Duracell Energy, Dyness, Elecnova C&I, Enerlution BESS, Goneo, Mastervolt MLI Ultra, Power Sonic C&I, Poweroad, Pylontech US/Force, Socomec SUNSYS, Sunwoda AtSmart, Sonnen, Solarwatt | Modbus TCP, CAN/Modbus Gateway, REST | Host IP, Port, Modbus Slave ID, Usable Capacity (kWh) |
-| **EV Charging Stations & Wallboxes** *(53 templates)* | **Modbus TCP (Preferred & Sub-Second DLB)**: **RAEDIAN NEO / NEX / Gemini (Primary Reference)**, KEBA P30/P40, Webasto Live/Next, Peblar, Phoenix Contact Charx, Veton, Alfen Eve, Mennekes AMTRON, ABB Terra AC, SolarEdge Home EVSE, ABL, Sigenergy, GoodWe HCA, Enovates, ETEK, Etrel.<br>**OCPP 1.6-J / 2.0.1 (Straight-Through Proxy & CSMS)**: Huawei FusionCharge, EVBox Elvi/Livo, SMA EV Charger, Schneider EVlink, Siemens VersiCharge, Elli/VW ID. Charger, Alpitronic, Autel, Hager, BMW, Mercedes, Porsche, Fronius Wattpilot, Easee, Volt Time Source, SolaX, Teltonika TeltoCharge, Wallbox Pulsar Plus, Kempower, MyEnergi Zappi, FLEXeCHARGE.<br>**REST / Local**: go-e Charger Gemini, SmartEVSE, Zaptec Go | Modbus TCP (Port 502, Preferred for sub-second throttling & external billing coexistence), Straight-Through OCPP Proxy, Native OCPP WebSocket (Port 8887), HTTP REST | Host IP & Modbus Slave ID (for Modbus TCP) or ChargePoint ID (for OCPP), Charge Mode |
+| **EV Charging Stations & Wallboxes** *(53 templates)* | **Modbus TCP / RS485 (Preferred & Sub-Second DLB)**: **RAEDIAN NEO / NEX / Gemini (Primary Reference)**, KEBA P30/P40, Webasto Live/Next, Peblar, Phoenix Contact Charx, Veton, Alfen Eve, Mennekes AMTRON, ABB Terra AC, SolarEdge Home EVSE, ABL, Sigenergy, GoodWe HCA, Enovates, ETEK, Etrel.<br>**OCPP 1.6-J (Straight-Through Proxy & CSMS)**: Huawei FusionCharge, EVBox Elvi/Livo, Schneider EVlink, Siemens VersiCharge, Elli/VW ID. Charger, Alpitronic, Autel, Hager, BMW, Mercedes, Porsche, Fronius Wattpilot, Easee, Volt Time Source, SolaX, Teltonika TeltoCharge, Wallbox Pulsar Plus, Kempower, MyEnergi Zappi, Generic External CPO Charger.<br>**REST / Local**: go-e Charger Gemini, SmartEVSE, Zaptec Go, Generic REST Load Gateway | Modbus TCP/RTU (Port 502 / RS485, Preferred for sub-second throttling & external billing coexistence), Straight-Through OCPP Proxy, Native OCPP 1.6-J WebSocket (`ws://<IP>:8080/api/ocpp/<ID>`), HTTP REST | Host IP & Modbus Slave ID (for Modbus) or ChargePoint ID (for OCPP), Charge Mode |
 | **Grid & Smart Meters** *(36 templates)* | Fluvius / DSMR P1 Serial & Network, HomeWizard Wi-Fi P1, Shelly 3EM / Pro 3EM / Gen3 3EM-63T, Eastron (SDM120/230/630/72D/X96), Chint DTSU666, Carlo Gavazzi (EM112/340/540/24), ABB (A43/B23), Schneider Acti9, Siemens PAC2200, SMA Energy Meter 2.0, Socomec, WAGO 879, Eltako, Finder, Inepro, Lovato, Acrel, ESPHome, Loxone, Niko, Accuenergy Acuvim/AcuRev, Algodue, Hager, Janitza UMG, Kamstrup, Landis+Gyr, Phoenix Contact EMpro, Weidmüller, YouLess LS120 | Serial DSMR, Modbus TCP, Local REST, UDP | Serial Port (`/dev/ttyUSB0`) & Baud (`115200`), or Host IP & Port |
 | **Smart Relays & Actuators** *(6 templates)* | Shelly Plus 1PM, Pro 1PM, Shelly Plus 1 / Pro 1, Shelly Plus 2PM / Pro 2PM, SG-Ready Heat Pump Boost, Modbus Digital I/O Relay | Local Gen 2 REST, HTTP JSON, Modbus TCP | Host IP, Port 80, Excess Solar Threshold (W) or Spot Price Floor (€) |
 
@@ -201,11 +201,9 @@ The easiest way to deploy GEMS is flashing the pre-built custom Raspberry Pi OS 
 - **Hostname**: `ems` (accessible at `http://ems` or `http://ems.local`).
 - **Nginx Reverse Proxy**: Pre-configured with SSL and WebSocket/SSE proxy support routing to GEMS on port 8080.
 - **Kiosk Desktop**: Minimal Wayland desktop (`wayfire`) autostarting Chromium in kiosk mode targeting `http://ems.local`.
-- **Cockpit Web Terminal**: Web-based terminal and system monitoring available on port `9090` (Login: `admin`, Password: `manufacturer`).
-- **Raspberry Pi Connect**: Pre-installed and pre-configured for unattended remote screen sharing with automatic connection acceptance.
+- **Cockpit Web Terminal**: Web-based terminal and system administration available on port `9090` (restricted to authorized installer credentials).
+- **Raspberry Pi Connect**: Pre-installed for remote support screen sharing when paired by an authorized installer.
 - **NVMe Ready**: `dtparam=pciex1` and `dtparam=pciex1_gen=2` pre-configured out-of-the-box.
-
-See [Remote Access Documentation](docs/remote_access.md) for details on Cockpit and Raspberry Pi Connect pairing.
 
 ---
 
@@ -220,27 +218,7 @@ If you have an existing Debian/Ubuntu ARM64 installation on your Raspberry Pi:
    sudo apt-get install -f # resolve any missing runtime dependencies
    ```
 
-The package automatically creates a restricted `gems` system user, installs the server binary and compiled frontend to `/opt/gems`, and enables and starts `gems.service` via systemd.
-
----
-
-### Building from Source
-
-To build GEMS locally from source code:
-
-#### Prerequisites
-- Node.js 22+ (for building the Vue 3 SPA)
-- Go 1.24+ (for compiling the backend)
-- C cross-compiler for ARM64 (`gcc-aarch64-linux-gnu` and `libc6-dev-arm64-cross`) if compiling on non-ARM64 hosts due to `mattn/go-sqlite3` CGO dependencies.
-
-#### Build Command
-```bash
-git clone https://github.com/webdotpulse/GRID-EMS.git
-cd GRID-EMS
-./build.sh
-```
-
-*Output artifact*: `build/gems-release-arm64.tar.gz` (contains `gems-server` binary and `dist/` web assets).
+The package automatically creates a restricted `gems` system user (with `dialout` serial access for P1 and RS485 adapters), installs the appliance service and compiled frontend to `/opt/gems`, and enables and starts `gems.service` via systemd.
 
 ---
 
@@ -252,49 +230,13 @@ cd GRID-EMS
 | 📗 **[Homeowner & User Manual (PDF)](manuals/gems-user-manual.pdf)** | **Official printable PDF guide for end-users** (PowerFlow hero diagram, click-to-reveal modals, EV charging modes, 24h tariff visualizer, smart relays, and PDF reports) |
 | ☁️ **[GRID-EMS-SERVER Connection Manual (PDF)](manuals/gems-server-connection-manual.pdf)** | **Official printable PDF guide for cloud & fleet integration** (Outbound TLS 1.3 architecture, hardware token pairing, JSON telemetry ingestion, and remote commands) |
 | ⚡ **[P1 Smart Meter & DIY Cable Manual (PDF)](manuals/gems-p1-meter-manual.pdf)** | **Official printable PDF guide for smart meters** (Fluvius/DSMR standard, RJ12/RJ11 pinouts, DIY USB cable assembly with BC547/FTDI, port activation, and GEMS onboarding) |
-| 🔌 **[Supported Hardware & Devices Manual (PDF)](manuals/gems-supported-hardware-manual.pdf)** | **Official printable PDF reference for all 140 supported devices** (Complete technical register specifications, telemetry parameters, controllable setpoints, and integration wiring for inverters, batteries, EV chargers, smart meters, and relays) |
-| ⚡ **[EV Fleet Cluster & Dynamic Load Balancing Manual (PDF)](manuals/gems-fleet-dlb-manual.pdf)** | **Official printable PDF guide for multi-bay EV charging & DLB** (Autonomous 1-second edge load balancing, IEC 61851 6A threshold, per-phase fuse defense, solar surplus harvesting, and straight-through OCPP proxying) |
+| 🔌 **[Supported Hardware & Devices Manual (PDF)](manuals/gems-supported-hardware-manual.pdf)** | **Official printable PDF reference for supported devices** (Complete technical register specifications, telemetry parameters, controllable setpoints, and integration wiring for inverters, batteries, EV chargers, smart meters, and relays) |
+| ⚡ **[EV Fleet Cluster & Dynamic Load Balancing Manual (PDF)](manuals/gems-fleet-dlb-manual.pdf)** | **Official printable PDF guide for multi-bay EV charging & DLB** (Autonomous edge load balancing, IEC 61851 6A threshold, per-phase fuse defense, solar surplus harvesting, and straight-through OCPP proxying) |
 | 💻 [Interactive HTML Documentation Hub](manuals/index.html) | Rich web documentation suite with full-text search (open in browser) |
 | 🛠️ [Interactive Installer Manual (HTML)](manuals/gems-installer-manual.html) | Comprehensive field commissioning guide with high-res screenshots and hardware wiring |
 | 🏠 [Interactive User Manual (HTML)](manuals/gems-user-manual.html) | Illustrated homeowner operations manual with interactive modals and tariff breakdown |
 | ⚡ [Interactive EV Fleet Cluster & DLB Manual (HTML)](manuals/gems-fleet-dlb-manual.html) | Comprehensive guide for multi-bay charging clusters, DLB modes, and straight-through OCPP proxying |
 | ☁️ [Interactive Cloud Server Manual (HTML)](manuals/cloud-server.html) | Web guide for connecting edge GEMS units to central GRID-EMS-SERVER |
 | ⚡ [Interactive P1 Meter & DIY Cable Guide (HTML)](manuals/p1-meter.html) | Complete step-by-step DIY guide with electrical diagrams and component shopping list |
-| 🔌 [Interactive Supported Hardware Manual (HTML)](manuals/gems-supported-hardware-manual.html) | Comprehensive hardware directory covering all 140 device templates with search and filtering |
-| 🔌 [Device Manuals & Templates](manuals/devices.html) | Complete step-by-step guides for all 140 supported hardware templates |
-| 📘 [User Manual (Markdown)](docs/user_manual.md) | End-user operations, PowerFlow diagram, OCPP server setup |
-| 📖 [Advanced Operational Manual](docs/advanced_manual.md) | Technical deep-dive on algorithms, formulas, and SG-Ready contactors |
-| ⚡ [P1 Smart Meter Port Guide (Markdown)](docs/p1_port_manual.md) | Comprehensive P1 port connection, cable pinout, and DIY assembly manual |
-| ⚡ [NVMe Boot & Setup Manual](docs/nvme_boot_guide.md) | Complete guide for Raspberry Pi 5 + M.2 NVMe SSD |
-| 🛠️ [Hardware Reference BOM](docs/hardware_reference.md) | Tested reference BOM, power requirements, RS485/P1 pinouts |
-| 🌐 [Remote Access Guide](docs/remote_access.md) | Cockpit terminal on port 9090 and Raspberry Pi Connect pairing |
-| ⚙️ [Settings & Strategy Reference](docs/settings.md) | Full reference of all UI parameters, contract formulas, and tariff curves |
-
----
-
-## Project Structure
-
-```
-GRID-EMS/
-├── .github/workflows/
-│   └── release.yml        # Unified CI/CD pipeline for DEB & Raspberry Pi OS image releases
-├── backend/
-│   ├── main.go            # Entry point, HTTP server, systemd & SQLite setup
-│   ├── api.go             # REST API handlers & PDF export routes
-│   ├── poller.go          # Hardware poller interface & device loops
-│   ├── state.go           # SSE live streaming & SQLite time-series storage
-│   ├── strategy.go        # Site optimization & control strategy evaluation loop
-│   ├── pricing.go         # EPEX Day-Ahead price integration & dynamic tariffs
-│   └── internal/          # Domain models, OCPP server, & 90 device template plugins
-├── frontend/
-│   ├── src/components/    # Vue 3 UI cards, PowerFlow hero graphic, & device forms
-│   └── src/types/         # TypeScript interfaces
-├── config/
-│   └── wayfire.ini        # Wayfire autostart configuration for Chromium kiosk mode
-├── scripts/
-│   ├── capture_screenshots.js # Automated Chromium screenshot capture suite
-│   └── setup-remote-access.sh # Remote access setup utility script
-├── docs/                  # Architecture, User Manual, NVMe Guide, Hardware BOM
-├── manuals/               # Interactive HTML documentation suite with search
-└── build.sh               # Local build script for ARM64 release bundling
-```
+| 🔌 [Interactive Supported Hardware Manual (HTML)](manuals/gems-supported-hardware-manual.html) | Comprehensive hardware directory covering supported device templates with search and filtering |
+| 🔌 [Device Manuals & Templates](manuals/devices.html) | Complete step-by-step guides for supported hardware templates |

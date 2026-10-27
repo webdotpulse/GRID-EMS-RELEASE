@@ -200,11 +200,11 @@ window.DOCS_SEARCH_INDEX = [
     keywords: ["test connection", "modbus probe", "latency", "reachability", "tcp test"]
   },
   {
-    title: "Native OCPP 1.6 / 2.0.1 EV Charging Server",
+    title: "Native OCPP 1.6-J EV Charging Server",
     category: "User Guide",
     url: "user-manual.html#ocpp-server",
-    snippet: "Embedded OCPP WebSocket server at ws://<pi-ip>:8080/api/ocpp/<ID>, charger configuration, and cloudless local control.",
-    keywords: ["ocpp", "ocpp 1.6", "ocpp 2.0.1", "websocket", "charger connection", "csms", "charge point id", "local control"]
+    snippet: "Embedded OCPP 1.6-J WebSocket server at ws://<pi-ip>:8887/<ID> and ws://<pi-ip>:8080/api/ocpp/<ID>, charger configuration, and cloudless local control.",
+    keywords: ["ocpp", "ocpp 1.6", "ocpp 1.6-j", "websocket", "charger connection", "csms", "charge point id", "local control", "8887"]
   },
   {
     title: "System Logs & One-Click Over-The-Air Updates",
@@ -233,8 +233,8 @@ window.DOCS_SEARCH_INDEX = [
     title: "EV Chargers & Wallboxes (38 Templates)",
     category: "Devices",
     url: "devices.html#ev-chargers",
-    snippet: "Universal Native OCPP 1.6-J/2.0.1 (Huawei FusionCharge, EVBox, Mennekes AMTRON, SMA, Schneider EVlink, Siemens VersiCharge, Elli/VW, ABB Terra AC, Alpitronic, Autel, Hager, BMW, Mercedes, Porsche, Plugchoice, Fronius Wattpilot, Easee), Modbus TCP (RAEDIAN NEO/NEX/Gemini, KEBA P30/P40, Webasto, Peblar, Phoenix Contact, Veton, GoodWe HCA, Sigenergy, ABL eM4, Enovates, ETEK, Etrel, NRGkick, B+GE-TECH), and REST/Cloud (go-e Charger Gemini, SmartEVSE, Wallbox Pulsar, Zaptec Go).",
-    keywords: ["raedian", "neo", "gemini", "ocpp", "huawei fusioncharge", "evbox", "elvi", "livo", "mennekes", "amtron", "sma ev charger", "schneider", "evlink", "siemens", "versicharge", "elli", "id charger", "abb", "terra ac", "alpitronic", "autel", "maxicharger", "hager", "witty", "bmw", "mercedes", "porsche", "plugchoice", "wattpilot", "easee", "keba", "p30", "p40", "webasto", "peblar", "phoenix contact", "charx", "veton", "goodwe hca", "sigenergy", "abl", "em4", "enovates", "etek", "etrel", "nrgkick", "bgetech", "go-e", "smartevse", "wallbox", "pulsar", "zaptec", "ev charger", "wallbox", "charging"]
+    snippet: "Universal Native OCPP 1.6-J (Huawei FusionCharge, EVBox, Mennekes AMTRON, SMA, Schneider EVlink, Siemens VersiCharge, Elli/VW, ABB Terra AC, Alpitronic, Autel, Hager, BMW, Mercedes, Porsche, Fronius Wattpilot, Easee, External CPO Wallbox), Modbus TCP (RAEDIAN NEO/NEX/Gemini, KEBA P30/P40, Webasto, Peblar, Phoenix Contact, Veton, GoodWe HCA, Sigenergy, ABL eM4, Enovates, ETEK, Etrel, NRGkick, B+GE-TECH), and REST/Cloud (go-e Charger Gemini, SmartEVSE, Wallbox Pulsar, Zaptec Go).",
+    keywords: ["raedian", "neo", "gemini", "ocpp", "huawei fusioncharge", "evbox", "elvi", "livo", "mennekes", "amtron", "sma ev charger", "schneider", "evlink", "siemens", "versicharge", "elli", "id charger", "abb", "terra ac", "alpitronic", "autel", "maxicharger", "hager", "witty", "bmw", "mercedes", "porsche", "external cpo", "wattpilot", "easee", "keba", "p30", "p40", "webasto", "peblar", "phoenix contact", "charx", "veton", "goodwe hca", "sigenergy", "abl", "em4", "enovates", "etek", "etrel", "nrgkick", "bgetech", "go-e", "smartevse", "wallbox", "pulsar", "zaptec", "ev charger", "wallbox", "charging"]
   },
   {
     title: "Grid & Smart Meters (26 Templates)",

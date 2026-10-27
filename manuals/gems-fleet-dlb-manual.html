@@ -389,7 +389,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.25.4-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.26.0-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Balancing Engine Cycle</span>
@@ -401,7 +401,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Preferred Reference Hardware</span>
-            <span class="cover-meta-val">Raedian Smart EV Chargers (OCPP 1.6-J / 2.0.1 & Modbus TCP)</span>
+            <span class="cover-meta-val">Raedian Smart EV Chargers (OCPP 1.6-J &amp; Modbus TCP)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Straight-Through Proxy Support</span>
@@ -416,7 +416,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.25.4</span>
+        <span>Documentation v9.26.0</span>
       </div>
     </div>
 
@@ -533,8 +533,7 @@
     <h2 class="subsection-title">1.3 Communication Protocol Support</h2>
     <p>GEMS supports a hybrid, flexible communication architecture across all charging stations in the cluster:</p>
     <ul>
-      <li><strong>OCPP 1.6-J (JSON over WebSockets):</strong> Native charge point server listening on port <code>8080</code> (or <code>8887</code>). Chargers connect to <code>ws://&lt;gems-ip&gt;:8080/api/ocpp/{chargePointId}</code>. Full support for charging profiles, meter values, and transaction states.</li>
-      <li><strong>OCPP 2.0.1:</strong> Modern protocol support with enhanced device model variables and secure credential exchange.</li>
+      <li><strong>OCPP 1.6-J (JSON over WebSockets):</strong> Native charge point server listening on dedicated port <code>8887</code> (<code>ws://&lt;gems-ip&gt;:8887/{chargePointId}</code>) and reverse-proxy port <code>8080</code> (<code>ws://&lt;gems-ip&gt;:8080/api/ocpp/{chargePointId}</code>). Full support for charging profiles (including <code>0.0 A</code> emergency pause), meter values, optional HTTP Basic Authentication, and straight-through CPO proxy forwarding.</li>
       <li><strong>Modbus TCP / RTU:</strong> Direct register-level reading and writing of charging current limits (holding registers) for industrial wallboxes such as Raedian Modbus, Alfen Eve, or Phoenix Contact controllers.</li>
     </ul>
 
@@ -783,7 +782,7 @@ SolarSurplusA = TotalGridExportW / (PhaseMultiplier * 230V)
         </tr>
         <tr>
           <td>Hardware Template</td>
-          <td><code>Raedian (OCPP 1.6 / 2.0.1)</code></td>
+          <td><code>Raedian (OCPP 1.6-J / Modbus)</code></td>
           <td>Preferred driver template supporting dynamic Amperage adjustments and phase sensing.</td>
         </tr>
         <tr>
@@ -805,7 +804,7 @@ SolarSurplusA = TotalGridExportW / (PhaseMultiplier * 230V)
     </table>
 
     <h2 class="subsection-title">5.3 Raedian Reference Hardware Configuration</h2>
-    <p><strong>Raedian</strong> is the preferred reference hardware for GEMS EV charging clusters due to its rock-solid OCPP 1.6-J / 2.0.1 implementation, rapid sub-second setpoint execution, and optional Modbus TCP failover.</p>
+    <p><strong>Raedian</strong> is the preferred reference hardware for GEMS EV charging clusters due to its rock-solid OCPP 1.6-J implementation, rapid sub-second Modbus TCP setpoint execution, and seamless external CPO billing coexistence.</p>
 
     <div class="manual-screenshot">
       <img src="assets/screenshots/settings_devices_charger_form.png" alt="Raedian Hardware Configuration Form">
@@ -816,10 +815,11 @@ SolarSurplusA = TotalGridExportW / (PhaseMultiplier * 230V)
     <ol>
       <li>Connect a laptop or tablet to the Raedian installer Wi-Fi or access its web configuration portal.</li>
       <li>Navigate to <strong>Network / Central System Settings</strong>.</li>
-      <li>Set <strong>Protocol</strong> to <code>OCPP 1.6-J</code> (or <code>OCPP 2.0.1</code>).</li>
-      <li>Set <strong>Server URL / WebSocket Endpoint</strong> to:
-        <pre class="code-block">ws://&lt;GEMS_LOCAL_IP&gt;:8080/api/ocpp/{chargePointId}</pre>
-        <em>(Example: <code>ws://192.168.1.150:8080/api/ocpp/RD-NEO-08412</code>)</em>
+      <li>Set <strong>Protocol</strong> to <code>OCPP 1.6-J</code>.</li>
+      <li>Set <strong>Server URL / WebSocket Endpoint</strong> to either:
+        <pre class="code-block">ws://&lt;GEMS_LOCAL_IP&gt;:8887/{chargePointId}
+ws://&lt;GEMS_LOCAL_IP&gt;:8080/api/ocpp/{chargePointId}</pre>
+        <em>(Example: <code>ws://192.168.1.150:8887/RD-NEO-08412</code> or <code>ws://192.168.1.150:8080/api/ocpp/RD-NEO-08412</code>)</em>
       </li>
       <li>Disable internal wallbox offline load balancing to ensure GEMS has sole, unified authority over Amperage allocation.</li>
       <li>Reboot the wallbox. Within 15 seconds, the bay appears active on the GEMS Fleet Cockpit.</li>
