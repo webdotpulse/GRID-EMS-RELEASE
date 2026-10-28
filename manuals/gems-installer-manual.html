@@ -391,7 +391,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.27.1-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.28.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -596,7 +596,7 @@
     wget https://github.com/webdotpulse/GRID-EMS/releases/download/v9.13.2-release/gems_9.13.2_arm64.deb<br>
     <br>
     # 2. Install package and dependencies<br>
-    sudo dpkg -i gems_9.27.1_arm64.deb<br>
+    sudo dpkg -i gems_9.28.0_arm64.deb<br>
     sudo apt-get install -f<br>
     <br>
     # 3. Verify systemd background service<br>
@@ -642,8 +642,8 @@
     <tbody>
       <tr>
         <td><strong>GEMS Web UI</strong></td>
-        <td><code>http://ems.local</code> or <code>http://&lt;IP-ADDRESS&gt;</code></td>
-        <td>No password on local LAN</td>
+        <td><code>https://ems.local</code> (LAN) or <code>http://ems.local</code> (Kiosk)</td>
+        <td>Zero login for Dashboard &amp; EV Mode; <strong>Installer PIN</strong> for Settings</td>
         <td>Daily energy dashboard, device configuration, tariffs, and strategy rules.</td>
       </tr>
       <tr>
@@ -655,14 +655,14 @@
       <tr>
         <td><strong>Cockpit Web Console</strong></td>
         <td><code>https://&lt;IP-ADDRESS&gt;:9090</code></td>
-        <td>Provisioned Linux Admin Account</td>
-        <td>Browser terminal, NVMe drive SMART health, OS diagnostics, reboot.</td>
+        <td>Unique Per-Unit Admin Password (<code>/root/INITIAL_ADMIN_CREDENTIALS.txt</code>)</td>
+        <td>Browser terminal, NVMe drive SMART health, OS diagnostics, reboot (rotates password on first login).</td>
       </tr>
       <tr>
         <td><strong>Raspberry Pi Connect</strong></td>
         <td><code>https://connect.raspberrypi.com</code></td>
         <td>Installer's Raspberry Pi ID</td>
-        <td>Secure remote desktop view without port forwarding or VPNs.</td>
+        <td>Secure remote support link without port forwarding (unattended screen sharing disabled by default).</td>
       </tr>
     </tbody>
   </table>
@@ -1449,15 +1449,15 @@
   </ul>
 
   <!-- ==================== 16. DIAGNOSTICS & SIGN-OFF ==================== -->
-  <h1 class="section-title" id="sec-maint">16. Commissioning Wizard, Network Safety Rollback, Backup &amp; Sign-Off</h1>
+  <h1 class="section-title" id="sec-maint">16. Commissioning Wizard, Installer Access PIN, Network Safety Rollback, Signed Updates &amp; Sign-Off</h1>
   <p>
-    Commercial GEMS appliances include built-in field-commissioning safeguards under <strong>Installer Mode</strong> (unlocked via the discreet padlock icon in the Settings header):
+    Commercial GEMS appliances include built-in field-commissioning and security safeguards under <strong>Installer Mode</strong> (unlocked via the discreet padlock icon in the Settings header):
   </p>
   <ul style="margin: 6px 0 12px 18px; padding: 0;">
-    <li><strong>Guided First-Boot Commissioning Wizard:</strong> Automatically launches on unconfigured units to guide language/location setup (<code>NL</code>, <code>FR</code>, <code>EN</code>), main breaker &amp; wiring topology, grid meter discovery, reference hardware onboarding (<strong>Solis</strong> &amp; <strong>RAEDIAN</strong>), and energy contract selection.</li>
-    <li><strong>Persistent USB Serial Binding (<code>/dev/serial/by-id/*</code>):</strong> Selecting persistent hardware symlinks ensures USB-P1 and USB-RS485 adapters never swap device numbers across power cycles.</li>
-    <li><strong>Appliance Ethernet Network UI with 60-Second Rollback:</strong> Assign DHCP or static IPv4 addresses on wired Ethernet (<code>eth0</code>) interfaces under <strong>Settings &rarr; Network</strong>. If the new IP is not confirmed within 60 seconds, GEMS automatically restores the prior working NetworkManager profile.</li>
-    <li><strong>JSON Configuration Backup, Restore &amp; Hardware Watchdog:</strong> Export portable JSON site backups before hardware swaps, execute verified Factory Resets, and rely on integrated <code>systemd</code> <code>WatchdogSec=30</code> + Raspberry Pi hardware watchdog supervision for unattended recovery.</li>
+    <li><strong>Guided First-Boot Commissioning Wizard &amp; Installer Access PIN:</strong> Automatically launches on unconfigured units to guide language/location setup (<code>NL</code>, <code>FR</code>, <code>EN</code>), local <strong>Installer PIN/password</strong> creation, main breaker &amp; wiring topology, grid meter discovery, reference hardware onboarding (<strong>Solis</strong> &amp; <strong>RAEDIAN</strong>), and energy contract selection. Everyday Dashboard telemetry and EV mode switching remain frictionless with zero login prompts, while administrative endpoints require the Installer PIN (with 5-attempt lockout protection and rotation under <strong>Settings &rarr; System Info</strong>).</li>
+    <li><strong>Persistent USB Serial Binding (<code>/dev/serial/by-id/*</code>) &amp; Devices Page Layout:</strong> Selecting persistent hardware symlinks ensures USB-P1 and USB-RS485 adapters never swap device numbers across power cycles. On <strong>Settings &rarr; Devices</strong>, the optional <strong>EV Fleet Cluster &amp; Dynamic Load Balancing (DLB)</strong> card is positioned cleanly at the bottom below individual device cards.</li>
+    <li><strong>Appliance Ethernet Network UI with 60-Second Rollback:</strong> Assign DHCP or static IPv4 addresses exclusively on wired Ethernet (<code>eth0</code>) interfaces under <strong>Settings &rarr; Network</strong> (wireless interfaces are omitted for deterministic industrial reliability). If the new IP is not confirmed within 60 seconds, GEMS automatically restores the prior working NetworkManager profile.</li>
+    <li><strong>Cryptographically Signed Software Updates, Backup &amp; Hardware Watchdog:</strong> Both over-the-air (OTA) and single-file manual <code>.deb</code> package uploads are verified against New Energy Grid's embedded Ed25519 release signature and SHA-256 checksum prior to installation. Export portable JSON site backups before hardware swaps, execute verified Factory Resets, and rely on integrated <code>systemd</code> <code>WatchdogSec=30</code> + Raspberry Pi hardware watchdog supervision for unattended recovery.</li>
   </ul>
 
   <div class="manual-screenshot-grid">

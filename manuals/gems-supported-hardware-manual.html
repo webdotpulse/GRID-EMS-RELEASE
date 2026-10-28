@@ -509,7 +509,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Software Version</span>
-          <span class="cover-meta-val">v9.27.1-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.28.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Native Templates</span>
@@ -585,7 +585,7 @@
 
   <h2 class="subsection-title">Commercial Support Tiers &amp; Unified Hardware Interfaces</h2>
   <p>
-    Every hardware driver in GEMS is classified into a commercial support tier (<strong>Verified</strong> for field-validated Tier-1 platforms displayed by default, <strong>Experimental</strong> accessible via the Installer Mode toggle, and <strong>Monitor Only</strong> for closed-protocol read-only telemetry) and implements standardized capability interfaces:
+    Every hardware driver in GEMS is classified into a clear commercial support tier and capability profile: <strong>Verified</strong> (field-validated Tier-1 platforms displayed by default), <strong>Experimental</strong> (community/secondary register maps accessible via the <em>Show Experimental Drivers</em> toggle in Installer Mode), <strong>Monitor Only</strong> (read-only telemetry where the manufacturer restricts local write registers or requires cloud-exclusive control, automatically hiding curtailment/arbitrage write options), and <strong>1P &harr; 3P</strong> (wallboxes with verified physical dual-contactor phase switching). Each template implements standardized Go capability interfaces:
   </p>
 
   <div class="strategy-card-grid">
@@ -826,7 +826,7 @@
           <tr>
             <td>
               <strong>GoodWe Inverter</strong><br>
-              <span style="font-size: 7.2pt; color: #64748b;">GoodWe</span>
+              <span style="font-size: 7.2pt; color: #64748b;">GoodWe &bull; Experimental / Monitor-Only</span>
               
             </td>
             <td><code>goodwe_inverter</code></td>
@@ -3323,7 +3323,7 @@
           <span class="device-template-code">goodwe_inverter</span>
         </div>
         <div class="device-tags">
-          
+          <span class="badge" style="background: #fef3c7; color: #b45309;">EXPERIMENTAL &bull; MONITOR ONLY</span>
           <span class="badge badge-modbus">MODBUS</span>
         </div>
       </div>
