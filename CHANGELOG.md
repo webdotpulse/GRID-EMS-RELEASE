@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.28.0] - 2026-10-28
+## [v9.28.1] - 2026-10-28
 
 ### Added
 - **Tiered Installer Access PIN & Frictionless Homeowner Controls:** Added server-verified **Installer Access PIN** authentication unlocked via the discreet padlock icon in Settings, paired with first-boot PIN setup in the Commissioning Wizard, PIN rotation under System Information, and automatic lockout protection against repeated failed attempts—while keeping the live homeowner Dashboard, printable PDF energy reports, and everyday EV charging mode switching (`Eco`, `Fast`, `PV-Only`, `Off`) completely open with zero login prompts.
