@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GEMS Supported Hardware & Devices Manual</title>
-  <meta name="description" content="Complete Technical Reference for All 140 Native Hardware Templates: Telemetry Read Out, Writable Control Setpoints, Communication Protocols, and Automation Capabilities.">
+  <meta name="description" content="Complete Technical Reference for All 164 Native Hardware Profiles: Telemetry Read Out, Writable Control Setpoints, Communication Protocols, and Automation Capabilities.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/print.css" media="print">
   <style>
@@ -503,17 +503,17 @@
       <div class="cover-badge">⚡ OFFICIAL HARDWARE COMPATIBILITY &amp; DEVICE INTEGRATION MANUAL</div>
       <h1 class="cover-title">GEMS Supported Hardware &amp; Devices Reference</h1>
       <div class="cover-subtitle">
-        Exhaustive Technical Specification for All 140 Native Hardware Templates: Real-Time Telemetry Read Out, Writable Control Setpoints, Communication Protocols, and Closed-Loop Automation Capabilities.
+        Exhaustive Technical Specification for All 164 Native Hardware Profiles (176 Registered Templates): Real-Time Telemetry Read Out, Writable Control Setpoints, Communication Protocols, and Closed-Loop Automation Capabilities.
       </div>
 
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Software Version</span>
-          <span class="cover-meta-val">v9.30.1-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.31.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Native Templates</span>
-          <span class="cover-meta-val">140 Plug-and-Play Profiles</span>
+          <span class="cover-meta-val">164 Hardware Profiles (176 Total)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Categories</span>
@@ -538,27 +538,27 @@
         <div class="toc-grid">
           <div class="toc-item">
             <span><strong>1. Solar &amp; Hybrid Inverters</strong></span>
-            <span class="count-badge">32 Devices</span>
-          </div>
-          <div class="toc-item">
-            <span><strong>2. Battery Energy Storage (BESS)</strong></span>
-            <span class="count-badge">13 Devices</span>
-          </div>
-          <div class="toc-item">
-            <span><strong>3. EV Charging Stations &amp; Wallboxes</strong></span>
-            <span class="count-badge">53 Devices</span>
-          </div>
-          <div class="toc-item">
-            <span><strong>4. Grid Smart Meters &amp; Analyzers</strong></span>
             <span class="count-badge">36 Devices</span>
           </div>
           <div class="toc-item">
+            <span><strong>2. Battery Energy Storage (BESS)</strong></span>
+            <span class="count-badge">17 Devices</span>
+          </div>
+          <div class="toc-item">
+            <span><strong>3. EV Charging Stations &amp; Wallboxes</strong></span>
+            <span class="count-badge">60 Devices</span>
+          </div>
+          <div class="toc-item">
+            <span><strong>4. Grid Smart Meters &amp; Analyzers</strong></span>
+            <span class="count-badge">40 Devices</span>
+          </div>
+          <div class="toc-item">
             <span><strong>5. Smart Relays &amp; Load Actuators</strong></span>
-            <span class="count-badge">6 Devices</span>
+            <span class="count-badge">11 Devices</span>
           </div>
           <div class="toc-item">
             <span><strong>Total Verified Native Profiles</strong></span>
-            <span class="count-badge" style="background: #0284c7; color: #fff;">140 Templates</span>
+            <span class="count-badge" style="background: #0284c7; color: #fff;">164 Profiles</span>
           </div>
         </div>
       </div>
@@ -585,13 +585,13 @@
 
   <h2 class="subsection-title">Commercial Support Tiers &amp; Unified Hardware Interfaces</h2>
   <p>
-    Every hardware driver in GEMS is classified into a clear commercial support tier and capability profile: <strong>Verified</strong> (field-validated Tier-1 platforms displayed by default), <strong>Experimental</strong> (community/secondary register maps accessible via the <em>Show Experimental Drivers</em> toggle in Installer Mode), <strong>Monitor Only</strong> (read-only telemetry where the manufacturer restricts local write registers or requires cloud-exclusive control, automatically hiding curtailment/arbitrage write options), and <strong>1P &harr; 3P</strong> (wallboxes with verified physical dual-contactor phase switching). Each template implements standardized Go capability interfaces:
+    Every hardware driver in GEMS is classified into a commercial support tier (<strong>Verified</strong> for field-validated Tier-1 platforms displayed by default, <strong>Experimental</strong> accessible via the Installer Mode toggle, and <strong>Monitor Only</strong> for closed-protocol read-only telemetry) and implements standardized capability interfaces:
   </p>
 
   <div class="strategy-card-grid">
     <div class="strategy-card">
       <h3><code>DevicePoller</code> (Universal Base)</h3>
-      <p>Implemented by all 140 templates. Standardizes <code>Connect()</code>, <code>Poll()</code>, <code>Status()</code>, and <code>Close()</code>. Standardizes real-time power (W), battery power (W), grid flow (W), total energy (kWh), and battery SOC (%).</p>
+      <p>Implemented across all 164 hardware profiles. Standardizes <code>Connect()</code>, <code>Poll()</code>, <code>Status()</code>, and <code>Close()</code>. Standardizes real-time power (W), battery power (W), grid flow (W), total energy (kWh), and battery SOC (%).</p>
     </div>
     <div class="strategy-card">
       <h3><code>ChargeController</code> (EV Chargers)</h3>
@@ -676,10 +676,10 @@
   <!-- Section 3: Summary Matrix by Category -->
   <div class="page-break"></div>
   <h1 class="section-title">3. Hardware Summary Matrix by Category</h1>
-  <p>The tables below provide a quick-reference overview of all 140 native templates supported in GEMS across each category:</p>
+  <p>The tables below provide a quick-reference overview of all 164 native hardware profiles supported in GEMS across each category:</p>
 
   
-    <h2 class="subsection-title">☀️ 1. Solar & Hybrid Inverters (32 Devices)</h2>
+    <h2 class="subsection-title">☀️ 1. Solar & Hybrid Inverters (36 Devices)</h2>
     <p style="font-size: 8.2pt; color: #64748b; margin-bottom: 6px;">Inverter templates interface via Modbus TCP (SunSpec or vendor-specific registers) or local HTTP REST APIs. They continuously report photovoltaic (PV) generation, battery charge/discharge wattage, state of charge (SOC %), and grid flow. Advanced units support real-time active power curtailment for negative spot price protection and battery force-charge/discharge commands for day-ahead spot arbitrage.</p>
     <div class="table-container">
       <table class="matrix-table">
@@ -707,8 +707,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via Ethernet / Wi-Fi dongle (Default Port: 502</span>
             </td>
             <td>Real-time solar PV generation (W), Battery charge/discharge power (W), Grid import/export power (W), Cumulative solar production (kWh), Battery State of Charge (SOC %), 3-Phase inverter output currents (L1, L2, L3 in Amps).</td>
-            <td>Read-only telemetry poller (Inverter operates autonomously under internal self-consumption rules).</td>
-            <td>Telemetry ingestion into GEMS real-time flow chart; monitors PV generation and battery SOC for site-wide self-consumption calculation; uses grid import/export metrics to guide EV charging current setpoints and domestic load balancing.</td>
+            <td>EMS Energy Mode &amp; Forced Charge/Discharge Power Setpoints (Holding `3000`/`3002`), plus Active Power Derating Limit (`0–100%`).</td>
+            <td>Closed-loop hybrid management for Afore AF-S and AF-T inverters: dynamically charges/discharges storage for Flanders capacity peak shaving and EPEX spot arbitrage while curtailing PV export during negative price windows.</td>
           </tr>
           
           <tr>
@@ -723,8 +723,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via local network dongle (Default Port: 502 or 8502</span>
             </td>
             <td>Solar PV active power (W), Battery charging/discharging power (W), Net grid import/export (W), Cumulative energy (kWh), Battery SOC (%), 3-Phase currents (L1, L2, L3 in Amps).</td>
-            <td>Read-only telemetry poller (internal Alpha ESS EMS manages battery charging cycles).</td>
-            <td>Streams real-time solar generation and battery status to the interactive dashboard; coordinates with external EV chargers to throttle charging speed when home battery is low or household demand spikes.</td>
+            <td>Dispatch Mode Control (`0x084F`), Active Power Offset Setpoint (`0x0850`–`0x0851` with 32000 W bias), Dispatch SOC Target, and Grid Feed-In Power Limit.</td>
+            <td>Full closed-loop Alpha ESS Storion SMILE control: dispatches exact wattage charge/discharge setpoints for EPEX Day-Ahead arbitrage and Flemish capacity ceiling protection, plus active solar curtailment.</td>
           </tr>
           
           <tr>
@@ -739,8 +739,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
             </td>
             <td>Solar PV power (W), Battery flow (W), Grid exchange power (W), Total lifetime energy (kWh), Battery SOC (%), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts).</td>
-            <td>Read-only telemetry integration.</td>
-            <td>Provides full 3-phase electrical telemetry (currents &amp; voltages) to detect phase imbalance; feeds real-time PV generation and battery SOC into GEMS for dynamic EV surplus charging and Flanders peak forecasting.</td>
+            <td>Anker SOLIX X1 EMS Operating Mode and Forced Charge/Discharge Power Setpoints (W), plus Active Power Export Curtailment.</td>
+            <td>Closed-loop residential 3-phase hybrid control for Anker SOLIX X1: executes automated battery peak shaving, off-peak spot charging, and negative-price solar curtailment.</td>
           </tr>
           
           <tr>
@@ -755,8 +755,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via Ethernet LAN or Solarman/Deye Wi-Fi logger (Default Port: 502 or 8899</span>
             </td>
             <td>Solar PV production (W), Battery charge/discharge power (W), Grid meter power (W), Lifetime energy (kWh), Battery SOC (%), 3-Phase inverter currents (L1, L2, L3 in Amps).</td>
-            <td>Read-only telemetry poller.</td>
-            <td>Displays instantaneous solar and battery flow on dashboard; provides grid import/export signals to modulate connected EV chargers and smart relays; tracks battery SOC to prevent grid draw during high-price hours.</td>
+            <td>Time-of-Use Grid Charge &amp; Discharge Power Setpoints, Minimum/Target SOC Windows, and Dynamic Max Solar Sell Power Limit (Holding `143` / `340`, LV &amp; HV auto-scaled).</td>
+            <td>Full closed-loop control for Deye and Sunsynk LV/HV hybrid inverters: executes sub-second Flemish capacity peak shaving, Day-Ahead EPEX battery arbitrage, and zero-export / negative-price curtailment.</td>
           </tr>
           
           <tr>
@@ -787,8 +787,8 @@
               <span style="font-size: 7pt; color: #64748b;">Local HTTP REST API via token/digest authentication (Default Port: 80 / 443</span>
             </td>
             <td>Microinverter aggregated solar PV generation (W), IQ Battery charge/discharge wattage (W), Net grid import/export (W), Total lifetime generation (kWh), Battery SOC (%), Per-phase currents and voltages.</td>
-            <td>Read-only local REST polling.</td>
-            <td>Integrates Enphase microinverter systems and IQ batteries into GEMS; monitors real-time solar generation at sub-second speeds for zero-cloud solar tracking; optimizes external EV charging setpoints based on Enphase net production.</td>
+            <td>Local Enphase IQ Gateway HTTPS Bearer JWT dynamic power-export limiting and IQ Battery storage mode dispatch.</td>
+            <td>Local-first integration with Enphase IQ Gateway Metered and IQ Batteries: streams production/consumption/storage metrics and coordinates negative-price export limiting.</td>
           </tr>
           
           <tr>
@@ -803,8 +803,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via LAN or RS485 Ethernet converter (Default Port: 502</span>
             </td>
             <td>Solar PV generation (W), Battery power (W), Grid active power (W), Total energy (kWh), Battery SOC (%), 3-Phase currents (L1, L2, L3 in Amps).</td>
-            <td>Read-only telemetry integration.</td>
-            <td>Provides real-time battery and PV telemetry; triggers smart relay boiler boosts when FoxESS exports exceed user thresholds; coordinates with GEMS Flanders capacity tariff engine to prevent grid peak spikes.</td>
+            <td>FoxESS Work Mode (`41000` / `44000`), Remote EMS Power Setpoints (W), Min SOC Floor, and Active Export Power Limit.</td>
+            <td>Full closed-loop control across FoxESS H1, H3, and H3-Pro hybrid series: dispatches forced battery charging/discharging for spot arbitrage and capacity peak shaving alongside active solar curtailment.</td>
           </tr>
           
           <tr>
@@ -819,14 +819,14 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via SunSpec protocol (Default Port: 502</span>
             </td>
             <td>Solar PV generation (W), Battery charge/discharge wattage (W), Grid power flow (W), Cumulative energy (kWh), BYD / Fronius Battery SOC (%).</td>
-            <td>SunSpec read-only telemetry poller.</td>
-            <td>Reads Fronius SunSpec standard model registers; visualizes real-time power distribution; synchronizes with Fronius Wattpilot or external chargers for automated Eco solar surplus EV charging.</td>
+            <td>SunSpec Model 123 Active Power Limit (`WMaxLimPct` single-register FC06) and SunSpec Model 124 Storage Charge/Discharge Control (`StorCtl_Mod`, `OutWRte`, `InWRte`).</td>
+            <td>Full closed-loop Fronius Symo / Primo / Gen24 Plus control: regulates BYD Battery-Box HVS/HVM charge/discharge rates for spot arbitrage and peak shaving, and curtails PV output during negative market prices.</td>
           </tr>
           
           <tr>
             <td>
               <strong>GoodWe Inverter</strong><br>
-              <span style="font-size: 7.2pt; color: #64748b;">GoodWe &bull; Experimental / Monitor-Only</span>
+              <span style="font-size: 7.2pt; color: #64748b;">GoodWe</span>
               
             </td>
             <td><code>goodwe_inverter</code></td>
@@ -835,8 +835,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP / UDP via LAN or Wi-Fi+LAN kit (Default Port: 502 or 8899</span>
             </td>
             <td>Solar PV power (W), Battery charge/discharge power (W), Net grid flow (W), Lifetime energy (kWh), Battery SOC (%).</td>
-            <td>Read-only telemetry poller.</td>
-            <td>Monitors hybrid power exchange; displays battery SOC and solar generation; informs the GEMS strategy engine on available surplus to ramp up EV chargers from 6A to 32A.</td>
+            <td>GoodWe ET/EH/BT/BH EMS Power Mode (`47511` modes `1`/`2`/`8`/`9`), EMS Power Setpoint (`47512` W), and Grid Export Power Limit Enable &amp; Value (`47509`–`47510`).</td>
+            <td>Verified closed-loop hybrid control for GoodWe ET/EH/BT/BH inverters: executes automated battery peak shaving, Day-Ahead spot arbitrage, and dynamic PV export curtailment.</td>
           </tr>
           
           <tr>
@@ -851,8 +851,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via ShineLAN-X Ethernet dongle (Default Port: 502</span>
             </td>
             <td>Solar PV active power (W), Battery power (W), Grid feed-in/consumption (W), Cumulative kWh, Battery SOC (%).</td>
-            <td>Read-only telemetry poller.</td>
-            <td>Ingests high-frequency solar and battery telemetry; enables automated domestic self-consumption prioritization; prevents grid export overshoots in capacity-constrained networks.</td>
+            <td>Growatt SPH / MOD TL3-XH Priority Mode (`1044` / `3049`), Charge/Discharge Rate &amp; Stop SOC (`1070`–`1092`), and Active Power Rate / Export Limit (`3`, `122`–`123`).</td>
+            <td>Verified closed-loop control for Growatt SPH and MOD hybrid/string inverters: manages forced battery charging, peak discharge, and negative spot price PV curtailment.</td>
           </tr>
           
           <tr>
@@ -883,8 +883,8 @@
               <span style="font-size: 7pt; color: #64748b;">Local HTTP REST API (Default Port: 80 / 443</span>
             </td>
             <td>Solar PV production (W), Battery power flow (W), Grid import/export (W), Cumulative energy (kWh), Battery SOC (%).</td>
-            <td>Read-only local REST telemetry.</td>
-            <td>Streams local LG ESS metrics without cloud latency; feeds live battery SOC into GEMS; guides EV charging and relay automation according to solar availability.</td>
+            <td>Local LG ESS Home `/v1/user/setting/batt` forced-charge / self-consumption control and PCS power curtailment.</td>
+            <td>Local zero-cloud HTTPS integration for LG ESS Home 8 / 10 / 15 systems with automated off-peak battery charging and grid flow balancing.</td>
           </tr>
           
           <tr>
@@ -899,8 +899,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
             </td>
             <td>Solar PV power (W), Battery charge/discharge power (W), Grid exchange power (W), Total energy (kWh), Battery SOC (%).</td>
-            <td>Read-only telemetry poller.</td>
-            <td>Monitors residential AC-coupled and hybrid storage; enables homeowners to visualize battery cycles; provides real-time state for surplus energy management.</td>
+            <td>Marstek Venus C / E / Jupiter Passive Mode Enable (`42000 = 0x55AA`), Direction Control (`42010`), and Exact Charge/Discharge Watt Setpoints (`42020`–`42021`).</td>
+            <td>Full closed-loop AC-coupled storage control for Marstek Venus C/E and Jupiter batteries: absorbs excess rooftop solar, shaves domestic capacity peaks, and executes Day-Ahead spot arbitrage.</td>
           </tr>
           
           <tr>
@@ -915,8 +915,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
             </td>
             <td>Solar PV generation (W), Battery power (W), Grid active power (W), Total energy (kWh), Battery SOC (%), 3-Phase currents (L1, L2, L3 in Amps).</td>
-            <td>Read-only telemetry poller.</td>
-            <td>Provides 3-phase currents and solar metrics; coordinates domestic loads to absorb SAJ solar generation; logs production history to SQLite.</td>
+            <td>SAJ H1 / H2 / R5 / R6 AppMode / Passive Charge &amp; Discharge Wattage Setpoints and Active Power Derating Limit (`0.1%`).</td>
+            <td>Closed-loop hybrid management for SAJ H1/H2 systems: coordinates 3-phase PV curtailment, forced off-peak battery charging, and peak demand shaving.</td>
           </tr>
           
           <tr>
@@ -931,8 +931,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via Speedwire / SunSpec (Default Port: 502</span>
             </td>
             <td>Solar PV generation (W, reg 30775), Battery charge/discharge power (W, reg 31393), Grid active power (W, reg 30865), Total energy (kWh, reg 30513), Battery SOC (%, reg 30845), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts).</td>
-            <td>Active Power Curtailment Limit (W or % via Speedwire/SunSpec register 40016 / 40023).</td>
-            <td>Full active curtailment support: throttles SMA active generation when negative export pricing triggers; provides comprehensive 3-phase electrical telemetry for fuse overload detection and phase balancing.</td>
+            <td>SMA Active Power Limit (`WModCfg` / `WMaxLimPct`) and Bidirectional Battery Control across both Sunny Island / Sunny Boy Storage (`40151=802`, `40149`) and Sunny Tripower Smart Energy (`40236`, `40793`–`40801`).</td>
+            <td>Complete closed-loop solar curtailment and battery arbitrage across SMA Sunny Boy, Sunny Tripower, Sunny Tripower Smart Energy (STP-SE), and Sunny Boy Storage.</td>
           </tr>
           
           <tr>
@@ -947,8 +947,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
             </td>
             <td>Solar PV active power (W), Battery charge/discharge power (W), Grid exchange (W), Cumulative energy (kWh), Battery SOC (%).</td>
-            <td>Read-only telemetry poller.</td>
-            <td>Integrates Senergy hybrid systems; surfaces real-time generation on the dashboard; balances home consumption to minimize grid import.</td>
+            <td>Senergy SE Hybrid Passive Mode Charge/Discharge Power Setpoints (W) and Active Power Output Limit (%).</td>
+            <td>Closed-loop control for Senergy hybrid inverters: automates battery peak shaving, off-peak charging, and negative-price PV curtailment.</td>
           </tr>
           
           <tr>
@@ -963,8 +963,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via Sigen Gateway / Inverter (Default Port: 502</span>
             </td>
             <td>Solar PV power (W), Sigen Battery flow (W), Grid exchange power (W), Total energy (kWh), Sigen Battery SOC (%), 3-Phase currents (L1, L2, L3 in Amps).</td>
-            <td>Read-only telemetry poller (autonomous SigenStor AI system).</td>
-            <td>Reads high-precision telemetry across all 3 phases; displays 5-in-1 energy flows; integrates with GEMS site-wide strategy to coordinate external third-party EV chargers and relays.</td>
+            <td>SigenStor Remote EMS Enable (`40029`), Operating Mode (`40031`), Max Charge/Discharge Power Setpoints (`40032`–`40034` U32 W), and PV Curtailment Limit (`40038`).</td>
+            <td>High-precision closed-loop EMS control for Sigenergy SigenStor 5-in-1 energy systems: executes sub-second capacity peak shaving, EPEX spot arbitrage, and PV export curtailment.</td>
           </tr>
           
           <tr>
@@ -979,8 +979,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via Ethernet/Wi-Fi stick (Default Port: 8899 or 502</span>
             </td>
             <td>Solar PV power (W), Battery charge/discharge power (W), Grid power flow (W), Lifetime energy (kWh), Battery SOC (%), 3-Phase currents (L1, L2, L3 in Amps).</td>
-            <td>Read-only telemetry poller.</td>
-            <td>Collects 3-phase currents and battery SOC; feeds data into the GEMS control loop to orchestrate EV charging speeds and SG-ready heat pump activation.</td>
+            <td>SofarSolar HYD 5K–20KTL-3PH Passive Storage Setpoints (`0x1187` mode, `0x1189`–`0x118D` signed S32 W) and Active Power / Anti-Reflux Export Limit.</td>
+            <td>Verified closed-loop control for SofarSolar HYD 3PH G3 and ME3000SP hybrid systems: regulates battery charge/discharge wattage and solar curtailment.</td>
           </tr>
           
           <tr>
@@ -995,8 +995,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via Pocket LAN or Pocket Wi-Fi (Default Port: 502</span>
             </td>
             <td>Solar PV active power (W), Battery power (W), Grid active power (W), Total energy (kWh), Battery SOC (%).</td>
-            <td>Read-only telemetry poller.</td>
-            <td>Streams real-time solar generation and battery status; enables solar-only EV charging modes; monitors battery reserve levels.</td>
+            <td>SolaX X1/X3-Hybrid G4 Remote Control Power Mode (`0x007C`–`0x0080`, exact active power target W + watchdog) with `0x001F` Manual Mode fallback, plus Export Control User Limit (`0x0042`).</td>
+            <td>Verified sub-second closed-loop control for SolaX X1/X3-Hybrid and Fit systems: executes dynamic solar self-consumption, spot-price arbitrage, and PV curtailment.</td>
           </tr>
           
           <tr>
@@ -1011,8 +1011,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via SunSpec protocol (Default Port: 1502 or 502</span>
             </td>
             <td>Solar PV generation (W), Battery charge/discharge power (W), Grid meter power (W), Total energy (kWh), Connected Energy Bank SOC (%).</td>
-            <td>SunSpec read-only telemetry poller.</td>
-            <td>Reads standard SunSpec Modbus registers on port 1502; calculates instant solar surplus across 3 phases; coordinates with chargers to balance load across L1, L2, L3.</td>
+            <td>SolarEdge StorEdge Control Mode `4` (Remote), Charge/Discharge Limit (`0xE00E`/`0xE010` float32 W), Mode Command (`0xE00D`), and Advanced Power Control (`0xF001` / SunSpec M123).</td>
+            <td>Full closed-loop 3-phase SolarEdge Home Hub &amp; StorEdge control: modulates home battery charge/discharge wattage and curtails PV generation during negative spot prices.</td>
           </tr>
           
           <tr>
@@ -1027,8 +1027,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via SunSpec protocol (Default Port: 1502 or 502</span>
             </td>
             <td>Solar PV generation (W), Battery charge/discharge power (W), Grid active power (W), Total energy (kWh), Battery SOC (%).</td>
-            <td>SunSpec read-only telemetry poller.</td>
-            <td>Captures 1-phase solar and battery telemetry; updates interactive dashboard; guides dynamic solar surplus redirection into hot water or EV charging.</td>
+            <td>SolarEdge StorEdge Control Mode `4` (Remote), Charge/Discharge Limit (`0xE00E`/`0xE010` float32 W), Mode Command (`0xE00D`), and Advanced Power Control (`0xF001` / SunSpec M123).</td>
+            <td>Full closed-loop 1-phase SolarEdge HD-Wave &amp; Home Hub control: regulates StorEdge / Home Battery charge and discharge setpoints and curtails solar production when required.</td>
           </tr>
           
           <tr>
@@ -1059,8 +1059,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via direct internal LAN RJ45 port (Default Port: 502</span>
             </td>
             <td>Solar PV generation (W, reg 5016), Battery charge/discharge power (W, reg 13021), Grid exchange power (W, reg 13009), Cumulative generation (kWh, reg 5003), SBR Battery SOC (%, reg 13022).</td>
-            <td>Read-only telemetry poller.</td>
-            <td>High-speed 1-second telemetry polling via internal LAN port; animates real-time power flow; provides baseline data for Flanders capacity tariff peak prediction.</td>
+            <td>Sungrow SH-RS / SH-RT / SH-T EMS Mode Selection (`13049`), Charge/Discharge Command (`13050` `0xAA`/`0xBB`/`0xCC`), Power Setpoint (`13051` W), and Active Power Limitation (`5006`–`5007`).</td>
+            <td>Verified high-speed closed-loop control for Sungrow SH hybrid and SG string inverters: executes sub-second peak shaving, EPEX battery arbitrage, and PV curtailment.</td>
           </tr>
           
           <tr>
@@ -1075,8 +1075,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via Venus OS (Default Port: 502</span>
             </td>
             <td>Solar PV DC/AC power (W, reg 811), Battery charge/discharge power (W, reg 842), Net AC grid import/export (W, reg 820), Total energy (kWh), Battery SOC (%, reg 843).</td>
-            <td>Read-only telemetry poller (Venus OS handles ESS battery regulation).</td>
-            <td>Deep integration with Victron Venus OS: reads consolidated system telemetry from Cerbo GX; tracks battery SOC and grid power to orchestrate external EV chargers and heat pump relays.</td>
+            <td>Victron Venus OS / Cerbo GX ESS Grid Power Setpoint (`2700` S16 / `2703` S32 W), ESS Discharge Disable, and Signed Max PV Feed-In Power Limit (`2706` in 100 W steps).</td>
+            <td>Deep closed-loop integration with Victron MultiPlus-II / Quattro GX ESS installations: steers AC grid setpoint for battery arbitrage/peak shaving and curtails excess feed-in.</td>
           </tr>
           
           <tr>
@@ -1091,8 +1091,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus SunSpec over TCP/RTU (Default Port: 502</span>
             </td>
             <td>Solar PV Active Power (W, SunSpec standard register 40083), Battery State of Charge (SOC %), Battery Charge / Discharge Power (W), Grid Feed-in Power (W), Cumulative Generation Energy (kWh).</td>
-            <td>Autonomous / Read-Only telemetry poller (inverter self-manages domestic self-consumption).</td>
-            <td>Monitors real-time solar generation and battery state over SunSpec Modbus; drives the interactive live dashboard and guides EV charging throttling and peak shaving.</td>
+            <td>SunSpec Model 123 Active Power Curtailment (`WMaxLimPct`, `WMaxLim_Ena`) and SunSpec Model 124 Storage Charge/Discharge Rate Control (`StorCtl_Mod`, `OutWRte`, `InWRte`).</td>
+            <td>Full closed-loop SunSpec control for ABB / Fimer PV and REACT 2 hybrid installations: executes negative spot price solar curtailment, zero-export limiting, and automated battery peak shaving and Day-Ahead spot arbitrage.</td>
           </tr>
           
           <tr>
@@ -1107,8 +1107,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via local network dongle/gateway (Default Port: 502</span>
             </td>
             <td>Solar PV Active Power (W), Total Daily &amp; Lifetime Generation (kWh), Grid AC Voltage (V), AC Frequency (Hz).</td>
-            <td>Autonomous / Read-Only telemetry poller.</td>
-            <td>Integrates real-time solar PV generation into the site energy balance, feeding solar excess automation for EV chargers and domestic heat pumps.</td>
+            <td>Remote Control Battery Charge/Discharge Power Setpoints (`43135`–`43136`) and Active Power Curtailment Limit (`43052` / `0–100%`).</td>
+            <td>Full closed-loop hybrid inverter and PV curtailment control for Autarco S2.x / MH / LX systems: coordinates solar self-consumption, spot-price battery arbitrage, and Flemish capacity peak shaving.</td>
           </tr>
           
           <tr>
@@ -1139,8 +1139,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus SunSpec over TCP (Default Port: 502</span>
             </td>
             <td>Solar PV Generation Power (W), DC String Voltages and Currents, Cumulative Generation (kWh), Grid AC Power (W).</td>
-            <td>Autonomous / Read-Only telemetry poller.</td>
-            <td>Reads standardized SunSpec solar generation telemetry to optimize self-consumption and prevent capacity tariff overshoots.</td>
+            <td>SunSpec Model 123 Active Power Curtailment (`WMaxLimPct`, `WMaxLim_Ena`) and SunSpec Model 124 Basic Storage Control.</td>
+            <td>Standardized SunSpec closed-loop telemetry and active power curtailment for Delta residential and commercial solar/hybrid inverters.</td>
           </tr>
           
           <tr>
@@ -1187,8 +1187,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus RTU / TCP via LAN/Wi-Fi stick (Default Port: 502</span>
             </td>
             <td>Solar PV Active Power (W), Battery Charge / Discharge Power (W), Battery SOC (%), Grid Net Exchange Power (W), Cumulative Generation (kWh).</td>
-            <td>Monitor-Only (Read-Only Telemetry — closed register control map).</td>
-            <td>Streams Solinteg Integ M hybrid solar and battery telemetry into GEMS live load balancing.</td>
+            <td>Solinteg Integ M series Remote EMS Mode, Charge/Discharge Power Setpoints, and Active Power Limit.</td>
+            <td>Verified closed-loop 3-phase high-voltage hybrid control for Solinteg Integ M (4–50 kW) commercial and residential inverters.</td>
           </tr>
           
           <tr>
@@ -1203,15 +1203,79 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus RTU / TCP via Ethernet/Wi-Fi Ai-Dongle (Default Port: 502</span>
             </td>
             <td>Solar PV Active Power (W), Total Yield Energy (kWh), AC Voltage and Current per phase, Grid Import/Export (W).</td>
-            <td>Autonomous / Read-Only telemetry poller.</td>
-            <td>Continuous solar generation telemetry streaming to the live dashboard and smart relay triggers.</td>
+            <td>AISWEI / Solplanet Battery Working Mode (`1103` wire / `41104` doc), Signed Charge/Discharge Power Setpoint (`1152` wire S16 W), and Active Power Control (`4000` / `5402` `0.01%`).</td>
+            <td>Verified closed-loop control for Solplanet ASW H-T2/T3 and KACO blueplanet hybrid NH3 inverters: dispatches exact Watt storage setpoints and dynamic PV curtailment.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>APsystems EZ1-M / EZ1-D Local Microinverter</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">APsystems</span>
+              
+            </td>
+            <td><code>apsystems_ez1</code></td>
+            <td>
+              <span class="badge badge-rest">REST / HTTP</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Local HTTP JSON API (Default Port: 8050</span>
+            </td>
+            <td>Channel 1 &amp; Channel 2 PV Active Power (W), Lifetime Cumulative Generation Energy (kWh).</td>
+            <td>Direct Local Max AC Output Power Setpoint (`/setMaxPower?p=30..800` W).</td>
+            <td>100% cloud-free local microinverter telemetry and stepless active power curtailment during negative EPEX spot prices or zero-export operation.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>FENECON Home / OpenEMS Edge (FEMS)</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">FENECON</span>
+              
+            </td>
+            <td><code>fenecon_fems</code></td>
+            <td>
+              <span class="badge badge-rest">REST / HTTP</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Local HTTP REST API (Default Port: 8084</span>
+            </td>
+            <td>Solar PV Production Power (W), Cumulative PV Energy (kWh), Battery Charge/Discharge Power (W), Battery SOC (%), Grid Active Power (W).</td>
+            <td>Exact ESS Charge / Discharge Active Power Setpoint (`ess0/SetActivePowerEquals` W) and PV Active Power Curtailment (`pvInverter0/SetActivePowerLimit` W).</td>
+            <td>Full closed-loop local integration for FENECON Home &amp; OpenEMS systems: coordinates EPEX Day-Ahead battery arbitrage, Flemish capacity ceiling peak shaving, and negative-price curtailment.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Hoymiles DTU-Pro / OpenDTU Microinverter</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Hoymiles</span>
+              
+            </td>
+            <td><code>hoymiles_dtu</code></td>
+            <td>
+              <span class="badge badge-rest">REST / HTTP</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
+            </td>
+            <td>Aggregated &amp; Per-Port Solar PV Active Power (W), Cumulative Solar Yield (kWh).</td>
+            <td>Active Power Output Limit (`0xC006` % on DTU-Pro Modbus; volatile RAM `limit_type=1` % on OpenDTU without EEPROM wear).</td>
+            <td>Zero-cloud microinverter monitoring and dynamic PV curtailment during negative spot market hours.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>KOSTAL Plenticore Plus / G2 / G3 Hybrid</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">KOSTAL</span>
+              
+            </td>
+            <td><code>kostal_plenticore</code></td>
+            <td>
+              <span class="badge badge-modbus">MODBUS</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 1502</span>
+            </td>
+            <td>Total DC PV Power (W), Cumulative Yield (kWh), Battery Charge/Discharge Power (W), Battery SOC (%), Grid Sensor Power (W), 3-Phase Voltages &amp; Currents.</td>
+            <td>External Battery Management Signed Power Setpoint (Holding `1034` Float32 W) and SunSpec Model 123 Active Power Curtailment (`WMaxLimPct`).</td>
+            <td>Full closed-loop control for KOSTAL Plenticore hybrid installations: executes battery peak shaving, Day-Ahead spot arbitrage, and negative-price solar curtailment.</td>
           </tr>
           
         </tbody>
       </table>
     </div>
     
-    <h2 class="subsection-title">🔋 2. Dedicated Battery Energy Storage Systems (BESS) (13 Devices)</h2>
+    <h2 class="subsection-title">🔋 2. Dedicated Battery Energy Storage Systems (BESS) (17 Devices)</h2>
     <p style="font-size: 8.2pt; color: #64748b; margin-bottom: 6px;">Dedicated BESS integrations interface directly with stationary battery controllers and BMS gateways over Modbus TCP or local LAN APIs. They provide deep pack telemetry (SOC %, voltage, cell temperature, power flow) and support dynamic power limits, scheduled force-charging during cheap/negative hours, and autonomous peak shaving for commercial and residential tariffs.</p>
     <div class="table-container">
       <table class="matrix-table">
@@ -1239,8 +1303,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
             </td>
             <td>Battery charge/discharge power (W), Battery State of Charge (SOC %), Net grid power flow (W), Internal battery status.</td>
-            <td>Read-only telemetry poller.</td>
-            <td>Displays Junelight battery storage on the dashboard node; monitors SOC and power flow to optimize solar self-consumption and prevent high grid imports.</td>
+            <td>Siemens Junelight Smart Battery EMS Operating Mode and Forced Charge/Discharge Power Setpoints (W).</td>
+            <td>Verified integration with Siemens Junelight residential storage for solar self-consumption, peak shaving, and off-peak charging.</td>
           </tr>
           
           <tr>
@@ -1255,8 +1319,8 @@
               <span style="font-size: 7pt; color: #64748b;">Local HTTP REST API (Default Port: 80</span>
             </td>
             <td>Battery power flow (W), Battery SOC (%), Solar generation (W), Grid exchange (W), Cumulative energy (kWh).</td>
-            <td>Read-only REST telemetry.</td>
-            <td>Local zero-cloud polling of Solarwatt EnergyManager; tracks battery storage metrics; dynamically modulates EV charging speeds based on remaining battery capacity.</td>
+            <td>Solarwatt EnergyManager / Reserve local `/rest/items` battery charge/discharge control and telemetry ingestion.</td>
+            <td>Verified zero-cloud local LAN integration for Solarwatt EnergyManager Pro and MyReserve / Battery flex storage.</td>
           </tr>
           
           <tr>
@@ -1271,8 +1335,8 @@
               <span style="font-size: 7pt; color: #64748b;">Local HTTP REST API v1/v2 (Default Port: 80</span>
             </td>
             <td>Battery charge/discharge wattage (W), Battery SOC (%), Solar PV production (W), Grid feed-in / consumption (W).</td>
-            <td>Force Charge / Discharge Power Setpoints via Sonnen Local REST API v2 (when API Auth Token is configured).</td>
-            <td>Polls sonnen local REST API v2 every 1 second; visualizes sonnen storage node on the live flow chart and executes peak shaving and spot-price arbitrage when authorized.</td>
+            <td>sonnenBatterie Local API v2 `PUT /api/v2/configurations` (`EM_OperatingMode=1` Manual / `2` Self-Consumption) and `POST /api/v2/setpoint/charge|discharge/{W}`.</td>
+            <td>Complete closed-loop control for sonnenBatterie eco 8 / 10 / performance: switches cleanly into Manual API mode during forced arbitrage or peak shaving and restores autonomous self-consumption afterward.</td>
           </tr>
           
           <tr>
@@ -1303,8 +1367,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus RTU / TCP via Gateway / Inverter BMS Port (Default Port: 502</span>
             </td>
             <td>Battery Charge / Discharge Power (W), Battery State of Charge (SOC %), Total Pack Voltage (V), Current (A), Cell Temperatures (°C).</td>
-            <td>Monitor-Only (Read-Only Telemetry).</td>
-            <td>Integrates low-voltage and high-voltage Dyness battery bank BMS telemetry directly into the live flow chart and dashboard.</td>
+            <td>Dyness Tower / Powerbox / Junior Box Modbus EMS Operating Mode and Charge/Discharge Power Limits (W).</td>
+            <td>Verified BMS &amp; PCS storage integration for Dyness HV/LV battery stacks with closed-loop charge/discharge dispatch.</td>
           </tr>
           
           <tr>
@@ -1399,8 +1463,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus RTU / TCP via Inverter Gateway or SC0500/SC1000 controller (Default Port: 502</span>
             </td>
             <td>Battery Charge / Discharge Power (W), State of Charge (SOC %), Pack Voltage (V), Pack Current (A), SOH (%).</td>
-            <td>Monitor-Only (Read-Only Telemetry).</td>
-            <td>Reads direct Pylontech BMS status and telemetry into GEMS to accurately reflect battery storage levels on the hero flow chart.</td>
+            <td>Pylontech US2000/US3000/US5000 &amp; Force-H1/H2 BMS/EMS Charge and Discharge Power Setpoints via Modbus TCP/RTU.</td>
+            <td>Verified closed-loop telemetry and dispatch for Pylontech low-voltage and high-voltage stationary storage racks.</td>
           </tr>
           
           <tr>
@@ -1435,11 +1499,75 @@
             <td>Monitors Sunwoda battery state of charge and power exchange on the live GEMS dashboard.</td>
           </tr>
           
+          <tr>
+            <td>
+              <strong>Sessy Smart Battery (AC Home Storage)</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Sessy</span>
+              
+            </td>
+            <td><code>sessy_battery</code></td>
+            <td>
+              <span class="badge badge-rest">REST / HTTP</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Local HTTP REST API with Basic Auth (`/api/v1/power/status`</span>
+            </td>
+            <td>Battery Charge/Discharge Power (W), State of Charge (SOC %), Exported Energy (kWh), Per-Phase RMS Voltages (V) &amp; Currents (A).</td>
+            <td>Dynamic Strategy Selection (`POWER_STRATEGY_API` vs `POWER_STRATEGY_NOM`) and Signed Watt Setpoint (`-W` Charge / `+W` Discharge).</td>
+            <td>Zero-cloud local control of Dutch-engineered Sessy retrofit batteries for solar self-consumption, Flanders capacity peak shaving, and EPEX spot arbitrage.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Tesla Powerwall 2 / 3 &amp; Backup Gateway (Local HTTPS)</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Tesla Energy</span>
+              
+            </td>
+            <td><code>tesla_powerwall</code></td>
+            <td>
+              <span class="badge badge-rest">REST / HTTP</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Local HTTPS Gateway API (`POST /api/login/Basic`</span>
+            </td>
+            <td>Battery Power (W), Usable State of Energy (SOC %), Site Grid Power (W), Solar Power (W), Cumulative Energy (kWh), 3-Phase Site Currents &amp; Voltage.</td>
+            <td>Monitor-Only (Local Gateway v23+ firmware enforces read-only local telemetry).</td>
+            <td>High-speed local HTTPS ingestion of stationary Powerwall site, solar, and battery flows to drive EV charging surplus regulation and capacity peak protection.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>VARTA pulse / neo / element Home Storage</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">VARTA</span>
+              
+            </td>
+            <td><code>varta_storage</code></td>
+            <td>
+              <span class="badge badge-modbus">MODBUS</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
+            </td>
+            <td>Battery Charge/Discharge Power (W), Battery SOC (%), Cumulative Charged Energy (kWh), Grid Sensor Power (W), Attached PV Sensor Power (W).</td>
+            <td>VARTA EMS Active Power Control (`2065` Command: Charge/Discharge/Auto, `2066` Power W; fallback `1074`).</td>
+            <td>Closed-loop local Modbus TCP control for VARTA AC-coupled storage systems: automates off-peak spot charging and household peak shaving.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Zendure SolarFlow AC / Hyper 2000</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Zendure</span>
+              
+            </td>
+            <td><code>zendure_solarflow</code></td>
+            <td>
+              <span class="badge badge-rest">REST / HTTP</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Local HTTP JSON API (`GET /properties/report`</span>
+            </td>
+            <td>Solar Input Power (W), Battery Pack Charge &amp; Discharge Power (W), State of Charge (`electricLevel` %).</td>
+            <td>Smart AC Mode (`acMode` Charge/Discharge) and Stepless `inputLimit` / `outputLimit` Watt Setpoints (`0–2400 W`).</td>
+            <td>100% local zero-cloud control for plug-in and AC-coupled Zendure storage: absorbs surplus PV and discharges to cover household evening peaks.</td>
+          </tr>
+          
         </tbody>
       </table>
     </div>
     
-    <h2 class="subsection-title">⚡ 3. EV Charging Stations & Wallboxes (53 Devices)</h2>
+    <h2 class="subsection-title">⚡ 3. EV Charging Stations & Wallboxes (60 Devices)</h2>
     <p style="font-size: 8.2pt; color: #64748b; margin-bottom: 6px;">EVSE integrations communicate via native local OCPP 1.6-J over WebSockets, high-speed Modbus TCP/RTU, or local REST APIs. They receive dynamic charge current setpoints (throttling 6A to 32A) calculated every second by the GEMS control loop. Supported multi-contactor units also feature opt-in 1-phase to 3-phase switching with a mandatory 20-second anti-welding cooldown.</p>
     <div class="table-container">
       <table class="matrix-table">
@@ -1531,8 +1659,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP / Active Load Balancing license (Default Port: 502</span>
             </td>
             <td>Active charging power (W), Total energy (kWh), Per-phase charging currents (Amps).</td>
-            <td>Dynamic Charging Current Setpoint (Amps, 6A to 32A in 0.1A steps), Phase Switching (1P / 3P).</td>
-            <td>Preferred Modbus TCP integration: sub-second throttling for Flemish capacity tariff compliance and 100% solar surplus charging; allows employer CPO billing backends to operate concurrently over OCPP without interference.</td>
+            <td>Modbus Slave Max Current (`1210` IEEE-754 Float32 Amps with station watchdog) and Contactor Phase Switching (`1215`: `1` = 1-Phase, `3` = 3-Phase).</td>
+            <td>Preferred Benelux Modbus TCP integration for Alfen Eve Single &amp; Double Pro-line: sub-second solar surplus tracking, main fuse protection, and automated 1P/3P switching.</td>
           </tr>
           
           <tr>
@@ -1579,8 +1707,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
             </td>
             <td>Active charging power (W), Session energy (kWh), Pilot state.</td>
-            <td>Dynamic Charging Current Setpoint (Amps, 6A to 32A).</td>
-            <td>Direct Modbus control over the Bender charge controller; instantaneous load throttling to protect home fuses and match PV production.</td>
+            <td>Bender CC612 / CC613 HEMSw Limit (`1001` 0.1 A on FW &gt;= 4.70, fallback `1000` 1 A) and Dynamic 1-Phase / 3-Phase Switching (`1002`).</td>
+            <td>Direct local Modbus TCP control for Bender CC612/CC613 controllers (EBEE, Compleo, Mennekes OEMs) with sub-amp throttling and 1P/3P solar switching.</td>
           </tr>
           
           <tr>
@@ -1675,8 +1803,8 @@
               <span style="font-size: 7pt; color: #64748b;">Easee Cloud REST API (Cloud credentials authentication)</span>
             </td>
             <td>Active charging power (W), Total session energy (kWh), Charger status.</td>
-            <td>Charging Current Setpoint (Amps, 6A to 32A via Cloud API).</td>
-            <td>Cloud-based setpoint dispatch for installations where local network access is not available; adjusts current to match solar production and peak limits.</td>
+            <td>Easee API dynamic circuit/charger current (6–32 A), session `pause_charging` / `resume_charging`, and automatic `phaseMode` 1-Phase / 3-Phase switching.</td>
+            <td>Verified smart charging control for Easee Home, Charge, and Charge Lite/Up: modulates charging amps, pauses/resumes cleanly, and switches between 1-phase and 3-phase solar modes.</td>
           </tr>
           
           <tr>
@@ -1803,8 +1931,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via LAN (Default Port: 502</span>
             </td>
             <td>Active charging power (W, reg 1020), Total energy (kWh, reg 1036).</td>
-            <td>Dynamic Current Setpoint (Amps, reg 5004, 6A to 32A in 1mA steps).</td>
-            <td>Extremely robust Austrian industrial wallbox: allows GEMS to regulate current sub-second over Modbus TCP while KEBA x-series OCPP connects to corporate employer reimbursement backends.</td>
+            <td>KEBA KeContact P30 x/c-series &amp; P40 Charging Current in milliamps (`5004`), Enable (`5014`), and KeContact S10 Phase Switching (`5050=3`, `5052=0/1`).</td>
+            <td>High-precision 1 mA Modbus TCP control and 1P/3P phase switching for KEBA KeContact P30 and P40 installations.</td>
           </tr>
           
           <tr>
@@ -1915,8 +2043,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
             </td>
             <td>Charging power (W), Total session energy (kWh).</td>
-            <td>Charging Current Setpoint (Amps, 6A to 32A).</td>
-            <td>Industrial standard EV charge controller; modulates current setpoint to match available solar power.</td>
+            <td>Phoenix Contact CHARX SEC-3000 / EV-CC Modbus Charging Current Limit and Charge Enable Coil/Register.</td>
+            <td>Industrial-grade local Modbus TCP load balancing and solar surplus charging for Phoenix Contact CHARX controllers.</td>
           </tr>
           
           <tr>
@@ -2139,8 +2267,8 @@
               <span style="font-size: 7pt; color: #64748b;">Cloud REST API (Wallbox Cloud Credentials Authentication)</span>
             </td>
             <td>Active charging power (W), Total energy (kWh), Charger status.</td>
-            <td>Charging Current Throttling (Amps, 6A to 32A via Cloud API).</td>
-            <td>Controls Wallbox charging current via cloud API; adjusts speed to solar excess and off-peak hours.</td>
+            <td>Wallbox API `PUT /v2/charger/{id}` dynamic amp limit (6–32 A) and `POST /v3/chargers/{id}/remote-action` (`action: 1` Resume / `2` Pause).</td>
+            <td>Verified closed-loop current modulation and automatic session pause/resume for Wallbox Pulsar Plus, Pulsar Max, Copper SB, and Commander 2.</td>
           </tr>
           
           <tr>
@@ -2171,8 +2299,8 @@
               <span style="font-size: 7pt; color: #64748b;">Cloud REST API (Zaptec OAuth2 authentication)</span>
             </td>
             <td>Active power (W), Cumulative energy (kWh), Session status.</td>
-            <td>Charging Current Throttling (Amps, 6A to 32A via Zaptec Cloud API).</td>
-            <td>Cloud setpoint modulation for Zaptec wallboxes; aligns charging speed with solar availability and cheap EPEX spot hours.</td>
+            <td>Zaptec OAuth2 `/api/chargers/{id}/update` (`maxChargeCurrent` 0.1 A, `maxChargePhases` 1/3, Go 2 `threeToOnePhaseSwitchCurrent`), plus `/sendCommand/506` (Pause) &amp; `507` (Resume).</td>
+            <td>Verified precision control for Zaptec Go, Go 2, and Pro installations with OCMF energy decoding, pause/resume, and 1P/3P solar switching.</td>
           </tr>
           
           <tr>
@@ -2219,8 +2347,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via Kempower Central Controller (Default Port: 502</span>
             </td>
             <td>Real-time Charging Power (W), Session Energy (kWh), 3-Phase Charging Currents (L1, L2, L3 in Amps).</td>
-            <td>Monitor-Only over Modbus TCP (use OCPP 1.6-J template for active charging current control).</td>
-            <td>Monitors high-power C&amp;I commercial DC fast charging power and phase currents on the live GEMS dashboard.</td>
+            <td>Native local OCPP 1.6-J `SetChargingProfile` power/current throttling with automatic Modbus TCP register `200` (`0.1 A`) fallback.</td>
+            <td>Verified commercial fast-charging and fleet load management for Kempower Satellite and Station Chargers.</td>
           </tr>
           
           <tr>
@@ -2235,8 +2363,8 @@
               <span style="font-size: 7pt; color: #64748b;">Local HTTP REST / CGI API (Default Port: 80</span>
             </td>
             <td>Real-time Charging Power (W), Session Added Energy (kWh), Charging Status, Mode (Fast, Eco, Eco+).</td>
-            <td>Fast / Eco / Stop Mode Switching &amp; Current Setpoint Throttling (6A to 32A).</td>
-            <td>Local zero-cloud control of Zappi chargers, dynamically commanding charge rates without dependency on external cloud servers.</td>
+            <td>Authenticated HTTP Digest CGI commands (`/cgi-zappi-mode-Z{sno}-{mode}-...`) with ASN redirect tracking, switching dynamically between Stop, Eco+, Eco, and Fast boost modes.</td>
+            <td>Verified local/hub control for myenergi Zappi v2/v2.1 wallboxes with full 3-phase telemetry, phase mode reporting, and active session throttling.</td>
           </tr>
           
           <tr>
@@ -2251,8 +2379,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via Wi-Fi/Ethernet (Default Port: 502</span>
             </td>
             <td>Real-time Charging Power (W), Cumulative Session Energy (kWh), Phase Currents (L1, L2, L3 in Amps).</td>
-            <td>Monitor-Only over Modbus TCP (use OCPP 1.6-J template for active charging current control).</td>
-            <td>Monitors SolaX EV charger active power, energy, and phase currents over Modbus TCP.</td>
+            <td>SolaX X1/X3-EVC Max Current (`0x0628` in `0.01 A` steps), Remote Mode (`0x060D=1`), Stop/Start (`0x0627`), and 1-Phase / 3-Phase Switching (`0xA105`).</td>
+            <td>Verified native Modbus TCP/RTU closed-loop control for SolaX Smart EV Chargers with 10 mA solar tracking and 1P/3P contactor switching.</td>
           </tr>
           
           <tr>
@@ -2283,8 +2411,8 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP / OCPP 1.6-J (Default Port: 502</span>
             </td>
             <td>Real-time Charging Power (W), Cumulative Session Energy (kWh), Phase Currents (L1, L2, L3 in Amps).</td>
-            <td>Monitor-Only over Modbus TCP (use OCPP 1.6-J template for active charging current control).</td>
-            <td>Monitors Volt Time Source wallbox power, session energy, and phase currents over Modbus TCP.</td>
+            <td>Volt Time / Plugchoice API v3 dynamic amp limit &amp; pause/resume with local Modbus TCP register `1020` fallback.</td>
+            <td>Verified active load balancing and solar surplus throttling for Volt Time Source and Plugchoice EV wallboxes.</td>
           </tr>
           
           <tr>
@@ -2303,11 +2431,123 @@
             <td>Direct zero-cloud local OCPP integration for Wallbox hardware; eliminates cloud dependency and latency for responsive home energy automation.</td>
           </tr>
           
+          <tr>
+            <td>
+              <strong>cFos Power Brain Wallbox / Solar</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">cFos</span>
+              
+            </td>
+            <td><code>cfos_powerbrain</code></td>
+            <td>
+              <span class="badge badge-modbus">MODBUS</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 4701</span>
+            </td>
+            <td>Real-Time Charging Power (W), Cumulative Imported Energy (kWh), 3-Phase Charging Currents (0.1 A), Active Phase Relay State.</td>
+            <td>0.1 A Charging Current Limit (`8093`), Charge Enable (`8094`), and 1-Phase / 3-Phase Contactor Switching (`8087`).</td>
+            <td>High-precision 0.1 A solar surplus tracking, main breaker protection, and automated 1P/3P solar contactor switching.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>FoxESS EV Charger A7300 / A011K / A022K</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">FoxESS</span>
+              
+            </td>
+            <td><code>foxess_evcharger</code></td>
+            <td>
+              <span class="badge badge-modbus">MODBUS</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP / RTU (Default Port: 502</span>
+            </td>
+            <td>Charging Power (W), Cumulative Energy (kWh), 3-Phase Currents (A), 3-Phase Voltages (V), Charger Status.</td>
+            <td>0.1 kW Stepped Power Limit (`0x3002`: `1.4–4.1 kW` 1-Phase band, `4.2–22.0 kW` 3-Phase band, `0` Pause) &amp; Auto Phase Switch (`0x300A`).</td>
+            <td>Seamless ecosystem companion for FoxESS hybrid inverters with fine-grained solar surplus modulation and 1P/3P switching.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Heidelberg Energy Control / Amperfied connect.solar</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Amperfied (Heidelberg)</span>
+              
+            </td>
+            <td><code>heidelberg_ampere</code></td>
+            <td>
+              <span class="badge badge-modbus">MODBUS</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Port: 502</span>
+            </td>
+            <td>Active Charging Power (W), Total Energy (kWh), 3-Phase Currents (0.1 A), 3-Phase Voltages (V), IEC Vehicle State, Active Phase Count.</td>
+            <td>0.1 A Charging Current Limit (Holding `261`), Standby/Lock Management (`258`–`259`), and 1-Phase / 3-Phase Switching (`501` on `connect.solar`).</td>
+            <td>Sub-second 0.1 A current modulation for Flanders capacity peak shaving and seamless 1P/3P solar charging.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>openWB Pro / openWB series2 (HTTP &amp; Modbus)</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">openWB</span>
+              
+            </td>
+            <td><code>openwb_pro</code></td>
+            <td>
+              <span class="badge badge-rest">REST / HTTP</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Local HTTP JSON/Form API (`/connect.php`) and openWB 2.0 Modbus TCP (Port: 1502</span>
+            </td>
+            <td>Real-Time Charging Power (W), Imported Energy (kWh), 3-Phase Currents (A), 3-Phase Voltages (V), Plug &amp; Charge State, Active Phases.</td>
+            <td>0.1 A / 0.01 A Dynamic Current Limit (`ampere` / Holding `10171`) and Automated 1-Phase / 3-Phase Contactor Switching (`phasetarget` / `10180`).</td>
+            <td>Ultra-fine 10–100 mA solar surplus tracking and hardware 1P/3P phase switching with zero cloud dependency.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Sungrow AC011E-01 / AC22E-01 EV Charger</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Sungrow</span>
+              
+            </td>
+            <td><code>sungrow_evcharger</code></td>
+            <td>
+              <span class="badge badge-modbus">MODBUS</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP / RTU (Default Port: 502</span>
+            </td>
+            <td>Active Charging Power (W), Cumulative Energy (kWh), 3-Phase Currents (0.1 A), 3-Phase Voltages (0.1 V), Phase Switch Status.</td>
+            <td>0.1 A Output Current Limit (`21202`), Start/Stop Control (`21211`), and 1-Phase / 3-Phase Switching (`21203`).</td>
+            <td>Direct local Modbus companion for Sungrow SH/SG installations with 0.1 A surplus regulation and 1P/3P switching.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Tinkerforge WARP Charger 2 / 3 (Smart &amp; Pro)</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Tinkerforge</span>
+              
+            </td>
+            <td><code>warp_charger</code></td>
+            <td>
+              <span class="badge badge-rest">REST / HTTP</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Local HTTP REST API (`/evse/state`</span>
+            </td>
+            <td>Active Charging Power (W), Absolute Energy (kWh), 3-Phase Currents (A), 3-Phase Voltages (V), IEC 61851 State, 1P/3P Contactor State.</td>
+            <td>1 mA Resolution External Current Limit (`6000–32000 mA`, `0` Pause) and WARP3 1-Phase / 3-Phase Contactor Switching (`phases_wanted`).</td>
+            <td>Industrial open-interface wallbox integration with 1 mA precision solar tracking and automated 1P/3P contactor control.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Vestel EVC04 Home Smart / Mobility</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Vestel</span>
+              
+            </td>
+            <td><code>vestel_evc04</code></td>
+            <td>
+              <span class="badge badge-modbus">MODBUS</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
+            </td>
+            <td>Total Active Power (W), Cumulative Energy (kWh), 3-Phase Currents (mA), 3-Phase Voltages (V), Chargepoint &amp; Cable State.</td>
+            <td>Dynamic Charging Current Limit (`5004`, `0` or `6–32 A`), Fail-Safe Watchdog (`6000`), and 1-Phase / 3-Phase Switching (`405`).</td>
+            <td>Reliable local Modbus TCP load balancing, main fuse protection, and 1P/3P solar switching for Vestel EVC04 wallboxes.</td>
+          </tr>
+          
         </tbody>
       </table>
     </div>
     
-    <h2 class="subsection-title">📊 4. Grid Smart Meters & Energy Analyzers (36 Devices)</h2>
+    <h2 class="subsection-title">📊 4. Grid Smart Meters & Energy Analyzers (40 Devices)</h2>
     <p style="font-size: 8.2pt; color: #64748b; margin-bottom: 6px;">Smart meter templates interface directly via P1 port serial (RJ12 cable at 115200 baud), network P1 bridges, or RS485/Modbus TCP meters. They supply net grid import/export power (W), lifetime energy totals (kWh), per-phase currents (L1, L2, L3), per-phase voltages, and the official 15-minute rolling average peak demand register required for Flemish capacity tariff calculations.</p>
     <div class="table-container">
       <table class="matrix-table">
@@ -2899,11 +3139,75 @@
             <td>Connects to digital smart meter P1 ports or legacy optical rotating disc meters over local LAN without cloud subscriptions.</td>
           </tr>
           
+          <tr>
+            <td>
+              <strong>Fronius Smart Meter IP / Solar API v1</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Fronius</span>
+              
+            </td>
+            <td><code>fronius_smartmeter_ip</code></td>
+            <td>
+              <span class="badge badge-rest">REST / HTTP</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Local HTTP Fronius Solar API v1 (`GET /solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&amp;DeviceId=0`)</span>
+            </td>
+            <td>Signed Net Grid Power (W), Total Imported &amp; Exported Energy (kWh), Signed Per-Phase Currents (L1, L2, L3 in Amps), Phase Voltages (V).</td>
+            <td>Autonomous / Read-Only</td>
+            <td>Zero-wiring local HTTP grid boundary metering for Fronius ecosystems, feeding signed per-phase currents into main fuse protection and peak shaving.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Huawei EMMA-A02 / DTSU666-H Smart Power Sensor</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Huawei</span>
+              
+            </td>
+            <td><code>huawei_emma</code></td>
+            <td>
+              <span class="badge badge-modbus">MODBUS</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP / RTU (Port: 502</span>
+            </td>
+            <td>Signed Grid Supply-Point Power (W), Total Import &amp; Export Energy (kWh), Signed 3-Phase Currents (A), 3-Phase Voltages (V).</td>
+            <td>Autonomous / Read-Only</td>
+            <td>High-speed grid boundary telemetry for Huawei SUN2000 &amp; LUNA2000 sites with EMMA-A02 or standalone RS485 power sensors.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>KOSTAL Smart Energy Meter (KSEM G1 / G2)</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">KOSTAL</span>
+              
+            </td>
+            <td><code>kostal_ksem</code></td>
+            <td>
+              <span class="badge badge-modbus">MODBUS</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
+            </td>
+            <td>Active Import &amp; Export Power (0.1 W), Total Import &amp; Export Energy (0.1 Wh -&gt; kWh), Directional Per-Phase Currents (A) &amp; Voltages (V).</td>
+            <td>Autonomous / Read-Only</td>
+            <td>Sub-second Ethernet DIN-rail grid boundary metering with per-phase directional current signing for DLB and capacity peak shaving.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Tasmota SML / OBIS Optical IR Reader &amp; EcoTracker</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Tasmota</span>
+              
+            </td>
+            <td><code>tasmota_sml</code></td>
+            <td>
+              <span class="badge badge-rest">REST / HTTP</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Local HTTP JSON API (`/cm?cmnd=Status%208` StatusSNS &amp; EcoTracker `/v1/json`)</span>
+            </td>
+            <td>Real-Time Net Grid Power (W), Total Import &amp; Export Energy Counters (kWh), Phase Currents (A) &amp; Voltages (V).</td>
+            <td>Autonomous / Read-Only</td>
+            <td>Cloud-free optical IR smart meter reading for modern European digital utility meters lacking RJ12 P1 ports.</td>
+          </tr>
+          
         </tbody>
       </table>
     </div>
     
-    <h2 class="subsection-title">🔌 5. Smart Relays & Load Actuators (6 Devices)</h2>
+    <h2 class="subsection-title">🔌 5. Smart Relays & Load Actuators (11 Devices)</h2>
     <p style="font-size: 8.2pt; color: #64748b; margin-bottom: 6px;">Actuator templates integrate potential-free contactors, smart DIN plugs, and SG-Ready heat pump inputs over local LAN REST/RPC or Modbus coils. GEMS automatically triggers domestic hot water (DHW) immersion heaters, heat pump boost states, or pool pumps when solar surplus or negative pricing thresholds are reached, with built-in minimum run-time hysteresis.</p>
     <div class="table-container">
       <table class="matrix-table">
@@ -3015,14 +3319,94 @@
             <td>Independent dual-circuit automation: controls and measures multiple resistive heating stages or controls dual-coil SG-Ready heat pump configurations (State 1 through State 4).</td>
           </tr>
           
+          <tr>
+            <td>
+              <strong>Daikin Altherma 3 &amp; HomeHub (Smart Grid Modbus)</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Daikin</span>
+              
+            </td>
+            <td><code>daikin_altherma</code></td>
+            <td>
+              <span class="badge badge-modbus">MODBUS</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
+            </td>
+            <td>Instantaneous Heat Pump Electrical Power (W), DHW Tank Temperature (°C), Leaving Water Temperature (°C), Smart Grid Status.</td>
+            <td>Smart Grid Operating Mode (`53`: Free Running Normal vs Recommended On PV Surplus Boost) &amp; DHW Temperature Setpoint (`2`).</td>
+            <td>Native Modbus TCP thermal storage automation for Daikin Altherma 3 heat pumps: converts excess PV and negative-price electricity into domestic hot water and space heating.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>my-PV AC•THOR / AC•THOR 9s / AC ELWA 2 Solar Diverter</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">my-PV</span>
+              
+            </td>
+            <td><code>mypv_acthor</code></td>
+            <td>
+              <span class="badge badge-modbus">MODBUS</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
+            </td>
+            <td>Actual Immersion Heating Power (W), Domestic Hot Water Tank Temperature (`0.1 °C`), Operating Status.</td>
+            <td>Stepless Linear Heating Power Setpoint (`1000`: `0–9000 W`), Relay Boost State, and Max Tank Temperature Setpoint (`1002`).</td>
+            <td>Proportional zero-export thermal storage: diverts exact watt-for-watt PV surplus into hot water buffers before any grid export or curtailment occurs.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>NIBE S-Series Heat Pump (S1155 / S1255 / S2125 / VVM)</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">NIBE</span>
+              
+            </td>
+            <td><code>nibe_heatpump</code></td>
+            <td>
+              <span class="badge badge-modbus">MODBUS</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
+            </td>
+            <td>Instantaneous Compressor Electrical Power (`2166` W), Cumulative Consumed Electrical Energy (`2285` kWh), DHW Top Temperature (`8` °C).</td>
+            <td>SG-Ready / Smart Price Luxury DHW Boost (`697` / `47`) and Comfort Temperature Setpoint (`707` `0.1 °C`).</td>
+            <td>Direct Wi-Fi/Ethernet Modbus TCP integration for NIBE S-Series heat pumps: boosts thermal storage during solar surplus and cheap EPEX hours.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Stiebel Eltron / Tecalor ISG Web &amp; Plus (WPM)</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Stiebel Eltron</span>
+              
+            </td>
+            <td><code>stiebel_eltron_isg</code></td>
+            <td>
+              <span class="badge badge-modbus">MODBUS</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Modbus TCP (Default Port: 502</span>
+            </td>
+            <td>DHW Cylinder Temperature (`521` °C), Compressor &amp; DHW Pump Status (`2500`), Cumulative Electrical Energy (kWh).</td>
+            <td>SG-Ready Energy Management Enable (`4000=1`), SG-Ready State 2 / State 3 PV Boost (`4001`–`4002`), and Comfort DHW Setpoint (`1509`).</td>
+            <td>Standardized Modbus TCP SG-Ready boost and comfort temperature control for Stiebel Eltron and Tecalor heat pumps.</td>
+          </tr>
+          
+          <tr>
+            <td>
+              <strong>Tasmota Smart Plug / DIN Power Relay</strong><br>
+              <span style="font-size: 7.2pt; color: #64748b;">Tasmota</span>
+              
+            </td>
+            <td><code>tasmota_relay</code></td>
+            <td>
+              <span class="badge badge-rest">REST / HTTP</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Local HTTP Command API (`/cm?cmnd=Power%20On|Off` &amp; `/cm?cmnd=Status%208`)</span>
+            </td>
+            <td>Active Load Power (W), Cumulative Energy (kWh), Supply Voltage (V), Load Current (A).</td>
+            <td>Relay Channel Output State (`Power{1..8} On` / `Off` with hysteresis protection).</td>
+            <td>100% local cloud-free switching and power metering for resistive water heaters, pool pumps, e-bike chargers, and auxiliary relays.</td>
+          </tr>
+          
         </tbody>
       </table>
     </div>
     
 
-  <!-- Section 4: Detailed Hardware Specification (All 140 Devices) -->
+  <!-- Section 4: Detailed Hardware Specification (All 164 Devices) -->
   <div class="page-break"></div>
-  <h1 class="section-title">4. Detailed Hardware Specification by Category (All 140 Devices)</h1>
+  <h1 class="section-title">4. Detailed Hardware Specification by Category (All 164 Devices)</h1>
   <p>
     This section provides the complete technical breakdown for every single native hardware template supported by GEMS, detailing hardware models, connection interfaces, readable telemetry, controllable setpoints, and practical automation roles.
   </p>
@@ -3030,7 +3414,7 @@
   
     
     <h2 class="subsection-title" style="font-size: 13pt; border-bottom: 2px solid #0284c7; padding-bottom: 4px; margin-top: 16px;">
-      ☀️ Category 1: Solar & Hybrid Inverters (32 Native Templates)
+      ☀️ Category 1: Solar & Hybrid Inverters (36 Native Templates)
     </h2>
     <p>Inverter templates interface via Modbus TCP (SunSpec or vendor-specific registers) or local HTTP REST APIs. They continuously report photovoltaic (PV) generation, battery charge/discharge wattage, state of charge (SOC %), and grid flow. Advanced units support real-time active power curtailment for negative spot price protection and battery force-charge/discharge commands for day-ahead spot arbitrage.</p>
 
@@ -3061,11 +3445,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry poller (Inverter operates autonomously under internal self-consumption rules).</p>
+          <p>EMS Energy Mode &amp; Forced Charge/Discharge Power Setpoints (Holding `3000`/`3002`), plus Active Power Derating Limit (`0–100%`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Telemetry ingestion into GEMS real-time flow chart; monitors PV generation and battery SOC for site-wide self-consumption calculation; uses grid import/export metrics to guide EV charging current setpoints and domestic load balancing.</p>
+          <p>Closed-loop hybrid management for Afore AF-S and AF-T inverters: dynamically charges/discharges storage for Flanders capacity peak shaving and EPEX spot arbitrage while curtailing PV export during negative price windows.</p>
         </div>
       </div>
     </div>
@@ -3096,11 +3480,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry poller (internal Alpha ESS EMS manages battery charging cycles).</p>
+          <p>Dispatch Mode Control (`0x084F`), Active Power Offset Setpoint (`0x0850`–`0x0851` with 32000 W bias), Dispatch SOC Target, and Grid Feed-In Power Limit.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Streams real-time solar generation and battery status to the interactive dashboard; coordinates with external EV chargers to throttle charging speed when home battery is low or household demand spikes.</p>
+          <p>Full closed-loop Alpha ESS Storion SMILE control: dispatches exact wattage charge/discharge setpoints for EPEX Day-Ahead arbitrage and Flemish capacity ceiling protection, plus active solar curtailment.</p>
         </div>
       </div>
     </div>
@@ -3131,11 +3515,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry integration.</p>
+          <p>Anker SOLIX X1 EMS Operating Mode and Forced Charge/Discharge Power Setpoints (W), plus Active Power Export Curtailment.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Provides full 3-phase electrical telemetry (currents &amp; voltages) to detect phase imbalance; feeds real-time PV generation and battery SOC into GEMS for dynamic EV surplus charging and Flanders peak forecasting.</p>
+          <p>Closed-loop residential 3-phase hybrid control for Anker SOLIX X1: executes automated battery peak shaving, off-peak spot charging, and negative-price solar curtailment.</p>
         </div>
       </div>
     </div>
@@ -3166,11 +3550,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry poller.</p>
+          <p>Time-of-Use Grid Charge &amp; Discharge Power Setpoints, Minimum/Target SOC Windows, and Dynamic Max Solar Sell Power Limit (Holding `143` / `340`, LV &amp; HV auto-scaled).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Displays instantaneous solar and battery flow on dashboard; provides grid import/export signals to modulate connected EV chargers and smart relays; tracks battery SOC to prevent grid draw during high-price hours.</p>
+          <p>Full closed-loop control for Deye and Sunsynk LV/HV hybrid inverters: executes sub-second Flemish capacity peak shaving, Day-Ahead EPEX battery arbitrage, and zero-export / negative-price curtailment.</p>
         </div>
       </div>
     </div>
@@ -3236,11 +3620,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only local REST polling.</p>
+          <p>Local Enphase IQ Gateway HTTPS Bearer JWT dynamic power-export limiting and IQ Battery storage mode dispatch.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Integrates Enphase microinverter systems and IQ batteries into GEMS; monitors real-time solar generation at sub-second speeds for zero-cloud solar tracking; optimizes external EV charging setpoints based on Enphase net production.</p>
+          <p>Local-first integration with Enphase IQ Gateway Metered and IQ Batteries: streams production/consumption/storage metrics and coordinates negative-price export limiting.</p>
         </div>
       </div>
     </div>
@@ -3271,11 +3655,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry integration.</p>
+          <p>FoxESS Work Mode (`41000` / `44000`), Remote EMS Power Setpoints (W), Min SOC Floor, and Active Export Power Limit.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Provides real-time battery and PV telemetry; triggers smart relay boiler boosts when FoxESS exports exceed user thresholds; coordinates with GEMS Flanders capacity tariff engine to prevent grid peak spikes.</p>
+          <p>Full closed-loop control across FoxESS H1, H3, and H3-Pro hybrid series: dispatches forced battery charging/discharging for spot arbitrage and capacity peak shaving alongside active solar curtailment.</p>
         </div>
       </div>
     </div>
@@ -3306,11 +3690,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>SunSpec read-only telemetry poller.</p>
+          <p>SunSpec Model 123 Active Power Limit (`WMaxLimPct` single-register FC06) and SunSpec Model 124 Storage Charge/Discharge Control (`StorCtl_Mod`, `OutWRte`, `InWRte`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Reads Fronius SunSpec standard model registers; visualizes real-time power distribution; synchronizes with Fronius Wattpilot or external chargers for automated Eco solar surplus EV charging.</p>
+          <p>Full closed-loop Fronius Symo / Primo / Gen24 Plus control: regulates BYD Battery-Box HVS/HVM charge/discharge rates for spot arbitrage and peak shaving, and curtails PV output during negative market prices.</p>
         </div>
       </div>
     </div>
@@ -3323,7 +3707,7 @@
           <span class="device-template-code">goodwe_inverter</span>
         </div>
         <div class="device-tags">
-          <span class="badge" style="background: #fef3c7; color: #b45309;">EXPERIMENTAL &bull; MONITOR ONLY</span>
+          
           <span class="badge badge-modbus">MODBUS</span>
         </div>
       </div>
@@ -3341,11 +3725,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry poller.</p>
+          <p>GoodWe ET/EH/BT/BH EMS Power Mode (`47511` modes `1`/`2`/`8`/`9`), EMS Power Setpoint (`47512` W), and Grid Export Power Limit Enable &amp; Value (`47509`–`47510`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Monitors hybrid power exchange; displays battery SOC and solar generation; informs the GEMS strategy engine on available surplus to ramp up EV chargers from 6A to 32A.</p>
+          <p>Verified closed-loop hybrid control for GoodWe ET/EH/BT/BH inverters: executes automated battery peak shaving, Day-Ahead spot arbitrage, and dynamic PV export curtailment.</p>
         </div>
       </div>
     </div>
@@ -3376,11 +3760,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry poller.</p>
+          <p>Growatt SPH / MOD TL3-XH Priority Mode (`1044` / `3049`), Charge/Discharge Rate &amp; Stop SOC (`1070`–`1092`), and Active Power Rate / Export Limit (`3`, `122`–`123`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Ingests high-frequency solar and battery telemetry; enables automated domestic self-consumption prioritization; prevents grid export overshoots in capacity-constrained networks.</p>
+          <p>Verified closed-loop control for Growatt SPH and MOD hybrid/string inverters: manages forced battery charging, peak discharge, and negative spot price PV curtailment.</p>
         </div>
       </div>
     </div>
@@ -3446,11 +3830,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only local REST telemetry.</p>
+          <p>Local LG ESS Home `/v1/user/setting/batt` forced-charge / self-consumption control and PCS power curtailment.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Streams local LG ESS metrics without cloud latency; feeds live battery SOC into GEMS; guides EV charging and relay automation according to solar availability.</p>
+          <p>Local zero-cloud HTTPS integration for LG ESS Home 8 / 10 / 15 systems with automated off-peak battery charging and grid flow balancing.</p>
         </div>
       </div>
     </div>
@@ -3481,11 +3865,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry poller.</p>
+          <p>Marstek Venus C / E / Jupiter Passive Mode Enable (`42000 = 0x55AA`), Direction Control (`42010`), and Exact Charge/Discharge Watt Setpoints (`42020`–`42021`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Monitors residential AC-coupled and hybrid storage; enables homeowners to visualize battery cycles; provides real-time state for surplus energy management.</p>
+          <p>Full closed-loop AC-coupled storage control for Marstek Venus C/E and Jupiter batteries: absorbs excess rooftop solar, shaves domestic capacity peaks, and executes Day-Ahead spot arbitrage.</p>
         </div>
       </div>
     </div>
@@ -3516,11 +3900,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry poller.</p>
+          <p>SAJ H1 / H2 / R5 / R6 AppMode / Passive Charge &amp; Discharge Wattage Setpoints and Active Power Derating Limit (`0.1%`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Provides 3-phase currents and solar metrics; coordinates domestic loads to absorb SAJ solar generation; logs production history to SQLite.</p>
+          <p>Closed-loop hybrid management for SAJ H1/H2 systems: coordinates 3-phase PV curtailment, forced off-peak battery charging, and peak demand shaving.</p>
         </div>
       </div>
     </div>
@@ -3551,11 +3935,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Active Power Curtailment Limit (W or % via Speedwire/SunSpec register 40016 / 40023).</p>
+          <p>SMA Active Power Limit (`WModCfg` / `WMaxLimPct`) and Bidirectional Battery Control across both Sunny Island / Sunny Boy Storage (`40151=802`, `40149`) and Sunny Tripower Smart Energy (`40236`, `40793`–`40801`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Full active curtailment support: throttles SMA active generation when negative export pricing triggers; provides comprehensive 3-phase electrical telemetry for fuse overload detection and phase balancing.</p>
+          <p>Complete closed-loop solar curtailment and battery arbitrage across SMA Sunny Boy, Sunny Tripower, Sunny Tripower Smart Energy (STP-SE), and Sunny Boy Storage.</p>
         </div>
       </div>
     </div>
@@ -3586,11 +3970,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry poller.</p>
+          <p>Senergy SE Hybrid Passive Mode Charge/Discharge Power Setpoints (W) and Active Power Output Limit (%).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Integrates Senergy hybrid systems; surfaces real-time generation on the dashboard; balances home consumption to minimize grid import.</p>
+          <p>Closed-loop control for Senergy hybrid inverters: automates battery peak shaving, off-peak charging, and negative-price PV curtailment.</p>
         </div>
       </div>
     </div>
@@ -3621,11 +4005,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry poller (autonomous SigenStor AI system).</p>
+          <p>SigenStor Remote EMS Enable (`40029`), Operating Mode (`40031`), Max Charge/Discharge Power Setpoints (`40032`–`40034` U32 W), and PV Curtailment Limit (`40038`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Reads high-precision telemetry across all 3 phases; displays 5-in-1 energy flows; integrates with GEMS site-wide strategy to coordinate external third-party EV chargers and relays.</p>
+          <p>High-precision closed-loop EMS control for Sigenergy SigenStor 5-in-1 energy systems: executes sub-second capacity peak shaving, EPEX spot arbitrage, and PV export curtailment.</p>
         </div>
       </div>
     </div>
@@ -3656,11 +4040,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry poller.</p>
+          <p>SofarSolar HYD 5K–20KTL-3PH Passive Storage Setpoints (`0x1187` mode, `0x1189`–`0x118D` signed S32 W) and Active Power / Anti-Reflux Export Limit.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Collects 3-phase currents and battery SOC; feeds data into the GEMS control loop to orchestrate EV charging speeds and SG-ready heat pump activation.</p>
+          <p>Verified closed-loop control for SofarSolar HYD 3PH G3 and ME3000SP hybrid systems: regulates battery charge/discharge wattage and solar curtailment.</p>
         </div>
       </div>
     </div>
@@ -3691,11 +4075,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry poller.</p>
+          <p>SolaX X1/X3-Hybrid G4 Remote Control Power Mode (`0x007C`–`0x0080`, exact active power target W + watchdog) with `0x001F` Manual Mode fallback, plus Export Control User Limit (`0x0042`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Streams real-time solar generation and battery status; enables solar-only EV charging modes; monitors battery reserve levels.</p>
+          <p>Verified sub-second closed-loop control for SolaX X1/X3-Hybrid and Fit systems: executes dynamic solar self-consumption, spot-price arbitrage, and PV curtailment.</p>
         </div>
       </div>
     </div>
@@ -3726,11 +4110,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>SunSpec read-only telemetry poller.</p>
+          <p>SolarEdge StorEdge Control Mode `4` (Remote), Charge/Discharge Limit (`0xE00E`/`0xE010` float32 W), Mode Command (`0xE00D`), and Advanced Power Control (`0xF001` / SunSpec M123).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Reads standard SunSpec Modbus registers on port 1502; calculates instant solar surplus across 3 phases; coordinates with chargers to balance load across L1, L2, L3.</p>
+          <p>Full closed-loop 3-phase SolarEdge Home Hub &amp; StorEdge control: modulates home battery charge/discharge wattage and curtails PV generation during negative spot prices.</p>
         </div>
       </div>
     </div>
@@ -3761,11 +4145,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>SunSpec read-only telemetry poller.</p>
+          <p>SolarEdge StorEdge Control Mode `4` (Remote), Charge/Discharge Limit (`0xE00E`/`0xE010` float32 W), Mode Command (`0xE00D`), and Advanced Power Control (`0xF001` / SunSpec M123).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Captures 1-phase solar and battery telemetry; updates interactive dashboard; guides dynamic solar surplus redirection into hot water or EV charging.</p>
+          <p>Full closed-loop 1-phase SolarEdge HD-Wave &amp; Home Hub control: regulates StorEdge / Home Battery charge and discharge setpoints and curtails solar production when required.</p>
         </div>
       </div>
     </div>
@@ -3831,11 +4215,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry poller.</p>
+          <p>Sungrow SH-RS / SH-RT / SH-T EMS Mode Selection (`13049`), Charge/Discharge Command (`13050` `0xAA`/`0xBB`/`0xCC`), Power Setpoint (`13051` W), and Active Power Limitation (`5006`–`5007`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>High-speed 1-second telemetry polling via internal LAN port; animates real-time power flow; provides baseline data for Flanders capacity tariff peak prediction.</p>
+          <p>Verified high-speed closed-loop control for Sungrow SH hybrid and SG string inverters: executes sub-second peak shaving, EPEX battery arbitrage, and PV curtailment.</p>
         </div>
       </div>
     </div>
@@ -3866,11 +4250,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry poller (Venus OS handles ESS battery regulation).</p>
+          <p>Victron Venus OS / Cerbo GX ESS Grid Power Setpoint (`2700` S16 / `2703` S32 W), ESS Discharge Disable, and Signed Max PV Feed-In Power Limit (`2706` in 100 W steps).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Deep integration with Victron Venus OS: reads consolidated system telemetry from Cerbo GX; tracks battery SOC and grid power to orchestrate external EV chargers and heat pump relays.</p>
+          <p>Deep closed-loop integration with Victron MultiPlus-II / Quattro GX ESS installations: steers AC grid setpoint for battery arbitrage/peak shaving and curtails excess feed-in.</p>
         </div>
       </div>
     </div>
@@ -3901,11 +4285,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Autonomous / Read-Only telemetry poller (inverter self-manages domestic self-consumption).</p>
+          <p>SunSpec Model 123 Active Power Curtailment (`WMaxLimPct`, `WMaxLim_Ena`) and SunSpec Model 124 Storage Charge/Discharge Rate Control (`StorCtl_Mod`, `OutWRte`, `InWRte`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Monitors real-time solar generation and battery state over SunSpec Modbus; drives the interactive live dashboard and guides EV charging throttling and peak shaving.</p>
+          <p>Full closed-loop SunSpec control for ABB / Fimer PV and REACT 2 hybrid installations: executes negative spot price solar curtailment, zero-export limiting, and automated battery peak shaving and Day-Ahead spot arbitrage.</p>
         </div>
       </div>
     </div>
@@ -3936,11 +4320,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Autonomous / Read-Only telemetry poller.</p>
+          <p>Remote Control Battery Charge/Discharge Power Setpoints (`43135`–`43136`) and Active Power Curtailment Limit (`43052` / `0–100%`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Integrates real-time solar PV generation into the site energy balance, feeding solar excess automation for EV chargers and domestic heat pumps.</p>
+          <p>Full closed-loop hybrid inverter and PV curtailment control for Autarco S2.x / MH / LX systems: coordinates solar self-consumption, spot-price battery arbitrage, and Flemish capacity peak shaving.</p>
         </div>
       </div>
     </div>
@@ -4006,11 +4390,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Autonomous / Read-Only telemetry poller.</p>
+          <p>SunSpec Model 123 Active Power Curtailment (`WMaxLimPct`, `WMaxLim_Ena`) and SunSpec Model 124 Basic Storage Control.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Reads standardized SunSpec solar generation telemetry to optimize self-consumption and prevent capacity tariff overshoots.</p>
+          <p>Standardized SunSpec closed-loop telemetry and active power curtailment for Delta residential and commercial solar/hybrid inverters.</p>
         </div>
       </div>
     </div>
@@ -4111,11 +4495,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Monitor-Only (Read-Only Telemetry — closed register control map).</p>
+          <p>Solinteg Integ M series Remote EMS Mode, Charge/Discharge Power Setpoints, and Active Power Limit.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Streams Solinteg Integ M hybrid solar and battery telemetry into GEMS live load balancing.</p>
+          <p>Verified closed-loop 3-phase high-voltage hybrid control for Solinteg Integ M (4–50 kW) commercial and residential inverters.</p>
         </div>
       </div>
     </div>
@@ -4146,11 +4530,151 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Autonomous / Read-Only telemetry poller.</p>
+          <p>AISWEI / Solplanet Battery Working Mode (`1103` wire / `41104` doc), Signed Charge/Discharge Power Setpoint (`1152` wire S16 W), and Active Power Control (`4000` / `5402` `0.01%`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Continuous solar generation telemetry streaming to the live dashboard and smart relay triggers.</p>
+          <p>Verified closed-loop control for Solplanet ASW H-T2/T3 and KACO blueplanet hybrid NH3 inverters: dispatches exact Watt storage setpoints and dynamic PV curtailment.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">1.33</span>
+          <span class="device-name">APsystems EZ1-M / EZ1-D Local Microinverter</span>
+          <span class="device-template-code">apsystems_ez1</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-rest">REST / HTTP</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> APsystems</div>
+        <div><strong>Communication Interface:</strong> Local HTTP JSON API (Default Port: 8050, Endpoints: `/getOutputData`, `/setMaxPower`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> APsystems EZ1-M, EZ1-D Wi-Fi Balcony &amp; Rooftop Microinverters (Local Mode)</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Channel 1 &amp; Channel 2 PV Active Power (W), Lifetime Cumulative Generation Energy (kWh).</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>Direct Local Max AC Output Power Setpoint (`/setMaxPower?p=30..800` W).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>100% cloud-free local microinverter telemetry and stepless active power curtailment during negative EPEX spot prices or zero-export operation.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">1.34</span>
+          <span class="device-name">FENECON Home / OpenEMS Edge (FEMS)</span>
+          <span class="device-template-code">fenecon_fems</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-rest">REST / HTTP</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> FENECON</div>
+        <div><strong>Communication Interface:</strong> Local HTTP REST API (Default Port: 8084, `/rest/channel/_sum/*` &amp; `/rest/channel/ess0/*`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> FENECON Home 6, Home 10, Home 15, Home 20, Home 30 &amp; OpenEMS Edge Controllers</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Solar PV Production Power (W), Cumulative PV Energy (kWh), Battery Charge/Discharge Power (W), Battery SOC (%), Grid Active Power (W).</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>Exact ESS Charge / Discharge Active Power Setpoint (`ess0/SetActivePowerEquals` W) and PV Active Power Curtailment (`pvInverter0/SetActivePowerLimit` W).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Full closed-loop local integration for FENECON Home &amp; OpenEMS systems: coordinates EPEX Day-Ahead battery arbitrage, Flemish capacity ceiling peak shaving, and negative-price curtailment.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">1.35</span>
+          <span class="device-name">Hoymiles DTU-Pro / OpenDTU Microinverter</span>
+          <span class="device-template-code">hoymiles_dtu</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-rest">REST / HTTP</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> Hoymiles</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP (Default Port: 502, Unit ID: 1) or Local OpenDTU HTTP REST (`/api/livedata/status`, `/api/limit/config`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Hoymiles HM / HMS / HMT Series Microinverters via DTU-Pro, DTU-Pro-S, OpenDTU, or AhoyDTU</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Aggregated &amp; Per-Port Solar PV Active Power (W), Cumulative Solar Yield (kWh).</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>Active Power Output Limit (`0xC006` % on DTU-Pro Modbus; volatile RAM `limit_type=1` % on OpenDTU without EEPROM wear).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Zero-cloud microinverter monitoring and dynamic PV curtailment during negative spot market hours.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">1.36</span>
+          <span class="device-name">KOSTAL Plenticore Plus / G2 / G3 Hybrid</span>
+          <span class="device-template-code">kostal_plenticore</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-modbus">MODBUS</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> KOSTAL</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP (Default Port: 1502, Unit ID: 71, Auto-detected CDAB/ABCD IEEE-754 Float32)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> KOSTAL Plenticore Plus, Plenticore BI, Plenticore G2, and Plenticore G3 Hybrid Inverters</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Total DC PV Power (W), Cumulative Yield (kWh), Battery Charge/Discharge Power (W), Battery SOC (%), Grid Sensor Power (W), 3-Phase Voltages &amp; Currents.</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>External Battery Management Signed Power Setpoint (Holding `1034` Float32 W) and SunSpec Model 123 Active Power Curtailment (`WMaxLimPct`).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Full closed-loop control for KOSTAL Plenticore hybrid installations: executes battery peak shaving, Day-Ahead spot arbitrage, and negative-price solar curtailment.</p>
         </div>
       </div>
     </div>
@@ -4158,7 +4682,7 @@
     
     <div class="page-break"></div>
     <h2 class="subsection-title" style="font-size: 13pt; border-bottom: 2px solid #0284c7; padding-bottom: 4px; margin-top: 22px;">
-      🔋 Category 2: Dedicated Battery Energy Storage Systems (BESS) (13 Native Templates)
+      🔋 Category 2: Dedicated Battery Energy Storage Systems (BESS) (17 Native Templates)
     </h2>
     <p>Dedicated BESS integrations interface directly with stationary battery controllers and BMS gateways over Modbus TCP or local LAN APIs. They provide deep pack telemetry (SOC %, voltage, cell temperature, power flow) and support dynamic power limits, scheduled force-charging during cheap/negative hours, and autonomous peak shaving for commercial and residential tariffs.</p>
 
@@ -4189,11 +4713,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only telemetry poller.</p>
+          <p>Siemens Junelight Smart Battery EMS Operating Mode and Forced Charge/Discharge Power Setpoints (W).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Displays Junelight battery storage on the dashboard node; monitors SOC and power flow to optimize solar self-consumption and prevent high grid imports.</p>
+          <p>Verified integration with Siemens Junelight residential storage for solar self-consumption, peak shaving, and off-peak charging.</p>
         </div>
       </div>
     </div>
@@ -4224,11 +4748,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only REST telemetry.</p>
+          <p>Solarwatt EnergyManager / Reserve local `/rest/items` battery charge/discharge control and telemetry ingestion.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Local zero-cloud polling of Solarwatt EnergyManager; tracks battery storage metrics; dynamically modulates EV charging speeds based on remaining battery capacity.</p>
+          <p>Verified zero-cloud local LAN integration for Solarwatt EnergyManager Pro and MyReserve / Battery flex storage.</p>
         </div>
       </div>
     </div>
@@ -4259,11 +4783,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Force Charge / Discharge Power Setpoints via Sonnen Local REST API v2 (when API Auth Token is configured).</p>
+          <p>sonnenBatterie Local API v2 `PUT /api/v2/configurations` (`EM_OperatingMode=1` Manual / `2` Self-Consumption) and `POST /api/v2/setpoint/charge|discharge/{W}`.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Polls sonnen local REST API v2 every 1 second; visualizes sonnen storage node on the live flow chart and executes peak shaving and spot-price arbitrage when authorized.</p>
+          <p>Complete closed-loop control for sonnenBatterie eco 8 / 10 / performance: switches cleanly into Manual API mode during forced arbitrage or peak shaving and restores autonomous self-consumption afterward.</p>
         </div>
       </div>
     </div>
@@ -4329,11 +4853,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Monitor-Only (Read-Only Telemetry).</p>
+          <p>Dyness Tower / Powerbox / Junior Box Modbus EMS Operating Mode and Charge/Discharge Power Limits (W).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Integrates low-voltage and high-voltage Dyness battery bank BMS telemetry directly into the live flow chart and dashboard.</p>
+          <p>Verified BMS &amp; PCS storage integration for Dyness HV/LV battery stacks with closed-loop charge/discharge dispatch.</p>
         </div>
       </div>
     </div>
@@ -4539,11 +5063,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Monitor-Only (Read-Only Telemetry).</p>
+          <p>Pylontech US2000/US3000/US5000 &amp; Force-H1/H2 BMS/EMS Charge and Discharge Power Setpoints via Modbus TCP/RTU.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Reads direct Pylontech BMS status and telemetry into GEMS to accurately reflect battery storage levels on the hero flow chart.</p>
+          <p>Verified closed-loop telemetry and dispatch for Pylontech low-voltage and high-voltage stationary storage racks.</p>
         </div>
       </div>
     </div>
@@ -4618,10 +5142,150 @@
       </div>
     </div>
     
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">2.14</span>
+          <span class="device-name">Sessy Smart Battery (AC Home Storage)</span>
+          <span class="device-template-code">sessy_battery</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-rest">REST / HTTP</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> Sessy</div>
+        <div><strong>Communication Interface:</strong> Local HTTP REST API with Basic Auth (`/api/v1/power/status`, `/api/v1/power/active_strategy`, `/api/v1/power/setpoint`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Sessy 5 kWh Modular AC-Coupled Retrofit Home Battery</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Battery Charge/Discharge Power (W), State of Charge (SOC %), Exported Energy (kWh), Per-Phase RMS Voltages (V) &amp; Currents (A).</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>Dynamic Strategy Selection (`POWER_STRATEGY_API` vs `POWER_STRATEGY_NOM`) and Signed Watt Setpoint (`-W` Charge / `+W` Discharge).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Zero-cloud local control of Dutch-engineered Sessy retrofit batteries for solar self-consumption, Flanders capacity peak shaving, and EPEX spot arbitrage.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">2.15</span>
+          <span class="device-name">Tesla Powerwall 2 / 3 &amp; Backup Gateway (Local HTTPS)</span>
+          <span class="device-template-code">tesla_powerwall</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-rest">REST / HTTP</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> Tesla Energy</div>
+        <div><strong>Communication Interface:</strong> Local HTTPS Gateway API (`POST /api/login/Basic`, `GET /api/meters/aggregates`, `GET /api/system_status/soe`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Tesla Powerwall 2, Powerwall+, Powerwall 3 &amp; Backup Gateway 2 (Stationary Home Storage)</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Battery Power (W), Usable State of Energy (SOC %), Site Grid Power (W), Solar Power (W), Cumulative Energy (kWh), 3-Phase Site Currents &amp; Voltage.</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>Monitor-Only (Local Gateway v23+ firmware enforces read-only local telemetry).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>High-speed local HTTPS ingestion of stationary Powerwall site, solar, and battery flows to drive EV charging surplus regulation and capacity peak protection.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">2.16</span>
+          <span class="device-name">VARTA pulse / neo / element Home Storage</span>
+          <span class="device-template-code">varta_storage</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-modbus">MODBUS</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> VARTA</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP (Default Port: 502, Unit ID: 255, Holding Registers `1066`–`1102` &amp; `2065`–`2066`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> VARTA pulse, VARTA pulse neo, VARTA element, VARTA element backup, VARTA link</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Battery Charge/Discharge Power (W), Battery SOC (%), Cumulative Charged Energy (kWh), Grid Sensor Power (W), Attached PV Sensor Power (W).</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>VARTA EMS Active Power Control (`2065` Command: Charge/Discharge/Auto, `2066` Power W; fallback `1074`).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Closed-loop local Modbus TCP control for VARTA AC-coupled storage systems: automates off-peak spot charging and household peak shaving.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">2.17</span>
+          <span class="device-name">Zendure SolarFlow AC / Hyper 2000</span>
+          <span class="device-template-code">zendure_solarflow</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-rest">REST / HTTP</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> Zendure</div>
+        <div><strong>Communication Interface:</strong> Local HTTP JSON API (`GET /properties/report`, `POST /properties/write`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Zendure Hyper 2000, SolarFlow 800, SolarFlow AB1000/AB2000, SolarFlow 2400 AC</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Solar Input Power (W), Battery Pack Charge &amp; Discharge Power (W), State of Charge (`electricLevel` %).</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>Smart AC Mode (`acMode` Charge/Discharge) and Stepless `inputLimit` / `outputLimit` Watt Setpoints (`0–2400 W`).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>100% local zero-cloud control for plug-in and AC-coupled Zendure storage: absorbs surplus PV and discharges to cover household evening peaks.</p>
+        </div>
+      </div>
+    </div>
+    
     
     <div class="page-break"></div>
     <h2 class="subsection-title" style="font-size: 13pt; border-bottom: 2px solid #0284c7; padding-bottom: 4px; margin-top: 22px;">
-      ⚡ Category 3: EV Charging Stations & Wallboxes (53 Native Templates)
+      ⚡ Category 3: EV Charging Stations & Wallboxes (60 Native Templates)
     </h2>
     <p>EVSE integrations communicate via native local OCPP 1.6-J over WebSockets, high-speed Modbus TCP/RTU, or local REST APIs. They receive dynamic charge current setpoints (throttling 6A to 32A) calculated every second by the GEMS control loop. Supported multi-contactor units also feature opt-in 1-phase to 3-phase switching with a mandatory 20-second anti-welding cooldown.</p>
 
@@ -4792,11 +5456,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Dynamic Charging Current Setpoint (Amps, 6A to 32A in 0.1A steps), Phase Switching (1P / 3P).</p>
+          <p>Modbus Slave Max Current (`1210` IEEE-754 Float32 Amps with station watchdog) and Contactor Phase Switching (`1215`: `1` = 1-Phase, `3` = 3-Phase).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Preferred Modbus TCP integration: sub-second throttling for Flemish capacity tariff compliance and 100% solar surplus charging; allows employer CPO billing backends to operate concurrently over OCPP without interference.</p>
+          <p>Preferred Benelux Modbus TCP integration for Alfen Eve Single &amp; Double Pro-line: sub-second solar surplus tracking, main fuse protection, and automated 1P/3P switching.</p>
         </div>
       </div>
     </div>
@@ -4897,11 +5561,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Dynamic Charging Current Setpoint (Amps, 6A to 32A).</p>
+          <p>Bender CC612 / CC613 HEMSw Limit (`1001` 0.1 A on FW &gt;= 4.70, fallback `1000` 1 A) and Dynamic 1-Phase / 3-Phase Switching (`1002`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Direct Modbus control over the Bender charge controller; instantaneous load throttling to protect home fuses and match PV production.</p>
+          <p>Direct local Modbus TCP control for Bender CC612/CC613 controllers (EBEE, Compleo, Mennekes OEMs) with sub-amp throttling and 1P/3P solar switching.</p>
         </div>
       </div>
     </div>
@@ -5107,11 +5771,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Charging Current Setpoint (Amps, 6A to 32A via Cloud API).</p>
+          <p>Easee API dynamic circuit/charger current (6–32 A), session `pause_charging` / `resume_charging`, and automatic `phaseMode` 1-Phase / 3-Phase switching.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Cloud-based setpoint dispatch for installations where local network access is not available; adjusts current to match solar production and peak limits.</p>
+          <p>Verified smart charging control for Easee Home, Charge, and Charge Lite/Up: modulates charging amps, pauses/resumes cleanly, and switches between 1-phase and 3-phase solar modes.</p>
         </div>
       </div>
     </div>
@@ -5387,11 +6051,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Dynamic Current Setpoint (Amps, reg 5004, 6A to 32A in 1mA steps).</p>
+          <p>KEBA KeContact P30 x/c-series &amp; P40 Charging Current in milliamps (`5004`), Enable (`5014`), and KeContact S10 Phase Switching (`5050=3`, `5052=0/1`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Extremely robust Austrian industrial wallbox: allows GEMS to regulate current sub-second over Modbus TCP while KEBA x-series OCPP connects to corporate employer reimbursement backends.</p>
+          <p>High-precision 1 mA Modbus TCP control and 1P/3P phase switching for KEBA KeContact P30 and P40 installations.</p>
         </div>
       </div>
     </div>
@@ -5632,11 +6296,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Charging Current Setpoint (Amps, 6A to 32A).</p>
+          <p>Phoenix Contact CHARX SEC-3000 / EV-CC Modbus Charging Current Limit and Charge Enable Coil/Register.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Industrial standard EV charge controller; modulates current setpoint to match available solar power.</p>
+          <p>Industrial-grade local Modbus TCP load balancing and solar surplus charging for Phoenix Contact CHARX controllers.</p>
         </div>
       </div>
     </div>
@@ -6122,11 +6786,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Charging Current Throttling (Amps, 6A to 32A via Cloud API).</p>
+          <p>Wallbox API `PUT /v2/charger/{id}` dynamic amp limit (6–32 A) and `POST /v3/chargers/{id}/remote-action` (`action: 1` Resume / `2` Pause).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Controls Wallbox charging current via cloud API; adjusts speed to solar excess and off-peak hours.</p>
+          <p>Verified closed-loop current modulation and automatic session pause/resume for Wallbox Pulsar Plus, Pulsar Max, Copper SB, and Commander 2.</p>
         </div>
       </div>
     </div>
@@ -6192,11 +6856,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Charging Current Throttling (Amps, 6A to 32A via Zaptec Cloud API).</p>
+          <p>Zaptec OAuth2 `/api/chargers/{id}/update` (`maxChargeCurrent` 0.1 A, `maxChargePhases` 1/3, Go 2 `threeToOnePhaseSwitchCurrent`), plus `/sendCommand/506` (Pause) &amp; `507` (Resume).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Cloud setpoint modulation for Zaptec wallboxes; aligns charging speed with solar availability and cheap EPEX spot hours.</p>
+          <p>Verified precision control for Zaptec Go, Go 2, and Pro installations with OCMF energy decoding, pause/resume, and 1P/3P solar switching.</p>
         </div>
       </div>
     </div>
@@ -6297,11 +6961,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Monitor-Only over Modbus TCP (use OCPP 1.6-J template for active charging current control).</p>
+          <p>Native local OCPP 1.6-J `SetChargingProfile` power/current throttling with automatic Modbus TCP register `200` (`0.1 A`) fallback.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Monitors high-power C&amp;I commercial DC fast charging power and phase currents on the live GEMS dashboard.</p>
+          <p>Verified commercial fast-charging and fleet load management for Kempower Satellite and Station Chargers.</p>
         </div>
       </div>
     </div>
@@ -6332,11 +6996,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Fast / Eco / Stop Mode Switching &amp; Current Setpoint Throttling (6A to 32A).</p>
+          <p>Authenticated HTTP Digest CGI commands (`/cgi-zappi-mode-Z{sno}-{mode}-...`) with ASN redirect tracking, switching dynamically between Stop, Eco+, Eco, and Fast boost modes.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Local zero-cloud control of Zappi chargers, dynamically commanding charge rates without dependency on external cloud servers.</p>
+          <p>Verified local/hub control for myenergi Zappi v2/v2.1 wallboxes with full 3-phase telemetry, phase mode reporting, and active session throttling.</p>
         </div>
       </div>
     </div>
@@ -6367,11 +7031,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Monitor-Only over Modbus TCP (use OCPP 1.6-J template for active charging current control).</p>
+          <p>SolaX X1/X3-EVC Max Current (`0x0628` in `0.01 A` steps), Remote Mode (`0x060D=1`), Stop/Start (`0x0627`), and 1-Phase / 3-Phase Switching (`0xA105`).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Monitors SolaX EV charger active power, energy, and phase currents over Modbus TCP.</p>
+          <p>Verified native Modbus TCP/RTU closed-loop control for SolaX Smart EV Chargers with 10 mA solar tracking and 1P/3P contactor switching.</p>
         </div>
       </div>
     </div>
@@ -6437,11 +7101,11 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Monitor-Only over Modbus TCP (use OCPP 1.6-J template for active charging current control).</p>
+          <p>Volt Time / Plugchoice API v3 dynamic amp limit &amp; pause/resume with local Modbus TCP register `1020` fallback.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>Monitors Volt Time Source wallbox power, session energy, and phase currents over Modbus TCP.</p>
+          <p>Verified active load balancing and solar surplus throttling for Volt Time Source and Plugchoice EV wallboxes.</p>
         </div>
       </div>
     </div>
@@ -6481,10 +7145,255 @@
       </div>
     </div>
     
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">3.54</span>
+          <span class="device-name">cFos Power Brain Wallbox / Solar</span>
+          <span class="device-template-code">cfos_powerbrain</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-modbus">MODBUS</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> cFos</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP (Default Port: 4701, EVSE Unit ID: 1, Holding Registers `8058`–`8094`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> cFos Power Brain Wallbox 11kW / 22kW, cFos Power Brain Solar (1P/3P Relay)</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Real-Time Charging Power (W), Cumulative Imported Energy (kWh), 3-Phase Charging Currents (0.1 A), Active Phase Relay State.</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>0.1 A Charging Current Limit (`8093`), Charge Enable (`8094`), and 1-Phase / 3-Phase Contactor Switching (`8087`).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>High-precision 0.1 A solar surplus tracking, main breaker protection, and automated 1P/3P solar contactor switching.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">3.55</span>
+          <span class="device-name">FoxESS EV Charger A7300 / A011K / A022K</span>
+          <span class="device-template-code">foxess_evcharger</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-modbus">MODBUS</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> FoxESS</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP / RTU (Default Port: 502, Unit ID: 1, Holding `0x1003`–`0x1017` &amp; `0x3002`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> FoxESS A7300 (7.3 kW), A011K (11 kW), and A022K (22 kW) Smart AC Wallboxes</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Charging Power (W), Cumulative Energy (kWh), 3-Phase Currents (A), 3-Phase Voltages (V), Charger Status.</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>0.1 kW Stepped Power Limit (`0x3002`: `1.4–4.1 kW` 1-Phase band, `4.2–22.0 kW` 3-Phase band, `0` Pause) &amp; Auto Phase Switch (`0x300A`).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Seamless ecosystem companion for FoxESS hybrid inverters with fine-grained solar surplus modulation and 1P/3P switching.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">3.56</span>
+          <span class="device-name">Heidelberg Energy Control / Amperfied connect.solar</span>
+          <span class="device-template-code">heidelberg_ampere</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-modbus">MODBUS</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> Amperfied (Heidelberg)</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP (Port: 502, Unit ID: 255) &amp; Modbus RTU RS485 (19200 8E1, Unit ID: 1)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Heidelberg Energy Control, Amperfied Wallbox connect.home, connect.solar, connect.business</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Active Charging Power (W), Total Energy (kWh), 3-Phase Currents (0.1 A), 3-Phase Voltages (V), IEC Vehicle State, Active Phase Count.</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>0.1 A Charging Current Limit (Holding `261`), Standby/Lock Management (`258`–`259`), and 1-Phase / 3-Phase Switching (`501` on `connect.solar`).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Sub-second 0.1 A current modulation for Flanders capacity peak shaving and seamless 1P/3P solar charging.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">3.57</span>
+          <span class="device-name">openWB Pro / openWB series2 (HTTP &amp; Modbus)</span>
+          <span class="device-template-code">openwb_pro</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-rest">REST / HTTP</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> openWB</div>
+        <div><strong>Communication Interface:</strong> Local HTTP JSON/Form API (`/connect.php`) and openWB 2.0 Modbus TCP (Port: 1502, Unit ID: 1)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> openWB Pro, openWB series2 standard+, custom, duo (2.0 Modbus TCP &amp; Pro HTTP)</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Real-Time Charging Power (W), Imported Energy (kWh), 3-Phase Currents (A), 3-Phase Voltages (V), Plug &amp; Charge State, Active Phases.</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>0.1 A / 0.01 A Dynamic Current Limit (`ampere` / Holding `10171`) and Automated 1-Phase / 3-Phase Contactor Switching (`phasetarget` / `10180`).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Ultra-fine 10–100 mA solar surplus tracking and hardware 1P/3P phase switching with zero cloud dependency.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">3.58</span>
+          <span class="device-name">Sungrow AC011E-01 / AC22E-01 EV Charger</span>
+          <span class="device-template-code">sungrow_evcharger</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-modbus">MODBUS</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> Sungrow</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP / RTU (Default Port: 502, Default Unit ID: 248, Input `21269`–`21316` &amp; Holding `21202`–`21211`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Sungrow AC011E-01 (11 kW) and AC22E-01 (22 kW) 3-Phase Smart Wallboxes</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Active Charging Power (W), Cumulative Energy (kWh), 3-Phase Currents (0.1 A), 3-Phase Voltages (0.1 V), Phase Switch Status.</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>0.1 A Output Current Limit (`21202`), Start/Stop Control (`21211`), and 1-Phase / 3-Phase Switching (`21203`).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Direct local Modbus companion for Sungrow SH/SG installations with 0.1 A surplus regulation and 1P/3P switching.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">3.59</span>
+          <span class="device-name">Tinkerforge WARP Charger 2 / 3 (Smart &amp; Pro)</span>
+          <span class="device-template-code">warp_charger</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-rest">REST / HTTP</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> Tinkerforge</div>
+        <div><strong>Communication Interface:</strong> Local HTTP REST API (`/evse/state`, `/meter/values`, `/evse/external_current`, `/power_manager/external_control`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Tinkerforge WARP Charger 2 Smart/Pro &amp; WARP Charger 3 Smart/Pro (11 kW / 22 kW)</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Active Charging Power (W), Absolute Energy (kWh), 3-Phase Currents (A), 3-Phase Voltages (V), IEC 61851 State, 1P/3P Contactor State.</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>1 mA Resolution External Current Limit (`6000–32000 mA`, `0` Pause) and WARP3 1-Phase / 3-Phase Contactor Switching (`phases_wanted`).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Industrial open-interface wallbox integration with 1 mA precision solar tracking and automated 1P/3P contactor control.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">3.60</span>
+          <span class="device-name">Vestel EVC04 Home Smart / Mobility</span>
+          <span class="device-template-code">vestel_evc04</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-modbus">MODBUS</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> Vestel</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP (Default Port: 502, Default Unit ID: 255, Lifebit Watchdog `6000=1`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Vestel EVC04-AC11 / EVC04-AC22 Home Smart, Mobility, and Compatible OEM Wallboxes</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Total Active Power (W), Cumulative Energy (kWh), 3-Phase Currents (mA), 3-Phase Voltages (V), Chargepoint &amp; Cable State.</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>Dynamic Charging Current Limit (`5004`, `0` or `6–32 A`), Fail-Safe Watchdog (`6000`), and 1-Phase / 3-Phase Switching (`405`).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Reliable local Modbus TCP load balancing, main fuse protection, and 1P/3P solar switching for Vestel EVC04 wallboxes.</p>
+        </div>
+      </div>
+    </div>
+    
     
     <div class="page-break"></div>
     <h2 class="subsection-title" style="font-size: 13pt; border-bottom: 2px solid #0284c7; padding-bottom: 4px; margin-top: 22px;">
-      📊 Category 4: Grid Smart Meters & Energy Analyzers (36 Native Templates)
+      📊 Category 4: Grid Smart Meters & Energy Analyzers (40 Native Templates)
     </h2>
     <p>Smart meter templates interface directly via P1 port serial (RJ12 cable at 115200 baud), network P1 bridges, or RS485/Modbus TCP meters. They supply net grid import/export power (W), lifetime energy totals (kWh), per-phase currents (L1, L2, L3), per-phase voltages, and the official 15-minute rolling average peak demand register required for Flemish capacity tariff calculations.</p>
 
@@ -7749,10 +8658,150 @@
       </div>
     </div>
     
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">4.37</span>
+          <span class="device-name">Fronius Smart Meter IP / Solar API v1</span>
+          <span class="device-template-code">fronius_smartmeter_ip</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-rest">REST / HTTP</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> Fronius</div>
+        <div><strong>Communication Interface:</strong> Local HTTP Fronius Solar API v1 (`GET /solar_api/v1/GetMeterRealtimeData.cgi?Scope=Device&amp;DeviceId=0`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Fronius Smart Meter IP, TS 65A-3, TS 5kA-3, TS 100A-1 (Direct IP or via Fronius Inverter)</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Signed Net Grid Power (W), Total Imported &amp; Exported Energy (kWh), Signed Per-Phase Currents (L1, L2, L3 in Amps), Phase Voltages (V).</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>Autonomous / Read-Only</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Zero-wiring local HTTP grid boundary metering for Fronius ecosystems, feeding signed per-phase currents into main fuse protection and peak shaving.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">4.38</span>
+          <span class="device-name">Huawei EMMA-A02 / DTSU666-H Smart Power Sensor</span>
+          <span class="device-template-code">huawei_emma</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-modbus">MODBUS</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> Huawei</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP / RTU (Port: 502, Holding `31633`–`31666` on EMMA-A02 &amp; `2102`–`2175` Float32 on DTSU666-H)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Huawei EMMA-A02 Energy Management Assistant, Huawei Smart Power Sensor DTSU666-H / DDSU666-H</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Signed Grid Supply-Point Power (W), Total Import &amp; Export Energy (kWh), Signed 3-Phase Currents (A), 3-Phase Voltages (V).</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>Autonomous / Read-Only</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>High-speed grid boundary telemetry for Huawei SUN2000 &amp; LUNA2000 sites with EMMA-A02 or standalone RS485 power sensors.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">4.39</span>
+          <span class="device-name">KOSTAL Smart Energy Meter (KSEM G1 / G2)</span>
+          <span class="device-template-code">kostal_ksem</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-modbus">MODBUS</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> KOSTAL</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP (Default Port: 502, Default Unit ID: 71, Holding Registers `0`–`143` &amp; `512`–`519`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> KOSTAL Smart Energy Meter G1 &amp; G2 (DIN-Rail Ethernet / RS485 Grid Meter)</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Active Import &amp; Export Power (0.1 W), Total Import &amp; Export Energy (0.1 Wh -&gt; kWh), Directional Per-Phase Currents (A) &amp; Voltages (V).</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>Autonomous / Read-Only</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Sub-second Ethernet DIN-rail grid boundary metering with per-phase directional current signing for DLB and capacity peak shaving.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">4.40</span>
+          <span class="device-name">Tasmota SML / OBIS Optical IR Reader &amp; EcoTracker</span>
+          <span class="device-template-code">tasmota_sml</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-rest">REST / HTTP</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> Tasmota</div>
+        <div><strong>Communication Interface:</strong> Local HTTP JSON API (`/cm?cmnd=Status%208` StatusSNS &amp; EcoTracker `/v1/json`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Tasmota SML / OBIS / DLMS Optical IR Heads (Hichi, BitShake) &amp; everHome EcoTracker</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Real-Time Net Grid Power (W), Total Import &amp; Export Energy Counters (kWh), Phase Currents (A) &amp; Voltages (V).</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>Autonomous / Read-Only</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Cloud-free optical IR smart meter reading for modern European digital utility meters lacking RJ12 P1 ports.</p>
+        </div>
+      </div>
+    </div>
+    
     
     <div class="page-break"></div>
     <h2 class="subsection-title" style="font-size: 13pt; border-bottom: 2px solid #0284c7; padding-bottom: 4px; margin-top: 22px;">
-      🔌 Category 5: Smart Relays & Load Actuators (6 Native Templates)
+      🔌 Category 5: Smart Relays & Load Actuators (11 Native Templates)
     </h2>
     <p>Actuator templates integrate potential-free contactors, smart DIN plugs, and SG-Ready heat pump inputs over local LAN REST/RPC or Modbus coils. GEMS automatically triggers domestic hot water (DHW) immersion heaters, heat pump boost states, or pool pumps when solar surplus or negative pricing thresholds are reached, with built-in minimum run-time hysteresis.</p>
 
@@ -7963,6 +9012,181 @@
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
           <p>Independent dual-circuit automation: controls and measures multiple resistive heating stages or controls dual-coil SG-Ready heat pump configurations (State 1 through State 4).</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">5.7</span>
+          <span class="device-name">Daikin Altherma 3 &amp; HomeHub (Smart Grid Modbus)</span>
+          <span class="device-template-code">daikin_altherma</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-modbus">MODBUS</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> Daikin</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP (Default Port: 502, Unit ID: 1, Input `21`–`50` &amp; Holding `2`, `53`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Daikin Altherma 3 R / H / M &amp; Daikin HomeHub (`EKRHH`) Heat Pump Systems</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Instantaneous Heat Pump Electrical Power (W), DHW Tank Temperature (°C), Leaving Water Temperature (°C), Smart Grid Status.</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>Smart Grid Operating Mode (`53`: Free Running Normal vs Recommended On PV Surplus Boost) &amp; DHW Temperature Setpoint (`2`).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Native Modbus TCP thermal storage automation for Daikin Altherma 3 heat pumps: converts excess PV and negative-price electricity into domestic hot water and space heating.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">5.8</span>
+          <span class="device-name">my-PV AC•THOR / AC•THOR 9s / AC ELWA 2 Solar Diverter</span>
+          <span class="device-template-code">mypv_acthor</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-modbus">MODBUS</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> my-PV</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP (Default Port: 502, Unit ID: 1, Holding Registers `1000`–`1003`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> my-PV AC•THOR (3 kW), AC•THOR 9s (9 kW), AC ELWA 2, AC ELWA-E Linear Photovoltaic Heaters</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Actual Immersion Heating Power (W), Domestic Hot Water Tank Temperature (`0.1 °C`), Operating Status.</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>Stepless Linear Heating Power Setpoint (`1000`: `0–9000 W`), Relay Boost State, and Max Tank Temperature Setpoint (`1002`).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Proportional zero-export thermal storage: diverts exact watt-for-watt PV surplus into hot water buffers before any grid export or curtailment occurs.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">5.9</span>
+          <span class="device-name">NIBE S-Series Heat Pump (S1155 / S1255 / S2125 / VVM)</span>
+          <span class="device-template-code">nibe_heatpump</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-modbus">MODBUS</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> NIBE</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP (Default Port: 502, Unit ID: 1, Input `8`, `2166`, `2285` &amp; Holding `697`, `707`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> NIBE S1155, S1255, S1156, S1256, S2125, SMO S40, VVM S320 Inverter Heat Pumps</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Instantaneous Compressor Electrical Power (`2166` W), Cumulative Consumed Electrical Energy (`2285` kWh), DHW Top Temperature (`8` °C).</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>SG-Ready / Smart Price Luxury DHW Boost (`697` / `47`) and Comfort Temperature Setpoint (`707` `0.1 °C`).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Direct Wi-Fi/Ethernet Modbus TCP integration for NIBE S-Series heat pumps: boosts thermal storage during solar surplus and cheap EPEX hours.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">5.10</span>
+          <span class="device-name">Stiebel Eltron / Tecalor ISG Web &amp; Plus (WPM)</span>
+          <span class="device-template-code">stiebel_eltron_isg</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-modbus">MODBUS</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> Stiebel Eltron</div>
+        <div><strong>Communication Interface:</strong> Modbus TCP (Default Port: 502, Unit ID: 1, Input `521`, `2500`, `3506` &amp; Holding `1509`, `4000`–`4002`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Stiebel Eltron &amp; Tecalor WPM3, WPM3i, WPMsystem Heat Pumps via ISG web / ISG plus Gateway</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>DHW Cylinder Temperature (`521` °C), Compressor &amp; DHW Pump Status (`2500`), Cumulative Electrical Energy (kWh).</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>SG-Ready Energy Management Enable (`4000=1`), SG-Ready State 2 / State 3 PV Boost (`4001`–`4002`), and Comfort DHW Setpoint (`1509`).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>Standardized Modbus TCP SG-Ready boost and comfort temperature control for Stiebel Eltron and Tecalor heat pumps.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="device-card ">
+      <div class="device-header">
+        <div class="device-title-wrap">
+          <span class="device-number">5.11</span>
+          <span class="device-name">Tasmota Smart Plug / DIN Power Relay</span>
+          <span class="device-template-code">tasmota_relay</span>
+        </div>
+        <div class="device-tags">
+          
+          <span class="badge badge-rest">REST / HTTP</span>
+        </div>
+      </div>
+
+      <div class="device-meta-row">
+        <div><strong>Manufacturer / Vendor:</strong> Tasmota</div>
+        <div><strong>Communication Interface:</strong> Local HTTP Command API (`/cm?cmnd=Power%20On|Off` &amp; `/cm?cmnd=Status%208`)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Tasmota Wi-Fi / Ethernet Smart Plugs, Sonoff POW, Nous A1T, and Multi-Channel DIN Contactors</div>
+      </div>
+
+      <div class="capability-grid">
+        <div class="cap-box read">
+          <div class="cap-box-title">🔍 Telemetry Read Out</div>
+          <p>Active Load Power (W), Cumulative Energy (kWh), Supply Voltage (V), Load Current (A).</p>
+        </div>
+        <div class="cap-box control">
+          <div class="cap-box-title">🎛️ Controlled Setpoints</div>
+          <p>Relay Channel Output State (`Power{1..8} On` / `Off` with hysteresis protection).</p>
+        </div>
+        <div class="cap-box role">
+          <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
+          <p>100% local cloud-free switching and power metering for resistive water heaters, pool pumps, e-bike chargers, and auxiliary relays.</p>
         </div>
       </div>
     </div>
