@@ -509,7 +509,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Software Version</span>
-          <span class="cover-meta-val">v9.31.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.32.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Native Templates</span>
@@ -9207,8 +9207,8 @@
       <p>Standard industrial port 502 (or 5020/8899). Connects directly via local LAN. Supports simultaneous pollers and sub-second update latency. Zero wiring required when devices reside on the same local subnet.</p>
     </div>
     <div class="strategy-card">
-      <h3>Modbus RTU RS485 &amp; Persistent USB IDs</h3>
-      <p>Requires shielded twisted-pair cable (A+, B&minus;, GND) in a daisy-chain topology with 120&Omega; end-of-line termination and unique Slave IDs. GEMS shares multi-drop RS485 buses safely and exposes persistent <code>/dev/serial/by-id/*</code> symlinks so USB adapters never swap across reboots.</p>
+      <h3>Modbus RTU RS485, Persistent USB IDs &amp; Auto-Discovery</h3>
+      <p>Requires shielded twisted-pair cable (A+, B&minus;, GND) in a daisy-chain topology with 120&Omega; end-of-line termination and unique Slave IDs. GEMS shares multi-drop RS485 buses safely, exposes persistent <code>/dev/serial/by-id/*</code> symlinks so USB adapters never swap across reboots, and provides automated <strong>Serial Port &amp; RS-485 Bus Discovery</strong> (in <strong>Scanner</strong> and <strong>Settings &rarr; Devices</strong>) to identify connected inverters, wallboxes, and meters along with their baud rate, parity, and Slave ID.</p>
     </div>
   </div>
 

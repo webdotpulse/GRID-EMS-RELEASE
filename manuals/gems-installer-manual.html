@@ -391,7 +391,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.31.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.32.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -596,7 +596,7 @@
     wget https://github.com/webdotpulse/GRID-EMS/releases/download/v9.13.2-release/gems_9.13.2_arm64.deb<br>
     <br>
     # 2. Install package and dependencies<br>
-    sudo dpkg -i gems_9.31.0_arm64.deb<br>
+    sudo dpkg -i gems_9.32.0_arm64.deb<br>
     sudo apt-get install -f<br>
     <br>
     # 3. Verify systemd background service<br>
@@ -722,32 +722,41 @@
     </tbody>
   </table>
 
-  <!-- ==================== 5. SUBNET HARDWARE DISCOVERY ==================== -->
+  <!-- ==================== 5. SUBNET & SERIAL HARDWARE DISCOVERY ==================== -->
   <div class="page-break"></div>
-  <h1 class="section-title" id="sec-scanner">5. Subnet Hardware Discovery (The Scanner)</h1>
+  <h1 class="section-title" id="sec-scanner">5. Subnet &amp; Serial Port Hardware Discovery (The Scanner)</h1>
   <p>
-    Instead of guessing IP addresses assigned by the customer's router, use the built-in <strong>Scanner</strong> in the primary navigation sidebar.
+    Instead of manually guessing router IP addresses, USB serial port paths, RS-485 baud rates, or Modbus Slave IDs, use the built-in <strong>Scanner</strong> in the primary navigation sidebar (unlocked in <strong>Certified Installer Mode</strong>).
   </p>
 
   <div class="manual-screenshot">
-    <img src="assets/screenshots/scanner.png" alt="Subnet Hardware Scanner">
-    <div class="manual-screenshot-caption">Figure 5.1: Subnet Scanner identifying solar inverters, smart meters, and EV chargers on the local /24 subnet.</div>
+    <img src="assets/screenshots/scanner.png" alt="Serial Bus and Subnet Hardware Scanner">
+    <div class="manual-screenshot-caption">Figure 5.1: Hardware Scanner automatically identifying RS-485 Modbus RTU devices (Solis Hybrid Inverter, RAEDIAN Wallbox), DSMR P1 smart meters, and local /24 LAN endpoints.</div>
   </div>
 
-  <h2 class="subsection-title">How the Scanner Operates</h2>
+  <h2 class="subsection-title">Serial Port &amp; RS-485 Bus Discovery</h2>
+  <p>
+    Clicking <strong>"Scan Serial Ports"</strong> inspects all attached USB-P1 cables, USB-RS485 adapters (persistent <code>/dev/serial/by-id/*</code> paths), and onboard UART interfaces without interrupting active device pollers:
+  </p>
+  <ol style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>DSMR / e-MUCS P1 Smart Meters:</strong> Automatically listens for live digital meter telegrams at <code>115200 8N1</code> and <code>9600 7E1</code> with CRC-16 verification.</li>
+    <li><strong>RS-485 Modbus RTU Energy Devices:</strong> Automatically detects connected inverters (e.g. <strong>Solis</strong> S5/S6 Hybrid), EV wallboxes (e.g. <strong>RAEDIAN</strong> NEO / NEX), and DIN-rail energy meters across standard baud rates and parity settings, with an optional <strong>Advanced RS-485 Bus Sweep</strong> for custom multi-drop Slave ID ranges (<code>1–247</code>).</li>
+    <li><strong>One-Click Serial Onboarding:</strong> Clicking <strong>"+ Configure"</strong> next to any detected serial device opens <strong>Settings &rarr; Devices</strong> and automatically fills in the hardware category, verified template, persistent serial port path, Modbus Slave ID, baud rate, and parity. You can also click <strong>"Auto-Detect Serial Devices"</strong> or <strong>"Auto-Detect Device"</strong> directly inside the Add Device form.</li>
+  </ol>
+
+  <h2 class="subsection-title">Local Subnet LAN Discovery</h2>
   <p>
     When you click <strong>"Scan Subnet"</strong>, GEMS initiates a parallel sweep across the local <code>/24</code> subnet (254 host addresses):
   </p>
   <ol style="margin: 6px 0 12px 18px; padding: 0;">
-    <li><strong>ARP Resolution:</strong> Queries MAC addresses and resolves them against IEEE vendor OUI registries (e.g. <em>Huawei Technologies</em>, <em>SMA Solar Technology</em>, <em>Shelly / Allterco</em>, <em>Alfen</em>).</li>
+    <li><strong>ARP Resolution:</strong> Queries MAC addresses and resolves them against IEEE vendor OUI registries (e.g. <em>Solis</em>, <em>RAEDIAN</em>, <em>SMA Solar Technology</em>, <em>Shelly</em>).</li>
     <li><strong>Port Probing:</strong> Tests open TCP ports associated with energy hardware:
       <ul style="margin: 4px 0 0 16px;">
-        <li><strong>Port 502 / 1502:</strong> Modbus TCP (Inverters, Batteries, EV Chargers, Eastron meters).</li>
-        <li><strong>Port 80 / 8080 / 443:</strong> REST APIs (Shelly relays, HomeWizard P1 meters, Fronius Solar API).</li>
+        <li><strong>Port 502 / 1502:</strong> Modbus TCP (Inverters, Batteries, EV Chargers, DIN-rail meters).</li>
+        <li><strong>Port 80 / 8080 / 443:</strong> Local REST APIs (Smart relays, P1 gateways, solar APIs).</li>
         <li><strong>Port 8887:</strong> GEMS embedded OCPP WebSocket server.</li>
       </ul>
     </li>
-    <li><strong>One-Click Onboarding:</strong> Clicking <strong>"Add Device"</strong> next to any detected host automatically pre-fills the IP address, Port, and relevant template in the Device Wizard!</li>
   </ol>
 
   <!-- ==================== 6. ADDING & CONFIGURING DEVICES ==================== -->

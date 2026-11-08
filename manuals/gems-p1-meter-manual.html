@@ -325,7 +325,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware</span>
-          <span class="cover-meta-val">v9.31.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.32.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Supported Standards</span>
@@ -877,13 +877,12 @@ EOF</code><br><br>
   <h2 class="subsection-title">Step-by-Step Onboarding Workflow</h2>
   <ol style="margin: 6px 0 14px 18px; padding: 0;">
     <li>Open your web browser and navigate to <strong><code>http://ems.local</code></strong>.</li>
-    <li>Click <strong>Settings</strong> in the navigation sidebar, then click the <strong>Devices</strong> tab.</li>
-    <li>Click the <strong>+ Add Device</strong> button.</li>
-    <li>Select the <strong>Smart Meter</strong> category card.</li>
-    <li>In the <strong>Template</strong> dropdown, select:
+    <li>Click <strong>Settings</strong> in the navigation sidebar (unlocking <strong>Certified Installer Mode</strong> via the padlock icon), then click the <strong>Devices</strong> tab.</li>
+    <li><em>Fastest Method (One-Click Auto-Detect):</em> Click <strong>Auto-Detect Serial Devices</strong> in the Add Device header (or use <strong>Scanner &rarr; Scan Serial Ports &rarr; + Configure</strong>). GEMS automatically detects your DSMR / e-MUCS P1 smart meter, persistent <code>/dev/serial/by-id/*</code> cable path, and baud rate (<code>115200</code> or <code>9600</code>) and pre-fills the form.</li>
+    <li><em>Manual Selection:</em> Alternatively, select the <strong>Smart Meter</strong> category card and choose:
       <ul style="margin: 4px 0 4px 16px; padding: 0;">
-        <li><strong>DSMR P1 RJ12 Serial Dongle (/dev/ttyUSB0)</strong> &mdash; for direct USB cable connection.</li>
-        <li><em>(Or "Fluvius / DSMR P1 Smart Meter (Wi-Fi/USB)" if using a wireless network dongle like HomeWizard).</em></li>
+        <li><strong>DSMR P1 RJ12 Serial Dongle (/dev/serial/by-id)</strong> &mdash; for direct USB cable connection (you can also click <strong>Auto-Detect Device</strong> right next to the Serial Port input).</li>
+        <li><em>(Or "Fluvius / DSMR P1 Smart Meter (Wi-Fi/USB)" if using a local Wi-Fi network P1 dongle).</em></li>
       </ul>
     </li>
     <li>Configure the connection fields:

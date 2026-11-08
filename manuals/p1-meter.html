@@ -431,10 +431,9 @@ sudo ftdi_eeprom --flash-eeprom ftdi_p1.conf
         <!-- Section 9: GEMS Setup -->
         <h2 id="gems-ui-setup">8. Configuring the Smart Meter in GEMS UI</h2>
         <ol>
-          <li>Open GEMS at <code>http://ems.local</code> &rarr; <strong>Settings</strong> &rarr; <strong>Devices</strong>.</li>
-          <li>Click <strong>+ Add Device</strong> &rarr; Select <strong>Smart Meter</strong>.</li>
-          <li>Choose template <strong>DSMR P1 RJ12 Serial Dongle (/dev/ttyUSB0)</strong>.</li>
-          <li>Set Baud Rate to <strong>115200</strong> and Poll Interval to <strong>1s</strong>.</li>
+          <li>Open GEMS at <code>http://ems.local</code> &rarr; <strong>Settings</strong> &rarr; <strong>Devices</strong> (unlocking <strong>Installer Mode</strong> via the padlock icon).</li>
+          <li>Click <strong>Auto-Detect Serial Devices</strong> (or use <strong>Scanner &rarr; Scan Serial Ports &rarr; + Configure</strong>) to automatically detect your P1 cable's persistent <code>/dev/serial/by-id/*</code> path and baud rate (<code>115200</code> or <code>9600</code>).</li>
+          <li>Alternatively, select <strong>Smart Meter</strong> &rarr; <strong>DSMR P1 RJ12 Serial Dongle</strong>, click <strong>Auto-Detect Device</strong> next to the Serial Port input, and set Poll Interval to <strong>1s</strong>.</li>
           <li>Click <strong>Add Device</strong>. Verify the green <span style="color:#10b981; font-weight:bold;">● Online</span> status and watch live power flow on the Dashboard!</li>
         </ol>
 

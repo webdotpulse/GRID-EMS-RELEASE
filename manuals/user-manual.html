@@ -338,22 +338,20 @@
           <li>Click <strong>Save Device</strong>. The Go backend poller will immediately begin background metric polling.</li>
         </ol>
 
-        <!-- Network Scanner -->
-        <h2 id="network-scanner">5. Zero-Dependency Local Network Scanner</h2>
+        <!-- Network & Serial Scanner -->
+        <h2 id="network-scanner">5. Local Network &amp; Serial Port Hardware Scanner</h2>
         <p>
-          Finding the IP addresses of newly installed solar inverters or EV chargers is simple with the built-in network scanner.
+          Finding newly connected RS-485 / P1 serial devices or LAN IP addresses of solar inverters and EV chargers is automated with the built-in Hardware Scanner.
         </p>
 
         <div class="doc-screenshot-card">
-          <img src="assets/screenshots/scanner.png" alt="Local Network Subnet Scanner" loading="lazy">
-          <div class="doc-screenshot-caption">Network Scanner: One-click local subnet discovery mapping IP addresses, hostnames, MAC OUI vendor tags, and open ports.</div>
+          <img src="assets/screenshots/scanner.png" alt="Serial Bus and Local Network Scanner" loading="lazy">
+          <div class="doc-screenshot-caption">Hardware Scanner: Automated Serial Port &amp; RS-485 Bus Discovery alongside one-click local subnet IP, MAC vendor, and port discovery.</div>
         </div>
 
         <ul>
-          <li>Click <strong>Scan Network</strong> inside the Device Management panel.</li>
-          <li>The Go backend executes an ARP and ping discovery scan across your local subnet (e.g. <code>192.168.1.0/24</code>).</li>
-          <li>The scanner matches hardware MAC addresses against an embedded Organizationally Unique Identifier (OUI) table to automatically tag devices like <em>Huawei Dongle</em>, <em>SMA Solar</em>, <em>Shelly</em>, or <em>HomeWizard</em>.</li>
-          <li>Click <strong>Import</strong> next to any discovered device to pre-populate the Add Device form!</li>
+          <li><strong>Serial Port &amp; RS-485 Discovery:</strong> Click <strong>Scan Serial Ports</strong> to automatically identify DSMR / e-MUCS P1 smart meters and RS-485 Modbus RTU energy devices (such as <em>Solis</em> hybrid inverters, <em>RAEDIAN</em> EV chargers, and DIN-rail meters), including persistent <code>/dev/serial/by-id/*</code> adapter paths, baud rate, parity, and Modbus Slave ID. Click <strong>+ Configure</strong> to pre-fill the Add Device form in one click, or run an <strong>Advanced RS-485 Bus Sweep</strong> across custom Slave ID ranges.</li>
+          <li><strong>Local Subnet LAN Scan:</strong> Click <strong>Scan Subnet</strong> to discover active Ethernet and Wi-Fi energy endpoints across your local subnet (e.g. <code>192.168.1.0/24</code>) with vendor MAC identification and open port badges (<code>502</code>, <code>80/443</code>, <code>8887</code>).</li>
         </ul>
 
         <!-- Modbus Reachability Probe -->

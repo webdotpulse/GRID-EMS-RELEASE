@@ -14,9 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.31.0] - 2026-11-08
+## [v9.32.0] - 2026-11-08
 
 ### Added
+- **Automated Serial Port, DSMR P1 & RS-485 Bus Hardware Discovery:** Added automated serial port discovery across the **Scanner**, **First-Boot Commissioning Wizard**, and **Settings -> Devices** onboarding forms to detect connected DSMR / Belgian e-MUCS P1 smart meters and RS-485 Modbus RTU inverters, EV wallboxes (including **Solis** and **RAEDIAN**), and DIN-rail energy meters without interrupting active device pollers—automatically identifying the persistent `/dev/serial/by-id/*` adapter path, baud rate, parity, Modbus Slave ID, and recommended hardware template with one-click configuration prefill and an optional **Advanced RS-485 Bus Sweep** for custom multi-drop Slave ID ranges.
 - **24 New Production-Verified Hardware Templates (170 Native Profiles):** Expanded native hardware integration coverage to **170 hardware templates** across leading European residential and commercial manufacturers:
   - *Solar & Hybrid Inverters:* Added verified closed-loop drivers for **KOSTAL Plenticore plus / G2 / G3 & BI** (active PV curtailment and direct battery charge/discharge power control), **FENECON Home (FEMS)**, **Hoymiles DTU-Pro / DTU-Pro-S**, and **APsystems EZ1-M** local microinverters.
   - *Dedicated Home Battery Storage (BESS):* Added verified bidirectional battery dispatch and active power control for **Sessy Smart Home Battery**, **VARTA pulse neo / element backup**, **Zendure SolarFlow / Hyper 2000 / Ace**, and **Tesla Powerwall 2 / 3 / Backup Gateway** (local HTTPS gateway telemetry and autonomous/backup reserve dispatch).
