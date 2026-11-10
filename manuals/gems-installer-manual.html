@@ -391,7 +391,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.32.3-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.32.4-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -596,7 +596,7 @@
     wget https://github.com/webdotpulse/GRID-EMS/releases/download/v9.13.2-release/gems_9.13.2_arm64.deb<br>
     <br>
     # 2. Install package and dependencies<br>
-    sudo dpkg -i gems_9.32.3_arm64.deb<br>
+    sudo dpkg -i gems_9.32.4_arm64.deb<br>
     sudo apt-get install -f<br>
     <br>
     # 3. Verify systemd background service<br>
@@ -813,63 +813,70 @@
       <tr>
         <td><code>Device Name</code></td>
         <td>Text</td>
-        <td>Descriptive label displayed on the dashboard (e.g. <em>"Huawei SUN2000-10KTL"</em>).</td>
+        <td>Descriptive label displayed on the dashboard (e.g. <em>"Solis S6-EH3P10K Hybrid"</em>).</td>
       </tr>
       <tr>
         <td><code>Device Template</code></td>
         <td>Dropdown</td>
         <td>
-          Select your manufacturer: <em>Huawei SUN2000</em>, <em>SMA Sunny Boy / Tripower</em>, <em>Solis 5G/S6</em>, <em>Fronius Gen24</em>, <em>SolarEdge SunSpec</em>, <em>Sungrow SG</em>, <em>GoodWe ET</em>, <em>Victron GX</em>, or <em>Generic SunSpec</em>.
+          Select your manufacturer (primary reference template: <strong>Solis 5G/S6 Hybrid</strong>; also supports Huawei, SMA, Enerlution, Fronius, SolarEdge, Sungrow, GoodWe, Victron, or Generic SunSpec). Badges indicate <code>✓ Verified</code>, <code>1P..3P</code>, or <code>Monitor Only</code>.
         </td>
       </tr>
       <tr>
-        <td><code>Host IP</code></td>
-        <td>IPv4 Address</td>
-        <td>Local IP of the inverter's Wi-Fi or Ethernet dongle (e.g. Huawei SDongleA-05 at <code>192.168.1.120</code>). Set a static DHCP reservation in the home router.</td>
+        <td><code>Host IP / Serial Port</code></td>
+        <td>IPv4 or <code>/dev/serial/by-id/*</code></td>
+        <td>Local IP of the inverter's Ethernet/LAN dongle (e.g. <code>192.168.1.120</code>) or persistent USB-RS485 serial path (<code>/dev/serial/by-id/*</code> with baud rate <code>9600</code>/<code>115200</code> and parity <code>8N1</code>).</td>
       </tr>
       <tr>
         <td><code>Modbus Port</code></td>
         <td>Integer</td>
-        <td>Standard Modbus TCP port is <strong>502</strong>. Third-party gateways or bridges occasionally use <strong>1502</strong> or <strong>5020</strong>.</td>
+        <td>Standard Modbus TCP port is <strong>502</strong> (or <strong>1502</strong> / <strong>8899</strong> on specialized gateways).</td>
       </tr>
       <tr>
         <td><code>Modbus Slave ID</code></td>
         <td>Integer (1-247)</td>
-        <td>Unit ID on the internal RS485 loop. Huawei defaults to <strong>1</strong> (inverter) or <strong>2</strong> (secondary). SolarEdge defaults to <strong>126</strong>. SMA defaults to <strong>126</strong> or <strong>3</strong>.</td>
+        <td>Unit ID on the RS-485/TCP bus. <strong>Solis</strong> defaults to <strong>1</strong>. Assign unique Slave IDs (<code>1</code>, <code>2</code>, <code>3</code>) when daisy-chaining multiple devices on one RS-485 bus.</td>
       </tr>
       <tr>
         <td><code>Rated Power (kW)</code></td>
         <td>Decimal (kW)</td>
         <td>
-          <strong>Crucial:</strong> Enter the nominal AC power rating of the inverter (e.g. <code>10.0</code> for a 10 kW inverter). GEMS uses this value to scale percentage-based active power curtailment commands.
+          <strong>Crucial:</strong> Enter the nominal AC power rating of the inverter (e.g. <code>10.0</code> for a 10 kW Solis inverter). GEMS uses this value to scale percentage-based active power curtailment commands.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Phase Wiring</code></td>
+        <td>Dropdown</td>
+        <td>
+          Maps physical phase rotation: <code>Auto</code>, single-phase (<code>L1</code>, <code>L2</code>, <code>L3</code>), or three-phase rotation (<code>L1-L2-L3</code>, <code>L2-L3-L1</code>, <code>L3-L1-L2</code>) for accurate per-phase breaker protection.
         </td>
       </tr>
       <tr>
         <td><code>Allow Curtailment</code></td>
         <td>Checkbox</td>
         <td>
-          <strong>When to Check:</strong> If the customer has a dynamic contract and you want GEMS to throttle inverter production during severe negative export price events. If unchecked, the inverter produces freely regardless of grid tariffs.
+          <strong>When to Check:</strong> If the customer has a dynamic contract and you want GEMS to throttle inverter production during negative export price events or zero-export compliance.
         </td>
       </tr>
       <tr>
-        <td><code>Has Grid Meter?</code></td>
+        <td><code>Grid Meter Connected?</code></td>
         <td>Checkbox</td>
         <td>
-          <strong>When to Check:</strong> If an inverter-attached CT meter (like Huawei DTSU666-H) is connected to the inverter. GEMS can read grid import/export directly from the inverter registers!
+          <strong>When to Check:</strong> Check if the hybrid inverter has its own dedicated CT meter wired directly to the inverter. <strong>When to Uncheck:</strong> If no dedicated inverter meter is present—GEMS will automatically steer battery self-consumption using the central P1 Smart Meter!
         </td>
       </tr>
       <tr>
-        <td><code>Has Battery?</code></td>
-        <td>Checkbox</td>
+        <td><code>Battery Connected? &amp; Capacity (kWh)</code></td>
+        <td>Checkbox + Decimal</td>
         <td>
-          <strong>When to Check:</strong> If a DC-coupled storage battery (e.g. Huawei LUNA2000, BYD Battery-Box) is connected. Enables battery charge/discharge telemetry and state-of-charge tracking.
+          <strong>When to Check:</strong> Check if a DC-coupled storage battery is attached to the hybrid inverter, and enter the usable storage capacity in kWh (e.g. <code>10.0 kWh</code>) for accurate solar forecast pre-charge modeling.
         </td>
       </tr>
       <tr>
         <td><code>Poll Interval (s)</code></td>
         <td>Integer (seconds)</td>
         <td>
-          Default is <strong>2 seconds</strong>. For Huawei dongles, 2s or 3s provides smooth responsiveness without overwhelming the dongle's internal microprocessor.
+          Default is <strong>2 seconds</strong> for responsive sub-second control without saturating serial/TCP transceivers.
         </td>
       </tr>
     </tbody>
@@ -924,23 +931,60 @@
   </div>
 
   <div class="decision-box">
-    <div class="decision-title">⚡ Decision Guide: Modbus TCP vs OCPP for EV Chargers</div>
+    <div class="decision-title">⚡ Decision Guide: Modbus TCP vs OCPP for EV Chargers (Reference: RAEDIAN NEO / NEX)</div>
     <div class="decision-grid">
       <div class="decision-item" style="border-left: 3px solid #10b981;">
-        <div class="decision-item-title">Modbus TCP (Recommended &amp; Preferred)</div>
+        <div class="decision-item-title">Modbus TCP / RTU (Recommended &amp; Preferred)</div>
         <div class="decision-item-desc">
           <strong>Sub-second response:</strong> Throttles from 6A to 32A in under 200ms.<br>
-          <strong>Employer billing coexistence:</strong> Does NOT interfere with the charger's cloud OCPP connection (external CPO billing services). Both work simultaneously!
+          <strong>Employer billing coexistence:</strong> Does NOT interfere with the charger's cloud OCPP connection (external CPO billing platforms or employer reimbursement services). Both work simultaneously!
         </div>
       </div>
       <div class="decision-item" style="border-left: 3px solid #0284c7;">
         <div class="decision-item-title">Native OCPP 1.6-J (Alternative / Proxy)</div>
         <div class="decision-item-desc">
-          Use when the charger does not support Modbus TCP, or when using the Straight-Through OCPP Proxy. The charger points its WebSocket directly to GEMS on port <code>8887</code> (<code>ws://&lt;GEMS-IP&gt;:8887/&lt;ID&gt;</code>) or port <code>8080</code> (<code>ws://&lt;GEMS-IP&gt;:8080/api/ocpp/&lt;ID&gt;</code>).
+          Use when the charger connects via OCPP WebSocket or when using the <strong>Straight-Through OCPP Smart Forwarder</strong>. Point the charger to <code>ws://&lt;GEMS-IP&gt;:8887/&lt;ID&gt;</code> (or <code>ws://ems.local/ocpp/&lt;ID&gt;</code>).
         </div>
       </div>
     </div>
   </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:26%;">EV Charger &amp; Fleet DLB Setting</th>
+        <th style="width:22%;">Options / Default</th>
+        <th style="width:52%;">Installer Explanation &amp; When to Configure</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>Bay Number &amp; Fleet Priority</code></td>
+        <td>Bay <code>1–64</code> • <code>VIP</code>, <code>High</code>, <code>Normal</code>, <code>Solar Only</code></td>
+        <td>Assigns physical bay number and DLB weighting: <strong>VIP (1.5x)</strong>, <strong>High (1.25x)</strong>, <strong>Normal (1.0x)</strong>, or <strong>Solar Only</strong> (pauses when no surplus solar is available).</td>
+      </tr>
+      <tr>
+        <td><code>Enable Automatic 1P/3P Solar Phase Switching</code></td>
+        <td>Checkbox (<code>Off</code> / <code>On</code>)</td>
+        <td>Enables automatic switching between <strong>1-Phase (1.4–3.6 kW)</strong> and <strong>3-Phase (4.1–22 kW)</strong> on supported wallboxes (such as <strong>RAEDIAN NEO</strong>) with a mandatory 20-second zero-load contactor pause to prevent vehicle relay welding.</td>
+      </tr>
+      <tr>
+        <td><code>Fleet DLB Active &amp; Zero-Touch Auto Onboard</code></td>
+        <td>Toggles (Bottom of Devices Tab)</td>
+        <td>Activates multi-charger Dynamic Load Balancing (up to 64 bays) and automatically registers incoming OCPP 1.6-J chargers upon <code>BootNotification</code>.</td>
+      </tr>
+      <tr>
+        <td><code>Cluster Max Current (A) &amp; Arbitration Mode</code></td>
+        <td>e.g. <code>63 A</code> • <code>priority_queue</code>, <code>equal_share</code>, <code>solar_first</code></td>
+        <td>Sets total sub-panel feeder limit for the charger group and selects how available current is divided across active charging bays.</td>
+      </tr>
+      <tr>
+        <td><code>Straight-Through OCPP Smart Forwarder</code></td>
+        <td><code>Upstream CPO URL</code> + <code>Auth Header</code></td>
+        <td>Transparently proxies OCPP billing/RFID traffic to an external CPO billing platform (supports <code>{chargePointId}</code> URL placeholder) while GEMS intercepts and injects local <code>SetChargingProfile</code> load-balancing limits.</td>
+      </tr>
+    </tbody>
+  </table>
 
   <!-- ==================== 7. GRID CONNECTION & LIMITS ==================== -->
   <div class="page-break"></div>
@@ -964,24 +1008,31 @@
     </thead>
     <tbody>
       <tr>
+        <td><code>Time Zone, Latitude &amp; Longitude</code></td>
+        <td><code>Europe/Brussels</code> + Address Lookup</td>
+        <td>
+          Enter site address and click <strong>Lookup Lat/Lon</strong>. Used by the Open-Meteo solar irradiance forecaster to calculate tomorrow's expected PV yield (W/m&sup2;) for overnight battery arbitrage.
+        </td>
+      </tr>
+      <tr>
         <td><code>Grid System</code></td>
         <td>Dropdown</td>
         <td>
           <strong>Single Phase 230V:</strong> Standard residential connection (Phase + Neutral, 230V AC).<br>
           <strong>Three Phase 400V (+N):</strong> Standard 3-phase European TN/TT network (3x 400V line-to-line, 230V line-to-neutral).<br>
-          <strong>Three Phase 230V Delta:</strong> <em>Legacy Belgian network</em> (Brussels, parts of Flanders & Wallonia). 3x 230V between phases with <strong>NO neutral wire</strong>. <em>Warning:</em> Requires dedicated delta-compatible inverters and EV chargers!
+          <strong>Three Phase 230V Delta:</strong> <em>Legacy Belgian network</em> (Brussels, parts of Flanders & Wallonia). 3x 230V between phases with <strong>NO neutral wire</strong> (&radic;3 phase-to-phase math).
         </td>
       </tr>
       <tr>
         <td><code>Nominal Current (A)</code></td>
-        <td>25.0 A (16A – 125A)</td>
+        <td>25.0 A (16A – 250A)</td>
         <td>
           The rated trip amperage of the main utility circuit breaker (e.g. <code>25A</code>, <code>32A</code>, <code>40A</code>, <code>63A</code>). GEMS uses this to calculate total allowable site power.
         </td>
       </tr>
       <tr>
         <td><code>Phase Limit (A)</code></td>
-        <td>25.0 A (16A – 125A)</td>
+        <td>25.0 A (16A – 250A)</td>
         <td>
           The hard safety ceiling per individual phase. If asymmetric household loads (e.g. an induction hob on Phase 1) push L1 current near this limit, GEMS immediately throttles EV charging current to prevent the main utility breaker from tripping!
         </td>
@@ -998,6 +1049,13 @@
         <td>Auto (or manual kW)</td>
         <td>
           Maximum continuous power allowed to be injected into the utility grid. Set to <code>0.0 kW</code> for strict <strong>zero-export compliance</strong> (inverter is dynamically throttled to match house consumption).
+        </td>
+      </tr>
+      <tr>
+        <td><code>Meter Offline Fallback Current</code></td>
+        <td><code>0 A (Pause)</code>, <code>6 A</code>, <code>8 A</code>, <code>10 A</code>, <code>16 A</code></td>
+        <td>
+          Failsafe current limit enforced on EV chargers if P1/Modbus grid meter telemetry is lost for &gt; 30 seconds. Select <code>0 A (Pause — Recommended)</code> on tight main breakers or <code>6 A</code> for minimum trickle charging.
         </td>
       </tr>
     </tbody>

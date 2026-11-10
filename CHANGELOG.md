@@ -14,9 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.32.3] - 2026-11-10
+## [v9.32.4] - 2026-11-10
 
 ### Added
+- **Interactive Brochure, Step-by-Step Configuration Guide & Complete 8-Tab Settings Manual (PDF & Web):** Expanded the official Homeowner & Configuration Manual (`manuals/gems-user-manual.pdf` / `.html`) and Installer Manual (`manuals/gems-installer-manual.pdf` / `.html`) with an interactive 24-hour energy storyboard, a step-by-step first-boot commissioning walkthrough, interactive setting search/filtering, and a complete field-by-field Settings Encyclopedia explaining *What It Does*, *When To Use It*, and *Recommended Values* across all 8 Settings tabs (`Devices & Fleet DLB`, `Strategy & Battery Rules`, `Energy Contract & 5 Tariff Wizards`, `Relays & Switches`, `Network`, `System Info`, `Notifications`, and `Cloud Server`).
 - **Automated Serial Port, DSMR P1 & RS-485 Bus Hardware Discovery:** Added automated serial port discovery across the **Scanner**, **First-Boot Commissioning Wizard**, and **Settings -> Devices** onboarding forms to detect connected DSMR / Belgian e-MUCS P1 smart meters and RS-485 Modbus RTU inverters, EV wallboxes (including **Solis** and **RAEDIAN**), and DIN-rail energy meters without interrupting active device pollers—automatically identifying the persistent `/dev/serial/by-id/*` adapter path, baud rate, parity, Modbus Slave ID, and recommended hardware template with one-click configuration prefill and an optional **Advanced RS-485 Bus Sweep** for custom multi-drop Slave ID ranges.
 - **24 New Production-Verified Hardware Templates (170 Native Profiles):** Expanded native hardware integration coverage to **170 hardware templates** across leading European residential and commercial manufacturers:
   - *Solar & Hybrid Inverters:* Added verified closed-loop drivers for **KOSTAL Plenticore plus / G2 / G3 & BI** (active PV curtailment and direct battery charge/discharge power control), **FENECON Home (FEMS)**, **Hoymiles DTU-Pro / DTU-Pro-S**, and **APsystems EZ1-M** local microinverters.
