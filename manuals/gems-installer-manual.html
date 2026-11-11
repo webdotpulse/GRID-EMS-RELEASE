@@ -391,7 +391,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.33.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.34.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -596,7 +596,7 @@
     wget https://github.com/webdotpulse/GRID-EMS/releases/download/v9.13.2-release/gems_9.13.2_arm64.deb<br>
     <br>
     # 2. Install package and dependencies<br>
-    sudo dpkg -i gems_9.33.0_arm64.deb<br>
+    sudo dpkg -i gems_9.34.0_arm64.deb<br>
     sudo apt-get install -f<br>
     <br>
     # 3. Verify systemd background service<br>
@@ -746,17 +746,13 @@
 
   <h2 class="subsection-title">Local Subnet LAN Discovery</h2>
   <p>
-    When you click <strong>"Scan Subnet"</strong>, GEMS initiates a parallel sweep across the local <code>/24</code> subnet (254 host addresses):
+    When you click <strong>"Scan Subnet"</strong>, GEMS executes a multi-stage discovery sweep across the local <code>/24</code> subnet (254 host addresses):
   </p>
   <ol style="margin: 6px 0 12px 18px; padding: 0;">
-    <li><strong>ARP Resolution:</strong> Queries MAC addresses and resolves them against IEEE vendor OUI registries (e.g. <em>Solis</em>, <em>RAEDIAN</em>, <em>SMA Solar Technology</em>, <em>Shelly</em>).</li>
-    <li><strong>Port Probing:</strong> Tests open TCP ports associated with energy hardware:
-      <ul style="margin: 4px 0 0 16px;">
-        <li><strong>Port 502 / 1502:</strong> Modbus TCP (Inverters, Batteries, EV Chargers, DIN-rail meters).</li>
-        <li><strong>Port 80 / 8080 / 443:</strong> Local REST APIs (Smart relays, P1 gateways, solar APIs).</li>
-        <li><strong>Port 8887:</strong> GEMS embedded OCPP WebSocket server.</li>
-      </ul>
-    </li>
+    <li><strong>Automatic GEMS Controller Self-Recognition:</strong> GEMS automatically identifies its own local IPv4 and hardware MAC address on the network and badges the row with <code>THIS GEMS CONTROLLER</code> (<em>New Energy Grid — GEMS Edge Energy Controller</em>).</li>
+    <li><strong>Multicast &amp; Neighbor Sweep:</strong> Combines local ARP/neighbor tables with mDNS and UPnP/SSDP discovery broadcasts to resolve device hostnames and model descriptions.</li>
+    <li><strong>Multi-Mask IEEE OUI Resolution (24-, 28-, and 36-bit):</strong> Matches hardware MAC addresses against both curated energy registries and the full IEEE MA-L / MA-M / MA-S hardware database (e.g. <em>Solis</em>, <em>RAEDIAN</em>, <em>SMA</em>, <em>Shelly</em>).</li>
+    <li><strong>Protocol &amp; OEM Fingerprinting:</strong> On devices using generic embedded Wi-Fi/Ethernet communication modules, GEMS inspects open energy ports (<code>502</code>/<code>1502</code> Modbus TCP &amp; SunSpec Model 1 / Device ID, <code>80</code>/<code>443</code>/<code>8080</code> HTTP/TLS endpoints, and <code>8887</code> OCPP) to display the true equipment manufacturer and model while respecting single-socket Modbus TCP dongles.</li>
   </ol>
 
   <!-- ==================== 6. ADDING & CONFIGURING DEVICES ==================== -->
@@ -1399,6 +1395,13 @@
         <td><strong>0.040 €/kWh</strong> (3–6 ct)</td>
         <td>
           <strong>Critical Wear Guard:</strong> Every lithium battery cycle degrades cell health. GEMS requires that the market price spread (Discharge Price - Charge Price) exceeds the cell wear cost before executing grid arbitrage, preventing uneconomical micro-cycling!
+        </td>
+      </tr>
+      <tr>
+        <td><code>winter_fallback_enabled</code><br><code>winter_fallback_trigger_soc</code><br><code>winter_fallback_target_soc</code><br><code>winter_fallback_cheapest_hours</code></td>
+        <td><strong>Enabled</strong><br>Trigger: <code>25%</code><br>Target: <code>65%</code><br>Window: <code>2 hrs</code></td>
+        <td>
+          <strong>Winter / Low-Solar Grid Charge Fallback:</strong> Prevents the home battery from sitting idle at minimum SoC during overcast winter weeks when day-ahead price spreads are narrower than the full round-trip arbitrage threshold. When SoC &le; <code>25%</code> and the 24h solar forecast (or trailing 24h solar yield) cannot cover recharge, GEMS charges the battery during the <code>2</code> cheapest hours of the day up to <code>65%</code> SoC while strictly respecting Flanders 15-minute capacity peak limits and main fuse limits.
         </td>
       </tr>
     </tbody>

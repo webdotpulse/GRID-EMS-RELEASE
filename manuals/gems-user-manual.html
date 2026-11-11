@@ -775,7 +775,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.33.0</span>
+          <span class="cover-meta-val">GEMS v9.34.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Who This Guide Is For</span>
@@ -1414,6 +1414,11 @@
       <div class="setting-meta-row"><span class="badge-what">What It Does</span> Click <strong>+ Add Window</strong> to define fixed daily time slots (e.g. <code>02:00</code> to <code>05:00</code> &rarr; <code>Target SoC 85%</code>) where the battery is guaranteed to reach a desired charge level before morning coffee.</div>
     </div>
 
+    <div class="setting-card green">
+      <div class="setting-name"><span>Winter / Low-Solar Grid Charge Fallback</span> <span class="setting-default-pill">Default: On (25% &rarr; 65%, 2h)</span></div>
+      <div class="setting-meta-row"><span class="badge-what">What It Does</span> When your battery drops to or below the <strong>Low SoC Trigger</strong> (default <code>25%</code>) during winter or bad weather and the 24-hour solar forecast cannot recharge it, GEMS automatically charges the battery during the <strong>Cheapest Hours</strong> (default <code>2 hrs</code>) up to the <strong>Fallback Target SoC</strong> (default <code>65%</code>) so it remains useful for peak shaving and evening self-consumption while leaving headroom for unexpected sun.</div>
+    </div>
+
     <div class="setting-card amber">
       <div class="setting-name"><span>Rule-Based Battery Cost Optimization</span> <span class="setting-default-pill">Priority #1, #2, #3...</span></div>
       <div class="setting-meta-row"><span class="badge-what">What It Does</span> Lets you build prioritized automation rules evaluated top-to-bottom. Includes 4 one-click presets:
@@ -1743,7 +1748,7 @@
   <div class="setting-card-grid">
     <div class="setting-card">
       <div class="setting-name"><span>📡 Sidebar &rarr; Scanner (Installer Mode)</span> <span class="setting-default-pill">Auto-Discovery</span></div>
-      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Sweeps your local <code>/24</code> network for open Modbus/HTTP ports (502, 1502, 80, 8887) and lets you run a targeted <strong>Modbus Register Probe</strong> (Slave ID 1–247, Holding/Input registers) or click <strong>+ Configure Device</strong> to pre-fill the Devices tab automatically.</div>
+      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Automatically recognizes the GEMS controller itself (<code>THIS GEMS CONTROLLER</code>), sweeps your local <code>/24</code> network using mDNS, UPnP/SSDP, 24/28/36-bit IEEE MAC OUI resolution, and Modbus/HTTP/TLS protocol fingerprinting, and scans attached USB/RS-485 serial ports with one-click <strong>+ Configure</strong> device onboarding.</div>
     </div>
 
     <div class="setting-card green">

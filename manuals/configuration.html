@@ -416,6 +416,7 @@ P_instantaneous_cap = E_remaining / Time_left_hrs</code></pre>
           <li><strong><code>super_dal_only</code>:</strong> Restricts grid charging strictly to supplier-optimized cheap off-peak contract windows (e.g., Engie Superdal).</li>
           <li><strong><code>hybrid</code>:</strong> Combines threshold price charging with supplier off-peak windows.</li>
           <li><strong><code>dynamic_forecast</code>:</strong> The most sophisticated mode. Computes an optimal 24-hour linear schedule by combining EPEX hourly spot prices with Open-Meteo solar irradiance forecasts and household baseline load (<code>home_base_load_w</code>).</li>
+          <li><strong><code>winter_fallback_enabled</code> (Winter / Low-Solar Fallback):</strong> When battery SoC drops to or below <code>winter_fallback_trigger_soc</code> (default <code>25%</code>) during winter or bad weather and the 24-hour solar forecast cannot cover recharge, GEMS automatically charges the battery during the <code>winter_fallback_cheapest_hours</code> (default <code>2</code> hours) lowest-priced hours of the day up to <code>winter_fallback_target_soc</code> (default <code>65%</code>).</li>
         </ul>
 
         <div class="alert alert-important">
