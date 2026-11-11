@@ -56,24 +56,17 @@ window.DOCS_SEARCH_INDEX = [
     keywords: ["deb", "debian", "dpkg", "apt", "package", "systemd", "gems.service", "ubuntu"]
   },
   {
-    title: "Building from Source",
-    category: "Installation",
-    url: "installation.html#building-from-source",
-    snippet: "Compiling Go 1.24+ backend and Vue 3 frontend with build.sh, CGO cross-compilation for ARM64.",
-    keywords: ["build", "source code", "compile", "golang", "node", "npm", "gcc-aarch64-linux-gnu", "build.sh"]
-  },
-  {
     title: "Cockpit Web Terminal & System Management",
     category: "Installation",
     url: "installation.html#cockpit",
-    snippet: "Accessing Cockpit web interface on port 9090 (admin / manufacturer) for terminal access, service restarts, and hardware monitoring.",
-    keywords: ["cockpit", "port 9090", "terminal", "admin", "manufacturer", "ssh", "systemctl", "logs"]
+    snippet: "Accessing Cockpit web interface on port 9090 using unique per-appliance credentials (/root/INITIAL_ADMIN_CREDENTIALS.txt) for terminal access and service diagnostics.",
+    keywords: ["cockpit", "port 9090", "terminal", "credentials", "ssh", "systemctl", "logs"]
   },
   {
-    title: "Raspberry Pi Connect Unattended Remote Access",
+    title: "Raspberry Pi Connect Remote Access",
     category: "Installation",
     url: "installation.html#rpi-connect",
-    snippet: "Pairing Raspberry Pi Connect (rpi-connect signin) for secure cloud remote desktop access without VPN or port forwarding.",
+    snippet: "Pairing Raspberry Pi Connect (rpi-connect signin) for encrypted remote terminal and supervised support access without VPN or port forwarding.",
     keywords: ["raspberry pi connect", "rpi-connect", "remote access", "vnc", "screen sharing", "wayvnc", "wayfire"]
   },
   {
@@ -102,7 +95,7 @@ window.DOCS_SEARCH_INDEX = [
   {
     title: "Eco Strategy (Self-Consumption Maximization)",
     category: "Configuration",
-    url: "configuration.html#eco-strategy",
+    url: "configuration.html#strategy-modes",
     snippet: "Prioritizing solar excess for home battery charging, EV charging, and domestic hot water heating.",
     keywords: ["eco mode", "self consumption", "solar excess", "green charging", "surplus"]
   },
@@ -114,9 +107,9 @@ window.DOCS_SEARCH_INDEX = [
     keywords: ["flanders", "peak shaving", "capaciteitstarief", "capacity_peak_limit_kw", "15-minute peak", "obis 1.6.0", "throttling"]
   },
   {
-    title: "Netherlands Zero-Export & Smart Saldering",
+    title: "Netherlands Zero-Export & Active Curtailment",
     category: "Configuration",
-    url: "configuration.html#netherlands-zero-export",
+    url: "configuration.html#active-curtailment",
     snippet: "Preventing grid feed-in penalties, active_inverter_curtailment, and min_profitable_export_price dynamic spot thresholding.",
     keywords: ["netherlands", "zero export", "smart saldering", "curtailment", "min_profitable_export_price", "negative prices"]
   },
@@ -202,7 +195,7 @@ window.DOCS_SEARCH_INDEX = [
   {
     title: "Native OCPP 1.6-J EV Charging Server",
     category: "User Guide",
-    url: "user-manual.html#ocpp-server",
+    url: "user-manual.html#ev-charging",
     snippet: "Embedded OCPP 1.6-J WebSocket server at ws://<pi-ip>:8887/<ID> and ws://<pi-ip>:8080/api/ocpp/<ID>, charger configuration, and cloudless local control.",
     keywords: ["ocpp", "ocpp 1.6", "ocpp 1.6-j", "websocket", "charger connection", "csms", "charge point id", "local control", "8887"]
   },
@@ -256,13 +249,6 @@ window.DOCS_SEARCH_INDEX = [
     url: "devices.html#diagnostics",
     snippet: "Interpreting status badges (Online, Error, Offline), real-time register monitoring in Logger, and resolving communication errors.",
     keywords: ["diagnostics", "status badges", "online", "error", "offline", "logger", "registers", "health check"]
-  },
-  {
-    title: "Plugin Architecture & Adding Custom Go Templates",
-    category: "Devices",
-    url: "devices.html#adding-template",
-    snippet: "Extending GEMS with custom DevicePoller Go plugins in backend/internal/templates/.",
-    keywords: ["plugin architecture", "custom template", "devicepoller", "golang", "contributing", "modbus template"]
   },
 
   // --- Troubleshooting ---

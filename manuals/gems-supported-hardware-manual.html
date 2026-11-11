@@ -509,7 +509,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Software Version</span>
-          <span class="cover-meta-val">v9.35.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.35.1-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Native Templates</span>
@@ -577,49 +577,49 @@
     </div>
   </div>
 
-  <!-- Section 1: Architecture & Unified Go Poller Abstraction -->
-  <h1 class="section-title">1. Executive Overview &amp; Unified Hardware Abstraction Layer</h1>
+  <!-- Section 1: Architecture & Unified Capability Profiles -->
+  <h1 class="section-title">1. Executive Overview &amp; Standardized Hardware Capability Profiles</h1>
   <p>
-    GEMS (Grid Energy Management System) is an edge Energy Management System engineered specifically to execute on local Raspberry Pi hardware without reliance on external cloud servers. The entire system is <strong>local-first</strong>: all automated power balancing, solar surplus tracking, Flanders peak shaving, and main fuse protection algorithms run directly inside the local Go binary (<code>gems</code> daemon), querying connected hardware and recalculating setpoints every single second.
+    GEMS (Grid Energy Management System) is an edge Energy Management System engineered specifically to execute on local Raspberry Pi hardware without reliance on external cloud servers. The entire system is <strong>local-first</strong>: all automated power balancing, solar surplus tracking, Flanders peak shaving, and main fuse protection run directly on the edge controller, polling connected hardware and recalculating setpoints every second.
   </p>
 
-  <h2 class="subsection-title">Commercial Support Tiers &amp; Unified Hardware Interfaces</h2>
+  <h2 class="subsection-title">Commercial Support Tiers &amp; Standardized Capability Profiles</h2>
   <p>
-    Every hardware driver in GEMS is classified into a commercial support tier (<strong>Verified</strong> for field-validated Tier-1 platforms displayed by default, <strong>Experimental</strong> accessible via the Installer Mode toggle, and <strong>Monitor Only</strong> for closed-protocol read-only telemetry) and implements standardized capability interfaces:
+    Every hardware integration in GEMS is classified into a commercial support tier (<strong>Verified</strong> for field-validated Tier-1 platforms displayed by default, <strong>Experimental</strong> accessible via the Installer Mode toggle, and <strong>Monitor Only</strong> for read-only telemetry) and exposes standardized operational capabilities:
   </p>
 
   <div class="strategy-card-grid">
     <div class="strategy-card">
-      <h3><code>DevicePoller</code> (Universal Base)</h3>
-      <p>Implemented across all 168 hardware profiles. Standardizes <code>Connect()</code>, <code>Poll()</code>, <code>Status()</code>, and <code>Close()</code>. Standardizes real-time power (W), battery power (W), grid flow (W), total energy (kWh), and battery SOC (%).</p>
+      <h3>Universal Telemetry Ingestion</h3>
+      <p>Supported across all 168 hardware profiles (180 registered templates). Standardizes connection supervision, health monitoring, real-time active power (W), battery power (W), grid flow (W), cumulative energy (kWh), and battery State of Charge (%).</p>
     </div>
     <div class="strategy-card">
-      <h3><code>ChargeController</code> (EV Chargers)</h3>
-      <p>Provides <code>SetChargeCurrent(amps float64)</code> (dynamic throttling from 6A to 32A in 1A steps) and <code>SetPhaseMode(phases int)</code> (automated switching between 1-phase and 3-phase charging modes).</p>
+      <h3>Dynamic EV Current &amp; Phase Control</h3>
+      <p>Provides real-time charging current modulation (6A to 32A) and automated switching between 1-phase and 3-phase charging modes with contactor anti-welding protection.</p>
     </div>
     <div class="strategy-card">
-      <h3><code>BatteryController</code> (Inverters &amp; BESS)</h3>
-      <p>Provides <code>ChargeBattery(powerW float64)</code> and <code>DischargeBattery(powerW float64)</code> for automated Day-Ahead EPEX spot price arbitrage and Flemish capacity tariff peak shaving.</p>
+      <h3>Battery Charge &amp; Discharge Dispatch</h3>
+      <p>Provides bidirectional storage power control and live BMS charge/discharge ceiling awareness for Day-Ahead EPEX spot arbitrage and Flemish capacity tariff peak shaving.</p>
     </div>
     <div class="strategy-card">
-      <h3><code>InverterController</code> (Solar Generation)</h3>
-      <p>Provides <code>SetActivePowerLimit(powerW float64)</code> for automated solar curtailment during negative electricity spot market hours and Dutch zero-export regulatory compliance.</p>
+      <h3>Active Solar Curtailment</h3>
+      <p>Provides proportional PV active power derating for negative electricity spot market hours, Flemish DSO telecontrol compliance, and Dutch zero-export operation.</p>
     </div>
     <div class="strategy-card">
-      <h3><code>RelayController</code> (Smart Switches)</h3>
-      <p>Provides <code>SetState(on bool)</code> for automated potential-free contactor actuation, powering domestic hot water (DHW) immersion heaters and triggering SG-Ready heat pump boost states.</p>
+      <h3>Smart Contactor &amp; SG-Ready Actuation</h3>
+      <p>Provides potential-free contactor switching and linear thermal diversion for domestic hot water (DHW) immersion heaters and SG-Ready heat pump boost states.</p>
     </div>
     <div class="strategy-card">
-      <h3><code>PhasePoller</code> &amp; <code>PhaseVoltagePoller</code></h3>
-      <p>Returns sub-second per-phase currents (<em>I<sub>L1</sub></em>, <em>I<sub>L2</sub></em>, <em>I<sub>L3</sub></em>) and voltages (<em>V<sub>L1</sub></em>, <em>V<sub>L2</sub></em>, <em>V<sub>L3</sub></em>) for dynamic phase balancing and main grid breaker protection.</p>
+      <h3>Per-Phase Current &amp; Voltage Sensing</h3>
+      <p>Captures directional per-phase currents (<em>I<sub>L1</sub></em>, <em>I<sub>L2</sub></em>, <em>I<sub>L3</sub></em>) and voltages (<em>V<sub>L1</sub></em>, <em>V<sub>L2</sub></em>, <em>V<sub>L3</sub></em>) for asymmetric phase load balancing and main breaker protection.</p>
     </div>
     <div class="strategy-card">
-      <h3><code>MeterPeakPoller</code> (Belgian Capacity Tariff)</h3>
-      <p>Implemented by P1 smart meters. Reads the official 15-minute rolling average peak demand register (W) directly from Fluvius DSMR meters to enforce capacity tariff ceilings.</p>
+      <h3>Fiscal Quarter-Hour Peak Metering</h3>
+      <p>Reads the official 15-minute rolling average peak demand register (W) directly from Fluvius DSMR digital meters to enforce capacity tariff ceilings accurately.</p>
     </div>
     <div class="strategy-card">
-      <h3><code>MultiConnectorPoller</code> (Dual-Socket EVSE)</h3>
-      <p>Implemented by dual-socket chargers (e.g. RAEDIAN Gemini). Manages independent telemetry, sessions, and charging currents across multiple physical charging ports simultaneously.</p>
+      <h3>Multi-Socket EVSE Coordination</h3>
+      <p>Manages dual-connector charging stations (such as RAEDIAN Gemini), balancing session telemetry and aggregate current limits across both physical charging ports.</p>
     </div>
   </div>
 
@@ -641,7 +641,7 @@
     </div>
     <div class="strategy-card">
       <h3>3. 🇳🇱 Netherlands Zero-Export &amp; Curtailment</h3>
-      <p>Protects Dutch installations against grid export penalties and salderingsregeling phase-outs. GEMS commands solar inverters to reduce generation (<code>SetActivePowerLimit</code>) whenever export limits are exceeded and storage batteries are saturated.</p>
+      <p>Protects Dutch installations against grid export penalties and salderingsregeling phase-outs. GEMS commands solar inverters to smoothly derate active generation whenever export limits are exceeded and storage batteries are saturated.</p>
     </div>
     <div class="strategy-card">
       <h3>4. 💶 Negative Spot Protection &amp; Flemish GSC Shield</h3>

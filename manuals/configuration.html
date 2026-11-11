@@ -70,7 +70,7 @@
             </a>
           </li>
           <li>
-            <a href="configuration.html#netherlands-zero-export" class="sidebar-link">
+            <a href="configuration.html#active-curtailment" class="sidebar-link">
               <svg width="16" height="16"><use href="assets/icons.svg#icon-sun"></use></svg>
               <span>Netherlands Zero-Export</span>
             </a>
@@ -262,29 +262,10 @@
           In Flanders (Belgium), the capacity tariff (<em>capaciteitstarief</em>) bills residential consumers based on their monthly peak 15-minute average grid power draw (minimum 2.5 kW baseline).
         </p>
 
-        <h3>Predictive Instantaneous Power Allowance Formula</h3>
+        <h3>Predictive Quarter-Hour Budget Enforcement</h3>
         <p>
-          Instead of waiting for an overshoot to occur, GEMS computes the maximum allowed instantaneous power $P_{\text{allowed}}(t)$ based on the elapsed time $t$ (in seconds) within the current synchronized 15-minute quarter-hour:
+          Instead of waiting for a billing peak overshoot to occur, GEMS continuously tracks imported energy across each synchronized 15-minute clock window and adjusts EV charger setpoints, smart relays, and home battery discharge headroom proactively over the remaining minutes of the quarter-hour so average import stays safely below your configured ceiling minus the safety buffer.
         </p>
-
-        <div class="code-block-wrapper">
-          <div class="code-header">
-            <span class="code-lang">Algorithm Logic</span>
-            <button class="copy-code-btn" aria-label="Copy code">
-              <svg width="14" height="14"><use href="assets/icons.svg#icon-copy"></use></svg>
-              <span>Copy</span>
-            </button>
-          </div>
-          <pre><code>// Target: Keep 15-min average <= capacity_peak_limit_kw
-// t = elapsed seconds in current 15-min window [0 .. 900]
-// E_accumulated = kWh imported in window so far
-
-E_max_allowed = (capacity_peak_limit_kw * 0.25) - (peak_shaving_buffer_w / 4000.0)
-E_remaining   = E_max_allowed - E_accumulated
-Time_left_hrs = (900 - t) / 3600.0
-
-P_instantaneous_cap = E_remaining / Time_left_hrs</code></pre>
-        </div>
 
         <div class="alert alert-important">
           <div class="alert-header">
@@ -323,7 +304,7 @@ P_instantaneous_cap = E_remaining / Time_left_hrs</code></pre>
               <tr>
                 <td><code>peak_shaving_rampup_w</code></td>
                 <td>Integer (W)</td>
-                <td><code>150</code></td>
+                <td><code>500</code></td>
                 <td>Limits how quickly throttled devices (e.g. EV chargers) are allowed to ramp back up when grid load drops.</td>
               </tr>
             </tbody>
@@ -742,7 +723,7 @@ P_instantaneous_cap = E_remaining / Time_left_hrs</code></pre>
       <ul class="toc-list">
         <li class="toc-item"><a href="#strategy-modes" class="toc-link">Site Optimization Strategies</a></li>
         <li class="toc-item"><a href="#flanders-peak-shaving" class="toc-link">Flanders Peak Shaving</a></li>
-        <li class="toc-item"><a href="#netherlands-zero-export" class="toc-link">Netherlands Zero-Export</a></li>
+        <li class="toc-item"><a href="#active-curtailment" class="toc-link">Netherlands Zero-Export</a></li>
         <li class="toc-item"><a href="#battery-arbitrage" class="toc-link">EPEX Spot Arbitrage</a></li>
         <li class="toc-item"><a href="#energy-contracts" class="toc-link">Contracts & Tariffs</a></li>
         <li class="toc-item"><a href="#phase-balancing" class="toc-link">Phase Load Balancing</a></li>

@@ -97,12 +97,6 @@
               <span>Live Health Checks</span>
             </a>
           </li>
-          <li>
-            <a href="devices.html#adding-template" class="sidebar-link">
-              <svg width="16" height="16"><use href="assets/icons.svg#icon-wrench"></use></svg>
-              <span>Plugin Architecture</span>
-            </a>
-          </li>
         </ul>
       </div>
 
@@ -204,14 +198,14 @@
 
         <h1>Supported Device Templates & Step-by-Step Configuration Guides</h1>
         <p class="hero-lead">
-          GEMS includes <strong>170 native hardware integration templates</strong> spanning 100+ leading manufacturers across solar inverters, home battery storage systems, EV charging stations, digital smart meters, linear solar diverters, SG-Ready heat pumps, and smart contactors.
+          GEMS includes <strong>180 native hardware integration templates</strong> spanning 100+ leading manufacturers across solar inverters, home battery storage systems, EV charging stations, digital smart meters, linear solar diverters, SG-Ready heat pumps, and smart contactors.
         </p>
 
         <!-- PDF Field Manual Callout Banner -->
         <div class="alert alert-tip" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0; border-radius: var(--radius-md);">
           <div>
             <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem;">📕 Official Hardware Compatibility Reference (PDF)</div>
-            <div style="font-size: 0.85rem; color: var(--text-secondary);">Download the complete field reference covering all 170 supported native templates: telemetry read out, controllable setpoints, and automation roles.</div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary);">Download the complete field reference covering all 180 supported native templates: telemetry read out, controllable setpoints, and automation roles.</div>
           </div>
           <div style="display: flex; gap: 0.5rem;">
             <a href="gems-supported-hardware-manual.pdf" target="_blank" class="tab-btn active" style="background: var(--brand-primary); color: #fff; text-decoration: none; padding: 0.45rem 0.9rem; font-size: 0.82rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.4rem;">
@@ -486,6 +480,29 @@
 
         <!-- Detailed Inverter Step-by-Step Guides -->
         <h3>Step-by-Step Configuration Guides for Popular Inverters</h3>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>Solis S5 / S6 Hybrid &amp; Retrofit Inverters (Primary Reference Platform)</h4>
+            <span class="badge-pill badge-green">Template: solis_hybrid / solis_retrofit</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>Physical / LAN Connection:</strong> Connect the Solis COM RS-485 port directly to a USB-to-RS485 adapter on the GEMS unit (recommended for sub-second response) or attach a Solis S2-WL-ST / S3-WiFi-ST LAN stick with local Modbus TCP enabled on port <code>502</code> (or <code>8899</code>), Slave ID <code>1</code>.</li>
+              <li><strong>Enable Storage Remote Control:</strong> In the Solis HMI or SolisCloud local commissioning menu, verify Slave Address <code>1</code> (`9600 8N1` for RS-485) and ensure external EMS energy storage control is permitted.</li>
+              <li><strong>Add in GEMS:</strong> Navigate to <strong>Settings &rarr; Devices &rarr; + Add Device</strong>.
+                <ul>
+                  <li><strong>Category:</strong> <em>Inverters &amp; Solar</em></li>
+                  <li><strong>Template:</strong> <em>Solis S5/S6 Hybrid Inverter &amp; Storage</em> (or <em>Solis Retrofit</em> for AC-coupled storage)</li>
+                  <li><strong>Device Name:</strong> <code>Solis S6 Hybrid Inverter</code></li>
+                  <li><strong>Endpoint:</strong> Enter LAN IP (e.g. <code>192.168.1.120:502</code>) or select persistent <code>/dev/serial/by-id/*</code> path &nbsp;|&nbsp; <strong>Modbus ID:</strong> <code>1</code></li>
+                  <li><strong>Rated Power &amp; Battery Capacity:</strong> Enter AC rating (e.g. <code>10.0 kW</code>), enable <strong>Has Connected Battery</strong>, and enter usable battery capacity (kWh).</li>
+                </ul>
+              </li>
+              <li><strong>Verify:</strong> Click <strong>Save Device</strong>. Status switches to <span class="badge-pill badge-green">● Online</span> with live PV output, battery SoC %, dynamic BMS limits, and active curtailment control.</li>
+            </ol>
+          </div>
+        </div>
 
         <div class="device-guide-card">
           <div class="guide-header">
@@ -1176,43 +1193,6 @@
           </table>
         </div>
 
-        <!-- 6. Plugin Architecture -->
-        <h2 id="adding-template">6. Plugin Architecture & Contributing Templates</h2>
-        <p>
-          GEMS is architected as an extensible Go plugin framework located in <code>backend/internal/templates/</code>. Every hardware template implements the unified <code>DevicePoller</code> interface:
-        </p>
-
-        <div class="code-block">
-          <pre><code>package templates
-
-import (
-    "gems/internal/models"
-)
-
-type MyDevicePoller struct {
-    device models.Device
-}
-
-func init() {
-    Register(Template{
-        Metadata: TemplateMetadata{
-            ID:       "my_device_template",
-            Name:     "Brand Model Inverter/Charger",
-            Type:     "modbus", // "modbus", "ocpp", "rest", "serial", "network", "cloud"
-            Category: "Inverters & Solar",
-            Vendor:   "BrandName",
-        },
-        NewPoller: func(d models.Device) models.DevicePoller {
-            return &MyDevicePoller{device: d}
-        },
-    })
-}
-
-func (p *MyDevicePoller) Poll() (models.Telemetry, error) {
-    // Read Modbus registers or REST endpoint and return standardized Telemetry struct
-}</code></pre>
-        </div>
-
       </div>
     </main>
   </div>
@@ -1220,18 +1200,18 @@ func (p *MyDevicePoller) Poll() (models.Telemetry, error) {
   <!-- Search Modal -->
   <div class="search-modal-backdrop" id="search-modal-backdrop">
     <div class="search-modal">
-      <div class="search-modal-header">
-        <svg width="20" height="20"><use href="assets/icons.svg#icon-search"></use></svg>
-        <input type="text" id="search-input" placeholder="Search 170 hardware templates, Modbus IDs, OCPP..." autocomplete="off">
-        <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search 180 hardware templates, Modbus IDs, OCPP..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Close search">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-close"></use></svg>
+        </button>
       </div>
-      <div class="search-results-list" id="search-results-list">
-        <!-- Dynamically populated -->
-      </div>
-      <div class="search-modal-footer">
-        <span><kbd>&uarr;</kbd> <kbd>&darr;</kbd> Navigate</span>
-        <span><kbd>Enter</kbd> Select</span>
-        <span><kbd>Esc</kbd> Close</span>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Use <kbd class="kbd-shortcut">&uarr;</kbd> <kbd class="kbd-shortcut">&darr;</kbd> to navigate</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> to select</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> to dismiss</span>
       </div>
     </div>
   </div>

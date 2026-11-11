@@ -314,7 +314,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.35.0-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.35.1-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Central Cloud Service</span>
@@ -341,7 +341,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.35.0</span>
+        <span>Documentation v9.35.1</span>
       </div>
     </div>
 
@@ -549,7 +549,7 @@ Content-Type: application/json
 
     <!-- ==================== SECTION 4: TELEMETRY SCHEMA ==================== -->
     <h1 class="section-title">4. Live Telemetry Ingestion &amp; Offline Store-and-Forward Buffer</h1>
-    <p>Once paired, the <code>CloudManager</code> goroutine executes a background loop pushing telemetry at the configured sync interval. If home internet connectivity drops temporarily, GEMS buffers telemetry frames locally in a bounded SQLite store-and-forward queue (<code>cloud_telemetry_queue</code>, up to 10,000 snapshots at 60-second intervals) and replays them automatically once WAN connectivity returns. Every sync packet is formatted according to the standardized GRID-EMS-SERVER JSON schema:</p>
+    <p>Once paired, the background cloud synchronization service streams real-time telemetry at the configured sync interval (default <code>2s</code>). If WAN connectivity drops temporarily, GEMS buffers telemetry frames locally in a bounded SQLite store-and-forward queue (up to 10,000 snapshots at 60-second intervals) and replays them automatically once connectivity returns. Every sync packet conforms to the standardized GRID-EMS-SERVER JSON schema:</p>
 
     <pre class="code-block">
 POST /api/v1/device/telemetry HTTP/1.1
@@ -628,29 +628,34 @@ Content-Type: application/json
       </thead>
       <tbody>
         <tr>
-          <td><code>set_strategy_mode</code></td>
-          <td><code>mode</code>: string ("eco", "flanders", "dynamic", "zero_export"), <code>peak_limit_kw</code>: float</td>
-          <td>Updates active energy strategy and immediately applies Flanders capacity ceiling to EV and battery loops.</td>
+          <td><code>SET_OPERATING_MODE</code> / <code>set_strategy_mode</code></td>
+          <td><code>mode</code>: string ("eco", "flanders", "netherlands"), <code>peak_limit_kw</code>: float</td>
+          <td>Updates the active site optimization strategy and immediately applies Flanders capacity limits across EV and battery loops.</td>
         </tr>
         <tr>
-          <td><code>set_battery_mode</code></td>
-          <td><code>device_id</code>: int, <code>mode</code>: string ("auto", "charge_grid", "discharge_grid", "hold")</td>
-          <td>Dispatches Modbus holding register commands to inverter to force battery charge or arbitrage discharge.</td>
+          <td><code>SET_BATTERY_MODE</code></td>
+          <td><code>device_id</code>: int, <code>mode</code>: string ("auto", "hold", "force_charge", "force_discharge"), <code>target_power_w</code>: float</td>
+          <td>Configures hybrid inverter or standalone BESS operating mode and power target with automatic safety clamping.</td>
         </tr>
         <tr>
-          <td><code>throttle_ev_charger</code></td>
-          <td><code>device_id</code>: int, <code>max_current_a</code>: int (6 - 32)</td>
-          <td>Adjusts charging current limit via Modbus TCP register 5012 or OCPP <code>SetChargingProfile</code>.</td>
+          <td><code>SET_EV_CHARGE_MODE</code> / <code>SET_EV_CURRENT</code></td>
+          <td><code>device_id</code>: int, <code>charge_mode</code>: string ("now", "eco", "pv_only", "off"), <code>max_current_a</code>: float (6–32)</td>
+          <td>Switches EV charging mode or dynamically throttles station amperage via Modbus TCP or OCPP 1.6-J <code>SetChargingProfile</code>.</td>
         </tr>
         <tr>
-          <td><code>set_relay</code></td>
-          <td><code>relay_id</code>: int (1 or 2), <code>state</code>: int (0 or 1)</td>
-          <td>Actuates physical GPIO or smart HTTP relay (e.g. Shelly Pro 2) for heat pump SG-Ready or thermal boost.</td>
+          <td><code>TOGGLE_RELAY</code> / <code>set_relay</code></td>
+          <td><code>device_id</code>: int, <code>state</code>: bool / int (0 or 1)</td>
+          <td>Actuates smart relay or dry-contact contactor for heat pump SG-Ready states or domestic hot water boost.</td>
         </tr>
         <tr>
-          <td><code>reboot</code></td>
+          <td><code>UPDATE_SETTINGS</code> / <code>SET_FLEET_SETTINGS</code></td>
+          <td>Validated site or EV fleet configuration fields</td>
+          <td>Applies validated site tariff, peak-shaving, or fleet cluster DLB settings to the edge database.</td>
+        </tr>
+        <tr>
+          <td><code>OTA_UPDATE</code> / <code>REBOOT</code></td>
           <td><code>delay_sec</code>: int (default 5)</td>
-          <td>Executes graceful Linux system reboot (<code>sudo systemctl reboot</code>) after acknowledging command.</td>
+          <td>Initiates a cryptographically verified software update or executes a graceful appliance reboot after command ACK.</td>
         </tr>
       </tbody>
     </table>
@@ -735,21 +740,21 @@ Content-Type: application/json
     </table>
 
     <h2 class="subsection-title">8.1 Live System Diagnostic Commands</h2>
-    <p>Installers can monitor the live CloudManager daemon via SSH or the built-in Cockpit Web Terminal (Port 9090):</p>
+    <p>Installers can monitor live cloud synchronization diagnostics via SSH or the built-in Cockpit Web Terminal (Port 9090):</p>
 
     <pre class="code-block">
 # Inspect live cloud synchronization logs
-sudo journalctl -u gems -f | grep CloudManager
+sudo journalctl -u gems -f | grep -i cloud
 
 # Test DNS and outbound HTTPS connectivity directly from edge
 curl -Iv https://ems.newenergygrid.com/api/status
 
 # Verify edge site settings and stored cloud device ID
-sqlite3 /var/lib/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_device_id, cloud_serial_number FROM site_settings WHERE id = 1;"
+sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_device_id, cloud_serial_number FROM site_settings WHERE id = 1;"
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.35.0
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.35.1
     </div>
 
   </div>

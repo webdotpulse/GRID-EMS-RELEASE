@@ -391,7 +391,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.35.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.35.1-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -592,12 +592,12 @@
 
   <h2 class="subsection-title">Method B: Debian Package Installation Commands</h2>
   <div class="terminal-box">
-    # 1. Download official ARM64 package<br>
-    wget https://github.com/webdotpulse/GRID-EMS/releases/download/v9.13.2-release/gems_9.13.2_arm64.deb<br>
+    # 1. Download official ARM64 release package<br>
+    curl -LO https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/latest/download/gems_latest_arm64.deb<br>
     <br>
     # 2. Install package and dependencies<br>
-    sudo dpkg -i gems_9.35.0_arm64.deb<br>
-    sudo apt-get install -f<br>
+    sudo dpkg -i gems_9.35.1_arm64.deb<br>
+    sudo apt-get install -f -y<br>
     <br>
     # 3. Verify systemd background service<br>
     sudo systemctl status gems.service
@@ -606,9 +606,9 @@
   <div class="callout callout-info">
     <div class="callout-title">📂 System File Locations</div>
     <ul style="margin: 4px 0 0 16px; padding: 0;">
-      <li><strong>Binaries:</strong> <code>/opt/gems/gems</code></li>
-      <li><strong>Configuration File:</strong> <code>/etc/gems/config.json</code></li>
-      <li><strong>SQLite Database:</strong> <code>/var/lib/gems/gems.db</code> (with <code>gems.db-wal</code>)</li>
+      <li><strong>Executable &amp; Web Bundle:</strong> <code>/opt/gems/gems-server</code> &amp; <code>/opt/gems/dist/</code></li>
+      <li><strong>Configuration Storage:</strong> 100% UI-driven inside SQLite (no manual config files required)</li>
+      <li><strong>SQLite WAL Database:</strong> <code>/opt/gems/gems.db</code> (with <code>gems.db-wal</code>)</li>
       <li><strong>System User:</strong> Runs under unprivileged user <code>gems</code> with dialout group access.</li>
     </ul>
   </div>

@@ -389,7 +389,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.35.0-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.35.1-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Balancing Engine Cycle</span>
@@ -416,7 +416,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.35.0</span>
+        <span>Documentation v9.35.1</span>
       </div>
     </div>
 
@@ -542,25 +542,17 @@
     <!-- ==================== SECTION 2 ==================== -->
     <h1 class="section-title">Section 2: Electrical Engineering, Fuse Protection & Standards</h1>
 
-    <h2 class="subsection-title">2.1 Mathematical Formulations of the GEMS DLB Engine</h2>
-    <p>To provide guaranteed protection against thermal breaker trips while maximizing energy transfer, GEMS evaluates the following mathematical model every 1,000 milliseconds:</p>
+    <h2 class="subsection-title">2.1 Real-Time Breaker Protection &amp; Per-Phase Headroom Allocation</h2>
+    <p>To prevent thermal main-breaker trips while maximizing multi-bay EV charging throughput across both 3-phase and phase-rotated 1-phase vehicles, GEMS continuously evaluates live building and feeder demand across phases <code>L1</code>, <code>L2</code>, and <code>L3</code>:</p>
 
-    <div class="math-box">
-// 1. Defend Main Service Breaker with 10% Safety Cushion:
-SafeLimitA = PhaseLimitAmps * 0.90
-
-// 2. Real-Time Non-EV Base Load Extraction per Phase:
-TotalCurrentEvA = ∑ (ActiveBayPowerW_i / PhaseMultiplier_i * 230V)
-NonChargerPhaseA = Max(0, MaxMeasuredPhaseA - TotalCurrentEvA)
-
-// 3. Available Grid Amperage Headroom:
-GridHeadroomA = Max(0, SafeLimitA - NonChargerPhaseA)
-
-// 4. Autonomous Cluster Ceiling Enforcement:
-AvailableClusterA = Min(FleetMaxCurrentA, GridHeadroomA)
-
-// 5. Solar Surplus Conversion:
-SolarSurplusA = TotalGridExportW / (PhaseMultiplier * 230V)
+    <div class="callout callout-info">
+      <div class="callout-title">⚡ Multi-Layer Electrical Protection Sequence</div>
+      <ol style="margin: 6px 0 0 18px; padding: 0;">
+        <li><strong>Main Breaker Safety Cushion:</strong> Enforces a protective safety margin below the physical utility breaker rating (<code>PhaseLimitAmps</code>) on every individual phase (<code>L1</code>, <code>L2</code>, <code>L3</code>).</li>
+        <li><strong>Building Base-Load Isolation:</strong> Subtracts active non-EV building loads (HVAC, elevators, lighting, heat pumps) per phase to determine true available grid headroom.</li>
+        <li><strong>Sub-Distribution Feeder Cap:</strong> Limits aggregate parking-deck current to the configured feeder rating (<code>FleetMaxCurrentA</code>) while allowing phase-rotated single-phase vehicles on separate phases to utilize independent phase capacity simultaneously.</li>
+        <li><strong>Solar Surplus Integration:</strong> Dynamically adds behind-the-meter PV export headroom (such as <strong>Solis</strong> commercial rooftop arrays) to eligible eco and solar bays (such as <strong>Raedian</strong> wallboxes).</li>
+      </ol>
     </div>
 
     <table class="data-table">

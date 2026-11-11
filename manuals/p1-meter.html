@@ -112,12 +112,6 @@
             </a>
           </li>
           <li>
-            <a href="#cable-assembly" class="sidebar-link">
-              <svg width="16" height="16"><use href="assets/icons.svg#icon-tool"></use></svg>
-              <span>Assembly & Verification</span>
-            </a>
-          </li>
-          <li>
             <a href="#port-activation" class="sidebar-link">
               <svg width="16" height="16"><use href="assets/icons.svg#icon-check"></use></svg>
               <span>Fluvius Port Activation</span>
@@ -472,6 +466,26 @@ sudo ftdi_eeprom --flash-eeprom ftdi_p1.conf
     </main>
   </div>
 
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search documentation, parameters, guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Close search">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Use <kbd class="kbd-shortcut">&uarr;</kbd> <kbd class="kbd-shortcut">&darr;</kbd> to navigate</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> to select</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> to dismiss</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/search-index.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

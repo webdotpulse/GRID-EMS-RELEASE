@@ -325,29 +325,29 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><code>set_strategy_mode</code></td>
+                  <td><code>SET_OPERATING_MODE</code> / <code>set_strategy_mode</code></td>
                   <td><code>mode</code>, <code>peak_limit_kw</code></td>
-                  <td>Switches between Flanders, Eco, Dynamic Arbitrage, or Zero-Export strategies.</td>
+                  <td>Switches between Flanders Peak Shaving, Eco Self-Consumption, or Netherlands Zero-Export modes.</td>
                 </tr>
                 <tr>
-                  <td><code>set_battery_mode</code></td>
-                  <td><code>device_id</code>, <code>mode</code></td>
-                  <td>Forces inverter battery charging or grid arbitrage discharge.</td>
+                  <td><code>SET_BATTERY_MODE</code></td>
+                  <td><code>device_id</code>, <code>mode</code>, <code>target_power_w</code></td>
+                  <td>Sets battery control mode (<code>auto</code>, <code>hold</code>, <code>force_charge</code>, <code>force_discharge</code>) or overrides power target.</td>
                 </tr>
                 <tr>
-                  <td><code>throttle_ev_charger</code></td>
-                  <td><code>device_id</code>, <code>max_current_a</code></td>
-                  <td>Adjusts charging current setpoint (6A–32A) for peak shaving or solar matching.</td>
+                  <td><code>SET_EV_CHARGE_MODE</code> / <code>SET_EV_CURRENT</code></td>
+                  <td><code>device_id</code>, <code>charge_mode</code>, <code>max_current_a</code></td>
+                  <td>Switches EV charging mode (<code>now</code>, <code>eco</code>, <code>pv_only</code>, <code>off</code>) or adjusts dynamic amperage limit (6A–32A).</td>
                 </tr>
                 <tr>
-                  <td><code>set_relay</code></td>
-                  <td><code>relay_id</code>, <code>state</code></td>
-                  <td>Toggles physical contactor or smart relay for heat pump boost or domestic hot water.</td>
+                  <td><code>TOGGLE_RELAY</code> / <code>set_relay</code></td>
+                  <td><code>device_id</code>, <code>state</code></td>
+                  <td>Actuates smart relay or contactor for SG-Ready heat pump boost or domestic hot water heating.</td>
                 </tr>
                 <tr>
-                  <td><code>reboot</code></td>
-                  <td><code>delay_sec</code></td>
-                  <td>Gracefully reboots the edge Raspberry Pi system.</td>
+                  <td><code>UPDATE_SETTINGS</code> / <code>OTA_UPDATE</code> / <code>REBOOT</code></td>
+                  <td>Setting keys or <code>delay_sec</code></td>
+                  <td>Applies validated site parameters, triggers signed OTA package installation, or executes a graceful appliance reboot.</td>
                 </tr>
               </tbody>
             </table>
@@ -396,7 +396,7 @@ sudo journalctl -u gems -f | grep CloudManager
 curl -Iv https://ems.newenergygrid.com/api/status
 
 # Check stored credentials in edge database
-sqlite3 /var/lib/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_device_id FROM site_settings;"</code></pre>
+sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_device_id FROM site_settings;"</code></pre>
           </div>
         </section>
 
@@ -422,6 +422,26 @@ sqlite3 /var/lib/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud
     </main>
   </div>
 
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search documentation, parameters, guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Close search">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Use <kbd class="kbd-shortcut">&uarr;</kbd> <kbd class="kbd-shortcut">&darr;</kbd> to navigate</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> to select</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> to dismiss</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/search-index.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

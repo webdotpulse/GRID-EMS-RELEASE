@@ -94,7 +94,7 @@
             </a>
           </li>
           <li>
-            <a href="user-manual.html#ocpp-server" class="sidebar-link">
+            <a href="user-manual.html#ev-charging" class="sidebar-link">
               <svg width="16" height="16"><use href="assets/icons.svg#icon-charger"></use></svg>
               <span>Native OCPP EV Charger Server</span>
             </a>
@@ -133,7 +133,7 @@
             <a href="devices.html" class="sidebar-link">
               <svg width="16" height="16"><use href="assets/icons.svg#icon-sun"></use></svg>
               <span>Device Templates</span>
-              <span class="badge">170</span>
+              <span class="badge">180</span>
             </a>
           </li>
           <li>
@@ -332,7 +332,7 @@
 
         <ol>
           <li>Click the <strong>Add Device</strong> button in the top right corner.</li>
-          <li>Select your hardware template from the catalog of 170 pre-configured manufacturer plugins (e.g. <em>Solis Hybrid Inverter</em>, <em>RAEDIAN Wallbox</em>, <em>Fluvius P1 Smart Meter</em>, <em>Shelly Pro 3EM</em>).</li>
+          <li>Select your hardware template from the catalog of 180 pre-configured manufacturer profiles (e.g. <em>Solis Hybrid Inverter</em>, <em>RAEDIAN Wallbox</em>, <em>Fluvius P1 Smart Meter</em>, <em>Shelly Pro 3EM</em>).</li>
           <li>Enter the IP Host or Hostname, Port (default <code>502</code> for Modbus TCP), and Modbus Slave ID. (<em>Note: For OCPP EV Chargers, simply enter your ChargePoint ID</em>).</li>
           <li>Click <strong>Test Connection</strong> to verify reachability.</li>
           <li>Click <strong>Save Device</strong>. The Go backend poller will immediately begin background metric polling.</li>
@@ -427,7 +427,7 @@ ws://192.168.1.50:8887/CP001</code></pre>
         <!-- Logger, PDF Reports & Updates -->
         <h2 id="logs-updates">8. Real-Time Logger, PDF Energy Reports & System Updates</h2>
 
-        <h3>Real-Time Logger (`Logger.vue`)</h3>
+        <h3>Real-Time System Logger</h3>
         <p>
           Access live system diagnostics via the <strong>Logs</strong> tab in the navigation bar. Filter by severity level (<code>INFO</code>, <code>WARN</code>, <code>ERROR</code>, <code>DEBUG</code>) or search for specific device names. Click <strong>Export Logs</strong> to download a structured <code>.txt</code> technical report.
         </p>
@@ -462,7 +462,7 @@ ws://192.168.1.50:8887/CP001</code></pre>
           </a>
           <a href="devices.html" class="page-nav-card" style="text-align:right;">
             <span class="page-nav-label">Next Guide</span>
-            <span class="page-nav-title">Supported Device Templates (90) &rarr;</span>
+            <span class="page-nav-title">Supported Device Templates (180) &rarr;</span>
           </a>
         </div>
 

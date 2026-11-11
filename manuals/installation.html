@@ -94,12 +94,6 @@
             </a>
           </li>
           <li>
-            <a href="installation.html#building-from-source" class="sidebar-link">
-              <svg width="16" height="16"><use href="assets/icons.svg#icon-terminal"></use></svg>
-              <span>Building from Source</span>
-            </a>
-          </li>
-          <li>
             <a href="installation.html#cockpit" class="sidebar-link">
               <svg width="16" height="16"><use href="assets/icons.svg#icon-terminal"></use></svg>
               <span>Cockpit Administration</span>
@@ -362,9 +356,9 @@ http://ems.local
 http://ems
 
 # Embedded Cockpit Web Terminal:
-http://ems.local:9090
-Username: admin
-Password: manufacturer</code></pre>
+https://ems.local:9090
+# Retrieve unique per-appliance administrator credentials provisioned on first boot:
+# /root/INITIAL_ADMIN_CREDENTIALS.txt (or provision user via Raspberry Pi Imager)</code></pre>
         </div>
 
         <!-- Option B: Debian Package -->
@@ -431,39 +425,6 @@ sudo apt-get install -f -y</code></pre>
           </table>
         </div>
 
-        <!-- Building from Source -->
-        <h2 id="building-from-source">Building from Source</h2>
-        <p>
-          To compile GEMS directly from source code:
-        </p>
-
-        <h3>Prerequisites</h3>
-        <ul>
-          <li><strong>Go 1.24+</strong>: Required for compiling the backend micro-kernel engine.</li>
-          <li><strong>Node.js 22+ & npm</strong>: Required for building the Vue 3 TypeScript Single Page Application.</li>
-          <li><strong>C Cross-Compiler (if compiling from x86_64 host for ARM64)</strong>: <code>gcc-aarch64-linux-gnu</code> and <code>libc6-dev-arm64-cross</code> (required for CGO SQLite bindings in <code>mattn/go-sqlite3</code>).</li>
-        </ul>
-
-        <div class="code-block-wrapper">
-          <div class="code-header">
-            <span class="code-lang">Bash Compilation</span>
-            <button class="copy-code-btn" aria-label="Copy commands">
-              <svg width="14" height="14"><use href="assets/icons.svg#icon-copy"></use></svg>
-              <span>Copy</span>
-            </button>
-          </div>
-          <pre><code># 1. Clone the repository
-git clone https://github.com/webdotpulse/GRID-EMS.git
-cd GRID-EMS
-
-# 2. Run the automated local build script
-./build.sh
-
-# The script compiles the Vue 3 frontend to backend/dist/
-# and generates the statically linked ARM64 binary:
-# Output artifact: build/gems-release-arm64.tar.gz</code></pre>
-        </div>
-
         <!-- Cockpit Administration -->
         <h2 id="cockpit">Cockpit Web Terminal & System Administration</h2>
         <p>
@@ -496,7 +457,7 @@ cd GRID-EMS
 
         <ol>
           <li>Open the Cockpit Web Terminal at <code>http://ems.local:9090</code>.</li>
-          <li>Run the following command to verify services and initiate pairing:
+            <li>Run the following command as the kiosk session user to verify services and initiate pairing:
             <div class="code-block-wrapper">
               <div class="code-header">
                 <span class="code-lang">Terminal</span>
@@ -505,12 +466,12 @@ cd GRID-EMS
                   <span>Copy</span>
                 </button>
               </div>
-              <pre><code>loginctl enable-linger gems
+              <pre><code>sudo loginctl enable-linger gems-kiosk
 rpi-connect signin</code></pre>
             </div>
           </li>
           <li>Click or copy the authentication URL displayed in the terminal output to link the device to your Raspberry Pi ID.</li>
-          <li>Visit <a href="https://connect.raspberrypi.com" target="_blank" rel="noopener">connect.raspberrypi.com</a> from any remote browser, select <strong><code>ems</code></strong>, and click <strong>Screen Sharing</strong>. Connection is automatically accepted by the kiosk environment.</li>
+          <li>Visit <a href="https://connect.raspberrypi.com" target="_blank" rel="noopener">connect.raspberrypi.com</a> from any remote browser and select <strong><code>ems</code></strong> for encrypted remote shell access. For privacy and security, unattended screen sharing is disabled by default with on-screen connection notifications enabled.</li>
         </ol>
 
         <!-- System Health Verification -->
@@ -664,7 +625,6 @@ rpi-connect signin</code></pre>
         <li class="toc-item"><a href="#nvme-setup" class="toc-link">NVMe SSD & EEPROM Setup</a></li>
         <li class="toc-item"><a href="#custom-os-image" class="toc-link">Option A: Custom OS Image</a></li>
         <li class="toc-item"><a href="#deb-package" class="toc-link">Option B: Debian Package</a></li>
-        <li class="toc-item"><a href="#building-from-source" class="toc-link">Building from Source</a></li>
         <li class="toc-item"><a href="#cockpit" class="toc-link">Cockpit Administration</a></li>
         <li class="toc-item"><a href="#rpi-connect" class="toc-link">Raspberry Pi Connect</a></li>
         <li class="toc-item"><a href="#rs485-wiring" class="toc-link">RS485 Modbus Wiring</a></li>
