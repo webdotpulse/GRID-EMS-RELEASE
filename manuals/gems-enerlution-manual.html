@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS - Enerlution Hybrid Inverters &amp; Battery Storage Wiring &amp; Commissioning Manual</title>
+  <meta name="description" content="Complete in-depth wiring, Enerlution App commissioning, and GEMS optimization manual for Enerlution HY / L3-L12 / HYTH Hybrid Inverters paired with LFPWall-5000, LFPWall-10K-V2, Roller-16K, GroundHV-2500, and GH02-5324 LiFePO4 battery storage.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 12mm 16mm 12mm;
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9pt;
+      line-height: 1.5;
+    }
+
+    .manual-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 980px;
+      padding: 24px 16px 16px 16px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 24px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px -1px rgba(13, 148, 136, 0.25);
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 25pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 16px 0 8px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 11pt;
+      color: #475569;
+      margin: 0 0 18px 0;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    .cover-meta-val {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.08);
+      margin: 12px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 7.5pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Section Headings */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15.5pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #0d9488;
+      padding-bottom: 5px;
+      margin-top: 26px;
+      margin-bottom: 12px;
+      page-break-after: avoid;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11.5pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 18px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #0f766e;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #334155;
+    }
+
+    ul, ol {
+      margin: 6px 0 10px 0;
+      padding-left: 20px;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    /* Screenshot Container */
+    .manual-screenshot {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .manual-screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .manual-screenshot-caption {
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    .screenshot-two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      font-size: 8.5pt;
+      line-height: 1.45;
+    }
+
+    .callout-info {
+      background: #f0fdfa;
+      border-left: 4px solid #0d9488;
+      color: #115e59;
+    }
+
+    .callout-tip {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #166534;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #92400e;
+    }
+
+    .callout-danger {
+      background: #fef2f2;
+      border-left: 4px solid #dc2626;
+      color: #991b1b;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 8.2pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #cbd5e1;
+      padding: 6px 9px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .data-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Menu Path Breadcrumb Pills */
+    .menu-path {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      background: #f0fdfa;
+      border: 1px solid #5eead4;
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 8pt;
+      font-weight: 600;
+      color: #115e59;
+    }
+
+    .val-good {
+      display: inline-block;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-weight: 700;
+      font-size: 7.8pt;
+    }
+
+    .val-avoid {
+      display: inline-block;
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-weight: 700;
+      font-size: 7.8pt;
+    }
+
+    .diagram-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    .recipe-card {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .recipe-card h4 {
+      margin: 0 0 6px 0;
+      font-size: 9.5pt;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    code {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 8pt;
+      color: #0f766e;
+    }
+
+    pre.code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 7.8pt;
+      line-height: 1.45;
+      overflow-x: auto;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="manual-page">
+
+    <!-- ==================== COVER PAGE ==================== -->
+    <div class="cover-page">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <span class="cover-badge">🔋 Dedicated Inverter &amp; Storage Field Manual</span>
+          <img src="assets/new_energy_grid_logo.png" alt="New Energy Grid Logo" style="height: 36px; width: auto;">
+        </div>
+
+        <h1 class="cover-title">Enerlution Hybrid Inverters &amp; LiFePO<sub>4</sub> Battery Storage Guide</h1>
+        <p class="cover-subtitle">
+          Complete electrician &amp; homeowner manual covering <strong>LV 51.2V parallel &amp; HV stackable battery wiring</strong> (<code>LFPWall-5000</code>, <code>LFPWall-10K-V2</code>, <code>Roller-16K</code>, <code>GroundHV-2500</code> &amp; <code>GH02-5324</code>), <strong>Enerlution App</strong> commissioning parameters, and optimal <strong>GRID-EMS (GEMS)</strong> configuration.
+        </p>
+
+        <div class="cover-meta-grid">
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Document Version</span>
+            <span class="cover-meta-val">v9.35.4-release (Official Tag)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">GEMS Verified Template</span>
+            <span class="cover-meta-val">enerlution_inverter (1-Watt Precision Curtailment &amp; ESS Telemetry)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Supported Enerlution Inverters</span>
+            <span class="cover-meta-val">L3–L12 Series • HY Series (1P LV) • HYTH-5K to HYTH-12K (3P HV)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Supported Enerlution Batteries</span>
+            <span class="cover-meta-val">LFPWall-5000 / 10K-V2 • Roller-16K (51.2V LV) • GroundHV-2500 / GH02 (HV)</span>
+          </div>
+        </div>
+
+        <div class="cover-hero-img">
+          <img src="assets/screenshots/dashboard.png" alt="GEMS Real-Time Energy Management Dashboard">
+        </div>
+
+        <div class="callout callout-info" style="margin-top: 14px;">
+          <div class="callout-title">⚡ Why Enerlution + GEMS Deliver Seamless Local Energy Control</div>
+          <div>
+            <strong>Enerlution</strong> offers both modular <strong>51.2 V Low-Voltage</strong> wall/mobile batteries and <strong>High-Voltage stackable</strong> three-phase residential/commercial towers. GEMS automatically discovers Enerlution hardware on your LAN by IEEE MAC prefix (<code>70:B3:D5</code> / <code>E4:5F:01</code>) and Modbus register signature, reads full live PV, Battery SOC/SOH, and Grid telemetry with fast/slow register tiering, executes <strong>stepless 1-Watt solar curtailment</strong> during negative spot prices, and coordinates EV charging and heat pumps around your battery reserve.
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-footer">
+        <span>© New Energy Grid &amp; The Charge Grid — Proprietary Field Documentation v9.35.4</span>
+        <span>Target Platform: GRID-EMS Edge Controller (Raspberry Pi ARM64)</span>
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 1 ==================== -->
+    <h1 class="section-title">Section 1: Enerlution Inverter &amp; Battery Ecosystem (LV vs. HV)</h1>
+
+    <p>
+      Unlike single-architecture brands, <strong>Enerlution</strong> manufactures two distinct voltage classes: <strong>51.2 V Low-Voltage (LV)</strong> single-phase storage systems and <strong>150–600 V High-Voltage (HV)</strong> three-phase stackable towers. Before installing or wiring any cables, confirm that your battery model matches the exact voltage class of your hybrid inverter.
+    </p>
+
+    <div class="callout callout-danger">
+      <div class="callout-title">🛑 CRITICAL VOLTAGE SEPARATION RULE: Never Cross-Wire LV (51.2V) &amp; HV (150–600V)!</div>
+      <div>
+        <ul style="margin: 2px 0 0 0;">
+          <li><strong>Architecture A — 51.2 V Low-Voltage (<code>LFPWall-5000</code>, <code>LFPWall-10K-V2</code>, <code>Roller-16K</code>):</strong> Wired <strong>strictly in 51.2 V parallel</strong> (<code>P+</code> to <code>P+</code>, <code>P-</code> to <code>P-</code>). Connect <em>only</em> to 48V/51.2V Low-Voltage hybrid inverters (<code>Enerlution HY / L3–L6 LV</code> or compatible 48V LV inverters such as <code>Solis -L</code>). <strong>Never</strong> wire LV wall/roller packs in series!</li>
+          <li><strong>Architecture B — High-Voltage Stackable (<code>GroundHV-2500</code>, <code>GH02-5324</code> + PDU/BCU):</strong> Individual blocks stack <strong>in series underneath a dedicated High-Voltage PDU / BCU Control Box</strong> (<code>~153 V – 500+ Vdc</code>). Connect <em>only</em> to High-Voltage 3-phase hybrid inverters (<code>Enerlution HYTH-5K..12K</code> / <code>L5–L12 HV</code>). Keep the HV Manual Service Disconnect (MSD) / PDU breaker <strong>OFF</strong> and wear HV-insulated gloves during assembly!</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">1.1 Enerlution Battery Storage Specification Matrix</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 23%;">Enerlution Battery Model</th>
+          <th style="width: 15%;">Voltage Class</th>
+          <th style="width: 22%;">Nominal Voltage &amp; Capacity</th>
+          <th style="width: 20%;">Max Charge / Discharge</th>
+          <th style="width: 20%;">Matching Inverter Family</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>LFPWall-5000</strong><br><em>(Wall-Mount LiFePO<sub>4</sub>)</em></td>
+          <td><strong>Low-Voltage</strong><br>(Parallel)</td>
+          <td><code>51.2 Vdc</code> • <code>102 Ah</code><br><strong><code>5.22 kWh</code></strong> (45–57.6 V)</td>
+          <td>Charge: <code>40 A</code> (~2.05 kW)<br>Discharge: <code>75 A</code> (~3.84 kW)</td>
+          <td>Enerlution <code>HY / L3–L6 LV</code><br><em>(or Solis LV <code>-L</code>)</em></td>
+        </tr>
+        <tr>
+          <td><strong>LFPWall-10K-V2</strong><br><em>(High-Cap Wall-Mount)</em></td>
+          <td><strong>Low-Voltage</strong><br>(Parallel)</td>
+          <td><code>51.2 Vdc</code> • <code>204 Ah</code><br><strong><code>10.44 kWh</code></strong> (45–57.6 V)</td>
+          <td>Charge: <code>90 A</code> (~4.61 kW)<br>Discharge: <code>140 A</code> (~7.16 kW)</td>
+          <td>Enerlution <code>HY / L3–L6 LV</code><br><em>(or Solis LV <code>-L</code>)</em></td>
+        </tr>
+        <tr>
+          <td><strong>Roller-16K</strong><br><em>(Mobile Floor-Standing)</em></td>
+          <td><strong>Low-Voltage</strong><br>(Parallel)</td>
+          <td><code>51.2 Vdc</code> • <code>314 Ah</code><br><strong><code>16.08 kWh</code></strong> (45–57.6 V)</td>
+          <td><code>0.5 C</code> heavy-duty class<br>(Up to ~<code>150 A</code> / ~7.6 kW)</td>
+          <td>Enerlution <code>HY / L5–L6 LV</code><br><em>(or Solis <code>S6-EH1P/3P-L</code>)</em></td>
+        </tr>
+        <tr>
+          <td><strong>GroundHV-2500 + PDU</strong><br><em>(Stackable HV Tower)</em></td>
+          <td><strong>High-Voltage</strong><br>(Series Stack)</td>
+          <td><code>51.2 V</code> / <code>52 Ah</code> (<code>2.5 kWh</code>/blk)<br><strong><code>7.5 – 20+ kWh</code></strong> (3–8 blocks)</td>
+          <td><code>~25 – 50 A</code> HV DC<br>(<code>5 – 12 kW</code> continuous)</td>
+          <td>Enerlution <strong><code>HYTH-5K..12K</code></strong><br>(3-Phase HV Hybrid)</td>
+        </tr>
+        <tr>
+          <td><strong>GH02-5324 + BCU</strong><br><em>(Large HV Tower)</em></td>
+          <td><strong>High-Voltage</strong><br>(Series Stack)</td>
+          <td>High-Voltage Modular<br><strong><code>15.0 – 42.0 kWh</code></strong></td>
+          <td><code>~50 A</code> HV DC<br>(<code>10 – 15+ kW</code> continuous)</td>
+          <td>Enerlution <strong><code>HYTH-8K..12K</code></strong><br>(3-Phase HV Hybrid)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">1.2 Enerlution Hybrid Inverter Series &amp; Cable / Protection Sizing</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 26%;">Inverter Series</th>
+          <th style="width: 20%;">AC Grid Phases</th>
+          <th style="width: 18%;">GEMS Template</th>
+          <th style="width: 36%;">Battery DC Cable &amp; External Protection</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Enerlution HY / L3–L6 (LV)</strong><br><em>(3.0 / 3.6 / 5.0 / 6.0 kW)</em></td>
+          <td>Single-Phase<br>(<code>230 Vac</code>)</td>
+          <td><code>enerlution_inverter</code></td>
+          <td><code>25 mm²</code> (5 kWh) or <code>35–50 mm²</code> (10–16 kWh+) copper via <strong>non-polarized 2-pole DC MCCB (<code>125 A – 200 A</code>, ≥80 Vdc)</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Enerlution HYTH / L5–L12 (HV)</strong><br><em>(5.0 / 6.0 / 8.0 / 10.0 / 12.0 kW)</em></td>
+          <td>Three-Phase<br>(<code>3×400V+N</code>)</td>
+          <td><code>enerlution_inverter</code></td>
+          <td>Double-insulated <code>6 – 10 mm²</code> (<code>1000 Vdc</code>) HV solar/storage leads via <strong>built-in PDU HV Breaker &amp; Manual Service Disconnect</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 2 ==================== -->
+    <h1 class="section-title">Section 2: Step-by-Step Battery &amp; Smart Meter Wiring Manual</h1>
+
+    <p>
+      De-energize the AC distribution breaker, PV DC isolator, external DC breaker / HV PDU switch, and all battery module power buttons before connecting any power or communication leads.
+    </p>
+
+    <h2 class="subsection-title">2.1 Both Wiring Topologies: LV 51.2V Parallel vs. HV Stackable Tower</h2>
+
+    <div class="diagram-box">
+      <div style="font-weight: 800; font-size: 9.2pt; color: #0f172a; margin-bottom: 8px;">
+        Left: Architecture A — 51.2V LV Parallel (LFPWall / Roller) &nbsp;|&nbsp; Right: Architecture B — HV Stackable (GroundHV / GH02 + PDU)
+      </div>
+      <svg viewBox="0 0 840 250" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+        <!-- Divider -->
+        <line x1="420" y1="8" x2="420" y2="242" stroke="#cbd5e1" stroke-width="1.8" stroke-dasharray="6,4"/>
+
+        <!-- LEFT SIDE: LV 51.2V PARALLEL -->
+        <text x="205" y="20" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0f766e">A. 51.2V LV Parallel (HY / L3–L6 Inverter)</text>
+
+        <rect x="12" y="34" width="138" height="196" rx="9" fill="#f0fdfa" stroke="#0d9488" stroke-width="2"/>
+        <text x="81" y="56" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#115e59">Enerlution LV</text>
+        <text x="81" y="71" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#475569">HY / L3–L6 (1P)</text>
+        <rect x="92" y="88" width="48" height="20" rx="3" fill="#fee2e2" stroke="#dc2626"/>
+        <text x="116" y="102" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#991b1b">BAT+</text>
+        <rect x="92" y="118" width="48" height="20" rx="3" fill="#e2e8f0" stroke="#0f172a"/>
+        <text x="116" y="132" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#0f172a">BAT-</text>
+        <rect x="82" y="156" width="58" height="22" rx="3" fill="#dbeafe" stroke="#2563eb"/>
+        <text x="111" y="170" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#1e40af">BMS CAN</text>
+        <rect x="20" y="196" width="120" height="22" rx="3" fill="#fef9c3" stroke="#ca8a04"/>
+        <text x="80" y="210" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#854d0e">Meter RS485 + PE</text>
+
+        <!-- LV DC MCCB -->
+        <rect x="172" y="84" width="68" height="60" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.8"/>
+        <text x="206" y="104" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#dc2626">2P DC</text>
+        <text x="206" y="117" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#0f172a">MCCB</text>
+        <text x="206" y="132" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#475569">125–200A</text>
+
+        <!-- LV Pack 1 Master -->
+        <rect x="264" y="34" width="142" height="86" rx="8" fill="#f8fafc" stroke="#0284c7" stroke-width="1.8"/>
+        <text x="335" y="51" text-anchor="middle" font-family="sans-serif" font-size="9.5" font-weight="bold" fill="#0369a1">LFPWall #1 (Master)</text>
+        <text x="335" y="64" text-anchor="middle" font-family="monospace" font-size="8" fill="#166534">DIP Addr = 1</text>
+        <rect x="274" y="72" width="32" height="18" rx="3" fill="#fee2e2" stroke="#dc2626"/>
+        <text x="290" y="84" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#991b1b">P+</text>
+        <rect x="312" y="72" width="32" height="18" rx="3" fill="#e2e8f0" stroke="#0f172a"/>
+        <text x="328" y="84" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#0f172a">P-</text>
+        <rect x="350" y="72" width="46" height="18" rx="3" fill="#dbeafe" stroke="#2563eb"/>
+        <text x="373" y="84" text-anchor="middle" font-family="monospace" font-size="8" font-weight="bold" fill="#1e40af">CAN</text>
+        <text x="335" y="109" text-anchor="middle" font-family="monospace" font-size="7.8" fill="#6d28d9">RS485 Link Out ↓</text>
+
+        <!-- LV Pack 2 Slave -->
+        <rect x="264" y="144" width="142" height="86" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.6"/>
+        <text x="335" y="161" text-anchor="middle" font-family="sans-serif" font-size="9.5" font-weight="bold" fill="#1e293b">LFPWall #2 (Slave)</text>
+        <text x="335" y="174" text-anchor="middle" font-family="monospace" font-size="8" fill="#9a3412">DIP Addr = 2</text>
+        <rect x="274" y="182" width="32" height="18" rx="3" fill="#fee2e2" stroke="#dc2626"/>
+        <text x="290" y="194" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#991b1b">P+</text>
+        <rect x="312" y="182" width="32" height="18" rx="3" fill="#e2e8f0" stroke="#0f172a"/>
+        <text x="328" y="194" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#0f172a">P-</text>
+        <text x="335" y="218" text-anchor="middle" font-family="sans-serif" font-size="7.8" fill="#475569">Diagonal P- Takeoff!</text>
+
+        <!-- LV Wires -->
+        <line x1="140" y1="98" x2="172" y2="98" stroke="#dc2626" stroke-width="2.6"/>
+        <path d="M 240 98 L 254 98 L 254 81 L 274 81" stroke="#dc2626" stroke-width="2.6" fill="none"/>
+        <line x1="290" y1="90" x2="290" y2="182" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,2"/>
+        <line x1="140" y1="128" x2="172" y2="128" stroke="#0f172a" stroke-width="2.6"/>
+        <path d="M 240 128 L 248 128 L 248 236 L 328 236 L 328 200" stroke="#0f172a" stroke-width="2.6" fill="none"/>
+        <line x1="328" y1="90" x2="328" y2="182" stroke="#0f172a" stroke-width="2" stroke-dasharray="4,2"/>
+        <path d="M 140 167 L 258 167 L 258 128 L 373 128 L 373 90" stroke="#2563eb" stroke-width="2" fill="none"/>
+        <line x1="382" y1="120" x2="382" y2="144" stroke="#7c3aed" stroke-width="2"/>
+
+        <!-- RIGHT SIDE: HV SERIES STACKABLE -->
+        <text x="630" y="20" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#b91c1c">B. HV Series Stack (HYTH 3-Phase Inverter)</text>
+
+        <rect x="438" y="34" width="145" height="196" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+        <text x="510" y="56" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#9a3412">Enerlution HV</text>
+        <text x="510" y="71" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#475569">HYTH-5K..12K (3P)</text>
+        <rect x="522" y="88" width="52" height="20" rx="3" fill="#fee2e2" stroke="#dc2626"/>
+        <text x="548" y="102" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#991b1b">HV+</text>
+        <rect x="522" y="118" width="52" height="20" rx="3" fill="#e2e8f0" stroke="#0f172a"/>
+        <text x="548" y="132" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#0f172a">HV-</text>
+        <rect x="514" y="156" width="60" height="22" rx="3" fill="#dbeafe" stroke="#2563eb"/>
+        <text x="544" y="170" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#1e40af">BMS CAN</text>
+        <rect x="448" y="196" width="125" height="22" rx="3" fill="#f0fdf4" stroke="#16a34a"/>
+        <text x="510" y="210" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#166534">DTSU666 + LAN/485</text>
+
+        <!-- HV Stack Tower: Top PDU + 3 Stacked Modules -->
+        <rect x="632" y="34" width="194" height="54" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+        <text x="729" y="52" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#991b1b">HV PDU / BCU Control Head</text>
+        <text x="729" y="67" text-anchor="middle" font-family="monospace" font-size="8" fill="#334155">HV Breaker • MSD • CAN Port</text>
+
+        <rect x="632" y="94" width="194" height="40" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+        <text x="729" y="118" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#1e293b">GroundHV-2500 / GH02 Module 1</text>
+
+        <rect x="632" y="140" width="194" height="40" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+        <text x="729" y="164" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#1e293b">GroundHV-2500 / GH02 Module 2</text>
+
+        <rect x="632" y="186" width="194" height="44" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+        <text x="729" y="206" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#1e293b">Module 3..8 + Floor Plinth</text>
+        <text x="729" y="221" text-anchor="middle" font-family="sans-serif" font-size="7.8" fill="#166534">Blind-Mate Internal HV Series Bus</text>
+
+        <!-- HV Wires -->
+        <path d="M 574 98 L 606 98 L 606 48 L 632 48" stroke="#dc2626" stroke-width="2.6" fill="none"/>
+        <path d="M 574 128 L 616 128 L 616 66 L 632 66" stroke="#0f172a" stroke-width="2.6" fill="none"/>
+        <path d="M 574 167 L 622 167 L 622 80 L 632 80" stroke="#2563eb" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+
+    <h3 class="step-title">Architecture A — Wiring 51.2V LV Batteries (<code>LFPWall-5000</code>, <code>LFPWall-10K-V2</code>, <code>Roller-16K</code>)</h3>
+    <ol>
+      <li><strong>External 2-Pole Non-Polarized DC MCCB:</strong> Install a non-polarized 2-pole DC breaker or <code>gBat</code> DC fuse disconnector (<code>&ge; 80 Vdc</code>; <code>100–125 A</code> for a single <code>LFPWall-5000</code>, <code>160–200 A</code> for <code>LFPWall-10K-V2</code> or <code>Roller-16K</code>) between the battery bank and the inverter <code>BAT+ / BAT-</code> lugs.</li>
+      <li><strong>Parallel Balancing Rule:</strong> For <strong>2–3 parallel packs</strong>, connect equal-length bridge cables (<code>P+</code> to <code>P+</code>, <code>P-</code> to <code>P-</code>) and take <strong><code>BAT+</code> from Pack 1 (Master) <code>P+</code></strong> and <strong><code>BAT-</code> diagonally from the final pack's <code>P-</code></strong>. For <strong>4+ parallel packs</strong>, run identical-length <code>25–35 mm&sup2;</code> fused branch leads from each battery to rated <code>250–400 A</code> tin-plated copper DC busbars.</li>
+      <li><strong>Protective Earth (<code>&#9178; PE</code>):</strong> Bond each wall/roller chassis <code>&#9178;</code> M6 ground terminal directly to the inverter PE bar with <code>&ge; 6 mm&sup2;</code> green/yellow copper conductor.</li>
+    </ol>
+
+    <h3 class="step-title">Architecture B — Wiring High-Voltage Towers (<code>GroundHV-2500</code> / <code>GH02-5324</code> + PDU/BCU)</h3>
+    <ol>
+      <li><strong>Mechanical Stacking &amp; Wall Anchoring:</strong> Level the steel base plinth against a load-bearing wall. Stack the required number of HV battery bricks vertically (minimum <code>3–4 &times; GroundHV-2500</code> bricks = <code>~153–204 Vdc</code> to exceed <code>HYTH</code> start voltage), fasten the anti-tip side locking brackets between every tier, and seat the <strong>PDU / BCU High-Voltage Control Head</strong> on top.</li>
+      <li><strong>HV DC Plugs &amp; Safety Interlock:</strong> Verify the PDU HV circuit breaker is <strong>OFF</strong> and any orange <strong>Manual Service Disconnect (MSD)</strong> safety plug is removed. Route double-insulated <code>6–10 mm&sup2;</code> (<code>1000 Vdc</code>) HV storage cables from the PDU <code>HV+ / HV-</code> touch-safe connectors into the <code>HYTH</code> inverter's <code>BAT+ / BAT-</code> ports until the locking collars click, and bond the base + PDU <code>&#9178; PE</code> studs to the inverter earth bar.</li>
+    </ol>
+
+    <div class="page-break"></div>
+
+    <h2 class="subsection-title">2.2 BMS CAN Cable Pinout &amp; Multi-Pack DIP Switch Addressing</h2>
+    <p>
+      Enerlution batteries establish closed-loop BMS communication (<code>SOC %</code>, <code>SOH %</code>, pack voltage, cell temperature derating, and charge/discharge current envelopes) over <strong>CAN bus</strong> via an RJ45 cable linking the <strong>Master Battery / PDU <code>CAN</code> port</strong> to the Enerlution inverter <strong><code>BMS / CAN</code> port</strong>:
+    </p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 15%;">RJ45 Pin</th>
+          <th style="width: 21%;">T568B Wire Color</th>
+          <th style="width: 24%;">Enerlution Battery / PDU Port</th>
+          <th style="width: 22%;">Inverter <code>BMS / CAN</code> Port</th>
+          <th style="width: 18%;">Wiring Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Pin 1 &amp; 2</strong></td>
+          <td>W-Orange / Orange</td>
+          <td>RS485-B / RS485-A (Optional)</td>
+          <td>RS485-B / RS485-A</td>
+          <td>Unused in CAN mode</td>
+        </tr>
+        <tr>
+          <td><strong>Pin 3 &amp; 6</strong></td>
+          <td>W-Green / Green</td>
+          <td>Signal <code>GND</code></td>
+          <td>Signal <code>GND</code></td>
+          <td>Reference Ground</td>
+        </tr>
+        <tr>
+          <td><strong>Pin 4</strong></td>
+          <td><strong>Solid Blue</strong></td>
+          <td><strong><code>CAN-H</code> (CAN High)</strong></td>
+          <td><strong><code>CAN-H</code> (CAN High)</strong></td>
+          <td><span class="val-good">Mandatory CAN-H</span></td>
+        </tr>
+        <tr>
+          <td><strong>Pin 5</strong></td>
+          <td><strong>White / Blue</strong></td>
+          <td><strong><code>CAN-L</code> (CAN Low)</strong></td>
+          <td><strong><code>CAN-L</code> (CAN Low)</strong></td>
+          <td><span class="val-good">Mandatory CAN-L</span></td>
+        </tr>
+        <tr>
+          <td><strong>Pin 7 &amp; 8</strong></td>
+          <td>W-Brown / Brown</td>
+          <td>Reserved / Shield GND</td>
+          <td>Reserved / Shield GND</td>
+          <td>Check factory lead label</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ul>
+      <li><strong>Parallel Link Cables &amp; DIP Switches (Set Strictly While Powered OFF):</strong>
+        <ul>
+          <li><strong>Single Battery Pack:</strong> Keep the <code>ADD</code> DIP switches in factory standalone position (<code>0000</code> all <code>OFF</code>, or <code>Address 1</code> per enclosed V1/V2 BMS sheet).</li>
+          <li><strong>Multiple Parallel LV Packs (<code>LFPWall</code> / <code>Roller</code>):</strong> Daisy-chain CAT5e/CAT6 link cords from <strong>Master Pack 1 <code>Link Out / RS485-B</code> &rarr; Slave Pack 2 <code>Link In / RS485-A</code> &rarr; Slave Pack 3 <code>Link In</code></strong>. Assign sequential binary addresses while powered down: <strong>Master (Pack 1) = Address <code>1</code> (<code>ON OFF OFF OFF</code>)</strong>, <strong>Slave 1 (Pack 2) = Address <code>2</code> (<code>OFF ON OFF OFF</code>)</strong>, <strong>Slave 2 (Pack 3) = Address <code>3</code> (<code>ON ON OFF OFF</code>)</strong>, <strong>Slave 3 (Pack 4) = Address <code>4</code> (<code>OFF OFF ON OFF</code>)</strong>. If your DIP block includes a dedicated termination bit on the last pole, set termination <code>ON</code> on the physically farthest pack.</li>
+          <li><strong>Pairing 51.2V Enerlution Packs with Third-Party LV Inverters (e.g. Solis):</strong> Ensure the Enerlution BMS protocol matches the target inverter (<code>Pylon / Solis CAN</code> over Pins 4 &amp; 5; switchable via DIP or Enerlution's USB-RS485 BMS Monitor utility if factory-shipped on a different OEM profile).</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2 class="subsection-title">2.3 External RS-485 Smart Meter Wiring (<code>CHINT DTSU666</code> &amp; <code>Eastron SDM630</code>)</h2>
+    <p>
+      For autonomous <code>Self-Consumption</code> battery tracking and whole-home phase visibility, wire a shielded twisted-pair RS-485 cable (<code>9600 bps, 8N1</code>, Meter Address <code>1</code>) from the main switchboard smart meter to the Enerlution inverter's <strong><code>Meter / 485</code></strong> terminal block:
+    </p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 30%;">Smart Meter Model</th>
+          <th style="width: 24%;">Meter <code>RS485-A (+)</code></th>
+          <th style="width: 24%;">Meter <code>RS485-B (-)</code></th>
+          <th style="width: 22%;">Required Meter Bus Setup</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>CHINT DTSU666</strong> (3-Phase)</td>
+          <td>Terminal <strong><code>24</code></strong></td>
+          <td>Terminal <strong><code>25</code></strong></td>
+          <td>Address <code>1</code> • <code>9600 8N1</code></td>
+        </tr>
+        <tr>
+          <td><strong>CHINT DDSU666</strong> (1-Phase)</td>
+          <td>Terminal <strong><code>5</code></strong></td>
+          <td>Terminal <strong><code>6</code></strong></td>
+          <td>Address <code>1</code> • <code>9600 8N1</code></td>
+        </tr>
+        <tr>
+          <td><strong>Eastron SDM630-Modbus V2</strong></td>
+          <td>Terminal <strong><code>A / 485A</code></strong></td>
+          <td>Terminal <strong><code>B / 485B</code></strong></td>
+          <td>Address <code>1</code> • <code>9600 8N1</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <em>CT Orientation Check:</em> Clamp all CTs on the main incoming utility phase conductors immediately after the utility meter (upstream of all house breakers, EV wallboxes, and solar/storage inverters) with CT arrows pointing strictly <strong>Grid &rarr; Home/Load</strong>.
+    </p>
+
+    <h2 class="subsection-title">2.4 Safe Soft-Start Power-Up &amp; Shutdown Sequence</h2>
+    <div class="callout callout-tip">
+      <div class="callout-title">⚡ Mandatory Pre-Charge Startup Order</div>
+      <div>
+        <ol style="margin: 4px 0 0 0; padding-left: 18px;">
+          <li><strong>Verify Polarity Cold:</strong> With all breakers OFF, verify <code>BAT+ / BAT-</code> polarity with a DC voltmeter.</li>
+          <li><strong>Close DC Isolator First:</strong> Switch the LV 2-pole DC MCCB <strong>ON</strong> (or insert the HV MSD safety plug and switch the PDU HV breaker <strong>ON</strong>) while the BMS is still asleep.</li>
+          <li><strong>Wake Master / PDU BMS:</strong> Press and hold the Master battery or HV PDU <strong><code>POWER / SW</code> button (<code>2–3 seconds</code>)</strong> so the internal pre-charge circuit softly energizes the inverter capacitors. Confirm green <strong><code>RUN</code></strong> LED is solid/blinking normally and red <strong><code>ALM</code></strong> LED is OFF.</li>
+          <li><strong>Energize PV &amp; Grid:</strong> Switch the inverter <strong>PV DC isolator ON</strong>, then turn <strong>ON</strong> the <strong>AC Grid breaker</strong>.</li>
+        </ol>
+        <em>Shutdown (Reverse):</em> <strong>AC Breaker OFF</strong> &rarr; <strong>PV DC Switch OFF</strong> &rarr; Hold Master/PDU <code>POWER</code> button 3s to sleep BMS &rarr; <strong>DC MCCB / PDU Breaker OFF</strong> (wait 5 minutes before touching HV terminals!).
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 3 ==================== -->
+    <h1 class="section-title">Section 3: Step-by-Step Commissioning in the Enerlution App</h1>
+
+    <p>
+      Download the official <strong>Enerlution</strong> mobile app (iOS App Store / Google Play) to commission Wi-Fi/LAN communication, confirm BMS handshakes, select smart meter profiles, and leave active power limits unlocked for GEMS.
+    </p>
+
+    <h2 class="subsection-title">3.1 Connecting Locally via Bluetooth or Wi-Fi Access Point</h2>
+    <ol>
+      <li>Plug the <strong>Enerlution Wi-Fi / LAN communication module</strong> firmly into the bottom <code>COM / Wi-Fi</code> port of the inverter.</li>
+      <li>Enable <strong>Bluetooth</strong> and <strong>Wi-Fi</strong> on your smartphone (<strong>temporarily turn Mobile Data OFF</strong> if joining the module's local Wi-Fi AP SSID matching the logger serial number so your phone does not drop offline traffic).</li>
+      <li>Open the <strong>Enerlution App</strong>, select <strong>Local Commissioning / Device Debugging</strong>, log in with your <strong>Installer</strong> credentials, and bind the communication stick to your local <strong>2.4 GHz Wi-Fi</strong> or <strong>wired Ethernet LAN</strong> (reserve a <strong>static DHCP IPv4 address</strong> on your router!).</li>
+    </ol>
+
+    <h2 class="subsection-title">3.2 Complete Enerlution App Parameter Checklist for GEMS Compatibility</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 26%;">Enerlution App Setting</th>
+          <th style="width: 24%;">Required Value</th>
+          <th style="width: 50%;">Why This Exact Setting Is Critical for GEMS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Battery Type &amp; Protocol</strong><br><em>(Battery Settings)</em></td>
+          <td><span class="val-good">Lithium-Ion (CAN)</span><br><em>(Enerlution / Pylon Profile)</em></td>
+          <td>Activates closed-loop BMS telemetry (<code>SOC %</code>, <code>SOH %</code>, pack voltage, live current &amp; thermal protection). Confirm battery state shows <strong>Normal / Standby / Charging</strong> (<code>State 1–5</code>, never <code>7 Offline</code>).</td>
+        </tr>
+        <tr>
+          <td><strong>EMS Working Mode</strong><br><em>(Energy Management Mode)</em></td>
+          <td><span class="val-good">Self-Consumption</span><br><span class="val-avoid">NOT Full Off-Grid / Static Force</span></td>
+          <td>Instructs the Enerlution inverter to autonomously store excess daytime PV into your <code>LFPWall</code> or <code>GroundHV</code> stack and discharge seamlessly to cover household loads and evening peaks!</td>
+        </tr>
+        <tr>
+          <td><strong>Minimum / Reserve SOC</strong><br><em>(End-of-Discharge SOC)</em></td>
+          <td><span class="val-good">10 %</span> <em>(Standard Grid-Tied)</em><br><span class="val-good">15 % – 20 %</span> <em>(With EPS Backup)</em></td>
+          <td>Protects LiFePO<sub>4</sub> cell longevity (90% DoD) while reserving blackout backup capacity if critical loads are wired to the <code>EPS / Backup</code> port. Keep <strong>Max Charge SOC = 100%</strong> for cell balancing.</td>
+        </tr>
+        <tr>
+          <td><strong>External Smart Meter</strong><br><em>(Meter / CT Settings)</em></td>
+          <td><span class="val-good">Enable</span> &rarr;<br><code>CHINT DTSU666</code> or <code>SDM630</code></td>
+          <td>Enables sub-second behind-the-meter export/import sensing on the inverter (<code>Address 1</code>, <code>9600 bps</code>) and feeds live meter power into GEMS. Run a 2 kW kettle check in the app to verify positive import polarity!</td>
+        </tr>
+        <tr>
+          <td><strong>Active Power Control / Export Limit</strong></td>
+          <td><span class="val-good">Disabled / Unlimited (0)</span><br><em>(Unless legally mandated by DSO)</em></td>
+          <td><strong>Crucial!</strong> Leaving static zero-export <em>Disabled</em> in the Enerlution App allows profitable solar export and Green Certificates, while letting GEMS dynamically write <strong>1-Watt precision curtailment limits</strong> (<code>0 W</code> to <code>Rated W</code>) whenever spot prices turn negative!</td>
+        </tr>
+        <tr>
+          <td><strong>Modbus Communication</strong><br><em>(RS-485 &amp; TCP Server)</em></td>
+          <td>Slave ID: <span class="val-good">1</span> • Baud: <span class="val-good">9600 8N1</span><br>Modbus TCP Port: <span class="val-good">502</span></td>
+          <td>Matches GEMS's native <code>enerlution_inverter</code> driver defaults over both wired LAN/Wi-Fi (<code>TCP :502</code>) and direct USB-to-RS485 (<code>9600 8N1</code>).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 4 ==================== -->
+    <h1 class="section-title">Section 4: Onboarding &amp; Optimizing Enerlution in GEMS</h1>
+
+    <p>
+      Open the GEMS web UI (<code>https://gems.local</code> or appliance IP), navigate to <strong>Settings</strong>, click the <strong>padlock icon 🔒</strong> in the top-right header, and enter your <strong>Installer Access PIN</strong> to enable <strong>Certified Installer Mode</strong>.
+    </p>
+
+    <h2 class="subsection-title">4.1 Automatic Discovery &amp; Onboarding (<code>Settings &rarr; Devices</code>)</h2>
+    <p>
+      GEMS includes native IEEE MAC OUI recognition (<code>70:B3:D5</code> and <code>E4:5F:01</code>) and ASCII model/serial register fingerprinting for Enerlution—clicking <strong>Scan Subnet</strong> in the <strong>Scanner</strong> tab automatically detects networked Enerlution units on port <code>502</code>! You can also connect via direct <strong>USB-to-RS485</strong> (<code>/dev/serial/by-id/...</code>, <code>9600 bps, 8N1</code>, Slave ID <code>1</code>) for zero-Wi-Fi industrial reliability:
+    </p>
+
+    <div class="screenshot-two-col">
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="assets/screenshots/settings_devices_add_modal.png" alt="GEMS Add Device Category Modal">
+        <div class="manual-screenshot-caption">1. Select Smart Meter (P1) First, Then Inverter / Solar</div>
+      </div>
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="assets/screenshots/settings_devices_inverter_form.png" alt="GEMS Enerlution Hybrid Configuration Form">
+        <div class="manual-screenshot-caption">2. Configure Enerlution Endpoint, Rated kW, Curtailment &amp; Battery kWh</div>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 24%;">GEMS Device Field</th>
+          <th style="width: 28%;">Recommended Value</th>
+          <th style="width: 48%;">Why This Setting Matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Primary Grid Meter</strong></td>
+          <td><code>P1 Serial Meter</code> (<code>p1_serial</code>)</td>
+          <td>Onboard your digital utility P1 meter first! Gives GEMS official 3-phase currents and quarter-hour Flanders capacity peak billing accuracy alongside Enerlution's internal meter.</td>
+        </tr>
+        <tr>
+          <td><strong>Device Template</strong></td>
+          <td><code>Enerlution Hybrid Inverter</code><br>(<code>enerlution_inverter</code>)</td>
+          <td>Activates 80 ms bus pacing, fast/slow 5-minute metadata caching, SOH/SOC telemetry, and <strong>1-Watt precision Fixed Active Power curtailment</strong>. <em>(Note: If an Enerlution 51.2V battery is wired to a Solis LV inverter instead, select the Solis template!).</em></td>
+        </tr>
+        <tr>
+          <td><strong>IP Address or Serial Port</strong></td>
+          <td>Reserved Static IP (e.g. <code>192.168.1.130</code>)<br>or <code>/dev/serial/by-id/...</code></td>
+          <td>Use wired Ethernet or USB-RS485 whenever possible; if using Wi-Fi, ensure strong 2.4 GHz RSSI (<code>&gt; -65 dBm</code>) and a router DHCP reservation.</td>
+        </tr>
+        <tr>
+          <td><strong>TCP Port &amp; Modbus ID</strong></td>
+          <td>Port: <code>502</code> • Modbus ID: <code>1</code></td>
+          <td>Matches standard Enerlution Modbus TCP and RS-485 Slave ID <code>1</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Rated Power (kW)</strong></td>
+          <td>Exact Inverter AC Nameplate kW<br><em>(e.g. <code>3.6</code>, <code>5.0</code>, <code>6.0</code>, <code>8.0</code>, <code>10.0</code>, <code>12.0</code>)</em></td>
+          <td><strong>Do not leave at 0!</strong> Bounds GEMS's 1-Watt active power curtailment ceiling accurately to your physical inverter's AC capacity.</td>
+        </tr>
+        <tr>
+          <td><strong>Allow Curtailment</strong></td>
+          <td><span class="val-good">Checked (✓)</span></td>
+          <td>Permits GEMS to write exact Watt limits during negative EPEX spot prices or zero-export operation and release back to unrestricted output automatically.</td>
+        </tr>
+        <tr>
+          <td><strong>Poll Interval (seconds)</strong></td>
+          <td><span class="val-good">3 s</span> <em>(RS-485 / Wired LAN)</em><br><span class="val-good">5 s</span> <em>(2.4 GHz Wi-Fi Stick)</em></td>
+          <td>GEMS caches static ASCII/lifetime registers for 5 minutes so every fast poll reads only compact real-time power and SOC registers!</td>
+        </tr>
+        <tr>
+          <td><strong>Phase Wiring</strong></td>
+          <td><code>L1</code>, <code>L2</code>, or <code>L3</code> (1P <code>HY / L3–L6</code>)<br>or <code>L1-L2-L3</code> (3P <code>HYTH</code>)</td>
+          <td>Identifies the exact breaker phase on single-phase installations for accurate per-phase main fuse protection.</td>
+        </tr>
+        <tr>
+          <td><strong>Grid Meter &amp; Battery Flags</strong></td>
+          <td>Grid Meter: <span class="val-good">Checked (✓)</span> if DTSU/SDM wired<br>Battery: <span class="val-good">Checked (✓)</span> + Exact kWh (<code>5.2</code>, <code>10.4</code>, <code>16.1</code>, <code>10.0</code>, <code>15.0</code>...)</td>
+          <td>Displays live <code>LFPWall</code> / <code>GroundHV</code> SOC % and charge/discharge watts on the PowerFlow canvas and synchronizes EV solar surplus balancing with battery state!</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 5 ==================== -->
+    <h1 class="section-title">Section 5: Best-Practice GEMS Strategy, EV &amp; Tariff Coordination</h1>
+
+    <div class="screenshot-two-col">
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="assets/screenshots/settings_strategy_modes.png" alt="GEMS Regional Strategy and GSC Subsidy Shield">
+        <div class="manual-screenshot-caption">Flanders Peak Shaving, Netherlands Mode &amp; GSC Subsidy Shield</div>
+      </div>
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="assets/screenshots/settings_contract_tariffs.png" alt="GEMS Energy Contract and 24-Hour Tariff Curve">
+        <div class="manual-screenshot-caption">24-Hour Dynamic Import &amp; Solar Injection Price Curve</div>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">5.1 Regional Optimization Recipes (<code>Settings &rarr; Strategy</code>)</h2>
+    <div class="recipe-grid">
+      <div class="recipe-card" style="border-top: 3px solid #0284c7;">
+        <h4>🇧🇪 Recipe A: Flanders (Peak Shaving)</h4>
+        <ul style="padding-left: 15px; font-size: 8pt; margin-bottom: 0;">
+          <li><strong>Mode:</strong> <code>Flanders Mode (Peak Shaving)</code></li>
+          <li><strong>Capacity Peak Limit:</strong> <code>2.5 kW</code> (standard) or <code>3.0–3.5 kW</code> (heat pump + EV).</li>
+          <li><strong>Peak Shaving Buffer:</strong> <code>200 W</code></li>
+          <li><strong>Active Curtailment:</strong> <code>Checked (✓)</code>, Base <code>0.00 €/kWh</code></li>
+          <li><strong>GSC Subsidy Shield:</strong> Enter <code>€0</code> (modern PV) or exact certificate value (<code>€250–€450/MWh</code>). GEMS automatically keeps Enerlution solar exporting down to <code>-GSC/1000 €/kWh</code>!</li>
+          <li><strong>How It Works:</strong> Enerlution's <code>Self-Consumption</code> loop discharges the battery to cover cooking/heat-pump spikes while GEMS throttles EV charging before any 15-min billing peak is breached.</li>
+        </ul>
+      </div>
+
+      <div class="recipe-card" style="border-top: 3px solid #f59e0b;">
+        <h4>🇳🇱 Recipe B: Netherlands (Saldering)</h4>
+        <ul style="padding-left: 15px; font-size: 8pt; margin-bottom: 0;">
+          <li><strong>Mode:</strong> <code>Netherlands Mode (Smart Saldering)</code></li>
+          <li><strong>Active Curtailment:</strong> <code>Checked (✓)</code></li>
+          <li><strong>Base Export Price Threshold:</strong> <code>0.00 €/kWh</code> (or your supplier's feed-in levy threshold).</li>
+          <li><strong>How It Works:</strong> Daytime PV surplus fills your Enerlution <code>LFPWall</code> / <code>GroundHV</code> stack first, then ramps <strong>Raedian</strong> EV charging (<code>6A–32A</code>) and SG-Ready hot water. Once storage is 100% full during negative-return hours, GEMS regulates Enerlution output in <strong>1-Watt steps</strong> so grid export drops cleanly to <code>0 W</code>!</li>
+        </ul>
+      </div>
+
+      <div class="recipe-card" style="border-top: 3px solid #16a34a;">
+        <h4>🌿 Recipe C: Fixed / Dual-Tariff Eco</h4>
+        <ul style="padding-left: 15px; font-size: 8pt; margin-bottom: 0;">
+          <li><strong>Mode:</strong> <code>Eco (Max Self-Consumption)</code></li>
+          <li><strong>Active Curtailment:</strong> <code>Unchecked (☐)</code> (unless on a contract with negative export penalties).</li>
+          <li><strong>Grid Fuse Protection:</strong> Enter exact main breaker amps (<code>25A / 32A / 40A</code>) and <code>Meter Offline Fallback = 0 A</code>.</li>
+          <li><strong>How It Works:</strong> Pure autonomous solar self-consumption: Enerlution prioritizes battery charging, GEMS steers surplus solar into EVs and thermal relays, and main fuses are protected 24/7.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">5.2 Coordinating Enerlution Storage with EV Chargers (Raedian Wallboxes)</h2>
+    <ul>
+      <li><strong>Daytime Solar Surplus Priority:</strong> Set your <strong>Raedian NEO / NEX / Gemini</strong> wallbox to <strong><code>PV Only (Solar)</code></strong> or <strong><code>Eco</code></strong> on the GEMS Dashboard. Because Enerlution's behind-the-meter loop absorbs initial PV surplus into the battery first, GEMS automatically waits until excess solar exceeds your configured EV threshold (e.g. <code>1.4 kW</code> 1-phase) before ramping EV charging—preventing the EV charger from stealing solar away from an empty home battery or seesawing against it!</li>
+      <li><strong>Smart Cheapest-Hours EV Charging:</strong> Enable <strong>Smart EV Cheapest Hours</strong> (<code>Settings &rarr; Strategy</code>, e.g. <code>3–4 cheapest hours</code>) alongside your <strong>Energy Contract</strong> formula (<code>Settings &rarr; Energy Contract</code>). If you schedule high-power overnight EV charging and want to preserve your Enerlution battery for the morning household peak, either schedule EV charging during windows when the Enerlution App's optional <em>Discharge Window</em> is paused or cap EV charging current below your Flanders capacity ceiling.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 6 ==================== -->
+    <h1 class="section-title">Section 6: Verification Checklist &amp; Troubleshooting Matrix</h1>
+
+    <h2 class="subsection-title">6.1 6-Point Post-Commissioning Handover Checklist</h2>
+    <div class="callout callout-tip">
+      <div class="callout-title">✅ Mandatory Field Verification Before Leaving Site</div>
+      <div>
+        <ol style="margin: 4px 0 0 0; padding-left: 18px;">
+          <li><strong>BMS &amp; SOH Verification:</strong> Confirm zero red <code>ALM</code> LEDs on all <code>LFPWall</code>, <code>Roller</code>, or <code>GroundHV</code> modules and verify live <code>SOC %</code> and <code>SOH %</code> appear in the Enerlution App (<code>Battery State = Charging / Discharging / Standby</code>).</li>
+          <li><strong>GEMS Online &amp; Debug Modal:</strong> In <strong>Settings &rarr; Connected Devices</strong>, confirm <code>Enerlution Hybrid Inverter</code> displays <span class="val-good">● Online</span>. Click <strong>Debug</strong> and verify ~230 V grid voltage, plausible PV watts, and live Battery SOC %.</li>
+          <li><strong>1-Watt Curtailment Release Check:</strong> Verify in the <strong>Logger</strong> tab that during normal positive-price operation GEMS logs <code>Released active power limit (40400=0)</code> with zero write errors.</li>
+          <li><strong>Kettle Load Polarity Check:</strong> Boil a ~2 kW kettle and confirm Home Consumption increases by ~2 kW on the GEMS Dashboard while the Enerlution battery smoothly ramps discharge to cover the load.</li>
+          <li><strong>Export Configuration Backup:</strong> In <strong>Settings &rarr; System Info</strong>, click <strong>Export Configuration Backup (.json)</strong>.</li>
+          <li><strong>Lock Certified Installer Mode:</strong> Click the padlock icon 🔒 in the Settings header to lock critical device and breaker settings.</li>
+        </ol>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">6.2 Symptom Resolution &amp; Troubleshooting Matrix</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 26%;">Observed Symptom</th>
+          <th style="width: 34%;">Probable Root Cause</th>
+          <th style="width: 40%;">Field Corrective Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Battery State reads <code>Offline (7)</code> or <code>Fault (6)</code></strong></td>
+          <td>CAN cable plugged into <code>Link/RS485</code> port instead of <code>CAN</code>, wrong BMS protocol, or DIP switches changed while ON.</td>
+          <td>Power all modules OFF, set unique <code>ADD</code> DIP switches, connect RJ45 (<code>Pin 4 CAN-H</code>, <code>Pin 5 CAN-L</code>) strictly between Master/PDU <code>CAN</code> and Inverter <code>BMS</code>, and select <code>Lithium-Ion (CAN)</code> in the Enerlution App.</td>
+        </tr>
+        <tr>
+          <td><strong>HV <code>HYTH</code> inverter does not recognize <code>GroundHV-2500</code> tower</strong></td>
+          <td>Fewer than minimum series HV blocks installed, HV MSD plug unseated, or PDU breaker OFF.</td>
+          <td>Verify minimum brick count for inverter start voltage (<code>&ge; 3–4 blocks</code>), confirm orange MSD plug is locked, switch PDU HV breaker ON, then wake PDU <code>POWER</code> button.</td>
+        </tr>
+        <tr>
+          <td><strong>GEMS reports <code>Connection refused</code> or <code>i/o timeout</code> on <code>:502</code></strong></td>
+          <td>Wi-Fi stick dropped off 5 GHz band, IP changed via DHCP, or wrong Slave ID.</td>
+          <td>Bind stick strictly to a <strong>2.4 GHz Wi-Fi</strong> SSID (or use wired LAN / direct USB-RS485 <code>9600 8N1</code>), assign a router DHCP reservation, and verify <code>Modbus ID = 1</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Inverter caps PV output even when spot prices are positive</strong></td>
+          <td>Static Zero-Export / Active Power Limit was left enabled inside the Enerlution App.</td>
+          <td>Open Enerlution App &rarr; <code>Active Power / Export Control</code> and set to <strong><code>Disabled / Unlimited</code></strong>, allowing GEMS to dynamically release (<code>40400=0</code>) and engage (<code>40400=1</code>) curtailment.</td>
+        </tr>
+        <tr>
+          <td><strong>Battery charges from AC when house load turns ON</strong></td>
+          <td><code>DTSU666</code> / <code>SDM630</code> CT clamps reversed or <code>RS485-A / B</code> / phase voltage taps mismatched.</td>
+          <td>Ensure CT arrows point <strong>Grid &rarr; Home/Load</strong>, verify <code>DTSU666</code> Pins <code>24 (A+)</code> &amp; <code>25 (B-)</code>, and confirm <code>L1/L2/L3</code> voltage taps match <code>CT1/CT2/CT3</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Curtailment caps at wrong wattage</strong></td>
+          <td><code>Rated Power (kW)</code> left inaccurate on the GEMS device card.</td>
+          <td>Edit the Enerlution device in <strong>Settings &rarr; Devices</strong> and enter the exact inverter AC nameplate kW (e.g. <code>5.0</code>, <code>8.0</code>, <code>10.0</code>, <code>12.0</code>).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">6.3 Live Diagnostic Log Verification</h2>
+    <p>Installers can verify live Enerlution telemetry and 1-Watt curtailment writes in the GEMS <strong>Logger</strong> tab or Cockpit Terminal (<code>:9090</code>):</p>
+    <pre class="code-block"># Inspect live Enerlution polling and active power limit events via Cockpit Terminal:
+sudo journalctl -u gems.service -f | grep -i "Enerlution"
+
+# Expected healthy output during connection, negative-price curtailment, and profitable release:
+[INFO] EnerlutionPoller [Enerlution HYTH-10K]: Connected via tcp://192.168.1.130:502 (ID: 1)
+[INFO] EnerlutionPoller [Enerlution HYTH-10K]: Set active power limit to 1450 W
+[INFO] EnerlutionPoller [Enerlution HYTH-10K]: Released active power limit (40400=0)</pre>
+
+    <div class="callout callout-info">
+      <div class="callout-title">📞 Fleet Monitoring &amp; Installer Support</div>
+      <div>
+        Pair your GEMS unit with <strong>GRID-EMS-SERVER</strong> (<code>https://ems.newenergygrid.com</code>) under <strong>Settings &rarr; Cloud Server</strong> for remote 24-hour forecast diagnostics, live telemetry verification, and centralized fleet management by <strong>New Energy Grid</strong> &amp; <strong>The Charge Grid</strong>.
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

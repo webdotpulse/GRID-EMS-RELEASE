@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Huawei SUN2000, LUNA2000 &amp; FusionSolar Configuration Manual - GEMS</title>
+  <meta name="description" content="Complete step-by-step manual for configuring Huawei SUN2000 hybrid inverters, LUNA2000 batteries, SDongleA-05, and EMMA-A02 in the FusionSolar App and optimizing GEMS settings.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <svg width="20" height="20"><use href="assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Huawei &amp; FusionSolar Guide</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Search documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-search"></use></svg>
+          <span>Search FusionSolar, LUNA2000, SDongle, EMMA, GEMS settings...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="gems-huawei-manual.pdf" class="nav-link-btn" target="_blank">
+        <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+        <span>Huawei PDF</span>
+      </a>
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuration</span>
+      </a>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Toggle color theme">
+        <svg width="18" height="18"><use href="assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Getting Started</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-book"></use></svg>
+              <span>Documentation Hub</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-sun"></use></svg>
+              <span>All Device Templates</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Huawei &amp; FusionSolar Guide</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="#topologies" class="sidebar-link active">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-grid"></use></svg>
+              <span>1. Hardware &amp; Topologies</span>
+            </a>
+          </li>
+          <li>
+            <a href="#prerequisites" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-shield"></use></svg>
+              <span>2. Firmware &amp; LAN Rules</span>
+            </a>
+          </li>
+          <li>
+            <a href="#fusionsolar-app" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-settings"></use></svg>
+              <span>3. FusionSolar App Settings</span>
+            </a>
+          </li>
+          <li>
+            <a href="#luna2000-settings" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-bolt"></use></svg>
+              <span>3.4 LUNA2000 Parameters</span>
+            </a>
+          </li>
+          <li>
+            <a href="#gems-onboarding" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>4. Onboarding in GEMS</span>
+            </a>
+          </li>
+          <li>
+            <a href="#gems-optimization" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
+              <span>5. Optimal GEMS Settings</span>
+            </a>
+          </li>
+          <li>
+            <a href="#ev-coordination" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-bolt"></use></svg>
+              <span>5.4 EV &amp; Battery Harmony</span>
+            </a>
+          </li>
+          <li>
+            <a href="#troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-wrench"></use></svg>
+              <span>6. Verification &amp; Fixes</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Official PDF Manuals</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-enerlution-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Enerlution Manual (PDF)</span>
+              <span class="badge" style="background:#0d9488; color:#fff; font-size:10px;">NEW</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-solis-easyway-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Solis &amp; Easyway (PDF)</span>
+              <span class="badge" style="background:#ea580c; color:#fff; font-size:10px;">NEW</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-huawei-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Huawei Manual (PDF)</span>
+              <span class="badge" style="background:#dc2626; color:#fff; font-size:10px;">NEW</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-installer-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Installer Manual (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>User Manual (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-p1-meter-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>P1 Meter Manual (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-fleet-dlb-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>EV Fleet &amp; DLB (PDF)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+
+        <nav class="breadcrumbs" aria-label="Breadcrumbs">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <a href="devices.html">Devices</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Huawei SUN2000, LUNA2000 &amp; FusionSolar</span>
+        </nav>
+
+        <h1>Huawei SUN2000, LUNA2000 &amp; FusionSolar Commissioning Manual</h1>
+        <p class="hero-lead">
+          Complete field configuration manual covering every parameter to set inside the <strong>Huawei FusionSolar App</strong> (SDongleA-05, EMMA-A02, LUNA2000-S0/S1, and Active Power Control) and how to configure <strong>GEMS</strong> for optimal peak shaving, solar self-consumption, and Day-Ahead arbitrage.
+        </p>
+
+        <div class="alert alert-tip" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0; border-radius: var(--radius-md);">
+          <div>
+            <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem;">📕 Printable A4 Field Manual Available</div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary);">Download the print-optimized vector PDF manual or open the A4 print layout with wiring tables and checklists.</div>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <a href="gems-huawei-manual.pdf" target="_blank" class="tab-btn active" style="background: #dc2626; color: #fff; text-decoration: none; padding: 0.45rem 0.9rem; font-size: 0.82rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.4rem;">
+              <svg width="14" height="14"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Download PDF</span>
+            </a>
+            <a href="gems-huawei-manual.html" class="tab-btn" style="text-decoration: none; padding: 0.45rem 0.9rem; font-size: 0.82rem; border-radius: var(--radius-sm);">Open A4 Print View</a>
+          </div>
+        </div>
+
+        <!-- SECTION 1 -->
+        <h2 id="topologies">1. Supported Huawei Ecosystem &amp; Connection Topologies</h2>
+        <p>GEMS executes all telemetry reads, LUNA2000 battery charge/discharge setpoints, and solar curtailment locally over your LAN or RS-485 bus while preserving normal FusionSolar cloud monitoring.</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Topology</th>
+                <th>Physical Connection</th>
+                <th>Best-Practice Recommendation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Topology A: SDongleA-05 (WLAN-FE)</strong></td>
+                <td>Plug an Ethernet RJ45 cable inside the <code>SDongleA-05</code> housing. GEMS connects to TCP port <code>502</code> (Modbus ID <code>1</code>). Pair with a USB P1 Smart Meter on GEMS.</td>
+                <td><strong>Recommended Gold Standard.</strong> Always prefer wired Ethernet on the SDongleA-05 over 2.4 GHz Wi-Fi to eliminate wireless jitter and timeouts.</td>
+              </tr>
+              <tr>
+                <td><strong>Topology B: Huawei EMMA-A02</strong></td>
+                <td>Connect <code>EMMA-A02</code> via Ethernet to LAN. Onboard both <code>huawei_emma</code> (meter) and <code>huawei_inverter</code> (Slave ID <code>1</code>) pointing to the EMMA IP on port <code>502</code>.</td>
+                <td><strong>Ideal for LUNA2000-S1 / MAP0 / MB0 sites.</strong> GEMS multiplexes both devices cleanly over one pooled TCP connection.</td>
+              </tr>
+              <tr>
+                <td><strong>Topology C: Direct USB-to-RS485</strong></td>
+                <td>Shielded twisted-pair cable (`9600 bps, 8N1`, Slave ID `1`) from GEMS USB-RS485 to SUN2000 COM port (`L1`: Pin 2=A+, Pin 1=B-; `M1`: Pin 1=A+, Pin 3=B-).</td>
+                <td><strong>Only when NO SDongleA-05 or EMMA-A02 is installed</strong> (an installed dongle claims master control of the internal RS-485 bus).</td>
+              </tr>
+              <tr>
+                <td><strong>Topology D: P1-Driven LUNA2000 (No Huawei Meter)</strong></td>
+                <td>SUN2000 + LUNA2000 without DTSU666-H, paired with a utility P1 Smart Meter on GEMS (<code>Grid Meter Connected? = Unchecked</code>).</td>
+                <td>GEMS actively drives LUNA2000 solar charging and household load discharging directly from P1 meter readings.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SECTION 2 -->
+        <h2 id="prerequisites">2. Mandatory Firmware &amp; Network Rules</h2>
+        <ul>
+          <li><strong>Minimum Firmware Versions:</strong> Ensure <code>SDongleA-05</code> runs at least <code>V100R001C00SPC126</code> or <code>V200R022C10SPC108+</code> (recommended <code>V200R022C10SPC118+</code>), <code>SUN2000-L1</code> runs <code>SPC130+</code>, <code>SUN2000-M1</code> runs <code>SPC153+</code>, <code>LUNA2000</code> runs <code>SPC119+ / SPC624+</code>, and <code>EMMA-A02</code> runs <code>V100R023C10SPC100+</code>.</li>
+          <li><strong>Single Modbus TCP Master Rule:</strong> Both <code>SDongleA-05</code> and <code>EMMA-A02</code> accept <strong>only one concurrent TCP client on port 502</strong>. Stop any secondary external Modbus polling scripts or direct wallbox pollers before connecting GEMS.</li>
+          <li><strong>Static IPv4 / DHCP Reservations:</strong> Fix the IPv4 addresses of both your GEMS appliance and the Huawei <code>SDongleA-05</code> / <code>EMMA-A02</code> in your router's DHCP table.</li>
+        </ul>
+
+        <!-- SECTION 3 -->
+        <h2 id="fusionsolar-app">3. Step-by-Step Huawei FusionSolar App Settings</h2>
+
+        <div class="alert alert-warning">
+          <strong>Use Local Device Commissioning (Installer Login):</strong> Homeowner plant accounts hide Modbus TCP and grid-control settings. Turn <strong>OFF mobile cellular data</strong> on your phone (leave Wi-Fi ON), open the <strong>FusionSolar App &rarr; Me (or Services) &rarr; Device Commissioning</strong>, scan the QR code on the inverter (or EMMA-A02), and log in as <strong>Installer</strong>.
+        </div>
+
+        <h3>3.1 Unlocking Modbus TCP on SDongleA-05</h3>
+        <ol>
+          <li>Navigate to <code>Settings &rarr; Communication Configuration &rarr; Dongle Parameter Settings &rarr; Modbus-TCP</code>.</li>
+          <li>Change <strong>Connection</strong> to <strong><code>Enable (unrestricted)</code></strong> (or <em>Enable (restricted)</em> set to the static IPv4 of your GEMS controller) and tap <strong>Confirm</strong>.</li>
+          <li>Under <code>Settings &rarr; Communication Configuration &rarr; RS485_1</code>, confirm <strong>Protocol</strong> = <code>MODBUS</code>, <strong>Baud Rate</strong> = <code>9600</code>, and note the <strong>Communication Address</strong> (default <code>1</code>).</li>
+          <li><em>Remote Web Portal Alternative:</em> Log into FusionSolar Web as Installer &rarr; <strong>Plants &rarr; Device Management &rarr; Select SDongle &rarr; Configuration &rarr; Connection Parameters &rarr; Modbus TCP &rarr; Enable (unrestricted)</strong>.</li>
+        </ol>
+
+        <h3>3.2 Unlocking Modbus TCP on Huawei EMMA-A02</h3>
+        <ol>
+          <li>Connect to the <strong>EMMA-A02</strong> via <strong>Device Commissioning</strong> as <strong>Installer</strong>.</li>
+          <li>Navigate to <code>Settings &rarr; Communication Configuration &rarr; Modbus TCP</code>.</li>
+          <li>Set <strong>Connection</strong> = <strong><code>Enable</code></strong> and <strong>TLS Encryption</strong> = <strong><code>Disable (OFF)</code></strong>.</li>
+          <li>Set <strong>Client IP Address</strong> to the <strong>exact static IPv4 address of your GEMS controller</strong> (e.g. <code>192.168.1.50</code>). <em>Never enter <code>0.0.0.0</code>—EMMA-A02 rejects wildcard entries!</em></li>
+          <li>Keep EMMA's own cloud AI / Time-of-Use battery scheduler <strong>Disabled</strong> (leave battery mode on <strong>Maximum Self-Consumption</strong>).</li>
+        </ol>
+
+        <h3 id="luna2000-settings">3.3 Complete LUNA2000 Battery &amp; Active Power Checklist in FusionSolar</h3>
+        <p>Under <code>Settings &rarr; Energy Control</code> and <code>Settings &rarr; Power Adjustment &rarr; Active Power Control</code>, verify every setting below:</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>FusionSolar Parameter</th>
+                <th>Required Value</th>
+                <th>Why This Is Required</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Working Mode</strong></td>
+                <td><code>Maximum Self-Consumption</code></td>
+                <td>Hardware baseline restored automatically whenever GEMS releases active forced charge/discharge. Never select <em>Time-of-Use (TOU)</em> or Huawei's internal timers will conflict with GEMS.</td>
+              </tr>
+              <tr>
+                <td><strong>Charge from AC</strong></td>
+                <td><code>Enable</code></td>
+                <td>Unlocks permission for GEMS to trigger cheap/negative spot-price charging and winter low-SOC recovery (does not cause spontaneous grid charging during normal self-use).</td>
+              </tr>
+              <tr>
+                <td><strong>Grid Charge Cutoff SOC</strong></td>
+                <td><code>100 %</code></td>
+                <td>Ensures Huawei firmware never prematurely blocks GEMS from reaching 95%–100% SOC during negative electricity prices.</td>
+              </tr>
+              <tr>
+                <td><strong>Max Charge / Discharge Power</strong></td>
+                <td><strong>Hardware Rated Max</strong><br><em>(2500 / 5000 / 10500 W)</em></td>
+                <td>Provides full throughput for solar capture and instantaneous Flanders 15-minute capacity peak shaving.</td>
+              </tr>
+              <tr>
+                <td><strong>End-of-Charge SOC</strong></td>
+                <td><code>100 %</code></td>
+                <td>Required for periodic LiFePO<sub>4</sub> cell top-balancing and accurate BMS SOC calibration.</td>
+              </tr>
+              <tr>
+                <td><strong>End-of-Discharge SOC</strong></td>
+                <td><code>5 % – 10 %</code> <em>(Standard)</em><br><code>15 % – 20 %</code> <em>(Backup Box)</em></td>
+                <td>Set <code>5%</code> in summer, <code>10%</code> in winter, or <code>15%–20%</code> when paired with a Huawei Backup Box / SmartGuard.</td>
+              </tr>
+              <tr>
+                <td><strong>Active Power Control Mode</strong></td>
+                <td><code>Unlimited (No Limit)</code></td>
+                <td>Avoid static zero-export inside FusionSolar so GEMS can export during profitable / Flemish GSC hours and dynamically curtail only during negative net return hours.</td>
+              </tr>
+              <tr>
+                <td><strong>Closed-Loop Controller</strong></td>
+                <td><code>Inverter</code> <em>(Single)</em> / <code>SDongle</code> <em>(Cascade)</em></td>
+                <td>Select <code>Inverter</code> on single-inverter sites for sub-second hardware regulation; select <code>SDongle / SmartLogger</code> only on multi-inverter cascades.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SECTION 4 -->
+        <h2 id="gems-onboarding">4. Onboarding Huawei Hardware in GEMS</h2>
+        <p>Unlock <strong>Certified Installer Mode</strong> via the padlock icon 🔒 in <strong>Settings</strong>, onboard your primary utility meter first (<code>P1 Serial Meter</code> or <code>Huawei EMMA-A02</code>), and then add <strong>Settings &rarr; Devices &rarr; Inverter / Solar &rarr; Huawei Hybrid Inverter</strong>:</p>
+
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/settings_devices_add_modal.png" alt="Add Device Category Selection" loading="lazy">
+            <div class="doc-screenshot-caption">Step 1: Choose Inverter / Solar under Add New Device</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/settings_devices_inverter_form.png" alt="Hybrid Inverter Configuration Form" loading="lazy">
+            <div class="doc-screenshot-caption">Step 2: Enter Host IP, Port 502, Modbus ID 1, Rated kW, Poll 10s &amp; Hybrid Flags</div>
+          </div>
+        </div>
+
+        <ul>
+          <li><strong>IP Address / TCP Port / Modbus ID:</strong> Enter the static IP of your SDongleA-05 or EMMA-A02, Port <code>502</code>, and Modbus ID <code>1</code> (for cascaded inverters, add a second device with Modbus ID <code>2</code>).</li>
+          <li><strong>Rated Power (kW) &amp; Allow Curtailment:</strong> Enter the exact AC nameplate kW (e.g. <code>4.6</code>, <code>5.0</code>, <code>10.0</code>) and check <strong>Allow Curtailment</strong> so GEMS can issue exact <code>0.1%</code> resolution derating setpoints.</li>
+          <li><strong>Poll Interval:</strong> Keep at the auto-selected <strong><code>10 seconds</code></strong> on <code>SDongleA-05</code> (use <code>5 seconds</code> only on wired <code>EMMA-A02</code> or direct RS-485).</li>
+          <li><strong>Grid Meter Connected?:</strong> Check <strong>✓</strong> whenever a Huawei <code>DTSU666-H</code>, <code>DDSU666-H</code>, or <code>EMMA-A02</code> is wired to the Huawei system. Leave unchecked <em>only</em> when operating without a Huawei power sensor so GEMS drives LUNA2000 self-consumption from your P1 meter.</li>
+          <li><strong>Battery Connected? &amp; Capacity (kWh):</strong> Check <strong>✓</strong> and enter total usable LUNA2000 capacity (e.g. <code>5.0</code>, <code>10.0</code>, <code>15.0</code>, <code>6.9</code>, <code>13.8</code>, <code>20.7</code> kWh).</li>
+        </ul>
+
+        <!-- SECTION 5 -->
+        <h2 id="gems-optimization">5. Configuring GEMS for Optimal Working Conditions</h2>
+
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/settings_strategy_modes.png" alt="Strategy Optimization Modes" loading="lazy">
+            <div class="doc-screenshot-caption">Flanders Peak Shaving, Smart Adaptive Ceiling &amp; Flemish GSC Protection</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="assets/screenshots/settings_strategy_battery.png" alt="Battery Grid Charging and Arbitrage" loading="lazy">
+            <div class="doc-screenshot-caption">Dynamic 24h Forecast, 0.04 €/kWh Wear Cost &amp; Winter Fallback</div>
+          </div>
+        </div>
+
+        <ol>
+          <li><strong>Location &amp; Solar Forecast (`Settings &rarr; Strategy`):</strong> Set <code>Time Zone</code>, click <strong>Lookup Lat/Lon</strong> on your street address, and enable <strong>Open-Meteo Solar Forecast Ingestion</strong> so LUNA2000 never grid-charges overnight ahead of a sunny morning.</li>
+          <li><strong>Regional Mode:</strong>
+            <ul>
+              <li><strong>Flanders:</strong> <code>Flanders Mode (Peak Shaving)</code>, <code>Capacity Peak Limit = 2.5 kW</code> (or <code>3.0–3.5 kW</code> with heat pump + EV), <code>Peak Shaving Buffer = 200 W</code> (<code>250 W</code> on Wi-Fi SDongle), <code>Ramp-up Hysteresis = 500 W</code>, plus exact <strong>Flemish GSC</strong> value (`€0`, `€250`, `€350`, `€450`).</li>
+              <li><strong>Netherlands:</strong> <code>Netherlands Mode (Smart Saldering)</code> + <code>Active Inverter Curtailment</code> at <code>0.00 €/kWh</code>.</li>
+              <li><strong>Fixed / Dual-Tariff:</strong> <code>Eco (Max Self-Consumption)</code>.</li>
+            </ul>
+          </li>
+          <li><strong>LUNA2000 Arbitrage &amp; Longevity:</strong> Select your exact supplier contract under <strong>Settings &rarr; Energy Contract</strong>, then set <strong>Charging Strategy Mode</strong> = <code>Dynamic 24h Forecast</code>, <strong>Battery Wear Cost</strong> = <strong><code>0.04 €/kWh</code></strong> (prevents unprofitable micro-cycling), <strong>Grid Charge Ceiling</strong> = <code>0.08 €/kWh</code>, <strong>Grid Discharge Floor</strong> = <code>0.35 €/kWh</code>, and enable <strong>Winter / Low-Solar Grid Charge Fallback</strong> (<code>Trigger 25%</code> &rarr; <code>Target 65%</code> over <code>2–3 cheapest hours</code>).</li>
+        </ol>
+
+        <h3 id="ev-coordination">5.4 Coordinating EV Chargers (Raedian) Without Emptying LUNA2000</h3>
+        <p>
+          Onboard your EV wallbox (such as a <strong>Raedian NEO / NEX / Gemini</strong>) directly in GEMS via Modbus TCP. For daytime solar surplus charging, select <code>PV Only</code> or <code>Eco</code>. If you boost EV charging during cheap overnight grid hours and want to preserve your LUNA2000 charge for the morning household peak, add a <strong>Battery Cost Optimization Rule</strong> with <strong>Action = <code>Hold (Idle / No Export)</code></strong> matching your night EV window (e.g. <code>01:00 – 05:00</code>).
+        </p>
+
+        <!-- SECTION 6 -->
+        <h2 id="troubleshooting">6. Quick Troubleshooting Reference</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Symptom</th>
+                <th>Probable Cause</th>
+                <th>Resolution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><code>Connection refused</code> / <code>TCP RST</code> on <code>:502</code></strong></td>
+                <td>Modbus TCP disabled, or EMMA-A02 TLS ON / wrong client IP</td>
+                <td>Set SDongle <code>Modbus-TCP = Enable (unrestricted)</code>; on EMMA-A02 disable TLS and whitelist exact GEMS IPv4 (never <code>0.0.0.0</code>).</td>
+              </tr>
+              <tr>
+                <td><strong>Intermittent <code>i/o timeout</code> drops</strong></td>
+                <td>Second Modbus master on port <code>502</code>, weak Wi-Fi, or Poll &lt; 8s</td>
+                <td>Stop other polling clients, connect Ethernet RJ45 inside SDongleA-05, and keep GEMS Poll Interval at <code>10s</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>LUNA2000 ignores forced grid charge</strong></td>
+                <td><code>Charge from AC</code> disabled in FusionSolar or old SDongle FW</td>
+                <td>Enable <code>Charge from AC</code>, set <code>Grid Charge Cutoff SOC = 100%</code>, set <code>Working Mode = Maximum Self-Consumption</code>, and update SDongle FW.</td>
+              </tr>
+              <tr>
+                <td><strong>Battery charges when house load rises</strong></td>
+                <td>Reversed <code>DTSU666-H</code> CT clamps or swapped phase taps</td>
+                <td>Ensure CT arrows (<code>K &rarr; L</code>) point <strong>Grid &rarr; House</strong> and phase voltages match CT phases.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search documentation, parameters, guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Close search">
+          <svg width="16" height="16"><use href="assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Use <kbd class="kbd-shortcut">&uarr;</kbd> <kbd class="kbd-shortcut">&darr;</kbd> to navigate</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> to select</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> to dismiss</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/search-index.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

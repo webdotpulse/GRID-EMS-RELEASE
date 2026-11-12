@@ -293,5 +293,74 @@ window.DOCS_SEARCH_INDEX = [
     url: "troubleshooting.html#faq",
     snippet: "Answers to common questions regarding car API omission, zero-export response time, pricing update intervals, and Cockpit access.",
     keywords: ["faq", "frequently asked questions", "why no car api", "offline mode", "cockpit password", "update failed"]
+  },
+
+  // --- Huawei SUN2000, LUNA2000 & FusionSolar Manual ---
+  {
+    title: "Huawei SUN2000, LUNA2000 & FusionSolar Complete Guide",
+    category: "Huawei Manual",
+    url: "huawei.html",
+    snippet: "In-depth commissioning manual for Huawei SUN2000 inverters, LUNA2000 batteries, SDongleA-05, EMMA-A02, FusionSolar App settings, and optimal GEMS configuration.",
+    keywords: ["huawei", "sun2000", "luna2000", "fusionsolar", "sdongle", "sdonglea-05", "emma", "emma-a02", "dtsu666-h", "ddsu666-h", "huawei_inverter", "huawei_emma"]
+  },
+  {
+    title: "FusionSolar App Settings: Unlocking Modbus TCP & LUNA2000",
+    category: "Huawei Manual",
+    url: "huawei.html#fusionsolar-app",
+    snippet: "Exact FusionSolar Device Commissioning menu paths: Modbus-TCP Enable (unrestricted), EMMA-A02 TLS Disable & Client IP, LUNA2000 Maximum Self-Consumption, and Charge from AC.",
+    keywords: ["fusionsolar app", "modbus tcp unrestricted", "device commissioning", "charge from ac", "maximum self-consumption", "end-of-discharge soc", "tls encryption", "active power control"]
+  },
+  {
+    title: "Optimal GEMS Configuration for Huawei Inverters & LUNA2000",
+    category: "Huawei Manual",
+    url: "huawei.html#gems-optimization",
+    snippet: "Best-practice GEMS settings for Huawei: 10s poll interval, Flanders peak shaving, GSC protection, 0.04 EUR/kWh wear cost, Winter Fallback, and EV battery hold rules.",
+    keywords: ["huawei gems settings", "poll interval 10", "battery wear cost", "winter fallback", "ev battery drain", "hold rule", "flanders peak shaving huawei"]
+  },
+
+  // --- Solis Retrofit / Hybrid & Easyway UNIV5200 Battery Manual ---
+  {
+    title: "Solis Retrofit / Hybrid Inverters & Easyway 5200 (UNIV5200) Complete Guide",
+    category: "Solis & Easyway Manual",
+    url: "solis.html",
+    snippet: "In-depth wiring, SolisCloud commissioning, and GEMS optimization manual for Solis RAI-3K, S6-EA1P, S5-EH1P, S6-EH1P, and S6-EH3P-L inverters paired with Easyway UNIV5200 51.2V LiFePO4 batteries.",
+    keywords: ["solis", "easyway", "univ5200", "univ-5200", "easyway 5200", "solis_hybrid", "solis_retrofit", "solis_retrofit_battery", "rai-3k", "s6-ea1p", "s6-eh1p", "s6-eh3p-l", "51.2v"]
+  },
+  {
+    title: "Wiring Easyway UNIV5200 Battery to Solis Inverter (DC, CAN Pinout & DIP Switches)",
+    category: "Solis & Easyway Manual",
+    url: "solis.html#battery-wiring",
+    snippet: "Complete DC parallel diagonal & busbar wiring, non-polarized DC MCCB sizing, RJ45 CAN Pin 4 (CAN-H) & Pin 5 (CAN-L) isolation, ADD binary DIP switch table (1-16 packs), and soft-start pre-charge sequence.",
+    keywords: ["univ5200 wiring", "easyway wiring", "can pinout", "pin 4 can-h", "pin 5 can-l", "add dip switch", "parallel battery wiring", "diagonal takeoff", "dc mccb", "pre-charge sequence"]
+  },
+  {
+    title: "SolisCloud App Commissioning & Optimal GEMS Settings for Solis + UNIV5200",
+    category: "Solis & Easyway Manual",
+    url: "solis.html#soliscloud-settings",
+    snippet: "SolisCloud Local Bluetooth settings: Battery Select PYLON LV, Overdischarge SOC 10%, Forcecharge SOC 5% anti-bounce, Self-Use, Allow Grid Charging, RS-485 / S2-WL-ST connection, and GEMS regional & EV Hold rules.",
+    keywords: ["soliscloud app", "local debugging", "pylon lv", "overdischarge soc", "forcecharge soc", "allow grid charging", "s2-wl-st", "can_comm_fail", "solis gems settings"]
+  },
+
+  // --- Enerlution Hybrid Inverters & LiFePO4 Battery Storage Manual ---
+  {
+    title: "Enerlution Hybrid Inverters & LiFePO4 Battery Storage Complete Guide",
+    category: "Enerlution Manual",
+    url: "enerlution.html",
+    snippet: "Complete wiring, Enerlution App commissioning, and GEMS optimization manual for Enerlution HY & HYTH inverters with 51.2V LV (LFPWall-5000, LFPWall-10K-V2, Roller-16K) and HV stackable (GroundHV-2500, GH02-5324) batteries.",
+    keywords: ["enerlution", "enerlution_inverter", "lfpwall", "lfpwall-5000", "lfpwall-10k-v2", "roller-16k", "groundhv", "groundhv-2500", "gh02-5324", "hyth", "hyth-10k", "l3-l12"]
+  },
+  {
+    title: "Wiring Enerlution LV Parallel & HV Stackable Batteries, CAN Pinout & DTSU666 Meter",
+    category: "Enerlution Manual",
+    url: "enerlution.html#battery-wiring",
+    snippet: "51.2V LV parallel diagonal & busbar wiring, HV PDU/BCU series stack assembly, RJ45 CAN Pin 4 (CAN-H) & Pin 5 (CAN-L), cold binary ADD DIP switches, CHINT DTSU666 Pins 24/25, and soft-start pre-charge sequence.",
+    keywords: ["enerlution wiring", "lfpwall wiring", "groundhv wiring", "hv pdu", "bcu", "msd plug", "dtsu666 pin 24 25", "sdm630", "enerlution can pinout", "enerlution dip switch"]
+  },
+  {
+    title: "Enerlution App Commissioning & 1-Watt GEMS Curtailment Optimization",
+    category: "Enerlution Manual",
+    url: "enerlution.html#enerlution-app",
+    snippet: "Enerlution App installer settings: Lithium-Ion (CAN), Self-Consumption mode, 10% Reserve SOC, Unlimited Active Power Control, MAC OUI auto-discovery (70:B3:D5 / E4:5F:01), and 1-Watt GEMS solar curtailment.",
+    keywords: ["enerlution app", "self-consumption", "1-watt curtailment", "40400", "40441", "70:b3:d5", "e4:5f:01", "enerlution gems settings"]
   }
 ];

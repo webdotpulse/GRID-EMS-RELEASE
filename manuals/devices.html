@@ -135,6 +135,27 @@
             </a>
           </li>
           <li>
+            <a href="solis.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-bolt"></use></svg>
+              <span>Solis &amp; Easyway UNIV5200</span>
+              <span class="badge" style="background:#ea580c; color:#fff; font-size:10px;">NEW</span>
+            </a>
+          </li>
+          <li>
+            <a href="huawei.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-sun"></use></svg>
+              <span>Huawei &amp; FusionSolar</span>
+              <span class="badge" style="background:#dc2626; color:#fff; font-size:10px;">NEW</span>
+            </a>
+          </li>
+          <li>
+            <a href="enerlution.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-bolt"></use></svg>
+              <span>Enerlution &amp; Storage</span>
+              <span class="badge" style="background:#0d9488; color:#fff; font-size:10px;">NEW</span>
+            </a>
+          </li>
+          <li>
             <a href="troubleshooting.html" class="sidebar-link">
               <svg width="16" height="16"><use href="assets/icons.svg#icon-wrench"></use></svg>
               <span>Troubleshooting & FAQ</span>
@@ -179,6 +200,27 @@
               <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
               <span>Hardware Reference (PDF)</span>
               <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">3.9 MB</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-solis-easyway-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Solis &amp; Easyway (PDF)</span>
+              <span class="badge" style="background:#ea580c; color:#fff; font-size:10px;">3.2 MB</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-huawei-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Huawei &amp; FusionSolar (PDF)</span>
+              <span class="badge" style="background:#dc2626; color:#fff; font-size:10px;">3.7 MB</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-enerlution-manual.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
+              <span>Enerlution &amp; Storage (PDF)</span>
+              <span class="badge" style="background:#0d9488; color:#fff; font-size:10px;">3.2 MB</span>
             </a>
           </li>
         </ul>
@@ -501,6 +543,13 @@
               </li>
               <li><strong>Verify:</strong> Click <strong>Save Device</strong>. Status switches to <span class="badge-pill badge-green">● Online</span> with live PV output, battery SoC %, dynamic BMS limits, and active curtailment control.</li>
             </ol>
+            <div style="margin-top: 0.85rem; padding: 0.75rem 1rem; border-radius: var(--radius-md); background: rgba(234, 88, 12, 0.08); border-left: 3px solid #ea580c; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+              <span style="font-size: 0.85rem;"><strong>🔋 Dedicated Solis &amp; Easyway UNIV5200 Manual:</strong> Full DC/CAN battery wiring, parallel DIP switches, SolisCloud App parameters, and GEMS optimization recipes.</span>
+              <span style="display: inline-flex; gap: 0.5rem;">
+                <a href="solis.html" class="tab-btn" style="text-decoration: none; padding: 0.35rem 0.75rem; font-size: 0.78rem; border-radius: var(--radius-sm);">Open Web Guide</a>
+                <a href="gems-solis-easyway-manual.pdf" target="_blank" class="tab-btn active" style="background: #ea580c; color: #fff; text-decoration: none; padding: 0.35rem 0.75rem; font-size: 0.78rem; border-radius: var(--radius-sm);">Download PDF</a>
+              </span>
+            </div>
           </div>
         </div>
 
@@ -525,6 +574,34 @@
               </li>
               <li><strong>Verify:</strong> Click <strong>Save Device</strong>. Within 5 seconds, status will switch to green <span class="badge-pill badge-green">● Online</span>. PV production, battery SOC %, and battery charging/discharging power will populate on the Dashboard.</li>
             </ol>
+            <div style="margin-top: 0.75rem; padding-top: 0.65rem; border-top: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+              <span style="font-size: 0.82rem; color: var(--text-secondary);">📖 Need exact <strong>FusionSolar App</strong> settings (SDongleA-05, EMMA-A02, LUNA2000 Charge from AC &amp; GEMS optimization recipes)?</span>
+              <div style="display: flex; gap: 0.5rem;">
+                <a href="huawei.html" class="tab-btn" style="text-decoration: none; padding: 0.35rem 0.75rem; font-size: 0.78rem; border-radius: var(--radius-sm);">Read Huawei Guide</a>
+                <a href="gems-huawei-manual.pdf" target="_blank" class="tab-btn active" style="background: #dc2626; color: #fff; text-decoration: none; padding: 0.35rem 0.75rem; font-size: 0.78rem; border-radius: var(--radius-sm);">Download PDF</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>Enerlution Hybrid Inverters &amp; LiFePO4 Battery Storage (LV &amp; HV)</h4>
+            <span class="badge-pill badge-green">Template: enerlution_inverter</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>Battery &amp; Smart Meter Wiring:</strong> Connect 51.2V Low-Voltage packs (<code>LFPWall-5000</code>, <code>LFPWall-10K-V2</code>, <code>Roller-16K</code>) in parallel to <code>HY / L3–L6</code> 1-phase inverters, or stack High-Voltage bricks (<code>GroundHV-2500</code>, <code>GH02-5324</code> + PDU/BCU) on 3-phase <code>HYTH</code> inverters. Connect Master/PDU <code>CAN</code> (Pin 4 <code>CAN-H</code>, Pin 5 <code>CAN-L</code>) to Inverter <code>BMS</code> and wire <code>CHINT DTSU666</code> (Pins 24/25) or <code>Eastron SDM630</code> at Address <code>1</code>.</li>
+              <li><strong>Enerlution App Commissioning:</strong> Select <code>Lithium-Ion (CAN)</code>, set <code>EMS Mode = Self-Consumption</code>, set <code>Minimum SOC = 10%</code>, and leave static <code>Active Power / Export Control = Disabled / Unlimited</code> so GEMS can dynamically manage 1-Watt curtailment.</li>
+              <li><strong>Add in GEMS:</strong> Auto-discover via <strong>Scanner</strong> (IEEE MAC OUIs <code>70:B3:D5</code> / <code>E4:5F:01</code>) or select <strong>Inverters &amp; Solar &rarr; <em>Enerlution Hybrid Inverter</em></strong> on Port <code>502</code> (or USB-RS485 <code>9600 8N1</code>), Slave ID <code>1</code>, enter exact AC nameplate kW, check <strong>Allow Curtailment</strong>, and enter connected battery capacity (kWh).</li>
+            </ol>
+            <div style="margin-top: 0.85rem; padding: 0.75rem 1rem; border-radius: var(--radius-md); background: rgba(13, 148, 136, 0.08); border-left: 3px solid #0d9488; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+              <span style="font-size: 0.85rem;"><strong>🔋 Dedicated Enerlution Hybrid &amp; Storage Manual:</strong> Complete LV parallel &amp; HV stackable wiring diagrams, CAN pinout, DIP switches, Enerlution App setup, and GEMS optimization.</span>
+              <span style="display: inline-flex; gap: 0.5rem;">
+                <a href="enerlution.html" class="tab-btn" style="text-decoration: none; padding: 0.35rem 0.75rem; font-size: 0.78rem; border-radius: var(--radius-sm);">Open Web Guide</a>
+                <a href="gems-enerlution-manual.pdf" target="_blank" class="tab-btn active" style="background: #0d9488; color: #fff; text-decoration: none; padding: 0.35rem 0.75rem; font-size: 0.78rem; border-radius: var(--radius-sm);">Download PDF</a>
+              </span>
+            </div>
           </div>
         </div>
 

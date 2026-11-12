@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS - Solis Retrofit / Hybrid Inverters &amp; Easyway UNIV5200 Battery Manual</title>
+  <meta name="description" content="Complete in-depth wiring, SolisCloud commissioning, and GEMS optimization manual for Solis Retrofit (RAI / S6-EA1P) and Hybrid (S5 / S6-EH1P / S6-EH3P-L) inverters paired with Easyway 5200 (UNIV5200) LiFePO4 battery storage.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 12mm 16mm 12mm;
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9pt;
+      line-height: 1.5;
+    }
+
+    .manual-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 980px;
+      padding: 24px 16px 16px 16px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 24px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px -1px rgba(234, 88, 12, 0.25);
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 25pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 16px 0 8px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 11pt;
+      color: #475569;
+      margin: 0 0 18px 0;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    .cover-meta-val {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.08);
+      margin: 12px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 7.5pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Section Headings */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15.5pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #ea580c;
+      padding-bottom: 5px;
+      margin-top: 26px;
+      margin-bottom: 12px;
+      page-break-after: avoid;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11.5pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 18px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #c2410c;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #334155;
+    }
+
+    ul, ol {
+      margin: 6px 0 10px 0;
+      padding-left: 20px;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    /* Screenshot Container */
+    .manual-screenshot {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .manual-screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .manual-screenshot-caption {
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    .screenshot-two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      font-size: 8.5pt;
+      line-height: 1.45;
+    }
+
+    .callout-info {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      color: #075985;
+    }
+
+    .callout-tip {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #166534;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #92400e;
+    }
+
+    .callout-danger {
+      background: #fef2f2;
+      border-left: 4px solid #dc2626;
+      color: #991b1b;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 8.2pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #cbd5e1;
+      padding: 6px 9px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .data-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Menu Path Breadcrumb Pills */
+    .menu-path {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      background: #fff7ed;
+      border: 1px solid #fdba74;
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 8pt;
+      font-weight: 600;
+      color: #9a3412;
+    }
+
+    .val-good {
+      display: inline-block;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-weight: 700;
+      font-size: 7.8pt;
+    }
+
+    .val-avoid {
+      display: inline-block;
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-weight: 700;
+      font-size: 7.8pt;
+    }
+
+    .diagram-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    .recipe-card {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .recipe-card h4 {
+      margin: 0 0 6px 0;
+      font-size: 9.5pt;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .dip-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 10px 0;
+      page-break-inside: avoid;
+    }
+
+    .dip-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px;
+      text-align: center;
+      font-size: 7.8pt;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    code {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 8pt;
+      color: #c2410c;
+    }
+
+    pre.code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 7.8pt;
+      line-height: 1.45;
+      overflow-x: auto;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="manual-page">
+
+    <!-- ==================== COVER PAGE ==================== -->
+    <div class="cover-page">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <span class="cover-badge">🔋 Reference Storage &amp; Wiring Manual</span>
+          <img src="assets/new_energy_grid_logo.png" alt="New Energy Grid Logo" style="height: 36px; width: auto;">
+        </div>
+
+        <h1 class="cover-title">Solis Retrofit / Hybrid Inverters &amp; Easyway 5200 (UNIV5200) Battery Guide</h1>
+        <p class="cover-subtitle">
+          Complete electrician &amp; homeowner manual covering <strong>physical DC power, CAN BMS &amp; parallel DIP-switch wiring</strong> between the <strong>Easyway UNIV5200 (51.2V LiFePO<sub>4</sub>)</strong> battery and <strong>Solis Retrofit / Hybrid</strong> inverters, exact <strong>SolisCloud App</strong> settings, and optimal <strong>GRID-EMS (GEMS)</strong> configuration.
+        </p>
+
+        <div class="cover-meta-grid">
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Document Version</span>
+            <span class="cover-meta-val">v9.35.4-release (Official Tag)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">GEMS Primary Reference Templates</span>
+            <span class="cover-meta-val">solis_hybrid • solis_retrofit • solis_retrofit_battery</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Supported Solis LV (48V) Inverters</span>
+            <span class="cover-meta-val">RAI-3K-48ES-5G • S6-EA1P-L (Retrofit) • S5-EH1P-L • S6-EH1P-L • S6-EH3P-L</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Battery Storage Specification</span>
+            <span class="cover-meta-val">Easyway UNIV5200 (51.2V • 102Ah • 5.22 kWh LiFePO4 • Up to 16 Parallel)</span>
+          </div>
+        </div>
+
+        <div class="cover-hero-img">
+          <img src="assets/screenshots/dashboard.png" alt="GEMS Real-Time Energy Management Dashboard">
+        </div>
+
+        <div class="callout callout-info" style="margin-top: 14px;">
+          <div class="callout-title">⭐ Primary Reference Storage Platform in GRID-EMS</div>
+          <div>
+            <strong>Solis</strong> hybrid and AC-coupled retrofit inverters paired with 51.2V modular <strong>Easyway UNIV5200</strong> LiFePO<sub>4</sub> packs serve as the primary reference energy storage architecture in GEMS. Whether upgrading an existing solar home via an AC-coupled Solis Retrofit inverter or commissioning a brand-new 1-phase/3-phase Solis S6 Hybrid plant, following this guide guarantees safe balanced DC currents, zero BMS CAN communication faults, flash-safe volatile Modbus dispatch, accurate Flanders 15-minute peak shaving, and intelligent Day-Ahead spot arbitrage.
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-footer">
+        <span>© New Energy Grid &amp; The Charge Grid — Proprietary Field Documentation v9.35.4</span>
+        <span>Target Platform: GRID-EMS Edge Controller (Raspberry Pi ARM64)</span>
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 1 ==================== -->
+    <h1 class="section-title">Section 1: Hardware Compatibility, Sizing &amp; Voltage Guardrails</h1>
+
+    <p>
+      The <strong>Easyway 5200 Energy Storage Battery (<code>UNIV5200</code>)</strong> is a <strong>51.2 V nominal (48V class) Low-Voltage Lithium Iron Phosphate (LiFePO<sub>4</sub>)</strong> module rated at <code>102 Ah</code> (<code>5.22 kWh</code> total energy / <code>~4.70 kWh</code> usable at 90% DoD). Before mounting or wiring hardware, verify strict voltage compatibility and pack-to-inverter power sizing.
+    </p>
+
+    <div class="callout callout-danger">
+      <div class="callout-title">🛑 CRITICAL VOLTAGE GUARDRAIL: Low-Voltage (-L / 48V) Solis Models ONLY!</div>
+      <div>
+        <ul style="margin: 2px 0 0 0;">
+          <li><strong>NEVER connect Easyway UNIV5200 modules in series!</strong> All multi-battery expansions (2 to 16 modules) must be wired <strong>strictly in 51.2 V DC parallel</strong> (`P+` to `P+`, `P-` to `P-`).</li>
+          <li><strong>NEVER connect UNIV5200 batteries to High-Voltage (`-H`) Solis inverters</strong> (such as <code>S6-EH3P(5-20)K-H</code> or <code>RHI-3P-HVES</code>), which operate at <code>160–600 Vdc</code>. Always verify the <strong><code>-L</code></strong> or <strong><code>48ES / 48V</code></strong> suffix on the Solis nameplate!</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">1.1 Easyway UNIV5200 Technical Specification Summary</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 26%;">Parameter</th>
+          <th style="width: 24%;">UNIV5200 Specification</th>
+          <th style="width: 26%;">Parameter</th>
+          <th style="width: 24%;">UNIV5200 Specification</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Cell Chemistry</strong></td>
+          <td>16S Prismatic LiFePO<sub>4</sub></td>
+          <td><strong>Recommended Charge / Discharge</strong></td>
+          <td><code>50 A</code> continuous (~<code>2.56 kW</code> / pack)</td>
+        </tr>
+        <tr>
+          <td><strong>Nominal Voltage &amp; Capacity</strong></td>
+          <td><code>51.2 Vdc</code> • <code>102 Ah</code> (<code>5.22 kWh</code>)</td>
+          <td><strong>Max Continuous / Peak Current</strong></td>
+          <td><code>100 A</code> max (~<code>5.12 kW</code>) / Peak 10s</td>
+        </tr>
+        <tr>
+          <td><strong>Operating Voltage Window</strong></td>
+          <td><code>44.8 Vdc – 57.6 Vdc</code></td>
+          <td><strong>Parallel Scalability</strong></td>
+          <td>Up to <strong>16 packs</strong> (<code>83.52 kWh</code>)</td>
+        </tr>
+        <tr>
+          <td><strong>Recommended Depth of Discharge</strong></td>
+          <td><code>90 % DoD</code> (<code>10%</code> floor SOC)</td>
+          <td><strong>Ingress, Cooling &amp; Temp Range</strong></td>
+          <td><code>IP20</code> indoor, passive; Charge <code>0–55 °C</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">1.2 Compatible Solis LV Inverters &amp; Recommended UNIV5200 Pack Sizing</h2>
+    <p>
+      Because each <code>UNIV5200</code> BMS recommends <code>50 A</code> continuous current (~<code>2.56 kW</code> per module), pairing a single 5.22 kWh pack with a 5 kW or 10 kW inverter causes the BMS to dynamically cap continuous charge/discharge around ~2.56 kW. Use the table below to match inverter power, minimum recommended packs, DC cable gauge, and external DC breaker rating:
+    </p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Solis LV Inverter Series</th>
+          <th style="width: 17%;">Type &amp; GEMS Template</th>
+          <th style="width: 18%;">Max Battery Current</th>
+          <th style="width: 20%;">Recommended UNIV5200 Stack</th>
+          <th style="width: 20%;">Main DC Cable &amp; Breaker</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Solis RAI-3K-48ES-5G</strong><br><em>(3.0 kW, 1-Phase AC)</em></td>
+          <td>AC Retrofit (No PV)<br><code>solis_retrofit</code></td>
+          <td><code>60 A</code> (~3.0 kW)</td>
+          <td><strong>1 – 3× UNIV5200</strong><br><em>(5.22 – 15.66 kWh)</em></td>
+          <td><code>25 mm²</code> copper<br><strong>100 A</strong> DC MCCB</td>
+        </tr>
+        <tr>
+          <td><strong>Solis S6-EA1P(3.6–6)K-L</strong><br><em>(3.6 / 5.0 / 6.0 kW, 1-Phase AC)</em></td>
+          <td>AC Retrofit (No PV)<br><code>solis_retrofit</code></td>
+          <td><code>75 A – 125 A</code></td>
+          <td><strong>2 – 4× UNIV5200</strong><br><em>(10.44 – 20.88 kWh for full 5kW+)</em></td>
+          <td><code>35 mm²</code> copper<br><strong>125 A – 160 A</strong> DC MCCB</td>
+        </tr>
+        <tr>
+          <td><strong>Solis S5-EH1P(3–6)K-L</strong><br><em>(3.0 – 6.0 kW, 1-Phase Hybrid)</em></td>
+          <td>PV + Storage Hybrid<br><code>solis_hybrid</code></td>
+          <td><code>62.5 A – 100 A</code></td>
+          <td><strong>2 – 4× UNIV5200</strong><br><em>(1× works up to ~2.56 kW cont.)</em></td>
+          <td><code>25 – 35 mm²</code> copper<br><strong>125 A</strong> DC MCCB</td>
+        </tr>
+        <tr>
+          <td><strong>Solis S6-EH1P(3–8)K-L-PLUS/PRO</strong><br><em>(3.0 – 8.0 kW, 1-Phase Hybrid)</em></td>
+          <td>PV + Storage Hybrid<br><code>solis_hybrid</code></td>
+          <td><code>70 A – 190 A</code></td>
+          <td><strong>2 – 6× UNIV5200</strong><br><em>(≥3 packs for 8 kW continuous)</em></td>
+          <td><code>35 – 50 mm²</code> copper<br><strong>160 A – 250 A</strong> DC MCCB</td>
+        </tr>
+        <tr>
+          <td><strong>Solis S6-EH3P(5–10)K-L</strong> &amp; <strong>NV-YD-L</strong><br><em>(5.0 – 15.0 kW, 3-Phase LV Hybrid)</em></td>
+          <td>3-Phase LV Hybrid<br><code>solis_hybrid</code></td>
+          <td><code>120 A – 290 A</code></td>
+          <td><strong>3 – 8× UNIV5200</strong><br><em>(≥3 packs via DC Busbar)</em></td>
+          <td><code>50 – 70 mm²</code> (or dual 35 mm²)<br><strong>200 A – 300 A</strong> DC MCCB</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 2 ==================== -->
+    <h1 class="section-title">Section 2: Step-by-Step Wiring Manual — Easyway UNIV5200 to Solis Inverter</h1>
+
+    <p>
+      All wiring must be performed with the Solis AC breaker, PV DC isolator, external DC battery breaker, and all Easyway <code>UNIV5200</code> pack switches strictly <strong>OFF</strong>. Because 51.2 V battery banks carry high DC currents (up to 100–250 A), meticulous lug crimping, equalized parallel cable paths, and exact RJ45 CAN pin matching are essential.
+    </p>
+
+    <h2 class="subsection-title">2.1 DC Power, Protective Earth &amp; Parallel Balance Wiring</h2>
+
+    <div class="diagram-box">
+      <div style="font-weight: 800; font-size: 9.5pt; color: #0f172a; margin-bottom: 8px;">
+        Master Wiring Schematic: 2× Parallel Easyway UNIV5200 (Diagonal Balance) + DC MCCB + CAN BMS to Solis Inverter
+      </div>
+      <svg viewBox="0 0 840 285" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+        <!-- Solis Inverter Box -->
+        <rect x="14" y="18" width="215" height="235" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="2.2"/>
+        <text x="121" y="42" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#9a3412">Solis LV Inverter</text>
+        <text x="121" y="58" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#475569">RAI-3K / S6-EA1P-L / S5-S6-EH-L</text>
+
+        <!-- Solis Terminals -->
+        <rect x="155" y="76" width="62" height="24" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+        <text x="186" y="92" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#991b1b">BAT +</text>
+
+        <rect x="155" y="114" width="62" height="24" rx="4" fill="#e2e8f0" stroke="#1e293b" stroke-width="1.5"/>
+        <text x="186" y="130" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#0f172a">BAT -</text>
+
+        <rect x="142" y="156" width="75" height="26" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+        <text x="179" y="173" text-anchor="middle" font-family="monospace" font-size="9.5" font-weight="bold" fill="#1e40af">BMS / CAN</text>
+
+        <rect x="26" y="156" width="104" height="26" rx="4" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+        <text x="78" y="173" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#166534">COM/RS485 → GEMS</text>
+
+        <rect x="142" y="202" width="75" height="24" rx="4" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+        <text x="179" y="218" text-anchor="middle" font-family="sans-serif" font-size="9.5" font-weight="bold" fill="#854d0e">⏚ PE Bar</text>
+
+        <!-- External 2-Pole Non-Polarized DC MCCB -->
+        <rect x="280" y="70" width="115" height="76" rx="8" fill="#ffffff" stroke="#475569" stroke-width="2"/>
+        <text x="337" y="90" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#0f172a">Non-Polarized</text>
+        <text x="337" y="104" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#dc2626">DC MCCB / Fuse</text>
+        <text x="337" y="120" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#475569">125A–250A ≥80Vdc</text>
+        <text x="337" y="135" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#64748b">(2-Pole Isolator)</text>
+
+        <!-- Master Pack 1 -->
+        <rect x="465" y="18" width="358" height="108" rx="9" fill="#f8fafc" stroke="#0284c7" stroke-width="2"/>
+        <text x="480" y="38" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0369a1">Easyway UNIV5200 — Pack 1 (MASTER)</text>
+        <text x="742" y="38" font-family="monospace" font-size="9" font-weight="bold" fill="#166534">ADD: 0000</text>
+
+        <rect x="480" y="50" width="52" height="24" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+        <text x="506" y="66" text-anchor="middle" font-family="monospace" font-size="9.5" font-weight="bold" fill="#991b1b">P+</text>
+
+        <rect x="542" y="50" width="52" height="24" rx="4" fill="#e2e8f0" stroke="#1e293b" stroke-width="1.5"/>
+        <text x="568" y="66" text-anchor="middle" font-family="monospace" font-size="9.5" font-weight="bold" fill="#0f172a">P-</text>
+
+        <rect x="610" y="50" width="64" height="24" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+        <text x="642" y="66" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#1e40af">CAN Port</text>
+
+        <rect x="684" y="50" width="76" height="24" rx="4" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+        <text x="722" y="66" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#5b21b6">RS485-B Out</text>
+
+        <rect x="768" y="50" width="42" height="24" rx="4" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+        <text x="789" y="66" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#854d0e">⏚ PE</text>
+
+        <text x="480" y="108" font-family="sans-serif" font-size="8.5" fill="#475569">51.2V 102Ah (5.22 kWh) • Wake Button (SW) • RUN/ALM/SOC LEDs</text>
+
+        <!-- Slave Pack 2 -->
+        <rect x="465" y="148" width="358" height="108" rx="9" fill="#f8fafc" stroke="#64748b" stroke-width="1.8"/>
+        <text x="480" y="168" font-family="sans-serif" font-size="11" font-weight="bold" fill="#1e293b">Easyway UNIV5200 — Pack 2 (SLAVE 1)</text>
+        <text x="742" y="168" font-family="monospace" font-size="9" font-weight="bold" fill="#9a3412">ADD: 1000</text>
+
+        <rect x="480" y="180" width="52" height="24" rx="4" fill="#fee2e2" stroke="#dc2626" stroke-width="1.5"/>
+        <text x="506" y="196" text-anchor="middle" font-family="monospace" font-size="9.5" font-weight="bold" fill="#991b1b">P+</text>
+
+        <rect x="542" y="180" width="52" height="24" rx="4" fill="#e2e8f0" stroke="#1e293b" stroke-width="1.5"/>
+        <text x="568" y="196" text-anchor="middle" font-family="monospace" font-size="9.5" font-weight="bold" fill="#0f172a">P-</text>
+
+        <rect x="610" y="180" width="64" height="24" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2"/>
+        <text x="642" y="196" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#64748b">CAN (Empty)</text>
+
+        <rect x="684" y="180" width="76" height="24" rx="4" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+        <text x="722" y="196" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#5b21b6">RS485-A In</text>
+
+        <rect x="768" y="180" width="42" height="24" rx="4" fill="#fef9c3" stroke="#ca8a04" stroke-width="1.5"/>
+        <text x="789" y="196" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#854d0e">⏚ PE</text>
+
+        <text x="480" y="238" font-family="sans-serif" font-size="8.5" fill="#475569">Diagonal Takeoff: Main BAT+ on Pack 1 P+, Main BAT- on Last Pack P-!</text>
+
+        <!-- DC Positive Wire (Red): Solis BAT+ -> MCCB -> Pack 1 P+ -> Jumper to Pack 2 P+ -->
+        <line x1="217" y1="88" x2="280" y2="88" stroke="#dc2626" stroke-width="3.2"/>
+        <line x1="395" y1="88" x2="435" y2="88" stroke="#dc2626" stroke-width="3.2"/>
+        <line x1="435" y1="88" x2="435" y2="62" stroke="#dc2626" stroke-width="3.2"/>
+        <line x1="435" y1="62" x2="480" y2="62" stroke="#dc2626" stroke-width="3.2"/>
+        <!-- P+ Parallel Jumper -->
+        <path d="M 506 74 L 506 180" stroke="#dc2626" stroke-width="2.6" stroke-dasharray="5,3" fill="none"/>
+
+        <!-- DC Negative Wire (Black): Solis BAT- -> MCCB -> Diagonal down to Pack 2 P- -> Jumper to Pack 1 P- -->
+        <line x1="217" y1="126" x2="280" y2="126" stroke="#0f172a" stroke-width="3.2"/>
+        <line x1="395" y1="126" x2="422" y2="126" stroke="#0f172a" stroke-width="3.2"/>
+        <line x1="422" y1="126" x2="422" y2="266" stroke="#0f172a" stroke-width="3.2"/>
+        <line x1="422" y1="266" x2="568" y2="266" stroke="#0f172a" stroke-width="3.2"/>
+        <line x1="568" y1="266" x2="568" y2="204" stroke="#0f172a" stroke-width="3.2"/>
+        <!-- P- Parallel Jumper -->
+        <path d="M 568 74 L 568 180" stroke="#0f172a" stroke-width="2.6" stroke-dasharray="5,3" fill="none"/>
+
+        <!-- BMS CAN Cable (Blue): Solis BMS -> Pack 1 CAN -->
+        <path d="M 217 169 L 448 169 L 448 90 L 642 90 L 642 74" stroke="#2563eb" stroke-width="2.2" fill="none"/>
+        <text x="335" y="163" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#1d4ed8">CAN Bus (Pins 4 &amp; 5)</text>
+
+        <!-- Inter-Pack RS485 Daisy-Chain (Purple) -->
+        <path d="M 722 74 L 722 180" stroke="#7c3aed" stroke-width="2.2" fill="none"/>
+        <text x="758" y="136" text-anchor="middle" font-family="monospace" font-size="8" font-weight="bold" fill="#6d28d9">Link RJ45</text>
+
+        <!-- Protective Earth (Green/Yellow Dashed) -->
+        <path d="M 217 214 L 408 214 L 408 276 L 832 276 L 832 62 L 810 62" stroke="#16a34a" stroke-width="1.8" stroke-dasharray="6,3" fill="none"/>
+        <line x1="832" y1="192" x2="810" y2="192" stroke="#16a34a" stroke-width="1.8" stroke-dasharray="6,3"/>
+      </svg>
+    </div>
+
+    <ol>
+      <li><strong>Single UNIV5200 Module (5.22 kWh):</strong> Run equal-length <code>25 mm²</code> (or <code>35 mm²</code>) fine-stranded flexible copper cables from <code>P+</code> (Red) and <code>P-</code> (Black) through an external <strong>non-polarized 2-pole DC MCCB breaker</strong> (<code>100 A – 125 A</code>, rated <code>≥ 80 Vdc</code>; never use polarized AC breakers!) directly to the Solis inverter <code>BAT+</code> and <code>BAT-</code> terminals.</li>
+      <li><strong>2 to 3 Parallel UNIV5200 Modules (Diagonal / Cross-Takeoff Rule):</strong> Link <code>P+</code> to <code>P+</code> and <code>P-</code> to <code>P-</code> between modules using identical-length bridge cables. Connect the main positive cable going to the Solis inverter onto <strong>Pack 1 (Master) <code>P+</code></strong>, and connect the main negative cable going to the Solis inverter onto the <strong>LAST Pack's <code>P-</code></strong> (Pack 2 or Pack 3). This equalizes total loop resistance across every pack so Pack 1 does not age prematurely.</li>
+      <li><strong>4 to 16 Parallel UNIV5200 Modules (Copper Busbar Rule — Mandatory &gt; 3 Packs):</strong> Do <em>not</em> daisy-chain high currents across 4+ battery terminals. Instead, install rated tin-plated <strong>Positive and Negative Copper DC Busbars</strong> (<code>250 A – 400 A</code>). Run identical-length <code>25 mm²</code> fused branch cables from each individual <code>UNIV5200</code> to the busbars, then run main <code>35 mm² – 70 mm²</code> cables from the busbars through the main DC MCCB to the Solis inverter.</li>
+      <li><strong>Terminal Torque &amp; Protective Earth (<code>⏚ PE</code>):</strong> Match your UNIV5200 hardware revision terminals (firmly click <strong>Amphenol SurLok Plus</strong> plugs until the lock tab latches, or torque <code>M6 / M8</code> hydraulic hex lugs to <code>5–8 Nm</code> with spring washers—never trap insulation under a lug!). Bond every <code>UNIV5200</code> chassis ground screw (<code>⏚</code>) to the Solis PE bar using <code>≥ 6 mm²</code> green/yellow earth wire.</li>
+    </ol>
+
+    <h2 class="subsection-title">2.2 BMS CAN Cable Pinout (Master UNIV5200 to Solis BMS Port)</h2>
+    <p>
+      Closed-loop communication between the Master <code>UNIV5200</code> and the Solis inverter uses <strong>500 kbps CAN bus</strong> over a shielded CAT5e/CAT6 RJ45 cable plugged into the <strong><code>CAN</code></strong> port on <strong>Pack 1 (Master)</strong> and the <strong><code>BMS / CAN</code></strong> RJ45 port inside the Solis inverter.
+    </p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 14%;">RJ45 Pin</th>
+          <th style="width: 20%;">T568B Wire Color</th>
+          <th style="width: 24%;">Solis <code>BMS / CAN</code> Port</th>
+          <th style="width: 24%;">Easyway UNIV5200 <code>CAN</code> Port</th>
+          <th style="width: 18%;">Cable Wiring Rule</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Pin 1 – 3</strong></td>
+          <td>W-Orange / Orange / W-Green</td>
+          <td>NC / Enable GND / RS485-B</td>
+          <td>Reserved / Internal RS485</td>
+          <td><span class="val-avoid">Leave Disconnected*</span></td>
+        </tr>
+        <tr>
+          <td><strong>Pin 4</strong></td>
+          <td><strong>Solid Blue</strong></td>
+          <td><strong><code>CAN-H</code> (CAN High)</strong></td>
+          <td><strong><code>CAN-H</code> (CAN High)</strong></td>
+          <td><span class="val-good">Connect Pin 4 &harr; Pin 4</span></td>
+        </tr>
+        <tr>
+          <td><strong>Pin 5</strong></td>
+          <td><strong>White / Blue</strong></td>
+          <td><strong><code>CAN-L</code> (CAN Low)</strong></td>
+          <td><strong><code>CAN-L</code> (CAN Low)</strong></td>
+          <td><span class="val-good">Connect Pin 5 &harr; Pin 5</span></td>
+        </tr>
+        <tr>
+          <td><strong>Pin 6 – 8</strong></td>
+          <td>Green / W-Brown / Brown</td>
+          <td>RS485-A / <strong>Pin 7: +12V Enable</strong></td>
+          <td>Reserved / Internal Bus</td>
+          <td><span class="val-avoid">Leave Disconnected*</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-warning">
+      <div class="callout-title">⚠️ Field Pro-Tip: Isolate Pins 4 &amp; 5 on Custom CAN Patch Cables!</div>
+      <div>
+        On Solis hybrid/retrofit inverters, <strong>Pin 7</strong> of the BMS RJ45 socket carries <code>+12V Enable</code> and <strong>Pins 3 &amp; 6</strong> carry RS-485 transceiver signals. While a standard T568B Ethernet cord aligns Pins 4 &amp; 5, best electrician practice is to use the factory battery-to-inverter CAN cable or crimp a dedicated shielded CAT6 cable connecting <strong>only Pin 4 (<code>CAN-H</code> Blue) and Pin 5 (<code>CAN-L</code> White/Blue)</strong> (plus shield drain at the inverter end only) while leaving Pins 1–3 and 6–8 open so 12V never back-feeds into reserved BMS pins! <em>(Always verify the enclosed Easyway UNIV5200 hardware leaflet in case a regional sub-revision shifts CAN pins).</em>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h2 class="subsection-title">2.3 Parallel Inter-Pack Link Wiring &amp; Binary <code>ADD</code> DIP Switch Settings</h2>
+    <p>
+      When installing multiple <code>UNIV5200</code> packs in parallel, daisy-chain standard straight-through CAT5e/CAT6 patch cables from <strong>Pack 1 (Master) <code>RS485-B / Link Out</code></strong> &rarr; <strong>Pack 2 (Slave 1) <code>RS485-A / Link In</code></strong>, and from <strong>Pack 2 Out &rarr; Pack 3 In</strong> down the stack. Leave the <code>CAN</code> port empty on all Slave packs—<strong>only Pack 1 (Master) connects to the Solis inverter!</strong>
+    </p>
+    <p>
+      Before turning any battery ON, set the front-panel <strong><code>ADD</code> DIP switch block</strong> (`ON = 1 / UP`, `OFF = 0 / DOWN`, read left-to-right from Switch 1 to Switch 4; if your module has a 6-pole switch block, keep Switches 5 &amp; 6 `OFF` unless the enclosed leaflet specifies bus termination on the final pack):
+    </p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 24%;">UNIV5200 Pack Role</th>
+          <th style="width: 11%;">SW 1</th>
+          <th style="width: 11%;">SW 2</th>
+          <th style="width: 11%;">SW 3</th>
+          <th style="width: 11%;">SW 4</th>
+          <th style="width: 14%;">Binary Code</th>
+          <th style="width: 18%;">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Single Pack / Master (Pack 1)</strong></td>
+          <td><code>OFF</code></td>
+          <td><code>OFF</code></td>
+          <td><code>OFF</code></td>
+          <td><code>OFF</code></td>
+          <td><span class="val-good">0000</span></td>
+          <td>Connects <code>CAN</code> to Solis</td>
+        </tr>
+        <tr>
+          <td><strong>Slave 1 (Pack 2 — 10.44 kWh)</strong></td>
+          <td><strong><code>ON</code></strong></td>
+          <td><code>OFF</code></td>
+          <td><code>OFF</code></td>
+          <td><code>OFF</code></td>
+          <td><code>1000</code></td>
+          <td>Link from Pack 1 Out</td>
+        </tr>
+        <tr>
+          <td><strong>Slave 2 (Pack 3 — 15.66 kWh)</strong></td>
+          <td><code>OFF</code></td>
+          <td><strong><code>ON</code></strong></td>
+          <td><code>OFF</code></td>
+          <td><code>OFF</code></td>
+          <td><code>0100</code></td>
+          <td>Link from Pack 2 Out</td>
+        </tr>
+        <tr>
+          <td><strong>Slave 3 (Pack 4 — 20.88 kWh)</strong></td>
+          <td><strong><code>ON</code></strong></td>
+          <td><strong><code>ON</code></strong></td>
+          <td><code>OFF</code></td>
+          <td><code>OFF</code></td>
+          <td><code>1100</code></td>
+          <td>Link from Pack 3 Out</td>
+        </tr>
+        <tr>
+          <td><strong>Slave 4 (Pack 5 — 26.10 kWh)</strong></td>
+          <td><code>OFF</code></td>
+          <td><code>OFF</code></td>
+          <td><strong><code>ON</code></strong></td>
+          <td><code>OFF</code></td>
+          <td><code>0010</code></td>
+          <td>Use Copper DC Busbar</td>
+        </tr>
+        <tr>
+          <td><strong>Slave 5 (Pack 6 — 31.32 kWh)</strong></td>
+          <td><strong><code>ON</code></strong></td>
+          <td><code>OFF</code></td>
+          <td><strong><code>ON</code></strong></td>
+          <td><code>OFF</code></td>
+          <td><code>1010</code></td>
+          <td>Use Copper DC Busbar</td>
+        </tr>
+        <tr>
+          <td><strong>Slaves 6 – 15 (Packs 7 – 16)</strong></td>
+          <td colspan="4">Continue binary sequence: Pack 7 = <code>0110</code>, Pack 8 = <code>1110</code>, Pack 9 = <code>0001</code> &hellip; Pack 16 = <code>1111</code></td>
+          <td><code>0110..1111</code></td>
+          <td>Up to 83.52 kWh total</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">2.4 Grid Smart Meter Wiring (Especially Critical on Solis Retrofit Sites!)</h2>
+    <p>
+      Solis hybrid and retrofit inverters ship with an RS-485 smart meter (typically <strong>Acrel <code>ACR10R-D16TE</code> / <code>ADL200</code> / <code>ADL400</code></strong> or <strong>Eastron <code>SDM120CTM</code> / <code>SDM630MCT</code></strong>) wired into the Solis <strong><code>Meter</code></strong> port (on S6 RJ45 Meter cables: <strong>Pin 1 = <code>RS485A</code> Orange/White</strong>, <strong>Pin 2 = <code>RS485B</code> Orange</strong>).
+    </p>
+    <ul>
+      <li><strong>Retrofit Placement Rule (<code>RAI-3K</code> / <code>S6-EA1P</code>):</strong> Clamp the Solis meter CTs directly on the <strong>main utility grid tails immediately after the DSO smart meter</strong>—<em>upstream</em> of your existing solar PV string inverter, house loads, EV wallbox, and the Solis Retrofit AC breaker! That way, whenever your existing rooftop solar inverter exports excess AC power toward the street, the Solis Retrofit immediately sees export and absorbs it into the Easyway <code>UNIV5200</code> batteries during autonomous <code>Self-Use</code> operation!</li>
+      <li><strong>CT Direction &amp; Phase Alignment:</strong> Ensure every CT arrow (<code>P1 &rarr; P2</code> or <code>K &rarr; L</code>, verify arrow sticker on Acrel vs Eastron CTs!) points strictly in the manufacturer-indicated direction toward house loads, and verify <code>L1 / L2 / L3</code> voltage sense wires match <code>CT1 / CT2 / CT3</code> phase-for-phase.</li>
+    </ul>
+
+    <h2 class="subsection-title">2.5 Safe Pre-Charge Power-Up &amp; Shutdown Sequence</h2>
+    <div class="callout callout-tip">
+      <div class="callout-title">⚡ Mandatory Startup Order (Protects Inverter Capacitors &amp; Prevents BMS Short Trips)</div>
+      <div>
+        <strong>Never</strong> slam the DC MCCB closed onto an already-awake battery connected to cold inverter capacitors! Follow this exact sequence so the Easyway BMS soft-start pre-charge circuit energizes the Solis DC bus safely:
+        <ol style="margin: 4px 0 0 0; padding-left: 18px;">
+          <li><strong>Verify Polarity Cold:</strong> With all batteries OFF, verify <code>BAT+</code> and <code>BAT-</code> continuity and zero reverse polarity using a multimeter, and double-check all <code>ADD</code> DIP switches.</li>
+          <li><strong>Close DC Path While BMS Is Asleep:</strong> Switch individual <code>UNIV5200</code> pack power/breaker rockers to <strong>ON</strong> (if equipped) and switch the external <strong>2-pole DC MCCB breaker ON</strong> while the BMS LEDs are still off/standby.</li>
+          <li><strong>Wake Master BMS (Soft Pre-Charge):</strong> Press and hold the <strong><code>SW / POWER</code> button</strong> on <strong>Pack 1 (Master)</strong> for <code>2–3 seconds</code> until the LEDs sweep and the green <strong><code>RUN</code></strong> LED illuminates (parallel Slave packs wake automatically via the RS-485 link cable; confirm red <code>ALM</code> LED is OFF on every pack and measure <code>~51.2–53.5 Vdc</code> at the Solis DC lugs).</li>
+          <li><strong>Energize PV &amp; AC Grid:</strong> Turn <strong>ON</strong> the Solis DC PV isolator (on hybrid models), then turn <strong>ON</strong> the Solis AC Grid breaker.</li>
+        </ol>
+        <em>Shutdown Order (Reverse):</em> Turn <strong>AC Grid Breaker OFF</strong> &rarr; Turn <strong>PV DC Switch OFF</strong> &rarr; Hold Master <code>SW</code> button 3s until all battery packs sleep &rarr; Switch <strong>External DC MCCB OFF</strong>.
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 3 ==================== -->
+    <h1 class="section-title">Section 3: Connecting Solis to GEMS (RS-485 &amp; LAN Stick Topologies)</h1>
+
+    <p>
+      To achieve fast, zero-cloud closed-loop battery dispatch and solar curtailment, connect your Solis inverter to GEMS over local Modbus RTU (RS-485) or local Modbus TCP. Choose one of the two verified topologies below:
+    </p>
+
+    <div class="diagram-box">
+      <div style="font-weight: 800; font-size: 9.5pt; color: #0f172a; margin-bottom: 8px;">
+        GEMS + Solis + Easyway UNIV5200 Communication Topologies
+      </div>
+      <svg viewBox="0 0 820 155" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+        <rect x="10" y="22" width="175" height="110" rx="10" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+        <text x="97" y="48" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0f172a">GEMS Controller</text>
+        <text x="97" y="66" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#0369a1">Raspberry Pi (Wired eth0)</text>
+        <text x="97" y="86" text-anchor="middle" font-family="sans-serif" font-size="9.5" font-weight="bold" fill="#16a34a">+ USB P1 Smart Meter</text>
+        <text x="97" y="105" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#475569">+ Raedian EV Wallbox</text>
+
+        <line x1="185" y1="55" x2="325" y2="55" stroke="#16a34a" stroke-width="2.5"/>
+        <text x="255" y="45" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#166534">Option A: USB-RS485</text>
+        <text x="255" y="68" text-anchor="middle" font-family="monospace" font-size="8" fill="#475569">9600 8N1 (2s–3s Poll)</text>
+
+        <line x1="185" y1="105" x2="325" y2="105" stroke="#ea580c" stroke-width="2.2" stroke-dasharray="5,3"/>
+        <text x="255" y="96" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#c2410c">Option B: S2-WL-ST LAN</text>
+        <text x="255" y="119" text-anchor="middle" font-family="monospace" font-size="8" fill="#475569">Modbus TCP :502 (5s Poll)</text>
+
+        <rect x="325" y="22" width="225" height="110" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+        <text x="437" y="48" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#9a3412">Solis Hybrid / Retrofit</text>
+        <text x="437" y="67" text-anchor="middle" font-family="monospace" font-size="9.5" fill="#334155">Slave ID: 1 • Self-Use Mode</text>
+        <text x="437" y="86" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">Volatile RC Keepalive (60s)</text>
+        <text x="437" y="105" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#475569">+ Acrel / Eastron Grid Meter</text>
+
+        <line x1="550" y1="77" x2="615" y2="77" stroke="#2563eb" stroke-width="2.5"/>
+        <text x="582" y="67" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#1d4ed8">CAN + DC</text>
+
+        <rect x="615" y="22" width="192" height="110" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+        <text x="711" y="48" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="bold" fill="#166534">Easyway UNIV5200</text>
+        <text x="711" y="67" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#334155">1 to 16 Parallel Packs</text>
+        <text x="711" y="86" text-anchor="middle" font-family="monospace" font-size="9" fill="#0f172a">51.2V • PYLON LV CAN</text>
+        <text x="711" y="105" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#475569">Live BMS Power Limits</text>
+      </svg>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 24%;">Connection Option</th>
+          <th style="width: 44%;">Physical Wiring &amp; Pinout Details</th>
+          <th style="width: 32%;">Field Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Option A (Best): Direct USB-to-RS485 or Industrial Ethernet Gateway</strong></td>
+          <td>
+            <ul>
+              <li><strong>Solis S6 Dedicated Internal <code>RS485 / Modbus</code> RJ45 / Terminal Port:</strong> Connect shielded twisted pair to the dedicated internal EMS/Cascade RS-485 port so your external SolisCloud logger stick stays plugged into the 4-pin COM port uninterrupted!</li>
+              <li><strong>Solis 4-Pin Circular <code>COM</code> Port</strong> (on S5 / RAI or via Y-splitter): <strong>Pin 3 (Yellow) = <code>RS485A (+)</code></strong>, <strong>Pin 4 (Blue) = <code>RS485B (-)</code></strong>, optional <strong>Pin 2 (Black) = <code>GND</code></strong>. <strong style="color:#b91c1c;">NEVER connect Pin 1 (+5V Red)</strong> to a USB-RS485 adapter!</li>
+            </ul>
+          </td>
+          <td><span class="val-good">Gold Standard</span> Zero Wi-Fi jitter, deterministic <code>2–3s</code> closed-loop control, and works independently of SolisCloud!</td>
+        </tr>
+        <tr>
+          <td><strong>Option B: Solis <code>S2-WL-ST</code> (Wi-Fi + LAN Stick) or <code>DLS-L</code></strong></td>
+          <td>Plug an Ethernet RJ45 cable into the bottom of the <strong><code>S2-WL-ST</code></strong> dual Wi-Fi/LAN stick, reserve a static DHCP IP on your router, and connect GEMS via Modbus TCP on port <code>502</code> (Slave ID <code>1</code>).</td>
+          <td><span class="val-good">Clean No-Cable LAN</span> Supports simultaneous SolisCloud + single local Modbus TCP client on port <code>502</code> (poll every <code>5s</code>).</td>
+        </tr>
+        <tr>
+          <td><strong>Legacy Cloud-Only <code>S3-WiFi-ST</code> Stick</strong></td>
+          <td>Entry-level Wi-Fi-only sticks manufactured strictly for outbound 5-minute SolisCloud pushes often disable raw Modbus TCP port <code>502</code> in recent firmware.</td>
+          <td><span class="val-avoid">Not Recommended</span> Upgrade the stick to a wired <strong><code>S2-WL-ST</code></strong> or wire Option A (USB-RS485 / Ethernet RS-485 gateway).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ==================== SECTION 4 ==================== -->
+    <h1 class="section-title">Section 4: Exact Settings in the SolisCloud App &amp; Inverter HMI</h1>
+
+    <p>
+      Standard homeowner plant views in SolisCloud only display 5-minute charts. To configure battery BMS handshakes, storage modes, and grid-charging permissions, connect locally using <strong>SolisCloud Local Debugging (Bluetooth)</strong> or the inverter's front LCD panel.
+    </p>
+
+    <h2 class="subsection-title">4.1 Entering Local Commissioning in the SolisCloud App</h2>
+    <ol>
+      <li>Stand within 3 meters of the Solis inverter with <strong>Bluetooth enabled</strong> on your smartphone.</li>
+      <li>Open the <strong>SolisCloud App</strong>. On the login screen (or bottom tab bar under <strong>Me &rarr; More Tools</strong>), tap <strong>Local Operation / Local Debugging &rarr; Connect with Bluetooth</strong>.</li>
+      <li>Select your inverter by its serial number, choose <strong>Installer</strong>, and authenticate using your authorized Solis Installer credentials (or on LCD-equipped S5/RAI models, go to <strong>Advanced Settings</strong> and enter the Solis Installer passcode from your commissioning card).</li>
+    </ol>
+
+    <h2 class="subsection-title">4.2 Complete Solis Parameter Checklist (SolisCloud Local Commissioning)</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 27%;">SolisCloud Menu &amp; Parameter</th>
+          <th style="width: 23%;">Required Setting</th>
+          <th style="width: 50%;">Why This Exact Setting Is Critical for UNIV5200 + GEMS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="menu-path">Storage Energy Set &rarr; Battery Select</span><br><strong>Battery Type &amp; Brand Profile</strong></td>
+          <td><span class="val-good">Lithium Battery</span> &rarr;<br><span class="val-good">PYLON LV</span> <em>(or <code>Lithium Battery LV</code> / <code>AoBo</code>)</em></td>
+          <td>Establishes closed-loop 500 kbps CAN communication with the Easyway <code>UNIV5200</code> BMS over Pins 4 &amp; 5. <strong>Never</strong> select <em>Lead-Acid</em> or <em>No Battery</em>, and avoid profiles marked <em>(RS485)</em>. Verify immediately under <strong>Information &rarr; BMS Info</strong> that status reads <strong>Normal</strong> with live SOC % and current limits!</td>
+        </tr>
+        <tr>
+          <td><span class="menu-path">Battery Select</span><br><strong>Overdischarge SOC</strong></td>
+          <td><span class="val-good">10 %</span> <em>(Standard)</em><br><span class="val-good">15 % – 20 %</span> <em>(With Backup Load)</em></td>
+          <td>Matches Easyway UNIV5200's rated <strong>90% Depth of Discharge</strong>. Stops household discharge smoothly at 10% SOC (or reserves 15–20% if critical loads are wired to the Solis <code>AC-Backup</code> port).</td>
+        </tr>
+        <tr>
+          <td><span class="menu-path">Battery Select</span><br><strong>Forcecharge SOC</strong></td>
+          <td><span class="val-good">5 %</span><br><span class="val-avoid">Keep ≥5% below Overdischarge!</span></td>
+          <td><strong>Crucial Solis anti-bounce rule!</strong> If <code>Forcecharge SOC</code> is set too close to <code>Overdischarge SOC</code> (e.g. 9% vs 10%), natural 1% overnight BMS standby drift triggers loud, unwanted emergency AC grid recharges every night! Setting <code>10% / 5%</code> eliminates bounce-charging completely.</td>
+        </tr>
+        <tr>
+          <td><span class="menu-path">Battery Select</span><br><strong>Max Charge / Discharge Current</strong></td>
+          <td><span class="val-good">50 A × Pack Count</span><br><em>(Capped at Inverter Max A)</em></td>
+          <td>Set <code>50 A</code> for 1× UNIV5200 (~2.56 kW), <code>100 A</code> for 2× UNIV5200 (~5.12 kW), or inverter max (e.g. <code>125–190 A</code>) for 3+ packs. GEMS also reads live BMS dynamic current limits every cycle.</td>
+        </tr>
+        <tr>
+          <td><span class="menu-path">Storage Mode Select</span><br><strong>Work Mode</strong></td>
+          <td><span class="val-good">Self-Use</span> — <strong>ON</strong><br><span class="val-avoid">Time of Charging (TOU) — OFF</span><br><span class="val-avoid">Feed-in Priority — OFF</span></td>
+          <td>Sets autonomous solar self-consumption as the hardware baseline! Leave all 6 Solis internal <em>Time-of-Use</em> clock slots disabled (<code>00:00–00:00</code>) so internal timers never fight GEMS's real-time remote battery control.</td>
+        </tr>
+        <tr>
+          <td><span class="menu-path">Storage Mode Select</span><br><strong>Allow Grid Charging</strong><br><em>(Battery Charge from Grid)</em></td>
+          <td><span class="val-good">Allow / Enable</span></td>
+          <td><strong>Mandatory for dynamic spot tariffs &amp; Winter Fallback!</strong> When <em>Self-Use</em> is active and TOU timers are OFF, enabling <em>Allow Grid Charging</em> will <strong>not</strong> charge from AC on its own—it simply grants hardware permission when GEMS commands cheap/negative grid charging.</td>
+        </tr>
+        <tr>
+          <td><span class="menu-path">Meter Set</span><br><strong>Meter Type &amp; Placement</strong></td>
+          <td>Match hardware:<br><span class="val-good">Acrel 1P / 3P</span> or <span class="val-good">Eastron</span><br>Placement: <span class="val-good">Meter in Grid</span></td>
+          <td>Ensures accurate grid import/export tracking for autonomous <code>Self-Use</code> fallback and live 3-phase current sensing.</td>
+        </tr>
+        <tr>
+          <td><span class="menu-path">Export Power Set (Internal EPM)</span><br><strong>Backflow Power / Export Limit</strong></td>
+          <td><span class="val-good">OFF (Unlimited)</span><br><em>(Unless legally mandated by DSO)</em></td>
+          <td>Keeping static EPM <em>OFF</em> allows profitable solar export and Flemish Green Certificates, while letting GEMS dynamically curtail hybrid PV down to 0 W only during negative-price hours!</td>
+        </tr>
+        <tr>
+          <td><span class="menu-path">Communication / Modbus</span><br><strong>Slave Address &amp; Baud Rate</strong></td>
+          <td>Address: <span class="val-good">1</span><br>Baud: <span class="val-good">9600 bps, 8N1</span></td>
+          <td>Matches GEMS default discovery and polling parameters. (Use <code>1, 2, 3...</code> if daisy-chaining multiple Solis inverters on one RS-485 bus).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 5 ==================== -->
+    <h1 class="section-title">Section 5: Onboarding Solis Hybrid vs. Solis Retrofit in GEMS</h1>
+
+    <p>
+      Open the GEMS web interface (<code>https://gems.local</code> or your controller's LAN IP), navigate to <strong>Settings</strong>, click the <strong>padlock icon 🔒</strong> in the top-right header, and enter your <strong>Installer Access PIN</strong> to unlock <strong>Certified Installer Mode</strong>.
+    </p>
+
+    <h2 class="subsection-title">5.1 Picking the Right GEMS Template: Hybrid vs. AC-Coupled Retrofit</h2>
+    <ul>
+      <li><strong>Case 1 — Solis Hybrid Inverter with PV Strings + UNIV5200 (<code>S5-EH1P</code>, <code>S6-EH1P</code>, <code>S6-EH3P-L</code>):</strong>
+        Onboard under <strong>Inverter / Solar &rarr; <code>Solis S5/S6 Hybrid Inverter</code></strong> (<code>solis_hybrid</code>). GEMS reads pure DC solar PV input power separately from AC inverter output so nighttime Easyway battery discharge never appears as false solar generation, and unlocks <code>0.1%</code> stepless PV curtailment!</li>
+      <li><strong>Case 2 — Solis AC-Coupled Retrofit Inverter + UNIV5200 (<code>RAI-3K-48ES-5G</code>, <code>S6-EA1P-L</code>) Alongside Existing PV:</strong>
+        <ol>
+          <li>Onboard your utility <strong>P1 Serial Meter</strong> (<code>p1_serial</code>) under <strong>Smart Meter</strong> (recommended primary site billing reference).</li>
+          <li>Onboard your <strong>existing rooftop solar string inverter</strong> (e.g. Solis string, SMA, Huawei, Fronius, Enphase, etc.) under <strong>Inverter / Solar</strong> with <code>Battery Connected? = Unchecked</code>.</li>
+          <li>Onboard the AC-coupled Solis unit under <strong>Battery Storage &rarr; <code>Solis Retrofit Storage System</code></strong> (<code>solis_retrofit_battery</code>) — or under <strong>Inverter / Solar &rarr; <code>Solis Retrofit Inverter (AC Storage)</code></strong> (<code>solis_retrofit</code>). GEMS strictly sets PV string generation on the retrofit unit to <code>0 W</code> while giving you full bidirectional Easyway <code>UNIV5200</code> peak shaving, solar surplus charging, and spot arbitrage!</li>
+        </ol>
+      </li>
+    </ul>
+
+    <div class="screenshot-two-col">
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="assets/screenshots/settings_devices_add_modal.png" alt="GEMS Add Device Category Selection">
+        <div class="manual-screenshot-caption">1. Choose Inverter / Solar (Hybrid) or Battery Storage (Retrofit)</div>
+      </div>
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="assets/screenshots/settings_devices_inverter_form.png" alt="GEMS Solis Inverter Configuration Form">
+        <div class="manual-screenshot-caption">2. Enter Endpoint, Rated kW, Phase Wiring &amp; Total UNIV5200 kWh</div>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">5.2 Field-by-Field GEMS Device Onboarding Reference</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 24%;">GEMS Device Field</th>
+          <th style="width: 28%;">Recommended Value</th>
+          <th style="width: 48%;">Technical Purpose &amp; Best Practice</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Template</strong></td>
+          <td><code>Solis S5/S6 Hybrid Inverter</code> <em>or</em><br><code>Solis Retrofit Storage System</code></td>
+          <td>Selects verified primary reference driver with 80 ms bus turnaround pacing, live BMS limit reader, and 60s volatile RC keepalive.</td>
+        </tr>
+        <tr>
+          <td><strong>IP Address or Serial Port</strong></td>
+          <td><code>/dev/serial/by-id/...</code> <em>(Option A)</em><br>or Static IP of <code>S2-WL-ST</code> <em>(Option B)</em></td>
+          <td>Always click the green persistent <code>/dev/serial/by-id/...</code> pill when using USB-RS485 (`9600 bps`, `None` parity) so ports never swap across reboots.</td>
+        </tr>
+        <tr>
+          <td><strong>TCP Port &amp; Modbus ID</strong></td>
+          <td>Port: <code>502</code> • Modbus ID: <code>1</code></td>
+          <td>Standard Modbus TCP port for <code>S2-WL-ST</code> and RS-485 Ethernet gateways; matches Solis Slave Address <code>1</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Rated Power (kW)</strong></td>
+          <td>Exact Inverter AC Rating<br><em>(e.g. <code>3.0</code>, <code>3.6</code>, <code>5.0</code>, <code>6.0</code>, <code>10.0</code>)</em></td>
+          <td>Used on Hybrid models to scale <code>0.1%</code> active solar curtailment accurately and cap maximum dispatchable AC power.</td>
+        </tr>
+        <tr>
+          <td><strong>Allow Curtailment</strong></td>
+          <td><span class="val-good">Checked (✓)</span> on Hybrid PV<br><span class="val-avoid">Unchecked (☐)</span> on AC Retrofit</td>
+          <td>Enable on Solis Hybrid inverters (and on any separate solar inverter in Retrofit homes) to throttle PV during negative export hours.</td>
+        </tr>
+        <tr>
+          <td><strong>Poll Interval (seconds)</strong></td>
+          <td><span class="val-good">2 – 3 s</span> <em>(Direct RS-485 / Gateway)</em><br><span class="val-good">5 s</span> <em>(S2-WL-ST LAN Stick)</em></td>
+          <td>Direct RS-485 supports rapid 2–3s sub-cycle responsiveness; <code>5s</code> keeps <code>S2-WL-ST</code> sticks completely congestion-free alongside SolisCloud.</td>
+        </tr>
+        <tr>
+          <td><strong>Phase Wiring</strong></td>
+          <td>Exact Phase: <code>L1</code>, <code>L2</code>, or <code>L3</code> (1P)<br>or <code>L1-L2-L3</code> (3P <code>S6-EH3P-L</code>)</td>
+          <td><strong>Vital for 1-phase RAI / S6-EA1P / S6-EH1P on 3-phase homes!</strong> Identifies which exact domestic phase receives battery peak-shaving &amp; fuse relief.</td>
+        </tr>
+        <tr>
+          <td><strong>Grid Meter Connected?</strong></td>
+          <td><span class="val-good">Checked (✓)</span> if Acrel/Eastron wired<br><span class="val-avoid">Unchecked (☐)</span> if P1-only</td>
+          <td>Check <strong>✓</strong> when the Solis Acrel/Eastron meter is wired to the inverter (even when a P1 meter is also onboarded in GEMS).</td>
+        </tr>
+        <tr>
+          <td><strong>Battery Connected? &amp; Capacity (kWh)</strong></td>
+          <td><span class="val-good">Checked (✓)</span> + Exact Total kWh:<br>1× = <code>5.2</code> • 2× = <code>10.4</code> • 3× = <code>15.7</code> • 4× = <code>20.9</code></td>
+          <td>Drives GEMS's 24-hour dynamic arbitrage solver, SOC headroom balancing, and Winter Fallback charge duration calculations.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 6 ==================== -->
+    <h1 class="section-title">Section 6: Optimizing GEMS Strategy for Solis &amp; Easyway UNIV5200</h1>
+
+    <h2 class="subsection-title">6.1 Location, Solar Forecast &amp; Grid Safety Limits (`Settings &rarr; Strategy`)</h2>
+    <ol>
+      <li><strong>Enable Open-Meteo Solar Forecast:</strong> Enter your installation street address under <strong>Geographic Location</strong>, click <strong>Lookup Lat/Lon</strong>, and ensure <strong>Enable Open-Meteo Solar Forecast Ingestion</strong> is <span class="val-good">Checked (✓)</span> in the Battery card. GEMS will automatically hold off overnight grid charging when tomorrow's solar forecast is strong enough to fill your Easyway <code>UNIV5200</code> stack for free!</li>
+      <li><strong>Configure Main Breaker &amp; Grid Topology:</strong> Set your exact main fuse rating (e.g. <code>25 A</code>, <code>32 A</code>, or <code>40 A</code>) and switchboard topology (<code>Single Phase 230V</code>, <code>Three Phase 400V</code>, or Belgian <code>Three Phase 230V Delta</code>). Keep <strong>Meter Offline Fallback Current</strong> at <code>0 A — Pause EV Charging</code>.</li>
+    </ol>
+
+    <div class="screenshot-two-col">
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="assets/screenshots/settings_strategy_modes.png" alt="GEMS Regional Optimization Modes">
+        <div class="manual-screenshot-caption">Regional Optimization Mode, Flanders Peak Shaving &amp; GSC Shield</div>
+      </div>
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="assets/screenshots/settings_strategy_battery.png" alt="GEMS Battery Arbitrage and Winter Fallback">
+        <div class="manual-screenshot-caption">Dynamic 24h Forecast, 0.04 €/kWh Wear Protection &amp; Winter Fallback</div>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">6.2 Regional Optimization Recipes</h2>
+    <div class="recipe-grid">
+      <div class="recipe-card" style="border-top: 3px solid #0284c7;">
+        <h4>🇧🇪 Recipe A: Flanders (Peak Shaving)</h4>
+        <ul style="padding-left: 15px; font-size: 8pt; margin-bottom: 0;">
+          <li><strong>Mode:</strong> <code>Flanders Mode (Peak Shaving)</code></li>
+          <li><strong>Capacity Peak Limit:</strong> <code>2.5 kW</code> (standard) or <code>3.0–3.5 kW</code> (heat pump + EV). <em>Smart Adaptive Ceiling</em> auto-raises if a higher monthly peak occurs.</li>
+          <li><strong>Peak Shaving Buffer:</strong> <code>150 – 200 W</code></li>
+          <li><strong>Active Curtailment:</strong> <code>Checked (✓)</code>, Base <code>0.00 €/kWh</code></li>
+          <li><strong>Flemish GSC Shield:</strong> Set <code>€0</code> (modern PV) or exact certificate rate (e.g. <code>€250–€450/MWh</code>)—especially common on Solis Retrofit upgrades of legacy certificate-earning solar roofs!</li>
+        </ul>
+      </div>
+
+      <div class="recipe-card" style="border-top: 3px solid #f59e0b;">
+        <h4>🇳🇱 Recipe B: Netherlands (Saldering)</h4>
+        <ul style="padding-left: 15px; font-size: 8pt; margin-bottom: 0;">
+          <li><strong>Mode:</strong> <code>Netherlands Mode (Smart Saldering)</code></li>
+          <li><strong>Active Curtailment:</strong> <code>Checked (✓)</code></li>
+          <li><strong>Base Export Price Threshold:</strong> <code>0.00 €/kWh</code> (or your supplier's feed-in levy threshold).</li>
+          <li><strong>How It Works:</strong> Routes daytime PV surplus into Easyway <code>UNIV5200</code> packs and EV charging first to avoid grid feed-in levies, then curtails PV smoothly once storage reaches 100% SOC during negative-return hours.</li>
+        </ul>
+      </div>
+
+      <div class="recipe-card" style="border-top: 3px solid #16a34a;">
+        <h4>🌿 Recipe C: Fixed / Dual-Tariff Eco</h4>
+        <ul style="padding-left: 15px; font-size: 8pt; margin-bottom: 0;">
+          <li><strong>Mode:</strong> <code>Eco (Max Self-Consumption)</code></li>
+          <li><strong>Active Curtailment:</strong> <code>Unchecked (☐)</code> (unless on a contract with negative export charges).</li>
+          <li><strong>Charging Strategy:</strong> <code>Price Threshold Only</code> (<code>-0.01 €/kWh</code>) or <code>Super-Dal Only</code> for cheap off-peak night tariffs.</li>
+          <li><strong>How It Works:</strong> Maximizes solar self-sufficiency and 8,000+ cycle LiFePO<sub>4</sub> lifespan with zero unnecessary grid cycling.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">6.3 Optimal UNIV5200 Arbitrage, Longevity &amp; EV Coordination Settings</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 28%;">GEMS Strategy Parameter</th>
+          <th style="width: 24%;">Optimal Value for UNIV5200</th>
+          <th style="width: 48%;">Operational Benefit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Charging Strategy Mode</strong></td>
+          <td><span class="val-good">Dynamic 24h Forecast</span></td>
+          <td>Optimizes charge/discharge across 24h Day-Ahead tariffs, solar forecast, and 30-day Weekday/Weekend load profiles while respecting live UNIV5200 BMS limits.</td>
+        </tr>
+        <tr>
+          <td><strong>Battery Wear Cost (€/kWh)</strong></td>
+          <td><span class="val-good">0.04 €/kWh</span></td>
+          <td>Accounts for ~12–15% 48V AC-DC-AC round-trip conversion losses + LiFePO<sub>4</sub> cycle wear so GEMS only executes grid arbitrage when net profit is genuinely positive.</td>
+        </tr>
+        <tr>
+          <td><strong>Grid Charge Ceiling / Discharge Floor</strong></td>
+          <td>Ceiling: <code>0.08 €/kWh</code><br>Floor: <code>0.35 €/kWh</code></td>
+          <td>Absorbs ultra-cheap or negative daytime/overnight grid power while reserving stored UNIV5200 energy for household peak consumption.</td>
+        </tr>
+        <tr>
+          <td><strong>Winter / Low-Solar Grid Charge Fallback</strong></td>
+          <td><span class="val-good">Checked (✓)</span><br><code>25%</code> &rarr; <code>65%</code> (<code>2–3h</code>)</td>
+          <td>Automatically tops up UNIV5200 packs from <code>&le;25%</code> to <code>65% SOC</code> during the 2–3 cheapest night hours in dark winter weather without exceeding your Flanders 15-min peak target!</td>
+        </tr>
+        <tr>
+          <td><strong>Overnight EV Charging Protection</strong><br><em>(e.g. with <strong>Raedian</strong> Wallbox)</em></td>
+          <td>Add Custom Battery Rule:<br><span class="val-good">Hold (Idle / No Export)</span></td>
+          <td>Prevents a night EV boost session on your <strong>Raedian NEO / NEX / Gemini</strong> wallbox from draining the Easyway <code>UNIV5200</code> battery—keeping 100% battery reserve for the morning household peak!</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 7 ==================== -->
+    <h1 class="section-title">Section 7: Hardware Safeguards, Handover Checklist &amp; Troubleshooting</h1>
+
+    <h2 class="subsection-title">7.1 How GEMS Protects Solis Flash Memory &amp; Easyway UNIV5200 Cells</h2>
+    <ul>
+      <li><strong>Zero-EEPROM-Wear Volatile Remote Control:</strong> Naive controllers repeatedly rewrite Solis's non-volatile storage mode flash register every few seconds, wearing out inverter EEPROM within a year. GEMS checks baseline storage permissions <em>once</em> and executes all real-time charge, discharge, and hold modulation exclusively via Solis's <strong>volatile RAM Remote Control registers</strong> with a 60-second watchdog keepalive—causing zero flash memory wear!</li>
+      <li><strong>Live BMS Dynamic Current Clamping:</strong> Cold winter utility rooms (&lt; 10 °C) and high State-of-Charge (&gt; 90% SOC) cause the Easyway <code>UNIV5200</code> BMS to lower permissible charge current automatically. GEMS reads live BMS charge/discharge amp limits and pack voltage directly from the Solis inverter and clamps setpoints smoothly.</li>
+      <li><strong>Periodic 100% LiFePO<sub>4</sub> Top-Balancing:</strong> Because LiFePO<sub>4</sub> cells have a very flat voltage curve between 20% and 90% SOC, allowing the UNIV5200 stack to reach <code>100% SOC</code> from solar (or occasional cheap grid hours) at least once every 1–2 weeks keeps the BMS SOC coulomb counter razor-sharp across all parallel packs.</li>
+    </ul>
+
+    <h2 class="subsection-title">7.2 6-Point Post-Commissioning Handover Checklist</h2>
+    <div class="callout callout-tip">
+      <div class="callout-title">✅ Mandatory Site Verification Before Handover</div>
+      <div>
+        <ol style="margin: 4px 0 0 0; padding-left: 18px;">
+          <li><strong>BMS Handshake Verification:</strong> Confirm zero red <code>ALM</code> LEDs on all Easyway <code>UNIV5200</code> packs and verify Solis <code>BMS Info</code> shows <strong>Normal</strong> with expected total current limit (<code>50 A × N packs</code>).</li>
+          <li><strong>GEMS Device Online &amp; Debug Check:</strong> In <strong>Settings &rarr; Connected Devices</strong>, verify the Solis card shows <span class="val-good">● Online</span>. Click <strong>Debug</strong> and confirm accurate Voltage (~230 V), SOC %, and Battery/Grid watts.</li>
+          <li><strong>Kettle Load Polarity Test:</strong> Switch on a ~2 kW household appliance. Confirm Home Consumption rises by ~2 kW on the GEMS Dashboard and that Solis seamlessly ramps Easyway discharge to cover the load in <code>Eco / Self-Use</code> mode.</li>
+          <li><strong>Logger Cleanliness Check:</strong> Open the <strong>Logger</strong> tab for 2 minutes and verify clean polling with zero CRC errors, timeouts, or socket resets.</li>
+          <li><strong>Export JSON Backup:</strong> In <strong>Settings &rarr; System Info</strong>, click <strong>Export Configuration Backup (.json)</strong> for site documentation.</li>
+          <li><strong>Lock Certified Installer Mode:</strong> Click the padlock icon 🔒 in the Settings header so critical battery capacities, phase wiring, and fuse limits are protected.</li>
+        </ol>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">7.3 Field Troubleshooting Matrix</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 26%;">Observed Symptom</th>
+          <th style="width: 34%;">Probable Root Cause</th>
+          <th style="width: 40%;">Field Corrective Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Solis alarm <code>CAN_Comm_FAIL</code> or <code>BatName-FAIL</code></strong></td>
+          <td>Wrong Battery Select profile, CAN cable plugged into Slave or RS485 port, or wrong RJ45 pinout.</td>
+          <td>Plug CAN cable strictly between <strong>Pack 1 (Master, <code>ADD=0000</code>) <code>CAN</code> port</strong> and Solis <strong><code>BMS</code> port</strong> (Pin 4 <code>CAN-H</code>, Pin 5 <code>CAN-L</code> isolated). Select <code>Lithium Battery &rarr; PYLON LV</code> in SolisCloud.</td>
+        </tr>
+        <tr>
+          <td><strong>Only 1 pack recognized in a 2–4 pack UNIV5200 stack</strong></td>
+          <td>Duplicate <code>ADD</code> DIP switches, DIP changed while battery was ON, or inter-pack RS485 link swapped.</td>
+          <td>Power all packs completely OFF, set unique binary <code>ADD</code> codes (<code>0000</code>, <code>1000</code>, <code>0100</code>...), verify <code>RS485-B Out &rarr; RS485-A In</code> daisy-chain, and cold-boot Pack 1 Master.</td>
+        </tr>
+        <tr>
+          <td><strong>Battery charges briefly from grid every night at 10% SOC</strong></td>
+          <td>Solis <code>Forcecharge SOC</code> set equal to or within 1–2% of <code>Overdischarge SOC</code>.</td>
+          <td>In SolisCloud <code>Battery Select</code>, set <code>Overdischarge SOC = 10%</code> and lower <code>Forcecharge SOC = 5%</code> to leave a clean 5% hysteresis deadband.</td>
+        </tr>
+        <tr>
+          <td><strong>5 kW Solis inverter caps battery charge/discharge at ~2.55 kW</strong></td>
+          <td>Only a single <code>UNIV5200</code> pack is installed (single-pack BMS recommends <code>50 A × 51.2 V ≈ 2.56 kW</code>).</td>
+          <td>Normal single-pack BMS protection! Add a second parallel <code>UNIV5200</code> pack (<code>100 A ≈ 5.12 kW</code>) if full 5 kW continuous charge/discharge is desired.</td>
+        </tr>
+        <tr>
+          <td><strong>GEMS reads SOC %, but forced grid charging does not start</strong></td>
+          <td><code>Allow Grid Charging</code> disabled in SolisCloud, or conflicting Solis internal TOU schedule active.</td>
+          <td>In SolisCloud <code>Storage Mode Select</code>, enable <code>Self-Use</code>, set <code>Allow Grid Charging = Allow</code>, and turn all internal <em>Time of Charging</em> slots <code>OFF</code>.</td>
+        </tr>
+        <tr>
+          <td><strong><code>Connection refused</code> on port <code>502</code> with Wi-Fi stick</strong></td>
+          <td>Site uses a cloud-only <code>S3-WiFi-ST</code> stick instead of <code>S2-WL-ST</code>, or second client holds port <code>502</code>.</td>
+          <td>Connect GEMS via direct USB-RS485 / RS-485 Ethernet gateway (Option A) or replace stick with wired Ethernet <strong><code>S2-WL-ST</code></strong>.</td>
+        </tr>
+        <tr>
+          <td><strong>Battery discharges to grid when house load turns ON</strong></td>
+          <td>Acrel / Eastron CT clamp installed backwards or wired on wrong phase relative to voltage tap.</td>
+          <td>Verify CT arrow direction on main grid tail and confirm phase <code>L1/L2/L3</code> voltage sense wires match <code>CT1/CT2/CT3</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Nighttime battery discharge shows up as Solar PV on Retrofit</strong></td>
+          <td>AC-coupled <code>RAI-3K</code> or <code>S6-EA1P</code> was onboarded using <code>solis_hybrid</code> instead of <code>solis_retrofit</code>.</td>
+          <td>Edit the device in <strong>Settings &rarr; Devices</strong> and switch Template to <code>Solis Retrofit Storage System</code> (or <code>Solis Retrofit Inverter</code>).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-info">
+      <div class="callout-title">📞 Fleet Monitoring &amp; Installer Support</div>
+      <div>
+        Pair your GEMS unit with <strong>GRID-EMS-SERVER</strong> (<code>https://ems.newenergygrid.com</code>) under <strong>Settings &rarr; Cloud Server</strong> for remote 24-hour forecast diagnostics, live BMS telemetry verification, and centralized multi-site management by <strong>New Energy Grid</strong> &amp; <strong>The Charge Grid</strong>.
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -18,6 +18,9 @@
   <a href="manuals/gems-p1-meter-manual.pdf"><img alt="P1 Meter Manual PDF" src="https://img.shields.io/badge/⚡_P1_Meter_Manual-PDF_(1.3MB)-10b981?style=for-the-badge" /></a>
   <a href="manuals/gems-supported-hardware-manual.pdf"><img alt="Hardware Reference PDF" src="https://img.shields.io/badge/🔌_Hardware_Reference-PDF_(3.9MB)-0284c7?style=for-the-badge" /></a>
   <a href="manuals/gems-fleet-dlb-manual.pdf"><img alt="EV Fleet & DLB Manual PDF" src="https://img.shields.io/badge/🚗_Fleet_DLB_Manual-PDF_(2.3MB)-10b981?style=for-the-badge" /></a>
+  <a href="manuals/gems-solis-easyway-manual.pdf"><img alt="Solis & Easyway UNIV5200 Manual PDF" src="https://img.shields.io/badge/🔋_Solis_%26_UNIV5200-PDF_(3.2MB)-ea580c?style=for-the-badge" /></a>
+  <a href="manuals/gems-huawei-manual.pdf"><img alt="Huawei & FusionSolar Manual PDF" src="https://img.shields.io/badge/☀️_Huawei_Manual-PDF_(3.7MB)-dc2626?style=for-the-badge" /></a>
+  <a href="manuals/gems-enerlution-manual.pdf"><img alt="Enerlution Hybrid & Storage Manual PDF" src="https://img.shields.io/badge/⚡_Enerlution_Manual-PDF_(3.2MB)-0d9488?style=for-the-badge" /></a>
   <a href="manuals/index.html"><img alt="Documentation Hub" src="https://img.shields.io/badge/💻_Documentation-Hub-8b5cf6?style=for-the-badge" /></a>
 </p>
 
@@ -232,10 +235,16 @@ The package automatically creates a restricted `gems` system user (with `dialout
 | ⚡ **[P1 Smart Meter & DIY Cable Manual (PDF)](manuals/gems-p1-meter-manual.pdf)** | **Official printable PDF guide for smart meters** (Fluvius/DSMR standard, RJ12/RJ11 pinouts, DIY USB cable assembly with BC547/FTDI, port activation, and GEMS onboarding) |
 | 🔌 **[Supported Hardware & Devices Manual (PDF)](manuals/gems-supported-hardware-manual.pdf)** | **Official printable PDF reference for supported devices** (Complete technical register specifications, telemetry parameters, controllable setpoints, and integration wiring for inverters, batteries, EV chargers, smart meters, and relays) |
 | ⚡ **[EV Fleet Cluster & Dynamic Load Balancing Manual (PDF)](manuals/gems-fleet-dlb-manual.pdf)** | **Official printable PDF guide for multi-bay EV charging & DLB** (Autonomous edge load balancing, IEC 61851 6A threshold, per-phase fuse defense, solar surplus harvesting, and straight-through OCPP proxying) |
+| 🔋 **[Solis Retrofit / Hybrid & Easyway UNIV5200 Manual (PDF)](manuals/gems-solis-easyway-manual.pdf)** | **Official printable PDF guide for Solis & Easyway UNIV5200** (Step-by-step DC parallel & busbar wiring, isolated CAN RJ45 pinouts, binary ADD DIP switches, soft-start pre-charge sequence, SolisCloud App Bluetooth parameters, and optimal GEMS Hybrid vs. Retrofit recipes) |
+| ☀️ **[Huawei SUN2000, LUNA2000 & FusionSolar Manual (PDF)](manuals/gems-huawei-manual.pdf)** | **Official printable PDF guide for Huawei & FusionSolar** (Step-by-step FusionSolar App installer configuration for SDongleA-05, EMMA-A02, LUNA2000 battery parameters, RS-485 pinouts, and optimal GEMS regional & battery recipes) |
+| ⚡ **[Enerlution Hybrid Inverters & Battery Storage Manual (PDF)](manuals/gems-enerlution-manual.pdf)** | **Official printable PDF guide for Enerlution Inverters & Storage** (Complete 51.2V LV parallel & HV stackable battery wiring, CAN RJ45 pinouts, cold DIP switch addressing, DTSU666/SDM630 meter terminals, Enerlution App commissioning, and 1-Watt GEMS solar curtailment) |
 | 💻 [Interactive HTML Documentation Hub](manuals/index.html) | Rich web documentation suite with full-text search (open in browser) |
 | 🛠️ [Interactive Installer Manual (HTML)](manuals/gems-installer-manual.html) | Comprehensive field commissioning guide with high-res screenshots and hardware wiring |
 | 🏠 [Interactive User Manual (HTML)](manuals/gems-user-manual.html) | Illustrated homeowner operations manual with interactive modals and tariff breakdown |
 | ⚡ [Interactive EV Fleet Cluster & DLB Manual (HTML)](manuals/gems-fleet-dlb-manual.html) | Comprehensive guide for multi-bay charging clusters, DLB modes, and straight-through OCPP proxying |
+| 🔋 [Interactive Solis & Easyway UNIV5200 Guide (HTML)](manuals/solis.html) | Dedicated Solis Retrofit/Hybrid, Easyway UNIV5200 battery wiring, SolisCloud App, and GEMS optimization guide |
+| ☀️ [Interactive Huawei & FusionSolar Guide (HTML)](manuals/huawei.html) | Dedicated Huawei SUN2000, LUNA2000, SDongleA-05, EMMA-A02, and GEMS optimization guide |
+| ⚡ [Interactive Enerlution Hybrid & Storage Guide (HTML)](manuals/enerlution.html) | Dedicated Enerlution HY/HYTH inverters, LFPWall/Roller/GroundHV battery wiring, Enerlution App, and GEMS optimization guide |
 | ☁️ [Interactive Cloud Server Manual (HTML)](manuals/cloud-server.html) | Web guide for connecting edge GEMS units to central GRID-EMS-SERVER |
 | ⚡ [Interactive P1 Meter & DIY Cable Guide (HTML)](manuals/p1-meter.html) | Complete step-by-step DIY guide with electrical diagrams and component shopping list |
 | 🔌 [Interactive Supported Hardware Manual (HTML)](manuals/gems-supported-hardware-manual.html) | Comprehensive hardware directory covering supported device templates with search and filtering |
