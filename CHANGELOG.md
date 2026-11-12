@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.36.0] - 2026-11-12
+## [v9.36.1] - 2026-11-12
 
 ### Security
 - **Appliance Hardening, Anti-Downgrade Signed Updates & Distributed PIN Lockout Defense:** Enforced cryptographic anti-downgrade version verification and package identity checks on all OTA and manual `.deb` firmware updates, added atomic update concurrency locking, enforced per-session CSRF token validation across all Certified Installer configuration mutations, added global distributed brute-force lockout protection alongside per-client PIN rate limiting, validated custom TLS Subject Alternative Name domains, isolated the local HDMI kiosk session under a dedicated unprivileged `gems-kiosk` account (`http://127.0.0.1`) with unattended remote screen sharing disabled by default, enabled systemd sandboxing protections on `gems.service`, and restricted webhook notifications from targeting loopback, link-local, or private management endpoints unless explicitly enabled.
