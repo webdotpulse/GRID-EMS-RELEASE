@@ -391,7 +391,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.35.4-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.36.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -596,7 +596,7 @@
     curl -LO https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/latest/download/gems_latest_arm64.deb<br>
     <br>
     # 2. Install package and dependencies<br>
-    sudo dpkg -i gems_9.35.4_arm64.deb<br>
+    sudo dpkg -i gems_9.36.0_arm64.deb<br>
     sudo apt-get install -f -y<br>
     <br>
     # 3. Verify systemd background service<br>
@@ -1527,17 +1527,18 @@
     <li><strong>Guided First-Boot Commissioning Wizard &amp; Clean Homeowner vs. Certified Installer Mode:</strong> Automatically launches on unconfigured units to guide language/location setup (<code>NL</code>, <code>FR</code>, <code>EN</code>), local <strong>Installer PIN/password</strong> creation, main breaker &amp; wiring topology, grid meter discovery, reference hardware onboarding (<strong>Solis</strong> &amp; <strong>RAEDIAN</strong>), and energy contract selection. In everyday <strong>Normal Mode</strong> (locked), homeowners see a clean, clutter-free interface—live Dashboard telemetry, daily EV charging mode switching, <strong>Connected Devices</strong> (with live <strong>Debug</strong> diagnostics &amp; one-click report dispatch to <strong>GRID-EMS-SERVER</strong>), <strong>System Info</strong> (with <strong>Software Update</strong> &amp; confirmed <strong>Reboot System</strong>), and the live <strong>Logger</strong>—while the Network Scanner, Cockpit Terminal (<code>:9090</code>) shortcut, Strategy/Contract/Relays/Network/Notifications/Cloud tabs, device add/edit/delete controls, <strong>Local CA &amp; SSL Certificate</strong> management, backups, and factory reset remain hidden until <strong>Certified Installer Mode</strong> is unlocked via the discreet padlock icon (with 5-attempt lockout protection and PIN rotation under <strong>Settings &rarr; System Info</strong>).</li>
     <li><strong>Persistent USB Serial Binding (<code>/dev/serial/by-id/*</code>) &amp; Devices Page Layout:</strong> Selecting persistent hardware symlinks ensures USB-P1 and USB-RS485 adapters never swap device numbers across power cycles. On <strong>Settings &rarr; Devices</strong>, the optional <strong>EV Fleet Cluster &amp; Dynamic Load Balancing (DLB)</strong> card is positioned cleanly at the bottom below individual device cards.</li>
     <li><strong>Appliance Ethernet Network UI with 60-Second Rollback:</strong> Assign DHCP or static IPv4 addresses exclusively on wired Ethernet (<code>eth0</code>) interfaces under <strong>Settings &rarr; Network</strong> (wireless interfaces are omitted for deterministic industrial reliability). If the new IP is not confirmed within 60 seconds, GEMS automatically restores the prior working NetworkManager profile.</li>
+    <li><strong>Interactive Commissioning &amp; Hardware Control Test Suite (Local &amp; Cloud):</strong> Under <strong>Settings &rarr; Commissioning Test</strong> (and remotely in <strong>GRID-EMS-SERVER</strong> Device Diagnostics), installers can execute an automated 5-step verification across <strong>Inverter</strong> (e.g., <strong>Solis</strong> live telemetry + 80% active power curtailment write/readback), <strong>Battery Storage</strong> (BMS State-of-Charge + bidirectional charge/discharge modulation), and <strong>EV Charger</strong> (e.g., <strong>RAEDIAN</strong> live telemetry + 6.0 A dynamic current modulation), temporarily pausing autonomous strategy dispatch and automatically restoring safe autonomous operation upon completion. Detected configuration or transport issues offer inline <strong>Apply Fix &amp; Re-Test</strong> actions alongside a downloadable A4 <strong>PDF Commissioning Certificate</strong>.</li>
     <li><strong>Cryptographically Signed Software Updates, Backup &amp; Hardware Watchdog:</strong> Both over-the-air (OTA) and single-file manual <code>.deb</code> package uploads are verified against New Energy Grid's embedded Ed25519 release signature and SHA-256 checksum prior to installation. Export portable JSON site backups before hardware swaps, execute verified Factory Resets, and rely on integrated <code>systemd</code> <code>WatchdogSec=30</code> + Raspberry Pi hardware watchdog supervision for unattended recovery.</li>
   </ul>
 
   <div class="manual-screenshot-grid">
     <div class="manual-screenshot">
-      <img src="assets/screenshots/settings_network.png" alt="Appliance Network Configuration">
-      <div class="manual-screenshot-caption">Figure 16.1: Wired Ethernet IPv4 configuration with 60-second automatic lockout rollback protection.</div>
+      <img src="assets/screenshots/settings_commissioning_test.png" alt="Commissioning and Hardware Control Test Suite">
+      <div class="manual-screenshot-caption">Figure 16.1: Interactive 5-step Commissioning &amp; Hardware Control Test Suite verifying Solis Inverter/Battery and RAEDIAN EV Charger telemetry and active control.</div>
     </div>
     <div class="manual-screenshot">
-      <img src="assets/screenshots/logger.png" alt="System Logger">
-      <div class="manual-screenshot-caption">Figure 16.2: Real-time diagnostics logger displaying raw Modbus transactions and controller decisions.</div>
+      <img src="assets/screenshots/settings_network.png" alt="Appliance Network Configuration">
+      <div class="manual-screenshot-caption">Figure 16.2: Wired Ethernet IPv4 configuration with 60-second automatic lockout rollback protection.</div>
     </div>
   </div>
 

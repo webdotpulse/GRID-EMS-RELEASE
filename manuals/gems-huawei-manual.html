@@ -391,7 +391,7 @@
         <div class="cover-meta-grid">
           <div class="cover-meta-item">
             <span class="cover-meta-label">Document Version</span>
-            <span class="cover-meta-val">v9.35.4-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.36.0-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">GEMS Native Templates</span>
@@ -420,7 +420,7 @@
       </div>
 
       <div class="cover-footer">
-        <span>© New Energy Grid &amp; The Charge Grid — Proprietary Field Documentation v9.35.4</span>
+        <span>© New Energy Grid &amp; The Charge Grid — Proprietary Field Documentation v9.36.0</span>
         <span>Target Platform: GRID-EMS Edge Controller (Raspberry Pi ARM64)</span>
       </div>
     </div>
@@ -724,8 +724,8 @@
       <tbody>
         <tr>
           <td><strong>Working Mode</strong></td>
-          <td><span class="val-good">Maximum Self-Consumption</span><br><span class="val-avoid">NOT TOU / Fully Fed to Grid</span></td>
-          <td>Establishes clean solar self-use as the hardware baseline. Whenever GEMS finishes an active peak-shaving or spot-charging window (or if LAN connectivity is ever lost), GEMS automatically restores <code>Maximum Self-Consumption</code>. Leaving FusionSolar in <em>Time-of-Use (TOU)</em> causes Huawei's internal timers to fight GEMS.</td>
+          <td><span class="val-good">Maximum Self-Consumption</span><br><em>(or <code>Fixed Charge/Discharge</code> with 0 slots on meterless Topology D)</em><br><span class="val-avoid">NOT Internal TOU Schedules</span></td>
+          <td>Establishes clean solar self-use as the hardware baseline whenever a Huawei power sensor / EMMA is installed. Leaving internal <em>Time-of-Use (TOU)</em> timers active causes Huawei schedules to fight GEMS. <strong>Topology D (No EMMA &amp; No Huawei Meter):</strong> If FusionSolar greys out or rejects <em>Maximum Self-Consumption</em> when no <code>DTSU666-H / DDSU666-H</code> is wired, select <code>Fixed Charge/Discharge</code> with <strong>0 scheduled periods</strong> (or <code>Fully Fed to Grid</code>) so GEMS has unobstructed Modbus dispatch control from your P1 Smart Meter.</td>
         </tr>
         <tr>
           <td><strong>Charge from AC</strong><br><em>(Charge from Grid)</em></td>
@@ -1066,9 +1066,9 @@
           <td>Check <span class="menu-path">Settings &rarr; Communication Configuration &rarr; RS485_1</span> in FusionSolar and enter that exact <strong>Communication Address</strong> as <code>Modbus ID</code> in GEMS.</td>
         </tr>
         <tr>
-          <td><strong>LUNA2000 reads SOC %, but ignores grid charge commands</strong></td>
-          <td><code>Charge from AC</code> is <em>Disabled</em> in FusionSolar, <code>Grid Charge Cutoff SOC</code> is too low, or outdated SDongle firmware.</td>
-          <td>In FusionSolar Energy Control, set <code>Charge from AC = Enable</code>, <code>Grid Charge Cutoff SOC = 100%</code>, <code>Working Mode = Maximum Self-Consumption</code>, and update SDongle firmware to <code>SPC126+ / V200 SPC118+</code>.</td>
+          <td><strong>LUNA2000 reads SOC %, but ignores grid charge commands or logs <code>server device failure</code></strong></td>
+          <td><code>Charge from AC</code> is <em>Disabled</em> in FusionSolar, <code>Grid Charge Cutoff SOC</code> is too low, meterless Topology D is locked in a meter-dependent mode, or outdated SDongle/SUN2000 firmware.</td>
+          <td>In FusionSolar Energy Control, set <code>Charge from AC = Enable</code>, <code>Grid Charge Cutoff SOC = 100%</code>, and <code>Max Charge/Discharge Power = Rated Max</code>. If no Huawei meter is wired, leave <code>Grid Meter Connected?</code> unchecked in GEMS (and use <code>Fixed Charge/Discharge</code> with 0 slots if FusionSolar blocks Self-Consumption), and update SDongle firmware to <code>SPC126+ / V200 SPC118+</code>.</td>
         </tr>
         <tr>
           <td><strong>Battery charges from grid when house load rises, or exports unexpectedly</strong></td>

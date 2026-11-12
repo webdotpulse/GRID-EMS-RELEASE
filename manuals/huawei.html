@@ -239,9 +239,9 @@
                 <td><strong>Only when NO SDongleA-05 or EMMA-A02 is installed</strong> (an installed dongle claims master control of the internal RS-485 bus).</td>
               </tr>
               <tr>
-                <td><strong>Topology D: P1-Driven LUNA2000 (No Huawei Meter)</strong></td>
-                <td>SUN2000 + LUNA2000 without DTSU666-H, paired with a utility P1 Smart Meter on GEMS (<code>Grid Meter Connected? = Unchecked</code>).</td>
-                <td>GEMS actively drives LUNA2000 solar charging and household load discharging directly from P1 meter readings.</td>
+                <td><strong>Topology D: P1-Driven LUNA2000 (No EMMA / No Huawei Meter)</strong></td>
+                <td>SUN2000 + LUNA2000 without DTSU666-H or EMMA, paired with a utility P1 Smart Meter on GEMS (<code>Grid Meter Connected? = Unchecked</code>).</td>
+                <td>GEMS actively drives LUNA2000 solar charging, household load discharging, and grid arbitrage from P1 meter readings. Keep <code>Charge from AC = Enable</code> in FusionSolar; if Self-Consumption is unavailable without a Huawei meter, select <code>Fixed Charge/Discharge</code> (0 slots).</td>
               </tr>
             </tbody>
           </table>
@@ -413,9 +413,9 @@
                 <td>Stop other polling clients, connect Ethernet RJ45 inside SDongleA-05, and keep GEMS Poll Interval at <code>10s</code>.</td>
               </tr>
               <tr>
-                <td><strong>LUNA2000 ignores forced grid charge</strong></td>
-                <td><code>Charge from AC</code> disabled in FusionSolar or old SDongle FW</td>
-                <td>Enable <code>Charge from AC</code>, set <code>Grid Charge Cutoff SOC = 100%</code>, set <code>Working Mode = Maximum Self-Consumption</code>, and update SDongle FW.</td>
+                <td><strong>LUNA2000 ignores forced grid charge or logs <code>server device failure</code></strong></td>
+                <td><code>Charge from AC</code> disabled in FusionSolar, meterless Topology D locked in a meter-dependent mode, or old SDongle FW</td>
+                <td>Enable <code>Charge from AC</code>, set <code>Grid Charge Cutoff SOC = 100%</code>, uncheck <code>Grid Meter Connected?</code> in GEMS when no Huawei meter is wired (using <code>Fixed Charge/Discharge</code> with 0 slots if FusionSolar blocks Self-Consumption), and update SDongle FW.</td>
               </tr>
               <tr>
                 <td><strong>Battery charges when house load rises</strong></td>
