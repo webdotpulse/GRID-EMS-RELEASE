@@ -59,7 +59,7 @@ window.DOCS_SEARCH_INDEX = [
     title: "Cockpit Web Terminal & System Management",
     category: "Installation",
     url: "installation.html#cockpit",
-    snippet: "Accessing Cockpit web interface on port 9090 using unique per-appliance credentials (/root/INITIAL_ADMIN_CREDENTIALS.txt) for terminal access and service diagnostics.",
+    snippet: "Accessing Cockpit web interface on port 9090 using provisioned Linux administrator credentials for terminal access and service diagnostics.",
     keywords: ["cockpit", "port 9090", "terminal", "credentials", "ssh", "systemctl", "logs"]
   },
   {

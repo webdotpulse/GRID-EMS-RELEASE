@@ -204,7 +204,7 @@ The easiest way to deploy GEMS is flashing the pre-built custom Raspberry Pi OS 
 - **Hostname**: `ems` (accessible at `http://ems` or `http://ems.local`).
 - **Nginx Reverse Proxy**: Pre-configured with SSL and WebSocket/SSE proxy support routing to GEMS on port 8080.
 - **Kiosk Desktop**: Minimal Wayland desktop (`wayfire`) running under the unprivileged `gems-kiosk` account, autostarting Chromium in kiosk mode targeting `http://127.0.0.1`.
-- **Cockpit Web Terminal**: Web-based terminal and system administration available on `https://ems.local:9090` (restricted to per-appliance installer credentials).
+- **Cockpit Web Terminal**: Web-based terminal and system administration available on `https://ems.local:9090` (restricted to authorized installer credentials).
 - **Raspberry Pi Connect**: Pre-installed for supervised remote support screen sharing when paired by an authorized installer (unattended auto-accept disabled by default).
 - **NVMe Ready**: `dtparam=pciex1` and `dtparam=pciex1_gen=2` pre-configured out-of-the-box.
 

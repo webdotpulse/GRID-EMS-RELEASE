@@ -14,10 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.36.4] - 2026-11-12
+## [v9.36.5] - 2026-11-12
 
 ### Added
 - **Eastron `SDM72D-M` & `SDM630-M` Smart Meter Wiring & Configuration Guide in the Solis & Easyway `UNIV5200` Manual (PDF, Web & Markdown):** Expanded the **Solis Retrofit / Hybrid Inverters & Easyway 5200 (`UNIV5200`) Battery Guide** (`manuals/gems-solis-easyway-manual.pdf`, `manuals/gems-solis-easyway-manual.html`, `manuals/solis.html`, and `docs/solis_easyway_manual.md`) with a dedicated chapter detailing physical wiring and software configuration for **Eastron `SDM72D-M` / `SDM72D-M-2`** and **`SDM630-M` (`SDM630-Modbus V2/V3` & `SDM630MCT`)** smart meters—covering direct-connected 100 A AC cage terminals (`Top 1–4 Grid IN` vs. `Bottom 5–8 Load OUT`, including `3×400V+N`, Belgian `3×230V` Delta `3P3W`, and `1×230V` wiring), single-master RS-485 bus topologies (wiring to the Solis `Meter` RJ45 port `Pin 1 White/Orange RS485A+` & `Pin 2 Orange RS485B-` vs. direct USB-RS485 / Modbus TCP connection to **GEMS**), front-panel meter LCD configuration (`Password 1000`, `Addr 001`, `9600 bps`, `Parity None / 8N1`), **SolisCloud App** `Meter Set` commissioning (`Eastron 3P` / `Meter in Grid`), **GEMS** onboarding (`Grid Meter Connected?` vs. `eastron_sdm72_x96` / `eastron_sdm630`), and `Meter_Comm_FAIL` / polarity troubleshooting.
+
+### Changed
+- **Standardized Factory OS Provisioning for Out-of-the-Box Cockpit & SSH Access:** Restored standardized factory Linux administrator credential provisioning in custom Raspberry Pi OS images (`gems-os-image.img.xz`) so certified installers can immediately access the Cockpit Web Terminal (`:9090`) and SSH upon first boot without extracting per-unit files from root storage.
 
 ### Fixed
 - **Over-The-Air (OTA) Firmware Updates, Appliance Reboot & Legacy Release Check Compatibility:** Resolved an issue on `v9.35.1`–`v9.36.2` appliances where `systemd` kernel-module and kernel-tunable service sandboxing implicitly blocked root privilege escalation from the unprivileged `gems` service account, preventing remote Cloud (`OTA_UPDATE`), browser-based OTA, and manual `.deb` firmware installations as well as UI-triggered reboots, wired Ethernet profile updates, and live TLS certificate proxy reloads from completing. Updated `gems.service` sandboxing flags, introduced an isolated `systemd`-supervised root firmware installer watcher (`gems-updater.path` / `gems-updater.service`) that installs cryptographically verified packages independently of the web service process, and compacted historical release metadata payloads so legacy appliances with 2 MB response buffers check for updates reliably. *(Note: Appliances currently running `v9.35.1`–`v9.36.2` require a one-time package upgrade via SSH or the Cockpit Web Terminal on port `9090` before resuming fully automated remote OTA updates.)*
