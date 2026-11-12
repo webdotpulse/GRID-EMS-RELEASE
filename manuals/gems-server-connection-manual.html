@@ -314,7 +314,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.36.1-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.36.2-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Central Cloud Service</span>
@@ -341,7 +341,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.36.1</span>
+        <span>Documentation v9.36.2</span>
       </div>
     </div>
 
@@ -654,8 +654,8 @@ Content-Type: application/json
         </tr>
         <tr>
           <td><code>OTA_UPDATE</code> / <code>REBOOT</code></td>
-          <td><code>delay_sec</code>: int (default 5)</td>
-          <td>Initiates a cryptographically verified software update or executes a graceful appliance reboot after command ACK.</td>
+          <td><code>target_tag</code>: string (optional, latest)<br><code>delay_sec</code>: int (default 5)</td>
+          <td>Initiates a cryptographically verified over-the-air software update (streaming status under the <code>updater</code> log source before rebooting) or executes a graceful appliance reboot after command ACK.</td>
         </tr>
       </tbody>
     </table>
@@ -737,6 +737,11 @@ Content-Type: application/json
           <td>Poor Wi-Fi signal or congested cellular 4G/5G backup router.</td>
           <td>Connect Raspberry Pi via dedicated Cat6 Ethernet cable rather than Wi-Fi.</td>
         </tr>
+        <tr>
+          <td><code>OTA_UPDATE</code> acknowledged without version change</td>
+          <td>Unit is already on a newer or matching semantic version, or outbound HTTPS download of release assets was interrupted.</td>
+          <td>Inspect <code>updater</code> entries in the portal Remote Logs tab (or <code>sudo journalctl -u gems | grep updater</code>) and verify outbound TCP port 443 access.</td>
+        </tr>
       </tbody>
     </table>
 
@@ -755,7 +760,7 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.36.1
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.36.2
     </div>
 
   </div>
