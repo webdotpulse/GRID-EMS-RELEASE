@@ -377,10 +377,11 @@ https://ems.local:9090
             </button>
           </div>
           <pre><code># Download latest ARM64 Debian package
-curl -LO https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/latest/download/gems_latest_arm64.deb
+TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)
+curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"
 
 # Install package
-sudo dpkg -i gems_latest_arm64.deb
+sudo dpkg -i "gems_${TAG#v}_arm64.deb"
 
 # Resolve any missing runtime dependencies
 sudo apt-get install -f -y</code></pre>
@@ -388,7 +389,7 @@ sudo apt-get install -f -y</code></pre>
 
         <h3>2. Systemd Service Management</h3>
         <p>
-          The Debian package creates a dedicated system user <code>gems</code>, installs binaries and assets to <code>/opt/gems</code>, and registers the <code>gems.service</code> systemd daemon:
+          The Debian package creates a dedicated system user <code>gems</code>, installs binaries and assets to <code>/opt/gems</code>, and registers the <code>gems.service</code> daemon alongside the root-verified <code>gems-updater.path</code> firmware update watcher:
         </p>
 
         <div class="table-wrapper">

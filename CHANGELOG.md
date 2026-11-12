@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.36.3] - 2026-11-12
+
+### Fixed
+- **Over-The-Air (OTA) Firmware Updates, Appliance Reboot & Legacy Release Check Compatibility:** Resolved an issue on `v9.35.1`–`v9.36.2` appliances where `systemd` kernel-module and kernel-tunable service sandboxing implicitly blocked root privilege escalation from the unprivileged `gems` service account, preventing remote Cloud (`OTA_UPDATE`), browser-based OTA, and manual `.deb` firmware installations as well as UI-triggered reboots, wired Ethernet profile updates, and live TLS certificate proxy reloads from completing. Updated `gems.service` sandboxing flags, introduced an isolated `systemd`-supervised root firmware installer watcher (`gems-updater.path` / `gems-updater.service`) that installs cryptographically verified packages independently of the web service process, and compacted historical release metadata payloads so legacy appliances with 2 MB response buffers check for updates reliably. *(Note: Appliances currently running `v9.35.1`–`v9.36.2` require a one-time package upgrade via SSH or the Cockpit Web Terminal on port `9090` before resuming fully automated remote OTA updates.)*
+
+---
+
 ## [v9.36.2] - 2026-11-12
 
 ### Security

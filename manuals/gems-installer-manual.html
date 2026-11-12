@@ -391,7 +391,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.36.2-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.36.3-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -592,15 +592,16 @@
 
   <h2 class="subsection-title">Method B: Debian Package Installation Commands</h2>
   <div class="terminal-box">
-    # 1. Download official ARM64 release package<br>
-    curl -LO https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/latest/download/gems_latest_arm64.deb<br>
+    # 1. Download latest official ARM64 release package<br>
+    TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)<br>
+    curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"<br>
     <br>
     # 2. Install package and dependencies<br>
-    sudo dpkg -i gems_9.36.2_arm64.deb<br>
+    sudo dpkg -i "gems_${TAG#v}_arm64.deb"<br>
     sudo apt-get install -f -y<br>
     <br>
-    # 3. Verify systemd background service<br>
-    sudo systemctl status gems.service
+    # 3. Verify systemd background services<br>
+    sudo systemctl status gems.service gems-updater.path
   </div>
 
   <div class="callout callout-info">

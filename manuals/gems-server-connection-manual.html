@@ -314,7 +314,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.36.2-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.36.3-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Central Cloud Service</span>
@@ -341,7 +341,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.36.2</span>
+        <span>Documentation v9.36.3</span>
       </div>
     </div>
 
@@ -739,8 +739,8 @@ Content-Type: application/json
         </tr>
         <tr>
           <td><code>OTA_UPDATE</code> acknowledged without version change</td>
-          <td>Unit is already on a newer or matching semantic version, or outbound HTTPS download of release assets was interrupted.</td>
-          <td>Inspect <code>updater</code> entries in the portal Remote Logs tab (or <code>sudo journalctl -u gems | grep updater</code>) and verify outbound TCP port 443 access.</td>
+          <td>Unit is already on a newer or matching semantic version, outbound HTTPS download was interrupted, or the unit is running an early <code>v9.35.1</code>–<code>v9.36.2</code> build requiring a one-time local upgrade.</td>
+          <td>Inspect <code>updater</code> entries in the portal Remote Logs tab (or <code>sudo journalctl -u gems | grep updater</code>), verify outbound TCP port 443 access, and if the unit is on <code>v9.35.1</code>–<code>v9.36.2</code>, install the latest <code>.deb</code> once via SSH or Cockpit Terminal (<code>:9090</code>).</td>
         </tr>
       </tbody>
     </table>
@@ -760,7 +760,7 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.36.2
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.36.3
     </div>
 
   </div>
