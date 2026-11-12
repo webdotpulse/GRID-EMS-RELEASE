@@ -323,8 +323,15 @@ window.DOCS_SEARCH_INDEX = [
     title: "Solis Retrofit / Hybrid Inverters & Easyway 5200 (UNIV5200) Complete Guide",
     category: "Solis & Easyway Manual",
     url: "solis.html",
-    snippet: "In-depth wiring, SolisCloud commissioning, and GEMS optimization manual for Solis RAI-3K, S6-EA1P, S5-EH1P, S6-EH1P, and S6-EH3P-L inverters paired with Easyway UNIV5200 51.2V LiFePO4 batteries.",
-    keywords: ["solis", "easyway", "univ5200", "univ-5200", "easyway 5200", "solis_hybrid", "solis_retrofit", "solis_retrofit_battery", "rai-3k", "s6-ea1p", "s6-eh1p", "s6-eh3p-l", "51.2v"]
+    snippet: "In-depth wiring, Eastron SDM72D-M & SDM630-M smart meter setup, SolisCloud commissioning, and GEMS optimization manual for Solis RAI-3K, S6-EA1P, S5-EH1P, S6-EH1P, and S6-EH3P-L inverters paired with Easyway UNIV5200 51.2V LiFePO4 batteries.",
+    keywords: ["solis", "easyway", "univ5200", "univ-5200", "easyway 5200", "solis_hybrid", "solis_retrofit", "solis_retrofit_battery", "rai-3k", "s6-ea1p", "s6-eh1p", "s6-eh3p-l", "51.2v", "sdm72d-m", "sdm630-m"]
+  },
+  {
+    title: "Connecting & Configuring Eastron SDM72D-M or SDM630-M Smart Meter (Solis & GEMS)",
+    category: "Solis & Easyway Manual",
+    url: "solis.html#eastron-meter",
+    snippet: "Step-by-step AC terminals (Top 1-4 Grid IN, Bottom 5-8 Load OUT), RS-485 A+/B- pinout to Solis Meter RJ45 (Pin 1 W-Orange / Pin 2 Orange) or GEMS USB-RS485, LCD setup (Password 1000, Addr 001, 9600 8N1, 3P4/3P3), SolisCloud Eastron 3P, and GEMS templates eastron_sdm72_x96 / eastron_sdm630.",
+    keywords: ["sdm72d-m", "sdm72d-m-2", "sdm630-m", "sdm630-modbus", "sdm630mct", "eastron", "eastron_sdm72_x96", "eastron_sdm630", "solis meter port", "meter_comm_fail", "password 1000", "eastron 3p"]
   },
   {
     title: "Wiring Easyway UNIV5200 Battery to Solis Inverter (DC, CAN Pinout & DIP Switches)",

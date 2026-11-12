@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solis Retrofit / Hybrid Inverters &amp; Easyway UNIV5200 Battery Manual - GEMS</title>
-  <meta name="description" content="Complete step-by-step wiring, DIP switch, CAN pinout, SolisCloud App configuration, and GEMS optimization manual for Solis Retrofit &amp; Hybrid inverters with Easyway 5200 (UNIV5200) LiFePO4 batteries.">
+  <meta name="description" content="Complete step-by-step wiring, DIP switch, CAN pinout, Eastron SDM72D-M &amp; SDM630-M smart meter setup, SolisCloud App configuration, and GEMS optimization manual for Solis Retrofit &amp; Hybrid inverters with Easyway 5200 (UNIV5200) LiFePO4 batteries.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/print.css" media="print">
 </head>
@@ -27,7 +27,7 @@
       <button class="search-trigger-btn" aria-label="Search documentation (Ctrl+K)">
         <span class="search-icon-text">
           <svg width="16" height="16"><use href="assets/icons.svg#icon-search"></use></svg>
-          <span>Search Solis, Easyway UNIV5200, CAN pinout, DIP switches, GEMS...</span>
+          <span>Search Solis, Easyway UNIV5200, SDM72D-M, SDM630-M, CAN pinout, DIP switches...</span>
         </span>
         <span class="kbd-shortcut">Ctrl K</span>
       </button>
@@ -94,33 +94,39 @@
             </a>
           </li>
           <li>
+            <a href="#eastron-meter" class="sidebar-link">
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
+              <span>3. SDM72D-M &amp; SDM630-M Meter</span>
+            </a>
+          </li>
+          <li>
             <a href="#gems-connection" class="sidebar-link">
               <svg width="16" height="16"><use href="assets/icons.svg#icon-wifi"></use></svg>
-              <span>3. RS-485 &amp; S2-WL-ST Links</span>
+              <span>4. RS-485 &amp; S2-WL-ST Links</span>
             </a>
           </li>
           <li>
             <a href="#soliscloud-settings" class="sidebar-link">
               <svg width="16" height="16"><use href="assets/icons.svg#icon-settings"></use></svg>
-              <span>4. SolisCloud App Settings</span>
+              <span>5. SolisCloud App Settings</span>
             </a>
           </li>
           <li>
             <a href="#gems-onboarding" class="sidebar-link">
               <svg width="16" height="16"><use href="assets/icons.svg#icon-download"></use></svg>
-              <span>5. Hybrid vs Retrofit Setup</span>
+              <span>6. Hybrid vs Retrofit Setup</span>
             </a>
           </li>
           <li>
             <a href="#gems-optimization" class="sidebar-link">
-              <svg width="16" height="16"><use href="assets/icons.svg#icon-gauge"></use></svg>
-              <span>6. Optimal GEMS Strategy</span>
+              <svg width="16" height="16"><use href="assets/icons.svg#icon-sun"></use></svg>
+              <span>7. Optimal GEMS Strategy</span>
             </a>
           </li>
           <li>
             <a href="#troubleshooting" class="sidebar-link">
               <svg width="16" height="16"><use href="assets/icons.svg#icon-wrench"></use></svg>
-              <span>7. Verification &amp; Fixes</span>
+              <span>8. Verification &amp; Fixes</span>
             </a>
           </li>
         </ul>
@@ -194,7 +200,7 @@
         <div class="hero-banner">
           <h1 class="hero-title">Solis Retrofit / Hybrid &amp; Easyway UNIV5200 Guide</h1>
           <p class="hero-lead">
-            Complete reference manual for wiring <strong>Easyway 5200 (<code>UNIV5200</code>, 51.2V 102Ah LiFePO<sub>4</sub>)</strong> batteries to <strong>Solis Low-Voltage Retrofit &amp; Hybrid</strong> inverters, configuring exact parameters in the <strong>SolisCloud App</strong>, and optimizing <strong>GRID-EMS (GEMS)</strong> for Flanders peak shaving, dynamic tariffs, and long cell life.
+            Complete reference manual for wiring <strong>Easyway 5200 (<code>UNIV5200</code>, 51.2V 102Ah LiFePO<sub>4</sub>)</strong> batteries and <strong>Eastron <code>SDM72D-M</code> / <code>SDM630-M</code></strong> smart meters to <strong>Solis Low-Voltage Retrofit &amp; Hybrid</strong> inverters, configuring exact parameters on the meter LCD &amp; <strong>SolisCloud App</strong>, and optimizing <strong>GRID-EMS (GEMS)</strong> for Flanders peak shaving, dynamic tariffs, and long cell life.
           </p>
           <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
             <a href="gems-solis-easyway-manual.pdf" target="_blank" class="tab-btn active" style="border-radius:var(--radius-md); display:inline-flex; align-items:center; gap:0.5rem; background:#ea580c; color:#ffffff; padding:0.6rem 1.2rem; text-decoration:none;">
@@ -401,14 +407,91 @@
         </ol>
 
         <!-- SECTION 3 -->
-        <h2 id="gems-connection">3. Connecting Solis to GEMS (RS-485 vs. S2-WL-ST LAN Stick)</h2>
+        <h2 id="eastron-meter">3. Connecting &amp; Configuring an Eastron SDM72D-M or SDM630-M Smart Meter</h2>
+        <p>
+          Eastron's 4-DIN-module 3-phase bidirectional Modbus RTU meters—<strong><code>SDM72D-M</code></strong> (and updated <strong><code>SDM72D-M-2</code></strong>, direct-connected up to <code>80A/100A</code>) and <strong><code>SDM630-M</code></strong> (<strong><code>SDM630-Modbus V2/V3</code></strong> <code>80A/100A</code> direct-connected or <strong><code>SDM630MCT</code></strong> CT-operated)—share Eastron's IEEE-754 <code>Float32</code> register map (<code>0x0000–0x004A</code>) and integrate seamlessly with both Solis inverters and GEMS.
+        </p>
+
+        <div class="callout callout-warning">
+          <strong>SINGLE-MASTER RS-485 RULE — Choose Topology 1 OR Topology 2 (Never Both on One Meter!):</strong>
+          <ul>
+            <li><strong>Topology 1 (Recommended Standard — Wired to Solis <code>Meter</code> RJ45 Port):</strong> Wire the <code>SDM72D-M</code> / <code>SDM630-M</code> into the Solis <code>Meter</code> socket. Gives Solis autonomous hardware <code>Self-Use</code> tracking and forwards live grid watts + 3-phase currents to GEMS when <code>Grid Meter Connected? = Checked</code>.</li>
+            <li><strong>Topology 2 (Direct to GEMS — Sites Without a Utility P1 Port):</strong> Wire a dedicated <code>SDM72D-M</code> / <code>SDM630-M</code> to GEMS via USB-to-RS485 (or RS-485 TCP Gateway <code>:502</code>) using template <code>eastron_sdm72_x96</code> or <code>eastron_sdm630</code>. <em>(May share a GEMS USB-RS485 bus with Solis Option A by setting Meter <code>Addr = 002</code> and Solis <code>Addr = 001</code>).</em></li>
+            <li><strong>3-Phase Property Rule:</strong> Even with a <strong>1-phase</strong> Solis inverter (<code>RAI-3K</code>, <code>S6-EA1P</code>, <code>S5-EH1P</code>, <code>S6-EH1P</code>) on a 3-phase supply, install a 3-phase <strong><code>SDM630-M</code> or <code>SDM72D-M-2</code></strong> (prefer V2 <code>-2</code> over legacy V1 for full per-phase <code>V/I</code> registers and Belgian <code>3×230V</code> Delta <code>3P3W</code> support!).</li>
+          </ul>
+        </div>
+
+        <h3>3.1 How to Connect: Main AC Power, Placement &amp; RS-485 Pinouts</h3>
+        <ul>
+          <li><strong>Switchboard Placement (Crucial for Retrofit &amp; Hybrid):</strong> Install the meter <strong>immediately downstream of the utility DSO meter / main RCD</strong>, strictly <strong>upstream</strong> of all house breakers, heat pumps, <strong>Raedian</strong> EV chargers, existing rooftop PV inverters, and the Solis AC breaker.</li>
+          <li><strong>Direct-Connected AC Terminals (<code>SDM72D-M</code> / <code>SDM72D-M-2</code> &amp; <code>SDM630-M</code>, up to 100 A):</strong>
+            <ul>
+              <li><strong>Top Cage Terminals (Grid Supply IN):</strong> <code>1 = L1 IN</code>, <code>2 = L2 IN</code>, <code>3 = L3 IN</code>, <code>4 = N IN</code>.</li>
+              <li><strong>Bottom Cage Terminals (House / PV / Solis / EV Load OUT):</strong> <code>5 = L1 OUT</code>, <code>6 = L2 OUT</code>, <code>7 = L3 OUT</code>, <code>8 = N OUT</code>. <em>(Leave <code>4 &amp; 8</code> open on Belgian <code>3×230V</code> Delta <code>3P3W</code> with <code>SDM630-M</code> / <code>SDM72D-M-2</code>; never reverse Top IN and Bottom OUT!).</em></li>
+            </ul>
+          </li>
+          <li><strong>CT-Connected Variant (<code>SDM630MCT</code>):</strong> Fuse voltage taps (<code>0.5A–2A</code>) into <code>V1/V2/V3/VN</code> (<code>Terminals 4, 3, 2, 1</code>) and wire <code>CT1 (20/19)</code>, <code>CT2 (18/17)</code>, <code>CT3 (16/15)</code> phase-for-phase with CT arrows strictly aligned.</li>
+        </ul>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>RS-485 Signal</th>
+                <th>Eastron Meter Terminal (<code>SDM72D-M</code> &amp; <code>SDM630-M</code>)</th>
+                <th>Topology 1: Solis <code>Meter</code> RJ45 (T568B)</th>
+                <th>Topology 2: GEMS USB-RS485 / Gateway</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><code>RS485-A (+)</code></strong></td>
+                <td><strong><code>A</code> / <code>A+</code> / <code>485A</code></strong> <em>(Pin <code>10</code> on SDM630-V2 Direct; Pin <code>14</code> on SDM630MCT; marked <code>A</code> on SDM72D-M)*</em></td>
+                <td><strong>RJ45 Pin 1 (White/Orange)</strong><br><em>(or screw terminal <code>MTR485A</code>)</em></td>
+                <td>Adapter <strong><code>A+</code> / <code>D+</code> / <code>T/R+</code></strong></td>
+              </tr>
+              <tr>
+                <td><strong><code>RS485-B (-)</code></strong></td>
+                <td><strong><code>B</code> / <code>B-</code> / <code>485B</code></strong> <em>(Pin <code>9</code> on SDM630-V2 Direct; Pin <code>13</code> on SDM630MCT; marked <code>B</code> on SDM72D-M)*</em></td>
+                <td><strong>RJ45 Pin 2 (Solid Orange)</strong><br><em>(or screw terminal <code>MTR485B</code>)</em></td>
+                <td>Adapter <strong><code>B-</code> / <code>D-</code> / <code>T/R-</code></strong></td>
+              </tr>
+              <tr>
+                <td><strong>Shield / Ground</strong></td>
+                <td><strong><code>G</code> / <code>GND</code></strong> <em>(Do <strong>not</strong> use <code>+ / -</code> Pulse terminals!)</em></td>
+                <td><strong>Leave RJ45 Pins 3 – 8 Open</strong></td>
+                <td>Adapter <strong><code>GND</code></strong> (<code>120 &Omega;</code> if &gt; 30 m)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>3.2 How to Configure: Meter LCD (Password <code>1000</code>), SolisCloud &amp; GEMS</h3>
+        <ol>
+          <li><strong>On the Meter Front Panel (Default Password = <code>1000</code>):</strong>
+            <ul>
+              <li><em>Unlock:</em> On <code>SDM630-M</code>, hold <strong><code>E</code></strong> for <code>3s</code> &rarr; enter <code>1000</code> &rarr; hold <code>E</code>. On <code>SDM72D-M</code> / <code>SDM72D-M-2</code>, long-press the front button <code>3s</code> &rarr; short-press to change digit / long-press to advance to enter <code>1000</code>.</li>
+              <li><em>Parameters:</em> Set <strong>Address (<code>Addr</code> / <code>Add</code>) = <code>001</code></strong> (or <code>002</code> only on a shared GEMS RS-485 bus alongside Solis ID <code>1</code>), <strong>Baud (<code>bAud</code> / <code>baud</code>) = <code>9600</code></strong>, <strong>Parity (<code>PrtY</code> / <code>Par</code>) = <code>nO</code> / <code>none</code> (<code>8N1</code>)</strong>, and <strong>System (<code>SYS</code>) = <code>3P4</code></strong> (<code>3×400V+N</code>), <strong><code>3P3</code></strong> (Belgian <code>3×230V</code> Delta), or <strong><code>1P2</code></strong> (<code>1×230V</code>). Confirm the <strong>telephone handset (<code>📞</code>) icon</strong> lights on the LCD once polling starts!</li>
+            </ul>
+          </li>
+          <li><strong>In SolisCloud App (Topology 1 — Wired to Solis <code>Meter</code> Port):</strong> Under <code>Advanced Settings &rarr; Storage Energy Set &rarr; Meter Set</code>, select <strong><code>Eastron 3P</code></strong> (or <strong><code>SDM630</code></strong> — works for both <code>SDM630-M</code> and <code>SDM72D-M</code>!) and <strong>Placement = <code>Meter in Grid</code></strong>. Verify zero <code>Meter_Comm_FAIL</code> alarms under <code>Information &rarr; Meter Info</code>.</li>
+          <li><strong>In GEMS (<code>Settings &rarr; Devices</code>):</strong>
+            <ul>
+              <li><em>Topology 1 (Wired to Solis):</em> Simply check <strong><code>Grid Meter Connected? = Checked</code></strong> on your Solis Hybrid / Retrofit device card (do not add a duplicate Eastron card).</li>
+              <li><em>Topology 2 (Wired Directly to GEMS):</em> Add a <strong>Smart Meter</strong> using <strong><code>Eastron SDM72D / SMART X96 3-Phase Meter</code></strong> (<code>eastron_sdm72_x96</code>) or <strong><code>Eastron SDM630 3-Phase Meter</code></strong> (<code>eastron_sdm630</code>) on persistent <code>/dev/serial/by-id/...</code> (<code>9600 None</code>) or TCP <code>:502</code>, <code>Modbus ID = 1</code> (or <code>2</code> on shared bus), <code>Poll Interval = 2s</code>, <code>Phase Wiring = L1-L2-L3</code>.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <!-- SECTION 4 -->
+        <h2 id="gems-connection">4. Connecting Solis to GEMS (RS-485 vs. S2-WL-ST LAN Stick)</h2>
         <ul>
           <li><strong>Option A (Recommended Gold Standard — Direct USB-RS485 or Industrial RS-485 Ethernet Gateway):</strong> Wire shielded twisted pair (<code>9600 bps, 8N1</code>, Slave ID <code>1</code>) to the Solis S6 dedicated internal <code>RS485 / Modbus</code> port—or on 4-pin circular <code>COM</code> ports, connect <strong>Pin 3 (Yellow) = <code>RS485A+</code></strong> and <strong>Pin 4 (Blue) = <code>RS485B-</code></strong> (optional Pin 2 Black = <code>GND</code>; <strong>never connect Pin 1 Red +5V!</strong>). Gives deterministic <code>2–3s</code> control independent of cloud sticks.</li>
           <li><strong>Option B (Wired <code>S2-WL-ST</code> Dual Wi-Fi/LAN Stick or <code>DLS-L</code>):</strong> Plug an Ethernet cable into the <code>S2-WL-ST</code>, assign a static DHCP IP on your router, and connect GEMS via Modbus TCP on port <code>502</code> (<code>5s</code> Poll Interval). <em>Note: Entry-level Wi-Fi-only <code>S3-WiFi-ST</code> sticks often block local port <code>502</code>—upgrade to <code>S2-WL-ST</code> or use Option A.</em></li>
         </ul>
 
-        <!-- SECTION 4 -->
-        <h2 id="soliscloud-settings">4. Exact Settings in the SolisCloud App (Local Bluetooth Commissioning)</h2>
+        <!-- SECTION 5 -->
+        <h2 id="soliscloud-settings">5. Exact Settings in the SolisCloud App (Local Bluetooth Commissioning)</h2>
         <p>
           Open the <strong>SolisCloud App</strong> near the inverter, tap <strong>Me &rarr; More Tools &rarr; Local Operation / Local Debugging &rarr; Connect with Bluetooth</strong>, sign in as <strong>Installer</strong>, and verify every setting below:
         </p>
@@ -455,18 +538,18 @@
               </tr>
               <tr>
                 <td><code>Meter Set</code> &amp; <code>Internal EPM</code></td>
-                <td><strong><code>Acrel / Eastron (Meter in Grid)</code></strong><br><strong><code>Internal EPM = OFF</code></strong></td>
-                <td>Ensures accurate import/export sensing (place CTs right after utility meter, upstream of existing PV on Retrofit sites!) while letting GEMS dynamically manage negative-price curtailment.</td>
+                <td><strong><code>Eastron 3P</code> (<code>SDM630 / SDM72D-M</code>) or <code>Acrel</code> • <code>Meter in Grid</code></strong><br><strong><code>Internal EPM = OFF</code></strong></td>
+                <td>Ensures accurate import/export sensing (place meter right after utility meter, upstream of existing PV on Retrofit sites!) while letting GEMS dynamically manage negative-price curtailment.</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <!-- SECTION 5 -->
-        <h2 id="gems-onboarding">5. Onboarding Solis Hybrid vs. Solis Retrofit in GEMS</h2>
+        <!-- SECTION 6 -->
+        <h2 id="gems-onboarding">6. Onboarding Solis Hybrid vs. Solis Retrofit in GEMS</h2>
         <ul>
-          <li><strong>Solis Hybrid (<code>S5-EH1P</code>, <code>S6-EH1P</code>, <code>S6-EH3P-L</code> with PV panels + UNIV5200):</strong> In <strong>Settings &rarr; Devices</strong> (Installer Mode unlocked), choose <strong>Inverter / Solar &rarr; <code>Solis S5/S6 Hybrid Inverter</code></strong> (<code>solis_hybrid</code>). Set <code>Port = 502</code> (or <code>/dev/serial/by-id/...</code> at <code>9600 8N1</code>), <code>Modbus ID = 1</code>, exact <code>Rated Power (kW)</code>, <code>Allow Curtailment = Checked</code>, <code>Poll Interval = 2–3s</code> (RS-485) or <code>5s</code> (<code>S2-WL-ST</code>), exact <code>Phase Wiring</code>, <code>Battery Connected? = Checked</code>, and exact total <code>Battery Capacity (kWh)</code> (<code>5.2</code>, <code>10.4</code>, <code>15.7</code>, <code>20.9</code>...).</li>
-          <li><strong>Solis AC-Coupled Retrofit (<code>RAI-3K-48ES-5G</code>, <code>S6-EA1P-L</code> with UNIV5200 alongside an existing PV inverter):</strong> Onboard your utility <strong>P1 Meter</strong> (<code>p1_serial</code>) + your <strong>existing solar PV inverter</strong> first, then add the Solis unit under <strong>Battery Storage &rarr; <code>Solis Retrofit Storage System</code></strong> (<code>solis_retrofit_battery</code>) with exact <code>Phase Wiring</code> (<code>L1</code>, <code>L2</code>, or <code>L3</code>) and total UNIV5200 capacity (<code>kWh</code>).</li>
+          <li><strong>Solis Hybrid (<code>S5-EH1P</code>, <code>S6-EH1P</code>, <code>S6-EH3P-L</code> with PV panels + UNIV5200):</strong> In <strong>Settings &rarr; Devices</strong> (Installer Mode unlocked), onboard your utility <strong>P1 Meter</strong> (<code>p1_serial</code>) or GEMS-wired <strong>Eastron <code>SDM72D-M / SDM630-M</code></strong> first if present, then choose <strong>Inverter / Solar &rarr; <code>Solis S5/S6 Hybrid Inverter</code></strong> (<code>solis_hybrid</code>). Set <code>Port = 502</code> (or <code>/dev/serial/by-id/...</code> at <code>9600 8N1</code>), <code>Modbus ID = 1</code>, exact <code>Rated Power (kW)</code>, <code>Allow Curtailment = Checked</code>, <code>Poll Interval = 2–3s</code> (RS-485) or <code>5s</code> (<code>S2-WL-ST</code>), exact <code>Phase Wiring</code>, <code>Grid Meter Connected? = Checked</code> (if wired to Solis), <code>Battery Connected? = Checked</code>, and exact total <code>Battery Capacity (kWh)</code> (<code>5.2</code>, <code>10.4</code>, <code>15.7</code>, <code>20.9</code>...).</li>
+          <li><strong>Solis AC-Coupled Retrofit (<code>RAI-3K-48ES-5G</code>, <code>S6-EA1P-L</code> with UNIV5200 alongside an existing PV inverter):</strong> Onboard your utility <strong>P1 Meter</strong> (<code>p1_serial</code>) or GEMS-wired <strong><code>SDM72D-M / SDM630-M</code></strong> + your <strong>existing solar PV inverter</strong> first, then add the Solis unit under <strong>Battery Storage &rarr; <code>Solis Retrofit Storage System</code></strong> (<code>solis_retrofit_battery</code>) with exact <code>Phase Wiring</code> (<code>L1</code>, <code>L2</code>, or <code>L3</code>) and total UNIV5200 capacity (<code>kWh</code>).</li>
         </ul>
 
         <div class="doc-screenshot-card">
@@ -474,8 +557,8 @@
           <div class="doc-screenshot-caption">Configuring Solis Endpoint, Rated Power, Phase Wiring, and Total Easyway UNIV5200 Capacity in GEMS.</div>
         </div>
 
-        <!-- SECTION 6 -->
-        <h2 id="gems-optimization">6. Optimal GEMS Strategy &amp; EV Charger Coordination</h2>
+        <!-- SECTION 7 -->
+        <h2 id="gems-optimization">7. Optimal GEMS Strategy &amp; EV Charger Coordination</h2>
         <ol>
           <li><strong>Enable Open-Meteo Solar Forecast (<code>Settings &rarr; Strategy</code>):</strong> Enter site coordinates and check <strong>Enable Open-Meteo Solar Forecast Ingestion</strong> so GEMS never wastes money grid-charging the UNIV5200 ahead of a sunny morning.</li>
           <li><strong>Select Your Regional Mode:</strong>
@@ -488,8 +571,8 @@
           <li><strong>Preventing EV Wallboxes (Raedian) from Draining UNIV5200 at Night:</strong> Add a <strong>Custom Battery Cost Optimization Rule</strong> with <strong>Action = <code>Hold (Idle / No Export)</code></strong> during your overnight EV charging window (e.g. <code>01:00 – 05:00</code>) so your <strong>Raedian</strong> wallbox draws strictly from cheap off-peak grid power while preserving 100% of your Easyway battery for the morning household peak!</li>
         </ol>
 
-        <!-- SECTION 7 -->
-        <h2 id="troubleshooting">7. Quick Troubleshooting Reference</h2>
+        <!-- SECTION 8 -->
+        <h2 id="troubleshooting">8. Quick Troubleshooting Reference</h2>
         <div class="table-wrapper">
           <table>
             <thead>
@@ -504,6 +587,16 @@
                 <td><strong><code>CAN_Comm_FAIL</code> / <code>BatName-FAIL</code></strong></td>
                 <td>Wrong Battery Select profile or CAN cable pin/port mismatch</td>
                 <td>Plug CAN cable (Pins 4 &amp; 5 isolated) from Master Pack 1 (<code>ADD=0000</code>) <code>CAN</code> port to Solis <code>BMS</code> port; select <code>Lithium Battery &rarr; PYLON LV</code>.</td>
+              </tr>
+              <tr>
+                <td><strong><code>Meter_Comm_FAIL</code> (or Eastron offline in GEMS)</strong></td>
+                <td><code>A/B</code> swapped, <code>Even</code> parity, wrong Slave ID, wired to Pulse <code>+/-</code>, or two masters attached</td>
+                <td>Unlock meter (<code>PASS 1000</code>): set <code>Addr = 001</code>, <code>9600</code>, <code>Parity = None (8N1)</code>; wire Solis RJ45 Pin 1 (W-Orange) &rarr; <code>A+</code> &amp; Pin 2 (Orange) &rarr; <code>B-</code>; select <code>Eastron 3P</code> in SolisCloud.</td>
+              </tr>
+              <tr>
+                <td><strong>Battery exports to grid when house load turns ON</strong></td>
+                <td><code>SDM72D-M / SDM630-M</code> Top (<code>1–4</code> IN) &amp; Bottom (<code>5–8</code> OUT) reversed or CT arrow flipped</td>
+                <td>Feed utility supply into <strong>Top <code>1–4</code> (IN)</strong> and house/PV/Solis from <strong>Bottom <code>5–8</code> (OUT)</strong>; verify CT orientation on <code>SDM630MCT</code>.</td>
               </tr>
               <tr>
                 <td><strong>Nightly brief grid recharge at 10% SOC</strong></td>
