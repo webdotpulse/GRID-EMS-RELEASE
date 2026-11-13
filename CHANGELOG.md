@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.36.5] - 2026-11-12
+## [v9.36.6] - 2026-11-13
 
 ### Added
 - **Eastron `SDM72D-M` & `SDM630-M` Smart Meter Wiring & Configuration Guide in the Solis & Easyway `UNIV5200` Manual (PDF, Web & Markdown):** Expanded the **Solis Retrofit / Hybrid Inverters & Easyway 5200 (`UNIV5200`) Battery Guide** (`manuals/gems-solis-easyway-manual.pdf`, `manuals/gems-solis-easyway-manual.html`, `manuals/solis.html`, and `docs/solis_easyway_manual.md`) with a dedicated chapter detailing physical wiring and software configuration for **Eastron `SDM72D-M` / `SDM72D-M-2`** and **`SDM630-M` (`SDM630-Modbus V2/V3` & `SDM630MCT`)** smart meters—covering direct-connected 100 A AC cage terminals (`Top 1–4 Grid IN` vs. `Bottom 5–8 Load OUT`, including `3×400V+N`, Belgian `3×230V` Delta `3P3W`, and `1×230V` wiring), single-master RS-485 bus topologies (wiring to the Solis `Meter` RJ45 port `Pin 1 White/Orange RS485A+` & `Pin 2 Orange RS485B-` vs. direct USB-RS485 / Modbus TCP connection to **GEMS**), front-panel meter LCD configuration (`Password 1000`, `Addr 001`, `9600 bps`, `Parity None / 8N1`), **SolisCloud App** `Meter Set` commissioning (`Eastron 3P` / `Meter in Grid`), **GEMS** onboarding (`Grid Meter Connected?` vs. `eastron_sdm72_x96` / `eastron_sdm630`), and `Meter_Comm_FAIL` / polarity troubleshooting.
