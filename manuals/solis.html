@@ -487,7 +487,7 @@
         <h2 id="gems-connection">4. Connecting Solis to GEMS (RS-485 vs. S2-WL-ST LAN Stick)</h2>
         <ul>
           <li><strong>Option A (Recommended Gold Standard — Direct USB-RS485 or Industrial RS-485 Ethernet Gateway):</strong> Wire shielded twisted pair (<code>9600 bps, 8N1</code>, Slave ID <code>1</code>) to the Solis S6 dedicated internal <code>RS485 / Modbus</code> port—or on 4-pin circular <code>COM</code> ports, connect <strong>Pin 3 (Yellow) = <code>RS485A+</code></strong> and <strong>Pin 4 (Blue) = <code>RS485B-</code></strong> (optional Pin 2 Black = <code>GND</code>; <strong>never connect Pin 1 Red +5V!</strong>). Gives deterministic <code>2–3s</code> control independent of cloud sticks.</li>
-          <li><strong>Option B (Wired <code>S2-WL-ST</code> Dual Wi-Fi/LAN Stick or <code>DLS-L</code>):</strong> Plug an Ethernet cable into the <code>S2-WL-ST</code>, assign a static DHCP IP on your router, and connect GEMS via Modbus TCP on port <code>502</code> (<code>5s</code> Poll Interval). <em>Note: Entry-level Wi-Fi-only <code>S3-WiFi-ST</code> sticks often block local port <code>502</code>—upgrade to <code>S2-WL-ST</code> or use Option A.</em></li>
+          <li><strong>Option B (Wired <code>S2-WL-ST</code> Dual Wi-Fi/LAN Stick or <code>DLS-L</code>):</strong> Plug an Ethernet cable into the <code>S2-WL-ST</code>, assign a static DHCP IP on your router, and connect GEMS via Modbus TCP on port <code>502</code> (<code>5s</code> Poll Interval). <em>Note: Entry-level Wi-Fi-only <code>S3-WiFi-ST</code> sticks are outbound cloud-only and silently drop local port <code>502</code> (<code>i/o timeout</code> even when visible on LAN ARP/DHCP); <code>S2-WL-ST</code> sticks on older firmware (<code>&lt; 100121cf</code> / <code>100141dx</code>) require Solis Support to push the local Modbus TCP datalogger update—otherwise upgrade to a wired <code>S2-WL-ST</code> or wire Option A.</em></li>
         </ul>
 
         <!-- SECTION 5 -->
@@ -549,7 +549,7 @@
         <h2 id="gems-onboarding">6. Onboarding Solis Hybrid vs. Solis Retrofit in GEMS</h2>
         <ul>
           <li><strong>Solis Hybrid (<code>S5-EH1P</code>, <code>S6-EH1P</code>, <code>S6-EH3P-L</code> with PV panels + UNIV5200):</strong> In <strong>Settings &rarr; Devices</strong> (Installer Mode unlocked), onboard your utility <strong>P1 Meter</strong> (<code>p1_serial</code>) or GEMS-wired <strong>Eastron <code>SDM72D-M / SDM630-M</code></strong> first if present, then choose <strong>Inverter / Solar &rarr; <code>Solis S5/S6 Hybrid Inverter</code></strong> (<code>solis_hybrid</code>). Set <code>Port = 502</code> (or <code>/dev/serial/by-id/...</code> at <code>9600 8N1</code>), <code>Modbus ID = 1</code>, exact <code>Rated Power (kW)</code>, <code>Allow Curtailment = Checked</code>, <code>Poll Interval = 2–3s</code> (RS-485) or <code>5s</code> (<code>S2-WL-ST</code>), exact <code>Phase Wiring</code>, <code>Grid Meter Connected? = Checked</code> (if wired to Solis), <code>Battery Connected? = Checked</code>, and exact total <code>Battery Capacity (kWh)</code> (<code>5.2</code>, <code>10.4</code>, <code>15.7</code>, <code>20.9</code>...).</li>
-          <li><strong>Solis AC-Coupled Retrofit (<code>RAI-3K-48ES-5G</code>, <code>S6-EA1P-L</code> with UNIV5200 alongside an existing PV inverter):</strong> Onboard your utility <strong>P1 Meter</strong> (<code>p1_serial</code>) or GEMS-wired <strong><code>SDM72D-M / SDM630-M</code></strong> + your <strong>existing solar PV inverter</strong> first, then add the Solis unit under <strong>Battery Storage &rarr; <code>Solis Retrofit Storage System</code></strong> (<code>solis_retrofit_battery</code>) with exact <code>Phase Wiring</code> (<code>L1</code>, <code>L2</code>, or <code>L3</code>) and total UNIV5200 capacity (<code>kWh</code>).</li>
+          <li><strong>Solis AC-Coupled Retrofit (<code>RAI-3K-48ES-5G</code>, <code>S6-EA1P-L</code> with UNIV5200 alongside an existing PV inverter):</strong> Onboard your utility <strong>P1 Meter</strong> (<code>p1_serial</code>) or GEMS-wired <strong><code>SDM72D-M / SDM630-M</code></strong> + your <strong>existing solar PV inverter</strong> first, then add the Solis unit under <strong>Battery &rarr; <code>Solis Retrofit Storage System</code></strong> (<code>solis_retrofit_battery</code>, or under <strong>Inverter / Solar &rarr; <code>Solis Retrofit Inverter (AC Storage)</code></strong>) with exact <code>Phase Wiring</code> (<code>L1</code>, <code>L2</code>, or <code>L3</code>), total UNIV5200 capacity (<code>kWh</code>), and <code>Grid Meter Connected? = Checked</code> whenever the smart meter is wired directly to the Solis <code>Meter</code> port without a separate P1 meter on GEMS.</li>
         </ul>
 
         <div class="doc-screenshot-card">
@@ -612,6 +612,11 @@
                 <td><strong>Forced grid charging ignored</strong></td>
                 <td><code>Allow Grid Charging</code> disabled or internal TOU active</td>
                 <td>Set <code>Self-Use = ON</code>, <code>Allow Grid Charging = Allow</code>, and disable all internal Solis TOU slots.</td>
+              </tr>
+              <tr>
+                <td><strong><code>i/o timeout</code> or <code>Connection refused</code> on port <code>502</code></strong></td>
+                <td>Cloud-only <code>S3-WiFi-ST</code> stick, <code>S2-WL-ST</code> firmware predates local Modbus TCP, or frozen Wi-Fi logger stack</td>
+                <td>Wire Option A (USB-RS485 or RS-485 Ethernet gateway to Solis RS-485 port), replace <code>S3-WiFi-ST</code> with wired Ethernet <code>S2-WL-ST</code>, or ask Solis Support to push the local Modbus TCP datalogger firmware (<code>&ge; 100121cf</code> / <code>100141dx</code>).</td>
               </tr>
             </tbody>
           </table>

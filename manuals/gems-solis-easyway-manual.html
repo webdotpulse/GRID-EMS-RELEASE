@@ -408,7 +408,7 @@
         <div class="cover-meta-grid">
           <div class="cover-meta-item">
             <span class="cover-meta-label">Document Version</span>
-            <span class="cover-meta-val">v9.36.6-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.36.7-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">GEMS Primary Reference Templates</span>
@@ -437,7 +437,7 @@
       </div>
 
       <div class="cover-footer">
-        <span>© New Energy Grid &amp; The Charge Grid — Proprietary Field Documentation v9.36.6</span>
+        <span>© New Energy Grid &amp; The Charge Grid — Proprietary Field Documentation v9.36.7</span>
         <span>Target Platform: GRID-EMS Edge Controller (Raspberry Pi ARM64)</span>
       </div>
     </div>
@@ -1504,9 +1504,9 @@
           <td>In SolisCloud <code>Storage Mode Select</code>, enable <code>Self-Use</code>, set <code>Allow Grid Charging = Allow</code>, and turn all internal <em>Time of Charging</em> slots <code>OFF</code>.</td>
         </tr>
         <tr>
-          <td><strong><code>Connection refused</code> on port <code>502</code> with Wi-Fi stick</strong></td>
-          <td>Site uses a cloud-only <code>S3-WiFi-ST</code> stick instead of <code>S2-WL-ST</code>, or second client holds port <code>502</code>.</td>
-          <td>Connect GEMS via direct USB-RS485 / RS-485 Ethernet gateway (Option A) or replace stick with wired Ethernet <strong><code>S2-WL-ST</code></strong>.</td>
+          <td><strong><code>i/o timeout</code> or <code>Connection refused</code> on port <code>502</code> with Wi-Fi stick</strong></td>
+          <td>Site uses an outbound cloud-only <code>S3-WiFi-ST</code> stick (drops all inbound port <code>502</code> packets even while answering LAN ARP), <code>S2-WL-ST</code> firmware predates local Modbus TCP (<code>&lt; 100121cf</code> / <code>100141dx</code>), or second client holds port <code>502</code>.</td>
+          <td>Connect GEMS via direct USB-RS485 / RS-485 Ethernet gateway (Option A), replace <code>S3-WiFi-ST</code> with wired Ethernet <strong><code>S2-WL-ST</code></strong>, or request Solis Support to push the Modbus TCP datalogger firmware update onto an existing <code>S2-WL-ST</code>.</td>
         </tr>
         <tr>
           <td><strong>Battery discharges to grid (or charges from grid) when house load turns ON</strong></td>
