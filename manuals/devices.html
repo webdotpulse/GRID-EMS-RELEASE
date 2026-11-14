@@ -510,11 +510,11 @@
               </tr>
               <tr>
                 <td><strong>Enphase IQ Gateway / Envoy</strong></td>
-                <td>Local HTTP REST (Token Auth)</td>
-                <td><code>80</code> / <code>443</code></td>
+                <td>Local HTTPS REST (Auto-JWT)</td>
+                <td><code>443</code> / <code>80</code></td>
                 <td>—</td>
                 <td><span class="badge-pill badge-green">Yes (IQ Battery)</span></td>
-                <td><span class="badge-pill badge-green">Yes</span></td>
+                <td><span class="badge-pill">Monitor Only</span></td>
               </tr>
             </tbody>
           </table>
@@ -662,6 +662,20 @@
             <ol>
               <li><strong>Direct LAN Port Connection:</strong> For reliable, fast Modbus TCP polling, connect your Ethernet cable directly to the inverter's internal LAN RJ45 port (under the lower cover), rather than the external WiNet-S dongle.</li>
               <li><strong>Add in GEMS:</strong> Select <em>Sungrow Inverter</em>. Host IP, Port <code>502</code>, Modbus ID <code>1</code>.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="device-guide-card">
+          <div class="guide-header">
+            <h4>Enphase IQ Gateway / Envoy-S (Firmware D5, D7 &amp; D8)</h4>
+            <span class="badge-pill badge-blue">Template: enphase_envoy (Monitor Only)</span>
+          </div>
+          <div class="guide-body">
+            <ol>
+              <li><strong>100% Local LAN Telemetry (No Cloud Developer API Required):</strong> GEMS polls the Enphase IQ Gateway directly on your local network over HTTPS (Port <code>443</code> on Firmware D7/D8; Port <code>80</code> on legacy Envoy-S D5) for live microinverter PV production, CT net grid consumption, 3-phase currents/voltages, and IQ Battery 3T/10T/5P power &amp; SoC.</li>
+              <li><strong>Automatic Local JWT Retrieval &amp; 1-Year Auto-Renewal (Firmware D7 / D8):</strong> Enter the homeowner's <strong>Enphase App (Enlighten)</strong> email and password in the device form. GEMS automatically reads the IQ Gateway serial number from local <code>/info.xml</code>, retrieves a signed 1-year local JWT token, stores it locally across reboots and internet outages, and renews it automatically before expiry (manual JWT paste is also supported).</li>
+              <li><strong>Add in GEMS:</strong> Select <em>Inverter / Solar &rarr; Enphase IQ Gateway / Envoy</em>, enter the Gateway LAN IP, Port <code>443</code>, Enphase App Email &amp; Password, and enable <strong>Grid Meter Connected?</strong> / <strong>Battery Connected?</strong> if Enphase consumption CTs or IQ Batteries are installed.</li>
             </ol>
           </div>
         </div>

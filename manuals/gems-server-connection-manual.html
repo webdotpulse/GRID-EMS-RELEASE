@@ -314,7 +314,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.36.7-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.37.2-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Central Cloud Service</span>
@@ -341,7 +341,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.36.7</span>
+        <span>Documentation v9.37.2</span>
       </div>
     </div>
 
@@ -648,9 +648,9 @@ Content-Type: application/json
           <td>Actuates smart relay or dry-contact contactor for heat pump SG-Ready states or domestic hot water boost.</td>
         </tr>
         <tr>
-          <td><code>UPDATE_SETTINGS</code> / <code>SET_FLEET_SETTINGS</code></td>
-          <td>Validated site or EV fleet configuration fields</td>
-          <td>Applies validated site tariff, peak-shaving, or fleet cluster DLB settings to the edge database.</td>
+          <td><code>UPDATE_SETTINGS</code> / <code>SET_FLEET_SETTINGS</code> / <code>SYNC_SETTINGS</code></td>
+          <td>Validated site, relay automation, or EV fleet configuration fields (or empty payload for <code>SYNC_SETTINGS</code>)</td>
+          <td>Applies validated site tariff, peak-shaving, relay rule, or fleet cluster DLB settings to the edge database, or triggers an immediate sanitized configuration snapshot push (<code>POST /api/v1/device/settings</code>) excluding all passwords and local tokens.</td>
         </tr>
         <tr>
           <td><code>OTA_UPDATE</code> / <code>REBOOT</code></td>
@@ -760,7 +760,7 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.36.7
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.37.2
     </div>
 
   </div>
