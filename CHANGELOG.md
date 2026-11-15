@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.37.2] - 2026-11-14
+## [v9.37.3] - 2026-11-15
 
 ### Added
 - **Sanitized Edge-to-Cloud Site & Hardware Configuration Synchronization:** Added automatic and on-demand (`SYNC_SETTINGS`) edge-to-cloud configuration snapshot synchronization (`POST /api/v1/device/settings`) so **GRID-EMS-SERVER** stays aligned with local site settings, configured hardware devices, live connection statuses, relay automation rules, and battery cost rules whenever local parameters or device modes change—while strictly stripping all cloud pairing credentials, SMTP/OCPP secrets, and local device passwords/tokens.
