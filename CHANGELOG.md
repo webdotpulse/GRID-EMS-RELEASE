@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.39.0] - 2026-11-15
+## [v9.39.1] - 2026-11-15
 
 ### Security
 - **EU Cyber Resilience Act (CRA) Vulnerability Disclosure, CycloneDX 1.5 SBOMs & Wireless Radio Hardening (`Settings -> System Info`):** Added a standards-compliant RFC 9116 coordinated vulnerability disclosure endpoint (`/.well-known/security.txt`) and a localized **Security & Firmware Support Policy** card under **Settings -> System Info** summarizing New Energy Grid's Ed25519-signed firmware verification, CycloneDX 1.5 Software Bill of Materials (`sbom-backend.cdx.json` & `sbom-frontend.cdx.json`) release provenance, and coordinated security contact (`security@newenergygrid.com`), while hardening Raspberry Pi OS image provisioning to disable unused onboard Wi-Fi and Bluetooth radios on wired Ethernet appliances.
