@@ -117,9 +117,9 @@ Access the **Settings** view from the navigation sidebar (which can be collapsed
 | :---: | :---: |
 | ![Energy Contract Tab](../screenshots/settings_contract.png) | ![Tariff Visualizer](../screenshots/settings_contract_tariffs.png) |
 
-* **`contract_type`**: Native presets for Dutch dynamic contracts (**Vattenfall Nederland — FlexPrijs, Eneco Dynamic, Frank Energie Dynamic**), Belgian dynamic contracts (**TotalEnergies Pixel Dynamic, Mega Smart/Cosy Dynamic, Bolt Dynamisch, Engie Dynamic / Flextime, Luminus Dynamic, Ecopower, Dats 24, Octa+, Trevion, Aspiravi**), Belgian Dual-Tariff (Piek/Dal + 6% BTW), Enovos Dynamic (Luxembourg), and generic fixed/dynamic rates.
-* **DNO Distribution & Statutory Tax Presets**: Built-in regional presets for Dutch *Energiebelasting* (`€0.1316/kWh` + 21% BTW), Fluvius (Flanders), ORES (Wallonia), RESA (Liège), and SIBELGA (Brussels).
-* **Live 24-Hour Tariff Visualizer**: Real-time stacked cost breakdown curve displaying wholesale EPEX spot price, supplier markup, DNO network / energy tax fees, VAT (`6%` BE / `21%` NL), dynamic solar injection price, and negative price curtailment warnings.
+* **`contract_type`**: Native presets for Dutch dynamic contracts (**Vattenfall Nederland — FlexPrijs, Eneco Dynamic, Frank Energie Dynamic**), Belgian dynamic contracts (**TotalEnergies Pixel Dynamic, Mega Smart/Cosy Dynamic, Bolt Dynamisch, Engie Dynamic / Flextime, Luminus Dynamic, Ecopower, Dats 24, Octa+, Trevion, Aspiravi**), Belgian Dual-Tariff (Piek/Dal + 6% BTW), Enovos Dynamic (Luxembourg), and generic fixed/dynamic rates (including Dutch post-2027 *saldering* feed-in cost `fixed_feed_in_cost_kwh` and `>= 50%` bare-supply export floor advisory, plus `15m` vs `60m` dynamic spot settlement granularity).
+* **DNO Distribution & Statutory Tax Presets**: Built-in regional presets for statutory excl.-VAT Dutch *Energiebelasting* (**2026: `€0.09161/kWh`** / **2027: `€0.08802/kWh`** + 21% BTW), Fluvius (Flanders), ORES & RESA (Wallonia flat or CWaPE 7-days/week **`Tarif Impact`** `ECO`/`MEDIUM`/`PIC`), SIBELGA (Brussels), and 2027 Belgian federal special excise (`€0.0392/kWh` excl. 6% BTW).
+* **Live 24-Hour Tariff Visualizer**: Real-time `15m` / `60m` stacked cost breakdown curve displaying wholesale EPEX spot price, supplier markup, DNO network / energy tax fees (color-coded by `ECO`/`MEDIUM`/`PIC` band in Wallonia), VAT (`6%` BE / `21%` NL), dynamic solar injection price, and negative price curtailment warnings.
 
 ---
 

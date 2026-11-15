@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.38.1-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.39.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -1117,10 +1117,11 @@
         <td>
           - Peak Consumption (€/kWh)<br>
           - Off-Peak Consumption (€/kWh)<br>
-          - Fixed Feed-in Return (€/kWh)
+          - Fixed Feed-in Return (€/kWh)<br>
+          - Optional NL Post-2027 <code>fixed_feed_in_cost_kwh</code> &amp; <code>&ge; 50%</code> statutory floor check
         </td>
         <td>
-          Choose when the customer does <strong>not</strong> have a dynamic contract. Set uniform rates for flat tariffs or enter Day/Night rates for dual-meter setups.
+          Choose when the customer does <strong>not</strong> have a dynamic contract. Supports Dutch post-saldering <em>terugleverkosten</em> and Wallonia CWaPE <code>Tarif Impact</code> DNO schedules.
         </td>
       </tr>
       <tr>
@@ -1137,12 +1138,13 @@
       </tr>
       <tr>
         <td><strong>Wizard C:<br>Dynamic-BE</strong></td>
-        <td>Belgian EPEX Spot Day-Ahead hourly contracts</td>
+        <td>Belgian EPEX Spot Day-Ahead 15m / 60m contracts</td>
         <td>
-          <strong>Pre-mapped suppliers:</strong> TotalEnergies Pixel Dynamic, Mega Smart/Cosy, Bolt Dynamisch, Engie Dynamic, Dats 24, Luminus, Eneco, Frank Energie, Ecopower, Octa+, Trevion, Aspiravi.
+          <strong>Pre-mapped suppliers:</strong> TotalEnergies Pixel Dynamic, Mega Smart/Cosy, Bolt Dynamisch, Engie Dynamic, Dats 24, Luminus, Eneco, Frank Energie, Ecopower, Octa+, Trevion, Aspiravi.<br>
+          Includes <code>15m</code> vs <code>60m</code> spot granularity, 2027 Belgian federal special excise (<code>0.0392 €/kWh</code>), and Wallonia CWaPE <code>Tarif Impact</code> (<code>ECO</code>/<code>MEDIUM</code>/<code>PIC</code>).
         </td>
         <td>
-          <strong>Default for dynamic contracts in Belgium.</strong> Select customer segment (Residential vs Business) and closing date to pre-fill the exact formula.
+          <strong>Default for dynamic contracts in Belgium.</strong> Select customer segment (Residential vs Business), grid region, and closing date to pre-fill the exact formula.
         </td>
       </tr>
       <tr>
@@ -1159,13 +1161,13 @@
       </tr>
       <tr>
         <td><strong>Wizard E:<br>Dynamic-NL</strong></td>
-        <td>Dutch dynamic contracts with statutory energy taxes</td>
+        <td>Dutch dynamic 15m / 60m contracts with statutory energy taxes</td>
         <td>
           <strong>Pre-mapped Dutch suppliers:</strong> <strong>Vattenfall Nederland — FlexPrijs</strong> (<code>1.00× EPEX NL + 0.0211 €/kWh</code> markup + <code>95.40 €/yr</code> Vastrecht), Eneco Dynamic, Frank Energie Dynamic, and custom Dutch EPEX Day-Ahead contracts.<br>
-          Includes statutory Energiebelasting (<code>0.1316 €/kWh</code>), 21% BTW, and Terugleverkosten.
+          Includes excl.-VAT Energiebelasting presets (2026: <code>0.09161 €/kWh</code> / 2027: <code>0.08802 €/kWh</code>), 21% BTW, <code>15m</code>/<code>60m</code> settlement, and Terugleverkosten.
         </td>
         <td>
-          <strong>Standard for installations in the Netherlands.</strong> Correctly accounts for Dutch feed-in fees (<em>terugleverkosten</em>) and enforces strict NL country isolation.
+          <strong>Standard for installations in the Netherlands.</strong> Correctly accounts for excl.-VAT Energiebelasting, Dutch feed-in fees (<em>terugleverkosten</em>), and strict NL country isolation.
         </td>
       </tr>
     </tbody>

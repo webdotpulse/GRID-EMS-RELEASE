@@ -466,17 +466,17 @@
               <tr>
                 <td><strong>Vattenfall Nederland — FlexPrijs</strong></td>
                 <td>Netherlands</td>
-                <td>EPEX Spot NL pass-through (<code>vattenfall_multiplier = 1.00</code>) + procurement markup (<code>vattenfall_markup = 0.0211 €/kWh</code>) + annual subscription (<code>vattenfall_base_fee = 95.40 €/yr</code>) + Dutch Energiebelasting (<code>0.1316 €/kWh</code>) + 21% BTW.</td>
+                <td>EPEX Spot NL pass-through (<code>vattenfall_multiplier = 1.00</code>, <code>15m</code> or <code>60m</code> settlement) + procurement markup (<code>vattenfall_markup = 0.0211 €/kWh</code>) + annual subscription (<code>vattenfall_base_fee = 95.40 €/yr</code>) + statutory excl.-VAT Dutch Energiebelasting presets (2026: <code>0.09161 €/kWh</code> / 2027: <code>0.08802 €/kWh</code>) + 21% BTW.</td>
               </tr>
               <tr>
                 <td><strong>Luminus / Eneco / Frank / Ecopower</strong></td>
                 <td>BE / NL</td>
-                <td>Customizable linear multipliers, injection retain margins, and monthly fixed platform subscriptions.</td>
+                <td>Customizable linear multipliers, <code>15m</code> vs <code>60m</code> spot settlement granularity, injection retain margins, and monthly fixed platform subscriptions.</td>
               </tr>
               <tr>
-                <td><strong>Belgian Dual-Tariff (Piek/Dal)</strong></td>
-                <td>Belgium</td>
-                <td>Standard residential day/night rate schedules combined with 6% BTW and DNO grid fee presets.</td>
+                <td><strong>Belgian Dual-Tariff &amp; Dutch Post-2027 Fixed</strong></td>
+                <td>BE / NL</td>
+                <td>Residential day/night rate schedules combined with DNO presets, plus optional Dutch post-saldering feed-in cost (<code>fixed_feed_in_cost_kwh</code>) and 2027–2029 <code>&ge; 50%</code> bare-supply export floor advisory.</td>
               </tr>
               <tr>
                 <td><strong>Enovos Dynamic</strong></td>
@@ -487,15 +487,15 @@
           </table>
         </div>
 
-        <h3>Distribution Network Operator (DNO) Presets</h3>
+        <h3>Distribution Network Operator (DNO) &amp; Statutory Tax Presets</h3>
         <p>
-          GEMS includes one-click presets for regional distribution and transmission grid fees per kWh:
+          GEMS includes one-click excl.-VAT presets for regional distribution fees and 2026/2027 statutory energy taxes per kWh:
         </p>
         <ul>
-          <li><strong>Fluvius (Flanders):</strong> &euro;0.0204 / kWh + 6% BTW (VAT).</li>
-          <li><strong>ORES (Wallonia):</strong> &euro;0.0950 / kWh + 6% BTW.</li>
-          <li><strong>RESA (Li&egrave;ge):</strong> &euro;0.0920 / kWh + 6% BTW.</li>
-          <li><strong>SIBELGA (Brussels):</strong> &euro;0.0820 / kWh + 6% BTW.</li>
+          <li><strong>Netherlands (Liander / Enexis / Stedin):</strong> Statutory excl.-VAT <em>Energiebelasting</em> presets for <strong>2026 (&euro;0.09161 / kWh)</strong> and <strong>2027 (&euro;0.08802 / kWh)</strong> + 21% BTW.</li>
+          <li><strong>Fluvius (Flanders):</strong> &euro;0.0204 / kWh distribution grid fee (plus 2027 federal special excise &euro;0.0392 / kWh helper) + 6% BTW (VAT).</li>
+          <li><strong>ORES &amp; RESA (Wallonia &mdash; Flat or CWaPE <code>Tarif Impact</code>):</strong> Flat presets (&euro;0.0950 / &euro;0.0920 / kWh) or CWaPE 7-days/week <strong><code>Tarif Impact</code></strong> (<code>ECO</code> 01:00&ndash;07:00 &amp; 11:00&ndash;17:00: RESA &euro;0.0252 / ORES &euro;0.0284; <code>MEDIUM</code> 07:00&ndash;11:00 &amp; 22:00&ndash;01:00: RESA &euro;0.0755 / ORES &euro;0.0812; <code>PIC</code> 17:00&ndash;22:00: RESA &euro;0.1258 / ORES &euro;0.1345 / kWh) + 6% BTW.</li>
+          <li><strong>SIBELGA (Brussels):</strong> &euro;0.0820 / kWh (plus 2027 federal special excise &euro;0.0392 / kWh helper) + 6% BTW.</li>
         </ul>
 
         <!-- Phase Balancing & Safety -->

@@ -116,9 +116,9 @@ Open **Instellingen** via de navigatiezijbalk (in- of uitklapbaar met de menukno
 | :---: | :---: |
 | ![Tabblad Energiecontract](../../screenshots/settings_contract.png) | ![Tariefvisualisatie](../../screenshots/settings_contract_tariffs.png) |
 
-* **`contract_type`**: Ingebouwde profielen voor Nederlandse dynamische contracten (**Vattenfall Nederland — FlexPrijs, Eneco Dynamisch, Frank Energie Dynamisch**), Belgische dynamische contracten (**TotalEnergies Pixel Dynamic, Mega Smart/Cosy Dynamic, Bolt Dynamisch, Engie Dynamic / Flextime, Luminus Dynamic, Ecopower, Dats 24, Octa+, Trevion, Aspiravi**), Belgisch Tweevoudig Tarief (Piek/Dal + 6% btw), Enovos Dynamic (Luxemburg) en generieke vaste/dynamische tarieven.
-* **Netbeheerder- & Belastingprofielen**: Ingebouwde regionale presets voor Nederlandse *Energiebelasting* (`€ 0,1316/kWh` + 21% btw), Fluvius (Vlaanderen), ORES (Wallonië), RESA (Luik) en SIBELGA (Brussel).
-* **Live 24-uurs Tariefvisualisatie**: Gestapelde uurprijscurve met kale EPEX-spotprijs, leveranciersopslag, netbeheer-/belastingcomponent, btw (`6%` BE / `21%` NL), dynamische terugleververgoeding en waarschuwingen bij negatieve prijzen.
+* **`contract_type`**: Ingebouwde profielen voor Nederlandse dynamische contracten (**Vattenfall Nederland — FlexPrijs, Eneco Dynamisch, Frank Energie Dynamisch**), Belgische dynamische contracten (**TotalEnergies Pixel Dynamic, Mega Smart/Cosy Dynamic, Bolt Dynamisch, Engie Dynamic / Flextime, Luminus Dynamic, Ecopower, Dats 24, Octa+, Trevion, Aspiravi**), Belgisch Tweevoudig Tarief (Piek/Dal + 6% btw), Enovos Dynamic (Luxemburg) en vaste/dynamische tarieven (inclusief Nederlandse post-2027 *terugleverkosten* `fixed_feed_in_cost_kwh`, controle op de wettelijke `>= 50%`-minimumvergoeding en `15m`/`60m`-spotafrekenschaal).
+* **Netbeheerder- & Belastingprofielen**: Ingebouwde regionale presets voor wettelijke Nederlandse *Energiebelasting* excl. btw (**2026: `€ 0,09161/kWh`** / **2027: `€ 0,08802/kWh`** + 21% btw), Fluvius (Vlaanderen), ORES & RESA (Wallonië vlak of CWaPE 7d/7 **`Tarif Impact`** `ECO`/`MEDIUM`/`PIC`), SIBELGA (Brussel) en Belgische bijzondere federale accijns 2027 (`€ 0,0392/kWh` excl. 6% btw).
+* **Live 24-uurs Tariefvisualisatie**: Gestapelde `15m`/`60m`-prijscurve met kale EPEX-spotprijs, leveranciersopslag, netbeheer-/belastingcomponent (kleurgecodeerd per `ECO`/`MEDIUM`/`PIC`-schijf in Wallonië), btw (`6%` BE / `21%` NL), dynamische terugleververgoeding en waarschuwingen bij negatieve prijzen.
 
 ---
 

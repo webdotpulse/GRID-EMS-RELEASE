@@ -63,8 +63,9 @@ La boucle de régulation principale s'exécute chaque seconde :
 ### 2.4 Garantie Stricte d'Isolation par Pays & Région
 **Objectif :** Garantir que les mécanismes réglementaires propres à un pays n'apparaissent ni n'agissent jamais sur une installation située dans un autre pays.
 - **Flandre (`BE` + `flanders`) :** Active exclusivement l'écrêtage quart-horaire du *Capaciteitstarief* (`capacity_peak_limit_kw`, plancher légal `2,50 kW`), le Plafond Adaptatif Intelligent, les alertes de pointe et les certificats verts flamands (*Groenestroomcertificaten* / GSC).
-- **Belgique (`BE` — Flandre, Wallonie, Bruxelles) :** Active exclusivement la synchronisation du mix renouvelable belge Elia, l'optimisation Super-Creux belge (`01:00–07:00`) et le télécontrôle GRD IEC 60870-5-104.
-- **Pays-Bas (`NL`), Allemagne (`DE`), Luxembourg (`LU`) et Autres Régions :** Le choix d'un pays hors Flandre ou d'un contrat néerlandais désactive et masque automatiquement l'écrêtage *Capaciteitstarief*, remet à zéro la compensation GSC, désactive les services belges Elia/Super-Creux/IEC-104 et réserve la modulation allemande `§14a EnWG` strictement aux installations situées en Allemagne (`DE`).
+- **Wallonie (`BE` + `wallonia`) :** Active exclusivement la grille officielle CWaPE **`Tarif Impact`** 7j/7 (`ECO` : `01:00–07:00` & `11:00–17:00` ; `MEDIUM` : `07:00–11:00` & `22:00–01:00` ; `PIC` : `17:00–22:00`), déplaçant automatiquement la recharge batterie `dynamic_forecast` et VE vers les créneaux `ECO` tout en déchargeant pendant la pointe `PIC` (`17:00–22:00`).
+- **Belgique (`BE` — Flandre, Wallonie, Bruxelles) :** Active exclusivement la synchronisation du mix renouvelable belge Elia, l'optimisation Super-Creux belge (`01:00–07:00`), le préréglage d'accise fédérale belge 2027 (`0,0392 €/kWh` HTVA 6 %) et le télécontrôle GRD IEC 60870-5-104.
+- **Pays-Bas (`NL`), Allemagne (`DE`), Luxembourg (`LU`) et Autres Régions :** Le choix d'un pays hors Flandre ou d'un contrat néerlandais désactive et masque automatiquement l'écrêtage *Capaciteitstarief*, remet à zéro la compensation GSC, désactive les services belges Elia/Super-Creux/IEC-104, réserve les frais d'injection post-2027 (`fixed_feed_in_cost_kwh`) et le contrôle du plancher légal `>= 50 %` strictement aux Pays-Bas (`NL`), et réserve la modulation allemande `§14a EnWG` strictement aux installations situées en Allemagne (`DE`).
 
 ### 2.5 Protection des Certificats Verts Flamands (GSC — Flandre Uniquement)
 **Objectif :** Empêcher tout écrêtement solaire injustifié et préserver les revenus de certificats verts des installations PV flamandes existantes lors des heures à prix spot négatifs.
@@ -114,21 +115,20 @@ GEMS pilote les bornes de recharge VE via **bus de terrain Modbus TCP/RTU (recom
 | ![Onglet Contrat d'énergie](../../screenshots/settings_contract.png) | ![Visualiseur Tarifaire](../../screenshots/settings_contract_tariffs.png) |
 
 ### 5.1 Préréglages Fournisseurs Belges & Néerlandais
-- **Vattenfall Nederland — FlexPrijs (`vattenfall_dynamic`, NL)** : Tarif horaire EPEX Spot NL (`1,00×`) + marge d'approvisionnement `0,0211 €/kWh` (*Inkoopvergoeding*), abonnement fixe `95,40 €/an` (*Vastrecht*), taxe énergétique néerlandaise (*Energiebelasting* `0,1316 €/kWh`), TVA `21 %` et rémunération d'injection `1,00×` EPEX Spot NL.
-- **Eneco Dynamic & Frank Energie Dynamic (`NL` / `BE`)** : Formules spot EPEX NL ou EPEX BE avec TVA automatique (`21 %` NL / `6 %` BE) et taxes réglementaires préconfigurées.
+- **Vattenfall Nederland — FlexPrijs (`vattenfall_dynamic`, NL)** : Tarif EPEX Spot NL quart-horaire (`15m`) ou moyen horaire (`60m`) (`1,00×`) + marge d'approvisionnement `0,0211 €/kWh` (*Inkoopvergoeding*), abonnement fixe `95,40 €/an` (*Vastrecht*), préréglages légaux HTVA de l'*Energiebelasting* néerlandaise (**2026 : `0,09161 €/kWh`** / **2027 : `0,08802 €/kWh`** HTVA `21 %`), TVA `21 %` et rémunération d'injection `1,00×` EPEX Spot NL.
+- **Eneco Dynamic & Frank Energie Dynamic (`NL` / `BE`)** : Formules spot EPEX NL ou EPEX BE avec granularité de règlement `15m` ou `60m`, TVA automatique (`21 %` NL / `6 %` BE) et taxes réglementaires préconfigurées.
 - **TotalEnergies Pixel Dynamic** : Multiplicateur, marge (€/kWh), redevance annuelle et formule d'injection.
 - **Mega Smart / Cosy Dynamic** : Formule dynamique transparente avec multiplicateur et marge fournisseur personnalisables.
 - **Bolt Dynamisch** : Contrat dynamique 100 % vert local au prix spot réel.
 - **Engie Dynamic & Flextime** : Indexation EPEX directe et structure horaire multi-paliers.
 - **Luminus Dynamic, Ecopower, Dats 24, Octa+, Trevion, Aspiravi**.
-- **Bi-horaire Belge (Heures Pleines / Heures Creuses)** : Grilles jour/nuit avec préréglages des frais de réseau GRD.
+- **Bi-horaire Belge & Contrats Fixes Néerlandais Post-2027** : Grilles jour/nuit avec préréglages GRD, plus les frais d'injection néerlandais post-saldering (`fixed_feed_in_cost_kwh`) et la vérification du plancher légal `>= 50 %` du tarif de fourniture nu.
 
 ### 5.2 Préréglages des Gestionnaires de Réseau de Distribution (GRD)
-- **Pays-Bas (Liander / Enexis / Stedin)** : Taxe légale *Energiebelasting* (`0,1316 €/kWh`) + TVA `21 %` (protection du raccordement `3×25A` par DLB triphasé).
-- **Fluvius (Flandre)** : 0,0204 €/kWh de frais de distribution/transport + TVA 6 %.
-- **ORES (Wallonie)** : 0,0950 €/kWh de frais réseau + TVA 6 %.
-- **RESA (Liège)** : 0,0920 €/kWh de frais réseau + TVA 6 %.
-- **SIBELGA (Bruxelles)** : 0,0820 €/kWh de frais réseau + TVA 6 %.
+- **Pays-Bas (Liander / Enexis / Stedin)** : Préréglages légaux HTVA de la taxe *Energiebelasting* (**2026 : `0,09161 €/kWh`** / **2027 : `0,08802 €/kWh`**) + TVA `21 %` (protection du raccordement `3×25A` par DLB triphasé).
+- **Fluvius (Flandre)** : 0,0204 €/kWh de frais de distribution ou préréglage combiné 2027 incluant l'accise fédérale spéciale (`0,0392 €/kWh` = 39,20 €/MWh) + TVA 6 %.
+- **ORES & RESA (Wallonie — Fixe ou CWaPE `Tarif Impact`)** : Préréglages fixes (0,0950 / 0,0920 €/kWh + accise fédérale 2027) ou grille CWaPE **`Tarif Impact`** 7j/7 (`ECO` : `01:00–07:00` & `11:00–17:00`, RESA `0,0252 €` / ORES `0,0284 €` ; `MEDIUM` : `07:00–11:00` & `22:00–01:00`, RESA `0,0755 €` / ORES `0,0812 €` ; `PIC` : `17:00–22:00`, RESA `0,1258 €` / ORES `0,1345 €/kWh` HTVA 6 %).
+- **SIBELGA (Bruxelles)** : 0,0820 €/kWh de frais réseau (plus préréglage accise fédérale 2027) + TVA 6 %.
 
 ### 5.3 Visualiseur en Direct de la Courbe Tarifaire 24h
 - **Décomposition Empilée des Coûts** : Affiche heure par heure les 4 composantes du prix : marché de gros EPEX Spot, marge fournisseur, frais GRD / taxes énergétiques et TVA (`6 %` résidentiel BE / `21 %` NL).

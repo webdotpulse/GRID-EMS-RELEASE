@@ -784,7 +784,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.38.1</span>
+          <span class="cover-meta-val">GEMS v9.39.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Who This Guide Is For</span>
@@ -1501,7 +1501,8 @@
         <td>
           • <strong>Peak Rate (€/kWh):</strong> Daytime electricity rate (07:00–22:00 weekdays).<br>
           • <strong>Off-Peak Rate (€/kWh):</strong> Night &amp; weekend rate (22:00–07:00 + weekends).<br>
-          • <strong>Solar Feed-In Tariff (€/kWh):</strong> Fixed compensation paid per kWh exported to the street.
+          • <strong>Solar Feed-In Tariff (€/kWh):</strong> Fixed compensation paid per kWh exported to the street.<br>
+          • <strong>Post-2027 Saldering Feed-In Rules (Netherlands Only):</strong> Optional <code>fixed_feed_in_cost_kwh</code> (<em>terugleverkosten</em>) deducted from gross feed-in plus a live 2027–2029 statutory <code>&ge; 50%</code> bare-supply floor check.
         </td>
       </tr>
       <tr>
@@ -1533,28 +1534,29 @@
         </td>
       </tr>
       <tr>
-        <td><strong>5. Dynamic-NL (Dutch Hourly EPEX)</strong></td>
-        <td>Dutch homeowners on a dynamic hourly contract in the Netherlands.</td>
+        <td><strong>5. Dynamic-NL (Dutch 15m / 60m EPEX)</strong></td>
+        <td>Dutch homeowners on a dynamic quarter-hour or hourly contract in the Netherlands.</td>
         <td>
-          • <strong>Dutch Provider Presets:</strong> Includes <strong>Vattenfall Nederland — FlexPrijs</strong> (<code>1.00× EPEX NL + €0.0211/kWh</code> markup, <code>€95.40/yr</code> Vastrecht, <code>0.1316 €/kWh</code> Energiebelasting, <code>21%</code> BTW, <code>1.00×</code> feed-in), <strong>Eneco Dynamic</strong>, and <strong>Frank Energie Dynamic</strong>:<br>
+          • <strong>Spot Settlement Granularity:</strong> Select <code>15-Minute Quarter-Hour (15m)</code> or <code>Hourly Average (60m)</code>.<br>
+          • <strong>Dutch Provider Presets:</strong> Includes <strong>Vattenfall Nederland — FlexPrijs</strong> (<code>1.00× EPEX NL + €0.0211/kWh</code> markup, <code>€95.40/yr</code> Vastrecht, excl.-VAT Energiebelasting presets for 2026 <code>0.09161 €/kWh</code> &amp; 2027 <code>0.08802 €/kWh</code>, <code>21%</code> BTW, <code>1.00×</code> feed-in), <strong>Eneco Dynamic</strong>, and <strong>Frank Energie Dynamic</strong>:<br>
           &nbsp;&nbsp;– <code>Inkoopvergoeding Consumption / Injection (€/kWh)</code> (procurement markups)<br>
-          &nbsp;&nbsp;– <code>Energiebelasting (€/kWh)</code> (Dutch energy tax, default <code>0.1316 €/kWh</code>)<br>
+          &nbsp;&nbsp;– <code>Energiebelasting (€/kWh, excl. 21% BTW)</code> (selectable 2026 <code>0.09161</code> / 2027 <code>0.08802 €/kWh</code> presets)<br>
           &nbsp;&nbsp;– <code>Terugleverkosten (€/kWh)</code> (solar feed-in cost) &amp; <code>Vastrecht (€/yr)</code>.
         </td>
       </tr>
     </tbody>
   </table>
 
-  <h2 class="subsection-title">DNO Regional Presets, Taxes &amp; Live 24-Hour Tariff Visualizer</h2>
+  <h2 class="subsection-title">DNO Regional Presets, Wallonia <code>Tarif Impact</code> &amp; Live 24-Hour Tariff Visualizer</h2>
   <div class="setting-card-grid">
     <div class="setting-card">
-      <div class="setting-name"><span>DNO Preset &amp; Distribution Taxes (€/kWh)</span> <span class="setting-default-pill">Fluvius / ORES / Resa / NL</span></div>
-      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Click your regional grid operator preset button (<strong>Fluvius</strong>, <strong>ORES</strong>, <strong>Resa</strong>, <strong>Sibelga</strong>, or <strong>NL DNOs</strong>) to auto-fill <strong>Distribution &amp; Transmission Taxes (€/kWh)</strong> and <strong>VAT Rate</strong> (<code>0.06</code> for 6% BE residential, <code>0.21</code> for 21% NL/Business).</div>
+      <div class="setting-name"><span>DNO Presets, 2027 Excise &amp; Wallonia <code>Tarif Impact</code></span> <span class="setting-default-pill">Fluvius / ORES / RESA / NL</span></div>
+      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Click your regional grid operator preset (<strong>Fluvius</strong>, <strong>ORES</strong>, <strong>RESA</strong>, <strong>Sibelga</strong>, 2027 Belgian federal special excise <code>0.0392 €/kWh</code>, or <strong>NL 2026/2027</strong>) to fill <strong>Distribution &amp; Taxes (€/kWh excl. VAT)</strong> and <strong>VAT Rate</strong> (<code>0.06</code> BE / <code>0.21</code> NL). In Wallonia, you can also enable the CWaPE 7-days/week <strong><code>Tarif Impact</code></strong> (<code>ECO</code> 01–07h &amp; 11–17h, <code>MEDIUM</code> 07–11h &amp; 22–01h, <code>PIC</code> 17–22h).</div>
     </div>
 
     <div class="setting-card green">
-      <div class="setting-name"><span>Live 24-Hour Effective Tariff Visualizer</span> <span class="setting-default-pill">Stacked &amp; Net Curves</span></div>
-      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Displays your exact hour-by-hour retail price for today: <strong>Current All-In Price</strong>, <strong>Lowest 24h Window</strong> (best hour for EV/battery), <strong>Highest 24h Peak</strong>, and <strong>Solar Injection Now</strong>, plus a live <strong>Solar Curtailment Advisory Banner</strong> if afternoon export prices turn negative!</div>
+      <div class="setting-name"><span>Live 24-Hour Effective Tariff Visualizer</span> <span class="setting-default-pill">15m / 60m Stacked Curves</span></div>
+      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Displays your exact <code>15m</code> or <code>60m</code> retail price curve for today: <strong>Current All-In Price</strong>, <strong>Lowest 24h Window</strong> (best slot for EV/battery), <strong>Highest 24h Peak</strong>, color-coded Wallonia <code>ECO</code>/<code>MEDIUM</code>/<code>PIC</code> DNO bands, and <strong>Solar Injection Now</strong> with a live <strong>Solar Curtailment Advisory Banner</strong>!</div>
     </div>
   </div>
 
@@ -1687,8 +1689,8 @@
     </div>
 
     <div class="setting-card amber">
-      <div class="setting-name"><span>Local CA &amp; SSL Certificate + PIN Rotation</span> <span class="setting-default-pill">HTTPS Trust</span></div>
-      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Download the GEMS <strong>Root CA Certificate (<code>.crt</code>)</strong> or add custom local domains (e.g. <code>gems.home.lan</code>) with instant hot-reload and step-by-step trust guides for Chrome, Safari/iOS, macOS, Windows, and Android. You can also rotate your <strong>Installer PIN</strong> here.</div>
+      <div class="setting-name"><span>Local CA &amp; SSL Certificate + PIN &amp; EU CRA Security Policy</span> <span class="setting-default-pill">HTTPS &amp; EU CRA</span></div>
+      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Download the GEMS <strong>Root CA Certificate (<code>.crt</code>)</strong> or add custom local domains (e.g. <code>gems.home.lan</code>) with instant hot-reload, rotate your <strong>Installer PIN</strong>, and view the New Energy Grid <strong>Security &amp; Firmware Support Policy</strong> badge linking to <code>/.well-known/security.txt</code>.</div>
     </div>
   </div>
 

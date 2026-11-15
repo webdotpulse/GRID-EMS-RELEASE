@@ -104,7 +104,7 @@ Configure la formule contractuelle de votre fournisseur afin de calculer en temp
 | ![Onglet Contrat d'énergie](../../screenshots/settings_contract.png) | ![Visualiseur Tarifaire](../../screenshots/settings_contract_tariffs.png) |
 
 ### 3.1 Types de Contrats (`contract_type`)
-* `vattenfall_dynamic` : **Vattenfall Nederland — FlexPrijs** (EPEX Spot NL `1,00×` + marge `0,0211 €/kWh`, abonnement fixe `95,40 €/an`, taxe *Energiebelasting* `0,1316 €/kWh`, TVA `21 %` et injection `1,00×` EPEX Spot NL).
+* `vattenfall_dynamic` : **Vattenfall Nederland — FlexPrijs** (EPEX Spot NL `1,00×` + marge `0,0211 €/kWh`, abonnement fixe `95,40 €/an`, préréglages légaux hors TVA de l'*Energiebelasting* néerlandaise pour **2026 (`0,09161 €/kWh` HTVA 21 %)** et **2027 (`0,08802 €/kWh` HTVA 21 %)**, TVA `21 %` et injection `1,00×` EPEX Spot NL).
 * `eneco_dynamic` : Eneco Dynamic (Pays-Bas / Belgique).
 * `frank_energie_dynamic` : Frank Energie Dynamic (NL / BE).
 * `totalenergies_dynamic` : TotalEnergies Pixel Dynamic (Belgique EPEX Spot BE).
@@ -118,19 +118,22 @@ Configure la formule contractuelle de votre fournisseur afin de calculer en temp
 * `octa_dynamic` : Octa+ Dynamic (Belgique).
 * `trevion_dynamic` : Trevion Dynamisch (Belgique).
 * `aspiravi_dynamic` : Aspiravi Dynamisch (Belgique).
-* `belgian_dual_tariff` : Bi-horaire fixe belge (Heures Pleines/Creuses + TVA 6 %).
-* `fixed` : Tarif fixe générique.
+* `belgium_dual_tariff` : Bi-horaire fixe belge (Heures Pleines/Creuses + TVA 6 %).
+* `fixed` : Tarif Fixe / Variable (incluant aux Pays-Bas `NL` le paramètre optionnel post-2027 `fixed_feed_in_cost_kwh` pour les *terugleverkosten* et la vérification du plancher légal d'injection `>= 50 %` du tarif de fourniture nu).
 * `dynamic` : Tarif dynamique EPEX générique.
 * `enovos_dynamic` : Enovos Dynamic (Luxembourg).
 
-### 3.2 Paramètres des Formules Dynamiques
+### 3.2 Formules Dynamiques, Granularité de Règlement & Tarifs GRD Régionaux
 Pour les contrats dynamiques belges et néerlandais, le prix effectif d'importation est calculé selon :
 $$\text{Prix}_{\text{import}} = \left( (\text{EPEX} \times \text{Multiplier}) + \text{Markup} + \frac{\text{BaseFee}}{8760} + \text{DNO}_{\text{tax}} \right) \times (1 + \text{VAT})$$
 
 Et la rémunération dynamique d'injection solaire :
 $$\text{Prix}_{\text{export}} = (\text{EPEX} \times \text{InjectMultiplier}) - \text{InjectMarkup}$$
 
-* **`tax_kwh`** : Frais de réseau de distribution et taxes énergétiques légales par kWh consommé (par ex. `0.1316` €/kWh *Energiebelasting* aux Pays-Bas, `0.0204` €/kWh Fluvius Flandre, `0.0950` €/kWh ORES Wallonie).
+* **`spot_settlement_granularity`** : Sélectionne `"15m"` (règlement quart-horaire natif EPEX SDAC 15 min, par défaut) ou `"60m"` (moyenne arithmétique des quatre quarts d'heure de chaque heure d'horloge pour les fournisseurs facturant au tarif horaire moyen). Aux Pays-Bas, `EnergyZeroProvider` récupère nativement les courbes 15 minutes avec repli automatique sur les courbes horaires.
+* **`tax_kwh`** : Frais de réseau de distribution et taxes énergétiques légales HTVA par kWh consommé — incluant les préréglages d'*Energiebelasting* néerlandaise **2026 (`0.09161` €/kWh)** et **2027 (`0.0392` BE / `0.08802` NL €/kWh)** HTVA, le **droit d'accise spécial fédéral belge 2027 (`0.0392` €/kWh = 39,20 €/MWh HTVA 6 %)** ainsi que les préréglages GRD pour Fluvius Flandre, ORES/RESA Wallonie et SIBELGA Bruxelles. Toute valeur personnalisée enregistrée est intégralement préservée lors des mises à niveau.
+* **`fixed_feed_in_cost_kwh`** *(Pays-Bas `NL` Fixe/Variable Uniquement)* : Frais d'injection par kWh (*terugleverkosten*) soustraits de `fixed_inject_price_kwh` pour le calcul du revenu net d'exportation et de l'écrêtement `min_profitable_export_price` après la suppression du *salderingsregeling* au 1er janvier 2027, accompagnés d'un contrôle du plancher légal 2027–2029 (`>= 50 %` du tarif de fourniture hors taxes et TVA).
+* **`dno_tariff_mode`, `dno_impact_eco_kwh`, `dno_impact_medium_kwh`, `dno_impact_pic_kwh`** *(Belgique `BE` + `wallonia` Uniquement)* : Configure la grille officielle CWaPE **`Tarif Impact`** 7j/7 (`"flat"` par défaut | `"wallonia_impact"`) : **`ECO`** (`01:00–07:00` & `11:00–17:00`, ex. RESA `0.0252` / ORES `0.0284` €/kWh), **`MEDIUM`** (`07:00–11:00` & `22:00–01:00`, ex. RESA `0.0755` / ORES `0.0812` €/kWh) et **`PIC`** (`17:00–22:00`, ex. RESA `0.1258` / ORES `0.1345` €/kWh).
 * **`vat_rate`** : Taux de TVA saisi sous forme décimale (par ex. `0.21` pour 21 % aux Pays-Bas, `0.06` pour 6 % résidentiel en Belgique).
 * **Multiplicateurs & Marges Fournisseurs** : Paramètres dédiés à chaque fournisseur (par ex. `vattenfall_multiplier`, `vattenfall_markup`, `vattenfall_base_fee`, `vattenfall_inject_multiplier`, `vattenfall_inject_markup`, `totalenergies_multiplier`, `totalenergies_markup`, `totalenergies_base_fee`, `totalenergies_inject_multiplier`, `totalenergies_inject_markup`).
 
@@ -161,6 +164,8 @@ Configuration des mises à jour OTA automatisées, du téléversement de paquets
   * **Description :** Les propriétaires comme les installateurs peuvent redémarrer l'unité en toute sécurité (**Redémarrer le système**) depuis **Paramètres &rarr; Infos système** et lancer des sondes **Debug** en direct sur les équipements configurés dans **Paramètres &rarr; Appareils connectés** afin d'inspecter la télémétrie et d'envoyer un rapport de diagnostic directement à **GRID-EMS-SERVER** sans déverrouiller le Mode installateur certifié.
 * **`github_token`**
   * **Description :** Jeton d'accès personnel GitHub (classic) optionnel permettant d'éviter la limitation de débit par IP lors de la vérification des nouvelles versions publiques GEMS ; si un jeton expiré ou révoqué est renseigné, GEMS réessaie automatiquement sans authentification afin de ne jamais interrompre les vérifications.
+* **Politique de Sécurité EU Cyber Resilience Act (CRA) & Divulgation Coordonnée (`/.well-known/security.txt`)**
+  * **Description :** **Paramètres &rarr; Infos système** affiche le badge **Politique de Sécurité & Support Firmware** de New Energy Grid (vérification cryptographique Ed25519 des mises à jour, nomenclature logicielle CycloneDX 1.5 SBOM et divulgation coordonnée via `/.well-known/security.txt`), sans jamais exposer de charge CPU, RAM ou télémétrie matérielle et en conservant le numéro de build dynamique issu de `git describe --tags --always`.
 
 ---
 

@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Version du Système</span>
-          <span class="cover-meta-val">GEMS v9.38.1</span>
+          <span class="cover-meta-val">GEMS v9.39.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">À Qui S'adresse Ce Guide</span>
@@ -1503,7 +1503,8 @@
         <td>
           • <strong>Tarif Heures Pleines (€/kWh) :</strong> Tarif de jour (07:00–22:00 en semaine).<br>
           • <strong>Tarif Heures Creuses (€/kWh) :</strong> Tarif nuit &amp; week-end (22:00–07:00 + week-ends).<br>
-          • <strong>Tarif d'Injection Solaire (€/kWh) :</strong> Rémunération fixe versée par kWh injecté sur le réseau.
+          • <strong>Tarif d'Injection Solaire (€/kWh) :</strong> Rémunération fixe versée par kWh injecté sur le réseau.<br>
+          • <strong>Règles d'Injection Post-2027 (Pays-Bas Uniquement) :</strong> Frais d'injection optionnels <code>fixed_feed_in_cost_kwh</code> (<em>terugleverkosten</em>) et contrôle du plancher légal 2027–2029 (<code>&ge; 50 %</code> du tarif de fourniture nu).
         </td>
       </tr>
       <tr>
@@ -1535,28 +1536,29 @@
         </td>
       </tr>
       <tr>
-        <td><strong>5. Dynamic-NL (EPEX Horaire Pays-Bas)</strong></td>
-        <td>Ménages néerlandais disposant d'un contrat dynamique horaire aux Pays-Bas.</td>
+        <td><strong>5. Dynamic-NL (EPEX 15m / 60m Pays-Bas)</strong></td>
+        <td>Ménages néerlandais disposant d'un contrat dynamique quart-horaire ou horaire aux Pays-Bas.</td>
         <td>
-          • <strong>Préréglages Fournisseurs NL :</strong> Inclut <strong>Vattenfall Nederland — FlexPrijs</strong> (<code>1,00× EPEX NL + 0,0211 €/kWh</code> de marge, <code>95,40 €/an</code> Vastrecht, <code>0,1316 €/kWh</code> Energiebelasting, <code>21 %</code> BTW, injection <code>1,00×</code>), <strong>Eneco Dynamic</strong> et <strong>Frank Energie Dynamic</strong> :<br>
+          • <strong>Granularité Spot :</strong> Choix entre <code>Quart d'heure 15 min (15m)</code> et <code>Moyenne horaire (60m)</code>.<br>
+          • <strong>Préréglages Fournisseurs NL :</strong> Inclut <strong>Vattenfall Nederland — FlexPrijs</strong> (<code>1,00× EPEX NL + 0,0211 €/kWh</code> de marge, <code>95,40 €/an</code> Vastrecht, préréglages HTVA d'Energiebelasting 2026 <code>0,09161 €/kWh</code> &amp; 2027 <code>0,08802 €/kWh</code>, <code>21 %</code> BTW, injection <code>1,00×</code>), <strong>Eneco Dynamic</strong> et <strong>Frank Energie Dynamic</strong> :<br>
           &nbsp;&nbsp;– <code>Inkoopvergoeding Prélèvement / Injection (€/kWh)</code> (frais d'achat fournisseur)<br>
-          &nbsp;&nbsp;– <code>Energiebelasting (€/kWh)</code> (taxe énergétique NL, défaut <code>0,1316 €/kWh</code>)<br>
+          &nbsp;&nbsp;– <code>Energiebelasting (€/kWh, HTVA 21 %)</code> (préréglages 2026 <code>0,09161</code> et 2027 <code>0,08802 €/kWh</code>)<br>
           &nbsp;&nbsp;– <code>Terugleverkosten (€/kWh)</code> (frais de réinjection solaire) &amp; <code>Vastrecht (€/an)</code>.
         </td>
       </tr>
     </tbody>
   </table>
 
-  <h2 class="subsection-title">Préréglages GRD Régionaux, Taxes &amp; Visualiseur Tarifaire 24h en Direct</h2>
+  <h2 class="subsection-title">Préréglages GRD Régionaux, <code>Tarif Impact</code> Wallon &amp; Visualiseur Tarifaire 24h en Direct</h2>
   <div class="setting-card-grid">
     <div class="setting-card">
-      <div class="setting-name"><span>Préréglage GRD &amp; Coûts de Distribution (€/kWh)</span> <span class="setting-default-pill">Fluvius / ORES / Resa / NL</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Cliquez sur le bouton de votre gestionnaire de réseau régional (<strong>Fluvius</strong>, <strong>ORES</strong>, <strong>Resa</strong>, <strong>Sibelga</strong> ou <strong>GRD NL</strong>) pour pré-remplir automatiquement les <strong>Coûts de Distribution &amp; Transport (€/kWh)</strong> ainsi que le <strong>Taux de TVA</strong> (<code>0.06</code> pour 6 % résidentiel belge, <code>0.21</code> pour 21 % Pays-Bas / Entreprise).</div>
+      <div class="setting-name"><span>Préréglages GRD, Accise 2027 &amp; <code>Tarif Impact</code> Wallon</span> <span class="setting-default-pill">Fluvius / ORES / RESA / NL</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Cliquez sur votre gestionnaire de réseau régional (<strong>Fluvius</strong>, <strong>ORES</strong>, <strong>RESA</strong>, <strong>Sibelga</strong>, accise fédérale belge 2027 <code>0,0392 €/kWh</code> ou <strong>NL 2026/2027</strong>) pour renseigner les <strong>Coûts GRD &amp; Taxes (€/kWh HTVA)</strong> et la <strong>TVA</strong> (<code>0.06</code> BE / <code>0.21</code> NL). En Wallonie, activez la grille officielle CWaPE <strong><code>Tarif Impact</code></strong> 7j/7 (<code>ECO</code> 01–07h &amp; 11–17h, <code>MEDIUM</code> 07–11h &amp; 22–01h, <code>PIC</code> 17–22h).</div>
     </div>
 
     <div class="setting-card green">
-      <div class="setting-name"><span>Visualiseur de Courbe Tarifaire Effective 24h</span> <span class="setting-default-pill">Courbes Empilées &amp; Nettes</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Affiche votre tarif exact heure par heure pour la journée : <strong>Prix Tout Compris Actuel</strong>, <strong>Créneau 24h le Moins Cher</strong> (idéal pour VE/batterie), <strong>Pointe 24h la Plus Chère</strong> et <strong>Injection Solaire Actuelle</strong>, accompagné d'une <strong>Bannière d'Alerte de Bridage Solaire</strong> dès que les prix d'injection deviennent négatifs l'après-midi !</div>
+      <div class="setting-name"><span>Visualiseur de Courbe Tarifaire Effective 24h</span> <span class="setting-default-pill">Courbes 15m / 60m</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Affiche votre tarif exact <code>15m</code> ou <code>60m</code> pour la journée : <strong>Prix Tout Compris Actuel</strong>, <strong>Créneau 24h le Moins Cher</strong>, <strong>Pointe 24h la Plus Chère</strong>, tranches wallonnes <code>ECO</code>/<code>MEDIUM</code>/<code>PIC</code> colorées et <strong>Injection Solaire Actuelle</strong> avec <strong>Bannière d'Alerte de Bridage Solaire</strong> !</div>
     </div>
   </div>
 
@@ -1689,8 +1691,8 @@
     </div>
 
     <div class="setting-card amber">
-      <div class="setting-name"><span>Autorité CA Locale &amp; Certificat SSL + Code PIN</span> <span class="setting-default-pill">Confiance HTTPS</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Téléchargez le <strong>Certificat Racine CA GEMS (<code>.crt</code>)</strong> ou ajoutez des noms de domaine locaux personnalisés (ex. <code>gems.home.lan</code>) avec rechargement instantané et guides d'approbation pas-à-pas pour Chrome, Safari/iOS, macOS, Windows et Android. Vous pouvez également modifier ici votre <strong>Code PIN Installateur</strong>.</div>
+      <div class="setting-name"><span>Autorité CA Locale, SSL, PIN &amp; Politique EU CRA</span> <span class="setting-default-pill">HTTPS &amp; EU CRA</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Téléchargez le <strong>Certificat Racine CA GEMS (<code>.crt</code>)</strong> ou ajoutez des domaines locaux (ex. <code>gems.home.lan</code>) avec rechargement instantané, modifiez votre <strong>Code PIN Installateur</strong> et consultez la <strong>Politique de Sécurité &amp; Support Firmware</strong> New Energy Grid reliée à <code>/.well-known/security.txt</code>.</div>
     </div>
   </div>
 

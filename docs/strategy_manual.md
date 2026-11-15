@@ -64,8 +64,9 @@ The core control loop executes every second:
 ### 2.4 Strict Country & Regional Isolation Guarantee
 **Goal:** Ensure country-specific regulatory mechanisms never affect or appear on installations in another country.
 - **Flanders (`BE` + `flanders`):** Exclusively enables the 15-minute *Capaciteitstarief* rolling peak shaver (`capacity_peak_limit_kw`, `2.50 kW` statutory baseline), Smart Adaptive Ceiling, peak-ceiling warnings, and Flemish Green Power Certificates (*Groenestroomcertificaten* / GSC).
-- **Belgium (`BE` — Flanders, Wallonia, Brussels):** Exclusively enables Belgian Elia renewable grid-mix synchronization, Belgian Super-Dal (`01:00–07:00`) optimization, and Belgian DSO IEC 60870-5-104 telecontrol.
-- **Netherlands (`NL`), Germany (`DE`), Luxembourg (`LU`), and Other Regions:** Selecting a non-Flemish country or a Dutch energy contract automatically disables and hides Flemish *Capaciteitstarief* peak shaving, zeroes GSC subsidy offsets, disables Belgian Elia/Super-Dal/IEC-104 services, and restricts German `§14a EnWG` controllable-load dimming strictly to German (`DE`) installations.
+- **Wallonia (`BE` + `wallonia`):** Exclusively enables the official CWaPE 7-days/week **`Tarif Impact`** distribution schedule (`ECO`: `01:00–07:00` & `11:00–17:00`; `MEDIUM`: `07:00–11:00` & `22:00–01:00`; `PIC`: `17:00–22:00`), shifting `dynamic_forecast` battery charging and Smart EV charging into `ECO` windows while discharging into `17:00–22:00` `PIC` windows.
+- **Belgium (`BE` — Flanders, Wallonia, Brussels):** Exclusively enables Belgian Elia renewable grid-mix synchronization, Belgian Super-Dal (`01:00–07:00`) optimization, 2027 Belgian federal special excise (`€0.0392/kWh` excl. 6% BTW) helpers, and Belgian DSO IEC 60870-5-104 telecontrol.
+- **Netherlands (`NL`), Germany (`DE`), Luxembourg (`LU`), and Other Regions:** Selecting a non-Flemish country or a Dutch energy contract automatically disables and hides Flemish *Capaciteitstarief* peak shaving, zeroes GSC subsidy offsets, disables Belgian Elia/Super-Dal/IEC-104 services, restricts post-2027 Dutch *salderingsregeling* feed-in cost (`fixed_feed_in_cost_kwh`) and `>= 50%` bare-supply export floor checks strictly to `NL`, and restricts German `§14a EnWG` controllable-load dimming strictly to German (`DE`) installations.
 
 ### 2.5 Flemish Groenestroomcertificaten (GSC) Value Protection (Flanders Only)
 **Goal:** Prevent unwarranted solar curtailment and preserve green certificate income for legacy Flemish PV installations during negative Day-Ahead spot price hours.
@@ -116,21 +117,20 @@ GEMS controls smart EV charging stations via **Modbus TCP/RTU fieldbus (preferre
 | ![Energy Contract Tab](../screenshots/settings_contract.png) | ![Tariff Visualizer](../screenshots/settings_contract_tariffs.png) |
 
 ### 5.1 Supported Belgian & Dutch Provider Presets
-- **Vattenfall Nederland — FlexPrijs (`vattenfall_dynamic`, NL)**: Hourly EPEX Spot NL (`1.00×`) pass-through + `€0.0211/kWh` procurement markup (*Inkoopvergoeding*), `€95.40/yr` fixed subscription (*Vastrecht*), statutory Dutch *Energiebelasting* (`€0.1316/kWh`), `21%` BTW, and `1.00×` EPEX Spot NL feed-in compensation (`€0.0000/kWh` deduction).
-- **Eneco Dynamic & Frank Energie Dynamic (`NL` / `BE`)**: Regional EPEX NL or EPEX BE spot formulas with automatic VAT (`21%` NL / `6%` BE) and statutory tax presets.
+- **Vattenfall Nederland — FlexPrijs (`vattenfall_dynamic`, NL)**: Quarter-hour (`15m`) or clock-hour averaged (`60m`) EPEX Spot NL (`1.00×`) pass-through + `€0.0211/kWh` procurement markup (*Inkoopvergoeding*), `€95.40/yr` fixed subscription (*Vastrecht*), statutory excl.-VAT Dutch *Energiebelasting* presets (**2026: `€0.09161/kWh`** / **2027: `€0.08802/kWh`** excl. `21%` BTW), `21%` BTW, and `1.00×` EPEX Spot NL feed-in compensation (`€0.0000/kWh` deduction).
+- **Eneco Dynamic & Frank Energie Dynamic (`NL` / `BE`)**: Regional EPEX NL or EPEX BE spot formulas with selectable `15m` vs `60m` spot settlement granularity, automatic VAT (`21%` NL / `6%` BE), and statutory tax presets.
 - **TotalEnergies Pixel Dynamic**: Multiplier, markup (€/kWh), annual base subscription fee, and injection deductions.
 - **Mega Smart / Cosy Dynamic**: Transparent dynamic formula with custom multiplier and retail markup.
 - **Bolt Dynamisch**: 100% local green dynamic contract with real-time pass-through pricing.
 - **Engie Dynamic & Flextime**: EPEX pass-through and multi-tier time-of-use markups.
 - **Luminus Dynamic, Ecopower, Dats 24, Octa+, Trevion, Aspiravi**.
-- **Belgian Dual-Tariff (Piek/Dal)**: Day/night rate schedules with DNO distribution grid fee presets.
+- **Belgian Dual-Tariff (Piek/Dal) & Dutch Post-2027 Fixed Contracts**: Day/night rate schedules with DNO presets, plus optional Dutch post-saldering *terugleverkosten* (`fixed_feed_in_cost_kwh`) and statutory `>= 50%` bare-supply export floor checks.
 
 ### 5.2 DNO Grid & Distribution Presets
-- **Netherlands (Liander / Enexis / Stedin)**: Dutch statutory *Energiebelasting* (`€0.1316/kWh`) + `21%` BTW (`3×25A` residential connection tier protection via per-phase DLB).
-- **Fluvius (Flanders)**: €0.0204/kWh distribution grid and transmission excise + 6% BTW.
-- **ORES (Wallonia)**: €0.0950/kWh network fee + 6% BTW.
-- **RESA (Liège)**: €0.0920/kWh network fee + 6% BTW.
-- **SIBELGA (Brussels)**: €0.0820/kWh network fee + 6% BTW.
+- **Netherlands (Liander / Enexis / Stedin)**: Statutory excl.-VAT Dutch *Energiebelasting* presets (**2026: `€0.09161/kWh`** / **2027: `€0.08802/kWh`**) + `21%` BTW (`3×25A` residential connection tier protection via per-phase DLB).
+- **Fluvius (Flanders)**: €0.0204/kWh distribution grid fee or 2027 combined DNO + federal special excise (`€0.0392/kWh` = €39.20/MWh) preset + 6% BTW.
+- **ORES & RESA (Wallonia — Flat or CWaPE `Tarif Impact`)**: Flat network presets (€0.0950 / €0.0920/kWh + 2027 federal excise helper) or CWaPE 7-days/week **`Tarif Impact`** (`ECO`: `01:00–07:00` & `11:00–17:00`, RESA `€0.0252` / ORES `€0.0284`; `MEDIUM`: `07:00–11:00` & `22:00–01:00`, RESA `€0.0755` / ORES `€0.0812`; `PIC`: `17:00–22:00`, RESA `€0.1258` / ORES `€0.1345` €/kWh excl. 6% BTW).
+- **SIBELGA (Brussels)**: €0.0820/kWh network fee (plus 2027 federal excise preset) + 6% BTW.
 
 ### 5.3 Live 24-Hour Tariff Curve Visualizer
 - **Stacked Cost Breakdown**: Visualizes the 4 cost components for every hour: Raw EPEX Spot wholesale, Supplier Markup, DNO Distribution / Energy Tax Fee, and VAT (`6%` BE residential / `21%` NL).

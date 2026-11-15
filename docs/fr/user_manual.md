@@ -116,9 +116,9 @@ Ouvrez la vue **Paramètres** depuis le menu latéral (réductible via le bouton
 | :---: | :---: |
 | ![Onglet Contrat d'énergie](../../screenshots/settings_contract.png) | ![Visualiseur Tarifaire](../../screenshots/settings_contract_tariffs.png) |
 
-* **`contract_type`** : Préréglages natifs pour les contrats dynamiques néerlandais (**Vattenfall Nederland — FlexPrijs, Eneco Dynamic, Frank Energie Dynamic**), les contrats dynamiques belges (**TotalEnergies Pixel Dynamic, Mega Smart/Cosy Dynamic, Bolt Dynamisch, Engie Dynamic / Flextime, Luminus Dynamic, Ecopower, Dats 24, Octa+, Trevion, Aspiravi**), le Bi-horaire belge (Plein/Creux + TVA 6 %), Enovos Dynamic (Luxembourg) et les tarifs fixes/dynamiques génériques.
-* **Préréglages GRD & Taxes Légales** : Profils intégrés pour la taxe néerlandaise *Energiebelasting* (`0,1316 €/kWh` + TVA 21 %), Fluvius (Flandre), ORES (Wallonie), RESA (Liège) et SIBELGA (Bruxelles).
-* **Visualiseur Tarifaire 24h en Direct** : Courbe horaire empilée détaillant le prix de gros EPEX spot, la marge fournisseur, les frais de distribution GRD / taxes, la TVA (`6 %` BE / `21 %` NL), la rémunération d'injection solaire et les alertes d'écrêtement à prix négatif.
+* **`contract_type`** : Préréglages natifs pour les contrats dynamiques néerlandais (**Vattenfall Nederland — FlexPrijs, Eneco Dynamic, Frank Energie Dynamic**), les contrats dynamiques belges (**TotalEnergies Pixel Dynamic, Mega Smart/Cosy Dynamic, Bolt Dynamisch, Engie Dynamic / Flextime, Luminus Dynamic, Ecopower, Dats 24, Octa+, Trevion, Aspiravi**), le Bi-horaire belge (Plein/Creux + TVA 6 %), Enovos Dynamic (Luxembourg) et les tarifs fixes/dynamiques (incluant aux Pays-Bas les frais d'injection post-2027 `fixed_feed_in_cost_kwh`, le contrôle du plancher légal `>= 50 %` et le choix de règlement spot `15m` / `60m`).
+* **Préréglages GRD & Taxes Légales** : Profils intégrés pour la taxe néerlandaise *Energiebelasting* HTVA (**2026 : `0,09161 €/kWh`** / **2027 : `0,08802 €/kWh`** + TVA 21 %), Fluvius (Flandre), ORES & RESA (Wallonie fixe ou grille CWaPE 7j/7 **`Tarif Impact`** `ECO`/`MEDIUM`/`PIC`), SIBELGA (Bruxelles) et l'accise fédérale spéciale belge 2027 (`0,0392 €/kWh` HTVA 6 %).
+* **Visualiseur Tarifaire 24h en Direct** : Courbe `15m` / `60m` empilée détaillant le prix de gros EPEX spot, la marge fournisseur, les frais de distribution GRD / taxes (codés par couleur `ECO`/`MEDIUM`/`PIC` en Wallonie), la TVA (`6 %` BE / `21 %` NL), la rémunération d'injection solaire et les alertes d'écrêtement à prix négatif.
 
 ---
 

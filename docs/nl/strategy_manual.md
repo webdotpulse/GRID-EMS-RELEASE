@@ -63,8 +63,9 @@ De centrale regellus wordt elke seconde uitgevoerd:
 ### 2.4 Strikte Land- & Regio-isolatiegarantie
 **Doel:** Garanderen dat landspecifieke netregels nooit zichtbaar zijn of ingrijpen op installaties in een ander land.
 - **Vlaanderen (`BE` + `flanders`):** Activeert exclusief de 15-minuten *Capaciteitstarief*-piekbewaker (`capacity_peak_limit_kw`, wettelijk minimum `2,50 kW`), het Slim Adaptief Plafond, piekwaarschuwingen en Vlaamse *Groenestroomcertificaten* (GSC).
-- **België (`BE` — Vlaanderen, Wallonië, Brussel):** Activeert exclusief de Belgische Elia hernieuwbare energiemix-synchronisatie, Belgische Super-Dal-optimalisatie (`01:00–07:00`) en DNB IEC 60870-5-104 telecontrole.
-- **Nederland (`NL`), Duitsland (`DE`), Luxemburg (`LU`) en Overige Regio's:** Bij keuze van een niet-Vlaamse regio of een Nederlands energiecontract worden Vlaamse *Capaciteitstarief*-piekbewaking en GSC-compensaties automatisch uitgeschakeld en verborgen, worden Belgische Elia/Super-Dal/IEC-104-diensten gedeactiveerd en blijft Duitse `§14a EnWG`-sturing strikt beperkt tot Duitse (`DE`) installaties.
+- **Wallonië (`BE` + `wallonia`):** Activeert exclusief het officiële CWaPE **`Tarif Impact`**-distributietarief (7 dagen/week: `ECO` `01:00–07:00` & `11:00–17:00`; `MEDIUM` `07:00–11:00` & `22:00–01:00`; `PIC` `17:00–22:00`), waardoor `dynamic_forecast` batterijladen en Slim EV-laden automatisch naar `ECO`-vensters verschuiven en tijdens `17:00–22:00` (`PIC`) ontladen.
+- **België (`BE` — Vlaanderen, Wallonië, Brussel):** Activeert exclusief de Belgische Elia hernieuwbare energiemix-synchronisatie, Belgische Super-Dal-optimalisatie (`01:00–07:00`), 2027 bijzondere federale accijnspresets (`€ 0,0392/kWh` excl. 6% btw) en DNB IEC 60870-5-104 telecontrole.
+- **Nederland (`NL`), Duitsland (`DE`), Luxemburg (`LU`) en Overige Regio's:** Bij keuze van een niet-Vlaamse regio of een Nederlands energiecontract worden Vlaamse *Capaciteitstarief*-piekbewaking en GSC-compensaties automatisch uitgeschakeld en verborgen, worden Belgische Elia/Super-Dal/IEC-104-diensten gedeactiveerd, blijven post-2027 *terugleverkosten* (`fixed_feed_in_cost_kwh`) en de `>= 50%`-minimumvergoeding strikt beperkt tot `NL`, en blijft Duitse `§14a EnWG`-sturing strikt beperkt tot Duitse (`DE`) installaties.
 
 ### 2.5 Bescherming van Vlaamse Groenestroomcertificaten (GSC — Enkel Vlaanderen)
 **Doel:** Onterecht terugregelen van zonnepanelen voorkomen en certificaatinkomsten beschermen voor bestaande Vlaamse PV-installaties tijdens uren met negatieve Day-Ahead spotprijzen.
@@ -114,21 +115,20 @@ GEMS stuurt slimme EV-laadpalen aan via **Modbus TCP/RTU-veldbus (aanbevolen)** 
 | ![Tabblad Energiecontract](../../screenshots/settings_contract.png) | ![Tariefvisualisatie](../../screenshots/settings_contract_tariffs.png) |
 
 ### 5.1 Ondersteunde Belgische & Nederlandse Leveranciersprofielen
-- **Vattenfall Nederland — FlexPrijs (`vattenfall_dynamic`, NL)**: Uurlijkse EPEX Spot NL (`1,00×`) doorgifte + `€ 0,0211/kWh` *Inkoopvergoeding*, `€ 95,40/jaar` *Vastrecht*, wettelijke Nederlandse *Energiebelasting* (`€ 0,1316/kWh`), `21%` btw en `1,00×` EPEX Spot NL terugleververgoeding (`€ 0,0000/kWh` inhouding).
-- **Eneco Dynamisch & Frank Energie Dynamisch (`NL` / `BE`)**: Regionale EPEX NL- of EPEX BE-spotformules met automatische btw (`21%` NL / `6%` BE) en wettelijke heffingen.
+- **Vattenfall Nederland — FlexPrijs (`vattenfall_dynamic`, NL)**: Kwartier- (`15m`) of klokuurgemiddelde (`60m`) EPEX Spot NL (`1,00×`) doorgifte + `€ 0,0211/kWh` *Inkoopvergoeding*, `€ 95,40/jaar` *Vastrecht*, wettelijke Nederlandse *Energiebelasting* excl. btw (**2026: `€ 0,09161/kWh`** / **2027: `€ 0,08802/kWh`** excl. `21%` btw), `21%` btw en `1,00×` EPEX Spot NL terugleververgoeding (`€ 0,0000/kWh` inhouding).
+- **Eneco Dynamisch & Frank Energie Dynamisch (`NL` / `BE`)**: Regionale EPEX NL- of EPEX BE-spotformules met keuze tussen `15m`- en `60m`-spotafrekening, automatische btw (`21%` NL / `6%` BE) en wettelijke heffingen.
 - **TotalEnergies Pixel Dynamic**: Factor, opslag (€/kWh), jaarlijkse abonnementskost en injectieformule.
 - **Mega Smart / Cosy Dynamic**: Transparante dynamische formule met instelbare factor en leveranciersopslag.
 - **Bolt Dynamisch**: 100% lokaal groen dynamisch contract met realtime spotdoorgifte.
 - **Engie Dynamic & Flextime**: EPEX-doorgifte en tijdgebonden tariefschijven.
 - **Luminus Dynamic, Ecopower, Dats 24, Octa+, Trevion, Aspiravi**.
-- **Belgisch Tweevoudig Tarief (Piek/Dal)**: Dag-/nachttarieven met vooraf ingestelde distributienettarieven.
+- **Belgisch Tweevoudig Tarief (Piek/Dal) & Nederlandse Post-2027 Vaste Contracten**: Dag-/nachttarieven met DNB-presets, plus optionele Nederlandse *terugleverkosten* (`fixed_feed_in_cost_kwh`) en controle op de wettelijke `>= 50%`-minimumvergoeding van het kale leveringstarief.
 
 ### 5.2 Netbeheerder- & Heffingsprofielen (DNB)
-- **Nederland (Liander / Enexis / Stedin)**: Wettelijke Nederlandse *Energiebelasting* (`€ 0,1316/kWh`) + `21%` btw (`3×25A` aansluitbewaking via per-fase DLB).
-- **Fluvius (Vlaanderen)**: € 0,0204/kWh distributienet- en accijnscomponent + 6% btw.
-- **ORES (Wallonië)**: € 0,0950/kWh nettarief + 6% btw.
-- **RESA (Luik)**: € 0,0920/kWh nettarief + 6% btw.
-- **SIBELGA (Brussel)**: € 0,0820/kWh nettarief + 6% btw.
+- **Nederland (Liander / Enexis / Stedin)**: Wettelijke Nederlandse *Energiebelasting*-presets excl. btw (**2026: `€ 0,09161/kWh`** / **2027: `€ 0,08802/kWh`**) + `21%` btw (`3×25A` aansluitbewaking via per-fase DLB).
+- **Fluvius (Vlaanderen)**: € 0,0204/kWh distributienettarief of gecombineerde 2027 nettarief + federale accijnspreset (`€ 0,0392/kWh` = € 39,20/MWh) + 6% btw.
+- **ORES & RESA (Wallonië — Vlak of CWaPE `Tarif Impact`)**: Vlakke nettarieven (€ 0,0950 / € 0,0920/kWh + 2027 federale accijns) of het CWaPE **`Tarif Impact`** 7 dagen/week (`ECO`: `01:00–07:00` & `11:00–17:00`, RESA `€ 0,0252` / ORES `€ 0,0284`; `MEDIUM`: `07:00–11:00` & `22:00–01:00`, RESA `€ 0,0755` / ORES `€ 0,0812`; `PIC`: `17:00–22:00`, RESA `€ 0,1258` / ORES `€ 0,1345` €/kWh excl. 6% btw).
+- **SIBELGA (Brussel)**: € 0,0820/kWh nettarief (inclusief 2027 federale accijnspreset) + 6% btw.
 
 ### 5.3 Live 24-uurs Tariefcurve-visualisatie
 - **Gestapelde Kostenopbouw**: Toont per uur de 4 prijscomponenten: kale EPEX Spot-groothandelsprijs, leveranciersopslag, netbeheer-/energiebelasting en btw (`6%` BE residentieel / `21%` NL).

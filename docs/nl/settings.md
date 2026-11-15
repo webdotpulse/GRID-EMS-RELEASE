@@ -104,7 +104,7 @@ Configureert uw leveranciersformule om realtime netto afnamekosten en teruglever
 | ![Tabblad Energiecontract](../../screenshots/settings_contract.png) | ![Tariefvisualisatie](../../screenshots/settings_contract_tariffs.png) |
 
 ### 3.1 Contracttypes (`contract_type`)
-* `vattenfall_dynamic`: **Vattenfall Nederland — FlexPrijs** (Nederland EPEX Spot NL `1,00×` doorgifte + `€ 0,0211/kWh` inkoopvergoeding, `€ 95,40/jr` vastrecht, `€ 0,1316/kWh` Nederlandse *Energiebelasting*, `21%` btw en `1,00×` EPEX Spot NL terugleververgoeding).
+* `vattenfall_dynamic`: **Vattenfall Nederland — FlexPrijs** (Nederland EPEX Spot NL `1,00×` doorgifte + `€ 0,0211/kWh` inkoopvergoeding, `€ 95,40/jr` vastrecht, wettelijke Nederlandse *Energiebelasting* excl. btw voor **2026 (`€ 0,09161/kWh` excl. 21% btw)** en **2027 (`€ 0,08802/kWh` excl. 21% btw)**, `21%` btw en `1,00×` EPEX Spot NL terugleververgoeding).
 * `eneco_dynamic`: Eneco Dynamisch (Nederland / België).
 * `frank_energie_dynamic`: Frank Energie Dynamisch (NL / BE).
 * `totalenergies_dynamic`: TotalEnergies Pixel Dynamic (België EPEX Spot BE doorgifte).
@@ -118,19 +118,22 @@ Configureert uw leveranciersformule om realtime netto afnamekosten en teruglever
 * `octa_dynamic`: Octa+ Dynamic (België).
 * `trevion_dynamic`: Trevion Dynamisch (België).
 * `aspiravi_dynamic`: Aspiravi Dynamisch (België).
-* `belgian_dual_tariff`: Belgisch Vast Tweevoudig Uurtarief (Piek/Dal + 6% btw).
-* `fixed`: Generiek Vast Tarief.
+* `belgium_dual_tariff`: Belgisch Vast Tweevoudig Uurtarief (Piek/Dal + 6% btw).
+* `fixed`: Vast / Variabel Tarief (inclusief optionele Nederlandse post-2027 *terugleverkosten* `fixed_feed_in_cost_kwh` en controle op de wettelijke minimumvergoeding `>= 50%` van het kale leveringstarief op `NL`-installaties).
 * `dynamic`: Generiek EPEX Dynamisch Tarief.
 * `enovos_dynamic`: Enovos Dynamic (Luxemburg).
 
-### 3.2 Parameters Dynamische Tariefformule
+### 3.2 Dynamische Tariefformule, Afrekenschaal & Regionale Nettarieven
 Voor Belgische en Nederlandse dynamische contracten wordt de effectieve afnameprijs berekend als:
 $$\text{Prijs}_{\text{afname}} = \left( (\text{EPEX} \times \text{Multiplier}) + \text{Markup} + \frac{\text{BaseFee}}{8760} + \text{DNO}_{\text{tax}} \right) \times (1 + \text{VAT})$$
 
 En de dynamische terugleververgoeding voor zonne-energie:
 $$\text{Prijs}_{\text{injectie}} = (\text{EPEX} \times \text{InjectMultiplier}) - \text{InjectMarkup}$$
 
-* **`tax_kwh`**: Distributienettarieven en wettelijke energieheffingen per verbruikte kWh (bijv. `0.1316` €/kWh Nederlandse *Energiebelasting*, `0.0204` €/kWh voor Fluvius Vlaanderen, `0.0950` €/kWh voor ORES Wallonië).
+* **`spot_settlement_granularity`**: Kiest tussen `"15m"` (native 15-minuten EPEX SDAC kwartierafrekening, standaard) en `"60m"` (berekent per klokuur het rekenkundig gemiddelde van de vier kwartierprijzen voor leveranciers met uurafrekening). In Nederland haalt `EnergyZeroProvider` standaard kwartiercurves op met automatische terugval op uurcurves.
+* **`tax_kwh`**: Distributienettarieven en wettelijke energieheffingen excl. btw per verbruikte kWh — met selecteerbare Nederlandse *Energiebelasting*-presets voor **2026 (`0.09161` €/kWh)** en **2027 (`0.08802` €/kWh)** excl. 21% btw, **Belgische bijzondere federale accijns 2027 (`0.0392` €/kWh = € 39,20/MWh excl. 6% btw)** en DNB-presets voor Fluvius Vlaanderen, ORES/RESA Wallonië en SIBELGA Brussel. Eerder opgeslagen maatwerkwaarden blijven bij een update ongewijzigd behouden.
+* **`fixed_feed_in_cost_kwh`** *(Enkel Nederland `NL` Vast/Variabel)*: Optionele *terugleverkosten* per geïnjecteerde kWh die worden afgetrokken van `fixed_inject_price_kwh` bij het berekenen van het netto terugleverrendement en `min_profitable_export_price`-terugregeling na het einde van de *salderingsregeling* op 1 januari 2027, inclusief live controle op de wettelijke ondergrens 2027–2029 (`>= 50%` van het kale leveringstarief excl. belasting en btw).
+* **`dno_tariff_mode`, `dno_impact_eco_kwh`, `dno_impact_medium_kwh`, `dno_impact_pic_kwh`** *(Enkel België `BE` + `wallonia`)*: Configureert het officiële CWaPE **`Tarif Impact`**-distributietarief (`"flat"` standaard | `"wallonia_impact"`, 7 dagen/week): **`ECO`** (`01:00–07:00` & `11:00–17:00`, bijv. RESA `0.0252` / ORES `0.0284` €/kWh), **`MEDIUM`** (`07:00–11:00` & `22:00–01:00`, bijv. RESA `0.0755` / ORES `0.0812` €/kWh) en **`PIC`** (`17:00–22:00`, bijv. RESA `0.1258` / ORES `0.1345` €/kWh).
 * **`vat_rate`**: Btw-tarief ingevoerd als decimaal getal (bijv. `0.21` voor 21% btw in Nederland, `0.06` voor 6% residentiële btw in België).
 * **Leveranciersfactoren & Opslagen**: Specifieke parameters per energieleverancier (bijv. `vattenfall_multiplier`, `vattenfall_markup`, `vattenfall_base_fee`, `vattenfall_inject_multiplier`, `vattenfall_inject_markup`, `totalenergies_multiplier`, `totalenergies_markup`, `totalenergies_base_fee`, `totalenergies_inject_multiplier`, `totalenergies_inject_markup`).
 
@@ -161,6 +164,8 @@ Configuratie voor geautomatiseerde OTA-updates, cryptografisch geverifieerde `.d
   * **Beschrijving:** Woningeigenaren en installateurs kunnen de controller veilig herstarten (**Systeem herstarten**) via **Instellingen &rarr; Systeeminformatie** en live **Debug**-tests uitvoeren op geconfigureerde toestellen onder **Instellingen &rarr; Verbonden Toestellen** om meetwaarden te controleren en diagnostische templaterapporten rechtstreeks naar **GRID-EMS-SERVER** te sturen zonder de installateursmodus te hoeven ontgrendelen.
 * **`github_token`**
   * **Beschrijving:** Optioneel GitHub Personal Access Token (classic) om IP-rate-limiting te vermijden bij het opvragen van nieuwe GEMS-versies; als een verlopen of ingetrokken token is ingesteld, schakelt GEMS automatisch terug naar onbeveiligde publieke controle zodat updatechecks altijd blijven werken.
+* **EU Cyber Resilience Act (CRA) Beveiligingsbeleid & Kwetsbaarheidsmelding (`/.well-known/security.txt`)**
+  * **Beschrijving:** **Instellingen &rarr; Systeeminformatie** toont het New Energy Grid **Beveiligings- & Firmware-ondersteuningsbeleid** (Ed25519-ondertekende firmwareverificatie, CycloneDX 1.5 SBOM-herkomst en gecoördineerde kwetsbaarheidsmelding via `/.well-known/security.txt`), zonder CPU-belasting, RAM- of hardwaretelemetrie te tonen en met dynamische versienummering op basis van `git describe --tags --always`.
 
 ---
 

@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Systeemversie</span>
-          <span class="cover-meta-val">GEMS v9.38.1</span>
+          <span class="cover-meta-val">GEMS v9.39.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Voor Wie Is Deze Gids</span>
@@ -1501,7 +1501,8 @@
         <td>
           • <strong>Piektarief (€/kWh):</strong> Dagtarief elektriciteit (weekdagen 07:00–22:00).<br>
           • <strong>Daltarief (€/kWh):</strong> Nacht- &amp; weekendtarief (22:00–07:00 + weekends).<br>
-          • <strong>Terugleververgoeding (€/kWh):</strong> Vaste vergoeding per geïnjecteerde kWh zonnestroom.
+          • <strong>Terugleververgoeding (€/kWh):</strong> Vaste vergoeding per geïnjecteerde kWh zonnestroom.<br>
+          • <strong>Post-2027 Terugleverregels (Enkel Nederland):</strong> Optionele <code>fixed_feed_in_cost_kwh</code> (<em>terugleverkosten</em>) en live controle op de wettelijke 2027–2029 minimumvergoeding (<code>&ge; 50%</code> van het kale leveringstarief).
         </td>
       </tr>
       <tr>
@@ -1533,28 +1534,29 @@
         </td>
       </tr>
       <tr>
-        <td><strong>5. Dynamic-NL (Nederlandse Uurlijkse EPEX)</strong></td>
-        <td>Nederlandse huishoudens met een dynamisch uurtariefcontract in Nederland.</td>
+        <td><strong>5. Dynamic-NL (Nederlandse 15m / 60m EPEX)</strong></td>
+        <td>Nederlandse huishoudens met een dynamisch kwartier- of uurtariefcontract in Nederland.</td>
         <td>
-          • <strong>Nederlandse Leverancierspresets:</strong> Bevat o.a. <strong>Vattenfall Nederland — FlexPrijs</strong> (<code>1,00× EPEX NL + €0,0211/kWh</code> opslag, <code>€95,40/jr</code> Vastrecht, <code>0,1316 €/kWh</code> Energiebelasting, <code>21%</code> BTW, <code>1,00×</code> teruglevering), <strong>Eneco Dynamisch</strong> en <strong>Frank Energie Dynamisch</strong>:<br>
+          • <strong>Spot-afrekenschaal:</strong> Keuze tussen <code>15-Minuten Kwartierprijs (15m)</code> en <code>Uurgemiddelde (60m)</code>.<br>
+          • <strong>Nederlandse Leverancierspresets:</strong> Bevat o.a. <strong>Vattenfall Nederland — FlexPrijs</strong> (<code>1,00× EPEX NL + €0,0211/kWh</code> opslag, <code>€95,40/jr</code> Vastrecht, Energiebelasting excl. btw voor 2026 <code>0,09161 €/kWh</code> &amp; 2027 <code>0,08802 €/kWh</code>, <code>21%</code> BTW, <code>1,00×</code> teruglevering), <strong>Eneco Dynamisch</strong> en <strong>Frank Energie Dynamisch</strong>:<br>
           &nbsp;&nbsp;– <code>Inkoopvergoeding Afname / Teruglevering (€/kWh)</code><br>
-          &nbsp;&nbsp;– <code>Energiebelasting (€/kWh)</code> (wettelijke NL-energiebelasting, standaard <code>0,1316 €/kWh</code>)<br>
+          &nbsp;&nbsp;– <code>Energiebelasting (€/kWh, excl. 21% BTW)</code> (presets voor 2026 <code>0,09161</code> en 2027 <code>0,08802 €/kWh</code>)<br>
           &nbsp;&nbsp;– <code>Terugleverkosten (€/kWh)</code> &amp; <code>Vastrecht (€/jr)</code>.
         </td>
       </tr>
     </tbody>
   </table>
 
-  <h2 class="subsection-title">Regionale Netbeheerderspresets, Heffingen &amp; Live 24-uurs Tariefvisualisatie</h2>
+  <h2 class="subsection-title">Regionale Netbeheerderspresets, Waalse <code>Tarif Impact</code> &amp; Live 24-uurs Tariefvisualisatie</h2>
   <div class="setting-card-grid">
     <div class="setting-card">
-      <div class="setting-name"><span>Netbeheerder-preset &amp; Nettarieven (€/kWh)</span> <span class="setting-default-pill">Fluvius / ORES / Resa / NL</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Klik op de knop van uw regionale netbeheerder (<strong>Fluvius</strong>, <strong>ORES</strong>, <strong>Resa</strong>, <strong>Sibelga</strong> of <strong>NL Netbeheerders</strong>) om automatisch de <strong>Distributie- &amp; Transportheffingen (€/kWh)</strong> en het <strong>BTW-tarief</strong> (<code>0.06</code> voor 6% BE particulier, <code>0.21</code> voor 21% NL/Zakelijk) in te vullen.</div>
+      <div class="setting-name"><span>Netbeheerder-presets, 2027 Accijns &amp; Waalse <code>Tarif Impact</code></span> <span class="setting-default-pill">Fluvius / ORES / RESA / NL</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Klik op uw regionale netbeheerder (<strong>Fluvius</strong>, <strong>ORES</strong>, <strong>RESA</strong>, <strong>Sibelga</strong>, Belgische federale accijns 2027 <code>0,0392 €/kWh</code> of <strong>NL 2026/2027</strong>) om <strong>Nettarieven &amp; Heffingen (€/kWh excl. btw)</strong> en het <strong>BTW-tarief</strong> (<code>0.06</code> BE / <code>0.21</code> NL) in te vullen. In Wallonië activeert u hier tevens het officiële CWaPE <strong><code>Tarif Impact</code></strong> (<code>ECO</code> 01–07u &amp; 11–17u, <code>MEDIUM</code> 07–11u &amp; 22–01u, <code>PIC</code> 17–22u).</div>
     </div>
 
     <div class="setting-card green">
-      <div class="setting-name"><span>Live 24-uurs Effectieve Tariefvisualisatie</span> <span class="setting-default-pill">Gestapeld &amp; Netto</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Toont uw exacte consumentenprijs per uur voor vandaag: <strong>Huidige All-In Prijs</strong>, <strong>Goedkoopste 24u-venster</strong> (beste uur voor EV/batterij), <strong>Duurste 24u-piek</strong> en <strong>Huidige Injectievergoeding</strong>, plus een live <strong>Terugregel-adviesbanner</strong> wanneer middagprijzen negatief worden!</div>
+      <div class="setting-name"><span>Live 24-uurs Effectieve Tariefvisualisatie</span> <span class="setting-default-pill">15m / 60m Gestapeld</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Toont uw exacte <code>15m</code>- of <code>60m</code>-consumentenprijs voor vandaag: <strong>Huidige All-In Prijs</strong>, <strong>Goedkoopste 24u-venster</strong>, <strong>Duurste 24u-piek</strong>, kleurgecodeerde Waalse <code>ECO</code>/<code>MEDIUM</code>/<code>PIC</code>-schijven en <strong>Huidige Injectievergoeding</strong> met live <strong>Terugregel-adviesbanner</strong>!</div>
     </div>
   </div>
 
@@ -1687,8 +1689,8 @@
     </div>
 
     <div class="setting-card amber">
-      <div class="setting-name"><span>Lokale CA &amp; SSL-certificaat + PIN-rotatie</span> <span class="setting-default-pill">HTTPS-vertrouwen</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Download het GEMS <strong>Root-CA-certificaat (<code>.crt</code>)</strong> of voeg eigen lokale domeinen toe (bijv. <code>gems.home.lan</code>) met direct herladen zonder herstart én stap-voor-stap instructies voor Chrome, Safari/iOS, macOS, Windows en Android. Hier wijzigt u tevens uw <strong>Installateurs-PIN</strong>.</div>
+      <div class="setting-name"><span>Lokale CA &amp; SSL-certificaat + PIN &amp; EU CRA-beleid</span> <span class="setting-default-pill">HTTPS &amp; EU CRA</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Download het GEMS <strong>Root-CA-certificaat (<code>.crt</code>)</strong> of voeg eigen lokale domeinen toe (bijv. <code>gems.home.lan</code>) met direct herladen, wijzig uw <strong>Installateurs-PIN</strong> en raadpleeg het New Energy Grid <strong>Beveiligings- &amp; Firmware-ondersteuningsbeleid</strong> met koppeling naar <code>/.well-known/security.txt</code>.</div>
     </div>
   </div>
 

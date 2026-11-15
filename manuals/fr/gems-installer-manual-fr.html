@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Micrologiciel / Version</span>
-          <span class="cover-meta-val" data-version-tag="release">v9.38.1-release</span>
+          <span class="cover-meta-val" data-version-tag="release">v9.39.0-release</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Architecture Matérielle</span>
@@ -438,7 +438,7 @@
 
     <div class="cover-footer">
       <span>Système de Gestion d'Énergie GEMS (GRID-EMS)</span>
-      <span>Référence Technique Confidentielle • Documentation v9.38.1</span>
+      <span>Référence Technique Confidentielle • Documentation v9.39.0</span>
     </div>
   </div>
 
@@ -620,7 +620,7 @@
     TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)<br>
     curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"<br>
     <br>
-    # 2. Installer le paquet et ses dépendances (ex. sudo dpkg -i gems_9.38.1_arm64.deb)<br>
+    # 2. Installer le paquet et ses dépendances (ex. sudo dpkg -i gems_9.39.0_arm64.deb)<br>
     sudo dpkg -i "gems_${TAG#v}_arm64.deb"<br>
     sudo apt-get install -f -y<br>
     <br>
@@ -1116,10 +1116,11 @@
         <td>
           - Prélèvement Heures Pleines (€/kWh)<br>
           - Prélèvement Heures Creuses (€/kWh)<br>
-          - Tarif d'Injection Fixe (€/kWh)
+          - Tarif d'Injection Fixe (€/kWh)<br>
+          - Option NL Post-2027 <code>fixed_feed_in_cost_kwh</code> &amp; plancher légal <code>&ge; 50 %</code>
         </td>
         <td>
-          Choisissez cette option si le client n'a <strong>pas</strong> de contrat dynamique horaire. Saisissez un tarif unique (mono-horaire) ou les tarifs Jour/Nuit (bi-horaire).
+          Choisissez cette option hors contrat dynamique. Prend en charge les frais d'injection NL post-saldering et la grille wallonne CWaPE <code>Tarif Impact</code>.
         </td>
       </tr>
       <tr>
@@ -1136,12 +1137,13 @@
       </tr>
       <tr>
         <td><strong>Assistant C :<br>Dynamic-BE</strong></td>
-        <td>Contrats horaires belges indexés EPEX Spot Day-Ahead</td>
+        <td>Contrats belges 15m / 60m indexés EPEX Spot Day-Ahead</td>
         <td>
-          <strong>Fournisseurs préconfigurés :</strong> TotalEnergies Pixel Dynamic, Mega Smart/Cosy, Bolt Dynamisch, Engie Dynamic, Dats 24, Luminus, Eneco, Frank Energie, Ecopower, Octa+, Trevion, Aspiravi.
+          <strong>Fournisseurs préconfigurés :</strong> TotalEnergies Pixel Dynamic, Mega Smart/Cosy, Bolt Dynamisch, Engie Dynamic, Dats 24, Luminus, Eneco, Frank Energie, Ecopower, Octa+, Trevion, Aspiravi.<br>
+          Inclut le règlement <code>15m</code>/<code>60m</code>, l'accise fédérale belge 2027 (<code>0,0392 €/kWh</code>) et le <code>Tarif Impact</code> CWaPE wallon (<code>ECO</code>/<code>MEDIUM</code>/<code>PIC</code>).
         </td>
         <td>
-          <strong>Choix par défaut pour les contrats dynamiques en Belgique.</strong> Sélectionnez le segment (Résidentiel 6 % TVA vs Professionnel 21 % TVA) et la date de souscription pour pré-remplir la formule exacte.
+          <strong>Choix par défaut pour les contrats dynamiques en Belgique.</strong> Sélectionnez le segment (Résidentiel 6 % vs Professionnel 21 % TVA), la région et la date de souscription.
         </td>
       </tr>
       <tr>
@@ -1158,13 +1160,13 @@
       </tr>
       <tr>
         <td><strong>Assistant E :<br>Dynamic-NL</strong></td>
-        <td>Contrats dynamiques néerlandais intégrant la fiscalité énergétique légale</td>
+        <td>Contrats dynamiques néerlandais 15m / 60m intégrant la fiscalité légale</td>
         <td>
           <strong>Fournisseurs NL préconfigurés :</strong> <strong>Vattenfall Nederland — FlexPrijs</strong> (marge <code>1,00× EPEX NL + 0,0211 €/kWh</code> + redevance fixe <code>95,40 €/an</code> Vastrecht), Eneco Dynamic, Frank Energie Dynamic et contrats EPEX NL personnalisés.<br>
-          Inclut l'Energiebelasting légale (<code>0,1316 €/kWh</code>), 21 % de TVA et les frais d'injection (<em>Terugleverkosten</em>).
+          Inclut les préréglages HTVA d'Energiebelasting (2026 : <code>0,09161 €/kWh</code> / 2027 : <code>0,08802 €/kWh</code>), 21 % de TVA, le règlement <code>15m</code>/<code>60m</code> et les <em>Terugleverkosten</em>.
         </td>
         <td>
-          <strong>Standard pour les installations aux Pays-Bas.</strong> Modélise fidèlement les frais d'injection néerlandais (<em>terugleverkosten</em>) et applique une isolation réglementaire stricte par pays.
+          <strong>Standard pour les installations aux Pays-Bas.</strong> Modélise fidèlement l'Energiebelasting HTVA, les frais d'injection néerlandais (<em>terugleverkosten</em>) et l'isolation réglementaire stricte par pays.
         </td>
       </tr>
     </tbody>

@@ -104,7 +104,7 @@ Configures your supplier contract formula to calculate real-time net import and 
 | ![Energy Contract Tab](../screenshots/settings_contract.png) | ![Tariff Visualizer](../screenshots/settings_contract_tariffs.png) |
 
 ### 3.1 Contract Types (`contract_type`)
-* `vattenfall_dynamic`: **Vattenfall Nederland — FlexPrijs** (Netherlands EPEX Spot NL `1.00×` pass-through + `€0.0211/kWh` procurement markup, `€95.40/yr` fixed subscription, `€0.1316/kWh` Dutch *Energiebelasting*, `21%` BTW, and `1.00×` EPEX Spot NL feed-in return).
+* `vattenfall_dynamic`: **Vattenfall Nederland — FlexPrijs** (Netherlands EPEX Spot NL `1.00×` pass-through + `€0.0211/kWh` procurement markup, `€95.40/yr` fixed subscription, statutory excl.-VAT Dutch *Energiebelasting* presets for **2026 (`€0.09161/kWh` excl. 21% BTW)** and **2027 (`€0.08802/kWh` excl. 21% BTW)**, `21%` BTW, and `1.00×` EPEX Spot NL feed-in return).
 * `eneco_dynamic`: Eneco Dynamic (Netherlands / Belgium).
 * `frank_energie_dynamic`: Frank Energie Dynamic (NL / BE).
 * `totalenergies_dynamic`: TotalEnergies Pixel Dynamic (Belgium EPEX Spot BE pass-through).
@@ -118,19 +118,22 @@ Configures your supplier contract formula to calculate real-time net import and 
 * `octa_dynamic`: Octa+ Dynamic (Belgium).
 * `trevion_dynamic`: Trevion Dynamisch (Belgium).
 * `aspiravi_dynamic`: Aspiravi Dynamisch (Belgium).
-* `belgian_dual_tariff`: Belgian Fixed Peak/Off-Peak (Piek/Dal + 6% BTW).
-* `fixed`: Generic Fixed Rate structure.
+* `belgium_dual_tariff`: Belgian Fixed Peak/Off-Peak (Piek/Dal + 6% BTW).
+* `fixed`: Fixed / Variable Rate structure (including optional Dutch post-2027 *terugleverkosten* `fixed_feed_in_cost_kwh` and statutory `>= 50%` bare-supply export floor check on `NL` sites).
 * `dynamic`: Generic EPEX Dynamic structure.
 * `enovos_dynamic`: Enovos Dynamic (Luxembourg).
 
-### 3.2 Dynamic Formula Parameters
+### 3.2 Dynamic Formula, Settlement Granularity & Regional DNO Parameters
 For Belgian and Dutch dynamic contracts, the effective import price is calculated as:
 $$\text{Price}_{\text{import}} = \left( (\text{EPEX} \times \text{Multiplier}) + \text{Markup} + \frac{\text{BaseFee}}{8760} + \text{DNO}_{\text{tax}} \right) \times (1 + \text{VAT})$$
 
 And dynamic solar export return:
 $$\text{Price}_{\text{export}} = (\text{EPEX} \times \text{InjectMultiplier}) - \text{InjectMarkup}$$
 
-* **`tax_kwh`**: Distribution grid & statutory energy taxes per consumed kWh (e.g., `0.1316` €/kWh Dutch *Energiebelasting*, `0.0204` €/kWh for Fluvius Flanders, `0.0950` €/kWh for ORES Wallonia).
+* **`spot_settlement_granularity`**: Selects `"15m"` (native 15-minute EPEX SDAC quarter-hour settlement, default) or `"60m"` (averages each clock hour's four 15-minute spot prices into a single hourly billing price for suppliers settling on hourly averages). In the Netherlands, `EnergyZeroProvider` natively ingests 15-minute curves with automatic fallback to hourly curves.
+* **`tax_kwh`**: Excl.-VAT distribution grid & statutory energy taxes per consumed kWh — including selectable **2026 (`0.09161` €/kWh)** and **2027 (`0.08802` €/kWh)** Dutch *Energiebelasting* presets (excl. 21% BTW), **2027 Belgian federal special excise (`0.0392` €/kWh = €39.20/MWh excl. 6% BTW)**, and DNO presets for Fluvius Flanders, ORES/RESA Wallonia, and SIBELGA Brussels. Custom saved values are always preserved on upgrade.
+* **`fixed_feed_in_cost_kwh`** *(Netherlands `NL` Fixed/Variable Only)*: Optional per-kWh feed-in surcharge (*terugleverkosten*) subtracted from `fixed_inject_price_kwh` when computing net solar export return and `min_profitable_export_price` curtailment after the 1 January 2027 *salderingsregeling* abolition, paired with a live validation check for the statutory 2027–2029 minimum export floor (`>= 50%` of bare supply tariff excl. taxes and BTW).
+* **`dno_tariff_mode`, `dno_impact_eco_kwh`, `dno_impact_medium_kwh`, `dno_impact_pic_kwh`** *(Belgium `BE` + `wallonia` Only)*: Configures the official CWaPE 7-days/week **`Tarif Impact`** distribution schedule (`"flat"` default | `"wallonia_impact"`): **`ECO`** (`01:00–07:00` & `11:00–17:00`, e.g. RESA `0.0252` / ORES `0.0284` €/kWh), **`MEDIUM`** (`07:00–11:00` & `22:00–01:00`, e.g. RESA `0.0755` / ORES `0.0812` €/kWh), and **`PIC`** (`17:00–22:00`, e.g. RESA `0.1258` / ORES `0.1345` €/kWh).
 * **`vat_rate`**: Value Added Tax rate entered as a decimal (e.g., `0.21` for 21% BTW in the Netherlands, `0.06` for 6% residential BTW in Belgium).
 * **Provider Multipliers & Markups**: Dedicated parameters for each supplier (e.g. `vattenfall_multiplier`, `vattenfall_markup`, `vattenfall_base_fee`, `vattenfall_inject_multiplier`, `vattenfall_inject_markup`, `totalenergies_multiplier`, `totalenergies_markup`, `totalenergies_base_fee`, `totalenergies_inject_multiplier`, `totalenergies_inject_markup`).
 
@@ -161,6 +164,8 @@ Configuration for automated OTA updates, cryptographically verified `.deb` packa
   * **Description:** Homeowners and installers can safely reboot the appliance (**Reboot System**) from **Settings &rarr; System Info** and run live **Debug** probes on configured devices under **Settings &rarr; Connected Devices** to inspect telemetry and submit diagnostic template reports directly to **GRID-EMS-SERVER** without unlocking Certified Installer Mode.
 * **`github_token`**
   * **Description:** Optional GitHub Personal Access Token (classic) to prevent IP rate limiting when querying the public release repository for new GEMS versions; if an expired or revoked token is configured, GEMS automatically retries unauthenticated so update checks remain uninterrupted.
+* **EU Cyber Resilience Act (CRA) Security Policy & Vulnerability Disclosure (`/.well-known/security.txt`)**
+  * **Description:** **Settings &rarr; System Info** displays the New Energy Grid **Security & Firmware Support Policy** badge (Ed25519-signed firmware verification, CycloneDX 1.5 SBOM release provenance, and coordinated vulnerability disclosure via `/.well-known/security.txt`), while strictly omitting CPU load, RAM, or hardware telemetry and deriving build numbers dynamically from `git describe --tags --always`.
 
 ---
 

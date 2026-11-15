@@ -466,17 +466,17 @@
               <tr>
                 <td><strong>Vattenfall Nederland — FlexPrijs</strong></td>
                 <td>Pays-Bas</td>
-                <td>EPEX Spot NL (<code>vattenfall_multiplier = 1.00</code>) + marge d'approvisionnement (<code>vattenfall_markup = 0.0211 €/kWh</code>) + abonnement annuel (<code>vattenfall_base_fee = 95.40 €/an</code>) + taxe énergétique NL (<code>0.1316 €/kWh</code>) + TVA 21 %.</td>
+                <td>EPEX Spot NL (<code>vattenfall_multiplier = 1.00</code>, règlement <code>15m</code> ou <code>60m</code>) + marge d'approvisionnement (<code>vattenfall_markup = 0.0211 €/kWh</code>) + abonnement annuel (<code>vattenfall_base_fee = 95.40 €/an</code>) + taxe énergétique NL HTVA (2026 : <code>0.09161 €/kWh</code> / 2027 : <code>0.08802 €/kWh</code>) + TVA 21 %.</td>
               </tr>
               <tr>
                 <td><strong>Luminus / Eneco / Frank / Ecopower</strong></td>
                 <td>BE / NL</td>
-                <td>Multiplicateurs linéaires personnalisables, retenues sur injection et abonnements fixes mensuels.</td>
+                <td>Multiplicateurs linéaires personnalisables, granularité spot <code>15m</code> ou <code>60m</code>, retenues sur injection et abonnements fixes mensuels.</td>
               </tr>
               <tr>
-                <td><strong>Bi-horaire Belge (Jour / Nuit)</strong></td>
-                <td>Belgique</td>
-                <td>Grilles tarifaires résidentielles classiques jour/nuit associées à la TVA à 6 % et aux tarifs GRD régionaux.</td>
+                <td><strong>Bi-horaire Belge &amp; Fixe NL Post-2027</strong></td>
+                <td>BE / NL</td>
+                <td>Grilles jour/nuit associées aux tarifs GRD, plus les frais d'injection néerlandais post-saldering (<code>fixed_feed_in_cost_kwh</code>) et la vérification du plancher légal 2027–2029 (<code>&ge; 50 %</code> du tarif de fourniture nu).</td>
               </tr>
               <tr>
                 <td><strong>Enovos Dynamic</strong></td>
@@ -487,15 +487,15 @@
           </table>
         </div>
 
-        <h3>Préréglages des Gestionnaires de Réseau de Distribution (GRD)</h3>
+        <h3>Préréglages des Gestionnaires de Réseau de Distribution (GRD) &amp; Taxes Légales</h3>
         <p>
-          GEMS propose des préréglages en un clic pour les tarifs régionaux de distribution et de transport par kWh :
+          GEMS propose des préréglages HTVA en un clic pour les tarifs régionaux de distribution et la fiscalité énergétique 2026/2027 par kWh :
         </p>
         <ul>
-          <li><strong>Fluvius (Flandre) :</strong> 0,0204 &euro; / kWh + TVA 6 %.</li>
-          <li><strong>ORES (Wallonie) :</strong> 0,0950 &euro; / kWh + TVA 6 %.</li>
-          <li><strong>RESA (Liège) :</strong> 0,0920 &euro; / kWh + TVA 6 %.</li>
-          <li><strong>SIBELGA (Bruxelles) :</strong> 0,0820 &euro; / kWh + TVA 6 %.</li>
+          <li><strong>Pays-Bas (Liander / Enexis / Stedin) :</strong> Préréglages légaux HTVA d'<em>Energiebelasting</em> pour <strong>2026 (0,09161 &euro; / kWh)</strong> et <strong>2027 (0,08802 &euro; / kWh)</strong> + TVA 21 %.</li>
+          <li><strong>Fluvius (Flandre) :</strong> 0,0204 &euro; / kWh de distribution (plus accise fédérale spéciale 2027 à 0,0392 &euro; / kWh) + TVA 6 %.</li>
+          <li><strong>ORES &amp; RESA (Wallonie &mdash; Fixe ou CWaPE <code>Tarif Impact</code>) :</strong> Préréglages fixes (0,0950 / 0,0920 &euro; / kWh) ou grille officielle CWaPE <strong><code>Tarif Impact</code></strong> 7j/7 (<code>ECO</code> 01:00&ndash;07:00 &amp; 11:00&ndash;17:00 : RESA 0,0252 &euro; / ORES 0,0284 &euro; ; <code>MEDIUM</code> 07:00&ndash;11:00 &amp; 22:00&ndash;01:00 : RESA 0,0755 &euro; / ORES 0,0812 &euro; ; <code>PIC</code> 17:00&ndash;22:00 : RESA 0,1258 &euro; / ORES 0,1345 &euro; / kWh) + TVA 6 %.</li>
+          <li><strong>SIBELGA (Bruxelles) :</strong> 0,0820 &euro; / kWh (plus accise fédérale spéciale 2027 à 0,0392 &euro; / kWh) + TVA 6 %.</li>
         </ul>
 
         <!-- Phase Balancing & Safety -->
