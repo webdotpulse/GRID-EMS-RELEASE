@@ -314,7 +314,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.37.3-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.38.0-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Central Cloud Service</span>
@@ -341,7 +341,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.37.3</span>
+        <span>Documentation v9.38.0</span>
       </div>
     </div>
 
@@ -587,7 +587,9 @@ User-Agent: GRID-EMS-Agent/9.4.0
   "grid_export_today_kwh": 14.8,
   "home_energy_today_kwh": 11.4,
   "ev_energy_today_kwh": 6.8,
-  "firmware_version": "v9.33.0"
+  "estimated_savings_today_eur": 4.82,
+  "estimated_savings_month_eur": 68.40,
+  "firmware_version": "v9.36.7"
 }
     </pre>
 
@@ -630,7 +632,7 @@ Content-Type: application/json
         <tr>
           <td><code>SET_OPERATING_MODE</code> / <code>set_strategy_mode</code></td>
           <td><code>mode</code>: string ("eco", "flanders", "netherlands"), <code>peak_limit_kw</code>: float</td>
-          <td>Updates the active site optimization strategy and immediately applies Flanders capacity limits across EV and battery loops.</td>
+          <td>Updates the active site optimization strategy with strict country isolation (applying Flemish <code>peak_limit_kw</code> only on Flanders units and suppressing foreign regional caps elsewhere).</td>
         </tr>
         <tr>
           <td><code>SET_BATTERY_MODE</code></td>
@@ -760,7 +762,7 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.37.3
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.38.0
     </div>
 
   </div>

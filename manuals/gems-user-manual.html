@@ -775,7 +775,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.37.3</span>
+          <span class="cover-meta-val">GEMS v9.38.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Who This Guide Is For</span>
@@ -1100,9 +1100,14 @@
         <td><strong>Self-Consumption:</strong> % of your solar power kept inside your home/battery/EV. <strong>Self-Sufficiency:</strong> % of your home's electricity supplied by your own solar + battery instead of the grid.</td>
       </tr>
       <tr>
-        <td><strong>🛡️ Monthly Peak (Flanders)</strong></td>
+        <td><strong>💶 Estimated GRID-EMS Savings</strong></td>
+        <td><span style="color:#059669; font-weight:bold;">€4.82 / Day</span></td>
+        <td>Telemetry-backed euro savings across your selected period (Day, Month, Year), broken down into <strong>Solar Self-Consumption</strong>, <strong>Battery Arbitrage</strong>, <strong>Smart Off-Peak Dispatch &amp; Negative-Export Shield</strong>, and (in Flanders only) <strong>Capacity Peak Shaving</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>🛡️ Monthly Peak (Flanders Only)</strong></td>
         <td><code>2.50 kW</code></td>
-        <td>Highest 15-minute rolling average grid import recorded this calendar month (resets on the 1st of each month at 00:00). Automatically hidden for Dutch (NL) installations.</td>
+        <td>Highest 15-minute rolling average grid import recorded this calendar month (resets on the 1st of each month at 00:00). Strictly isolated to Flemish (<code>BE</code> + <code>flanders</code>) installations—automatically hidden and disabled in the Netherlands and other countries.</td>
       </tr>
     </tbody>
   </table>
@@ -1320,9 +1325,9 @@
         </div>
       </div>
       <div class="decision-item" style="border-top: 3px solid #f59e0b;">
-        <div class="decision-item-title">3. Netherlands (Smart Saldering)</div>
+        <div class="decision-item-title">3. Netherlands (Smart Saldering &amp; 3×25A Guard)</div>
         <div class="decision-item-desc">
-          <strong>Choose when:</strong> You live in the Netherlands. Optimizes for Dutch EPEX Spot, <em>Energiebelasting</em>, and prevents costly negative-price feed-in fees (<em>terugleverkosten</em>).
+          <strong>Choose when:</strong> You live in the Netherlands. Protects <code>3×25A</code> residential fuses from €1,000+/yr <code>3×35A</code> DSO upgrades, prioritizes local PV storage/EV sinking against <em>terugleverkosten</em>, curtails negative EPEX NL hours, and strictly disables all Flemish <em>Capaciteitstarief</em> / GSC / Belgian Elia rules.
         </div>
       </div>
     </div>
@@ -1522,7 +1527,7 @@
         <td><strong>5. Dynamic-NL (Dutch Hourly EPEX)</strong></td>
         <td>Dutch homeowners on a dynamic hourly contract in the Netherlands.</td>
         <td>
-          • <strong>Dutch Provider Preset:</strong> Auto-fills Dutch supplier parameters:<br>
+          • <strong>Dutch Provider Presets:</strong> Includes <strong>Vattenfall Nederland — FlexPrijs</strong> (<code>1.00× EPEX NL + €0.0211/kWh</code> markup, <code>€95.40/yr</code> Vastrecht, <code>0.1316 €/kWh</code> Energiebelasting, <code>21%</code> BTW, <code>1.00×</code> feed-in), <strong>Eneco Dynamic</strong>, and <strong>Frank Energie Dynamic</strong>:<br>
           &nbsp;&nbsp;– <code>Inkoopvergoeding Consumption / Injection (€/kWh)</code> (procurement markups)<br>
           &nbsp;&nbsp;– <code>Energiebelasting (€/kWh)</code> (Dutch energy tax, default <code>0.1316 €/kWh</code>)<br>
           &nbsp;&nbsp;– <code>Terugleverkosten (€/kWh)</code> (solar feed-in cost) &amp; <code>Vastrecht (€/yr)</code>.
