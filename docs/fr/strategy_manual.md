@@ -1,0 +1,142 @@
+# GEMS : Manuel de Stratégie & d'Optimisation Énergétique
+
+> 🌐 **Langue / Taal / Language:** [English](../strategy_manual.md) | [Nederlands](../nl/strategy_manual.md) | **Français**
+
+Ce manuel détaille la configuration et le fonctionnement du moteur de stratégie de GEMS (Grid Energy Management System). Véritable cerveau de votre installation énergétique, le moteur de stratégie coordonne le réseau électrique, le solaire photovoltaïque, la batterie, les bornes de recharge VE et les relais intelligents afin d'optimiser votre consommation, maximiser l'autoconsommation, éviter les pénalités de pointe capacitaire et réaliser un arbitrage tarifaire rentable.
+
+> [!TIP]
+> **Télécharger les Manuels Officiels de Terrain (PDF) :**
+> - 📕 **[Manuel Installateur & Mise en Service GEMS (PDF)](../../manuals/fr/gems-installer-manual-fr.pdf)** (5.7 MB)
+> - 📗 **[Manuel Utilisateur & Particulier GEMS (PDF)](../../manuals/fr/gems-user-manual-fr.pdf)** (3.5 MB)
+> - ☁️ **[Manuel de Connexion Cloud GRID-EMS-SERVER (PDF)](../../manuals/fr/gems-server-connection-manual-fr.pdf)** (1.1 MB)
+> - 💻 **[Portail Interactif de Documentation](../../manuals/fr/index.html)**
+
+---
+
+## 1. Vue d'Ensemble du Moteur de Stratégie
+
+Le moteur de stratégie évalue en permanence les flux énergétiques du site depuis une interface graphique unifiée. Aucun fichier YAML ou fichier texte de configuration n'est requis.
+
+La boucle de régulation principale s'exécute chaque seconde :
+1. **Lecture de la Télémétrie** : Relève la puissance active des compteurs intelligents (P1/Modbus), onduleurs solaires, systèmes de stockage batterie (BESS) et bornes VE.
+2. **Calcul de la Moyenne Glissante Quart-Horaire** : Met à jour le prélèvement moyen sur 15 minutes en cours et enregistre les pointes mensuelles dans SQLite.
+3. **Application des Règles Régionales & Locales** : Évalue le mode actif (Éco, Flandre, Pays-Bas), les seuils d'arbitrage batterie et les plages horaires programmées.
+4. **Envoi des Consignes Dynamiques** : Transmet de façon non bloquante les consignes Modbus, OCPP ou REST aux onduleurs, bornes VE et relais intelligents.
+
+---
+
+## 2. Optimisation Globale du Site (Modes de Stratégie)
+
+| Aperçu de l'Onglet Stratégie | Modes de Stratégie Opérationnels |
+| :---: | :---: |
+| ![Onglet Stratégie](../../screenshots/settings_strategy.png) | ![Modes de Stratégie](../../screenshots/settings_strategy_modes.png) |
+
+### 2.1 Mode Éco (Autoconsommation Maximale)
+**Objectif :** Maximiser l'autoconsommation directe de la production solaire photovoltaïque et limiter le recours au réseau.
+- **Comportement :** Oriente prioritairement le surplus solaire vers la charge de la batterie domestique et la recharge VE avant toute injection sur le réseau. Lorsque l'ensoleillement diminue, la batterie se décharge automatiquement pour couvrir les charges domestiques.
+- **Usage recommandé :** Idéal pour les contrats à tarif fixe, bi-horaire classique ou bénéficiant d'un tarif d'injection avantageux.
+
+### 2.2 Mode Flandre (Écrêtage Prédictif de Pointe & Plafond Adaptatif)
+**Objectif :** Éviter activement les surcoûts liés au tarif capacitaire flamand (*Capaciteitstarief*) en Belgique en plafonnant les pointes moyennes de prélèvement sur 15 minutes.
+- **Mécanisme :**
+  - Surveille en continu la projection de la puissance moyenne quart-horaire prélevée sur le réseau pour chaque fenêtre de facturation de 15 minutes.
+  - Dès que la projection approche le plafond configuré diminué de la marge de sécurité, GEMS réduit instantanément le courant de charge VE et commande la décharge de la batterie.
+- **Plafond Adaptatif Intelligent (*Smart Adaptive Ceiling*) :**
+  - GEMS mémorise localement le record mensuel de pointe quart-horaire.
+  - Si une pointe domestique inévitable survient au cours du mois (par ex. 4,2 kW dus au four + plaques à induction), GEMS relève automatiquement son plafond opérationnel jusqu'à cette pointe déjà atteinte pour le reste du mois civil.
+  - Le propriétaire profite ainsi d'une recharge VE plus rapide sans alourdir sa facture capacitaire mensuelle.
+- **Paramètres Clés :**
+  - `capacity_peak_limit_kw` : Plafond cible de base sur 15 minutes (par ex. `2.5` kW).
+  - `peak_shaving_buffer_w` : Marge de sécurité proactive en watts (par ex. `200` W) retranchée du plafond pour éviter tout dépassement.
+  - `peak_shaving_rampup_w` : Pas d'hystérésis en watts (par défaut `500` W) requis avant d'autoriser la remontée en puissance des équipements bridés.
+
+### 2.3 Mode Pays-Bas (Smart Saldering, Bouclier Frais d'Injection & Protection Disjoncteur 3×25A)
+**Objectif :** Offrir la stratégie énergétique optimale aux particuliers et PME néerlandais — en protégeant les raccordements résidentiels `3×25A` contre un passage coûteux à la tranche supérieure du gestionnaire de réseau, en évitant les frais d'injection (*terugleverkosten*), en écrêtant les heures EPEX NL négatives et en maximisant l'arbitrage Day-Ahead avant et après la fin du *salderingsregeling*.
+- **Pourquoi l'Optimisation Néerlandaise Diffère de la Flandre :**
+  - Contrairement à la Flandre (où Fluvius facture la pointe quart-horaire au-dessus de `2,50 kW`), les gestionnaires de réseau néerlandais (**Liander**, **Enexis**, **Stedin**) facturent un abonnement fixe annuel selon le calibre du raccordement (*vastrecht aansluitcapaciteit*). Passer d'un raccordement résidentiel standard **`3×25A`** (`17,25 kW`) à **`3×35A`** ajoute plus de **1 000 € par an** de frais fixes récurrents.
+  - La stratégie néerlandaise combine donc quatre piliers sans brider artificiellement l'installation à un plafond quart-horaire de `2,50 kW` :
+    1. **Équilibrage Dynamique de Charge (DLB) par Phase `3×25A` :** Surveille en continu les courants `L1`, `L2` et `L3` du compteur DSMR P1 afin que les bornes **Raedian**, le stockage hybride **Solis**, les pompes à chaleur et la cuisson à induction coexistent en toute sécurité sur un disjoncteur `3×25A`.
+    2. **Autoconsommation Directe & Absorption Thermique/VE :** Dirige chaque watt solaire excédentaire vers la maison, la batterie **Solis**, la charge solaire 1P/3P **Raedian** et la pompe à chaleur SG-Ready afin de réduire les volumes injectés soumis aux *terugleverkosten*.
+    3. **Écrêtement lors des Prix EPEX NL Négatifs (`min_profitable_export_price` & `active_inverter_curtailment`) :** Autorise l'injection uniquement lorsque la rémunération nette est positive, et bride finement la production de l'onduleur à hauteur de la charge domestique dès que le stockage est plein et que le tarif d'injection devient négatif.
+    4. **Arbitrage Day-Ahead EPEX NL (`dynamic_forecast`) :** Précharge les batteries et planifie la charge VE pendant les heures EPEX NL les moins chères pour décharger lors des pointes coûteuses du soir (`17:00–21:00`).
+
+### 2.4 Garantie Stricte d'Isolation par Pays & Région
+**Objectif :** Garantir que les mécanismes réglementaires propres à un pays n'apparaissent ni n'agissent jamais sur une installation située dans un autre pays.
+- **Flandre (`BE` + `flanders`) :** Active exclusivement l'écrêtage quart-horaire du *Capaciteitstarief* (`capacity_peak_limit_kw`, plancher légal `2,50 kW`), le Plafond Adaptatif Intelligent, les alertes de pointe et les certificats verts flamands (*Groenestroomcertificaten* / GSC).
+- **Belgique (`BE` — Flandre, Wallonie, Bruxelles) :** Active exclusivement la synchronisation du mix renouvelable belge Elia, l'optimisation Super-Creux belge (`01:00–07:00`) et le télécontrôle GRD IEC 60870-5-104.
+- **Pays-Bas (`NL`), Allemagne (`DE`), Luxembourg (`LU`) et Autres Régions :** Le choix d'un pays hors Flandre ou d'un contrat néerlandais désactive et masque automatiquement l'écrêtage *Capaciteitstarief*, remet à zéro la compensation GSC, désactive les services belges Elia/Super-Creux/IEC-104 et réserve la modulation allemande `§14a EnWG` strictement aux installations situées en Allemagne (`DE`).
+
+### 2.5 Protection des Certificats Verts Flamands (GSC — Flandre Uniquement)
+**Objectif :** Empêcher tout écrêtement solaire injustifié et préserver les revenus de certificats verts des installations PV flamandes existantes lors des heures à prix spot négatifs.
+- **Problématique :** De nombreuses installations historiques perçoivent 90 €, 210 €, 230 €, 250 €, 270 €, 330 €, 350 € ou 450 € par tranche de 1 000 kWh produits. Si le prix spot d'injection descend à -0,10 €/kWh, couper l'onduleur ferait perdre 0,25 €/kWh de certificats verts, soit une perte nette de 0,15 €/kWh !
+- **Formule :**
+  $$\text{Seuil d'Écrêtement Effectif} = \text{min\_profitable\_export\_price} - \frac{\text{gsc\_value\_eur\_mwh}}{1000.0}$$
+- **Comportement :** Avec `gsc_value_eur_mwh: 250` et `min_profitable_export_price: 0.00`, l'injection solaire demeure active et rentable jusqu'à **-250,0 €/MWh (-0,250 €/kWh)**. L'écrêtement ne se déclenche que si la pénalité d'injection dépasse la valeur du certificat.
+
+---
+
+## 3. Arbitrage Dynamique de Batterie & Planifications
+
+GEMS intègre les prix spot Day-Ahead EPEX (récupérés chaque jour à 14h00 CET) et les prévisions d'irradiation solaire Open-Meteo pour piloter intelligemment le stockage batterie.
+
+### 3.1 Stratégies de Charge sur Réseau (`battery_grid_charge_strategy`)
+- **`price_only`** : Force la charge batterie depuis le réseau lorsque le prix spot passe sous `force_charge_below_euro` et autorise la décharge vers le réseau au-dessus de `force_discharge_above_euro`.
+- **`super_dal_only`** : Limite la charge réseau aux plages super-creuses contractuelles du fournisseur (par ex. Engie Superdal).
+- **`hybrid`** : Combine les seuils de prix spot avec l'optimisation des heures super-creuses fournisseur.
+- **`dynamic_forecast`** : Calcule une trajectoire optimale sur 24 heures en croisant les prix EPEX horaires/quart-horaires, les prévisions solaires et des **profils de consommation Semaine vs Week-end** appris sur les 30 derniers jours (avec `home_base_load_w` en repli).
+
+### 3.2 Enveloppes Dynamiques BMS en Direct & Équilibrage SOC Multi-Batteries
+- **Limitation Dynamique par le BMS en Direct** : Le pilotage temps réel comme le solveur prévisionnel 24h interrogent les limites dynamiques de puissance de charge et de décharge issues en direct du BMS (courants admissibles et tension pack). Cela évite tout rejet de consigne lorsque des cellules froides ou un SOC élevé (>90 %) réduisent le courant de charge admissible.
+- **Répartition Multi-Batteries Pondérée par la Marge SOC** : Sur les sites équipés de plusieurs onduleurs hybrides ou unités BESS, GEMS répartit la puissance de charge proportionnellement à la capacité restante à charger ($\text{MaxCap}_i \times (100 - \text{SOC}_i)$) et la décharge proportionnellement à l'énergie disponible au-dessus de la réserve ($\text{MaxCap}_i \times (\text{SOC}_i - \text{MinSOC})$), assurant une convergence équilibrée du SOC.
+- **Régulation Amortie en Boucle Fermée** : Lors de la compensation du prélèvement réseau ou de l'écrêtement zéro-export face à un compteur externe, GEMS applique un amortissement de consigne éliminant toute oscillation liée au temps de réponse entre compteur et onduleur.
+
+### 3.3 Fenêtres Programmées & Secours Hivernal / Faible Ensoleillement
+- **Fenêtres Programmées Personnalisées** : Possibilité de définir plusieurs plages horaires de charge forcée avec heures de début/fin et SOC cible (par ex. 02:00 – 05:00 jusqu'à 90 % SOC), prioritaires sur l'arbitrage général.
+- **Secours Hivernal / Faible Ensoleillement (`winter_fallback_enabled`)** : Lorsque la batterie reste inférieure ou égale à `winter_fallback_trigger_soc` (par défaut `25 %`) par temps couvert prolongé et que la prévision solaire sur 24h ne couvre pas la recharge, GEMS recharge automatiquement la batterie pendant les `winter_fallback_cheapest_hours` (par défaut `2` heures) les moins chères de la journée jusqu'à `winter_fallback_target_soc` (par défaut `65 %`, laissant une marge pour un éclairci diurne), tout en respectant le plafond capacitaire flamand et le calibre par phase du disjoncteur principal.
+
+---
+
+## 4. Recharge Intelligente VE (Modbus TCP Privilégié & OCPP Natif)
+
+GEMS pilote les bornes de recharge VE via **bus de terrain Modbus TCP/RTU (recommandé)** ou via son **serveur WebSocket OCPP 1.6-J natif intégré** (`ws://<EMS-IP>:8887/<ChargePointID>` et `ws://<EMS-IP>:8080/api/ocpp/<ChargePointID>`) :
+
+- **Pourquoi Privilégier Modbus TCP** : L'écriture directe dans les registres Modbus permet une modulation de courant instantanée inférieure à la seconde (6 A à 32 A), indispensable pour l'écrêtage capacitaire flamand et le suivi précis du surplus solaire. Surtout, la borne conserve sa connexion OCPP vers une plateforme externe CPO ou un service de remboursement employeur sans aucune interférence.
+- **Serveur OCPP Natif** : Destiné aux bornes dépourvues de Modbus TCP ou aux installations résidentielles autonomes sans cloud externe.
+- **`smart_ev_cheapest_hours`** : Analyse automatiquement la courbe EPEX sur 24h et accélère la charge VE durant les $N$ heures les moins chères de la journée.
+- **Dynamic Load Balancing** : Adapte en permanence le courant de charge VE selon le calibre du disjoncteur principal (`grid_nominal_current_a`) et les courants par phase (`phase_limit_amps`).
+
+---
+
+## 5. Visualiseur Tarifaire 24h, Contrats Régionaux & Calcul des Économies
+
+| Configuration du Contrat d'Énergie | Courbe Tarifaire sur 24 Heures |
+| :---: | :---: |
+| ![Onglet Contrat d'énergie](../../screenshots/settings_contract.png) | ![Visualiseur Tarifaire](../../screenshots/settings_contract_tariffs.png) |
+
+### 5.1 Préréglages Fournisseurs Belges & Néerlandais
+- **Vattenfall Nederland — FlexPrijs (`vattenfall_dynamic`, NL)** : Tarif horaire EPEX Spot NL (`1,00×`) + marge d'approvisionnement `0,0211 €/kWh` (*Inkoopvergoeding*), abonnement fixe `95,40 €/an` (*Vastrecht*), taxe énergétique néerlandaise (*Energiebelasting* `0,1316 €/kWh`), TVA `21 %` et rémunération d'injection `1,00×` EPEX Spot NL.
+- **Eneco Dynamic & Frank Energie Dynamic (`NL` / `BE`)** : Formules spot EPEX NL ou EPEX BE avec TVA automatique (`21 %` NL / `6 %` BE) et taxes réglementaires préconfigurées.
+- **TotalEnergies Pixel Dynamic** : Multiplicateur, marge (€/kWh), redevance annuelle et formule d'injection.
+- **Mega Smart / Cosy Dynamic** : Formule dynamique transparente avec multiplicateur et marge fournisseur personnalisables.
+- **Bolt Dynamisch** : Contrat dynamique 100 % vert local au prix spot réel.
+- **Engie Dynamic & Flextime** : Indexation EPEX directe et structure horaire multi-paliers.
+- **Luminus Dynamic, Ecopower, Dats 24, Octa+, Trevion, Aspiravi**.
+- **Bi-horaire Belge (Heures Pleines / Heures Creuses)** : Grilles jour/nuit avec préréglages des frais de réseau GRD.
+
+### 5.2 Préréglages des Gestionnaires de Réseau de Distribution (GRD)
+- **Pays-Bas (Liander / Enexis / Stedin)** : Taxe légale *Energiebelasting* (`0,1316 €/kWh`) + TVA `21 %` (protection du raccordement `3×25A` par DLB triphasé).
+- **Fluvius (Flandre)** : 0,0204 €/kWh de frais de distribution/transport + TVA 6 %.
+- **ORES (Wallonie)** : 0,0950 €/kWh de frais réseau + TVA 6 %.
+- **RESA (Liège)** : 0,0920 €/kWh de frais réseau + TVA 6 %.
+- **SIBELGA (Bruxelles)** : 0,0820 €/kWh de frais réseau + TVA 6 %.
+
+### 5.3 Visualiseur en Direct de la Courbe Tarifaire 24h
+- **Décomposition Empilée des Coûts** : Affiche heure par heure les 4 composantes du prix : marché de gros EPEX Spot, marge fournisseur, frais GRD / taxes énergétiques et TVA (`6 %` résidentiel BE / `21 %` NL).
+- **Courbe Dynamique de Rémunération Solaire** : Indique le revenu net d'injection et signale les heures à rendement négatif par un **Avis d'Écrêtement Solaire**.
+
+### 5.4 Estimation Financière des Économies Fondée sur la Télémétrie
+GEMS calcule en temps réel les **Économies Estimées GRID-EMS** (`Jour`, `Mois`, `Année` et `Total`) directement à partir des mesures vérifiées du compteur communicant, de l'onduleur, de la batterie et de la borne VE associées à votre contrat électrique actif — sans recourir à des estimations théoriques :
+- **Autoconsommation Solaire (`solar_savings_eur`)** : Énergie PV consommée ou routée localement valorisée au tarif d'importation évité diminué du éventuel tarif d'injection positif non perçu.
+- **Batterie & Arbitrage Tarifaire (`battery_savings_eur`)** : Énergie batterie restituée pendant les heures chères valorisée par rapport au coût réel de recharge de cette énergie stockée.
+- **Charge VE & Écrêtement (`smart_dispatch_savings_eur`)** : Gains d'écart tarifaire lors des charges en heures creuses par rapport au tarif moyen journalier, additionnés aux pénalités d'injection négatives évitées grâce à l'écrêtement solaire actif.
+- **Écrêtage Capacitaire (`peak_shaving_savings_eur`, Flandre Uniquement)** : Suppléments mensuels *Capaciteitstarief* (kW) évités lorsque l'écrêtage actif batterie/VE maintient la pointe quart-horaire sous la charge brute du site (strictement fixé à `0,00 €` et masqué hors Flandre).

@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS - Handleiding EV-Laadcluster &amp; Dynamic Load Balancing (DLB)</title>
+  <meta name="description" content="Officiële engineering- en installatiehandleiding voor EV-laadclusters, autonome edge Dynamic Load Balancing (DLB), hoofdzekeringsbewaking per fase en Straight-Through OCPP-proxying in GEMS.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 12mm 16mm 12mm;
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9pt;
+      line-height: 1.5;
+    }
+
+    .manual-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 980px;
+      padding: 24px 16px 16px 16px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 24px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.25);
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 27pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 16px 0 8px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 11.5pt;
+      color: #475569;
+      margin: 0 0 18px 0;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    .cover-meta-val {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 8px 20px -4px rgba(0,0,0,0.08);
+      margin: 12px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 7.5pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Section Styles */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #7c3aed;
+      padding-bottom: 5px;
+      margin-top: 30px;
+      margin-bottom: 12px;
+      page-break-after: avoid;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11.5pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #4f46e5;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #334155;
+    }
+
+    /* Screenshot Container */
+    .manual-screenshot {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .manual-screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .manual-screenshot-caption {
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      font-size: 8.5pt;
+      line-height: 1.45;
+    }
+
+    .callout-info {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #166534;
+    }
+
+    .callout-purple {
+      background: #f5f3ff;
+      border-left: 4px solid #7c3aed;
+      color: #5b21b6;
+    }
+
+    .callout-tip {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      color: #0369a1;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #92400e;
+    }
+
+    .callout-danger {
+      background: #fef2f2;
+      border-left: 4px solid #ef4444;
+      color: #991b1b;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 8pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #e2e8f0;
+      padding: 6px 8px;
+      text-align: left;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* Terminal & Code Blocks */
+    pre.code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: 7.5pt;
+      line-height: 1.4;
+      overflow-x: auto;
+      margin: 8px 0;
+      page-break-inside: avoid;
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 8pt;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    /* Architecture / ASCII Box */
+    .arch-box {
+      background: #0f172a;
+      color: #38bdf8;
+      font-family: 'Fira Code', monospace;
+      font-size: 7pt;
+      line-height: 1.3;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 10px 0;
+      page-break-inside: avoid;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .math-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #6366f1;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-family: 'Fira Code', monospace;
+      font-size: 8pt;
+      color: #1e293b;
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+
+    .badge-vip {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
+    .badge-high {
+      background: #e0e7ff;
+      color: #3730a3;
+      border: 1px solid #c7d2fe;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
+    .badge-norm {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
+    .badge-solar {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    @media print {
+      .no-print, .lang-switcher {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="manual-page">
+
+    <div class="no-print" style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+      <nav class="lang-switcher" aria-label="Taalkeuze">
+        <a href="../gems-fleet-dlb-manual.html">EN</a>
+        <a href="gems-fleet-dlb-manual-nl.html" class="active" aria-current="page">NL</a>
+        <a href="../fr/gems-fleet-dlb-manual-fr.html">FR</a>
+      </nav>
+    </div>
+
+    <!-- ==================== COVER PAGE ==================== -->
+    <div class="cover-page">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <img src="../assets/new_energy_grid_logo.png" alt="New Energy Grid Logo" style="height: 38px; width: auto; object-fit: contain;">
+          <div class="cover-badge">
+            <span>⚡ Handleiding EV-Laadcluster &amp; Dynamic Load Balancing</span>
+          </div>
+        </div>
+
+        <h1 class="cover-title">GEMS EV-Laadcluster &amp;<br>Dynamic Load Balancing (DLB)</h1>
+        <div class="cover-subtitle">
+          Uitgebreide engineering-, installatie- en inbedrijfstellingshandleiding voor multi-laadpaalclusters, autonome 1-seconde edge Dynamic Load Balancing, hoofdzekeringsbewaking per fase, sturing op zonne-overschot en Straight-Through OCPP-proxying.
+        </div>
+
+        <div class="cover-meta-grid">
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Documentreferentie</span>
+            <span class="cover-meta-val">GEMS-MAN-FLT-2026</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Toepasselijke Release</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.38.1-release (Officiële Release)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Balanceringscyclus</span>
+            <span class="cover-meta-val">1,0s Autonome Edge-lus (100% Immuun voor Internetuitval)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Maximale Clustercapaciteit</span>
+            <span class="cover-meta-val">Tot 32 Laadpunten (64 op Raspberry Pi 5)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Aanbevolen Referentiehardware</span>
+            <span class="cover-meta-val">Raedian Slimme Laadpalen (OCPP 1.6-J &amp; Modbus TCP)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Straight-Through Proxy-ondersteuning</span>
+            <span class="cover-meta-val">Bidirectionele Doorgifte met Autonome DLB-profielarbitrage</span>
+          </div>
+        </div>
+
+        <div class="cover-hero-img">
+          <img src="../assets/screenshots/fleet_dashboard.png" alt="GEMS EV-Laadcluster Cockpit-interface">
+        </div>
+      </div>
+
+      <div class="cover-footer">
+        <span>© 2026 New Energy Grid • Vertrouwelijke Veldreferentie</span>
+        <span>Documentatie v9.38.1</span>
+      </div>
+    </div>
+
+    <!-- ==================== TABLE OF CONTENTS ==================== -->
+    <h1 class="section-title">Handleidingsoverzicht &amp; Inhoudsopgave</h1>
+    <p>Deze technische veldhandleiding is geschreven voor erkende elektriciens, zakelijke installateurs, Charge Point Operators (CPO's) en facilitair managers. Het document beschrijft de architectuur, elektrotechnische rekenregels, softwareconfiguratie, straight-through OCPP-proxying en diagnostische procedures voor het <strong>GEMS Autonome EV-Laadcluster &amp; Dynamic Load Balancing (DLB)</strong>-systeem.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Hoofdstuk</th>
+          <th style="width: 50%;">Onderwerp</th>
+          <th style="width: 35%;">Doelgroep</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Hoofdstuk 1</strong></td>
+          <td>Architecturale Grondslagen &amp; Communicatietopologie</td>
+          <td>Systeemingenieurs, Elektrotechnisch Ontwerpers</td>
+        </tr>
+        <tr>
+          <td><strong>Hoofdstuk 2</strong></td>
+          <td>Elektrotechniek, Zekeringsbeveiliging &amp; Normering</td>
+          <td>Erkende Elektriciens, Inbedrijfstellingsingenieurs</td>
+        </tr>
+        <tr>
+          <td><strong>Hoofdstuk 3</strong></td>
+          <td>Dynamic Load Balancing (DLB)-engine &amp; Bedrijfsmodi</td>
+          <td>Energiemanagers, Systeembeheerders</td>
+        </tr>
+        <tr>
+          <td><strong>Hoofdstuk 4</strong></td>
+          <td>Straight-Through OCPP Smart Forwarder (Proxy-engine)</td>
+          <td>Vlootbeheerders, CPO-integratoren</td>
+        </tr>
+        <tr>
+          <td><strong>Hoofdstuk 5</strong></td>
+          <td>Zero-Touch Auto-Onboarding &amp; Raedian Referentieconfiguratie</td>
+          <td>Servicemonteurs, Installateurs</td>
+        </tr>
+        <tr>
+          <td><strong>Hoofdstuk 6</strong></td>
+          <td>Vlootcockpit-interface &amp; Bediening per Laadpunt</td>
+          <td>Facilitair Managers, Vlootcoördinatoren</td>
+        </tr>
+        <tr>
+          <td><strong>Hoofdstuk 7</strong></td>
+          <td>Inbedrijfstelling op Locatie, Verificatie &amp; Overbelastingstest</td>
+          <td>Hoofdmonteurs Inbedrijfstelling</td>
+        </tr>
+        <tr>
+          <td><strong>Hoofdstuk 8</strong></td>
+          <td>Probleemoplossing, Diagnose &amp; Veiligheidscodes</td>
+          <td>Support-engineers, Onderhoudstechnici</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-purple">
+      <div class="callout-title">
+        <span>🛡️ Richtlijn voor Volledige Edge-autonomie</span>
+      </div>
+      <div>
+        De Dynamic Load Balancing-engine van GEMS draait <strong>100% lokaal op de edge-controller</strong> (Raspberry Pi). In tegenstelling tot cloudgestuurde loadbalancers die bij uitval van de internetverbinding het risico lopen dat de hoofdzekering van het gebouw aanspreekt, berekent en verstuurt GEMS elke seconde stroomsetpoints rechtstreeks naar de aangesloten laadpalen op het lokale netwerk, zonder dat een actieve internetverbinding vereist is.
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 1 ==================== -->
+    <h1 class="section-title">Hoofdstuk 1: Architecturale Grondslagen &amp; Systeemtopologie</h1>
+    
+    <h2 class="subsection-title">1.1 Multi-Laadpaal Clustering op Raspberry Pi</h2>
+    <p>GEMS transformeert een standaard Raspberry Pi 4 of Raspberry Pi 5 tot een industriële multi-laadpuntcontroller. Eén enkele GEMS-edge-node stuurt tot <strong>32 laadstations</strong> aan (uitbreidbaar tot 64 laadpunten op Raspberry Pi 5) binnen een strak gecoördineerd globaal stroomplafond.</p>
+    <p>De clustercontroller bewaakt in realtime het totale gebouwverbruik via een slimme meter (P1-telegram of Modbus-energiemeter), bepaalt ogenblikkelijk de niet-EV-basisbelasting en verdeelt alle resterende stroomcapaciteit dynamisch over de actieve laadpunten.</p>
+
+    <h2 class="subsection-title">1.2 Aftrek van Basisbelasting &amp; Verdeling per Fase</h2>
+    <p>Elke elektrische installatie kent onvoorspelbare basisbelastingen buiten het laadplein: warmtepompen, airconditioning, bedrijfsverlichting, grootkeukens en industriële machines. GEMS trekt deze achtergrondbelastingen in realtime per fase af, zodat het wagenpark elke vrij beschikbare ampère kan benutten zonder de hoofdautomaat te overschrijden.</p>
+
+    <div class="arch-box">┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                       FYSIEKE ELEKTRISCHE &amp; DATATOPOLOGIE                              │
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                        │
+│   [ OPENBAAR NET ] ──── 3-fasige aansluiting (bijv. 3x63A / 400V)                      │
+│           │                                                                            │
+│   [ HOOFDAUTOMAAT ]                                                                    │
+│           │                                                                            │
+│   [ P1 / MODBUS-METER ] ─── Realtime L1/L2/L3-stroom (elke 1s) ────────┐               │
+│           │                                                            │               │
+│           ├───────────────── Gebouw- / Huishoudelijke Basisbelasting   │               │
+│           │                                                            │               │
+│   [ LAADCLUSTER-BORD ] ──── Gedeelde EV-groepsautomaat (bijv. 50A)     │               │
+│           │                                                            │               │
+│           ├────── Bay 01: Raedian Smart EVSE (3-fasig / 16A) ──────────┼─ Modbus/OCPP  │
+│           ├────── Bay 02: Raedian Smart EVSE (3-fasig / 16A) ──────────┼─ Modbus/OCPP  │
+│           ├────── Bay 03: Raedian Smart EVSE (3-fasig / 16A) ──────────┼─ Modbus/OCPP  │
+│           ├────── Bay 04: Raedian Smart EVSE (1-fasig / 16A) ──────────┼─ Modbus/OCPP  │
+│           └────── Bay 05: Raedian Smart EVSE (1-fasig / 16A) ──────────┼─ Modbus/OCPP  │
+│                                                                        │               │
+│                                              Lokaal Subnet (LAN)       │               │
+│                                         ┌──────────────────────────────┴───────────┐   │
+│                                         │   GEMS EDGE-CONTROLLER (Raspberry Pi)    │   │
+│                                         │   • Autonome 1-seconde DLB-regellus      │   │
+│                                         │   • Per-fase Hoofdzekeringsbewaking      │   │
+│                                         │   • Straight-Through OCPP Proxyserver    │   │
+│                                         └──────────────────────────────┬───────────┘   │
+│                                                                        │ Uitgaand TLS  │
+│                                                                        ▼               │
+│                                         [ EXTERN CPO- / FACTURATIEPLATFORM ]           │
+│                                         (RFID-autorisatie &amp; Werkgeversverrekening)     │
+└────────────────────────────────────────────────────────────────────────────────────────┘</div>
+
+    <h2 class="subsection-title">1.3 Ondersteunde Communicatieprotocollen</h2>
+    <p>GEMS ondersteunt een hybride, flexibele communicatiearchitectuur voor alle laadstations in de cluster:</p>
+    <ul>
+      <li><strong>OCPP 1.6-J (JSON over WebSockets):</strong> Ingebouwde charge-pointserver die luistert op speciale poort <code>8887</code> (<code>ws://&lt;gems-ip&gt;:8887/{chargePointId}</code>) én op reverse-proxypoort <code>8080</code> (<code>ws://&lt;gems-ip&gt;:8080/api/ocpp/{chargePointId}</code>). Volledige ondersteuning voor laadprofielen (inclusief <code>0.0 A</code> noodpauze), meterwaarden, optionele HTTP Basic-authenticatie en transparante doorgifte naar een extern CPO-platform.</li>
+      <li><strong>Modbus TCP / RTU:</strong> Rechtstreeks uitlezen en wegschrijven van laadstroomlimieten op registerniveau (holding registers) voor zakelijke laadpalen zoals Raedian Modbus, Alfen Eve of Phoenix Contact-controllers.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 2 ==================== -->
+    <h1 class="section-title">Hoofdstuk 2: Elektrotechniek, Zekeringsbeveiliging &amp; Normering</h1>
+
+    <h2 class="subsection-title">2.1 Realtime Hoofdzekeringsbewaking &amp; Stroomruimte per Fase</h2>
+    <p>Om thermisch aanspreken van de hoofdautomaat te voorkomen en tegelijkertijd de laadsnelheid over zowel 3-fasige als fasegeroteerde 1-fasige voertuigen te maximaliseren, evalueert GEMS continu de actuele gebouw- en onderverdelerbelasting op de fasen <code>L1</code>, <code>L2</code> en <code>L3</code>:</p>
+
+    <div class="callout callout-info">
+      <div class="callout-title">⚡ Meerlaagse Elektrotechnische Beveiligingsvolgorde</div>
+      <ol style="margin: 6px 0 0 18px; padding: 0;">
+        <li><strong>Veiligheidsmarge Hoofdautomaat:</strong> Handhaaft op elke afzonderlijke fase (<code>L1</code>, <code>L2</code>, <code>L3</code>) een veiligheidsmarge onder de fysieke nominale waarde van de hoofdzekering (<code>PhaseLimitAmps</code>).</li>
+        <li><strong>Isolatie van Gebouw-basisbelasting:</strong> Trekt het actieve niet-EV-gebouwverbruik (HVAC, liften, verlichting, warmtepompen) per fase af om de werkelijke vrije netruimte te bepalen.</li>
+        <li><strong>Limiet op de Onderverdeler:</strong> Begrenst de gezamenlijke parkeerdekstroom tot de ingestelde voedingslimiet (<code>FleetMaxCurrentA</code>), terwijl fasegeroteerde 1-fasige voertuigen op verschillende fasen gelijktijdig hun onafhankelijke faseruimte kunnen benutten.</li>
+        <li><strong>Integratie van Zonne-overschot:</strong> Telt achter-de-meter PV-terugleverruimte (zoals bij zakelijke <strong>Solis</strong>-zonneveldinstallaties) dynamisch op bij daarvoor geselecteerde eco- en zonnelaadpunten (zoals <strong>Raedian</strong>-wallboxen).</li>
+      </ol>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Variabelenaam</th>
+          <th style="width: 20%;">Standaardwaarde</th>
+          <th style="width: 55%;">Elektrotechnische Functie &amp; Omschrijving</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>PhaseLimitAmps</code></td>
+          <td>40.0 A</td>
+          <td>Nominale waarde van de fysieke hoofdautomaat per fase. Wordt geconfigureerd onder Locatie-instellingen.</td>
+        </tr>
+        <tr>
+          <td><code>SafeLimitA</code></td>
+          <td>36.0 A (0.90x)</td>
+          <td>Continue veiligheidsdrempel. De marge van 10% vangt inductieve inschakelpieken op en voorkomt ongewenst uitschakelen.</td>
+        </tr>
+        <tr>
+          <td><code>FleetMaxCurrentA</code></td>
+          <td>32.0 A</td>
+          <td>Globaal stroomplafond voor het EV-onderverdeelbord. Begrenst de totale gelijktijdige laadstroom over alle laadpunten.</td>
+        </tr>
+        <tr>
+          <td><code>MinStationAmps</code></td>
+          <td>6.0 A</td>
+          <td>Verplichte minimumlaadstroom volgens <strong>IEC 61851-1</strong>. Een stroom lager dan 6A mag niet aan een EV worden opgedragen.</td>
+        </tr>
+        <tr>
+          <td><code>PhaseMultiplier</code></td>
+          <td>1.0 of 3.0</td>
+          <td>Factor op basis van een monofasige (230V) of driefasige (400V ster) aansluiting van het ladende voertuig.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">2.2 Conformiteit met IEC 61851-1 &amp; Afschakelbewaking</h2>
+    <p>De internationale norm <strong>IEC 61851-1</strong> schrijft voor dat het PWM-stuursignaal op de Control Pilot (CP) moet overeenkomen met ten minste <strong>6,0 ampère</strong> (circa 10% duty-cycle) om het laden van een EV te starten of aan te houden. Een laadpaal kan en mag wettelijk noch technisch 2A, 3A of 5A uitsturen.</p>
+
+    <div class="callout callout-warning">
+      <div class="callout-title">
+        <span>⚠️ Cruciale Regel: De Minimumdrempel van 6 Ampère</span>
+      </div>
+      <div>
+        Wanneer de totale beschikbare clusterruimte daalt onder <code>6,0A × Aantal Actieve Laadpalen</code>, regelt het GEMS-algoritme laadpalen <strong>nooit terug tot onder 6,0A</strong>. Een lagere waarde zou foutmeldingen of afbreken in de boordlader van de auto veroorzaken. In plaats daarvan pauzeert GEMS intelligent de laadpunten met de laagste prioriteit (pilot op 0A), zodat de overige actieve laadpunten veilig op 6A of hoger blijven doorladen.
+      </div>
+    </div>
+
+    <h2 class="subsection-title">2.3 Fase-onbalans &amp; Bescherming bij Scheve Belasting</h2>
+    <p>In gemengde installaties laden sommige voertuigen op 1 fase (tot 16A of 32A uitsluitend op L1), terwijl andere op alle 3 de fasen (L1, L2, L3) laden. Zonder actieve bewaking kan fase L1 overbelast raken en de hoofdautomaat uitschakelen terwijl L2 en L3 nauwelijks belast zijn.</p>
+    <p>GEMS berekent tijdens elke cyclus <code>MaxPhaseA = max(L1_A, L2_A, L3_A)</code> vanuit de slimme meter. De zwaarst belaste fase bepaalt de beschikbare stroomruimte, zodat geen enkele afzonderlijke fase ooit de thermische uitschakelkarakteristiek van de automaat overschrijdt.</p>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 3 ==================== -->
+    <h1 class="section-title">Hoofdstuk 3: Dynamic Load Balancing (DLB)-engine &amp; Bedrijfsmodi</h1>
+
+    <p>GEMS biedt drie verschillende balanceringsstrategieën voor particuliere garages met meerdere wagens, bedrijfswagenparken, bezoekersparkings en commerciële locaties met grote zonne-installaties.</p>
+
+    <h2 class="subsection-title">3.1 Modus 1: Equal Share (Gelijke Verdeling)</h2>
+    <p><strong>Doel:</strong> Alle aangesloten voertuigen gelijk behandelen. Ideaal voor openbare parkings, personeelsparkings of appartementsgebouwen waar bestuurders het beschikbare vermogen evenredig delen.</p>
+    <ul>
+      <li>Berekent <code>ShareA = AvailableClusterA / ActiveStations</code>.</li>
+      <li>Wanneer er lokaal zonne-overschot beschikbaar is, worden de extra zonne-ampères evenredig bovenop de beschikbare netruimte verdeeld.</li>
+      <li><strong>Automatische Afschakelbeveiliging:</strong> Als <code>ShareA &lt; 6,0A</code>, berekent GEMS <code>MaxSupported = floor(AvailableClusterA / 6,0A)</code>. Het systeem wijst de beschikbare stroom toe aan de eerste <em>MaxSupported</em> laadpunten en zet de overige laadpunten veilig in pauzestand tot er weer voldoende stroomruimte vrijkomt.</li>
+    </ul>
+
+    <h2 class="subsection-title">3.2 Modus 2: Priority Queue (VIP Eerst)</h2>
+    <p><strong>Doel:</strong> Gegarandeerd snelladen voor bedrijfskritische voertuigen (zoals bestelbussen, interventievoertuigen of directiewagens), terwijl overige voertuigen het resterende vermogen benutten.</p>
+    <p>GEMS sorteert tijdens elke cyclus alle verbonden laadstations op hun prioriteitsniveau:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Prioriteitsniveau</th>
+          <th style="width: 15%;">Weging</th>
+          <th style="width: 35%;">Toewijzingsgedrag</th>
+          <th style="width: 35%;">Typische Praktijktoepassing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge-vip">VIP</span></td>
+          <td>Gewicht 4</td>
+          <td>Ontvangt als eerste de volledige nominale stroom (tot het maximum van de laadpaal). Wordt nooit gepauzeerd tenzij de hoofdzekering van het gebouw direct gevaar loopt.</td>
+          <td>Bestelbussen met strakke rittenplanning, arts van wacht, directieparkeerplaats.</td>
+        </tr>
+        <tr>
+          <td><span class="badge-high">HIGH</span></td>
+          <td>Gewicht 3</td>
+          <td>Ontvangt direct vermogen zodra alle VIP-laadpunten volledig zijn voorzien.</td>
+          <td>Buitendienstmedewerkers, ingeplande deelauto's.</td>
+        </tr>
+        <tr>
+          <td><span class="badge-norm">NORMAL</span></td>
+          <td>Gewicht 2</td>
+          <td>Deelt de resterende clusterruimte gelijkmatig onder alle normale laadpunten. Wordt geknepen of gepauzeerd tijdens piekbelasting in het gebouw.</td>
+          <td>Standaard personeelsparkeerplaatsen, bezoekersladers, nachtelijk thuisladen.</td>
+        </tr>
+        <tr>
+          <td><span class="badge-solar">SOLAR ONLY</span></td>
+          <td>Gewicht 1</td>
+          <td>Neemt 0A uit het net af. Laadt uitsluitend wanneer de PV-injectie hoger is dan 1.400 W.</td>
+          <td>Tweede gezinswagen, langparkeerders bij hotels of luchthavens.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">3.3 Modus 3: Solar First (Zonne-overschot Benutten)</h2>
+    <p><strong>Doel:</strong> Maximaal zelfverbruik van eigen zonnepanelen op het dak en minimalisatie van netafnamekosten.</p>
+    <ul>
+      <li>GEMS bewaakt continu de netto teruglevering op de P1-/Modbus-meter. Zodra de injectie boven <strong>1.400 Watt</strong> uitkomt (het 1-fasige minimum van 6A), wijst de DLB-engine het beschikbare zonne-overschot toe aan de laadpunten.</li>
+      <li>Neemt het zonne-overschot toe (bijv. wanneer bewolking wegtrekt), dan schaalt de laadstroom onmiddellijk op. Zakt het overschot onder 1.400 W, dan worden niet-VIP-laadpunten gepauzeerd.</li>
+      <li><strong>VIP-voorrang:</strong> Laadpunten met <strong>VIP-prioriteit</strong> behouden ook in de modus Solar First volledige toegang tot netstroom, zodat kritische voertuigen ongeacht het weer altijd opgeladen zijn.</li>
+    </ul>
+
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/fleet_dashboard.png" alt="GEMS Vlootcockpit met 6 Raedian-laadpunten">
+      <div class="manual-screenshot-caption">Figuur 3.1: GEMS EV-Laadcluster Cockpit met realtime vermogen per laadpunt, beschikbare stroomruimte (18,5A), driefasestromen en prioriteitsknoppen per laadpunt.</div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 4 ==================== -->
+    <h1 class="section-title">Hoofdstuk 4: Straight-Through OCPP Smart Forwarder (Proxy)</h1>
+
+    <h2 class="subsection-title">4.1 De Integratie-uitdaging bij Zakelijk Laden &amp; Bedrijfswagenparken</h2>
+    <p>Bij de meeste bedrijfswagenparken en leaseprogramma's moeten bestuurders zich aanmelden met een RFID-laadpas zodat de laadkosten automatisch worden verrekend met hun werkgever of via een externe Charge Point Operator (CPO). Externe cloud-CPO's hebben echter geen enkel zicht op de actuele elektrische belasting van het gebouw: zij weten niet wanneer de warmtepompen inschakelen of wanneer de zonneproductie terugvalt. Als het externe CPO-platform blindelings vol laadvermogen vrijgeeft, spreekt de lokale hoofdautomaat aan.</p>
+
+    <h2 class="subsection-title">4.2 De Transparante Oplossing van GEMS</h2>
+    <p>GEMS lost dit spanningsveld op met de <strong>Straight-Through OCPP Smart Forwarder (Proxy-engine)</strong>:</p>
+    <ul>
+      <li>De fysieke laadpaal verwijst met zijn WebSocket-URL rechtstreeks naar GEMS op het lokale netwerk (LAN).</li>
+      <li>GEMS bouwt een transparante, versleutelde upstream WebSocket-verbinding op naar het externe CPO-facturatieplatform (bijv. <code>wss://cpo.thechargegrid.com/ocpp/{chargePointId}</code>).</li>
+      <li>RFID-autorisatieverzoeken, verrekeningstransacties (<code>StartTransaction</code>, <code>StopTransaction</code>) en kWh-meterstanden worden ongewijzigd en transparant doorgestuurd naar bovenliggende systemen.</li>
+      <li><strong>Autonome DLB-profielarbitrage:</strong> Wanneer het externe CPO-platform een <code>SetChargingProfile</code>-commando stuurt, onderschept GEMS dit bericht. Vraagt het CPO-platform 32A terwijl het lokale aansluitpunt slechts 16A vrije ruimte heeft, dan begrenst GEMS de limiet veilig tot 16A voordat het profiel naar de laadpaal wordt doorgestuurd.</li>
+      <li><strong>Immuun voor Internetuitval:</strong> Valt de internetverbinding van het pand weg of heeft het externe CPO-platform een storing, dan blijft GEMS zonder enige onderbreking de lokale elektrische loadbalancing bewaken.</li>
+    </ul>
+
+    <div class="arch-box">┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                 STRAIGHT-THROUGH OCPP PROXY DATASTROOM &amp; ARBITRAGE                     │
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                        │
+│   [ RAEDIAN EVSE ]               [ GEMS EDGE-CONTROLLER ]           [ EXTERNE CPO ]    │
+│          │                                   │                              │          │
+│          │─── Authorize.req (RFID-pas) ─────►│─── Transparante Doorgifte ──►│          │
+│          │                                   │                              │          │
+│          │◄── Authorize.conf (Accepted) ─────│◄── Transparante Doorgifte ───│          │
+│          │                                   │                              │          │
+│          │─── StartTransaction.req ─────────►│─── Transparante Doorgifte ──►│          │
+│          │                                   │                              │          │
+│          │                                   │◄── SetChargingProfile (32A) ─│          │
+│          │                                   │                              │          │
+│          │                             [ INSPECTEER &amp; BEGRENS ]             │          │
+│          │                             Lokale Ruimte = 14,5A                │          │
+│          │                             32A &gt; 14,5A -&gt; BEGRENS OP 14,5A      │          │
+│          │                                   │                              │          │
+│          │◄── SetChargingProfile (14.5A) ────│                              │          │
+│          │                                   │                              │          │
+│          │─── MeterValues (Elke 10s) ───────►│─── Uitgelezen voor Lokale DLB│          │
+│          │                                   │─── Upstream Doorgestuurd ───►│          │
+│                                                                                        │
+└────────────────────────────────────────────────────────────────────────────────────────┘</div>
+
+    <h2 class="subsection-title">4.3 De Straight-Through Proxy Configureren in GEMS</h2>
+    <p>Open <strong>EV-Laadcluster</strong> (<em>EV Vloot</em>) op het GEMS-dashboard en klik op <strong>Clusterinstellingen</strong> (<em>Cluster Settings</em>):</p>
+    <ol>
+      <li>Schakel <strong>Upstream OCPP CSMS Pass-Through Proxy</strong> (<em>Straight-Through OCPP Smart Forwarder</em>) in.</li>
+      <li>Voer de <strong>Upstream CPO WebSocket URL</strong> in. Gebruik de plaatshouder <code>{chargePointId}</code>, die door GEMS automatisch wordt vervangen door het unieke serienummer van elke individuele laadpaal:
+        <pre class="code-block">wss://cpo.thechargegrid.com/ocpp/{chargePointId}</pre>
+      </li>
+      <li>Voer optioneel een <strong>Authorization Header</strong> in wanneer de bovenliggende CPO-server dit vereist:
+        <pre class="code-block">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</pre>
+      </li>
+      <li>Klik op <strong>Opslaan</strong> (<em>Save Configuration</em>). GEMS verbindt alle geconfigureerde laadpalen binnen 5 seconden met het bovenliggende CPO-endpoint.</li>
+    </ol>
+
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/fleet_settings_modal.png" alt="GEMS EV-Laadcluster Configuratievenster">
+      <div class="manual-screenshot-caption">Figuur 4.1: GEMS EV-Laadcluster Configuratievenster met maximale clusterstroom, DLB-modus, Zero-Touch Auto-Onboarding en Straight-Through OCPP Proxy-instellingen.</div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 5 ==================== -->
+    <h1 class="section-title">Hoofdstuk 5: Zero-Touch Auto-Onboarding &amp; Raedian Referentieconfiguratie</h1>
+
+    <h2 class="subsection-title">5.1 Zero-Touch Auto-Onboarding Workflow</h2>
+    <p>GEMS maakt tijdrovende handmatige invoer bij het opleveren van grotere laadpleinen overbodig. Wanneer <strong>Zero-Touch Auto-Onboarding</strong> is ingeschakeld in de Clusterinstellingen:</p>
+    <ol>
+      <li>Zet de installateur spanning op een nieuwe laadpaal die met het lokale netwerk is verbonden.</li>
+      <li>De laadpaal verwijst met zijn Central System URL naar GEMS (<code>ws://&lt;GEMS_IP&gt;:8080/api/ocpp/CP_SERIENUMMER</code>).</li>
+      <li>De laadpaal stuurt bij het opstarten een eerste OCPP <code>BootNotification</code>-bericht met fabrikant en modelnaam.</li>
+      <li>GEMS controleert de fabrikant: betreft het een <strong>Raedian</strong>-lader, dan wordt automatisch de hardwaretemplate <code>raedian_gemini</code> gekoppeld.</li>
+      <li>GEMS reserveert automatisch het eerstvolgende vrije laadpuntnummer (bijv. <code>Bay 07</code>), wijst standaard een limiet van 16A in modus <code>eco</code> met prioriteit <code>normal</code> toe en start onmiddellijk de live uitlezing en sturing.</li>
+    </ol>
+
+    <h2 class="subsection-title">5.2 Wizard voor Laadpalen in Bulk Toevoegen</h2>
+    <p>Voor projecten waarbij 4 tot 32 laadpunten tegelijkertijd worden geplaatst, gebruikt u de wizard <strong>Laadpalen in bulk toevoegen</strong> (<em>Bulk Add Stations</em>) in de EV-Laadcluster Cockpit:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Formulierveld</th>
+          <th style="width: 25%;">Aanbevolen Waarde</th>
+          <th style="width: 50%;">Omschrijving</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Naamvoorvoegsel (<em>Station Name Prefix</em>)</td>
+          <td><code>Raedian Bay</code></td>
+          <td>Voorvoegsel voor alle aangemaakte laadpunten, automatisch gevolgd door oplopende nummers (01, 02, 03...).</td>
+        </tr>
+        <tr>
+          <td>Hardwaretemplate</td>
+          <td><code>Raedian (OCPP 1.6-J / Modbus)</code></td>
+          <td>Aanbevolen drivertemplate met ondersteuning voor dynamische stroomregeling en fasedetectie.</td>
+        </tr>
+        <tr>
+          <td>Aantal Laadpalen (<em>Number of Stations</em>)</td>
+          <td>bijv. <code>8</code></td>
+          <td>Het aantal laadpunten dat automatisch in één keer aan de cluster wordt toegevoegd.</td>
+        </tr>
+        <tr>
+          <td>Startpoort / Modbus-ID</td>
+          <td><code>8887</code> (of 1 voor Modbus)</td>
+          <td>Basispoort of start-Modbus Slave-ID die per volgend laadpunt automatisch wordt opgehoogd.</td>
+        </tr>
+        <tr>
+          <td>Maximale Laadstroom (<em>Max Station Current</em>)</td>
+          <td><code>16 A</code> (of 32 A)</td>
+          <td>Individuele nominale waarde van de installatieautomaat die elke afzonderlijke laadpaal voedt.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">5.3 Raedian Referentiehardware Configureren</h2>
+    <p><strong>Raedian</strong> is de aanbevolen referentiehardware voor GEMS EV-laadclusters dankzij zijn uiterst stabiele OCPP 1.6-J-implementatie, directe sub-seconde Modbus TCP-setpointverwerking en naadloze samenwerking met externe CPO-verrekeningsplatformen.</p>
+
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_devices_charger_form.png" alt="Raedian Hardware Configuratieformulier">
+      <div class="manual-screenshot-caption">Figuur 5.1: Toestelconfiguratie voor een RAEDIAN Slimme Laadpaal met IP-adres, Modbus-/OCPP-parameters en maximale laadstroomlimieten.</div>
+    </div>
+
+    <h3 class="step-title">Raedian-laadpalen Instellen voor Verbinding met GEMS:</h3>
+    <ol>
+      <li>Verbind een laptop, smartphone of tablet met het installateurs-Wi-Fi-netwerk of de configuratiepagina van de Raedian-laadpaal.</li>
+      <li>Navigeer naar <strong>Network / Central System Settings</strong>.</li>
+      <li>Stel <strong>Protocol</strong> in op <code>OCPP 1.6-J</code>.</li>
+      <li>Stel de <strong>Server URL / WebSocket Endpoint</strong> in op één van beide onderstaande adressen:
+        <pre class="code-block">ws://&lt;GEMS_LOKAAL_IP&gt;:8887/{chargePointId}
+ws://&lt;GEMS_LOKAAL_IP&gt;:8080/api/ocpp/{chargePointId}</pre>
+        <em>(Voorbeeld: <code>ws://192.168.1.150:8887/RD-NEO-08412</code> of <code>ws://192.168.1.150:8080/api/ocpp/RD-NEO-08412</code>)</em>
+      </li>
+      <li>Schakel eventuele interne standalone loadbalancing in de wallbox zelf uit, zodat GEMS als enige centrale regisseur de stroomverdeling beheert.</li>
+      <li>Herstart de wallbox. Binnen 15 seconden verschijnt het laadpunt actief in de GEMS EV-Laadcluster Cockpit.</li>
+    </ol>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 6 ==================== -->
+    <h1 class="section-title">Hoofdstuk 6: Gebruik van de Vlootcockpit &amp; Bediening per Laadpunt</h1>
+
+    <h2 class="subsection-title">6.1 Overzicht van de Bovenste KPI-balk</h2>
+    <p>De GEMS EV-Laadcluster Cockpit (bereikbaar via <strong>EV Vloot</strong> in de linkerzijbalk of op <code>/#fleet</code>) biedt beheerders één compleet realtime overzicht van de elektrische prestaties:</p>
+    <ul>
+      <li><strong>Totaal Clustervermogen (kW):</strong> Ogenblikkelijk cumulatief actief laadvermogen over alle aangesloten voertuigen samen.</li>
+      <li><strong>Beschikbare Stroomruimte (A):</strong> Resterende ampères voordat het clusterplafond of de hoofdzekering wordt bereikt, inclusief kleurgecodeerde voortgangsbalk.</li>
+      <li><strong>Fasestromen (L1 / L2 / L3):</strong> Live stroommeting op elke individuele netfase voor onmiddellijke herkenning van fase-onbalans.</li>
+      <li><strong>DLB-balancering:</strong> Directe keuzeschakelaar om live te wisselen tussen <em>Equal Share</em>, <em>Priority First</em> en <em>Solar First</em> zonder het systeem te hoeven herstarten.</li>
+    </ul>
+
+    <h2 class="subsection-title">6.2 Telemetrie &amp; Bediening op de Laadpuntkaarten</h2>
+    <p>Elk geconfigureerd laadstation wordt weergegeven als een interactieve laadpuntkaart:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 20%;">Visueel Element</th>
+          <th style="width: 30%;">Mogelijke Statussen</th>
+          <th style="width: 50%;">Betekenis &amp; Bedieningsactie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Statusbadge</strong></td>
+          <td>
+            <span style="color: #16a34a; font-weight: bold;">CHARGING</span><br>
+            <span style="color: #2563eb; font-weight: bold;">AVAILABLE</span><br>
+            <span style="color: #d97706; font-weight: bold;">SUSPENDED</span><br>
+            <span style="color: #64748b; font-weight: bold;">OFFLINE</span>
+          </td>
+          <td>
+            <strong>CHARGING:</strong> Voertuig aangesloten en actief aan het laden.<br>
+            <strong>AVAILABLE:</strong> Laadpunt gereed, geen laadkabel aangesloten.<br>
+            <strong>SUSPENDED:</strong> Tijdelijk gepauzeerd door de DLB-engine ter bescherming van de hoofdautomaat.<br>
+            <strong>OFFLINE:</strong> Communicatie met de laadpaal onderbroken.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Actief Vermogen (kW)</strong></td>
+          <td>0,0 kW tot 22,0 kW</td>
+          <td>Realtime actief laadvermogen dat aan het voertuig wordt geleverd.</td>
+        </tr>
+        <tr>
+          <td><strong>Stroom &amp; Setpoint</strong></td>
+          <td>bijv. <code>10.7 A / 11.0 A (SP)</code></td>
+          <td>Toont de werkelijk opgenomen laadstroom ten opzichte van het door de DLB-engine opgedragen setpoint.</td>
+        </tr>
+        <tr>
+          <td><strong>Fasemodus</strong></td>
+          <td><code>1-Phase</code> of <code>3-Phase</code></td>
+          <td>Wordt automatisch gedetecteerd aan de hand van live fasespanning en fasestroom.</td>
+        </tr>
+        <tr>
+          <td><strong>Energie Vandaag</strong></td>
+          <td>kWh (Cumulatief)</td>
+          <td>Totaal geladen kilowattuur sinds middernacht (00:00). Wordt dagelijks automatisch gereset.</td>
+        </tr>
+        <tr>
+          <td><strong>Prioriteitsknoppen</strong></td>
+          <td><code>VIP</code> | <code>HIGH</code> | <code>NORM</code> | <code>SOLAR</code></td>
+          <td>Directe aanpassing van de prioriteit per laadpunt. De beheerder kan een voertuig met één klik promoveren naar VIP.</td>
+        </tr>
+        <tr>
+          <td><strong>Modusknoppen</strong></td>
+          <td><code>Eco</code> | <code>Solar</code> | <code>Boost</code> | <code>Off</code></td>
+          <td>
+            <strong>Eco:</strong> Volgt het globale DLB-schema.<br>
+            <strong>Solar:</strong> Uitsluitend laden op zonne-overschot.<br>
+            <strong>Boost:</strong> Direct laden op maximaal toegestaan vermogen.<br>
+            <strong>Off:</strong> Schakelt de vermogensvrijgave van het laadpunt volledig uit.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-info">
+      <div class="callout-title">
+        <span>💡 Directe Mobiele Voorrangsbediening</span>
+      </div>
+      <div>
+        Facilitair managers kunnen elk voertuig rechtstreeks vanaf hun smartphone of tablet promoveren naar <strong>VIP-prioriteit</strong> door op de knop <code>VIP</code> op de betreffende laadpuntkaart te tikken. GEMS herberekent de verdeling onmiddellijk tijdens de eerstvolgende 1-seconde cyclus en knijpt andere laadpunten bij om maximaal vermogen aan het VIP-voertuig toe te wijzen.
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 7 ==================== -->
+    <h1 class="section-title">Hoofdstuk 7: Inbedrijfstelling op Locatie, Verificatie &amp; Overbelastingstest</h1>
+
+    <h2 class="subsection-title">7.1 Mechanische &amp; Elektrische Controlelijst vóór Inschakelen</h2>
+    <ul>
+      <li>[ ] Controleer of alle individuele groepsautomaten overeenkomen met de toegepaste aderdoorsnede (minimaal 2,5 mm² voor 16A, 6,0 mm² voor 32A conform AREI / NEN 1010).</li>
+      <li>[ ] Controleer of de fasevolgorde en eventuele faserotatie (L1, L2, L3) consistent zijn gedocumenteerd tussen de laadpalen en de hoofdmeter.</li>
+      <li>[ ] Controleer of de P1-meterkabel of RS485 Modbus-energiemeter is aangesloten op de GEMS Raspberry Pi en live spanning en stroom rapporteert op het Dashboard.</li>
+      <li>[ ] Bevestig dat <code>PhaseLimitAmps</code> onder <strong>Instellingen &rarr; Energiecontract</strong> exact overeenkomt met de fysieke waarde van de hoofdautomaat.</li>
+    </ul>
+
+    <h2 class="subsection-title">7.2 Stapsgewijze Inbedrijfstellingsprocedure</h2>
+    <ol>
+      <li><strong>Start de GEMS Edge-controller:</strong> Controleer of de Raspberry Pi volledig is opgestart en de groene statusindicator op het GEMS-dashboard een gezonde systeemstatus meldt.</li>
+      <li><strong>Activeer het Laadcluster:</strong> Navigeer naar <code>/#fleet</code>, klik op <strong>Clusterinstellingen</strong> en schakel het laadcluster in. Voer de maximale groepsstroom van het gedeelde EV-verdeelbord in (bijv. <code>50 A</code>).</li>
+      <li><strong>Schakel de Laadpalen In:</strong> Zet spanning op de eerste Raedian-laadpaal. Controleer in de GEMS Vlootcockpit of Zero-Touch Auto-Onboarding het toestel automatisch registreert als <code>Bay 01</code>. Herhaal dit voor alle overige laadpalen.</li>
+      <li><strong>Configureer de Upstream Proxy (indien van toepassing):</strong> Wanneer laadsessies via een extern CPO-platform worden verrekend, vult u de upstream WebSocket-URL in en slaat u op. Controleer of de proxybadge <span style="color: #0284c7; font-weight: bold;">Proxy Active</span> toont.</li>
+    </ol>
+
+    <h2 class="subsection-title">7.3 Praktijktest Overbelastingsbeveiliging (Belastingstest)</h2>
+    <p>Voordat de installateur de locatie verlaat, dient een fysieke belastingstest van de hoofdzekeringsbewaking te worden uitgevoerd:</p>
+
+    <div class="callout callout-danger">
+      <div class="callout-title">
+        <span>🛑 Verplichte Veiligheidsverificatie bij Oplevering</span>
+      </div>
+      <div>
+        <ol style="margin: 4px 0 0 0; padding-left: 18px;">
+          <li>Sluit gelijktijdig testbelastingen of elektrische voertuigen aan op ten minste drie laadpunten.</li>
+          <li>Controleer in de Vlootcockpit dat alle drie de laadpunten opschalen naar hun laadstroom (bijv. 3 × 16A = 48A totaal).</li>
+          <li>Schakel nu een zware verbruiker in het gebouw in (bijv. bijverwarming van een warmtepomp, oven of belastingsbank) van circa 20A op Fase 1.</li>
+          <li><strong>Controleer de GEMS-reactie:</strong> Binnen 1 tot 2 seconden moet GEMS de afgenomen stroomruimte detecteren en de laadpunten direct terugregelen (bijv. van 16A naar 10A of 8A), zodat de totale netafname veilig onder <code>PhaseLimitAmps * 0.90</code> blijft.</li>
+          <li>Schakel de gebouwbelasting weer uit. GEMS moet de laadpalen automatisch weer terug opschalen naar vol vermogen.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 8 ==================== -->
+    <h1 class="section-title">Hoofdstuk 8: Probleemoplossing, Diagnose &amp; Veiligheidscodes</h1>
+
+    <h2 class="subsection-title">8.1 Foutzoekmatrix op Basis van Symptomen</h2>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Waargenomen Symptoom</th>
+          <th style="width: 35%;">Waarschijnlijke Oorzaak</th>
+          <th style="width: 40%;">Corrigerende Actie op Locatie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Laadpaal blijft op <strong>0A (Suspended)</strong> staan ondanks aangesloten kabel.</td>
+          <td>De vrije clusterruimte ligt onder de verplichte IEC 61851-1 minimumdrempel van <strong>6,0A</strong>.</td>
+          <td>Controleer het basisverbruik van het gebouw. Ga na of <code>FleetMaxCurrentA</code> niet te laag staat ingesteld of dat VIP-laadpunten alle beschikbare ruimte benutten.</td>
+        </tr>
+        <tr>
+          <td>Laadpaal blijft vast staan op exact <strong>6,0 A</strong> en schaalt niet hoger op.</td>
+          <td>De modus staat op <code>Solar First</code> zonder voldoende PV-injectie, of de boordlader van de auto laadt op slechts 1 fase.</td>
+          <td>Schakel de modus naar <code>Eco</code> of klik op <code>Boost</code>. Controleer de actuele zonneproductie op het hoofddashboard van GEMS.</td>
+        </tr>
+        <tr>
+          <td>OCPP Proxy meldt <strong>Disconnected / 0 active</strong>.</td>
+          <td>De upstream CPO-URL is onjuist, de firewall blokkeert uitgaande poort 443 of het authenticatietoken is ongeldig.</td>
+          <td>Controleer of de upstream URL de plaatshouder <code>{chargePointId}</code> bevat. Test de netwerkverbinding met <code>curl -I https://...</code> vanuit de terminal.</td>
+        </tr>
+        <tr>
+          <td>Hoofdautomaat spreekt aan tijdens gelijktijdig laden.</td>
+          <td><code>PhaseLimitAmps</code> staat hoger ingesteld dan de fysieke hoofdautomaat, of de uitlezing van de P1-meter loopt vertraagd binnen.</td>
+          <td>Verlaag onmiddellijk <code>PhaseLimitAmps</code> in de Instellingen. Controleer of de P1-slimmemeterkabel elke seconde telegrammen aflevert.</td>
+        </tr>
+        <tr>
+          <td>Nieuwe wallbox wordt niet automatisch toegevoegd.</td>
+          <td>Zero-Touch Auto-Onboarding staat uitgeschakeld, of de maximale clustercapaciteit (32 stations) is bereikt.</td>
+          <td>Open Clusterinstellingen, controleer of <em>Zero-Touch Auto-Onboarding</em> is aangevinkt en controleer het huidige aantal laadstations.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">8.2 Realtime Diagnostische Inspectie via het GEMS Logboek</h2>
+    <p>Alle DLB-arbitragebeslissingen, stroomaanpassingen en proxyberichten worden met microseconde-nauwkeurigheid geregistreerd in GEMS. Technici kunnen deze live volgen in de webinterface via het menu <strong>Logboek</strong> (<em>Logger</em>) of via de systeemterminal:</p>
+
+    <pre class="code-block">
+# Bekijk live GEMS Fleet- &amp; DLB-logboeken via systemd:
+sudo journalctl -u gems.service -f | grep -E "(Fleet|DLB|OCPP|Proxy)"
+
+# Voorbeelduitvoer tijdens actieve Dynamic Load Balancing terugregeling:
+[INFO] ⚡ Fleet Auto-Onboarding: Registered new station 'Raedian Bay 04' (Bay 4, CPID: RD-NEO-08412)
+[INFO] OCPP Straight-Through Proxy CP RD-NEO-08412 connected to external CPO (subprotocol: ocpp1.6)
+[INFO] DLB Safety Arbitration: Capping external CPO limit (32.0 A) to local fuse headroom (13.5 A)
+[INFO] Cluster Setpoints Dispatched: Bay 01=16.0A, Bay 02=16.0A, Bay 03=11.0A, Bay 04=13.5A
+    </pre>
+
+    <div class="callout callout-tip">
+      <div class="callout-title">
+        <span>📞 Technische Ondersteuning &amp; Firmware-updates</span>
+      </div>
+      <div>
+        Raadpleeg voor technische ondersteuning, hardwaretemplates of firmware-updates het centrale vlootbeheerportaal op <strong>ems.newenergygrid.com</strong> of het officiële documentatieoverzicht.
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

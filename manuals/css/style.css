@@ -1182,3 +1182,50 @@ tbody tr:hover {
   margin: 1.75rem 0;
 }
 
+/* --- Language Switcher (EN / NL / FR) --- */
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--radius-full);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.lang-switcher a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  line-height: 1.2;
+}
+
+.lang-switcher a:hover {
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
+  text-decoration: none;
+}
+
+.lang-switcher a.active {
+  background: var(--brand-primary);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+@media print {
+  .lang-switcher,
+  .no-print,
+  .interactive-toolbar {
+    display: none !important;
+  }
+}
+
+

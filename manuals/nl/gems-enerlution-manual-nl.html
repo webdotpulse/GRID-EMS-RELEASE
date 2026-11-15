@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS - Enerlution Hybride Omvormers &amp; Batterijopslag Bekabelings- &amp; Inbedrijfstellingshandleiding</title>
+  <meta name="description" content="Volledige diepgaande bekabelings-, Enerlution App-inbedrijfstellings- en GEMS-optimalisatiehandleiding voor Enerlution HY / L3-L12 / HYTH hybride omvormers gecombineerd met LFPWall-5000, LFPWall-10K-V2, Roller-16K, GroundHV-2500 en GH02-5324 LiFePO4-batterijopslag.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 12mm 16mm 12mm;
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9pt;
+      line-height: 1.5;
+    }
+
+    .manual-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 980px;
+      padding: 24px 16px 16px 16px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 24px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px -1px rgba(13, 148, 136, 0.25);
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 25pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 16px 0 8px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 11pt;
+      color: #475569;
+      margin: 0 0 18px 0;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    .cover-meta-val {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.08);
+      margin: 12px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 7.5pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Section Headings */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15.5pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #0d9488;
+      padding-bottom: 5px;
+      margin-top: 26px;
+      margin-bottom: 12px;
+      page-break-after: avoid;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11.5pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 18px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #0f766e;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #334155;
+    }
+
+    ul, ol {
+      margin: 6px 0 10px 0;
+      padding-left: 20px;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    /* Screenshot Container */
+    .manual-screenshot {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .manual-screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .manual-screenshot-caption {
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    .screenshot-two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      font-size: 8.5pt;
+      line-height: 1.45;
+    }
+
+    .callout-info {
+      background: #f0fdfa;
+      border-left: 4px solid #0d9488;
+      color: #115e59;
+    }
+
+    .callout-tip {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #166534;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #92400e;
+    }
+
+    .callout-danger {
+      background: #fef2f2;
+      border-left: 4px solid #dc2626;
+      color: #991b1b;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 8.2pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #cbd5e1;
+      padding: 6px 9px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .data-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Menu Path Breadcrumb Pills */
+    .menu-path {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      background: #f0fdfa;
+      border: 1px solid #5eead4;
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 8pt;
+      font-weight: 600;
+      color: #115e59;
+    }
+
+    .val-good {
+      display: inline-block;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-weight: 700;
+      font-size: 7.8pt;
+    }
+
+    .val-avoid {
+      display: inline-block;
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-weight: 700;
+      font-size: 7.8pt;
+    }
+
+    .diagram-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    .recipe-card {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .recipe-card h4 {
+      margin: 0 0 6px 0;
+      font-size: 9.5pt;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    code {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 8pt;
+      color: #0f766e;
+    }
+
+    pre.code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 7.8pt;
+      line-height: 1.45;
+      overflow-x: auto;
+      page-break-inside: avoid;
+    }
+
+    @media print {
+      .no-print, .lang-switcher {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="manual-page">
+
+    <div class="no-print" style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+      <nav class="lang-switcher" aria-label="Taalkeuze">
+        <a href="../gems-enerlution-manual.html">EN</a>
+        <a href="gems-enerlution-manual-nl.html" class="active" aria-current="page">NL</a>
+        <a href="../fr/gems-enerlution-manual-fr.html">FR</a>
+      </nav>
+    </div>
+
+    <!-- ==================== COVER PAGE ==================== -->
+    <div class="cover-page">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <span class="cover-badge">🔋 Specifieke Veldhandleiding voor Omvormer &amp; Batterijopslag</span>
+          <img src="../assets/new_energy_grid_logo.png" alt="New Energy Grid Logo" style="height: 36px; width: auto;">
+        </div>
+
+        <h1 class="cover-title">Enerlution Hybride Omvormers &amp; LiFePO<sub>4</sub> Batterijopslaggids</h1>
+        <p class="cover-subtitle">
+          Volledige handleiding voor elektriciens &amp; woningeigenaren met <strong>LV 51.2V parallelle &amp; HV stapelbare batterijbekabeling</strong> (<code>LFPWall-5000</code>, <code>LFPWall-10K-V2</code>, <code>Roller-16K</code>, <code>GroundHV-2500</code> &amp; <code>GH02-5324</code>), inbedrijfstellingsparameters in de <strong>Enerlution App</strong> en optimale configuratie in <strong>GRID-EMS (GEMS)</strong>.
+        </p>
+
+        <div class="cover-meta-grid">
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Documentversie</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.38.1-release (Officiële Release)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">GEMS Geverifieerd Template</span>
+            <span class="cover-meta-val">enerlution_inverter (1-Watt Precisie-Curtailment &amp; ESS-telemetrie)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Ondersteunde Enerlution Omvormers</span>
+            <span class="cover-meta-val">L3–L12-serie • HY-serie (1P LV) • HYTH-5K tot HYTH-12K (3P HV)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Ondersteunde Enerlution Batterijen</span>
+            <span class="cover-meta-val">LFPWall-5000 / 10K-V2 • Roller-16K (51.2V LV) • GroundHV-2500 / GH02 (HV)</span>
+          </div>
+        </div>
+
+        <div class="cover-hero-img">
+          <img src="../assets/screenshots/dashboard.png" alt="GEMS Realtime Energiebeheer Dashboard">
+        </div>
+
+        <div class="callout callout-info" style="margin-top: 14px;">
+          <div class="callout-title">⚡ Waarom Enerlution + GEMS naadloze lokale energiesturing bieden</div>
+          <div>
+            <strong>Enerlution</strong> levert zowel modulaire <strong>51.2 V laagspanningsbatterijen (LV)</strong> voor wand- of vloeropstelling als <strong>hoogspannings-stapeltorens (HV)</strong> voor driefasige residentiële en commerciële installaties. GEMS ontdekt Enerlution-hardware automatisch op uw LAN op basis van het IEEE MAC-prefix (<code>70:B3:D5</code> / <code>E4:5F:01</code>) en de Modbus-registersignatuur, leest volledige live PV-, batterij-SOC/SOH- en nettelemetrie uit met slimme fast/slow register-tiering, voert <strong>traploze 1-Watt zonne-curtailment</strong> uit bij negatieve spotprijzen en coördineert EV-laadpalen en warmtepompen rondom uw batterijreserve.
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-footer">
+        <span>© New Energy Grid &amp; The Charge Grid — Eigendomsrechtelijke Velddocumentatie v9.37.2</span>
+        <span>Doelplatform: GRID-EMS Edge Controller (Raspberry Pi ARM64)</span>
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 1 ==================== -->
+    <h1 class="section-title">Sectie 1: Enerlution Omvormer- &amp; Batterij-ecosysteem (LV vs. HV)</h1>
+
+    <p>
+      In tegenstelling tot merken met één vaste spanningsarchitectuur produceert <strong>Enerlution</strong> twee strikt gescheiden spanningsklassen: <strong>51.2 V laagspanningssystemen (LV)</strong> voor enkelfasige opslag en <strong>150–600 V hoogspannings-stapeltorens (HV)</strong> voor driefasige systemen. Controleer vóór montage of bekabeling altijd of uw batterijmodel exact overeenkomt met de spanningsklasse van uw hybride omvormer.
+    </p>
+
+    <div class="callout callout-danger">
+      <div class="callout-title">🛑 KRITIEKE SPANNINGSSCHEIDINGSREGEL: Combineer NOOIT LV (51.2V) met HV (150–600V)!</div>
+      <div>
+        <ul style="margin: 2px 0 0 0;">
+          <li><strong>Architectuur A — 51.2 V Laagspanning (<code>LFPWall-5000</code>, <code>LFPWall-10K-V2</code>, <code>Roller-16K</code>):</strong> Uitsluitend <strong>parallel op 51.2 V</strong> bekabeld (<code>P+</code> naar <code>P+</code>, <code>P-</code> naar <code>P-</code>). Sluit <em>enkel</em> aan op 48V/51.2V laagspannings-hybride omvormers (<code>Enerlution HY / L3–L6 LV</code> of compatibele 48V LV-omvormers zoals <code>Solis -L</code>). Schakel LV wand-/rolbatterijen <strong>nooit</strong> in serie!</li>
+          <li><strong>Architectuur B — Hoogspanning Stapelbaar (<code>GroundHV-2500</code>, <code>GH02-5324</code> + PDU/BCU):</strong> Afzonderlijke blokken worden <strong>in serie gestapeld onder een specifieke Hoogspannings-PDU / BCU Control Box</strong> (<code>~153 V – 500+ Vdc</code>). Sluit <em>enkel</em> aan op driefasige hoogspannings-hybride omvormers (<code>Enerlution HYTH-5K..12K</code> / <code>L5–L12 HV</code>). Houd de HV Manual Service Disconnect (MSD) / PDU-automaten <strong>UIT (OFF)</strong> en draag HV-geïsoleerde veiligheidshandschoenen tijdens de opbouw!</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">1.1 Specificatiematrix Enerlution Batterijopslag</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 23%;">Enerlution Batterijmodel</th>
+          <th style="width: 15%;">Spanningsklasse</th>
+          <th style="width: 22%;">Nominale Spanning &amp; Capaciteit</th>
+          <th style="width: 20%;">Max. Laden / Ontladen</th>
+          <th style="width: 20%;">Bijpassende Omvormerfamilie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>LFPWall-5000</strong><br><em>(Wandmontage LiFePO<sub>4</sub>)</em></td>
+          <td><strong>Laagspanning (LV)</strong><br>(Parallel)</td>
+          <td><code>51.2 Vdc</code> • <code>102 Ah</code><br><strong><code>5.22 kWh</code></strong> (45–57.6 V)</td>
+          <td>Laden: <code>40 A</code> (~2.05 kW)<br>Ontladen: <code>75 A</code> (~3.84 kW)</td>
+          <td>Enerlution <code>HY / L3–L6 LV</code><br><em>(of Solis LV <code>-L</code>)</em></td>
+        </tr>
+        <tr>
+          <td><strong>LFPWall-10K-V2</strong><br><em>(Hoge-cap. Wandmontage)</em></td>
+          <td><strong>Laagspanning (LV)</strong><br>(Parallel)</td>
+          <td><code>51.2 Vdc</code> • <code>204 Ah</code><br><strong><code>10.44 kWh</code></strong> (45–57.6 V)</td>
+          <td>Laden: <code>90 A</code> (~4.61 kW)<br>Ontladen: <code>140 A</code> (~7.16 kW)</td>
+          <td>Enerlution <code>HY / L3–L6 LV</code><br><em>(of Solis LV <code>-L</code>)</em></td>
+        </tr>
+        <tr>
+          <td><strong>Roller-16K</strong><br><em>(Verrijdbaar Vloermodel)</em></td>
+          <td><strong>Laagspanning (LV)</strong><br>(Parallel)</td>
+          <td><code>51.2 Vdc</code> • <code>314 Ah</code><br><strong><code>16.08 kWh</code></strong> (45–57.6 V)</td>
+          <td><code>0.5 C</code> heavy-duty klasse<br>(Tot ~<code>150 A</code> / ~7.6 kW)</td>
+          <td>Enerlution <code>HY / L5–L6 LV</code><br><em>(of Solis <code>S6-EH1P/3P-L</code>)</em></td>
+        </tr>
+        <tr>
+          <td><strong>GroundHV-2500 + PDU</strong><br><em>(Stapelbare HV-toren)</em></td>
+          <td><strong>Hoogspanning (HV)</strong><br>(Seriestapel)</td>
+          <td><code>51.2 V</code> / <code>52 Ah</code> (<code>2.5 kWh</code>/blok)<br><strong><code>7.5 – 20+ kWh</code></strong> (3–8 blokken)</td>
+          <td><code>~25 – 50 A</code> HV DC<br>(<code>5 – 12 kW</code> continu)</td>
+          <td>Enerlution <strong><code>HYTH-5K..12K</code></strong><br>(3-fasige HV Hybride)</td>
+        </tr>
+        <tr>
+          <td><strong>GH02-5324 + BCU</strong><br><em>(Grote HV-toren)</em></td>
+          <td><strong>Hoogspanning (HV)</strong><br>(Seriestapel)</td>
+          <td>Hoogspanning Modulair<br><strong><code>15.0 – 42.0 kWh</code></strong></td>
+          <td><code>~50 A</code> HV DC<br>(<code>10 – 15+ kW</code> continu)</td>
+          <td>Enerlution <strong><code>HYTH-8K..12K</code></strong><br>(3-fasige HV Hybride)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">1.2 Enerlution Hybride Omvormerseries &amp; Kabel- / Beveiligingsdimensionering</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 26%;">Omvormerserie</th>
+          <th style="width: 20%;">AC-netfasen</th>
+          <th style="width: 18%;">GEMS Template</th>
+          <th style="width: 36%;">Batterij DC-kabel &amp; Externe Beveiliging</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Enerlution HY / L3–L6 (LV)</strong><br><em>(3.0 / 3.6 / 5.0 / 6.0 kW)</em></td>
+          <td>Enkelfasig<br>(<code>230 Vac</code>)</td>
+          <td><code>enerlution_inverter</code></td>
+          <td><code>25 mm²</code> (5 kWh) of <code>35–50 mm²</code> (10–16 kWh+) koper via <strong>niet-gepolariseerde 2-polige DC MCCB (<code>125 A – 200 A</code>, ≥80 Vdc)</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Enerlution HYTH / L5–L12 (HV)</strong><br><em>(5.0 / 6.0 / 8.0 / 10.0 / 12.0 kW)</em></td>
+          <td>Driefasig<br>(<code>3×400V+N</code>)</td>
+          <td><code>enerlution_inverter</code></td>
+          <td>Dubbelgeïsoleerde <code>6 – 10 mm²</code> (<code>1000 Vdc</code>) HV solar-/opslagkabels via <strong>ingebouwde PDU HV-automaat &amp; Manual Service Disconnect</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 2 ==================== -->
+    <h1 class="section-title">Sectie 2: Stap-voor-stap Bekabelingshandleiding voor Batterij &amp; Slimme Meter</h1>
+
+    <p>
+      Schakel de AC-installatieautomaat in de verdeelkast, de PV DC-lastscheider, de externe DC-vermogensautomaat / HV PDU-schakelaar en alle aan/uit-knoppen op de batterijmodules volledig spanningsloos voordat u vermogens- of communicatiekabels aansluit.
+    </p>
+
+    <h2 class="subsection-title">2.1 Beide Bekabelingstopologieën: LV 51.2V Parallel vs. HV Stapeltoren</h2>
+
+    <div class="diagram-box">
+      <div style="font-weight: 800; font-size: 9.2pt; color: #0f172a; margin-bottom: 8px;">
+        Links: Architectuur A — 51.2V LV Parallel (LFPWall / Roller) &nbsp;|&nbsp; Rechts: Architectuur B — HV Stapelbaar (GroundHV / GH02 + PDU)
+      </div>
+      <svg viewBox="0 0 840 250" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+        <!-- Divider -->
+        <line x1="420" y1="8" x2="420" y2="242" stroke="#cbd5e1" stroke-width="1.8" stroke-dasharray="6,4"/>
+
+        <!-- LEFT SIDE: LV 51.2V PARALLEL -->
+        <text x="205" y="20" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0f766e">A. 51.2V LV Parallel (HY / L3–L6 Omvormer)</text>
+
+        <rect x="12" y="34" width="138" height="196" rx="9" fill="#f0fdfa" stroke="#0d9488" stroke-width="2"/>
+        <text x="81" y="56" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#115e59">Enerlution LV</text>
+        <text x="81" y="71" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#475569">HY / L3–L6 (1P)</text>
+        <rect x="92" y="88" width="48" height="20" rx="3" fill="#fee2e2" stroke="#dc2626"/>
+        <text x="116" y="102" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#991b1b">BAT+</text>
+        <rect x="92" y="118" width="48" height="20" rx="3" fill="#e2e8f0" stroke="#0f172a"/>
+        <text x="116" y="132" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#0f172a">BAT-</text>
+        <rect x="82" y="156" width="58" height="22" rx="3" fill="#dbeafe" stroke="#2563eb"/>
+        <text x="111" y="170" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#1e40af">BMS CAN</text>
+        <rect x="20" y="196" width="120" height="22" rx="3" fill="#fef9c3" stroke="#ca8a04"/>
+        <text x="80" y="210" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#854d0e">Meter RS485 + PE</text>
+
+        <!-- LV DC MCCB -->
+        <rect x="172" y="84" width="68" height="60" rx="6" fill="#ffffff" stroke="#475569" stroke-width="1.8"/>
+        <text x="206" y="104" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#dc2626">2P DC</text>
+        <text x="206" y="117" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#0f172a">MCCB</text>
+        <text x="206" y="132" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#475569">125–200A</text>
+
+        <!-- LV Pack 1 Master -->
+        <rect x="264" y="34" width="142" height="86" rx="8" fill="#f8fafc" stroke="#0284c7" stroke-width="1.8"/>
+        <text x="335" y="51" text-anchor="middle" font-family="sans-serif" font-size="9.5" font-weight="bold" fill="#0369a1">LFPWall #1 (Master)</text>
+        <text x="335" y="64" text-anchor="middle" font-family="monospace" font-size="8" fill="#166534">DIP Adres = 1</text>
+        <rect x="274" y="72" width="32" height="18" rx="3" fill="#fee2e2" stroke="#dc2626"/>
+        <text x="290" y="84" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#991b1b">P+</text>
+        <rect x="312" y="72" width="32" height="18" rx="3" fill="#e2e8f0" stroke="#0f172a"/>
+        <text x="328" y="84" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#0f172a">P-</text>
+        <rect x="350" y="72" width="46" height="18" rx="3" fill="#dbeafe" stroke="#2563eb"/>
+        <text x="373" y="84" text-anchor="middle" font-family="monospace" font-size="8" font-weight="bold" fill="#1e40af">CAN</text>
+        <text x="335" y="109" text-anchor="middle" font-family="monospace" font-size="7.8" fill="#6d28d9">RS485 Link Out ↓</text>
+
+        <!-- LV Pack 2 Slave -->
+        <rect x="264" y="144" width="142" height="86" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.6"/>
+        <text x="335" y="161" text-anchor="middle" font-family="sans-serif" font-size="9.5" font-weight="bold" fill="#1e293b">LFPWall #2 (Slave)</text>
+        <text x="335" y="174" text-anchor="middle" font-family="monospace" font-size="8" fill="#9a3412">DIP Adres = 2</text>
+        <rect x="274" y="182" width="32" height="18" rx="3" fill="#fee2e2" stroke="#dc2626"/>
+        <text x="290" y="194" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#991b1b">P+</text>
+        <rect x="312" y="182" width="32" height="18" rx="3" fill="#e2e8f0" stroke="#0f172a"/>
+        <text x="328" y="194" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#0f172a">P-</text>
+        <text x="335" y="218" text-anchor="middle" font-family="sans-serif" font-size="7.8" fill="#475569">Diagonale P- aftakking!</text>
+
+        <!-- LV Wires -->
+        <line x1="140" y1="98" x2="172" y2="98" stroke="#dc2626" stroke-width="2.6"/>
+        <path d="M 240 98 L 254 98 L 254 81 L 274 81" stroke="#dc2626" stroke-width="2.6" fill="none"/>
+        <line x1="290" y1="90" x2="290" y2="182" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,2"/>
+        <line x1="140" y1="128" x2="172" y2="128" stroke="#0f172a" stroke-width="2.6"/>
+        <path d="M 240 128 L 248 128 L 248 236 L 328 236 L 328 200" stroke="#0f172a" stroke-width="2.6" fill="none"/>
+        <line x1="328" y1="90" x2="328" y2="182" stroke="#0f172a" stroke-width="2" stroke-dasharray="4,2"/>
+        <path d="M 140 167 L 258 167 L 258 128 L 373 128 L 373 90" stroke="#2563eb" stroke-width="2" fill="none"/>
+        <line x1="382" y1="120" x2="382" y2="144" stroke="#7c3aed" stroke-width="2"/>
+
+        <!-- RIGHT SIDE: HV SERIES STACKABLE -->
+        <text x="630" y="20" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#b91c1c">B. HV Seriestapel (HYTH 3-fasen Omvormer)</text>
+
+        <rect x="438" y="34" width="145" height="196" rx="9" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+        <text x="510" y="56" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="bold" fill="#9a3412">Enerlution HV</text>
+        <text x="510" y="71" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#475569">HYTH-5K..12K (3P)</text>
+        <rect x="522" y="88" width="52" height="20" rx="3" fill="#fee2e2" stroke="#dc2626"/>
+        <text x="548" y="102" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#991b1b">HV+</text>
+        <rect x="522" y="118" width="52" height="20" rx="3" fill="#e2e8f0" stroke="#0f172a"/>
+        <text x="548" y="132" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#0f172a">HV-</text>
+        <rect x="514" y="156" width="60" height="22" rx="3" fill="#dbeafe" stroke="#2563eb"/>
+        <text x="544" y="170" text-anchor="middle" font-family="monospace" font-size="8.5" font-weight="bold" fill="#1e40af">BMS CAN</text>
+        <rect x="448" y="196" width="125" height="22" rx="3" fill="#f0fdf4" stroke="#16a34a"/>
+        <text x="510" y="210" text-anchor="middle" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#166534">DTSU666 + LAN/485</text>
+
+        <!-- HV Stack Tower: Top PDU + 3 Stacked Modules -->
+        <rect x="632" y="34" width="194" height="54" rx="7" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+        <text x="729" y="52" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#991b1b">HV PDU / BCU Stuurkop</text>
+        <text x="729" y="67" text-anchor="middle" font-family="monospace" font-size="8" fill="#334155">HV-automaat • MSD • CAN</text>
+
+        <rect x="632" y="94" width="194" height="40" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+        <text x="729" y="118" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#1e293b">GroundHV-2500 / GH02 Module 1</text>
+
+        <rect x="632" y="140" width="194" height="40" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+        <text x="729" y="164" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#1e293b">GroundHV-2500 / GH02 Module 2</text>
+
+        <rect x="632" y="186" width="194" height="44" rx="5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+        <text x="729" y="206" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="bold" fill="#1e293b">Module 3..8 + Vloersokkel</text>
+        <text x="729" y="221" text-anchor="middle" font-family="sans-serif" font-size="7.8" fill="#166534">Interne blinde HV-seriebus</text>
+
+        <!-- HV Wires -->
+        <path d="M 574 98 L 606 98 L 606 48 L 632 48" stroke="#dc2626" stroke-width="2.6" fill="none"/>
+        <path d="M 574 128 L 616 128 L 616 66 L 632 66" stroke="#0f172a" stroke-width="2.6" fill="none"/>
+        <path d="M 574 167 L 622 167 L 622 80 L 632 80" stroke="#2563eb" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+
+    <h3 class="step-title">Architectuur A — Bekabeling van 51.2V LV-batterijen (<code>LFPWall-5000</code>, <code>LFPWall-10K-V2</code>, <code>Roller-16K</code>)</h3>
+    <ol>
+      <li><strong>Externe 2-polige niet-gepolariseerde DC MCCB:</strong> Plaats een niet-gepolariseerde 2-polige DC-vermogensautomaat of <code>gBat</code> DC-zekeringlastscheider (<code>&ge; 80 Vdc</code>; <code>100–125 A</code> voor een enkele <code>LFPWall-5000</code>, <code>160–200 A</code> voor een <code>LFPWall-10K-V2</code> of <code>Roller-16K</code>) tussen de batterijbank en de <code>BAT+ / BAT-</code> aansluitklemmen van de omvormer.</li>
+      <li><strong>Regel voor parallelle stroombalancering:</strong> Gebruik bij <strong>2–3 parallelle batterijpakketten</strong> brugkabels van exact gelijke lengte (<code>P+</code> naar <code>P+</code>, <code>P-</code> naar <code>P-</code>) en tak <strong><code>BAT+</code> af op Pakket 1 (Master) <code>P+</code></strong> en <strong><code>BAT-</code> diagonaal op de <code>P-</code> van het laatste pakket</strong>. Trek bij <strong>4 of meer parallelle pakketten</strong> gezekerde aftakkabels van exact gelijke lengte (<code>25–35 mm&sup2;</code>) vanaf elke batterij naar vertinde koperen DC-verzamelrails van <code>250–400 A</code>.</li>
+      <li><strong>Beschermingsaarding (<code>&#9178; PE</code>):</strong> Verbind de <code>&#9178;</code> M6-aardingsbout op de behuizing van elke wand- of rolbatterij rechtstreeks met de PE-aardrail van de omvormer via een geel/groene kopergeleider van <code>&ge; 6 mm&sup2;</code>.</li>
+    </ol>
+
+    <h3 class="step-title">Architectuur B — Bekabeling van Hoogspanningstorens (<code>GroundHV-2500</code> / <code>GH02-5324</code> + PDU/BCU)</h3>
+    <ol>
+      <li><strong>Mechanisch stapelen &amp; muurverankering:</strong> Stel de stalen vloersokkel waterpas op tegen een draagkrachtige wand. Stapel het vereiste aantal HV-batterijblokken verticaal op elkaar (minimaal <code>3–4 &times; GroundHV-2500</code> blokken = <code>~153–204 Vdc</code> om boven de opstartspanning van de <code>HYTH</code> te komen), monteer tussen elke laag de anti-kantel zijbeugels en plaats de <strong>PDU / BCU Hoogspannings-stuurkop</strong> bovenop de toren.</li>
+      <li><strong>HV DC-stekkers &amp; veiligheidsvergrendeling:</strong> Controleer of de PDU HV-vermogensautomaat op <strong>UIT (OFF)</strong> staat en de oranje <strong>Manual Service Disconnect (MSD)</strong> veiligheidsstekker verwijderd is. Leid dubbelgeïsoleerde HV-opslagkabels van <code>6–10 mm&sup2;</code> (<code>1000 Vdc</code>) van de aanraakveilige <code>HV+ / HV-</code> connectoren op de PDU naar de <code>BAT+ / BAT-</code> poorten van de <code>HYTH</code>-omvormer tot de vergrendelkragen hoorbaar vastklikken, en aard de <code>&#9178; PE</code>-aansluitpunten van zowel sokkel als PDU op de aardrail van de omvormer.</li>
+    </ol>
+
+    <div class="page-break"></div>
+
+    <h2 class="subsection-title">2.2 BMS CAN-kabelpinbezetting &amp; DIP-switchadressering voor meerdere pakketten</h2>
+    <p>
+      Enerlution-batterijen brengen gesloten-lus BMS-communicatie tot stand (<code>SOC %</code>, <code>SOH %</code>, pakketspanning, celtemperatuur-derating en laad-/ontlaadstroomlimieten) via de <strong>CAN-bus</strong> met een RJ45-kabel tussen de <strong><code>CAN</code>-poort van de Master-batterij / PDU</strong> en de <strong><code>BMS / CAN</code>-poort</strong> van de Enerlution-omvormer:
+    </p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 15%;">RJ45-pin</th>
+          <th style="width: 21%;">T568B Aderkleur</th>
+          <th style="width: 24%;">Enerlution Batterij / PDU-poort</th>
+          <th style="width: 22%;">Omvormer <code>BMS / CAN</code>-poort</th>
+          <th style="width: 18%;">Bekabelingsopmerkingen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Pin 1 &amp; 2</strong></td>
+          <td>Wit-Oranje / Oranje</td>
+          <td>RS485-B / RS485-A (Optioneel)</td>
+          <td>RS485-B / RS485-A</td>
+          <td>Niet gebruikt in CAN-modus</td>
+        </tr>
+        <tr>
+          <td><strong>Pin 3 &amp; 6</strong></td>
+          <td>Wit-Groen / Groen</td>
+          <td>Signaal <code>GND</code></td>
+          <td>Signaal <code>GND</code></td>
+          <td>Referentiemassa</td>
+        </tr>
+        <tr>
+          <td><strong>Pin 4</strong></td>
+          <td><strong>Vol Blauw</strong></td>
+          <td><strong><code>CAN-H</code> (CAN High)</strong></td>
+          <td><strong><code>CAN-H</code> (CAN High)</strong></td>
+          <td><span class="val-good">Verplicht CAN-H</span></td>
+        </tr>
+        <tr>
+          <td><strong>Pin 5</strong></td>
+          <td><strong>Wit / Blauw</strong></td>
+          <td><strong><code>CAN-L</code> (CAN Low)</strong></td>
+          <td><strong><code>CAN-L</code> (CAN Low)</strong></td>
+          <td><span class="val-good">Verplicht CAN-L</span></td>
+        </tr>
+        <tr>
+          <td><strong>Pin 7 &amp; 8</strong></td>
+          <td>Wit-Bruin / Bruin</td>
+          <td>Gereserveerd / Afscherming GND</td>
+          <td>Gereserveerd / Afscherming GND</td>
+          <td>Controleer label fabriekskabel</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ul>
+      <li><strong>Parallelle linkkabels &amp; DIP-switches (uitsluitend instellen in spanningsloze toestand!):</strong>
+        <ul>
+          <li><strong>Enkel batterijpakket:</strong> Laat de <code>ADD</code> DIP-switches in de standaard fabrieksstand voor standalone gebruik staan (<code>0000</code> alles <code>OFF</code>, of <code>Address 1</code> volgens het bijgesloten V1/V2 BMS-blad).</li>
+          <li><strong>Meerdere parallelle LV-pakketten (<code>LFPWall</code> / <code>Roller</code>):</strong> Lus CAT5e/CAT6-linkkabels door van <strong>Master Pakket 1 <code>Link Out / RS485-B</code> &rarr; Slave Pakket 2 <code>Link In / RS485-A</code> &rarr; Slave Pakket 3 <code>Link In</code></strong>. Ken in uitgeschakelde toestand opeenvolgende binaire adressen toe: <strong>Master (Pakket 1) = Adres <code>1</code> (<code>ON OFF OFF OFF</code>)</strong>, <strong>Slave 1 (Pakket 2) = Adres <code>2</code> (<code>OFF ON OFF OFF</code>)</strong>, <strong>Slave 2 (Pakket 3) = Adres <code>3</code> (<code>ON ON OFF OFF</code>)</strong>, <strong>Slave 3 (Pakket 4) = Adres <code>4</code> (<code>OFF OFF ON OFF</code>)</strong>. Beschikt uw DIP-blok op de laatste pool over een specifieke afsluitweerstandbit, zet deze terminatie dan op <code>ON</code> op het fysiek verst verwijderde pakket.</li>
+          <li><strong>Koppeling van 51.2V Enerlution-pakketten met LV-omvormers van derden (bijv. Solis):</strong> Controleer of het Enerlution BMS-protocol overeenkomt met de doelomvormer (<code>Pylon / Solis CAN</code> over Pin 4 &amp; 5; omschakelbaar via DIP of met de USB-RS485 BMS Monitor-software van Enerlution indien af fabriek op een ander OEM-profiel geleverd).</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2 class="subsection-title">2.3 Bekabeling van Externe RS-485 Slimme Meter (<code>CHINT DTSU666</code> &amp; <code>Eastron SDM630</code>)</h2>
+    <p>
+      Voor autonome batterijregeling op zelfverbruik (<code>Self-Consumption</code>) en nauwkeurig fase-inzicht op woningniveau trekt u een afgeschermde twisted-pair RS-485-kabel (<code>9600 bps, 8N1</code>, Meteradres <code>1</code>) van de slimme meter in het hoofdbord naar het <strong><code>Meter / 485</code></strong> klemmenblok van de Enerlution-omvormer:
+    </p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 30%;">Model Slimme Meter</th>
+          <th style="width: 24%;">Meter <code>RS485-A (+)</code></th>
+          <th style="width: 24%;">Meter <code>RS485-B (-)</code></th>
+          <th style="width: 22%;">Vereiste Meterbus-instelling</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>CHINT DTSU666</strong> (3-fasig)</td>
+          <td>Klem <strong><code>24</code></strong></td>
+          <td>Klem <strong><code>25</code></strong></td>
+          <td>Adres <code>1</code> • <code>9600 8N1</code></td>
+        </tr>
+        <tr>
+          <td><strong>CHINT DDSU666</strong> (1-fasig)</td>
+          <td>Klem <strong><code>5</code></strong></td>
+          <td>Klem <strong><code>6</code></strong></td>
+          <td>Adres <code>1</code> • <code>9600 8N1</code></td>
+        </tr>
+        <tr>
+          <td><strong>Eastron SDM630-Modbus V2</strong></td>
+          <td>Klem <strong><code>A / 485A</code></strong></td>
+          <td>Klem <strong><code>B / 485B</code></strong></td>
+          <td>Adres <code>1</code> • <code>9600 8N1</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <em>Controle CT-stroomrichting:</em> Klik alle CT-stroomspoelen op de binnenkomende hoofdfasegeleiders direct na de officiële nutsmeter (stroomopwaarts van alle huishoudelijke kringen, EV-laadpalen en zonne-/batterijomvormers) met de CT-pijlen strikt wijzend van <strong>Net &rarr; Woning/Verbruik (Grid &rarr; Home/Load)</strong>.
+    </p>
+
+    <h2 class="subsection-title">2.4 Veilige Soft-Start Inschakel- &amp; Uitschakelvolgorde</h2>
+    <div class="callout callout-tip">
+      <div class="callout-title">⚡ Verplichte Voorlaad-opstartvolgorde (Pre-Charge)</div>
+      <div>
+        <ol style="margin: 4px 0 0 0; padding-left: 18px;">
+          <li><strong>Koude polariteitscontrole:</strong> Meet met alle automaten UIT eerst met een DC-voltmeter de juiste <code>BAT+ / BAT-</code> polariteit na.</li>
+          <li><strong>Sluit eerst de DC-lastscheider:</strong> Zet de LV 2-polige DC MCCB op <strong>AAN (ON)</strong> (of plaats de HV MSD-veiligheidsstekker en zet de PDU HV-automaat op <strong>AAN</strong>) terwijl het BMS zelf nog in slaapstand staat.</li>
+          <li><strong>Wek het Master- / PDU-BMS:</strong> Houd de <strong><code>POWER / SW</code>-knop op de Master-batterij of HV PDU (<code>2–3 seconden</code>)</strong> ingedrukt zodat het interne voorlaadcircuit (pre-charge) de DC-buscondensatoren van de omvormer gecontroleerd oplaadt. Controleer of de groene <strong><code>RUN</code></strong>-LED continu brandt/normaal knippert en de rode <strong><code>ALM</code></strong>-LED UIT is.</li>
+          <li><strong>Schakel PV &amp; AC-net in:</strong> Zet de <strong>PV DC-lastscheider AAN</strong> op de omvormer en schakel daarna de <strong>AC-netautomaat AAN</strong>.</li>
+        </ol>
+        <em>Uitschakelen (omgekeerde volgorde):</em> <strong>AC-netautomaat UIT</strong> &rarr; <strong>PV DC-schakelaar UIT</strong> &rarr; Houd de Master/PDU <code>POWER</code>-knop 3s ingedrukt om het BMS in slaapstand te zetten &rarr; <strong>DC MCCB / PDU-automaat UIT</strong> (wacht minimaal 5 minuten vóór aanraking van HV-klemmen!).
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 3 ==================== -->
+    <h1 class="section-title">Sectie 3: Stap-voor-stap Inbedrijfstelling in de Enerlution App</h1>
+
+    <p>
+      Download de officiële mobiele <strong>Enerlution</strong>-app (iOS App Store / Google Play) om de Wi-Fi-/LAN-communicatie in bedrijf te stellen, de BMS-handshake te verifiëren, het juiste slimme-meterprofiel te kiezen en de actieve vermogenslimieten vrij te geven voor GEMS.
+    </p>
+
+    <h2 class="subsection-title">3.1 Lokaal verbinden via Bluetooth of Wi-Fi Access Point</h2>
+    <ol>
+      <li>Steek de <strong>Enerlution Wi-Fi / LAN-communicatiemodule</strong> stevig vast in de onderste <code>COM / Wi-Fi</code>-poort van de omvormer.</li>
+      <li>Schakel <strong>Bluetooth</strong> en <strong>Wi-Fi</strong> in op uw smartphone (<strong>zet Mobiele Data tijdelijk UIT</strong> wanneer u verbindt met het lokale Wi-Fi AP SSID van de logger, zodat uw telefoon de lokale verbinding zonder internet niet verbreekt).</li>
+      <li>Open de <strong>Enerlution App</strong>, kies <strong>Lokale inbedrijfstelling / Apparaat-debugging</strong> (<em>Local Commissioning / Device Debugging</em>), log in met uw <strong>Installateursgegevens</strong> (<em>Installer</em>) en koppel de communicatiestick aan uw lokale <strong>2.4 GHz Wi-Fi</strong> of <strong>bekabeld Ethernet LAN</strong> (reserveer direct een <strong>vast DHCP IPv4-adres</strong> in uw router!).</li>
+    </ol>
+
+    <h2 class="subsection-title">3.2 Volledige Parameterchecklist in de Enerlution App voor GEMS-compatibiliteit</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 26%;">Instelling in Enerlution App</th>
+          <th style="width: 24%;">Vereiste Waarde</th>
+          <th style="width: 50%;">Waarom deze exacte instelling essentieel is voor GEMS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Batterijtype &amp; Protocol</strong><br><em>(Battery Type &amp; Protocol / Battery Settings)</em></td>
+          <td><span class="val-good">Lithium-Ion (CAN)</span><br><em>(Enerlution / Pylon-profiel)</em></td>
+          <td>Activeert gesloten-lus BMS-telemetrie (<code>SOC %</code>, <code>SOH %</code>, pakketspanning, live stroom &amp; thermische beveiliging). Controleer of de batterijstatus <strong>Normal / Standby / Charging</strong> toont (<code>State 1–5</code>, nooit <code>7 Offline</code>).</td>
+        </tr>
+        <tr>
+          <td><strong>EMS-werkmodus</strong><br><em>(EMS Working Mode / Energy Management Mode)</em></td>
+          <td><span class="val-good">Self-Consumption</span><br><span class="val-avoid">NIET Full Off-Grid / Static Force</span></td>
+          <td>Instrueert de Enerlution-omvormer om zonne-overschotten overdag autonoom op te slaan in uw <code>LFPWall</code>- of <code>GroundHV</code>-systeem en naadloos te ontladen voor huishoudelijk verbruik en avondpieken!</td>
+        </tr>
+        <tr>
+          <td><strong>Minimale / Reserve-SOC</strong><br><em>(Minimum / Reserve SOC / End-of-Discharge SOC)</em></td>
+          <td><span class="val-good">10 %</span> <em>(Standaard netgekoppeld)</em><br><span class="val-good">15 % – 20 %</span> <em>(Met EPS-noodstroom)</em></td>
+          <td>Beschermt de levensduur van de LiFePO<sub>4</sub>-cellen (90% DoD) en behoudt noodstroomreserve indien kritieke verbruikers op de <code>EPS / Backup</code>-uitgang zijn aangesloten. Houd <strong>Max Charge SOC = 100%</strong> voor celbalancering.</td>
+        </tr>
+        <tr>
+          <td><strong>Externe Slimme Meter</strong><br><em>(External Smart Meter / Meter / CT Settings)</em></td>
+          <td><span class="val-good">Enable</span> &rarr;<br><code>CHINT DTSU666</code> of <code>SDM630</code></td>
+          <td>Activeert sub-seconde afname-/injectiemeting achter de meter op de omvormer (<code>Address 1</code>, <code>9600 bps</code>) en stuurt live metervermogens door naar GEMS. Voer in de app een test met een waterkoker van ~2 kW uit om positieve afnamepolariteit te bevestigen!</td>
+        </tr>
+        <tr>
+          <td><strong>Actieve Vermogensregeling / Exportlimiet</strong><br><em>(Active Power Control / Export Limit)</em></td>
+          <td><span class="val-good">Disabled / Unlimited (0)</span><br><em>(Tenzij wettelijk opgelegd door netbeheerder)</em></td>
+          <td><strong>Cruciaal!</strong> Door statische nul-injectie in de Enerlution App <em>Uitgeschakeld (Disabled)</em> te laten, blijven winstgevende teruglevering en Groenestroomcertificaten behouden, terwijl GEMS dynamisch <strong>1-Watt nauwkeurige curtailment-limieten</strong> (<code>0 W</code> tot <code>Nominaal W</code>) wegschrijft zodra spotprijzen negatief worden!</td>
+        </tr>
+        <tr>
+          <td><strong>Modbus-communicatie</strong><br><em>(Modbus Communication — RS-485 &amp; TCP Server)</em></td>
+          <td>Slave ID: <span class="val-good">1</span> • Baud: <span class="val-good">9600 8N1</span><br>Modbus TCP-poort: <span class="val-good">502</span></td>
+          <td>Komt exact overeen met de standaardwaarden van de native <code>enerlution_inverter</code>-driver in GEMS voor zowel bekabeld LAN/Wi-Fi (<code>TCP :502</code>) als directe USB-naar-RS485 (<code>9600 8N1</code>).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 4 ==================== -->
+    <h1 class="section-title">Sectie 4: Enerlution Toevoegen &amp; Optimaliseren in GEMS</h1>
+
+    <p>
+      Open de GEMS-webinterface (<code>https://gems.local</code> of het IP-adres van de controller), ga naar <strong>Instellingen</strong>, klik rechtsboven in de kopbalk op het <strong>hangslot-icoon 🔒</strong> en voer uw <strong>Installateurs-PIN</strong> in om de <strong>Gecertificeerde installateursmodus</strong> te ontgrendelen.
+    </p>
+
+    <h2 class="subsection-title">4.1 Automatische Detectie &amp; Onboarding (<code>Instellingen &rarr; Toestellen</code>)</h2>
+    <p>
+      GEMS beschikt over ingebouwde IEEE MAC OUI-herkenning (<code>70:B3:D5</code> en <code>E4:5F:01</code>) en ASCII model-/serienummer-registerherkenning voor Enerlution — wanneer u in het tabblad <strong>Scanner</strong> op <strong>Subnet scannen</strong> klikt, detecteert GEMS automatisch alle Enerlution-toestellen in het netwerk op poort <code>502</code>! Voor industriële bedrijfszekerheid zonder Wi-Fi kunt u ook rechtstreeks verbinden via <strong>USB-naar-RS485</strong> (<code>/dev/serial/by-id/...</code>, <code>9600 bps, 8N1</code>, Slave ID <code>1</code>):
+    </p>
+
+    <div class="screenshot-two-col">
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="../assets/screenshots/settings_devices_add_modal.png" alt="GEMS Nieuw energietoestel toevoegen venster">
+        <div class="manual-screenshot-caption">1. Kies eerst Slimme Meter (P1), daarna Zonne-omvormer</div>
+      </div>
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="../assets/screenshots/settings_devices_inverter_form.png" alt="GEMS Enerlution Hybride Configuratieformulier">
+        <div class="manual-screenshot-caption">2. Configureer Enerlution-eindpunt, Nominaal kW, Curtailment &amp; Batterij-kWh</div>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 24%;">GEMS Toestelveld</th>
+          <th style="width: 28%;">Aanbevolen Waarde</th>
+          <th style="width: 48%;">Waarom deze instelling belangrijk is</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Primaire Netmeter</strong></td>
+          <td><code>P1 Serial Meter</code> (<code>p1_serial</code>)</td>
+          <td>Voeg eerst uw digitale P1-nutsmeter toe! Dit geeft GEMS officiële driefasige stromen en exacte Vlaamse kwartierpiekbewaking naast de interne meter van Enerlution.</td>
+        </tr>
+        <tr>
+          <td><strong>Hardwaretemplate</strong></td>
+          <td><code>Enerlution Hybrid Inverter</code><br>(<code>enerlution_inverter</code>)</td>
+          <td>Activeert 80 ms bus-pacing, fast/slow 5-minuten metadatacaching, SOH/SOC-telemetrie en <strong>1-Watt nauwkeurige Fixed Active Power curtailment</strong>. <em>(Opmerking: Als een Enerlution 51.2V-batterij op een Solis LV-omvormer is aangesloten, selecteert u het Solis-template!).</em></td>
+        </tr>
+        <tr>
+          <td><strong>IP-adres of Seriële Poort</strong></td>
+          <td>Gereserveerd statisch IP (bijv. <code>192.168.1.130</code>)<br>of <code>/dev/serial/by-id/...</code></td>
+          <td>Gebruik waar mogelijk bekabeld Ethernet of USB-RS485; controleer bij gebruik van Wi-Fi op een sterke 2.4 GHz RSSI (<code>&gt; -65 dBm</code>) en een vaste DHCP-reservering in de router.</td>
+        </tr>
+        <tr>
+          <td><strong>TCP-poort &amp; Modbus ID</strong></td>
+          <td>Poort: <code>502</code> • Modbus ID: <code>1</code></td>
+          <td>Komt overeen met de standaard Enerlution Modbus TCP-poort en RS-485 Slave ID <code>1</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Nominaal Vermogen (kW)</strong><br><em>(Rated Power)</em></td>
+          <td>Exact AC-typeplaatvermogen in kW<br><em>(bijv. <code>3.6</code>, <code>5.0</code>, <code>6.0</code>, <code>8.0</code>, <code>10.0</code>, <code>12.0</code>)</em></td>
+          <td><strong>Niet op 0 laten staan!</strong> Begrenst het plafond voor de 1-Watt actieve vermogenscurtailment van GEMS exact op de fysieke AC-capaciteit van uw omvormer.</td>
+        </tr>
+        <tr>
+          <td><strong>Curtailment Toestaan</strong><br><em>(Allow Curtailment)</em></td>
+          <td><span class="val-good">Aangevinkt (✓)</span></td>
+          <td>Geeft GEMS toestemming om tijdens negatieve EPEX-spotprijzen of nul-injectie exacte Watt-limieten te schrijven en daarna automatisch terug vrij te geven naar vol vermogen.</td>
+        </tr>
+        <tr>
+          <td><strong>Uitleesinterval (seconden)</strong><br><em>(Poll Interval)</em></td>
+          <td><span class="val-good">3 s</span> <em>(RS-485 / Bekabeld LAN)</em><br><span class="val-good">5 s</span> <em>(2.4 GHz Wi-Fi-stick)</em></td>
+          <td>GEMS bewaart statische ASCII- en levensduurregisters 5 minuten lang in cache, zodat elke snelle uitlezing enkel compacte realtime vermogens- en SOC-registers opvraagt!</td>
+        </tr>
+        <tr>
+          <td><strong>Fase-aansluiting</strong><br><em>(Phase Wiring)</em></td>
+          <td><code>L1</code>, <code>L2</code> of <code>L3</code> (1P <code>HY / L3–L6</code>)<br>of <code>L1-L2-L3</code> (3P <code>HYTH</code>)</td>
+          <td>Identificeert op enkelfasige installaties de exacte automaatfase voor nauwkeurige hoofdzekeringbewaking per fase.</td>
+        </tr>
+        <tr>
+          <td><strong>Netmeter- &amp; Batterijopties</strong></td>
+          <td>Grid Meter: <span class="val-good">Aangevinkt (✓)</span> indien DTSU/SDM bekabeld<br>Battery: <span class="val-good">Aangevinkt (✓)</span> + Exacte kWh (<code>5.2</code>, <code>10.4</code>, <code>16.1</code>, <code>10.0</code>, <code>15.0</code>...)</td>
+          <td>Toont live <code>LFPWall</code>- / <code>GroundHV</code>-SOC % en laad-/ontlaadvermogen op het energiestroomdiagram en stemt EV-zonne-overschotladen af op de batterijstatus!</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 5 ==================== -->
+    <h1 class="section-title">Sectie 5: Best-Practice GEMS-strategie, EV- &amp; Tariefcoördinatie</h1>
+
+    <div class="screenshot-two-col">
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="../assets/screenshots/settings_strategy_modes.png" alt="GEMS Regionale Strategie en GSC-subsidiebescherming">
+        <div class="manual-screenshot-caption">Vlaamse Piekbewaking, Nederland-modus &amp; GSC-subsidiebescherming</div>
+      </div>
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="../assets/screenshots/settings_contract_tariffs.png" alt="GEMS Energiecontract en 24-uurs Tariefcurve">
+        <div class="manual-screenshot-caption">Dynamische 24-uurs Afname- &amp; Injectieprijscurve</div>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">5.1 Regionale Optimalisatierecepten (<code>Instellingen &rarr; Strategie</code>)</h2>
+    <div class="recipe-grid">
+      <div class="recipe-card" style="border-top: 3px solid #0284c7;">
+        <h4>🇧🇪 Recept A: Vlaanderen (Peak Shaving)</h4>
+        <ul style="padding-left: 15px; font-size: 8pt; margin-bottom: 0;">
+          <li><strong>Modus:</strong> <code>Flanders Mode (Peak Shaving)</code></li>
+          <li><strong>Capaciteitspieklimiet:</strong> <code>2.5 kW</code> (standaard) of <code>3.0–3.5 kW</code> (warmtepomp + EV).</li>
+          <li><strong>Peak Shaving Buffer:</strong> <code>200 W</code></li>
+          <li><strong>Actieve Curtailment:</strong> <code>Aangevinkt (✓)</code>, Basis <code>0.00 €/kWh</code></li>
+          <li><strong>GSC-subsidieschild:</strong> Vul <code>€0</code> in (moderne PV) of de exacte certificaatwaarde (<code>€250–€450/MWh</code>). GEMS laat Enerlution-zonne-energie automatisch doorleveren tot <code>-GSC/1000 €/kWh</code>!</li>
+          <li><strong>Werking:</strong> De <code>Self-Consumption</code>-regeling van Enerlution ontlaadt de batterij om kook- en warmtepomppieken op te vangen, terwijl GEMS het EV-laadvermogen knijpt vóórdat een kwartierpiek wordt overschreden.</li>
+        </ul>
+      </div>
+
+      <div class="recipe-card" style="border-top: 3px solid #f59e0b;">
+        <h4>🇳🇱 Recept B: Nederland (Saldering)</h4>
+        <ul style="padding-left: 15px; font-size: 8pt; margin-bottom: 0;">
+          <li><strong>Modus:</strong> <code>Netherlands Mode (Smart Saldering)</code></li>
+          <li><strong>Actieve Curtailment:</strong> <code>Aangevinkt (✓)</code></li>
+          <li><strong>Basis terugleverprijsdrempel:</strong> <code>0.00 €/kWh</code> (of de terugleverboetedrempel van uw energieleverancier).</li>
+          <li><strong>Werking:</strong> PV-overschot overdag vult eerst uw Enerlution <code>LFPWall</code>- / <code>GroundHV</code>-opslag en schaalt daarna <strong>Raedian</strong> EV-laden (<code>6A–32A</code>) en SG-Ready warm water op. Zodra de batterij 100% vol is tijdens uren met negatief rendement, regelt GEMS het Enerlution-vermogen in <strong>stappen van 1 Watt</strong> terug zodat netinjectie strak naar <code>0 W</code> daalt!</li>
+        </ul>
+      </div>
+
+      <div class="recipe-card" style="border-top: 3px solid #16a34a;">
+        <h4>🌿 Recept C: Vast / Dubbeltarief Eco</h4>
+        <ul style="padding-left: 15px; font-size: 8pt; margin-bottom: 0;">
+          <li><strong>Modus:</strong> <code>Eco (Max Self-Consumption)</code></li>
+          <li><strong>Actieve Curtailment:</strong> <code>Uitgevinkt (☐)</code> (tenzij u een contract heeft met negatieve injectieboetes).</li>
+          <li><strong>Hoofdzekeringbewaking:</strong> Vul de exacte waarde van uw hoofdautomaat in (<code>25A / 32A / 40A</code>) en zet <code>Meter Offline Fallback = 0 A</code>.</li>
+          <li><strong>Werking:</strong> Puur autonoom zonne-zelfverbruik: Enerlution geeft voorrang aan het laden van de thuisbatterij, GEMS stuurt overtollige zonnestroom naar EV's en thermische relais, en uw hoofdzekeringen zijn 24/7 beschermd.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">5.2 Coördinatie van Enerlution-opslag met EV-laadpalen (Raedian Wallboxen)</h2>
+    <ul>
+      <li><strong>Prioriteit bij zonne-overschot overdag:</strong> Zet uw <strong>Raedian NEO / NEX / Gemini</strong> laadpaal op het GEMS <strong>Dashboard</strong> in de modus <strong><code>PV Only (Solar)</code></strong> of <strong><code>Eco</code></strong>. Doordat de achter-de-meter regellus van Enerlution het eerste PV-overschot direct in de thuisbatterij opneemt, wacht GEMS automatisch tot het resterende zonne-overschot boven uw ingestelde EV-startdrempel stijgt (bijv. <code>1.4 kW</code> 1-fasig) alvorens het EV-laden op te schalen — zo trekt de laadpaal nooit een lege thuisbatterij leeg en ontstaat er geen pendelgedrag!</li>
+      <li><strong>Slim EV-laden tijdens goedkoopste uren:</strong> Schakel <strong>Slim EV-laden goedkoopste uren</strong> (<em>Smart EV Cheapest Hours</em> onder <code>Instellingen &rarr; Strategie</code>, bijv. <code>3–4 goedkoopste uren</code>) in naast uw tariefformule onder <strong>Energiecontract</strong> (<code>Instellingen &rarr; Energiecontract</code>). Wilt u 's nachts op hoog vermogen uw wagen laden en tegelijk uw Enerlution-batterijlading bewaren voor de ochtendpiek in huis, plan het EV-laden dan tijdens vensters waarin het optionele <em>Ontlaadvenster (Discharge Window)</em> in de Enerlution App gepauzeerd is of begrens de EV-laadstroom onder uw Vlaamse capaciteitsplafond.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 6 ==================== -->
+    <h1 class="section-title">Sectie 6: Verificatiechecklist &amp; Probleemoplossingsmatrix</h1>
+
+    <h2 class="subsection-title">6.1 6-punts Opleveringschecklist na Inbedrijfstelling</h2>
+    <div class="callout callout-tip">
+      <div class="callout-title">✅ Verplichte Veldcontrole vóór Vertrek van de Locatie</div>
+      <div>
+        <ol style="margin: 4px 0 0 0; padding-left: 18px;">
+          <li><strong>BMS- &amp; SOH-verificatie:</strong> Controleer dat er geen enkele rode <code>ALM</code>-LED brandt op alle <code>LFPWall</code>-, <code>Roller</code>- of <code>GroundHV</code>-modules en bevestig dat live <code>SOC %</code> en <code>SOH %</code> zichtbaar zijn in de Enerlution App (<code>Battery State = Charging / Discharging / Standby</code>).</li>
+          <li><strong>GEMS Online &amp; Debug-venster:</strong> Controleer onder <strong>Instellingen &rarr; Toestellen</strong> of <code>Enerlution Hybrid Inverter</code> de status <span class="val-good">● Online</span> toont. Klik op <strong>Debug</strong> en verifieer ~230 V netspanning, plausibel PV-vermogen (W) en live batterij-SOC %.</li>
+          <li><strong>Controle vrijgave 1-Watt Curtailment:</strong> Controleer in het tabblad <strong>Logboek</strong> dat GEMS tijdens normale uren met positieve stroomprijzen <code>Released active power limit (40400=0)</code> logt zonder schrijffouten.</li>
+          <li><strong>Polariteitstest met waterkoker:</strong> Zet een waterkoker van ~2 kW aan en controleer op het GEMS <strong>Dashboard</strong> of het woningverbruik met ~2 kW stijgt terwijl de Enerlution-batterij soepel opschaalt in ontlading om de last op te vangen.</li>
+          <li><strong>Configuratieback-up exporteren:</strong> Klik onder <strong>Instellingen &rarr; Systeeminformatie</strong> op <strong>Configuratie exporteren (.json)</strong>.</li>
+          <li><strong>Gecertificeerde installateursmodus vergrendelen:</strong> Klik op het hangslot-icoon 🔒 in de kopbalk van <strong>Instellingen</strong> om kritieke toestel- en zekeringsparameters te vergrendelen.</li>
+        </ol>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">6.2 Symptoomdiagnose &amp; Probleemoplossingsmatrix</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 26%;">Waargenomen Symptoom</th>
+          <th style="width: 34%;">Waarschijnlijke Oorzaak</th>
+          <th style="width: 40%;">Corrigerende Actie op Locatie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Batterijstatus toont <code>Offline (7)</code> of <code>Fault (6)</code></strong></td>
+          <td>CAN-kabel in <code>Link/RS485</code>-poort gestoken in plaats van <code>CAN</code>, verkeerd BMS-protocol of DIP-switches gewijzigd terwijl ingeschakeld.</td>
+          <td>Schakel alle modules UIT, stel unieke <code>ADD</code> DIP-switches in, verbind RJ45 (<code>Pin 4 CAN-H</code>, <code>Pin 5 CAN-L</code>) strikt tussen Master/PDU <code>CAN</code> en Omvormer <code>BMS</code>, en selecteer <code>Lithium-Ion (CAN)</code> in de Enerlution App.</td>
+        </tr>
+        <tr>
+          <td><strong>HV <code>HYTH</code>-omvormer herkent <code>GroundHV-2500</code>-toren niet</strong></td>
+          <td>Minder dan het minimale aantal HV-blokken in serie geplaatst, HV MSD-stekker niet vergrendeld of PDU-automaat UIT.</td>
+          <td>Controleer het minimale aantal modules voor de opstartspanning van de omvormer (<code>&ge; 3–4 blokken</code>), vergrendel de oranje MSD-stekker, zet de PDU HV-automaat AAN en druk daarna op de PDU <code>POWER</code>-knop.</td>
+        </tr>
+        <tr>
+          <td><strong>GEMS meldt <code>Connection refused</code> of <code>i/o timeout</code> op <code>:502</code></strong></td>
+          <td>Wi-Fi-stick verloor verbinding op 5 GHz-band, IP-adres gewijzigd via DHCP of foutieve Slave ID.</td>
+          <td>Koppel de stick uitsluitend aan een <strong>2.4 GHz Wi-Fi</strong> SSID (of gebruik bekabeld LAN / directe USB-RS485 <code>9600 8N1</code>), maak een DHCP-reservering in de router en verifieer <code>Modbus ID = 1</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Omvormer begrenst PV-opwekking ook bij positieve spotprijzen</strong></td>
+          <td>Statische nul-injectie / Active Power Limit is ingeschakeld gebleven in de Enerlution App.</td>
+          <td>Open de Enerlution App &rarr; <code>Active Power / Export Control</code> en zet deze op <strong><code>Disabled / Unlimited</code></strong>, zodat GEMS curtailment dynamisch kan vrijgeven (<code>40400=0</code>) en activeren (<code>40400=1</code>).</td>
+        </tr>
+        <tr>
+          <td><strong>Batterij laadt op vanuit het AC-net zodra verbruik in huis inschakelt</strong></td>
+          <td>CT-stroomklemmen van <code>DTSU666</code> / <code>SDM630</code> omgekeerd gemonteerd of <code>RS485-A / B</code> / fasespanningsaftakkingen verwisseld.</td>
+          <td>Controleer of alle CT-pijlen van <strong>Net &rarr; Woning/Verbruik</strong> wijzen, verifieer <code>DTSU666</code> klemmen <code>24 (A+)</code> &amp; <code>25 (B-)</code> en bevestig dat de spanningsaftakkingen <code>L1/L2/L3</code> exact overeenkomen met <code>CT1/CT2/CT3</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Curtailment begrenst op een verkeerd wattage</strong></td>
+          <td><code>Rated Power (kW)</code> staat onjuist ingevuld op de toestelkaart in GEMS.</td>
+          <td>Bewerk het Enerlution-toestel onder <strong>Instellingen &rarr; Toestellen</strong> en vul het exacte AC-typeplaatvermogen van de omvormer in kW in (bijv. <code>5.0</code>, <code>8.0</code>, <code>10.0</code>, <code>12.0</code>).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">6.3 Verificatie via Live Diagnostische Logs</h2>
+    <p>Installateurs kunnen de live Enerlution-telemetrie en 1-Watt curtailment-schrijfacties controleren in het GEMS-tabblad <strong>Logboek</strong> of via de Cockpit Terminal (<code>:9090</code>):</p>
+    <pre class="code-block"># Controleer live Enerlution-uitlezingen en actieve vermogenslimieten via Cockpit Terminal:
+sudo journalctl -u gems.service -f | grep -i "Enerlution"
+
+# Verwachte gezonde uitvoer tijdens verbinding, curtailment bij negatieve prijs en vrijgave:
+[INFO] EnerlutionPoller [Enerlution HYTH-10K]: Connected via tcp://192.168.1.130:502 (ID: 1)
+[INFO] EnerlutionPoller [Enerlution HYTH-10K]: Set active power limit to 1450 W
+[INFO] EnerlutionPoller [Enerlution HYTH-10K]: Released active power limit (40400=0)</pre>
+
+    <div class="callout callout-info">
+      <div class="callout-title">📞 Vlootmonitoring &amp; Installateursondersteuning</div>
+      <div>
+        Koppel uw GEMS-controller met <strong>GRID-EMS-SERVER</strong> (<code>https://ems.newenergygrid.com</code>) via <strong>Instellingen &rarr; Cloudserver</strong> voor 24-uurs prognosediagnose op afstand, live telemetrieverificatie en centraal vlootbeheer door <strong>New Energy Grid</strong> &amp; <strong>The Charge Grid</strong>.
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

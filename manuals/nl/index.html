@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS (New Energy Grid) Documentatieportaal</title>
+  <meta name="description" content="Uitgebreide documentatie, installatiehandleiding, configuratiegids en gebruikershandleidingen voor GEMS (New Energy Grid).">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Navigatiemenu openen of sluiten">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">v9.38.1 Release</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Doorzoek documentatie (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Zoek in documentatie, instellingen, toestellen...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="installation.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+        <span>Installatie</span>
+      </a>
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuratie</span>
+      </a>
+      <nav class="lang-switcher no-print" aria-label="Kies documentatietaal">
+        <a href="../index.html" hreflang="en" title="English">EN</a>
+        <a href="index.html" class="active" hreflang="nl" title="Nederlands">NL</a>
+        <a href="../fr/index.html" hreflang="fr" title="Français">FR</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Wissel kleurenthema">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Aan de slag</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Documentatieportaal</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#architecture" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-grid"></use></svg>
+              <span>Architectuur &amp; Datastroom</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#requirements" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>Hardwarevereisten</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#quickstart" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>Snelstart in 5 minuten</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Handleidingen &amp; Gidsen</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Installatiehandleiding</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>Configuratiereferentie</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Gebruikershandleiding</span>
+            </a>
+          </li>
+          <li>
+            <a href="cloud-server.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-cloud"></use></svg>
+              <span>Cloudserver-koppeling</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NIEUW</span>
+            </a>
+          </li>
+          <li>
+            <a href="p1-meter.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>P1-meter &amp; Zelfbouwkabel</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">NIEUW</span>
+            </a>
+          </li>
+          <li>
+            <a href="solis.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>Solis &amp; Easyway UNIV5200</span>
+              <span class="badge" style="background:#ea580c; color:#fff; font-size:10px;">NIEUW</span>
+            </a>
+          </li>
+          <li>
+            <a href="huawei.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Huawei &amp; FusionSolar</span>
+              <span class="badge" style="background:#dc2626; color:#fff; font-size:10px;">NIEUW</span>
+            </a>
+          </li>
+          <li>
+            <a href="enerlution.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>Enerlution &amp; Batterijopslag</span>
+              <span class="badge" style="background:#0d9488; color:#fff; font-size:10px;">NIEUW</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Toesteltemplates</span>
+              <span class="badge">170</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>Probleemoplossing &amp; FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Officiële PDF-handleidingen (NL)</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="../../docs/nl/GRID-EMS-Return-On-Investment-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Rendement &amp; ROI (PDF)</span>
+              <span class="badge" style="background:#059669; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-installer-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Installatiehandleiding (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Gebruikershandleiding (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-server-connection-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Serverhandleiding (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-p1-meter-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>P1-meterkabel (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-supported-hardware-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Hardwarereferentie (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-fleet-dlb-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>EV-Vloot &amp; DLB (PDF)</span>
+              <span class="badge" style="background:#7c3aed; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-solis-easyway-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Solis &amp; Easyway (PDF)</span>
+              <span class="badge" style="background:#ea580c; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-huawei-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Huawei &amp; FusionSolar (PDF)</span>
+              <span class="badge" style="background:#dc2626; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-enerlution-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Enerlution &amp; Opslag (PDF)</span>
+              <span class="badge" style="background:#0d9488; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Systeembeheer</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="installation.html#cockpit" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-terminal"></use></svg>
+              <span>Cockpit Terminal (9090)</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#rpi-connect" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wifi"></use></svg>
+              <span>Raspberry Pi Connect</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Kruimelpad">
+          <span>Docs</span>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Portaaloverzicht</span>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="hero-banner">
+          <h1 class="hero-title">GEMS Documentatie</h1>
+          <p class="hero-lead">
+            GEMS (New Energy Grid) is een lichtgewicht, uiterst responsief en volledig UI-gestuurd Energiebeheersysteem (EMS), specifiek ontwikkeld voor Raspberry Pi-hardware en residentiële of kleinzakelijke installaties.
+          </p>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <a href="installation.html" class="tab-btn active" style="border-radius:var(--radius-md); display:inline-flex; align-items:center; gap:0.5rem; background:var(--brand-primary); color:#ffffff; padding:0.6rem 1.2rem;">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Start met installatie</span>
+            </a>
+            <button class="search-trigger-btn" style="width:auto; padding:0.6rem 1.2rem;">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+              <span>Doorzoek handleidingen (Ctrl+K)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- UI Overview Screenshot -->
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/dashboard.png" alt="GEMS Realtime PowerFlow Dashboard Interface" loading="lazy">
+          <div class="doc-screenshot-caption">GEMS Live Dashboard &mdash; Geanimeerde interactieve energiestromen, opvolging van het Vlaams capaciteitstarief en realtime metingen per seconde.</div>
+        </div>
+
+        <!-- Official PDF Field Manuals Banner -->
+        <div style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.08), rgba(16, 185, 129, 0.08)); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; margin: 2rem 0;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <h2 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: var(--text-primary);">📕 Officiële Afdrukbare Praktijkhandleidingen &amp; Brochures (PDF)</h2>
+              <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; color: var(--text-secondary);">Uitgebreide vector-PDF-handleidingen met hoge-resolutie schermafbeeldingen, aansluitschema's en opleveringschecklists &mdash; beschikbaar in <strong>EN | NL | FR</strong>.</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="badge" style="background: rgba(16, 185, 129, 0.18); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.35); padding: 0.35rem 0.65rem; font-size: 0.75rem; font-weight: 700;">EN | NL | FR</span>
+              <span class="badge" style="background: var(--brand-primary); color: #fff; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600;">v9.38.1 Edition</span>
+            </div>
+          </div>
+          <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin: 0;">
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(5, 150, 105, 0.15); color: #059669;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Return on Investment (ROI) Brochure</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Terugverdientijd, Besparing &amp; Businesscase (EN | NL | FR)</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Uitgebreide rendementsbrochure voor gezinnen en bedrijven: verhoging van zonnezelfverbruik, besparing op het Vlaams capaciteitstarief, dynamische EPEX-batterijsturing en DLB-terugverdienmodellen.</p>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem;">
+                <a href="../../docs/nl/GRID-EMS-Return-On-Investment-nl.pdf" target="_blank" class="tab-btn active" style="background: #059669; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Download PDF (NL)</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-tool"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Installatiehandleiding</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Hardware, Toestellen, Vlaamse GSC &amp; Strategie</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Stapsgewijze inbedrijfstelling voor elektriciens en zonne-installateurs: Raspberry Pi 5 NVMe-opbouw, Modbus TCP-omvormers, P1-slimme meters, native OCPP en Vlaamse piekbewaking.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-installer-manual-nl.pdf" target="_blank" class="tab-btn active" style="background: #0284c7; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Download PDF</span>
+                </a>
+                <a href="gems-installer-manual-nl.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Online bekijken</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-home"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Interactieve Brochure, Gebruikers- &amp; Instellingengids</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Stapsgewijze Setup, 24u-overzicht &amp; Alle Instellingentabbladen</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Interactieve brochure en complete configuratiehandleiding: 24-uurs energiestoryboard, inbedrijfstellingswizard in 4 stappen, PowerFlow-overzicht, EV-laadmodi en uitleg per parameter.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-user-manual-nl.pdf" target="_blank" class="tab-btn active" style="background: #10b981; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Download PDF</span>
+                </a>
+                <a href="gems-user-manual-nl.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Online bekijken</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(56, 189, 248, 0.15); color: #0284c7;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-cloud"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">GRID-EMS-SERVER Handleiding</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Centrale Vloot, Telemetrie &amp; Externe Commando's</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Technische gids voor het koppelen van lokale GEMS-controllers met GRID-EMS-SERVER: uitsluitend uitgaande TLS 1.3-architectuur, tokenkoppeling, JSON-telemetrie en sturing op afstand.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-server-connection-manual-nl.pdf" target="_blank" class="tab-btn active" style="background: #0284c7; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Download PDF</span>
+                </a>
+                <a href="cloud-server.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Online bekijken</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">P1 Slimme Meter &amp; Kabelhandleiding</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Fluvius DSMR 5.0.2 &amp; Zelfbouw USB-dongle</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Praktijkgids voor digitale meters: onderdelenlijst, RJ12- vs. RJ11-pinbezetting, zelfbouwkabel met BC547-signaalinversie of FTDI EEPROM-inversie, Fluvius-poortactivering en GEMS-configuratie.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-p1-meter-manual-nl.pdf" target="_blank" class="tab-btn active" style="background: #10b981; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Download PDF</span>
+                </a>
+                <a href="p1-meter.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Online bekijken</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-grid"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Ondersteunde Hardware Handleiding</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">170 Native Profielen &bull; Omvormers, BESS, Laadpalen, Meters &amp; Warmtepompen</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Volledig hardwarenaslagwerk: realtime telemetrie, dynamische stroomregeling (6A&ndash;32A), fase-omschakeling, actieve PV-terugregeling, batterij-arbitrage en thermische sturing voor alle 170 templates.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-supported-hardware-manual-nl.pdf" target="_blank" class="tab-btn active" style="background: #0284c7; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Download PDF</span>
+                </a>
+                <a href="gems-supported-hardware-manual-nl.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Online bekijken</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(124, 58, 237, 0.15); color: #7c3aed;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">EV-Laadcluster &amp; DLB Handleiding</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Dynamic Load Balancing &bull; Meerdere Laadpunten &bull; OCPP Smart Proxy</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Technische handleiding voor laadpleinen: laadclusters met meerdere laadpunten, autonome edge load balancing per seconde, fasebeveiliging, zonne-overschotladen en transparante OCPP-proxy naar externe CPO-verrekenplatformen.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-fleet-dlb-manual-nl.pdf" target="_blank" class="tab-btn active" style="background: #7c3aed; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Download PDF</span>
+                </a>
+                <a href="gems-fleet-dlb-manual-nl.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Online bekijken</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(234, 88, 12, 0.15); color: #ea580c;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Solis &amp; Easyway UNIV5200 Handleiding</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Retrofit &amp; Hybride &bull; DC / CAN-bekabeling &bull; SDM72D-M / SDM630-M &bull; SolisCloud</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Referentiegids voor batterijopslag en bekabeling: DC-parallel- &amp; verzamelrailmontage, geïsoleerde CAN RJ45-pinbezetting, binaire ADD DIP-switches, Eastron SDM72D-M &amp; SDM630-M aansluiting, SolisCloud Bluetooth-parameters en GEMS-instellingen.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-solis-easyway-manual-nl.pdf" target="_blank" class="tab-btn active" style="background: #ea580c; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Download PDF</span>
+                </a>
+                <a href="solis.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Online bekijken</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(220, 38, 38, 0.15); color: #dc2626;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-sun"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Huawei &amp; FusionSolar Handleiding</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">SUN2000 &bull; LUNA2000 &bull; SDongleA-05 &bull; EMMA-A02</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Specifieke configuratiegids: alle vereiste instellingen in de FusionSolar-app (Modbus TCP onbeperkt, EMMA-A02 TLS/IP-whitelist, LUNA2000 AC-laden &amp; bedrijfsmodus) plus aanbevolen GEMS-optimalisatieregels.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-huawei-manual-nl.pdf" target="_blank" class="tab-btn active" style="background: #dc2626; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Download PDF</span>
+                </a>
+                <a href="huawei.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Online bekijken</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(13, 148, 136, 0.15); color: #0d9488;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Enerlution Hybride &amp; Opslag Handleiding</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">HY / HYTH Omvormers &bull; LFPWall / Roller LV &bull; GroundHV / GH02 HV</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Volledige bekabelings- en opleveringshandleiding: 51,2V LV parallelle &amp; HV stapelbare batterijtorens, CAN RJ45-pinouts, DIP-switchadressering, DTSU666/SDM630-configuratie, Enerlution-app en 1-Watt GEMS-terugregeling.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-enerlution-manual-nl.pdf" target="_blank" class="tab-btn active" style="background: #0d9488; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Download PDF</span>
+                </a>
+                <a href="enerlution.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Online bekijken</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Navigation Cards -->
+        <h2 id="documentation-sections">Documentatieonderdelen</h2>
+        <p>Ontdek de volledige reeks handleidingen op maat van systeembeheerders, installateurs en eindgebruikers:</p>
+
+        <div class="card-grid">
+          <a href="installation.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="../assets/icons.svg#icon-download"></use></svg>
+            </div>
+            <h3 class="card-title">Installatiehandleiding</h3>
+            <p class="card-text">Stapsgewijs flashen van het kant-en-klare Raspberry Pi OS-image, Debian <code>.deb</code>-pakketinstallatie, Cockpit-webconsole en RS485/P1-aansluitschema's.</p>
+            <span class="card-link">Lees installatiegids &rarr;</span>
+          </a>
+
+          <a href="configuration.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="../assets/icons.svg#icon-settings"></use></svg>
+            </div>
+            <h3 class="card-title">Configuratiereferentie</h3>
+            <p class="card-text">Uitgebreid naslagwerk voor Vlaamse piekbewaking (capaciteitstarief), Nederlandse nul-op-de-meter (zero-export), dynamische EPEX-arbitrage, energiecontractformules en slimme relais.</p>
+            <span class="card-link">Bekijk instellingen &rarr;</span>
+          </a>
+
+          <a href="user-manual.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+            </div>
+            <h3 class="card-title">Gebruikershandleiding</h3>
+            <p class="card-text">Interactief PowerFlow-diagram, doorklikbare historische grafieken, lokale netwerk- en seriële scanner en laadpaalkoppeling (aanbevolen Modbus TCP &amp; native OCPP).</p>
+            <span class="card-link">Open gebruikersgids &rarr;</span>
+          </a>
+
+          <a href="devices.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="../assets/icons.svg#icon-sun"></use></svg>
+            </div>
+            <h3 class="card-title">Toesteltemplates (170)</h3>
+            <p class="card-text">Stapsgewijze handleidingen en Modbus/OCPP/REST-profielen voor Solis, Huawei, SMA, Enerlution, Fronius, SolarEdge, Sungrow, Victron, RAEDIAN, HomeWizard, Shelly, Eastron en meer.</p>
+            <span class="card-link">Doorzoek toestellenbibliotheek &rarr;</span>
+          </a>
+
+          <a href="troubleshooting.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+            </div>
+            <h3 class="card-title">Probleemoplossing &amp; FAQ</h3>
+            <p class="card-text">Diagnostische stappenplannen voor Modbus-time-outs, P1-baudrates, OCPP-verbindingen, NVMe-opstartcontrole, SQLite WAL-integriteit en systeemlogboeken.</p>
+            <span class="card-link">Bekijk diagnosegids &rarr;</span>
+          </a>
+
+          <a href="installation.html#cockpit" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="../assets/icons.svg#icon-terminal"></use></svg>
+            </div>
+            <h3 class="card-title">Beheer op afstand</h3>
+            <p class="card-text">Gebruik de ingebouwde Cockpit-webterminal op poort 9090 en koppel Raspberry Pi Connect voor beveiligde toegang zonder port forwarding.</p>
+            <span class="card-link">Configureer externe toegang &rarr;</span>
+          </a>
+        </div>
+
+        <!-- Architecture & Core Philosophy -->
+        <h2 id="architecture">Systeemarchitectuur &amp; Ontwerpfilosofie</h2>
+        <p>
+          GEMS is opgebouwd als een samenhangende, hoogperformante applicatie die continu draait met een minimaal geheugen- en energieverbruik.
+        </p>
+
+        <div class="alert alert-note">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-info"></use></svg>
+            <span>Raspberry Pi SD-kaart &amp; Opslagoptimalisatie</span>
+          </div>
+          <p>
+            Database-schrijfacties worden in het werkgeheugen gebufferd en gebundeld in atomaire transacties per minuut. In combinatie met SQLite Write-Ahead Logging (<code>WAL</code>-modus) en tijdelijke RAM-opslag worden schrijfcycli naar de SD-kaart met meer dan 98% verminderd ten opzichte van klassieke logsystemen.
+          </p>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Laag</th>
+                <th>Technologie</th>
+                <th>Kerntaken</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Backend Engine</strong></td>
+                <td>Go (Golang 1.24)</td>
+                <td>Geïntegreerde HTTP-server, hardware-uitleeslussen (1s/5s), regelalgoritmes, ophalen van Day-Ahead spotprijzen en native OCPP WebSocket-server.</td>
+              </tr>
+              <tr>
+                <td><strong>Database &amp; Tijdreeksen</strong></td>
+                <td>SQLite 3 (WAL-modus)</td>
+                <td>Efficiënte lokale opslag, aggregatiebuffers in het geheugen en automatische opschoning na de retentieperiode van 90 dagen.</td>
+              </tr>
+              <tr>
+                <td><strong>Frontend SPA</strong></td>
+                <td>Vue 3 + TypeScript + Tailwind CSS</td>
+                <td>Reactief dashboard, geanimeerde SVG PowerFlow-vectoren, Chart.js-tijdreeksgrafieken en 100% UI-configuratie zonder YAML-bestanden.</td>
+              </tr>
+              <tr>
+                <td><strong>Realtime Telemetrie</strong></td>
+                <td>Server-Sent Events (SSE)</td>
+                <td>Directe sub-seconde datastreaming (<code>/api/live</code>) zonder onnodige AJAX-polling door de browser.</td>
+              </tr>
+              <tr>
+                <td><strong>OS &amp; Schermweergave</strong></td>
+                <td>Wayfire + Chromium Kiosk</td>
+                <td>Minimale Wayland-displayserver die Chromium automatisch opstart op <code>http://ems.local</code> zonder zware desktopomgeving.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Hardware Requirements -->
+        <h2 id="requirements">Hardware- &amp; Compatibiliteitsmatrix</h2>
+        <p>GEMS draait soepel op alle gangbare 64-bit ARM Raspberry Pi-modellen:</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Hardwaremodel &amp; Opslag</th>
+                <th>RAM</th>
+                <th>Aanbevolen Toepassing &amp; Opslagconfiguratie</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Raspberry Pi 5 Referentiehardware</strong><br>
+                  <span style="font-size:0.85rem; color:var(--text-muted);">RPi 5 (4GB) + M.2 NVMe Base &amp; 128GB SSD</span>
+                </td>
+                <td>4GB</td>
+                <td>Officieel referentieplatform. Ultrasnel opstarten vanaf NVMe (&lt;8s), nul SD-kaartslijtage en actieve koeling.</td>
+                <td><span class="badge-pill badge-green">Officiële Referentie</span></td>
+              </tr>
+              <tr>
+                <td><strong>Raspberry Pi 5 (4GB / 8GB)</strong></td>
+                <td>4GB+</td>
+                <td>Uitgebreide installaties met snelle kioskweergave en 10+ Modbus-toestellen</td>
+                <td><span class="badge-pill badge-green">Aanbevolen</span></td>
+              </tr>
+              <tr>
+                <td><strong>Raspberry Pi 4 Model B</strong></td>
+                <td>2GB / 4GB</td>
+                <td>Standaard residentiële installaties met touchscreen of headless opstelling</td>
+                <td><span class="badge-pill badge-green">Aanbevolen</span></td>
+              </tr>
+              <tr>
+                <td><strong>Raspberry Pi 3 Model B+</strong></td>
+                <td>1GB</td>
+                <td>Headless residentieel energiebeheer (zonder lokaal kioskscherm)</td>
+                <td><span class="badge-pill badge-blue">Ondersteund</span></td>
+              </tr>
+              <tr>
+                <td><strong>Raspberry Pi Zero 2 W</strong></td>
+                <td>512MB</td>
+                <td>Ultracompacte headless opstelling met een beperkt aantal gekoppelde toestellen</td>
+                <td><span class="badge-pill badge-amber">Enkel Headless</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 5-Minute Quickstart -->
+        <h2 id="quickstart">Snelstartgids in 5 minuten</h2>
+        <p>Breng uw GEMS-systeem online in drie eenvoudige stappen:</p>
+
+        <div class="tab-container">
+          <div class="tab-nav">
+            <button class="tab-btn active" data-tab="tab-os-img">Stap 1: OS-image flashen</button>
+            <button class="tab-btn" data-tab="tab-boot">Stap 2: Opstarten &amp; UI openen</button>
+            <button class="tab-btn" data-tab="tab-devices">Stap 3: Toestellen detecteren</button>
+          </div>
+
+          <div class="tab-pane active" id="tab-os-img">
+            <h4>Flash het kant-en-klare Raspberry Pi OS-image</h4>
+            <p>Download het nieuwste release-image en schrijf het naar een MicroSD-kaart (min. 8GB) of NVMe-SSD met BalenaEtcher of Raspberry Pi Imager:</p>
+            <div class="code-block-wrapper">
+              <div class="code-header">
+                <span class="code-lang">Bash / Terminal</span>
+                <button class="copy-code-btn" aria-label="Kopieer codefragment">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+                  <span>Kopiëren</span>
+                </button>
+              </div>
+              <pre><code># 1. Download het nieuwste release-image vanaf GitHub
+curl -LO https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/latest/download/gems-os-image.img.xz
+
+# 2. Schrijf naar SD-kaart of NVMe via BalenaEtcher of Raspberry Pi Imager
+# (Selecteer gems-os-image.img.xz rechtstreeks zonder handmatig uitpakken)</code></pre>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab-boot">
+            <h4>Plaats het opslagmedium en start op</h4>
+            <p>Verbind uw Raspberry Pi via een Ethernet-kabel met uw lokale thuisnetwerk (aanbevolen) en sluit de voeding aan.</p>
+            <p>Open een webbrowser op een smartphone, tablet of pc op hetzelfde netwerk en ga naar:</p>
+            <div class="code-block-wrapper">
+              <div class="code-header">
+                <span class="code-lang">Browser-URL</span>
+                <button class="copy-code-btn" aria-label="Kopieer URL">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+                  <span>Kopiëren</span>
+                </button>
+              </div>
+              <pre><code>http://ems.local
+# Of rechtstreeks via het IP-adres:
+http://&lt;raspberry-pi-ip&gt;:8080</code></pre>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab-devices">
+            <h4>Detecteer en voeg uw energietoestellen toe</h4>
+            <ol>
+              <li>Ga naar <strong>Instellingen</strong> &rarr; <strong>Toestellen</strong>.</li>
+              <li>Gebruik de <strong>Scanner</strong> om lokale Modbus-omvormers, slimme P1-meters en EV-laadpalen direct te vinden.</li>
+              <li>Klik op <strong>Nieuw energietoestel toevoegen</strong>, kies de juiste hardwaretemplate (bijv. <em>Solis Hybrid Inverter</em>, <em>RAEDIAN Wallbox</em> of <em>P1 Slimme Meter</em>), test de verbinding en sla op.</li>
+              <li>Keer terug naar het <strong>Dashboard</strong> om uw realtime PowerFlow-diagram te bekijken!</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="alert alert-tip">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-check"></use></svg>
+            <span>Geen configuratiebestanden nodig</span>
+          </div>
+          <p>
+            GEMS vereist nooit handmatige bewerkingen in YAML- of JSON-bestanden. Alle toestelparameters, Modbus-registers, energiecontracten en strategielimieten worden volledig en intuïtief beheerd via de webinterface.
+          </p>
+        </div>
+
+        <!-- Navigation Footer -->
+        <div class="page-nav-footer">
+          <div></div>
+          <a href="installation.html" class="page-nav-card" style="text-align:right;">
+            <span class="page-nav-label">Volgende gids</span>
+            <span class="page-nav-title">Installatie &amp; Hardware-opbouw &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">Op deze pagina</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#documentation-sections" class="toc-link">Documentatieonderdelen</a></li>
+        <li class="toc-item"><a href="#architecture" class="toc-link">Systeemarchitectuur</a></li>
+        <li class="toc-item"><a href="#requirements" class="toc-link">Hardwarevereisten</a></li>
+        <li class="toc-item"><a href="#quickstart" class="toc-link">Snelstart in 5 minuten</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal (Ctrl+K) -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Zoek in documentatie, parameters, handleidingen..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Zoekvenster sluiten">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results">
+        <!-- Results populated dynamically via ../js/search-index-nl.js & ../js/main.js -->
+      </ul>
+      <div class="search-footer">
+        <span>Gebruik <kbd class="kbd-shortcut">↑</kbd> <kbd class="kbd-shortcut">↓</kbd> om te navigeren</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> om te openen</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> om te sluiten</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>GEMS (New Energy Grid) Documentatie &bull; Gebouwd met Go, SQLite, Vue 3 en Tailwind CSS &bull; Geoptimaliseerd voor Raspberry Pi</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/search-index-nl.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

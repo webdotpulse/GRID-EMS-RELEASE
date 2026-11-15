@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS - Manuel de Connexion &amp; Gestion de Flotte GRID-EMS-SERVER</title>
+  <meta name="description" content="Manuel officiel de connexion et d'intégration cloud pour relier GEMS (Grid Energy Management System) à GRID-EMS-SERVER.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 12mm 16mm 12mm;
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.55;
+    }
+
+    .manual-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 960px;
+      padding: 30px 16px 16px 16px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 24px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0284c7;
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 8.5pt;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.25);
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 30pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 0 0 10px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 13pt;
+      color: #475569;
+      margin: 0 0 22px 0;
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    .cover-meta-val {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 8px 20px -4px rgba(0,0,0,0.1);
+      margin: 16px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 8pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Section Styles */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 17pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 6px;
+      margin-top: 32px;
+      margin-bottom: 14px;
+      page-break-after: avoid;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12.5pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 22px;
+      margin-bottom: 10px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #0284c7;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #334155;
+    }
+
+    /* Screenshot Container */
+    .manual-screenshot {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .manual-screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .manual-screenshot-caption {
+      font-size: 8pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* Callout Boxes */
+    .callout {
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      font-size: 9pt;
+    }
+
+    .callout-info {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      color: #0369a1;
+    }
+
+    .callout-tip {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #15803d;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #b45309;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 8.5pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #e2e8f0;
+      padding: 6px 9px;
+      text-align: left;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* Code Blocks */
+    pre.code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 8pt;
+      line-height: 1.45;
+      overflow-x: auto;
+      margin: 10px 0;
+      page-break-inside: avoid;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 8.5pt;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    /* Arch Diagram */
+    .arch-box {
+      background: #0f172a;
+      color: #38bdf8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5pt;
+      line-height: 1.35;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    @media print {
+      .no-print, .lang-switcher {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="manual-page">
+
+    <div class="no-print" style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+      <nav class="lang-switcher" aria-label="Sélecteur de langue">
+        <a href="../gems-server-connection-manual.html">EN</a>
+        <a href="../nl/gems-server-connection-manual-nl.html">NL</a>
+        <a href="gems-server-connection-manual-fr.html" class="active" aria-current="page">FR</a>
+      </nav>
+    </div>
+
+    <!-- ==================== COVER PAGE ==================== -->
+    <div class="cover-page">
+      <div>
+        <div class="cover-badge">
+          <span>☁️ Manuel Cloud Central &amp; Gestion de Flotte</span>
+        </div>
+        <h1 class="cover-title">GRID-EMS-SERVER<br>Manuel de Connexion &amp; de Flotte</h1>
+        <div class="cover-subtitle">
+          Guide de référence terrain pour l'appairage des unités edge GEMS au serveur cloud central, l'ingestion de télémétrie haute fréquence et l'orchestration à distance des commandes de flotte.
+        </div>
+
+        <div class="cover-meta-grid">
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Référence Document</span>
+            <span class="cover-meta-val">GEMS-MAN-SRV-2026</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Version Applicable</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.38.1-release (Version Officielle)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Service Cloud Central</span>
+            <span class="cover-meta-val">GRID-EMS-SERVER (API Flotte Cloud v2.x)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Point de Terminaison par Défaut</span>
+            <span class="cover-meta-val">https://ems.newenergygrid.com</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Architecture de Sécurité</span>
+            <span class="cover-meta-val">TLS 1.3 Sortant Uniquement • Zéro Redirection de Port</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Plateforme Cible Edge</span>
+            <span class="cover-meta-val">Raspberry Pi 5 / 4 (ARM64 Linux)</span>
+          </div>
+        </div>
+
+        <div class="cover-hero-img">
+          <img src="../assets/screenshots/settings_cloud.png" alt="Interface de gestion cloud central GEMS">
+        </div>
+      </div>
+
+      <div class="cover-footer">
+        <span>© 2026 New Energy Grid • Référence Terrain Confidentielle</span>
+        <span>Documentation v9.38.1</span>
+      </div>
+    </div>
+
+    <!-- ==================== TABLE OF CONTENTS ==================== -->
+    <h1 class="section-title">Présentation du Manuel &amp; Sommaire</h1>
+    <p>Ce manuel fournit aux électriciens, installateurs photovoltaïques, gestionnaires de flotte et intégrateurs système les spécifications techniques et procédures terrain requises pour appairer les unités locales GEMS avec <strong>GRID-EMS-SERVER</strong>.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Section</th>
+          <th style="width: 45%;">Sujet</th>
+          <th style="width: 40%;">Public Cible</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Section 1</strong></td>
+          <td>Architecture &amp; Topologie des Communications</td>
+          <td>Ingénieurs Système, Architectes Réseau</td>
+        </tr>
+        <tr>
+          <td><strong>Section 2</strong></td>
+          <td>Prérequis Réseau &amp; Pare-feu</td>
+          <td>Administrateurs IT, Installateurs sur Site</td>
+        </tr>
+        <tr>
+          <td><strong>Section 3</strong></td>
+          <td>Protocole d'Appairage &amp; Handshake Cryptographique</td>
+          <td>Techniciens de Mise en Service</td>
+        </tr>
+        <tr>
+          <td><strong>Section 4</strong></td>
+          <td>Moteur d'Ingestion Télémétrique &amp; Schéma JSON</td>
+          <td>Intégrateurs de Flotte, Ingénieurs Logiciels</td>
+        </tr>
+        <tr>
+          <td><strong>Section 5</strong></td>
+          <td>Diffusion &amp; Exécution des Commandes à Distance</td>
+          <td>Opérateurs CPO, Agrégateurs Réseau</td>
+        </tr>
+        <tr>
+          <td><strong>Section 6</strong></td>
+          <td>Utilisation UI : Paramètres &rarr; Onglet Serveur Cloud</td>
+          <td>Metteurs en Service, Support Technique</td>
+        </tr>
+        <tr>
+          <td><strong>Section 7</strong></td>
+          <td>Sécurité, Confidentialité &amp; Garantie d'Autonomie Edge</td>
+          <td>Délégués à la Protection des Données, Équipes Sécurité</td>
+        </tr>
+        <tr>
+          <td><strong>Section 8</strong></td>
+          <td>Dépannage, Codes d'État &amp; Diagnostics Terrain</td>
+          <td>Techniciens de Maintenance, Support Niveau 2</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-info">
+      <div class="callout-title">
+        <span>💡 Autonomie Edge &amp; Connectivité Cloud 100 % Optionnelle</span>
+      </div>
+      <div>
+        <strong>Garantie Local-First &amp; Intégration Optionnelle :</strong> GEMS est conçu dès l'origine comme un nœud edge décentralisé. La connexion à <strong>GRID-EMS-SERVER</strong> est <strong>possible et 100 % optionnelle</strong>. Toutes les boucles de régulation locales — y compris le délestage VE Modbus à la sous-seconde, le routage du surplus solaire, l'écrêtage capacitaire en Flandre, la compensation intelligente aux Pays-Bas, l'arbitrage batterie et l'automatisation des relais — s'exécutent en totale autonomie sans aucune dépendance au cloud ni à Internet. Lorsqu'elle est activée, l'intégration cloud ajoute l'accès distant chiffré, la supervision multi-sites et le suivi automatisé.
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 1: ARCHITECTURE ==================== -->
+    <div class="page-break"></div>
+    <h1 class="section-title">1. Architecture &amp; Topologie des Communications</h1>
+    
+    <p>GEMS communique avec <strong>GRID-EMS-SERVER</strong> via un pipeline de poussée télémétrique et d'interrogation exclusivement sortant. Dans cette architecture, le contrôleur edge initie toutes les connexions via HTTPS, éliminant totalement le besoin d'ouvrir des ports entrants sur le routeur, de configurer un DNS dynamique ou de disposer d'une adresse IP publique fixe chez le client.</p>
+
+    <div class="arch-box">┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                             INFRASTRUCTURE CLOUD CENTRALE                              │
+│                             https://ems.newenergygrid.com                              │
+│                                                                                        │
+│   ┌─────────────────────┐      ┌─────────────────────┐      ┌──────────────────────┐   │
+│   │ Portail Admin Flotte│      │ API REST Télémétrie │      │ File Commandes Dist. │   │
+│   │ Suivi Multi-Sites   │      │ /api/v1/device/...  │      │ Actions Diffusées    │   │
+│   └──────────▲──────────┘      └──────────▲──────────┘      └──────────▲───────────┘   │
+└──────────────┼────────────────────────────┼────────────────────────────┼───────────────┘
+               │                            │                            │
+               │ HTTPS Sortant (TLS 1.3)    │ Push Périodique Sortant    │ Embarqué dans la
+               │ /register Unique           │ /api/v1/device/telemetry   │ Réponse Télémétrie
+               │                            │ (Intervalle 2-5s)          │ Commandes en Attente
+               ▼                            ▼                            ▼
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                        MATÉRIEL EDGE GEMS (Raspberry Pi 5 / ARM64)                     │
+│                                                                                        │
+│   ┌────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ Moteur Principal Golang (gems/cloud.go)                                        │   │
+│   │ • Worker Singleton CloudManager           • Cache Machine d'État               │   │
+│   │ • Secret Appareil dans SQLite (WAL)       • Journal d'Audit des Commandes      │   │
+│   └──────▲───────────────────────────▲───────────────────────────────▲─────────────┘   │
+│          │                           │                               │                 │
+│   ┌──────▼──────────┐         ┌──────▼──────────┐             ┌──────▼──────────┐      │
+│   │ Onduleurs &amp; Bat │         │ Compteurs P1    │             │ Bornes VE/Relais│      │
+│   │ (Modbus TCP/RTU)│         │ (Série/REST/TCP)│             │ (Modbus / OCPP) │      │
+│   └─────────────────┘         └─────────────────┘             └─────────────────┘      │
+└────────────────────────────────────────────────────────────────────────────────────────┘</div>
+
+    <h2 class="subsection-title">1.1 Principes Architecturaux Fondamentaux</h2>
+    <ul>
+      <li><strong>Aucune Exposition Entrante du Pare-feu :</strong> Les routeurs résidentiels et tertiaires ne nécessitent aucune redirection de port (port forwarding), zone DMZ ou UPnP. Toutes les communications s'effectuent en HTTPS sortant vers le port 443.</li>
+      <li><strong>Agrégation Télémétrique :</strong> À chaque intervalle de synchronisation (configurable entre 2 s et 60 s, par défaut 5 s), le moteur edge regroupe les mesures temps réel des onduleurs, batteries, compteurs, bornes VE, pompes à chaleur et tarifs au sein d'une charge utile JSON unique.</li>
+      <li><strong>Commandes Distantes Embarquées (Piggybacking) :</strong> Plutôt que d'ouvrir des canaux entrants persistants ou d'exiger des VPN complexes, le serveur cloud joint les commandes en attente à la réponse HTTP 200 de l'envoi télémétrique. Le contrôleur edge exécute l'ordre puis acquitte son statut lors de la requête suivante.</li>
+      <li><strong>Isolation Matérielle à la Sous-Milliseconde :</strong> La goroutine CloudManager s'exécute de manière totalement découplée des workers d'acquisition matérielle locale. Une liaison WAN lente ou une indisponibilité cloud ne provoque jamais de gigue Modbus ni de retard sur l'écrêtage de pointe.</li>
+    </ul>
+
+    <!-- ==================== SECTION 2: NETWORK PREREQUISITES ==================== -->
+    <h1 class="section-title">2. Prérequis Réseau &amp; Pare-feu</h1>
+    <p>Avant de mettre en service la connexion cloud sur site, vérifiez que le réseau local respecte les critères de routage sortant suivants :</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Hôte de Destination</th>
+          <th>Protocole</th>
+          <th>Port</th>
+          <th>Direction</th>
+          <th>Fonction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>ems.newenergygrid.com</code> (ou hôte personnalisé)</td>
+          <td>HTTPS (TLS 1.2/1.3)</td>
+          <td>TCP 443</td>
+          <td>Sortant</td>
+          <td>Enregistrement de l'unité, ingestion de télémétrie, acquittement des commandes distantes</td>
+        </tr>
+        <tr>
+          <td>DNS Local (ex. <code>1.1.1.1</code>, <code>8.8.8.8</code>, Passerelle)</td>
+          <td>DNS</td>
+          <td>UDP/TCP 53</td>
+          <td>Sortant</td>
+          <td>Résolution du nom de domaine du serveur cloud</td>
+        </tr>
+        <tr>
+          <td>Serveur de Temps NTP (ex. <code>pool.ntp.org</code>)</td>
+          <td>NTP</td>
+          <td>UDP 123</td>
+          <td>Sortant</td>
+          <td>Précision de l'horloge système (indispensable à la validation des certificats TLS et horodatages)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-warning">
+      <div class="callout-title">
+        <span>⚠️ Directives pour Pare-feu d'Entreprise &amp; VLAN Invité Stricts</span>
+      </div>
+      <div>
+        En cas d'installation de GEMS derrière un pare-feu d'entreprise strict, assurez-vous que le trafic HTTPS sortant vers <code>ems.newenergygrid.com</code> n'est pas soumis à une inspection SSL profonde (proxy MITM), sauf si le certificat racine CA de l'entreprise est installé dans le magasin de confiance système Debian (<code>/usr/local/share/ca-certificates/</code>).
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 3: PAIRING WORKFLOW ==================== -->
+    <div class="page-break"></div>
+    <h1 class="section-title">3. Procédure d'Appairage &amp; d'Authentification</h1>
+    <p>L'appairage autorise un boîtier edge GEMS physique à transmettre ses données vers un compte client ou site spécifique au sein de <strong>GRID-EMS-SERVER</strong>. Il repose sur un échange cryptographique sécurisé en deux phases.</p>
+
+    <h2 class="subsection-title">3.1 Étapes d'Appairage Pas à Pas</h2>
+    <ol>
+      <li><strong>Obtenir le Jeton d'Appairage :</strong> Connectez-vous au portail central de gestion de flotte sur <code>https://ems.newenergygrid.com</code>. Accédez à <strong>Sites &rarr; Add New EMS Node</strong> et copiez le jeton matériel généré à 16 caractères (ex. <code>PAIR-8821-X9K2</code>).</li>
+      <li><strong>Détecter ou Vérifier le Numéro de Série :</strong> GEMS extrait automatiquement le numéro de série matériel permanent du SoC Raspberry Pi via <code>/proc/cpuinfo</code> et le préfixe par <code>TCG-EMS-</code> (ex. <code>TCG-EMS-83daf13d05f1adad</code> pour l'identifiant matériel <code>83daf13d05f1adad</code>). Ce numéro de série est définitivement lié au processeur edge afin de garantir une identité matérielle infalsifiable.</li>
+      <li><strong>Saisir les Identifiants dans l'Interface GEMS :</strong> Ouvrez GEMS <strong>Paramètres</strong> &rarr; onglet <strong>Serveur Cloud</strong> (<em>Cloud Server</em>). Collez le jeton d'appairage dans le champ correspondant.</li>
+      <li><strong>Lancer le Handshake :</strong> Cliquez sur <strong>Pair &amp; Connect Now</strong>. Le moteur expédie immédiatement la charge utile d'enregistrement :</li>
+    </ol>
+
+    <pre class="code-block">
+POST /api/v1/device/register HTTP/1.1
+Host: ems.newenergygrid.com
+Content-Type: application/json
+User-Agent: GRID-EMS-Agent/9.4.0
+
+{
+  "serial_number": "TCG-EMS-83daf13d05f1adad",
+  "pairing_token": "PAIR-8821-X9K2",
+  "model": "GEMS v9.4 Pro",
+  "firmware_version": "v9.4.2",
+  "ip_local": "192.168.1.150"
+}
+    </pre>
+
+    <p>Après vérification de la validité et de la disponibilité du jeton d'appairage, le serveur génère un identifiant permanent <code>device_id</code> ainsi qu'un secret cryptographique 256 bits à haute entropie <code>device_secret</code> :</p>
+
+    <pre class="code-block">
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "status": "ok",
+  "device_id": 1042,
+  "device_secret": "&lt;YOUR_DEVICE_SECRET&gt;",
+  "message": "Device paired successfully"
+}
+    </pre>
+
+    <p>Le moteur GEMS enregistre de manière sécurisée les valeurs <code>device_id</code> et <code>device_secret</code> dans la base SQLite locale (table <code>site_settings</code>). Dès cet instant, le jeton d'appairage initial est invalidé et toutes les communications ultérieures utilisent exclusivement le secret cryptographique de l'appareil.</p>
+
+    <!-- ==================== SECTION 4: TELEMETRY SCHEMA ==================== -->
+    <h1 class="section-title">4. Ingestion Télémétrique en Direct &amp; Tampon Hors Ligne Store-and-Forward</h1>
+    <p>Une fois appairé, le service de synchronisation cloud diffuse la télémétrie en temps réel selon l'intervalle configuré (par défaut <code>2s</code>). En cas de coupure temporaire de la liaison Internet (WAN), GEMS stocke localement les trames dans une file SQLite bornée de type store-and-forward (jusqu'à 10 000 instantanés espacés de 60 secondes) et les retransmet automatiquement dès le rétablissement de la connexion. Chaque paquet respecte le schéma JSON normalisé de GRID-EMS-SERVER :</p>
+
+    <pre class="code-block">
+POST /api/v1/device/telemetry HTTP/1.1
+Host: ems.newenergygrid.com
+Content-Type: application/json
+X-Device-Secret: &lt;YOUR_DEVICE_SECRET&gt;
+X-Device-Serial: TCG-EMS-83daf13d05f1adad
+User-Agent: GRID-EMS-Agent/9.4.0
+
+{
+  "solar_power_watts": 4800,
+  "grid_power_watts": -1450,
+  "battery_power_watts": -1200,
+  "battery_soc": 78.5,
+  "battery_temperature": 24.2,
+  "battery_health": 99.0,
+  "home_consumption_watts": 850,
+  "ev_power_watts": 1300,
+  "ev_charging_mode": "eco",
+  "ev_connected": 1,
+  "ev_soc": 0.0,
+  "heat_pump_watts": 1200,
+  "heat_pump_state": "boost",
+  "relay1_state": 1,
+  "relay2_state": 0,
+  "current_tariff_eur_kwh": 0.1245,
+  "spot_price_eur_mwh": 80.0,
+  "l1_current_amps": 6.3,
+  "l2_current_amps": 0.0,
+  "l3_current_amps": 0.0,
+  "frequency_hz": 50.01,
+  "voltage_v": 231.4,
+  "solar_energy_today_kwh": 24.6,
+  "grid_import_today_kwh": 2.1,
+  "grid_export_today_kwh": 14.8,
+  "home_energy_today_kwh": 11.4,
+  "ev_energy_today_kwh": 6.8,
+  "estimated_savings_today_eur": 4.82,
+  "estimated_savings_month_eur": 68.40,
+  "firmware_version": "v9.36.7"
+}
+    </pre>
+
+    <!-- ==================== SECTION 5: REMOTE COMMAND DISPATCH ==================== -->
+    <div class="page-break"></div>
+    <h1 class="section-title">5. Diffusion &amp; Exécution des Commandes à Distance</h1>
+    <p>Les opérateurs centraux, installateurs ou agrégateurs de centrales virtuelles (VPP) peuvent transmettre des consignes vers n'importe quelle unité edge via <strong>GRID-EMS-SERVER</strong>. Lorsque l'unité envoie sa télémétrie, le serveur joint les commandes en attente dans le corps de la réponse :</p>
+
+    <pre class="code-block">
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "status": "ok",
+  "device_id": 1042,
+  "server_time": "2026-09-07T17:19:55Z",
+  "pending_commands": [
+    {
+      "id": 101,
+      "command": "set_strategy_mode",
+      "payload": {
+        "mode": "flanders",
+        "peak_limit_kw": 2.5
+      }
+    }
+  ]
+}
+    </pre>
+
+    <h2 class="subsection-title">5.1 Catalogue des Commandes Distantes Prises en Charge</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Nom de la Commande</th>
+          <th style="width: 35%;">Paramètres du Payload</th>
+          <th style="width: 40%;">Action Exécutée sur l'Unité Edge</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>SET_OPERATING_MODE</code> / <code>set_strategy_mode</code></td>
+          <td><code>mode</code> : string ("eco", "flanders", "netherlands"), <code>peak_limit_kw</code> : float</td>
+          <td>Met à jour la stratégie d'optimisation active du site avec isolation stricte par pays (applique le plafond flamand <code>peak_limit_kw</code> uniquement sur les unités situées en Flandre et ignore les plafonds régionaux étrangers ailleurs).</td>
+        </tr>
+        <tr>
+          <td><code>SET_BATTERY_MODE</code></td>
+          <td><code>device_id</code> : int, <code>mode</code> : string ("auto", "hold", "force_charge", "force_discharge"), <code>target_power_w</code> : float</td>
+          <td>Configure le mode de fonctionnement et la consigne de puissance d'un onduleur hybride ou d'un système BESS autonome avec écrêtage de sécurité automatique.</td>
+        </tr>
+        <tr>
+          <td><code>SET_EV_CHARGE_MODE</code> / <code>SET_EV_CURRENT</code></td>
+          <td><code>device_id</code> : int, <code>charge_mode</code> : string ("now", "eco", "pv_only", "off"), <code>max_current_a</code> : float (6–32)</td>
+          <td>Bascule le mode de charge VE ou module dynamiquement l'intensité maximale de la borne via Modbus TCP ou OCPP 1.6-J <code>SetChargingProfile</code>.</td>
+        </tr>
+        <tr>
+          <td><code>TOGGLE_RELAY</code> / <code>set_relay</code></td>
+          <td><code>device_id</code> : int, <code>state</code> : bool / int (0 ou 1)</td>
+          <td>Actionne un relais intelligent ou un contact sec pour piloter les états SG-Ready d'une pompe à chaleur ou le forçage d'un ballon d'eau chaude sanitaire.</td>
+        </tr>
+        <tr>
+          <td><code>UPDATE_SETTINGS</code> / <code>SET_FLEET_SETTINGS</code> / <code>SYNC_SETTINGS</code></td>
+          <td>Champs validés de site, d'automatisation relais ou de flotte VE (ou payload vide pour <code>SYNC_SETTINGS</code>)</td>
+          <td>Applique les paramètres validés de tarifs, d'écrêtage de pointe, de règles relais ou de cluster DLB à la base locale, ou déclenche l'envoi immédiat d'un instantané de configuration assaini (<code>POST /api/v1/device/settings</code>) excluant tout mot de passe ou jeton local.</td>
+        </tr>
+        <tr>
+          <td><code>OTA_UPDATE</code> / <code>REBOOT</code></td>
+          <td><code>target_tag</code> : string (optionnel, dernière version)<br><code>delay_sec</code> : int (défaut 5)</td>
+          <td>Lance une mise à jour logicielle OTA vérifiée cryptographiquement (diffusant sa progression sous la source de journal <code>updater</code> avant redémarrage) ou exécute un redémarrage propre du boîtier après acquittement ACK.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">5.2 Acquittement des Commandes &amp; Piste d'Audit</h2>
+    <p>Après exécution locale, GEMS acquitte le résultat via une requête POST sur <code>/api/v1/device/commands/{id}/ack</code> en précisant le statut (<code>executed</code> ou <code>failed</code>) et les notes d'exécution. Un journal d'audit complet de toutes les commandes exécutées s'affiche en temps réel dans l'onglet <strong>Serveur Cloud</strong> de GEMS.</p>
+
+    <!-- ==================== SECTION 6: UI COMMISSIONING GUIDE ==================== -->
+    <h1 class="section-title">6. Guide de Mise en Service Pas à Pas via l'Interface Web</h1>
+    <p>La mise en service terrain de la connexion cloud prend moins de deux minutes depuis l'interface web GEMS :</p>
+
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_cloud.png" alt="Interface des paramètres Serveur Cloud GEMS">
+      <div class="manual-screenshot-caption">Figure 6.1 : Paramètres Cloud Central GEMS — Affichage de l'état de synchronisation actif, de la latence, des champs d'appairage et du journal d'audit.</div>
+    </div>
+
+    <h3 class="step-title">Étape 1 : Ouvrir Paramètres &rarr; Serveur Cloud</h3>
+    <p>Ouvrez le tableau de bord GEMS dans votre navigateur (<code>http://&lt;ip-raspberry-pi&gt;</code>) et cliquez sur <strong>Paramètres</strong> (<em>Settings</em>) dans le menu latéral. Déverrouillez le mode installateur si nécessaire puis sélectionnez l'onglet <strong>Serveur Cloud</strong> (<em>Cloud Server</em>) dans la barre d'onglets horizontale.</p>
+
+    <h3 class="step-title">Étape 2 : Saisir les Identifiants d'Appairage</h3>
+    <p>Vérifiez que le champ <strong>Central Cloud Server URL</strong> indique <code>https://ems.newenergygrid.com</code> (ou saisissez votre propre serveur auto-hébergé). Collez votre jeton d'appairage à 16 caractères dans le champ <strong>Pairing Token</strong>.</p>
+
+    <h3 class="step-title">Étape 3 : Appairer et Tester la Connexion</h3>
+    <p>Cliquez sur <strong>Pair &amp; Connect Now</strong>. Dès que la carte affiche <span style="color:#10b981; font-weight:bold;">● ONLINE &amp; SYNCED</span> accompagné d'un témoin vert, cliquez sur <strong>Test Telemetry Push</strong> pour contrôler l'ingestion télémétrique de bout en bout. La latence aller-retour est immédiatement mesurée et affichée (généralement 15 à 30 ms).</p>
+
+    <!-- ==================== SECTION 7: SECURITY & COMPLIANCE ==================== -->
+    <div class="page-break"></div>
+    <h1 class="section-title">7. Sécurité, Confidentialité &amp; Garantie d'Autonomie Edge</h1>
+
+    <h2 class="subsection-title">7.1 Architecture de Sécurité</h2>
+    <ul>
+      <li><strong>Authentification par Secret Cryptographique :</strong> Chaque trame télémétrique est authentifiée à l'aide de l'en-tête unique <code>X-Device-Secret</code> délivré lors de l'enregistrement. Les attaques par rejeu (replay) et l'usurpation sont bloquées par la validation serveur des horodatages.</li>
+      <li><strong>Sécurité de la Couche Transport :</strong> Tout le trafic impose strictement le chiffrement TLS 1.3. Toute requête HTTP non chiffrée est immédiatement rejetée par le serveur.</li>
+      <li><strong>Aucune Vulnérabilité sur Port Entrant :</strong> Comme GEMS n'ouvre jamais de port public entrant, les scanners Internet malveillants (tels que Shodan) ne peuvent ni détecter ni sonder l'équipement.</li>
+    </ul>
+
+    <h2 class="subsection-title">7.2 Conformité RGPD &amp; Respect de la Vie Privée</h2>
+    <p>Conformément aux directives européennes sur la protection des données et la minimisation des informations (RGPD) :</p>
+    <ul>
+      <li><strong>Zéro Traçage des Véhicules :</strong> GEMS applique des règles strictes interdisant la télématique automobile, l'enregistrement du numéro de châssis (VIN) ou le suivi RFID des conducteurs. Seules les grandeurs électriques (puissance de charge en Watts et état du signal pilote) sont transmises.</li>
+      <li><strong>Déconnexion Immédiate à Tout Moment :</strong> Le propriétaire peut cliquer sur <strong>Disconnect Unit</strong> à tout instant depuis l'interface, coupant instantanément les flux cloud et purgeant localement les clés secrètes de l'appareil.</li>
+      <li><strong>Mise en Service &amp; Vérification du Pilotage Matériel à Distance :</strong> Lorsque la gouvernance d'accès du propriétaire autorise le mode <em>Full Commissioning &amp; Support</em>, les installateurs certifiés peuvent déclencher la suite en 5 étapes <strong>Test Installateur de Mise en Service &amp; Pilotage</strong> (<em>Commissioning &amp; Hardware Control Test Suite</em> — vérifiant la télémétrie et la modulation active des consignes sur onduleur/batterie <strong>Solis</strong> et borne VE <strong>Raedian</strong>), appliquer des corrections guidées à distance et éditer un certificat officiel de vérification A4 directement depuis <strong>GRID-EMS-SERVER</strong> ; en mode <em>Read-Only Diagnostics</em>, toutes les commandes actives de test et de correction à distance sont automatiquement bloquées.</li>
+    </ul>
+
+    <!-- ==================== SECTION 8: TROUBLESHOOTING ==================== -->
+    <h1 class="section-title">8. Dépannage &amp; Diagnostics Terrain</h1>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Erreur / Statut Affiché</th>
+          <th style="width: 35%;">Cause Probable</th>
+          <th style="width: 40%;">Action Corrective Recommandée</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span style="color:#ef4444; font-weight:bold;">Disconnected / Gris</span></td>
+          <td>L'interrupteur Cloud Sync est désactivé ou l'unité n'a pas encore été appairée.</td>
+          <td>Activez le commutateur <strong>Cloud Sync</strong> puis cliquez sur <strong>Pair &amp; Connect Now</strong>.</td>
+        </tr>
+        <tr>
+          <td><code>Handshake failed: dial tcp: lookup...</code></td>
+          <td>Échec de résolution DNS sur l'interface réseau locale du Raspberry Pi.</td>
+          <td>Vérifiez les serveurs DNS de la passerelle. Testez via <code>ping ems.newenergygrid.com</code> dans le terminal Cockpit (port 9090).</td>
+        </tr>
+        <tr>
+          <td><code>HTTP 401 Unauthorized</code></td>
+          <td>Le secret de l'appareil a été révoqué ou supprimé depuis le portail central.</td>
+          <td>GEMS tente automatiquement un ré-enregistrement. Si le jeton a expiré, générez un nouveau jeton dans le portail et relancez l'appairage.</td>
+        </tr>
+        <tr>
+          <td><code>Telemetry push network error: timeout</code></td>
+          <td>Le routeur local bloque le port sortant 443 ou la bande passante Internet est saturée.</td>
+          <td>Inspectez les règles du pare-feu routeur et assurez-vous que le port TCP 443 sortant est ouvert sans restriction.</td>
+        </tr>
+        <tr>
+          <td>Latence Élevée (&gt; 500 ms)</td>
+          <td>Signal Wi-Fi faible ou routeur cellulaire 4G/5G de secours saturé.</td>
+          <td>Raccordez le Raspberry Pi par câble Ethernet Cat6 dédié plutôt qu'en Wi-Fi.</td>
+        </tr>
+        <tr>
+          <td><code>OTA_UPDATE</code> acquitté sans changement de version</td>
+          <td>L'unité exécute déjà une version identique ou plus récente, le téléchargement HTTPS sortant a été interrompu, ou l'unité tourne sur une ancienne version <code>v9.35.1</code>–<code>v9.36.2</code> nécessitant une mise à niveau locale unique.</td>
+          <td>Consultez les entrées <code>updater</code> dans l'onglet Remote Logs du portail (ou via <code>sudo journalctl -u gems | grep updater</code>), vérifiez l'accès TCP 443 sortant et, si l'unité est en <code>v9.35.1</code>–<code>v9.36.2</code>, installez une fois le dernier paquet <code>.deb</code> via SSH ou le terminal Cockpit (<code>:9090</code>).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">8.1 Commandes de Diagnostic Système en Direct</h2>
+    <p>Les installateurs peuvent inspecter en direct les journaux de synchronisation cloud via SSH ou via le terminal web Cockpit intégré (port 9090) :</p>
+
+    <pre class="code-block">
+# Inspecter en direct les journaux de synchronisation cloud
+sudo journalctl -u gems -f | grep -i cloud
+
+# Tester la résolution DNS et la connectivité HTTPS sortante depuis l'unité edge
+curl -Iv https://ems.newenergygrid.com/api/status
+
+# Vérifier les paramètres du site et l'identifiant cloud enregistré en base locale
+sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_device_id, cloud_serial_number FROM site_settings WHERE id = 1;"
+    </pre>
+
+    <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
+      GEMS (New Energy Grid) • Manuel Officiel de Connexion Terrain GRID-EMS-SERVER • Version v9.38.1
+    </div>
+
+  </div>
+
+</body>
+</html>

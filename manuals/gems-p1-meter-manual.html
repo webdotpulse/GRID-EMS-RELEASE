@@ -306,11 +306,25 @@
     .page-break {
       page-break-before: always;
     }
+
+    @media print {
+      .no-print, .lang-switcher {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body>
 
 <div class="manual-page">
+
+  <div class="no-print" style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+    <nav class="lang-switcher" aria-label="Language selection">
+      <a href="gems-p1-meter-manual.html" class="active" aria-current="page">EN</a>
+      <a href="nl/gems-p1-meter-manual-nl.html">NL</a>
+      <a href="fr/gems-p1-meter-manual-fr.html">FR</a>
+    </nav>
+  </div>
 
   <!-- ==================== COVER PAGE ==================== -->
   <div class="cover-page">
@@ -325,7 +339,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware</span>
-          <span class="cover-meta-val">v9.38.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.38.1-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Supported Standards</span>

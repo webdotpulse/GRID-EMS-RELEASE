@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Installatie- &amp; Hardwarehandleiding - GEMS</title>
+  <meta name="description" content="Volledige installatiehandleiding voor GEMS (New Energy Grid) op Raspberry Pi: kant-en-klaar OS-image, Debian-pakket, NVMe-opbouw, Cockpit en RS485/P1-bekabeling.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Navigatiemenu openen of sluiten">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Installatie</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Doorzoek documentatie (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Zoek in installatie, bekabeling, Cockpit...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuratie</span>
+      </a>
+      <a href="user-manual.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+        <span>Gebruikersgids</span>
+      </a>
+      <nav class="lang-switcher no-print" aria-label="Kies documentatietaal">
+        <a href="../installation.html" hreflang="en" title="English">EN</a>
+        <a href="installation.html" class="active" hreflang="nl" title="Nederlands">NL</a>
+        <a href="../fr/installation.html" hreflang="fr" title="Français">FR</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Wissel kleurenthema">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Aan de slag</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Documentatieportaal</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Installatiehandleiding</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="installation.html#hardware-reference" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>Referentiehardware &amp; BOM</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#nvme-setup" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>NVMe-SSD &amp; EEPROM-setup</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#custom-os-image" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Kant-en-klaar OS-image (Optie A)</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#deb-package" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>Debian-pakket (Optie B)</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#cockpit" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-terminal"></use></svg>
+              <span>Cockpit Systeembeheer</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#rpi-connect" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wifi"></use></svg>
+              <span>Raspberry Pi Connect</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#rs485-wiring" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>RS485- &amp; Modbus-bekabeling</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#p1-wiring" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>P1 Slimme Meter RJ12-pinout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Overige handleidingen</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="configuration.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>Configuratiereferentie</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Gebruikershandleiding</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Toesteltemplates</span>
+              <span class="badge">170</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>Probleemoplossing &amp; FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Officiële PDF-handleidingen</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-installer-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Installatiehandleiding (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Gebruikershandleiding (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Kruimelpad">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Installatiehandleiding</span>
+        </nav>
+
+        <h1>Installatie- &amp; Hardwarehandleiding</h1>
+        <p class="hero-lead">
+          Volledige installatie-instructies voor GEMS op Raspberry Pi ARM64-hardware, inclusief voorgeconfigureerde OS-images, installatie via het Debian-pakket, NVMe-opstartconfiguratie en fysieke communicatiebekabeling.
+        </p>
+
+        <!-- PDF Manual Download Banner -->
+        <div class="alert alert-tip" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0;">
+          <div>
+            <div class="alert-header">
+              <svg width="18" height="18"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Download de Officiële Afdrukbare Installatiehandleiding (PDF)</span>
+            </div>
+            <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem;">Een volledig afdrukbare PDF nodig voor in het verdeelbord of bij oplevering op de werf? Download de officiële <strong>GEMS Installatie- &amp; Inbedrijfstellingshandleiding (PDF)</strong> met aansluitschema's in kleur, stapsgewijze toestelkoppeling en opleveringschecklist.</p>
+          </div>
+          <a href="gems-installer-manual-nl.pdf" target="_blank" class="tab-btn active" style="background: #0284c7; color: #fff; text-decoration: none; padding: 0.45rem 0.9rem; font-size: 0.85rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap;">
+            <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+            <span>Installatie-PDF (NL)</span>
+          </a>
+        </div>
+
+        <!-- Reference Hardware BOM -->
+        <h2 id="hardware-reference">Officieel Geteste Referentiehardware</h2>
+        <p>
+          GEMS is geoptimaliseerd en gevalideerd op de volgende officiële referentiehardwareset:
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Onderdeel</th>
+                <th>Hardwarespecificatie</th>
+                <th>Technische Details</th>
+                <th>Standaard &amp; Compatibiliteit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Systeemcontroller &amp; Basis</strong></td>
+                <td><strong>Raspberry Pi 5 Referentiehardware</strong></td>
+                <td>
+                  • Raspberry Pi 5 (4GB RAM, Quad-Core Cortex-A76 @ 2,4GHz)<br>
+                  • Officiële Raspberry Pi 27W USB-C PD-voeding<br>
+                  • Aluminium metalen behuizing met actieve koeling<br>
+                  • M.2 NVMe PCIe HAT / Base &amp; 16-pins FPC-lintkabel<br>
+                  • MicroSD-kaart (voor eenmalig flashen van de bootloader)
+                </td>
+                <td>
+                  <span class="badge-pill badge-green">Officieel Referentieplatform</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Snelle NVMe-opslag</strong></td>
+                <td><strong>128GB+ M.2 NVMe SSD</strong></td>
+                <td>
+                  • M.2 2280 PCIe Gen 3.0 / Gen 2.0 x4 (NVMe 1.3+)<br>
+                  • Leessnelheid tot 1.600+ MB/s / Schrijfsnelheid tot 600+ MB/s<br>
+                  • Ultralaag stroomverbruik voor 24/7 bedrijfszekerheid<br>
+                  • Hoge levensduur, geen enkele SD-kaartslijtage
+                </td>
+                <td>
+                  <span class="badge-pill badge-green">Geverifieerde NVMe-opslag</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- NVMe Setup & EEPROM Configuration -->
+        <h2 id="nvme-setup">⚡ NVMe M.2 SSD-montage &amp; EEPROM Bootloader-instelling</h2>
+        <p>
+          Wanneer u een nieuwe Raspberry Pi 5 opbouwt met een M.2 NVMe PCIe Base en een M.2 NVMe SSD, <strong>start de Pi 5 standaard nog niet op vanaf de SSD</strong>. Af-fabriek is het EEPROM-geheugen ingesteld om uitsluitend vanaf MicroSD op te starten (<code>BOOT_ORDER=0xf41</code>) zonder de PCIe-bus bij het opstarten af te tasten.
+        </p>
+
+        <div class="alert alert-important">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-alert-triangle"></use></svg>
+            <span>Waarom de Pi 5 de M.2 NVMe SSD standaard niet herkent</span>
+          </div>
+          <p>
+            1. <strong>EEPROM-opstartvolgorde:</strong> De standaard Pi 5-bootloader negeert NVMe-opslag totdat NVMe-bootmodus (<code>0x6</code>) en <code>PCIE_PROBE=1</code> geactiveerd zijn in de EEPROM.<br>
+            2. <strong>PCIe Device Tree Overlay:</strong> De Linux-kernel vereist <code>dtparam=pciex1</code> in <code>/boot/firmware/config.txt</code>.<br>
+            3. <strong>Richting van de lintkabel:</strong> De koperen contactpinnen van de 16-pins FPC-kabel moeten op de Pi 5 <em>naar binnen wijzen richting de Ethernet-/USB-poorten</em>.
+          </p>
+        </div>
+
+        <h3>Methode 1: De 3-minuten oplossing (via Raspberry Pi Imager EEPROM-hulpprogramma)</h3>
+        <ol>
+          <li>Plaats een <strong>MicroSD-kaart</strong> in uw pc of Mac.</li>
+          <li>Open <strong><a href="https://www.raspberrypi.com/software/" target="_blank" rel="noopener">Raspberry Pi Imager</a></strong> &rarr; Kies apparaat: <strong>Raspberry Pi 5</strong>.</li>
+          <li>Klik op <strong>Besturingssysteem kiezen (Choose OS)</strong> &rarr; <strong>Misc utility images</strong> &rarr; <strong>Bootloader</strong> &rarr; <strong>NVMe/PCIe Boot</strong>.</li>
+          <li>Selecteer uw MicroSD-kaart en klik op <strong>Schrijven (Write)</strong>.</li>
+          <li>Plaats de kaart in de Raspberry Pi 5 (met gemonteerde M.2 NVMe SSD) en sluit de officiële <strong>27W-voeding</strong> aan.</li>
+          <li>Na 5–10 seconden knippert het groene ACT-lampje snel en kleurt het HDMI-scherm <strong>volledig groen</strong>. Dit bevestigt dat de EEPROM permanent is bijgewerkt (<code>BOOT_ORDER=0xf461</code>, <code>PCIE_PROBE=1</code>).</li>
+          <li>Haal de stekker uit het stopcontact, <strong>verwijder de MicroSD-kaart</strong>, flash <code>gems-os-image.img.xz</code> rechtstreeks op de NVMe-SSD en schakel de spanning in. Het systeem start nu in minder dan 8 seconden op vanaf NVMe!</li>
+        </ol>
+
+        <h3>Methode 2: Rechtstreeks naar NVMe flashen via de Cockpit Webterminal</h3>
+        <p>Beschikt u niet over een losse USB-naar-NVMe-adapter voor uw pc? Dan kunt u de bootloader configureren en de NVMe-SSD rechtstreeks flashen vanuit de Cockpit-terminal (<code>http://ems.local:9090</code>) terwijl het systeem vanaf MicroSD draait:</p>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Cockpit Terminal (Poort 9090)</span>
+            <button class="copy-code-btn" aria-label="Kopieer code">
+              <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+              <span>Kopiëren</span>
+            </button>
+          </div>
+          <pre><code># 1. Werk de EEPROM bij voor PCIe-detectie en opstarten vanaf NVMe
+sudo rpi-eeprom-config --edit
+# Controleer dat BOOT_ORDER=0xf461 en PCIE_PROBE=1 ingesteld staan, sla op en sluit af (Ctrl+O, Ctrl+X)
+
+# 2. Download en schrijf GEMS rechtstreeks naar de NVMe-SSD (/dev/nvme0n1)
+curl -LO https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/latest/download/gems-os-image.img.xz
+xzcat gems-os-image.img.xz | sudo dd of=/dev/nvme0n1 bs=4M status=progress conv=fsync
+
+# 3. Schakel uit, verwijder de MicroSD-kaart en start opnieuw op!
+sudo poweroff</code></pre>
+        </div>
+
+        <!-- Option A: Custom OS Image -->
+        <h2 id="custom-os-image">Optie A: Kant-en-klaar Raspberry Pi OS-image (Aanbevolen)</h2>
+        <p>
+          De snelste en meest betrouwbare manier om GEMS in te zetten is via het officiële voorgeconfigureerde <strong>Raspberry Pi OS Lite (Bookworm ARM64)</strong> image.
+        </p>
+
+        <div class="alert alert-tip">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-check"></use></svg>
+            <span>Wat zit er standaard in het OS-image?</span>
+          </div>
+          <ul>
+            <li><strong>Geoptimaliseerde Kernel &amp; Bestandssysteem:</strong> SQLite WAL-afstemming, tijdelijke partities in RAM en minimale opslagbelasting.</li>
+            <li><strong>Nginx Reverse Proxy:</strong> Luistert automatisch op poort 80 en stuurt WebSocket- en SSE-verkeer transparant door naar GEMS op poort 8080.</li>
+            <li><strong>Wayfire Kiosk Desktop:</strong> Ultralichte Wayland-compositor die Chromium automatisch schermvullend opstart op <code>http://ems.local</code>.</li>
+            <li><strong>Cockpit Webconsole:</strong> Volledige beheerterminal en systeembewaking voorgeïnstalleerd op poort <code>9090</code> (inloggen met uw geconfigureerde Linux-systeemaccount).</li>
+            <li><strong>Raspberry Pi Connect:</strong> Voorbereid voor beveiligde externe toegang zonder port forwarding.</li>
+          </ul>
+        </div>
+
+        <h3>Instructies voor het flashen</h3>
+        <ol>
+          <li>
+            Download het nieuwste release-archief <code>gems-os-image.img.xz</code> vanaf de <a href="https://github.com/webdotpulse/GRID-EMS-RELEASE/releases" target="_blank" rel="noopener">GitHub Releases-pagina</a>.
+          </li>
+          <li>
+            Plaats een snelle MicroSD-kaart (Class 10 / U3, minimaal 8GB) of NVMe-adapter in uw computer.
+          </li>
+          <li>
+            Open <a href="https://etcher.balena.io/" target="_blank" rel="noopener">BalenaEtcher</a> of <a href="https://www.raspberrypi.com/software/" target="_blank" rel="noopener">Raspberry Pi Imager</a>.
+          </li>
+          <li>
+            Selecteer het gedownloade <code>.img.xz</code>-bestand rechtstreeks (uitpakken is niet nodig), kies het doelstation en klik op <strong>Flash!</strong>.
+          </li>
+          <li>
+            Zodra het schrijven en controleren voltooid is, plaatst u het medium in de Raspberry Pi en sluit u de voeding aan.
+          </li>
+        </ol>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Eerste toegang</span>
+            <button class="copy-code-btn" aria-label="Kopieer code">
+              <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+              <span>Kopiëren</span>
+            </button>
+          </div>
+          <pre><code># Toegang via mDNS in uw lokale webbrowser:
+http://ems.local
+# Of rechtstreeks via de hostnaam:
+http://ems
+
+# Ingebouwde Cockpit Webterminal:
+https://ems.local:9090
+# Meld u aan met uw geconfigureerde Linux-beheerdersaccount (of de gebruiker ingesteld in Raspberry Pi Imager)</code></pre>
+        </div>
+
+        <!-- Option B: Debian Package -->
+        <h2 id="deb-package">Optie B: Debian-pakket (.deb) Installatie</h2>
+        <p>
+          Beschikt u al over een draaiende Raspberry Pi OS- of Debian/Ubuntu ARM64-installatie, dan kunt u het losse Debian-pakket installeren.
+        </p>
+
+        <h3>1. Pakket downloaden en installeren</h3>
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Bash / Terminal</span>
+            <button class="copy-code-btn" aria-label="Kopieer commando">
+              <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+              <span>Kopiëren</span>
+            </button>
+          </div>
+          <pre><code># Download het nieuwste ARM64 Debian-pakket
+TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)
+curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"
+
+# Installeer het pakket
+sudo dpkg -i "gems_${TAG#v}_arm64.deb"
+
+# Los eventuele ontbrekende afhankelijkheden automatisch op
+sudo apt-get install -f -y</code></pre>
+        </div>
+
+        <h3>2. Systemd-servicebeheer</h3>
+        <p>
+          Het Debian-pakket maakt automatisch een specifieke systeemgebruiker <code>gems</code> aan, installeert de bestanden in <code>/opt/gems</code> en registreert de <code>gems.service</code>-daemon samen met de <code>gems-updater.path</code>-service voor software-updates:
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Actie</th>
+                <th>Terminalcommando</th>
+                <th>Beschrijving</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Status controleren</strong></td>
+                <td><code>sudo systemctl status gems.service</code></td>
+                <td>Controleert de actieve status en het geheugengebruik.</td>
+              </tr>
+              <tr>
+                <td><strong>Service herstarten</strong></td>
+                <td><code>sudo systemctl restart gems.service</code></td>
+                <td>Herstart de backend netjes en laadt de SQLite-cache opnieuw in.</td>
+              </tr>
+              <tr>
+                <td><strong>Service stoppen</strong></td>
+                <td><code>sudo systemctl stop gems.service</code></td>
+                <td>Schrijft eerst alle lopende meetbuffers veilig weg naar SQLite vóór het stoppen.</td>
+              </tr>
+              <tr>
+                <td><strong>Live logs bekijken</strong></td>
+                <td><code>sudo journalctl -u gems.service -f -n 100</code></td>
+                <td>Toont realtime systeemlogboeken vanuit het systemd-journal.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Cockpit Administration -->
+        <h2 id="cockpit">Cockpit Webterminal &amp; Systeembeheer</h2>
+        <p>
+          Cockpit biedt een overzichtelijk, browsergebaseerd Linux-beheerpaneel op poort <code>9090</code>.
+        </p>
+
+        <div class="alert alert-important">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-alert-triangle"></use></svg>
+            <span>Beveiligingsadvies voor beheerderswachtwoord</span>
+          </div>
+          <p>
+            Meld u aan op Cockpit met uw geconfigureerde Linux-systeembeheerdersaccount. Wij raden sterk aan het standaardwachtwoord bij de eerste inbedrijfstelling te wijzigen via Cockpit &rarr; Accounts of met het terminalcommando <code>sudo passwd</code>.
+          </p>
+        </div>
+
+        <p>Met Cockpit kunt u:</p>
+        <ul>
+          <li>Rechtstreeks vanuit uw webbrowser een volwaardige bash-terminal met rootrechten openen zonder aparte SSH-client.</li>
+          <li>Realtime grafieken voor CPU-, geheugen- en netwerkbelasting opvolgen.</li>
+          <li>Systemd-services inspecteren en herstarten (<code>gems.service</code>, <code>nginx.service</code>, <code>wayfire.service</code>).</li>
+          <li>Volledige kernel-<code>dmesg</code>-meldingen en systeemlogboeken raadplegen.</li>
+        </ul>
+
+        <!-- Raspberry Pi Connect -->
+        <h2 id="rpi-connect">Raspberry Pi Connect (Externe ondersteuning op afstand)</h2>
+        <p>
+          Raspberry Pi Connect biedt versleutelde toegang op afstand tot uw GEMS-controller vanuit elke browser, zonder port forwarding of VPN-configuratie.
+        </p>
+
+        <ol>
+          <li>Open de Cockpit Webterminal op <code>http://ems.local:9090</code>.</li>
+          <li>Voer het onderstaande commando uit als de kioskgebruiker om de sessie te activeren en de koppeling te starten:
+            <div class="code-block-wrapper">
+              <div class="code-header">
+                <span class="code-lang">Terminal</span>
+                <button class="copy-code-btn" aria-label="Kopieer commando">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+                  <span>Kopiëren</span>
+                </button>
+              </div>
+              <pre><code>sudo loginctl enable-linger gems-kiosk
+rpi-connect signin</code></pre>
+            </div>
+          </li>
+          <li>Open of kopieer de authenticatie-URL die in de terminal verschijnt om het toestel te koppelen aan uw Raspberry Pi ID.</li>
+          <li>Ga in een willekeurige browser naar <a href="https://connect.raspberrypi.com" target="_blank" rel="noopener">connect.raspberrypi.com</a> en selecteer <strong><code>ems</code></strong> voor versleutelde shell-toegang op afstand. Uit oogpunt van privacy en beveiliging staat onbeheerd schermdelen standaard uitgeschakeld met zichtbare verbindingsmeldingen.</li>
+        </ol>
+
+        <!-- System Health Verification -->
+        <h2 id="verification">Installatie &amp; Systeemstatus controleren</h2>
+        <p>
+          Open na het opstarten de webinterface op <code>http://ems.local</code> (of het IP-adres van de Raspberry Pi) en ga naar <strong>Instellingen &rarr; Systeeminformatie</strong> om de netwerkconfiguratie en systeemversie te verifiëren:
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/settings_system_info.png" alt="Tabblad Systeeminformatie en Diagnose" loading="lazy">
+          <div class="doc-screenshot-caption">Tabblad Systeeminformatie: Systeemidentiteit, netwerkinterfaces en OTA-firmwareversie.</div>
+        </div>
+
+        <!-- RS485 / Modbus Wiring -->
+        <h2 id="rs485-wiring">Hardwarebekabeling: RS485 &amp; Fysieke Modbus-aansluiting</h2>
+        <p>
+          Bij het bekabelen van zonne-omvormers, energiemeters of laadpalen via Modbus RTU (serieel) is een correcte RS485-aansluiting cruciaal voor een storingsvrije communicatie.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Signaal</th>
+                <th>Gebruikelijke Aderkleur</th>
+                <th>Beschrijving &amp; Polariteit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>A (D+ / TxD+ / RxD+)</strong></td>
+                <td>Wit / Blauwe streep</td>
+                <td>Niet-inverterende differentiële datalijn (+).</td>
+              </tr>
+              <tr>
+                <td><strong>B (D- / TxD- / RxD-)</strong></td>
+                <td>Blauw effen</td>
+                <td>Inverterende differentiële datalijn (-).</td>
+              </tr>
+              <tr>
+                <td><strong>GND (COM)</strong></td>
+                <td>Bruin / Referentiedraad</td>
+                <td>Gemeenschappelijke signaalreferentie (massa). Voorkomt potentiaalverschillen op de bus.</td>
+              </tr>
+              <tr>
+                <td><strong>Afscherming (Shield)</strong></td>
+                <td>Blanke gevlochten mantel</td>
+                <td>Uitsluitend aan ÉÉN uiteinde aarden (aan de zijde van de USB-adapter op de Raspberry Pi).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert alert-warning">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-alert-triangle"></use></svg>
+            <span>Afsluitweerstanden (120&Omega;)</span>
+          </div>
+          <p>
+            Plaats bij RS485-kabellengtes boven 10 meter altijd een <strong>afsluitweerstand van 120&Omega; (0,25W)</strong> tussen de klemmen <code>A</code> en <code>B</code> aan beide uiterste uiteinden van de busketen (bij de USB-adapter en bij het laatste slavetoestel). Gebruik altijd een doorlusketen (daisy-chain) en vermijd ster- of boomvertakkingen.
+          </p>
+        </div>
+
+        <!-- P1 DSMR Wiring -->
+        <h2 id="p1-wiring">P1 DSMR Slimme Meter RJ12-pinbezetting</h2>
+        <p>
+          Digitale meters in België (Fluvius/Sibelga/ORES) en Nederland beschikken over een RJ12 (6P6C) P1-gebruikerspoort die seriële DSMR-telegrammen uitstuurt:
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>RJ12-pin</th>
+                <th>Signaalnaam</th>
+                <th>Richting</th>
+                <th>Functie</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Pin 1</strong></td>
+                <td>+5V Voeding</td>
+                <td>Uitgang uit meter</td>
+                <td>Voedt de optische isolatie of USB-converter (DSMR 5.0+ levert tot 250 mA).</td>
+              </tr>
+              <tr>
+                <td><strong>Pin 2</strong></td>
+                <td>Data Request (RTS)</td>
+                <td>Ingang naar meter</td>
+                <td>Hoog (+5V) trekken om de verzending van P1-telegrammen te activeren.</td>
+              </tr>
+              <tr>
+                <td><strong>Pin 3</strong></td>
+                <td>Data GND</td>
+                <td>-</td>
+                <td>Massareferentie voor datasignalen.</td>
+              </tr>
+              <tr>
+                <td><strong>Pin 4</strong></td>
+                <td>NC</td>
+                <td>-</td>
+                <td>Niet aangesloten.</td>
+              </tr>
+              <tr>
+                <td><strong>Pin 5</strong></td>
+                <td>Data Out (RxD)</td>
+                <td>Uitgang uit meter</td>
+                <td>Seriële geïnverteerde ASCII-telegramstroom (115200 baud, 8N1 op DSMR 5.0; 9600 baud, 7E1 op DSMR 2/3).</td>
+              </tr>
+              <tr>
+                <td><strong>Pin 6</strong></td>
+                <td>Power GND</td>
+                <td>-</td>
+                <td>Massareferentie voor de +5V-voeding.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert alert-note">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-info"></use></svg>
+            <span>P1-gebruikerspoort activeren bij Fluvius</span>
+          </div>
+          <p>
+            In België (Fluvius) is de P1-gebruikerspoort uit privacyoverwegingen standaard uitgeschakeld. Meld u aan op het <a href="https://mijn.fluvius.be" target="_blank" rel="noopener">Mijn Fluvius-portaal</a> en schakel <strong>"Activeren van gebruikerspoorten P1 en S1"</strong> in voordat de digitale meter telegrammen doorstuurt.
+          </p>
+        </div>
+
+        <!-- Navigation Footer -->
+        <div class="page-nav-footer">
+          <a href="index.html" class="page-nav-card">
+            <span class="page-nav-label">Vorige</span>
+            <span class="page-nav-title">&larr; Documentatieportaal</span>
+          </a>
+          <a href="configuration.html" class="page-nav-card" style="text-align:right;">
+            <span class="page-nav-label">Volgende gids</span>
+            <span class="page-nav-title">Configuratie &amp; Instellingenreferentie &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">Op deze pagina</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#hardware-reference" class="toc-link">Referentiehardware &amp; BOM</a></li>
+        <li class="toc-item"><a href="#nvme-setup" class="toc-link">NVMe-SSD &amp; EEPROM-setup</a></li>
+        <li class="toc-item"><a href="#custom-os-image" class="toc-link">Optie A: OS-image</a></li>
+        <li class="toc-item"><a href="#deb-package" class="toc-link">Optie B: Debian-pakket</a></li>
+        <li class="toc-item"><a href="#cockpit" class="toc-link">Cockpit Systeembeheer</a></li>
+        <li class="toc-item"><a href="#rpi-connect" class="toc-link">Raspberry Pi Connect</a></li>
+        <li class="toc-item"><a href="#rs485-wiring" class="toc-link">RS485 Modbus-bekabeling</a></li>
+        <li class="toc-item"><a href="#p1-wiring" class="toc-link">P1 Slimme Meter Pinout</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Zoek in documentatie, parameters, handleidingen..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Zoekvenster sluiten">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Gebruik <kbd class="kbd-shortcut">↑</kbd> <kbd class="kbd-shortcut">↓</kbd> om te navigeren</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> om te openen</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> om te sluiten</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>GEMS (New Energy Grid) Documentatie &bull; Gebouwd met Go, SQLite, Vue 3 en Tailwind CSS &bull; Geoptimaliseerd voor Raspberry Pi</p>
+  </footer>
+
+  <script src="../js/search-index-nl.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

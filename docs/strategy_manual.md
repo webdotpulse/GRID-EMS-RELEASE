@@ -1,0 +1,144 @@
+# GEMS: Strategy & Optimization Manual
+
+> 🌐 **Language / Taal / Langue:** **English** | [Nederlands](nl/strategy_manual.md) | [Français](fr/strategy_manual.md)
+
+This manual provides an in-depth guide to configuring and using the strategy engine within GEMS (Grid Energy Management System). The strategy engine is the core component that coordinates your home energy ecosystem—Grid, Solar, Battery, EV Chargers, and Smart Relays—to optimize energy consumption, maximize self-consumption, avoid peak capacity grid surcharges, and execute cost-effective energy arbitrage.
+
+> [!TIP]
+> **Download Official Field Manuals (PDF):**
+> - 📕 **[GEMS Installer & Commissioning Manual (PDF)](../manuals/gems-installer-manual.pdf)** (5.7 MB)
+> - 📗 **[GEMS Homeowner & User Manual (PDF)](../manuals/gems-user-manual.pdf)** (3.5 MB)
+> - ☁️ **[GEMS GRID-EMS-SERVER Connection Manual (PDF)](../manuals/gems-server-connection-manual.pdf)** (1.1 MB)
+> - 💻 **[Interactive Documentation Hub](../manuals/index.html)**
+
+
+---
+
+## 1. Overview of the Strategy Engine
+
+The strategy engine continuously evaluates your home's energy flow based on a unified configuration interface in the UI. Zero YAML or configuration files are required.
+
+The core control loop executes every second:
+1. **Reads Telemetry**: Pulls active power from smart meters (P1/Modbus), solar inverters, battery storage (BESS), and EV chargers.
+2. **Evaluates 15-Minute Rolling Average**: Updates the current quarter-hour rolling average import and tracks monthly peak records in SQLite.
+3. **Applies Regional & Site Rules**: Evaluates active mode rules (Eco, Flanders, Netherlands), battery arbitrage thresholds, and scheduled windows.
+4. **Dispatches Dynamic Setpoints**: Sends non-blocking Modbus, OCPP, or REST setpoint commands to inverters, EV chargers, and smart relays.
+
+---
+
+## 2. Global Site Optimization (Strategy Modes)
+
+| Strategy Tab Overview | Operational Strategy Modes |
+| :---: | :---: |
+| ![Strategy Tab](../screenshots/settings_strategy.png) | ![Strategy Modes](../screenshots/settings_strategy_modes.png) |
+
+### 2.1 Eco Mode (Maximum Self-Consumption)
+**Goal:** Maximize direct self-consumption of rooftop solar generation and minimize grid reliance.
+- **Behavior:** Directs surplus solar generation to home battery charging and EV charging before feeding into the grid. When solar diminishes, the home battery automatically discharges to support household base loads.
+- **Suitability:** Ideal for installations with standard net-metering, flat tariffs, or high feed-in compensation.
+
+### 2.2 Flanders Mode (Predictive Peak Shaving & Adaptive Ceiling)
+**Goal:** Actively prevent high capacity tariff (*Capaciteitstarief*) surcharges in Flanders/Belgium by capping 15-minute average power spikes.
+- **Mechanism:**
+  - Continuously monitors the projected 15-minute rolling average grid import across each billing quarter-hour window.
+  - Whenever projected quarter-hour import approaches the configured ceiling minus safety buffer, the system instantly throttles EV charging current and commands the battery to discharge.
+- **Smart Adaptive Ceiling:**
+  - GEMS stores monthly peak import records locally on the appliance.
+  - If an unavoidable peak occurs during the month (e.g. 4.2 kW caused by oven + induction cooking), GEMS dynamically adapts its operational ceiling up to that incurred peak for the rest of the calendar month.
+  - This allows the homeowner to charge their EV faster and utilize available capacity without increasing their capacity tariff bill.
+- **Key Parameters:**
+  - `capacity_peak_limit_kw`: Base target 15-minute grid import ceiling (e.g., `2.5` kW).
+  - `peak_shaving_buffer_w`: Proactive safety buffer in Watts (e.g., `200` W) subtracted from the ceiling to prevent overshoot.
+  - `peak_shaving_rampup_w`: Deadband hysteresis power step (default `500` W) required before throttled devices ramp back up.
+
+### 2.3 Netherlands Mode (Smart Saldering, Terugleverkosten Shield & 3×25A Main-Fuse Guard)
+**Goal:** Deliver the optimal energy strategy for Dutch homeowners and SMEs—protecting `3×25A` residential grid connections against costly DSO capacity tier upgrades, avoiding supplier solar feed-in surcharges (*terugleverkosten*), curtailing negative EPEX NL hours, and maximizing dynamic day-ahead battery/EV arbitrage ahead of and after the *salderingsregeling* phase-out.
+- **Why Dutch Optimization Differs from Flanders:**
+  - Unlike Flanders (where Fluvius bills a rolling 15-minute *Capaciteitstarief* peak above `2.50 kW`), Dutch regional grid operators (**Liander**, **Enexis**, **Stedin**) bill a fixed annual connection capacity tier (*vastrecht aansluitcapaciteit*). Stepping up from a standard residential **`3×25A`** (`17.25 kW`) connection to **`3×35A`** adds roughly **€1,000+ per year** in recurring DSO standing charges.
+  - Consequently, the optimal Dutch strategy combines four pillars without artificially throttling household power to a `2.50 kW` quarter-hour cap:
+    1. **Per-Phase `3×25A` Dynamic Load Balancing (DLB):** Continuously monitors `L1`, `L2`, and `L3` currents from the DSMR P1 meter so **Raedian** EV wallboxes, **Solis** hybrid storage, heat pumps, and induction cooking coexist safely on a `3×25A` fuse without upgrading to `3×35A`.
+    2. **Direct Solar Self-Consumption & Thermal/EV Sinking:** Routes every surplus PV watt into household loads, **Solis** battery storage, **Raedian** 1P/3P solar EV charging, and SG-Ready heat pumps first to minimize grid export volume subject to supplier *terugleverkosten*.
+    3. **Negative EPEX NL Curtailment (`min_profitable_export_price` & `active_inverter_curtailment`):** Dynamically permits grid export only when net feed-in compensation is profitable, and smoothly curtails solar inverter output down to local house load once storage buffers are full and net export prices turn negative.
+    4. **EPEX NL Day-Ahead Arbitrage (`dynamic_forecast`):** Pre-charges batteries and schedules EV charging during the lowest-priced EPEX NL hours while discharging into expensive evening peaks (`17:00–21:00`).
+
+### 2.4 Strict Country & Regional Isolation Guarantee
+**Goal:** Ensure country-specific regulatory mechanisms never affect or appear on installations in another country.
+- **Flanders (`BE` + `flanders`):** Exclusively enables the 15-minute *Capaciteitstarief* rolling peak shaver (`capacity_peak_limit_kw`, `2.50 kW` statutory baseline), Smart Adaptive Ceiling, peak-ceiling warnings, and Flemish Green Power Certificates (*Groenestroomcertificaten* / GSC).
+- **Belgium (`BE` — Flanders, Wallonia, Brussels):** Exclusively enables Belgian Elia renewable grid-mix synchronization, Belgian Super-Dal (`01:00–07:00`) optimization, and Belgian DSO IEC 60870-5-104 telecontrol.
+- **Netherlands (`NL`), Germany (`DE`), Luxembourg (`LU`), and Other Regions:** Selecting a non-Flemish country or a Dutch energy contract automatically disables and hides Flemish *Capaciteitstarief* peak shaving, zeroes GSC subsidy offsets, disables Belgian Elia/Super-Dal/IEC-104 services, and restricts German `§14a EnWG` controllable-load dimming strictly to German (`DE`) installations.
+
+### 2.5 Flemish Groenestroomcertificaten (GSC) Value Protection (Flanders Only)
+**Goal:** Prevent unwarranted solar curtailment and preserve green certificate income for legacy Flemish PV installations during negative Day-Ahead spot price hours.
+- **Problem:** Many legacy systems receive €90, €210, €230, €250, €270, €330, €350, or €450 per 1,000 kWh produced. If spot export prices drop to -€0.10/kWh, naive curtailment would shut off the inverter and lose €0.25/kWh in certificate revenue, netting a €0.15/kWh loss!
+- **Formula:**
+  $$\text{Effective Curtailment Threshold} = \text{min\_profitable\_export\_price} - \frac{\text{gsc\_value\_eur\_mwh}}{1000.0}$$
+- **Behavior:** With `gsc_value_eur_mwh: 250` and `min_profitable_export_price: 0.00`, solar injection remains active and profitable down to **-250.0 €/MWh (-0.250 €/kWh)**. Curtailment only triggers if the negative injection penalty exceeds the subsidy value.
+
+
+---
+
+## 3. Dynamic Battery Arbitrage & Schedules
+
+GEMS integrates EPEX Spot Day-Ahead electricity prices (fetched daily at 14:00 CET) and Open-Meteo solar irradiance forecasting to intelligently optimize battery storage.
+
+### 3.1 Grid Charging Strategies (`battery_grid_charge_strategy`)
+- **`price_only`**: Force charges the battery from the grid when the spot price drops below `force_charge_below_euro`, and discharges to the grid when price spikes above `force_discharge_above_euro`.
+- **`super_dal_only`**: Restricts grid charging exclusively to provider off-peak contract windows (e.g., Engie Superdal).
+- **`hybrid`**: Combines price-based charging with provider off-peak window optimization.
+- **`dynamic_forecast`**: Computes an optimal 24-hour linear schedule by combining EPEX hourly/quarter-hour spot prices with solar forecasts and separate **Weekday vs. Weekend adaptive load profiles** learned over the trailing 30 days (`home_base_load_w` fallback).
+
+### 3.2 Live BMS Dynamic Power Envelopes & Multi-Battery SOC Balancing
+- **Live BMS Power Clamping**: Both real-time battery dispatch and the 24-hour dynamic arbitrage forecast query live BMS dynamic maximum charge and discharge power limits derived from real-time BMS current envelopes and pack voltage. This prevents setpoint rejection when cold cells or high State-of-Charge (>90% SOC) derate battery charge acceptance.
+- **SOC-Headroom-Weighted Multi-Battery Distribution**: On sites with multiple hybrid inverters or dedicated BESS units, GEMS distributes total charge power proportionally to each unit's remaining charge headroom ($\text{MaxCap}_i \times (100 - \text{SOC}_i)$) and discharge power proportionally to available stored energy above the reserve floor ($\text{MaxCap}_i \times (\text{SOC}_i - \text{MinSOC})$), ensuring all battery banks converge toward balanced SOC.
+- **Damped Closed-Loop Setpoint Regulation**: When compensating net household grid import or modulating zero-export PV curtailment against an external smart meter, GEMS applies closed-loop setpoint damping to eliminate meter-to-inverter phase-lag oscillation.
+
+### 3.3 Custom Scheduled Windows & Winter / Low-Solar Fallback
+- **Custom Scheduled Windows**: Users can define multiple custom charging windows with precise start/end times and target SOC percentages (e.g., 02:00 - 05:00 to 90% SOC). Custom schedules take priority over general arbitrage logic.
+- **Winter / Low-Solar Grid Charge Fallback (`winter_fallback_enabled`)**: When the battery remains at or below `winter_fallback_trigger_soc` (default `25%`) due to extended cloudy weather or winter and the 24-hour solar forecast (or trailing 24-hour solar yield) cannot cover battery recharge, GEMS automatically charges the battery during the `winter_fallback_cheapest_hours` (default `2` hours) lowest-priced slots of the day up to `winter_fallback_target_soc` (default `65%`, leaving headroom for unexpected daytime solar). Both real-time control and the 24-hour dynamic forecast respect Flanders 15-minute capacity peak limits and per-phase main fuse limits, keeping the battery useful for peak shaving and evening self-consumption all winter.
+
+---
+
+## 4. Smart EV Charging (Preferred Modbus TCP & Native OCPP)
+
+GEMS controls smart EV charging stations via **Modbus TCP/RTU fieldbus (preferred)** or its embedded **Native OCPP 1.6-J WebSocket server** (`ws://<EMS-IP>:8887/<ChargePointID>` and `ws://<EMS-IP>:8080/api/ocpp/<ChargePointID>`):
+
+- **Why Modbus TCP is Preferred**: Modbus register writes provide instantaneous, sub-second current throttling (6A to 32A). This is essential for reactive Flanders capacity peak shaving and solar surplus matching. Crucially, it allows home or fleet wallboxes to remain connected to employer reimbursement / CPO backends over OCPP without interference.
+- **Native OCPP Server**: Available for chargers without Modbus TCP or installations requiring standalone, zero-cloud residential charging.
+- **`smart_ev_cheapest_hours`**: Automatically scans the 24-hour EPEX tariff curve and boosts EV charging current during the $N$ cheapest hours of the day.
+- **Dynamic Load Balancing**: Continuously balances EV setpoints against main grid fuse limits (`grid_nominal_current_a`) and phase imbalances (`phase_limit_amps`).
+
+---
+
+## 5. 24-Hour Effective Tariff Visualizer, Regional Contracts & Savings Attribution
+
+| Energy Contract Configuration | 24-Hour Tariff Visualizer Curve |
+| :---: | :---: |
+| ![Energy Contract Tab](../screenshots/settings_contract.png) | ![Tariff Visualizer](../screenshots/settings_contract_tariffs.png) |
+
+### 5.1 Supported Belgian & Dutch Provider Presets
+- **Vattenfall Nederland — FlexPrijs (`vattenfall_dynamic`, NL)**: Hourly EPEX Spot NL (`1.00×`) pass-through + `€0.0211/kWh` procurement markup (*Inkoopvergoeding*), `€95.40/yr` fixed subscription (*Vastrecht*), statutory Dutch *Energiebelasting* (`€0.1316/kWh`), `21%` BTW, and `1.00×` EPEX Spot NL feed-in compensation (`€0.0000/kWh` deduction).
+- **Eneco Dynamic & Frank Energie Dynamic (`NL` / `BE`)**: Regional EPEX NL or EPEX BE spot formulas with automatic VAT (`21%` NL / `6%` BE) and statutory tax presets.
+- **TotalEnergies Pixel Dynamic**: Multiplier, markup (€/kWh), annual base subscription fee, and injection deductions.
+- **Mega Smart / Cosy Dynamic**: Transparent dynamic formula with custom multiplier and retail markup.
+- **Bolt Dynamisch**: 100% local green dynamic contract with real-time pass-through pricing.
+- **Engie Dynamic & Flextime**: EPEX pass-through and multi-tier time-of-use markups.
+- **Luminus Dynamic, Ecopower, Dats 24, Octa+, Trevion, Aspiravi**.
+- **Belgian Dual-Tariff (Piek/Dal)**: Day/night rate schedules with DNO distribution grid fee presets.
+
+### 5.2 DNO Grid & Distribution Presets
+- **Netherlands (Liander / Enexis / Stedin)**: Dutch statutory *Energiebelasting* (`€0.1316/kWh`) + `21%` BTW (`3×25A` residential connection tier protection via per-phase DLB).
+- **Fluvius (Flanders)**: €0.0204/kWh distribution grid and transmission excise + 6% BTW.
+- **ORES (Wallonia)**: €0.0950/kWh network fee + 6% BTW.
+- **RESA (Liège)**: €0.0920/kWh network fee + 6% BTW.
+- **SIBELGA (Brussels)**: €0.0820/kWh network fee + 6% BTW.
+
+### 5.3 Live 24-Hour Tariff Curve Visualizer
+- **Stacked Cost Breakdown**: Visualizes the 4 cost components for every hour: Raw EPEX Spot wholesale, Supplier Markup, DNO Distribution / Energy Tax Fee, and VAT (`6%` BE residential / `21%` NL).
+- **Dynamic Solar Return Line**: Shows actual feed-in compensation and highlights negative return hours with a **Solar Curtailment Advisory**.
+
+### 5.4 Telemetry-Backed Financial Savings Estimation
+GEMS computes real-time **Estimated GRID-EMS Savings** (`Today`, `Month`, `Year`, and `Lifetime`) directly from verified smart-meter, inverter, battery, and charger telemetry paired with your active retail tariff schedule—without relying on hypothetical household baselines:
+- **Solar Self-Consumption Value (`solar_savings_eur`)**: Direct PV energy consumed in-home or routed locally valued at the avoided retail import rate minus any foregone positive feed-in rate.
+- **Battery Discharge & Arbitrage (`battery_savings_eur`)**: Stored battery energy discharged during expensive hours valued against the actual charging cost of that stored energy.
+- **Smart Off-Peak Dispatch & Negative-Export Shield (`smart_dispatch_savings_eur`)**: Verified off-peak EV/battery price-spread gains vs. the daily mean tariff plus avoided negative export charges from active solar curtailment and local sinking.
+- **Capacity Peak Shaving (`peak_shaving_savings_eur`, Flanders Only)**: Avoided monthly *Capaciteitstarief* kW surcharges when active battery/EV peak shaving holds the 15-minute grid peak below unshaved site load (strictly `€0.00` and hidden outside Flanders).

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portail de Documentation GEMS (New Energy Grid)</title>
+  <meta name="description" content="Documentation complète, manuel d'installation, guide de configuration et manuel utilisateur pour GEMS (New Energy Grid).">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Ouvrir ou fermer le menu de navigation">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">v9.38.1 Release</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Rechercher dans la documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Rechercher dans la documentation, les paramètres, les appareils...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="installation.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+        <span>Installation</span>
+      </a>
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+        <span>Config</span>
+      </a>
+      <nav class="lang-switcher no-print" aria-label="Choisir la langue de la documentation">
+        <a href="../index.html" hreflang="en" title="English">EN</a>
+        <a href="../nl/index.html" hreflang="nl" title="Nederlands">NL</a>
+        <a href="index.html" class="active" hreflang="fr" title="Français">FR</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Changer le thème de couleur">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Prise en main</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Portail de documentation</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#architecture" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-grid"></use></svg>
+              <span>Architecture &amp; Flux de données</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#requirements" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>Prérequis matériels</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#quickstart" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>Démarrage en 5 minutes</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Manuels &amp; Guides</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel d'installation</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>Référence de configuration</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Guide d'utilisation</span>
+            </a>
+          </li>
+          <li>
+            <a href="cloud-server.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-cloud"></use></svg>
+              <span>Connexion Serveur Cloud</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NOUVEAU</span>
+            </a>
+          </li>
+          <li>
+            <a href="p1-meter.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>Compteur P1 &amp; Câble DIY</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">NOUVEAU</span>
+            </a>
+          </li>
+          <li>
+            <a href="solis.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>Solis &amp; Easyway UNIV5200</span>
+              <span class="badge" style="background:#ea580c; color:#fff; font-size:10px;">NOUVEAU</span>
+            </a>
+          </li>
+          <li>
+            <a href="huawei.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Huawei &amp; FusionSolar</span>
+              <span class="badge" style="background:#dc2626; color:#fff; font-size:10px;">NOUVEAU</span>
+            </a>
+          </li>
+          <li>
+            <a href="enerlution.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>Enerlution &amp; Stockage</span>
+              <span class="badge" style="background:#0d9488; color:#fff; font-size:10px;">NOUVEAU</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Modèles d'appareils</span>
+              <span class="badge">170</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>Dépannage &amp; FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Manuels PDF Officiels (FR)</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="../../docs/fr/GRID-EMS-Return-On-Investment-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Rentabilité &amp; ROI (PDF)</span>
+              <span class="badge" style="background:#059669; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-installer-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Installateur (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Utilisateur (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-server-connection-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Serveur (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-p1-meter-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Câble Compteur P1 (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-supported-hardware-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Référence Matérielle (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-fleet-dlb-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Flotte VE &amp; DLB (PDF)</span>
+              <span class="badge" style="background:#7c3aed; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-solis-easyway-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Solis &amp; Easyway (PDF)</span>
+              <span class="badge" style="background:#ea580c; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-huawei-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Huawei &amp; FusionSolar (PDF)</span>
+              <span class="badge" style="background:#dc2626; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-enerlution-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Enerlution &amp; Stockage (PDF)</span>
+              <span class="badge" style="background:#0d9488; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Outils système</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="installation.html#cockpit" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-terminal"></use></svg>
+              <span>Terminal Cockpit (9090)</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#rpi-connect" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wifi"></use></svg>
+              <span>Raspberry Pi Connect</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Fil d'Ariane">
+          <span>Docs</span>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Vue d'ensemble</span>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="hero-banner">
+          <h1 class="hero-title">Documentation GEMS</h1>
+          <p class="hero-lead">
+            GEMS (New Energy Grid) est un système de gestion énergétique (EMS) léger, ultra-réactif et entièrement piloté par interface graphique, conçu spécifiquement pour le matériel Raspberry Pi et les installations résidentielles ou tertiaires.
+          </p>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <a href="installation.html" class="tab-btn active" style="border-radius:var(--radius-md); display:inline-flex; align-items:center; gap:0.5rem; background:var(--brand-primary); color:#ffffff; padding:0.6rem 1.2rem;">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Démarrer l'installation</span>
+            </a>
+            <button class="search-trigger-btn" style="width:auto; padding:0.6rem 1.2rem;">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+              <span>Rechercher (Ctrl+K)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- UI Overview Screenshot -->
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/dashboard.png" alt="Interface Tableau de bord PowerFlow GEMS en temps réel" loading="lazy">
+          <div class="doc-screenshot-caption">Tableau de bord GEMS en direct &mdash; Flux énergétiques interactifs animés, suivi du tarif capacitaire flamand et mesures instantanées à la seconde.</div>
+        </div>
+
+        <!-- Official PDF Field Manuals Banner -->
+        <div style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.08), rgba(16, 185, 129, 0.08)); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem; margin: 2rem 0;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <h2 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: var(--text-primary);">📕 Manuels de Terrain &amp; Brochures Imprimables Officiels (PDF)</h2>
+              <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; color: var(--text-secondary);">Manuels PDF vectoriels complets incluant captures d'écran haute résolution, schémas de câblage et listes de contrôle de mise en service &mdash; disponibles en <strong>EN | NL | FR</strong>.</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="badge" style="background: rgba(16, 185, 129, 0.18); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.35); padding: 0.35rem 0.65rem; font-size: 0.75rem; font-weight: 700;">EN | NL | FR</span>
+              <span class="badge" style="background: var(--brand-primary); color: #fff; padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600;">v9.38.1 Edition</span>
+            </div>
+          </div>
+          <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin: 0;">
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(5, 150, 105, 0.15); color: #059669;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Brochure Retour sur Investissement (ROI)</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Amortissement, Économies &amp; Études de cas (EN | NL | FR)</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Brochure de rentabilité résidentielle et tertiaire : gains d'autoconsommation solaire, écrêtage du tarif capacitaire, arbitrage batterie EPEX dynamique et équilibrage DLB multi-bornes.</p>
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem;">
+                <a href="../../docs/fr/GRID-EMS-Return-On-Investment-fr.pdf" target="_blank" class="tab-btn active" style="background: #059669; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Télécharger le PDF (FR)</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-tool"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Manuel Installateur</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Matériel, Appareils, Certificats Verts &amp; Stratégie</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Mise en service pas à pas pour électriciens et installateurs photovoltaïques : montage Raspberry Pi 5 NVMe, onduleurs Modbus TCP, compteurs P1, OCPP natif et écrêtage de pointe.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-installer-manual-fr.pdf" target="_blank" class="tab-btn active" style="background: #0284c7; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Télécharger PDF</span>
+                </a>
+                <a href="gems-installer-manual-fr.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Lire en ligne</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-home"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Brochure Interactive, Manuel Utilisateur &amp; Paramètres</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Configuration Pas à Pas, Cycle 24h &amp; Tous les Onglets</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Brochure interactive et guide complet de paramétrage : scénario énergétique sur 24 heures, assistant initial en 4 étapes, synoptique PowerFlow, modes de charge VE et détail de chaque paramètre.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-user-manual-fr.pdf" target="_blank" class="tab-btn active" style="background: #10b981; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Télécharger PDF</span>
+                </a>
+                <a href="gems-user-manual-fr.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Lire en ligne</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(56, 189, 248, 0.15); color: #0284c7;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-cloud"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Manuel GRID-EMS-SERVER</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Flotte Centrale, Télémétrie &amp; Commandes à Distance</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Guide technique d'interconnexion entre GEMS et GRID-EMS-SERVER : architecture TLS 1.3 exclusivement sortante, appairage par jeton matériel, flux JSON et télécommande sécurisée.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-server-connection-manual-fr.pdf" target="_blank" class="tab-btn active" style="background: #0284c7; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Télécharger PDF</span>
+                </a>
+                <a href="cloud-server.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Lire en ligne</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Manuel Compteur P1 &amp; Câble Série</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Fluvius / ORES DSMR 5.0.2 &amp; Adaptateur USB DIY</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Guide dédié aux compteurs communicants : nomenclature des composants, brochages RJ12 vs RJ11, inversion de signal par transistor BC547 ou EEPROM FTDI, ouverture du port P1 et configuration GEMS.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-p1-meter-manual-fr.pdf" target="_blank" class="tab-btn active" style="background: #10b981; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Télécharger PDF</span>
+                </a>
+                <a href="p1-meter.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Lire en ligne</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-grid"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Manuel du Matériel Compatible</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">170 Profils Natifs &bull; Onduleurs, BESS, Bornes VE, Compteurs &amp; PAC</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Catalogue matériel complet : lecture télémétrique en temps réel, modulation dynamique du courant (6A&ndash;32A), commutation de phases, écrêtement solaire, arbitrage batterie et délestage thermique.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-supported-hardware-manual-fr.pdf" target="_blank" class="tab-btn active" style="background: #0284c7; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Télécharger PDF</span>
+                </a>
+                <a href="gems-supported-hardware-manual-fr.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Lire en ligne</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(124, 58, 237, 0.15); color: #7c3aed;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Manuel Cluster Flotte VE &amp; DLB</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Dynamic Load Balancing &bull; Multi-Bornes &bull; Proxy OCPP Intelligent</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Manuel d'ingénierie : grappes de recharge multi-emplacements, équilibrage dynamique local à la seconde, protection par phase, surplus solaire et proxy OCPP transparent vers les plateformes CPO externes.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-fleet-dlb-manual-fr.pdf" target="_blank" class="tab-btn active" style="background: #7c3aed; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Télécharger PDF</span>
+                </a>
+                <a href="gems-fleet-dlb-manual-fr.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Lire en ligne</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(234, 88, 12, 0.15); color: #ea580c;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Manuel Solis &amp; Easyway UNIV5200</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Rétrofit &amp; Hybride &bull; Câblage DC / CAN &bull; SDM72D-M / SDM630-M &bull; SolisCloud</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Manuel de référence stockage &amp; câblage : couplage DC parallèle et jeu de barres, brochage RJ45 CAN isolé, commutateurs DIP binaires ADD, compteurs Eastron SDM72D-M &amp; SDM630-M, paramètres Bluetooth SolisCloud et réglages GEMS.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-solis-easyway-manual-fr.pdf" target="_blank" class="tab-btn active" style="background: #ea580c; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Télécharger PDF</span>
+                </a>
+                <a href="solis.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Lire en ligne</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(220, 38, 38, 0.15); color: #dc2626;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-sun"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Manuel Huawei &amp; FusionSolar</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">SUN2000 &bull; LUNA2000 &bull; SDongleA-05 &bull; EMMA-A02</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Guide de configuration dédié : tous les paramètres requis dans l'application FusionSolar (Modbus TCP sans restriction, liste blanche TLS/IP EMMA-A02, charge AC LUNA2000) et règles d'optimisation GEMS.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-huawei-manual-fr.pdf" target="_blank" class="tab-btn active" style="background: #dc2626; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Télécharger PDF</span>
+                </a>
+                <a href="huawei.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Lire en ligne</a>
+              </div>
+            </div>
+
+            <div class="card" style="margin: 0; background: var(--bg-surface);">
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                <div class="card-icon" style="background: rgba(13, 148, 136, 0.15); color: #0d9488;">
+                  <svg width="22" height="22"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+                </div>
+                <div>
+                  <h3 class="card-title" style="margin: 0; font-size: 1.05rem;">Manuel Enerlution Hybride &amp; Stockage</h3>
+                  <span style="font-size: 0.75rem; color: #64748b;">Onduleurs HY / HYTH &bull; LFPWall / Roller BT &bull; GroundHV / GH02 HT</span>
+                </div>
+              </div>
+              <p class="card-text" style="font-size: 0.85rem;">Manuel complet de câblage et mise en service : batteries 51,2V BT parallèles et tours HT empilables, brochage CAN RJ45, adressage DIP, compteurs DTSU666/SDM630, application Enerlution et écrêtement GEMS au watt près.</p>
+              <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+                <a href="gems-enerlution-manual-fr.pdf" target="_blank" class="tab-btn active" style="background: #0d9488; color: #fff; text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+                  <span>Télécharger PDF</span>
+                </a>
+                <a href="enerlution.html" class="tab-btn" style="text-decoration: none; padding: 0.4rem 0.8rem; font-size: 0.8rem; border-radius: var(--radius-sm);">Lire en ligne</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Navigation Cards -->
+        <h2 id="documentation-sections">Rubriques de la documentation</h2>
+        <p>Explorez la suite complète de guides destinés aux administrateurs système, aux installateurs et aux particuliers :</p>
+
+        <div class="card-grid">
+          <a href="installation.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="../assets/icons.svg#icon-download"></use></svg>
+            </div>
+            <h3 class="card-title">Manuel d'installation</h3>
+            <p class="card-text">Écriture pas à pas de l'image système Raspberry Pi OS préconfigurée, installation du paquet Debian <code>.deb</code>, console web Cockpit et schémas de câblage RS485/P1.</p>
+            <span class="card-link">Lire le guide d'installation &rarr;</span>
+          </a>
+
+          <a href="configuration.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="../assets/icons.svg#icon-settings"></use></svg>
+            </div>
+            <h3 class="card-title">Référence de configuration</h3>
+            <p class="card-text">Guide détaillé pour l'écrêtage capacitaire flamand, le zéro-export aux Pays-Bas, l'arbitrage dynamique EPEX, les formules de contrats d'énergie et les relais intelligents.</p>
+            <span class="card-link">Explorer les paramètres &rarr;</span>
+          </a>
+
+          <a href="user-manual.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+            </div>
+            <h3 class="card-title">Guide d'utilisation</h3>
+            <p class="card-text">Synoptique interactif PowerFlow, fenêtres d'historique détaillé au clic, scanner réseau et série intégré, et pilotage de bornes VE (Modbus TCP recommandé &amp; OCPP natif).</p>
+            <span class="card-link">Voir le guide utilisateur &rarr;</span>
+          </a>
+
+          <a href="devices.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="../assets/icons.svg#icon-sun"></use></svg>
+            </div>
+            <h3 class="card-title">Modèles d'appareils (170)</h3>
+            <p class="card-text">Guides d'intégration et profils Modbus/OCPP/REST pour Solis, Huawei, SMA, Enerlution, Fronius, SolarEdge, Sungrow, Victron, RAEDIAN, HomeWizard, Shelly, Eastron et plus encore.</p>
+            <span class="card-link">Parcourir le catalogue &rarr;</span>
+          </a>
+
+          <a href="troubleshooting.html" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+            </div>
+            <h3 class="card-title">Dépannage &amp; FAQ</h3>
+            <p class="card-text">Procédures de diagnostic pour les délais d'attente Modbus, les débits série P1, les connexions WebSocket OCPP, le démarrage NVMe, l'intégrité SQLite WAL et les journaux.</p>
+            <span class="card-link">Voir les diagnostics &rarr;</span>
+          </a>
+
+          <a href="installation.html#cockpit" class="card">
+            <div class="card-icon">
+              <svg width="22" height="22"><use href="../assets/icons.svg#icon-terminal"></use></svg>
+            </div>
+            <h3 class="card-title">Administration à distance</h3>
+            <p class="card-text">Accédez au terminal web intégré Cockpit sur le port 9090 et associez Raspberry Pi Connect pour un accès distant chiffré sans redirection de port.</p>
+            <span class="card-link">Configurer l'accès distant &rarr;</span>
+          </a>
+        </div>
+
+        <!-- Architecture & Core Philosophy -->
+        <h2 id="architecture">Architecture système &amp; Philosophie</h2>
+        <p>
+          GEMS est conçu comme une application unifiée haute performance destinée à fonctionner en continu 24h/24 avec une empreinte mémoire minimale.
+        </p>
+
+        <div class="alert alert-note">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-info"></use></svg>
+            <span>Protection de la carte SD &amp; Optimisation du stockage Raspberry Pi</span>
+          </div>
+          <p>
+            Les écritures en base de données sont mises en mémoire tampon et regroupées en transactions atomiques chaque minute. Associée au mode Write-Ahead Logging (<code>WAL</code>) de SQLite et aux partitions temporaires en RAM, cette architecture réduit les cycles d'écriture sur carte SD de plus de 98 % par rapport aux systèmes de journalisation classiques.
+          </p>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Couche</th>
+                <th>Technologie</th>
+                <th>Responsabilités principales</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Moteur Backend</strong></td>
+                <td>Go (Golang 1.24)</td>
+                <td>Serveur HTTP unifié, boucles d'interrogation matérielle (1s/5s), boucles de régulation, récupération des prix spot Day-Ahead et serveur WebSocket OCPP natif.</td>
+              </tr>
+              <tr>
+                <td><strong>Base de données &amp; Séries temporelles</strong></td>
+                <td>SQLite 3 (mode WAL)</td>
+                <td>Stockage local léger, tampons d'agrégation en mémoire vive et tâche automatisée de purge à 90 jours de rétention.</td>
+              </tr>
+              <tr>
+                <td><strong>Interface Frontend SPA</strong></td>
+                <td>Vue 3 + TypeScript + Tailwind CSS</td>
+                <td>Tableau de bord réactif, vecteurs SVG PowerFlow animés, graphiques temporels Chart.js et configuration 100 % graphique sans fichiers YAML.</td>
+              </tr>
+              <tr>
+                <td><strong>Télémétrie temps réel</strong></td>
+                <td>Server-Sent Events (SSE)</td>
+                <td>Diffusion unidirectionnelle inférieure à la seconde (<code>/api/live</code>) éliminant la surcharge liée aux requêtes AJAX répétées.</td>
+              </tr>
+              <tr>
+                <td><strong>Système &amp; Affichage</strong></td>
+                <td>Wayfire + Chromium Kiosk</td>
+                <td>Compositeur Wayland minimaliste lançant automatiquement Chromium sur <code>http://ems.local</code> sans environnement de bureau lourd.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Hardware Requirements -->
+        <h2 id="requirements">Matrice de compatibilité matérielle</h2>
+        <p>GEMS fonctionne de manière fluide sur toutes les cartes Raspberry Pi ARM 64 bits standard :</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Modèle matériel &amp; Stockage</th>
+                <th>RAM</th>
+                <th>Rôle recommandé &amp; Configuration de stockage</th>
+                <th>Statut</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Matériel de référence Raspberry Pi 5</strong><br>
+                  <span style="font-size:0.85rem; color:var(--text-muted);">RPi 5 (4 Go) + Base M.2 NVMe &amp; SSD 128 Go</span>
+                </td>
+                <td>4 Go</td>
+                <td>Plateforme officielle de référence. Démarrage NVMe ultra-rapide (&lt;8s), zéro usure de carte SD et refroidissement actif.</td>
+                <td><span class="badge-pill badge-green">Référence Officielle</span></td>
+              </tr>
+              <tr>
+                <td><strong>Raspberry Pi 5 (4 Go / 8 Go)</strong></td>
+                <td>4 Go+</td>
+                <td>Installations intensives avec écran kiosque fluide et plus de 10 équipements Modbus</td>
+                <td><span class="badge-pill badge-green">Recommandé</span></td>
+              </tr>
+              <tr>
+                <td><strong>Raspberry Pi 4 Modèle B</strong></td>
+                <td>2 Go / 4 Go</td>
+                <td>Installations résidentielles standard avec écran tactile ou fonctionnement sans écran (headless)</td>
+                <td><span class="badge-pill badge-green">Recommandé</span></td>
+              </tr>
+              <tr>
+                <td><strong>Raspberry Pi 3 Modèle B+</strong></td>
+                <td>1 Go</td>
+                <td>Gestion énergétique résidentielle sans écran local (mode headless)</td>
+                <td><span class="badge-pill badge-blue">Compatible</span></td>
+              </tr>
+              <tr>
+                <td><strong>Raspberry Pi Zero 2 W</strong></td>
+                <td>512 Mo</td>
+                <td>Installation headless ultra-compacte avec un nombre réduit d'équipements connectés</td>
+                <td><span class="badge-pill badge-amber">Headless uniquement</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 5-Minute Quickstart -->
+        <h2 id="quickstart">Guide de démarrage rapide en 5 minutes</h2>
+        <p>Mettez votre unité GEMS en service en trois étapes simples :</p>
+
+        <div class="tab-container">
+          <div class="tab-nav">
+            <button class="tab-btn active" data-tab="tab-os-img">Étape 1 : Flasher l'image OS</button>
+            <button class="tab-btn" data-tab="tab-boot">Étape 2 : Démarrer &amp; Ouvrir l'UI</button>
+            <button class="tab-btn" data-tab="tab-devices">Étape 3 : Détecter les appareils</button>
+          </div>
+
+          <div class="tab-pane active" id="tab-os-img">
+            <h4>Écrire l'image Raspberry Pi précompilée</h4>
+            <p>Téléchargez la dernière archive officielle et écrivez-la sur une carte MicroSD (8 Go minimum) ou un SSD NVMe à l'aide de BalenaEtcher ou Raspberry Pi Imager :</p>
+            <div class="code-block-wrapper">
+              <div class="code-header">
+                <span class="code-lang">Bash / Terminal</span>
+                <button class="copy-code-btn" aria-label="Copier l'extrait de code">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+                  <span>Copier</span>
+                </button>
+              </div>
+              <pre><code># 1. Télécharger la dernière image depuis GitHub
+curl -LO https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/latest/download/gems-os-image.img.xz
+
+# 2. Flasher sur carte SD ou SSD NVMe avec BalenaEtcher ou Raspberry Pi Imager
+# (Sélectionnez directement gems-os-image.img.xz sans décompression manuelle)</code></pre>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab-boot">
+            <h4>Insérer le support et mettre sous tension</h4>
+            <p>Raccordez votre Raspberry Pi à votre réseau local par câble Ethernet (recommandé), puis branchez l'alimentation.</p>
+            <p>Ouvrez un navigateur web sur n'importe quel smartphone, tablette ou PC connecté au même réseau et accédez à :</p>
+            <div class="code-block-wrapper">
+              <div class="code-header">
+                <span class="code-lang">URL du navigateur</span>
+                <button class="copy-code-btn" aria-label="Copier l'URL">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+                  <span>Copier</span>
+                </button>
+              </div>
+              <pre><code>http://ems.local
+# Ou directement via l'adresse IP :
+http://&lt;raspberry-pi-ip&gt;:8080</code></pre>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab-devices">
+            <h4>Découvrir et ajouter vos équipements</h4>
+            <ol>
+              <li>Rendez-vous dans <strong>Paramètres</strong> &rarr; <strong>Appareils</strong>.</li>
+              <li>Utilisez le <strong>Scanner</strong> pour identifier automatiquement vos onduleurs Modbus, compteurs intelligents P1 et bornes de recharge VE.</li>
+              <li>Cliquez sur <strong>Ajouter un appareil énergétique</strong>, choisissez le modèle correspondant (ex. <em>Solis Hybrid Inverter</em>, <em>RAEDIAN Wallbox</em> ou <em>Compteur P1</em>), testez la connexion et enregistrez.</li>
+              <li>Revenez sur le <strong>Tableau de bord</strong> pour visualiser vos flux énergétiques PowerFlow en temps réel !</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="alert alert-tip">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-check"></use></svg>
+            <span>Aucun fichier de configuration requis</span>
+          </div>
+          <p>
+            GEMS ne nécessite jamais l'édition manuelle de fichiers YAML ou JSON. Tous les paramètres d'appareils, registres Modbus, contrats tarifaires et seuils de stratégie se configurent dynamiquement depuis l'interface web intuitive.
+          </p>
+        </div>
+
+        <!-- Navigation Footer -->
+        <div class="page-nav-footer">
+          <div></div>
+          <a href="installation.html" class="page-nav-card" style="text-align:right;">
+            <span class="page-nav-label">Guide suivant</span>
+            <span class="page-nav-title">Installation &amp; Câblage matériel &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">Sur cette page</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#documentation-sections" class="toc-link">Rubriques</a></li>
+        <li class="toc-item"><a href="#architecture" class="toc-link">Architecture système</a></li>
+        <li class="toc-item"><a href="#requirements" class="toc-link">Prérequis matériels</a></li>
+        <li class="toc-item"><a href="#quickstart" class="toc-link">Démarrage en 5 minutes</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal (Ctrl+K) -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Rechercher dans la documentation, les paramètres, les guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Fermer la recherche">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results">
+        <!-- Results populated dynamically via ../js/search-index-fr.js & ../js/main.js -->
+      </ul>
+      <div class="search-footer">
+        <span>Utilisez <kbd class="kbd-shortcut">↑</kbd> <kbd class="kbd-shortcut">↓</kbd> pour naviguer</span>
+        <span><kbd class="kbd-shortcut">Entrée</kbd> pour sélectionner</span>
+        <span><kbd class="kbd-shortcut">Échap</kbd> pour fermer</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Documentation GEMS (New Energy Grid) &bull; Conçu avec Go, SQLite, Vue 3 et Tailwind CSS &bull; Optimisé pour Raspberry Pi</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/search-index-fr.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

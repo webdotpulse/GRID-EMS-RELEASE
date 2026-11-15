@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide d'Utilisation &amp; Tableau de Bord - GEMS</title>
+  <meta name="description" content="Guide complet d'utilisation de GEMS : synoptique PowerFlow, graphiques historiques, suivi du tarif capacitaire, scanner réseau, recharge VE OCPP native et exports PDF.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Ouvrir ou fermer le menu de navigation">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Guide Utilisateur</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Rechercher dans la documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Rechercher tableau de bord, PowerFlow, OCPP, graphiques...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuration</span>
+      </a>
+      <a href="devices.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+        <span>Appareils</span>
+      </a>
+      <nav class="lang-switcher no-print" aria-label="Choisir la langue de la documentation">
+        <a href="../user-manual.html" hreflang="en" title="English">EN</a>
+        <a href="../nl/user-manual.html" hreflang="nl" title="Nederlands">NL</a>
+        <a href="user-manual.html" class="active" hreflang="fr" title="Français">FR</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Changer le thème de couleur">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Guide d'utilisation</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="user-manual.html#dashboard-powerflow" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>Tableau de bord &amp; PowerFlow</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#historical-charts" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Historiques &amp; Superpositions</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#flanders-gauge" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Moniteur de Pointe Capacitaire</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#device-management" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Assistant Gestion des Appareils</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#network-scanner" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wifi"></use></svg>
+              <span>Scanner Réseau &amp; Bus Série</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#modbus-probe" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>Test de Connexion Modbus</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#ev-charging" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-charger"></use></svg>
+              <span>Recharge VE (Modbus &amp; OCPP)</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#logs-updates" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-terminal"></use></svg>
+              <span>Journal, Rapports PDF &amp; Mises à jour</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Autres manuels</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Portail de documentation</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel d'installation</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>Référence de configuration</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Modèles d'appareils</span>
+              <span class="badge">180</span>
+            </a>
+          </li>
+          <li>
+            <a href="p1-meter.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>Compteur P1 &amp; Câble DIY</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">NOUVEAU</span>
+            </a>
+          </li>
+          <li>
+            <a href="cloud-server.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-cloud"></use></svg>
+              <span>Connexion Serveur Cloud</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NOUVEAU</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>Dépannage &amp; FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Manuels PDF Officiels</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-installer-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Installateur (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Utilisateur (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-server-connection-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Serveur (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-p1-meter-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Câble Compteur P1 (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Fil d'Ariane">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Guide d'utilisation</span>
+        </nav>
+
+        <h1>Manuel d'Utilisation &amp; Pilotage du Tableau de Bord</h1>
+        <p class="hero-lead">
+          Découvrez l'exploitation quotidienne de GEMS : lecture du synoptique animé PowerFlow, consultation des graphiques historiques détaillés en un clic, pilotage des bornes VE par Modbus TCP ou OCPP natif et exportation de rapports énergétiques PDF.
+        </p>
+
+        <!-- PDF Manual Download Banner -->
+        <div class="alert alert-tip" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0;">
+          <div>
+            <div class="alert-header">
+              <svg width="18" height="18"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Télécharger le Manuel Utilisateur Imprimable Officiel (PDF)</span>
+            </div>
+            <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem;">Vous préférez un livret imprimé ou un guide de référence sur tablette ? Téléchargez le <strong>Manuel Utilisateur &amp; Paramètres GEMS (PDF)</strong> complet avec schémas PowerFlow haute définition, fenêtres d'historique et modes de charge VE.</p>
+          </div>
+          <a href="gems-user-manual-fr.pdf" target="_blank" class="tab-btn active" style="background: #10b981; color: #fff; text-decoration: none; padding: 0.45rem 0.9rem; font-size: 0.85rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap;">
+            <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+            <span>Manuel Utilisateur PDF (FR)</span>
+          </a>
+        </div>
+
+        <!-- Dashboard & Hero PowerFlow -->
+        <h2 id="dashboard-powerflow">1. Tableau de bord &amp; Synoptique Interactif PowerFlow</h2>
+        <p>
+          Le <strong>Tableau de bord</strong> constitue le centre névralgique de GEMS : il représente vos flux d'énergie en temps réel par des lignes animées dont la vitesse et le sens reflètent instantanément la puissance échangée.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/dashboard.png" alt="Tableau de bord PowerFlow GEMS sur ordinateur" loading="lazy">
+          <div class="doc-screenshot-caption">Tableau de bord Desktop : Synoptique dynamique PowerFlow à 5 nœuds, jauge de pointe quart-horaire Flandre et indicateurs instantanés.</div>
+        </div>
+
+        <div class="doc-screenshot-card" style="max-width: 420px; margin: 1.5rem auto;">
+          <img src="../assets/screenshots/dashboard_mobile.png" alt="Tableau de bord GEMS adaptatif mobile" loading="lazy">
+          <div class="doc-screenshot-caption">Affichage mobile (375x812) : Disposition verticale entièrement adaptative pour smartphones et écrans tactiles muraux.</div>
+        </div>
+
+        <h3>Affichage dynamique des nœuds matériels</h3>
+        <p>
+          Conformément à nos standards ergonomiques, chaque nœud matériel (Réseau, Onduleurs solaires, Batterie domestique, Bornes VE, Pompe à chaleur, Relais intelligents) n'apparaît <strong>que lorsqu'il est configuré et communique activement</strong>. Si votre installation ne comporte pas encore de batterie ou de borne VE, ces cartes sont masquées automatiquement pour préserver une lisibilité maximale.
+        </p>
+
+        <!-- Historical Charts & Overlays -->
+        <h2 id="historical-charts">2. Graphiques Historiques au Clic &amp; Superposition Réseau</h2>
+        <p>
+          Un simple clic sur n'importe quel nœud du synoptique PowerFlow (par exemple <em>Solaire</em> ou <em>Batterie</em>) ouvre immédiatement la fenêtre modale d'<strong>Analyse Historique Haute Résolution</strong>.
+        </p>
+
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/dashboard_modal_battery.png" alt="Fenêtre modale Télémétrie et Modes Batterie" loading="lazy">
+            <div class="doc-screenshot-caption">Fenêtre Batterie : Historique d'état de charge (SoC), puissances de charge/décharge et changement instantané de mode (Auto / Maintien / Charge forcée).</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/dashboard_modal_solar.png" alt="Fenêtre modale Courbe de Production Solaire" loading="lazy">
+            <div class="doc-screenshot-caption">Fenêtre Solaire : Courbe de production photovoltaïque sur 24 heures et tensions DC des chaînes de panneaux.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/dashboard_modal_grid.png" alt="Fenêtre modale Historique Import/Export Réseau" loading="lazy">
+            <div class="doc-screenshot-caption">Fenêtre Réseau : Bilan prélèvement/injection avec superposition de la pointe de puissance quart-horaire.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/dashboard_modal_charger.png" alt="Fenêtre modale Session de Recharge VE" loading="lazy">
+            <div class="doc-screenshot-caption">Fenêtre Borne VE : Ampérage de charge en direct, énergie délivrée sur la session (kWh) et sélection rapide des modes Éco/Max.</div>
+          </div>
+        </div>
+
+        <div class="alert alert-tip">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-check"></use></svg>
+            <span>Superposition Comparer avec le Réseau (Compare Grid Power)</span>
+          </div>
+          <p>
+            Dans chaque fenêtre graphique, cliquez sur le bouton <strong>⚡ Comparer avec le Réseau</strong> pour superposer vos courbes de prélèvement et d'injection réseau directement sur la production solaire ou le cycle batterie. Vous visualisez ainsi immédiatement comment chaque pic de consommation domestique a été compensé.
+          </p>
+        </div>
+
+        <h3>Sélecteur de Période &amp; Résolution Temporelle</h3>
+        <ul>
+          <li><strong>Dernière heure (résolution 1 min) :</strong> Granularité fine pour analyser les pointes instantanées et le démarrage des appareils électroménagers.</li>
+          <li><strong>Dernières 24 heures (résolution 5 min) :</strong> Courbe solaire journalière complète, cycles de charge/décharge batterie (SoC) et sessions de charge VE.</li>
+          <li><strong>7 derniers jours (résolution 15 min) :</strong> Tendances hebdomadaires d'autoconsommation et répartition des quarts d'heure capacitaires.</li>
+          <li><strong>30 derniers jours (résolution 1 h) :</strong> Bilans énergétiques mensuels et volumes cumulés d'importation et d'injection.</li>
+        </ul>
+
+        <!-- Flanders Peak Monitor -->
+        <h2 id="flanders-gauge">3. Moniteur de Pointe Quart-Horaire (Tarif Capacitaire Flandre)</h2>
+        <p>
+          Situé juste sous le synoptique PowerFlow, le moniteur capacitaire suit en temps réel la demande moyenne sur 15 minutes mesurée par votre compteur numérique.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Badge d'état</th>
+                <th>Condition</th>
+                <th>Action du contrôleur GEMS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge-pill badge-green">NORMAL</span></td>
+                <td>Pointe projetée &lt; 80 % de <code>capacity_peak_limit_kw</code></td>
+                <td>Fonctionnement nominal. Toutes les bornes VE et batteries suivent leurs consignes habituelles.</td>
+              </tr>
+              <tr>
+                <td><span class="badge-pill badge-amber">AVERTISSEMENT</span></td>
+                <td>Pointe projetée comprise entre 80 % et 99 % du plafond</td>
+                <td>Vigilance préventive. Toute augmentation supplémentaire du courant de charge est suspendue pour éviter un dépassement.</td>
+              </tr>
+              <tr>
+                <td><span class="badge-pill badge-red">BRIDÉ</span></td>
+                <td>Pointe projetée &ge; 100 % du plafond configuré</td>
+                <td>Écrêtage actif enclenché ! Réduction progressive des bornes VE (16A &rarr; 10A &rarr; 6A &rarr; 0A) et décharge de la batterie domestique pour couvrir l'appel de puissance.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Device Management -->
+        <h2 id="device-management">4. Gestion des Appareils &amp; Assistant d'Intégration</h2>
+        <p>
+          Pour ajouter un nouvel équipement ou modifier une connexion existante, accédez à <strong>Paramètres &rarr; Appareils</strong>.
+        </p>
+
+        <ol>
+          <li>Cliquez sur le bouton <strong>Ajouter un appareil énergétique</strong> en haut à droite.</li>
+          <li>Sélectionnez le modèle correspondant parmi les 180 profils constructeurs préconfigurés (par ex. <em>Solis Hybrid Inverter</em>, <em>RAEDIAN Wallbox</em>, <em>Compteur P1 Fluvius</em>, <em>Shelly Pro 3EM</em>).</li>
+          <li>Renseignez l'adresse IP (ou le port série), le port TCP (<code>502</code> par défaut en Modbus TCP) et l'identifiant esclave Modbus. (<em>Remarque : pour une borne OCPP, saisissez simplement son ChargePoint ID</em>).</li>
+          <li>Cliquez sur <strong>Tester la connexion</strong> pour valider immédiatement l'accessibilité réseau.</li>
+          <li>Cliquez sur <strong>Enregistrer</strong>. Le moteur Go démarre aussitôt l'acquisition périodique des mesures.</li>
+        </ol>
+
+        <!-- Network & Serial Scanner -->
+        <h2 id="network-scanner">5. Scanner Matériel Réseau Local &amp; Ports Série</h2>
+        <p>
+          La détection des adaptateurs série RS-485 / P1 ou des adresses IP locales de vos onduleurs et bornes VE est entièrement automatisée grâce au Scanner matériel intégré.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/scanner.png" alt="Scanner de Bus Série et de Réseau Local" loading="lazy">
+          <div class="doc-screenshot-caption">Scanner matériel : Découverte automatique des ports série &amp; bus RS-485 associée à l'analyse IP du sous-réseau local, du fabricant MAC et des ports ouverts.</div>
+        </div>
+
+        <ul>
+          <li><strong>Découverte Ports Série &amp; RS-485 :</strong> Cliquez sur <strong>Analyser les ports série</strong> pour identifier automatiquement les compteurs P1 DSMR / e-MUCS ainsi que les équipements Modbus RTU RS-485 (tels que les onduleurs hybrides <em>Solis</em>, les bornes <em>RAEDIAN</em> et les compteurs sur rail DIN), avec chemins persistants <code>/dev/serial/by-id/*</code>, vitesse en bauds, parité et ID esclave Modbus. Cliquez sur <strong>+ Configurer</strong> pour pré-remplir le formulaire en un clic, ou lancez un <strong>Balayage RS-485 avancé</strong>.</li>
+          <li><strong>Analyse du sous-réseau LAN :</strong> Cliquez sur <strong>Analyser le sous-réseau</strong> pour détecter les équipements Ethernet et Wi-Fi actifs sur votre réseau local (ex. <code>192.168.1.0/24</code>) avec identification constructeur MAC et badges de ports ouverts (<code>502</code>, <code>80/443</code>, <code>8887</code>).</li>
+        </ul>
+
+        <!-- Modbus Reachability Probe -->
+        <h2 id="modbus-probe">6. Sonde d'Accessibilité Modbus TCP (`Test Connection`)</h2>
+        <p>
+          Avant d'enregistrer un équipement dans SQLite, GEMS permet d'exécuter un test diagnostique instantané :
+        </p>
+        <ul>
+          <li>Établit une connexion TCP directe vers l'adresse IP et le port cibles.</li>
+          <li>Mesure le temps de réponse aller-retour en millisecondes ($ms$).</li>
+          <li>Tente une lecture de l'identifiant standard SunSpec Modbus (registre <code>40001</code> / <code>0x9C41</code>) afin de confirmer que l'ID esclave configuré répond correctement.</li>
+        </ul>
+
+        <!-- EV Charging: Modbus TCP (Preferred) & Native OCPP Server -->
+        <h2 id="ev-charging">7. Recharge VE : Modbus TCP (Recommandé) &amp; Serveur OCPP Natif</h2>
+        <p>
+          GEMS pilote la recharge de votre véhicule électrique en temps réel afin de maximiser l'autoconsommation solaire et d'éviter tout dépassement de pointe. Les bornes peuvent être raccordées via <strong>Modbus TCP (méthode privilégiée)</strong> ou via le <strong>Serveur OCPP Natif</strong> embarqué.
+        </p>
+
+        <div class="alert alert-success" style="border-left: 4px solid #10b981; background: var(--bg-card, #f0fdf4); margin-bottom: 1.25rem;">
+          <div class="alert-header" style="color: #059669;">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-charger"></use></svg>
+            <strong>⚡ Intégration Modbus TCP (Méthode Recommandée &amp; Privilégiée)</strong>
+          </div>
+          <p>
+            <strong>Le protocole Modbus TCP est la solution recommandée pour le pilotage local des bornes VE :</strong>
+          </p>
+          <ul style="margin: 6px 0 10px 18px;">
+            <li><strong>Modulation instantanée inférieure à la seconde :</strong> Les registres Modbus permettent à GEMS de lire les courants par phase et d'ajuster la consigne d'ampérage (6A à 32A) sans latence WebSocket — essentiel pour stopper les pointes quart-horaires immédiatement.</li>
+            <li><strong>Coexistence avec le remboursement employeur (Split-Billing) &amp; CPO externe :</strong> Si votre borne est déjà reliée en OCPP à une plateforme de facturation CPO externe ou à un service de remboursement employeur, vous n'avez <em>pas</em> besoin de la déconnecter. GEMS régule localement la puissance en Modbus TCP tandis que la télérelève comptable se poursuit sans interruption via OCPP.</li>
+            <li><strong>Marques compatibles :</strong> RAEDIAN Gemini/NEO/NEX, Alfen Eve, KEBA KeContact P30/P40, Mennekes AMTRON, Webasto Live/Next, ABB Terra AC, Phoenix Contact CHARX, Veton, SolarEdge Home EVSE et bornes Modbus TCP génériques.</li>
+          </ul>
+          <p style="margin-bottom: 0;">
+            Mise en route : activez Modbus TCP dans l'application installateur de votre borne (port <code>502</code>), puis ajoutez l'appareil dans GEMS sous <strong>Paramètres &rarr; Appareils &rarr; Borne VE</strong> avec son adresse IP et son ID esclave Modbus (généralement <code>1</code>).
+          </p>
+        </div>
+
+        <div class="alert alert-important">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-charger"></use></svg>
+            <strong>Serveur OCPP 1.6-J Natif (Alternative Locale Directe)</strong>
+          </div>
+          <p>
+            Pour les bornes dépourvues de Modbus TCP ou les installations résidentielles autonomes sans opérateur CPO externe, GEMS intègre un serveur WebSocket OCPP 1.6-J sur le port <strong>8887</strong> (<code>ws://&lt;ip&gt;:8887/&lt;ID&gt;</code>) et le port <strong>8080</strong> (<code>ws://&lt;ip&gt;:8080/api/ocpp/&lt;ID&gt;</code>). La borne communique directement en local avec le Raspberry Pi sans aucune dépendance cloud.
+          </p>
+        </div>
+
+        <h3>Raccorder votre borne via OCPP Natif</h3>
+        <ol>
+          <li>Ouvrez l'application installateur de votre borne (ex. <em>RAEDIAN Install</em>, <em>Easee Installer</em>, <em>Alfen ACE Service Installer</em> ou <em>Wallbox App</em>).</li>
+          <li>Accédez au menu <strong>Connectivité &rarr; Paramètres OCPP / CSMS</strong>.</li>
+          <li>Configurez l'URL du serveur WebSocket sur :
+            <div class="code-block-wrapper">
+              <div class="code-header">
+                <span class="code-lang">URL OCPP</span>
+                <button class="copy-code-btn" aria-label="Copier l'URL">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+                  <span>Copier</span>
+                </button>
+              </div>
+              <pre><code>ws://&lt;raspberry-pi-ip&gt;:8887/&lt;ID-Borne&gt;
+# Ou via le proxy inverse sur le port 8080 :
+ws://&lt;raspberry-pi-ip&gt;:8080/api/ocpp/&lt;ID-Borne&gt;
+
+# Exemple pour l'identifiant "CP001" sur le Pi 192.168.1.50 :
+ws://192.168.1.50:8887/CP001</code></pre>
+            </div>
+          </li>
+          <li>Dans GEMS, ajoutez un appareil avec le modèle <strong>OCPP 1.6-J Smart EV Charger</strong> et saisissez <code>CP001</code> comme ChargePointID.</li>
+          <li>Enregistrez l'appareil. La borne envoie immédiatement sa trame <code>BootNotification</code> et remonte sa puissance de charge sur le tableau de bord.</li>
+        </ol>
+
+        <!-- Logger, PDF Reports & Updates -->
+        <h2 id="logs-updates">8. Journal Temps Réel, Rapports PDF &amp; Mises à Jour Système</h2>
+
+        <h3>Journal Système en Temps Réel</h3>
+        <p>
+          Consultez les diagnostics en direct depuis l'onglet <strong>Journal</strong> de la barre de navigation. Filtrez les entrées par niveau de gravité (<code>INFO</code>, <code>WARN</code>, <code>ERROR</code>, <code>DEBUG</code>) ou recherchez le nom d'un équipement précis. Cliquez sur <strong>Exporter les journaux</strong> pour télécharger un rapport technique structuré au format <code>.txt</code>.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/logger.png" alt="Console de Journalisation et Diagnostics en Temps Réel" loading="lazy">
+          <div class="doc-screenshot-caption">Journal de diagnostic en direct : Flux télémétrique continu, filtres par gravité, mise en pause du flux et exportation texte.</div>
+        </div>
+
+        <h3>Rapports Énergétiques Visuels en PDF</h3>
+        <p>
+          Générez des bilans énergétiques PDF prêts à imprimer directement depuis le Tableau de bord : choisissez <em>Aujourd'hui (PDF)</em>, <em>7 derniers jours (PDF)</em>, <em>30 derniers jours (PDF)</em>, <em>Année en cours (PDF)</em> ou <em>Tout l'historique (PDF)</em> pour exporter vos courbes de synthèse, rendements solaires et taux d'autosuffisance.
+        </p>
+
+        <h3>Mises à jour logicielles en ligne (OTA) &amp; manuelles</h3>
+        <p>
+          GEMS propose deux méthodes simples pour mettre à niveau votre système vers la dernière version :
+        </p>
+        <ul>
+          <li><strong>Mise à jour OTA en ligne :</strong> Vérifie automatiquement la disponibilité de nouvelles versions publiées. Lorsqu'une mise à jour est détectée, cliquez sur <strong>Télécharger et installer</strong>. Le moteur télécharge le paquet <code>.deb</code> et l'applique via <code>dpkg -i</code> tout en diffusant le journal d'installation en direct.</li>
+          <li><strong>Téléversement manuel de paquet :</strong> Sur les sites isolés ou hors ligne, glissez-déposez un paquet Debian précompilé (<code>.deb</code>, 64 Mo max.) dans la zone dédiée et cliquez sur <strong>Téléverser et installer</strong>.</li>
+        </ul>
+        <p>
+          Pendant l'installation, la console affiche l'avancement en temps réel. Une fois terminée, le service redémarre proprement et recharge automatiquement l'interface web.
+        </p>
+
+        <!-- Navigation Footer -->
+        <div class="page-nav-footer">
+          <a href="configuration.html" class="page-nav-card">
+            <span class="page-nav-label">Précédent</span>
+            <span class="page-nav-title">&larr; Référence de configuration</span>
+          </a>
+          <a href="devices.html" class="page-nav-card" style="text-align:right;">
+            <span class="page-nav-label">Guide suivant</span>
+            <span class="page-nav-title">Modèles d'Appareils Compatibles (180) &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">Sur cette page</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#dashboard-powerflow" class="toc-link">Tableau de bord &amp; PowerFlow</a></li>
+        <li class="toc-item"><a href="#historical-charts" class="toc-link">Graphiques historiques</a></li>
+        <li class="toc-item"><a href="#flanders-gauge" class="toc-link">Moniteur de Pointe Flandre</a></li>
+        <li class="toc-item"><a href="#device-management" class="toc-link">Gestion des appareils</a></li>
+        <li class="toc-item"><a href="#network-scanner" class="toc-link">Scanner réseau &amp; série</a></li>
+        <li class="toc-item"><a href="#modbus-probe" class="toc-link">Test Modbus TCP</a></li>
+        <li class="toc-item"><a href="#ev-charging" class="toc-link">Recharge VE (Modbus &amp; OCPP)</a></li>
+        <li class="toc-item"><a href="#logs-updates" class="toc-link">Journal, Rapports &amp; Mises à jour</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Rechercher dans la documentation, les paramètres, les guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Fermer la recherche">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Utilisez <kbd class="kbd-shortcut">↑</kbd> <kbd class="kbd-shortcut">↓</kbd> pour naviguer</span>
+        <span><kbd class="kbd-shortcut">Entrée</kbd> pour sélectionner</span>
+        <span><kbd class="kbd-shortcut">Échap</kbd> pour fermer</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Documentation GEMS (New Energy Grid) &bull; Conçu avec Go, SQLite, Vue 3 et Tailwind CSS &bull; Optimisé pour Raspberry Pi</p>
+  </footer>
+
+  <script src="../js/search-index-fr.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

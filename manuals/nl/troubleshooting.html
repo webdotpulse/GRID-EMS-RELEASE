@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Probleemoplossing, Diagnose &amp; FAQ - GEMS</title>
+  <meta name="description" content="Uitgebreide diagnosegids en veelgestelde vragen voor GEMS: Modbus-foutmeldingen, P1-telegramcontrole, OCPP WebSocket-diagnose, NVMe-opstart, SQLite WAL en meldingen.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Navigatiemenu openen of sluiten">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Probleemoplossing</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Doorzoek documentatie (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Zoek naar foutmeldingen, diagnose, FAQ...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="installation.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+        <span>Installatie</span>
+      </a>
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuratie</span>
+      </a>
+      <nav class="lang-switcher no-print" aria-label="Kies documentatietaal">
+        <a href="../troubleshooting.html" hreflang="en" title="English">EN</a>
+        <a href="troubleshooting.html" class="active" hreflang="nl" title="Nederlands">NL</a>
+        <a href="../fr/troubleshooting.html" hreflang="fr" title="Français">FR</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Wissel kleurenthema">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Diagnosehandleiding</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="troubleshooting.html#modbus-troubleshooting" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>Modbus TCP &amp; RTU Fouten</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#p1-troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>P1 Slimme Meter Problemen</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#ocpp-troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-charger"></use></svg>
+              <span>OCPP WebSocket-diagnose</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#nvme-troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>NVMe-SSD &amp; Bootloader</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#sd-card-sqlite" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>SQLite &amp; Opslagcontrole</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#alerts-troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wifi"></use></svg>
+              <span>Meldingen &amp; Webhooks</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#faq" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Veelgestelde vragen (FAQ)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Overige handleidingen</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Documentatieportaal</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Installatiehandleiding</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>Configuratiereferentie</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Gebruikershandleiding</span>
+            </a>
+          </li>
+          <li>
+            <a href="cloud-server.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-cloud"></use></svg>
+              <span>Cloudserver-koppeling</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NIEUW</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Toesteltemplates</span>
+              <span class="badge">170</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Officiële PDF-handleidingen</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-installer-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Installatiehandleiding (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Gebruikershandleiding (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-server-connection-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Serverhandleiding (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Kruimelpad">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Probleemoplossing &amp; FAQ</span>
+        </nav>
+
+        <h1>Probleemoplossing, Diagnose &amp; FAQ</h1>
+        <p class="hero-lead">
+          Stapsgewijze diagnostische controles, veelvoorkomende foutmeldingen, hardwarebus-commando's en duidelijke antwoorden op veelgestelde vragen.
+        </p>
+
+        <!-- Modbus Troubleshooting -->
+        <h2 id="modbus-troubleshooting">1. Modbus TCP &amp; RTU Probleemoplossing</h2>
+        <p>
+          Wanneer de communicatie met een toestel faalt, toont het realtime <strong>Logboek</strong> gedetailleerde foutmeldingen. Gebruik onderstaande tabel om de oorzaak snel te verhelpen:
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/logger.png" alt="Diagnoselogboek met Realtime Foutinspectie" loading="lazy">
+          <div class="doc-screenshot-caption">Live Diagnoselogboek: Directe weergave van Modbus-uitleespogingen, CRC-waarschuwingen en export naar tekstbestand.</div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Foutmelding</th>
+                <th>Onderliggende Oorzaak</th>
+                <th>Oplossing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>connection refused (ECONNREFUSED)</code></td>
+                <td>Het IP-adres is bereikbaar, maar Modbus TCP staat uitgeschakeld of luistert op een andere poort.</td>
+                <td>Schakel Modbus TCP in op de omvormer of laadpaal (bijv. Huawei FusionSolar &rarr; Dongle-instellingen &rarr; Modbus TCP: Onbeperkt). Controleer het poortnummer (meestal <code>502</code> of <code>1502</code>).</td>
+              </tr>
+              <tr>
+                <td><code>i/o timeout</code></td>
+                <td>Het doeltoestel is offline, geblokkeerd door een VLAN/firewall of staat in nachtelijke slaapstand.</td>
+                <td>Controleer de bereikbaarheid met <code>ping &lt;ip&gt;</code>. Sommige PV-omvormers zonder batterij schakelen 's nachts hun netwerkkaart uit zodra de zonnepanelen 0W leveren.</td>
+              </tr>
+              <tr>
+                <td><code>modbus: response slave id mismatch</code></td>
+                <td>Het toestel gebruikt intern een ander Modbus Slave Unit ID.</td>
+                <td>Standaardwaarden: Solis = <code>1</code>; Huawei = <code>1</code> of <code>2</code>; SMA = <code>3</code> of <code>126</code>; SolarEdge = <code>1</code>; GoodWe = <code>247</code>. Raadpleeg de toestelhandleiding.</td>
+              </tr>
+              <tr>
+                <td><code>modbus: exception 'Illegal Data Address'</code></td>
+                <td>De gekozen template vraagt een register op dat door de huidige firmwareversie niet wordt ondersteund.</td>
+                <td>Werk de firmware van de omvormer bij via de fabrikant-app of controleer of het juiste toestelprofiel geselecteerd is.</td>
+              </tr>
+              <tr>
+                <td><code>CRC check failed / framing error</code></td>
+                <td>Elektrische stoorinvloeden op de RS485-bus, onjuiste baudrate of ontbrekende afsluitweerstand.</td>
+                <td>Controleer de RS485-baudrate (9600 vs. 19200 vs. 115200), plaats 120&Omega; afsluitweerstanden op beide uiteinden van de bus en gebruik afgeschermde getwiste kabel (twisted pair).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- P1 Smart Meter Debugging -->
+        <h2 id="p1-troubleshooting">2. P1 DSMR Slimme Meter Diagnose</h2>
+
+        <div class="alert alert-warning">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-alert-triangle"></use></svg>
+            <span>Baudrate &amp; Signaalinversie</span>
+          </div>
+          <p>
+            Moderne DSMR 5.0-meters (Fluvius België, Nederlandse slimme meters) werken op <strong>115200 baud, 8 databits, geen pariteit, 1 stopbit (8N1)</strong> en sturen een <em>geïnverteerd</em> serieel signaal uit. Oudere DSMR 2.2 / 3.0-meters werken op <strong>9600 baud, 7 databits, even pariteit, 1 stopbit (7E1)</strong>. Controleer dat uw USB-P1-kabel beschikt over actieve signaalinversie.
+          </p>
+        </div>
+
+        <h3>Ruwe P1-datastroom testen in de Terminal</h3>
+        <p>Open de Cockpit Terminal op poort <code>9090</code> en voer de volgende commando's uit:</p>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Bash / Terminal</span>
+            <button class="copy-code-btn" aria-label="Kopieer commando's">
+              <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+              <span>Kopiëren</span>
+            </button>
+          </div>
+          <pre><code># 1. Controleer of de seriële USB-adapter herkend wordt
+ls -l /dev/ttyUSB*
+
+# 2. Stel de seriële poortsnelheid in (DSMR 5.0)
+stty -F /dev/ttyUSB0 115200 cs8 -cstopb -parenb
+
+# 3. Lees het ruwe telegram uit (moet leesbare tekst tonen die begint met '/')
+cat /dev/ttyUSB0
+
+# Voorbeeld van verwachte uitvoer:
+# /FLU5\253769484_A
+# 1-0:1.8.1(001234.567*kWh)
+# 1-0:1.7.0(01.250*kW)
+# 1-0:31.7.0(005*A)
+# !52C1</code></pre>
+        </div>
+
+        <!-- OCPP WebSocket Diagnostics -->
+        <h2 id="ocpp-troubleshooting">3. OCPP EV-laadpaal Verbindingsdiagnose</h2>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Symptoom</th>
+                <th>Oorzaak</th>
+                <th>Oplossing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Status van laadpaal blijft "Offline"</strong></td>
+                <td>De laadpaal kan de WebSocket-URL niet bereiken of ondersteunt geen mDNS.</td>
+                <td>Gebruik in de laadpaalconfiguratie het vaste IP-adres: <code>ws://192.168.1.50:8887/&lt;ChargerID&gt;</code> (of poort <code>8080/api/ocpp/&lt;ChargerID&gt;</code>) in plaats van <code>ems.local</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>WebSocket 404 / 400 Bad Request</strong></td>
+                <td>Het ChargePoint ID in de URL komt niet overeen met de waarde ingesteld in GEMS.</td>
+                <td>Controleer dat het ID achteraan de OCPP-URL exact overeenkomt met het ChargePoint ID dat u in GEMS onder Toestellen hebt ingevoerd.</td>
+              </tr>
+              <tr>
+                <td><strong>Laadstroom reageert niet op sturing</strong></td>
+                <td>De laadpaal negeert <code>SetChargingProfile</code>-commando's.</td>
+                <td>Zet de laadpaal in de installateursapp op "Auto" of "Externe CSMS / OCPP Smart Charging" en schakel eventuele lokale handmatige stroomoverrides uit.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/scanner.png" alt="Lokale Netwerkscanner en Poortanalyse" loading="lazy">
+          <div class="doc-screenshot-caption">Diagnose via de Scanner: Controle van lokale IP-adressen, hostnamen en geopende poorten (502 Modbus, 80/443 HTTP, 8887/8080 OCPP).</div>
+        </div>
+
+        <!-- NVMe SSD & Bootloader Diagnostics -->
+        <h2 id="nvme-troubleshooting">4. NVMe-SSD &amp; Bootloader Diagnose (Raspberry Pi 5)</h2>
+        <p>
+          Herkent uw Raspberry Pi 5 de <strong>M.2 NVMe SSD</strong> niet of start hij niet op vanaf het NVMe-uitbreidingsbord, doorloop dan onderstaande stappen:
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Symptoom</th>
+                <th>Oorzaak</th>
+                <th>Diagnose &amp; Oplossing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Zwart scherm bij opstarten / ACT-led knippert niet</strong></td>
+                <td>De EEPROM staat nog op de fabrieksinstelling <code>BOOT_ORDER=0xf41</code> zonder PCIe-detectie.</td>
+                <td>Schrijf met Raspberry Pi Imager het hulpprogramma <strong>Bootloader &rarr; NVMe/PCIe Boot</strong> naar een MicroSD-kaart en start 5 seconden op totdat het HDMI-scherm groen kleurt.</td>
+              </tr>
+              <tr>
+                <td><strong><code>lspci</code> toont geen NVMe-station</strong></td>
+                <td>De FPC-lintkabel zit omgekeerd, los of <code>dtparam=pciex1</code> ontbreekt.</td>
+                <td>Controleer dat de koperen pinnen op de Pi 5 naar binnen wijzen (richting USB/Ethernet) en dat <code>/boot/firmware/config.txt</code> zowel <code>dtparam=pciex1</code> als <code>dtparam=pciex1_gen=2</code> bevat.</td>
+              </tr>
+              <tr>
+                <td><strong>Kernel dmesg: <code>pcieport link down</code></strong></td>
+                <td>Signaalverlies of spanningsdip van de voeding.</td>
+                <td>Gebruik uitsluitend de officiële <strong>27W USB-C PD-voeding</strong> (5,1V / 5,0A). Lichtere 15W-telefoonladers zakken in spanning tijdens PCIe-initialisatie.</td>
+              </tr>
+              <tr>
+                <td><strong><code>lsblk</code> toont geen <code>/dev/nvme0n1</code></strong></td>
+                <td>De SSD zit niet diep genoeg in het M.2-slot of is een SATA M.2-schijf i.p.v. NVMe.</td>
+                <td>Plaats de M.2 NVMe-SSD opnieuw onder een hoek van 30° en zet het M2-schroefje vast. Voer <code>sudo modprobe nvme</code> en <code>sudo dmesg | grep -i nvme</code> uit in Cockpit.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">NVMe-controlecommando's (Cockpit Terminal)</span>
+            <button class="copy-code-btn" aria-label="Kopieer commando's">
+              <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+              <span>Kopiëren</span>
+            </button>
+          </div>
+          <pre><code># 1. Controleer of de PCIe-controller het NVMe-station ziet:
+lspci -v
+
+# 2. Controleer of het blokapparaat geregistreerd is:
+lsblk -f
+
+# 3. Lees de EEPROM-opstartvolgorde en PCIe-status uit:
+sudo rpi-eeprom-config
+
+# 4. Bekijk PCIe- en NVMe-kernelmeldingen:
+sudo dmesg | grep -i -E "pci|nvme"</code></pre>
+        </div>
+
+        <!-- SQLite & SD Card Health -->
+        <h2 id="sd-card-sqlite">5. SQLite- &amp; Opslagintegriteitscontrole</h2>
+        <p>
+          GEMS maakt gebruik van SQLite Write-Ahead Logging (WAL) en geheugenbuffering om opslagcorruptie te voorkomen. U kunt de status van de database rechtstreeks in de terminal verifiëren:
+        </p>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">SQLite-diagnosecommando's</span>
+            <button class="copy-code-btn" aria-label="Kopieer commando's">
+              <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+              <span>Kopiëren</span>
+            </button>
+          </div>
+          <pre><code># Open de SQLite-database
+sqlite3 /opt/gems/gems.db
+
+-- 1. Controleer de WAL-modus (moet 'wal' teruggeven)
+PRAGMA journal_mode;
+
+-- 2. Controleer de database-integriteit (moet 'ok' teruggeven)
+PRAGMA integrity_check;
+
+-- 3. Controleer de WAL-checkpointstatus
+PRAGMA wal_checkpoint(PASSIVE);
+
+-- 4. Bekijk het totale aantal opgeslagen metingen
+SELECT COUNT(*) FROM measurements;
+
+.exit</code></pre>
+        </div>
+
+        <!-- Alerts & Webhooks -->
+        <h2 id="alerts-troubleshooting">6. Diagnose van Meldingen &amp; Webhooks</h2>
+        <p>
+          Om te testen of uw ingestelde <code>alert_webhook_url</code> meldingen correct ontvangt:
+        </p>
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Webhook-test via Curl</span>
+            <button class="copy-code-btn" aria-label="Kopieer curl">
+              <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+              <span>Kopiëren</span>
+            </button>
+          </div>
+          <pre><code># Verstuur een testmelding via de lokale GEMS API:
+curl -X POST http://localhost:8080/api/notifications/test \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Testmelding vanuit GEMS"}'</code></pre>
+        </div>
+
+        <!-- GRID-EMS-SERVER & Cloud Diagnostics -->
+        <h2 id="cloud-troubleshooting">7. GRID-EMS-SERVER &amp; Centrale Cloud Diagnose</h2>
+        <p>
+          Raadpleeg voor alle pakketspecificaties, koppelingsstappen en architectuurdetails de aparte <a href="cloud-server.html">GRID-EMS-SERVER Koppelingshandleiding</a> of download de <a href="gems-server-connection-manual-nl.pdf" target="_blank">Afdrukbare Serverhandleiding (PDF)</a>.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Symptoom / Foutmelding</th>
+                <th>Onderliggende Oorzaak</th>
+                <th>Diagnose &amp; Oplossing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Handshake failed: dial tcp lookup...</code></td>
+                <td>DNS-omzetting mislukt op de netwerkinterface van de Raspberry Pi.</td>
+                <td>Controleer de gateway- en DNS-instellingen in Cockpit: <code>curl -Iv https://ems.newenergygrid.com/api/status</code>.</td>
+              </tr>
+              <tr>
+                <td><code>HTTP 401 Unauthorized</code></td>
+                <td>Het apparaattoken is ingetrokken of de eenheid is verwijderd in het portaal.</td>
+                <td>Maak in het cloudportaal een nieuw koppelingstoken aan en koppel de eenheid opnieuw via Instellingen &rarr; Cloudserver.</td>
+              </tr>
+              <tr>
+                <td><code>Telemetry push network error: timeout</code></td>
+                <td>Uitgaande poort 443 wordt geblokkeerd of de internetverbinding heeft pakketverlies.</td>
+                <td>Controleer of uw firewall uitgaand TCP-verkeer op poort 443 toestaat en controleer de netwerkkabel.</td>
+              </tr>
+              <tr>
+                <td>Externe commando's worden niet uitgevoerd</td>
+                <td>Commando staat nog in de wachtrij tot de volgende cyclus.</td>
+                <td>Controleer de tabel met ontvangen cloudcommando's onder Instellingen &rarr; Cloudserver. Commando's worden bij de eerstvolgende 2s–5s telemetriecyclus uitgevoerd.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Cloudservice Journalctl</span>
+          </div>
+          <pre><code># Volg live de cloudsynchronisatie in het systeemlogboek
+sudo journalctl -u gems -f | grep CloudManager</code></pre>
+        </div>
+
+        <!-- Frequently Asked Questions -->
+        <h2 id="faq">8. Veelgestelde vragen (FAQ)</h2>
+
+        <div class="card-grid">
+          <div class="card">
+            <h3 class="card-title">Waarom is er geen auto-API of uitlezing van het batterijpercentage van de wagen?</h3>
+            <p class="card-text">
+              GEMS werkt bewust uitsluitend op basis van directe, lokale hardwaremetingen. Cloud-API's van autofabrikanten zijn storingsgevoelig, veranderen regelmatig zonder aankondiging en kunnen de 12V-accu van het voertuig belasten. GEMS stuurt het laden uiterst betrouwbaar aan via rechtstreekse stroomsetpoints op de laadpaal zelf.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Waarom wordt CPU-belasting niet getoond onder Systeeminformatie?</h3>
+            <p class="card-text">
+              GEMS is geoptimaliseerd voor een minimale systeembelasting op Raspberry Pi-hardware. Continue systeemtelemetrie in de gebruikersinterface is bewust weggelaten om de applicatie licht te houden. Uitgebreide systeembewaking blijft altijd beschikbaar via Cockpit op poort 9090.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Hoe snel reageert de zero-export terugregeling?</h3>
+            <p class="card-text">
+              Slimme meters worden uitgelezen in een snelle cyclus van 1 seconde. Zodra ongewenste netinjectie optreedt, stuurt GEMS onmiddellijk bijgewerkte vermogenslimieten naar de omvormer en laadpalen om de injectie zo dicht mogelijk rond 0 W te houden.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Hoe stel ik het Cockpit-beheerderswachtwoord opnieuw in?</h3>
+            <p class="card-text">
+              Open een terminalsessie via SSH of een aangesloten toetsenbord en voer <code>sudo passwd admin</code> (of uw systeemgebruikersnaam) uit. Voer tweemaal het nieuwe wachtwoord in.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Hoe herstel ik een onderbroken software-update?</h3>
+            <p class="card-text">
+              Werd een update onderbroken door bijvoorbeeld een stroomuitval, voer dan in de Cockpit Terminal <code>sudo dpkg --configure -a</code> uit, gevolgd door <code>sudo apt-get install -f</code>.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Blijft GEMS werken zonder internetverbinding?</h3>
+            <p class="card-text">
+              Ja! Alle lokale regellussen (Eco-modus, Vlaamse piekbewaking, Zero-export, hoofdzekeringsbeveiliging, Modbus en Native OCPP) draaien 100% autonoom op de Raspberry Pi zonder enige cloudafhankelijkheid. Bij wegvallend internet blijft de laatst opgehaalde 24-uurs EPEX-prijstabel actief.
+            </p>
+          </div>
+        </div>
+
+        <!-- Navigation Footer -->
+        <div class="page-nav-footer">
+          <a href="devices.html" class="page-nav-card">
+            <span class="page-nav-label">Vorige</span>
+            <span class="page-nav-title">&larr; Ondersteunde Toesteltemplates (170)</span>
+          </a>
+          <a href="index.html" class="page-nav-card" style="text-align:right;">
+            <span class="page-nav-label">Terug naar start</span>
+            <span class="page-nav-title">Documentatieportaal &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">Op deze pagina</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#modbus-troubleshooting" class="toc-link">Modbus TCP &amp; RTU Fouten</a></li>
+        <li class="toc-item"><a href="#p1-troubleshooting" class="toc-link">P1 Slimme Meter Problemen</a></li>
+        <li class="toc-item"><a href="#ocpp-troubleshooting" class="toc-link">OCPP WebSocket-diagnose</a></li>
+        <li class="toc-item"><a href="#nvme-troubleshooting" class="toc-link">NVMe-SSD &amp; Bootloader</a></li>
+        <li class="toc-item"><a href="#sd-card-sqlite" class="toc-link">SQLite &amp; Opslagcontrole</a></li>
+        <li class="toc-item"><a href="#alerts-troubleshooting" class="toc-link">Meldingen &amp; Webhooks</a></li>
+        <li class="toc-item"><a href="#cloud-troubleshooting" class="toc-link">Cloud &amp; GRID-EMS-SERVER</a></li>
+        <li class="toc-item"><a href="#faq" class="toc-link">Veelgestelde vragen (FAQ)</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Zoek in documentatie, parameters, handleidingen..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Zoekvenster sluiten">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Gebruik <kbd class="kbd-shortcut">↑</kbd> <kbd class="kbd-shortcut">↓</kbd> om te navigeren</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> om te openen</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> om te sluiten</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>GEMS (New Energy Grid) Documentatie &bull; Gebouwd met Go, SQLite, Vue 3 en Tailwind CSS &bull; Geoptimaliseerd voor Raspberry Pi</p>
+  </footer>
+
+  <script src="../js/search-index-nl.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

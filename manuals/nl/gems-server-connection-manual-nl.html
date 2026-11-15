@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS - GRID-EMS-SERVER Verbindings- &amp; Vloothandleiding</title>
+  <meta name="description" content="Officiële verbindings- en cloudintegratiehandleiding voor het koppelen van GEMS (Grid Energy Management System) aan GRID-EMS-SERVER.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 12mm 16mm 12mm;
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.55;
+    }
+
+    .manual-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 960px;
+      padding: 30px 16px 16px 16px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 24px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0284c7;
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 8.5pt;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.25);
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 30pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 0 0 10px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 13pt;
+      color: #475569;
+      margin: 0 0 22px 0;
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    .cover-meta-val {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 8px 20px -4px rgba(0,0,0,0.1);
+      margin: 16px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 8pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Section Styles */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 17pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 6px;
+      margin-top: 32px;
+      margin-bottom: 14px;
+      page-break-after: avoid;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12.5pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 22px;
+      margin-bottom: 10px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #0284c7;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #334155;
+    }
+
+    /* Screenshot Container */
+    .manual-screenshot {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .manual-screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .manual-screenshot-caption {
+      font-size: 8pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* Callout Boxes */
+    .callout {
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      font-size: 9pt;
+    }
+
+    .callout-info {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      color: #0369a1;
+    }
+
+    .callout-tip {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #15803d;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #b45309;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 8.5pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #e2e8f0;
+      padding: 6px 9px;
+      text-align: left;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* Code Blocks */
+    pre.code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 8pt;
+      line-height: 1.45;
+      overflow-x: auto;
+      margin: 10px 0;
+      page-break-inside: avoid;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 8.5pt;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    /* Arch Diagram */
+    .arch-box {
+      background: #0f172a;
+      color: #38bdf8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5pt;
+      line-height: 1.35;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    @media print {
+      .no-print, .lang-switcher {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="manual-page">
+
+    <div class="no-print" style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+      <nav class="lang-switcher" aria-label="Taalkeuze">
+        <a href="../gems-server-connection-manual.html">EN</a>
+        <a href="gems-server-connection-manual-nl.html" class="active" aria-current="page">NL</a>
+        <a href="../fr/gems-server-connection-manual-fr.html">FR</a>
+      </nav>
+    </div>
+
+    <!-- ==================== COVER PAGE ==================== -->
+    <div class="cover-page">
+      <div>
+        <div class="cover-badge">
+          <span>☁️ Centrale Cloud- &amp; Vloothandleiding</span>
+        </div>
+        <h1 class="cover-title">GRID-EMS-SERVER<br>Verbindings- &amp; Vloothandleiding</h1>
+        <div class="cover-subtitle">
+          Praktische veldgids voor het koppelen van lokale GEMS-edge-units aan de centrale cloudserver, hoogfrequente telemetrie-overdracht en externe commando-orkestratie voor vlootbeheer.
+        </div>
+
+        <div class="cover-meta-grid">
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Documentreferentie</span>
+            <span class="cover-meta-val">GEMS-MAN-SRV-2026</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Toepasselijke Release</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.38.1-release (Officiële Release)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Centrale Cloudservice</span>
+            <span class="cover-meta-val">GRID-EMS-SERVER (v2.x Cloud Fleet API)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Standaard Server-endpoint</span>
+            <span class="cover-meta-val">https://ems.newenergygrid.com</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Beveiligingsarchitectuur</span>
+            <span class="cover-meta-val">Uitsluitend Uitgaand TLS 1.3 • Geen Router-Portforwarding</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Edge-doelplatform</span>
+            <span class="cover-meta-val">Raspberry Pi 5 / 4 (ARM64 Linux)</span>
+          </div>
+        </div>
+
+        <div class="cover-hero-img">
+          <img src="../assets/screenshots/settings_cloud.png" alt="GEMS Centrale Cloudbeheer-interface">
+        </div>
+      </div>
+
+      <div class="cover-footer">
+        <span>© 2026 New Energy Grid • Vertrouwelijke Veldreferentie</span>
+        <span>Documentatie v9.38.1</span>
+      </div>
+    </div>
+
+    <!-- ==================== TABLE OF CONTENTS ==================== -->
+    <h1 class="section-title">Handleidingsoverzicht &amp; Inhoudsopgave</h1>
+    <p>Deze handleiding biedt elektriciens, zonne-installateurs, vlootbeheerders en systeemintegratoren alle technische specificaties en veldprocedures die nodig zijn om lokale GEMS-edge-installaties te koppelen aan <strong>GRID-EMS-SERVER</strong>.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Hoofdstuk</th>
+          <th style="width: 45%;">Onderwerp</th>
+          <th style="width: 40%;">Primaire Doelgroep</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Hoofdstuk 1</strong></td>
+          <td>Architectuur &amp; Communicatietopologie</td>
+          <td>Systeemingenieurs, Netwerkarchitecten</td>
+        </tr>
+        <tr>
+          <td><strong>Hoofdstuk 2</strong></td>
+          <td>Netwerk- &amp; Firewallvereisten</td>
+          <td>IT-beheerders, Installateurs op locatie</td>
+        </tr>
+        <tr>
+          <td><strong>Hoofdstuk 3</strong></td>
+          <td>Koppelings- &amp; Cryptografisch Handshakeprotocol</td>
+          <td>Inbedrijfstellingstechnici</td>
+        </tr>
+        <tr>
+          <td><strong>Hoofdstuk 4</strong></td>
+          <td>Live Telemetrie-engine &amp; Meetwaarden-schema</td>
+          <td>Vlootintegratoren, Software-engineers</td>
+        </tr>
+        <tr>
+          <td><strong>Hoofdstuk 5</strong></td>
+          <td>Externe Commando-verzending &amp; Uitvoeringsengine</td>
+          <td>CPO-operatoren, Netaggregatoren</td>
+        </tr>
+        <tr>
+          <td><strong>Hoofdstuk 6</strong></td>
+          <td>UI-bediening: Instellingen &rarr; Tabblad Cloudserver</td>
+          <td>Inbedrijfstellers, Technische Support</td>
+        </tr>
+        <tr>
+          <td><strong>Hoofdstuk 7</strong></td>
+          <td>Beveiliging, Privacy &amp; Garantie op Edge-autonomie</td>
+          <td>Functionarissen Gegevensbescherming, Securityteams</td>
+        </tr>
+        <tr>
+          <td><strong>Hoofdstuk 8</strong></td>
+          <td>Probleemoplossing, Statuscodes &amp; Velddiagnose</td>
+          <td>Servicemonteurs, Tweedelijns Helpdesk</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-info">
+      <div class="callout-title">
+        <span>💡 Edge-autonomie &amp; 100% Optionele Cloudverbinding</span>
+      </div>
+      <div>
+        <strong>Local-First Garantie &amp; Optionele Integratie:</strong> GEMS is van de grond af ontworpen als een gedecentraliseerde edge-node. Verbinden met <strong>GRID-EMS-SERVER</strong> is <strong>mogelijk en 100% optioneel</strong>. Alle lokale regellussen—waaronder sub-seconde Modbus EV-terugregeling, aansturing op zonne-overschot, Vlaamse piekbewaking (capaciteitstarief), Nederlandse slimme saldering, batterij-arbitrage en relais-automatisering—draaien volledig autonoom zonder enige afhankelijkheid van de cloud of het internet. Wanneer een unit wordt gekoppeld, voegt de cloudintegratie versleutelde toegang op afstand, multi-site vlootbeheer en geautomatiseerde bewaking toe.
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 1: ARCHITECTURE ==================== -->
+    <div class="page-break"></div>
+    <h1 class="section-title">1. Architectuur &amp; Communicatietopologie</h1>
+    
+    <p>GEMS communiceert met <strong>GRID-EMS-SERVER</strong> via een uitsluitend uitgaande polling- en telemetrie-pushpijplijn. Binnen deze architectuur initieert de edge-controller alle verbindingen over HTTPS, waardoor inkomende routerpoorten, dynamische DNS-diensten of publieke IP-adressen op de klantlocatie volledig overbodig zijn.</p>
+
+    <div class="arch-box">┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                              CENTRALE CLOUDINFRASTRUCTUUR                              │
+│                             https://ems.newenergygrid.com                              │
+│                                                                                        │
+│   ┌─────────────────────┐      ┌─────────────────────┐      ┌──────────────────────┐   │
+│   │ Vlootbeheerportaal  │      │ REST Telemetrie-API │      │ Externe Commandowacht│   │
+│   │ Multi-Site Monitor  │      │ /api/v1/device/...  │      │ Verzonden Acties     │   │
+│   └──────────▲──────────┘      └──────────▲──────────┘      └──────────▲───────────┘   │
+└──────────────┼────────────────────────────┼────────────────────────────┼───────────────┘
+               │                            │                            │
+               │ Uitgaand HTTPS (TLS 1.3)   │ Uitgaande Periodieke Push  │ Meegestuurd in
+               │ Eenmalige /register        │ /api/v1/device/telemetry   │ Telemetrie-respons
+               │                            │ (Interval 2-5s)            │ Wachtende Commando's
+               ▼                            ▼                            ▼
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                        EDGE GEMS-HARDWARE (Raspberry Pi 5 / ARM64)                     │
+│                                                                                        │
+│   ┌────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ Golang Core Engine (gems/cloud.go)                                             │   │
+│   │ • CloudManager Singleton Worker           • State Machine Cache                │   │
+│   │ • Device Secret in SQLite (WAL)           • Auditlog Uitgevoerde Commando's    │   │
+│   └──────▲───────────────────────────▲───────────────────────────────▲─────────────┘   │
+│          │                           │                               │                 │
+│   ┌──────▼──────────┐         ┌──────▼──────────┐             ┌──────▼──────────┐      │
+│   │ Omvormers &amp; Bat │         │ Slimme P1-Meters│             │ EV-Laadpalen/Rel│      │
+│   │ (Modbus TCP/RTU)│         │ (Serieel/REST)  │             │ (Modbus / OCPP) │      │
+│   └─────────────────┘         └─────────────────┘             └─────────────────┘      │
+└────────────────────────────────────────────────────────────────────────────────────────┘</div>
+
+    <h2 class="subsection-title">1.1 Architecturale Kernprincipes</h2>
+    <ul>
+      <li><strong>Geen Inkomende Firewall-openstelling:</strong> Thuis- en bedrijfsrouters vereisen geen portforwarding, DMZ-toewijzing of UPnP. Alle communicatie verloopt via uitgaand HTTPS naar poort 443.</li>
+      <li><strong>Telemetrie-aggregatie:</strong> Tijdens elk synchronisatie-interval (instelbaar tussen 2s en 60s, standaard 5s) bundelt de edge-engine realtime metingen van omvormers, batterijen, meters, EV-laadpalen, warmtepompen en tarieven in één enkel JSON-pakket.</li>
+      <li><strong>Meegestuurde Externe Commando's (Piggybacking):</strong> In plaats van langdurige inkomende verbindingen of complexe VPN's te openen, voegt de cloudserver openstaande commando's direct toe aan de HTTP 200-respons van de telemetrie-push. De edge-controller voert het commando uit en bevestigt het resultaat bij het eerstvolgende verzoek.</li>
+      <li><strong>Sub-milliseconde Hardware-isolatie:</strong> De CloudManager-goroutine draait volledig losgekoppeld van de lokale hardware-pollingworkers. Een trage internetverbinding of cloudstoring veroorzaakt nooit Modbus-vertraging en vertraagt nooit lokale piekbewakingsreacties.</li>
+    </ul>
+
+    <!-- ==================== SECTION 2: NETWORK PREREQUISITES ==================== -->
+    <h1 class="section-title">2. Netwerk- &amp; Firewallvereisten</h1>
+    <p>Controleer vóór de inbedrijfstelling van de cloudkoppeling op locatie of het lokale netwerk aan de volgende uitgaande routeringscriteria voldoet:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Doelhost</th>
+          <th>Protocol</th>
+          <th>Poort</th>
+          <th>Richting</th>
+          <th>Doel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>ems.newenergygrid.com</code> (of eigen serverhost)</td>
+          <td>HTTPS (TLS 1.2/1.3)</td>
+          <td>TCP 443</td>
+          <td>Uitgaand</td>
+          <td>Toestelregistratie, telemetrie-overdracht, bevestiging (ACK) van externe commando's</td>
+        </tr>
+        <tr>
+          <td>Lokale DNS (bijv. <code>1.1.1.1</code>, <code>8.8.8.8</code>, Gateway)</td>
+          <td>DNS</td>
+          <td>UDP/TCP 53</td>
+          <td>Uitgaand</td>
+          <td>Naamomzetting van het domein van de cloudserver</td>
+        </tr>
+        <tr>
+          <td>NTP-tijdserver (bijv. <code>pool.ntp.org</code>)</td>
+          <td>NTP</td>
+          <td>UDP 123</td>
+          <td>Uitgaand</td>
+          <td>Nauwkeurige systeemklok (vereist voor geldige TLS-certificaten &amp; tijdstempels)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-warning">
+      <div class="callout-title">
+        <span>⚠️ Richtlijnen voor Zakelijke Firewalls &amp; Strikte Gast-VLAN's</span>
+      </div>
+      <div>
+        Wanneer GEMS achter een strikte bedrijfsfirewall wordt geïnstalleerd, dient u te controleren dat uitgaand HTTPS-verkeer naar <code>ems.newenergygrid.com</code> niet wordt onderworpen aan deep-packet SSL-inspectie (MITM-proxy), tenzij het zakelijke CA-rootcertificaat is geïnstalleerd in de Debian-systeemcertificaatopslag (<code>/usr/local/share/ca-certificates/</code>).
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 3: PAIRING WORKFLOW ==================== -->
+    <div class="page-break"></div>
+    <h1 class="section-title">3. Koppelings- &amp; Authenticatieworkflow</h1>
+    <p>Het koppelen (pairing) autoriseert een fysiek GEMS-edge-toestel om gegevens door te sturen naar een specifieke klant- of locatie-omgeving binnen <strong>GRID-EMS-SERVER</strong>. De koppeling maakt gebruik van een beveiligde tweefasen-handshake.</p>
+
+    <h2 class="subsection-title">3.1 Stapsgewijze Koppelingsprocedure</h2>
+    <ol>
+      <li><strong>Koppelingstoken ophalen:</strong> Meld u aan op het centrale vlootbeheerportaal via <code>https://ems.newenergygrid.com</code>. Navigeer naar <strong>Sites &rarr; Add New EMS Node</strong> en kopieer het gegenereerde hardware-koppelingstoken van 16 tekens (bijv. <code>PAIR-8821-X9K2</code>).</li>
+      <li><strong>Serienummer detecteren of controleren:</strong> GEMS leest automatisch het permanente hardwareserienummer uit de Raspberry Pi SoC via <code>/proc/cpuinfo</code> en voorziet dit van het voorvoegsel <code>TCG-EMS-</code> (bijv. <code>TCG-EMS-83daf13d05f1adad</code> voor asset-tag <code>83daf13d05f1adad</code>). Het hardwareserienummer is permanent gekoppeld aan de processor-ID om een onveranderlijke cryptografische hardware-identiteit te waarborgen.</li>
+      <li><strong>Koppelingsgegevens invoeren in GEMS UI:</strong> Open in GEMS <strong>Instellingen</strong> &rarr; tabblad <strong>Cloudserver</strong> (<em>Cloud Server</em>). Plak het koppelingstoken in het invoerveld.</li>
+      <li><strong>Handshake starten:</strong> Klik op <strong>Pair &amp; Connect Now</strong> (Koppelen &amp; Nu Verbinden). De backend verstuurt onmiddellijk het registratieverzoek:</li>
+    </ol>
+
+    <pre class="code-block">
+POST /api/v1/device/register HTTP/1.1
+Host: ems.newenergygrid.com
+Content-Type: application/json
+User-Agent: GRID-EMS-Agent/9.4.0
+
+{
+  "serial_number": "TCG-EMS-83daf13d05f1adad",
+  "pairing_token": "PAIR-8821-X9K2",
+  "model": "GEMS v9.4 Pro",
+  "firmware_version": "v9.4.2",
+  "ip_local": "192.168.1.150"
+}
+    </pre>
+
+    <p>Zodra de server heeft geverifieerd dat het koppelingstoken geldig en nog niet toegewezen is, genereert deze een permanente <code>device_id</code> en een cryptografisch sterk 256-bits <code>device_secret</code>-token:</p>
+
+    <pre class="code-block">
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "status": "ok",
+  "device_id": 1042,
+  "device_secret": "&lt;YOUR_DEVICE_SECRET&gt;",
+  "message": "Device paired successfully"
+}
+    </pre>
+
+    <p>De GEMS-engine slaat de ontvangen <code>device_id</code> en <code>device_secret</code> veilig op in de lokale SQLite-database (tabel <code>site_settings</code>). Vanaf dat moment vervalt het eenmalige koppelingstoken en gebruikt alle verdere communicatie uitsluitend het cryptografische toestelgeheim.</p>
+
+    <!-- ==================== SECTION 4: TELEMETRY SCHEMA ==================== -->
+    <h1 class="section-title">4. Live Telemetrie-overdracht &amp; Offline Store-and-Forward Buffer</h1>
+    <p>Na koppeling stuurt de achterliggende cloudsynchronuratieservice realtime telemetrie door op het ingestelde synchronisatie-interval (standaard <code>2s</code>). Als de internetverbinding (WAN) tijdelijk wegvalt, buffert GEMS telemetrieframes lokaal in een begrensde SQLite store-and-forward-wachtrij (tot 10.000 momentopnamen met een interval van 60 seconden) en speelt deze automatisch af zodra de verbinding herstelt. Elk synchronisatiepakket voldoet aan het gestandaardiseerde GRID-EMS-SERVER JSON-schema:</p>
+
+    <pre class="code-block">
+POST /api/v1/device/telemetry HTTP/1.1
+Host: ems.newenergygrid.com
+Content-Type: application/json
+X-Device-Secret: &lt;YOUR_DEVICE_SECRET&gt;
+X-Device-Serial: TCG-EMS-83daf13d05f1adad
+User-Agent: GRID-EMS-Agent/9.4.0
+
+{
+  "solar_power_watts": 4800,
+  "grid_power_watts": -1450,
+  "battery_power_watts": -1200,
+  "battery_soc": 78.5,
+  "battery_temperature": 24.2,
+  "battery_health": 99.0,
+  "home_consumption_watts": 850,
+  "ev_power_watts": 1300,
+  "ev_charging_mode": "eco",
+  "ev_connected": 1,
+  "ev_soc": 0.0,
+  "heat_pump_watts": 1200,
+  "heat_pump_state": "boost",
+  "relay1_state": 1,
+  "relay2_state": 0,
+  "current_tariff_eur_kwh": 0.1245,
+  "spot_price_eur_mwh": 80.0,
+  "l1_current_amps": 6.3,
+  "l2_current_amps": 0.0,
+  "l3_current_amps": 0.0,
+  "frequency_hz": 50.01,
+  "voltage_v": 231.4,
+  "solar_energy_today_kwh": 24.6,
+  "grid_import_today_kwh": 2.1,
+  "grid_export_today_kwh": 14.8,
+  "home_energy_today_kwh": 11.4,
+  "ev_energy_today_kwh": 6.8,
+  "estimated_savings_today_eur": 4.82,
+  "estimated_savings_month_eur": 68.40,
+  "firmware_version": "v9.36.7"
+}
+    </pre>
+
+    <!-- ==================== SECTION 5: REMOTE COMMAND DISPATCH ==================== -->
+    <div class="page-break"></div>
+    <h1 class="section-title">5. Externe Commando-verzending &amp; Uitvoering</h1>
+    <p>Centrale beheerders, installateurs of Virtual Power Plant (VPP)-aggregatoren kunnen via <strong>GRID-EMS-SERVER</strong> commando's naar elke gekoppelde edge-unit sturen. Wanneer de edge-controller telemetrie verstuurt, voegt de server eventuele wachtende commando's toe aan de JSON-respons:</p>
+
+    <pre class="code-block">
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "status": "ok",
+  "device_id": 1042,
+  "server_time": "2026-09-07T17:19:55Z",
+  "pending_commands": [
+    {
+      "id": 101,
+      "command": "set_strategy_mode",
+      "payload": {
+        "mode": "flanders",
+        "peak_limit_kw": 2.5
+      }
+    }
+  ]
+}
+    </pre>
+
+    <h2 class="subsection-title">5.1 Overzicht van Ondersteunde Externe Commando's</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Commandonaam</th>
+          <th style="width: 35%;">Payload-parameters</th>
+          <th style="width: 40%;">Uitgevoerde Edge-actie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>SET_OPERATING_MODE</code> / <code>set_strategy_mode</code></td>
+          <td><code>mode</code>: string ("eco", "flanders", "netherlands"), <code>peak_limit_kw</code>: float</td>
+          <td>Werkt de actieve optimalisatiestrategie van de locatie bij met strikte landisolatie (past de Vlaamse <code>peak_limit_kw</code> uitsluitend toe op Vlaamse installaties en onderdrukt buitenlandse regiolimieten elders).</td>
+        </tr>
+        <tr>
+          <td><code>SET_BATTERY_MODE</code></td>
+          <td><code>device_id</code>: int, <code>mode</code>: string ("auto", "hold", "force_charge", "force_discharge"), <code>target_power_w</code>: float</td>
+          <td>Stelt de bedrijfsmodus en het doelvermogen van een hybride omvormer of standalone thuisbatterij (BESS) in met automatische veiligheidsbegrenzing.</td>
+        </tr>
+        <tr>
+          <td><code>SET_EV_CHARGE_MODE</code> / <code>SET_EV_CURRENT</code></td>
+          <td><code>device_id</code>: int, <code>charge_mode</code>: string ("now", "eco", "pv_only", "off"), <code>max_current_a</code>: float (6–32)</td>
+          <td>Schakelt de EV-laadmodus om of regelt dynamisch de laadstroom van het laadpunt via Modbus TCP of OCPP 1.6-J <code>SetChargingProfile</code>.</td>
+        </tr>
+        <tr>
+          <td><code>TOGGLE_RELAY</code> / <code>set_relay</code></td>
+          <td><code>device_id</code>: int, <code>state</code>: bool / int (0 of 1)</td>
+          <td>Schakelt een slim relais of potentiaalvrij contact voor SG-Ready warmtepompstanden of warmwaterboiler-boost.</td>
+        </tr>
+        <tr>
+          <td><code>UPDATE_SETTINGS</code> / <code>SET_FLEET_SETTINGS</code> / <code>SYNC_SETTINGS</code></td>
+          <td>Gevalideerde locatie-, relaisautomatiserings- of EV-laadclustervelden (of lege payload voor <code>SYNC_SETTINGS</code>)</td>
+          <td>Past gevalideerde tarief-, piekbewakings-, relaisregel- of EV-cluster-DLB-instellingen toe op de edge-database, of start direct een geschoonde configuratie-push (<code>POST /api/v1/device/settings</code>) zonder wachtwoorden of lokale tokens.</td>
+        </tr>
+        <tr>
+          <td><code>OTA_UPDATE</code> / <code>REBOOT</code></td>
+          <td><code>target_tag</code>: string (optioneel, nieuwste)<br><code>delay_sec</code>: int (standaard 5)</td>
+          <td>Start een cryptografisch geverifieerde over-the-air software-update (met live statusrapportage onder de logbron <code>updater</code> vóór herstart) of voert na commando-ACK een gecontroleerde systeemherstart uit.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">5.2 Commandobevestiging &amp; Auditlogboek</h2>
+    <p>Na lokale uitvoering bevestigt GEMS het resultaat via een POST-verzoek naar <code>/api/v1/device/commands/{id}/ack</code> met de status (<code>executed</code> of <code>failed</code>) en uitvoeringsdetails. Een realtime auditlogboek van alle uitgevoerde commando's wordt direct weergegeven op het tabblad <strong>Cloudserver</strong> in GEMS.</p>
+
+    <!-- ==================== SECTION 6: UI COMMISSIONING GUIDE ==================== -->
+    <h1 class="section-title">6. Stapsgewijze Inbedrijfstelling via de Webinterface</h1>
+    <p>Het in bedrijf stellen van de cloudverbinding op locatie duurt minder dan twee minuten via de GEMS-webinterface:</p>
+
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_cloud.png" alt="GEMS Cloudserver Instellingen-interface">
+      <div class="manual-screenshot-caption">Figuur 6.1: GEMS Centrale Cloudinstellingen — Weergave van actieve synchronisatiestatus, latentiemetingen, koppelingsvelden en auditlogboek.</div>
+    </div>
+
+    <h3 class="step-title">Stap 1: Open Instellingen &rarr; Cloudserver</h3>
+    <p>Open het GEMS-dashboard in uw browser (<code>http://&lt;raspberry-pi-ip&gt;</code>) en klik op <strong>Instellingen</strong> (<em>Settings</em>) in de zijbalk. Ontgrendel indien nodig de installateursmodus en selecteer het tabblad <strong>Cloudserver</strong> (<em>Cloud Server</em>) in de horizontale tabbalk.</p>
+
+    <h3 class="step-title">Stap 2: Voer de Koppelingsgegevens in</h3>
+    <p>Controleer of de <strong>Central Cloud Server URL</strong> is ingesteld op <code>https://ems.newenergygrid.com</code> (of voer uw eigen gehoste server-endpoint in). Plak uw koppelingstoken van 16 tekens in het veld <strong>Pairing Token</strong>.</p>
+
+    <h3 class="step-title">Stap 3: Koppelen en Verbinding Testen</h3>
+    <p>Klik op <strong>Pair &amp; Connect Now</strong>. Zodra de statuskaart <span style="color:#10b981; font-weight:bold;">● ONLINE &amp; SYNCED</span> met een groene indicator toont, klikt u op <strong>Test Telemetry Push</strong> om de end-to-end telemetrie-overdracht te verifiëren. De retourlatentie (round-trip sync latency) wordt berekend en getoond (doorgaans 15–30 ms).</p>
+
+    <!-- ==================== SECTION 7: SECURITY & COMPLIANCE ==================== -->
+    <div class="page-break"></div>
+    <h1 class="section-title">7. Beveiliging, Privacy &amp; Garantie op Edge-autonomie</h1>
+
+    <h2 class="subsection-title">7.1 Beveiligingsarchitectuur</h2>
+    <ul>
+      <li><strong>Cryptografische Secret Handshake:</strong> Alle telemetrieframes worden geauthenticeerd met de unieke <code>X-Device-Secret</code>-header die tijdens de registratie is uitgegeven. Replay-aanvallen en spoofing worden voorkomen door tijdstempelvalidatie op de server.</li>
+      <li><strong>Transport Layer Security:</strong> Al het netwerkverkeer dwingt strikt TLS 1.3-versleuteling af. Onversleuteld HTTP-verkeer wordt door de server geweigerd.</li>
+      <li><strong>Geen Kwetsbare Inkomende Poorten:</strong> Omdat GEMS nooit een inkomende publieke poort opent, kunnen kwaadaardige internetscanners (zoals Shodan) het toestel niet detecteren of benaderen.</li>
+    </ul>
+
+    <h2 class="subsection-title">7.2 AVG / GDPR &amp; Privacybescherming voor Eindgebruikers</h2>
+    <p>In overeenstemming met de Europese richtlijnen voor privacy en dataminimalisatie (AVG / GDPR):</p>
+    <ul>
+      <li><strong>Geen Voertuigtracking:</strong> GEMS hanteert strikte richtlijnen die voertuigtelematiek, opslag van chassisnummers (VIN) of RFID-registratie van bestuurders uitsluiten. Uitsluitend elektrische meetwaarden (laadvermogen in Watt en pilot-status) worden verzonden.</li>
+      <li><strong>Directe Ontkoppeling:</strong> De eigenaar kan op elk gewenst moment in de gebruikersinterface op <strong>Disconnect Unit</strong> klikken, waarmee de cloudcommunicatie onmiddellijk wordt beëindigd en lokale apparaatsleutels worden gewist.</li>
+      <li><strong>Inbedrijfstelling &amp; Hardware-aansturingscontrole op Afstand:</strong> Wanneer de toestemming van de eigenaar staat ingesteld op <em>Full Commissioning &amp; Support</em>, kunnen gecertificeerde installateurs de 5-stappen <strong>Opleverings- &amp; Aansturingstest</strong> (<em>Commissioning &amp; Hardware Control Test Suite</em>) starten (voor controle van telemetrie en actieve setpoint-modulatie op o.a. <strong>Solis</strong>-omvormers/batterijen en <strong>Raedian</strong>-laadpalen), begeleide configuratieherstelacties op afstand toepassen en rechtstreeks vanuit <strong>GRID-EMS-SERVER</strong> een officieel A4-opleveringscertificaat afdrukken; in de modus <em>Read-Only Diagnostics</em> worden actieve test- en herstelcommando's op afstand automatisch geblokkeerd.</li>
+    </ul>
+
+    <!-- ==================== SECTION 8: TROUBLESHOOTING ==================== -->
+    <h1 class="section-title">8. Probleemoplossing &amp; Velddiagnose</h1>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Gemelde Fout / Status</th>
+          <th style="width: 35%;">Waarschijnlijke Oorzaak</th>
+          <th style="width: 40%;">Aanbevolen Oplossing op Locatie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span style="color:#ef4444; font-weight:bold;">Disconnected / Grijs</span></td>
+          <td>De schakelaar Cloud Sync staat op UIT of de unit is nog niet gekoppeld.</td>
+          <td>Zet de schakelaar <strong>Cloud Sync</strong> op AAN en klik op <strong>Pair &amp; Connect Now</strong>.</td>
+        </tr>
+        <tr>
+          <td><code>Handshake failed: dial tcp: lookup...</code></td>
+          <td>DNS-naamomzetting mislukt op de lokale netwerkadapter van de Raspberry Pi.</td>
+          <td>Controleer de DNS-instellingen van de gateway. Test met <code>ping ems.newenergygrid.com</code> in de Cockpit-terminal (poort 9090).</td>
+        </tr>
+        <tr>
+          <td><code>HTTP 401 Unauthorized</code></td>
+          <td>Het toestelgeheim (device secret) is ongeldig verklaard of verwijderd uit het centrale portaal.</td>
+          <td>GEMS probeert automatisch opnieuw te registreren. Genereer bij een verlopen token een nieuw koppelingstoken in het portaal en koppel opnieuw.</td>
+        </tr>
+        <tr>
+          <td><code>Telemetry push network error: timeout</code></td>
+          <td>De lokale router blokkeert uitgaande poort 443 of de internetverbinding is verzadigd.</td>
+          <td>Controleer de firewallregels van de router. Zorg dat uitgaande TCP-poort 443 vrij toegankelijk is.</td>
+        </tr>
+        <tr>
+          <td>Hoge Latentie (&gt; 500 ms)</td>
+          <td>Zwak Wi-Fi-signaal of overbelaste mobiele 4G/5G-back-uprouter.</td>
+          <td>Sluit de Raspberry Pi bij voorkeur aan met een vaste Cat6-ethernetkabel in plaats van Wi-Fi.</td>
+        </tr>
+        <tr>
+          <td><code>OTA_UPDATE</code> bevestigd zonder versiewijziging</td>
+          <td>De unit draait al op een nieuwere of gelijke semantische versie, de uitgaande HTTPS-download is onderbroken, of de unit draait op een vroege <code>v9.35.1</code>–<code>v9.36.2</code>-build die een eenmalige lokale upgrade vereist.</td>
+          <td>Controleer de <code>updater</code>-regels in het tabblad Remote Logs van het portaal (of via <code>sudo journalctl -u gems | grep updater</code>), verifieer uitgaande toegang op TCP-poort 443, en installeer bij versie <code>v9.35.1</code>–<code>v9.36.2</code> eenmalig het nieuwste <code>.deb</code>-pakket via SSH of Cockpit Terminal (<code>:9090</code>).</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">8.1 Live Diagnostische Systeemcommando's</h2>
+    <p>Installateurs kunnen live diagnostiek van de cloudsynchronisatie volgen via SSH of de ingebouwde Cockpit-webterminal (poort 9090):</p>
+
+    <pre class="code-block">
+# Bekijk live logboeken van de cloudsynchronisatie
+sudo journalctl -u gems -f | grep -i cloud
+
+# Test DNS en uitgaande HTTPS-connectiviteit rechtstreeks vanaf de edge-controller
+curl -Iv https://ems.newenergygrid.com/api/status
+
+# Controleer lokale locatie-instellingen en opgeslagen cloud-toestel-ID
+sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_device_id, cloud_serial_number FROM site_settings WHERE id = 1;"
+    </pre>
+
+    <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Officiële Verbindingshandleiding • Versie v9.38.1
+    </div>
+
+  </div>
+
+</body>
+</html>

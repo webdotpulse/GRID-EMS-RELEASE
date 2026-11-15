@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide de Connexion GRID-EMS-SERVER - Documentation GEMS</title>
+  <meta name="description" content="Manuel officiel d'interconnexion des contrôleurs edge GEMS vers GRID-EMS-SERVER : architecture TLS, appairage par jeton, schéma de télémétrie, commandes distantes et diagnostic.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Ouvrir ou fermer le menu de navigation">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Intégration Cloud</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Rechercher dans la documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Rechercher cloud, appairage, télémétrie, commandes...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuration</span>
+      </a>
+      <a href="gems-server-connection-manual-fr.pdf" class="nav-link-btn" target="_blank">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+        <span>Télécharger PDF</span>
+      </a>
+      <nav class="lang-switcher no-print" aria-label="Choisir la langue de la documentation">
+        <a href="../cloud-server.html" hreflang="en" title="English">EN</a>
+        <a href="../nl/cloud-server.html" hreflang="nl" title="Nederlands">NL</a>
+        <a href="cloud-server.html" class="active" hreflang="fr" title="Français">FR</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Changer le thème de couleur">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Manuel Cloud</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="#overview" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-cloud"></use></svg>
+              <span>Vue d'ensemble &amp; Topologie</span>
+            </a>
+          </li>
+          <li>
+            <a href="#firewall" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>Réseau &amp; Pare-feu</span>
+            </a>
+          </li>
+          <li>
+            <a href="#pairing" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-check"></use></svg>
+              <span>Appairage &amp; Authentification</span>
+            </a>
+          </li>
+          <li>
+            <a href="#telemetry" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Schéma de télémétrie</span>
+            </a>
+          </li>
+          <li>
+            <a href="#commands" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-terminal"></use></svg>
+              <span>Commandes à distance</span>
+            </a>
+          </li>
+          <li>
+            <a href="#commissioning" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>Mise en service UI</span>
+            </a>
+          </li>
+          <li>
+            <a href="#troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>Dépannage</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Manuels PDF Officiels</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-installer-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Installateur (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Utilisateur (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-server-connection-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Serveur (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Autres guides</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Portail de documentation</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel d'installation</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>Référence de configuration</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Guide d'utilisation</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Fil d'Ariane">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span>Manuels</span>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Connexion GRID-EMS-SERVER</span>
+        </nav>
+
+        <div class="hero-banner">
+          <h1 class="hero-title">Guide de Connexion GRID-EMS-SERVER</h1>
+          <p class="hero-lead">
+            Apprenez à associer en toute sécurité votre contrôleur local Raspberry Pi GEMS à <strong>GRID-EMS-SERVER</strong> (<code>https://ems.newenergygrid.com</code>) pour la supervision multi-sites, l'ingestion continue de télémétrie haute fréquence et le pilotage bidirectionnel à distance — sans aucune ouverture de port entrant.
+          </p>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1rem;">
+            <a href="gems-server-connection-manual-fr.pdf" target="_blank" class="tab-btn active" style="background:#0284c7; color:#fff; text-decoration:none; padding:0.5rem 1rem; border-radius:var(--radius-md); display:inline-flex; align-items:center; gap:0.4rem; font-weight:600;">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Télécharger le Manuel PDF Imprimable (FR)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Section 1: Overview & Topology -->
+        <section id="overview" class="docs-section">
+          <h2>1. Vue d'Ensemble &amp; Architecture de Communication</h2>
+          <p>
+            GEMS repose sur une architecture <strong>décentralisée et autonome en local</strong>. Lorsqu'il est relié à <strong>GRID-EMS-SERVER</strong>, le contrôleur réplique ses mesures en temps réel vers le cloud et récupère les ordres de pilotage distants sans jamais nécessiter de règle NAT entrante sur le routeur du site.
+          </p>
+
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_cloud.png" alt="Écran des Paramètres Serveur Cloud GEMS" loading="lazy">
+            <div class="doc-screenshot-caption">Paramètres &rarr; Serveur Cloud : Affichage de l'état d'appairage en direct, de la latence réseau aller-retour et du journal d'audit des commandes reçues.</div>
+          </div>
+
+          <div class="callout callout-info" style="margin-top:1.5rem;">
+            <div class="callout-title">
+              <svg width="18" height="18"><use href="../assets/icons.svg#icon-info"></use></svg>
+              <span>Résilience Décentralisée</span>
+            </div>
+            <p style="margin:0; font-size:0.9rem;">
+              L'unité locale ne dépend jamais du cloud pour la sécurité électrique ou l'optimisation temps réel. En cas de coupure Internet, l'écrêtage capacitaire flamand, la modulation Modbus des bornes VE, l'autoconsommation solaire et la gestion de la batterie se poursuivent localement sans aucune interruption.
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 2: Network & Firewall -->
+        <section id="firewall" class="docs-section">
+          <h2>2. Règles Réseau &amp; Pare-feu Sortant</h2>
+          <p>
+            Toutes les connexions réseau initiées par GEMS sont strictement <strong>sortantes</strong> en HTTPS chiffré standard (port 443).
+          </p>
+
+          <div class="table-container">
+            <table class="api-table">
+              <thead>
+                <tr>
+                  <th>Destination</th>
+                  <th>Protocole</th>
+                  <th>Port</th>
+                  <th>Sens</th>
+                  <th>Fonction</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>ems.newenergygrid.com</code></td>
+                  <td>HTTPS (TLS 1.3)</td>
+                  <td>443</td>
+                  <td>Sortant</td>
+                  <td>Appairage (<code>/register</code>), Télémétrie (<code>/telemetry</code>), Acquittement (<code>/commands/.../ack</code>)</td>
+                </tr>
+                <tr>
+                  <td>Passerelle locale / DNS</td>
+                  <td>DNS</td>
+                  <td>53</td>
+                  <td>Sortant</td>
+                  <td>Résolution du nom de domaine vers l'adresse IP du serveur</td>
+                </tr>
+                <tr>
+                  <td><code>pool.ntp.org</code></td>
+                  <td>NTP</td>
+                  <td>123</td>
+                  <td>Sortant</td>
+                  <td>Synchronisation horaire indispensable à la validation des certificats TLS</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Section 3: Pairing & Handshake -->
+        <section id="pairing" class="docs-section">
+          <h2>3. Appairage &amp; Échange d'Authentification</h2>
+          <p>
+            L'appairage associe matériellement l'unité Raspberry Pi à votre compte client ou installateur sur le portail central grâce à un jeton à usage unique.
+          </p>
+          <ol style="padding-left:1.25rem; color:var(--text-secondary); line-height:1.7;">
+            <li>Connectez-vous à <code>https://ems.newenergygrid.com</code> et rendez-vous dans <strong>Flotte &rarr; Ajouter une unité</strong> afin de générer un jeton d'appairage (par ex. <code>PAIR-8821-X9K2</code>).</li>
+            <li>Dans l'interface web locale de GEMS, ouvrez <strong>Paramètres &rarr; Serveur Cloud</strong>.</li>
+            <li>Collez votre jeton d'appairage puis cliquez sur <strong>Appairer &amp; Connecter maintenant</strong>.</li>
+            <li>GEMS transmet le jeton accompagné du numéro de série matériel à <code>/api/v1/device/register</code>. Le serveur retourne un identifiant unique <code>device_id</code> ainsi qu'une clé secrète <code>device_secret</code> à haute entropie.</li>
+            <li>GEMS enregistre ces identifiants localement dans SQLite et invalide définitivement le jeton d'appairage initial.</li>
+          </ol>
+        </section>
+
+        <!-- Section 4: Telemetry Schema -->
+        <section id="telemetry" class="docs-section">
+          <h2>4. Schéma de Télémétrie en Direct</h2>
+          <p>
+            Toutes les 2 à 5 secondes, GEMS transmet une trame JSON normalisée regroupant l'ensemble des mesures instantanées :
+          </p>
+
+          <div class="code-block-wrapper">
+            <div class="code-block-header">
+              <span class="code-lang">JSON (POST /api/v1/device/telemetry)</span>
+            </div>
+            <pre><code>{
+  "solar_power_watts": 4800,
+  "grid_power_watts": -1450,
+  "battery_power_watts": -1200,
+  "battery_soc": 78.5,
+  "battery_temperature": 24.2,
+  "battery_health": 99.0,
+  "home_consumption_watts": 850,
+  "ev_power_watts": 1300,
+  "ev_charging_mode": "eco",
+  "ev_connected": 1,
+  "heat_pump_watts": 1200,
+  "heat_pump_state": "boost",
+  "relay1_state": 1,
+  "relay2_state": 0,
+  "current_tariff_eur_kwh": 0.1245,
+  "spot_price_eur_mwh": 80.0,
+  "l1_current_amps": 6.3,
+  "l2_current_amps": 0.0,
+  "l3_current_amps": 0.0,
+  "voltage_v": 231.4,
+  "solar_energy_today_kwh": 24.6,
+  "grid_import_today_kwh": 2.1,
+  "grid_export_today_kwh": 14.8,
+  "home_energy_today_kwh": 11.4
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- Section 5: Remote Commands -->
+        <section id="commands" class="docs-section">
+          <h2>5. Catalogue des Commandes Distantes</h2>
+          <p>
+            À chaque réception d'une trame de télémétrie, le serveur cloud joint dans sa réponse HTTP toute commande distante en attente :
+          </p>
+
+          <div class="table-container">
+            <table class="api-table">
+              <thead>
+                <tr>
+                  <th>Commande</th>
+                  <th>Clés de paramètres</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>SET_OPERATING_MODE</code> / <code>set_strategy_mode</code></td>
+                  <td><code>mode</code>, <code>peak_limit_kw</code></td>
+                  <td>Bascule entre Écrêtage Capacitaire Flandre, Autoconsommation Éco ou Zéro-Export Pays-Bas.</td>
+                </tr>
+                <tr>
+                  <td><code>SET_BATTERY_MODE</code></td>
+                  <td><code>device_id</code>, <code>mode</code>, <code>target_power_w</code></td>
+                  <td>Définit le mode de pilotage batterie (<code>auto</code>, <code>hold</code>, <code>force_charge</code>, <code>force_discharge</code>) ou fixe une consigne en watts.</td>
+                </tr>
+                <tr>
+                  <td><code>SET_EV_CHARGE_MODE</code> / <code>SET_EV_CURRENT</code></td>
+                  <td><code>device_id</code>, <code>charge_mode</code>, <code>max_current_a</code></td>
+                  <td>Modifie le mode de charge VE (<code>now</code>, <code>eco</code>, <code>pv_only</code>, <code>off</code>) ou ajuste la limite de courant dynamique (6A–32A).</td>
+                </tr>
+                <tr>
+                  <td><code>TOGGLE_RELAY</code> / <code>set_relay</code></td>
+                  <td><code>device_id</code>, <code>state</code></td>
+                  <td>Actionne un relais intelligent ou un contacteur pour le boost SG-Ready d'une PAC ou le chauffe-eau sanitaire.</td>
+                </tr>
+                <tr>
+                  <td><code>UPDATE_SETTINGS</code> / <code>OTA_UPDATE</code> / <code>REBOOT</code></td>
+                  <td>Clés de réglages ou <code>delay_sec</code></td>
+                  <td>Applique des paramètres de site validés, lance une mise à jour OTA signée ou effectue un redémarrage propre.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Section 6: UI Commissioning -->
+        <section id="commissioning" class="docs-section">
+          <h2>6. Mise en Service Pas à Pas via l'Interface Web</h2>
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Ouvrir Paramètres &rarr; Serveur Cloud</h3>
+              <p>Accédez au menu Paramètres et cliquez sur l'onglet <strong>Serveur Cloud</strong>.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Vérifier l'URL &amp; Saisir le Jeton</h3>
+              <p>Confirmez l'URL du serveur (<code>https://ems.newenergygrid.com</code>) et collez votre jeton d'appairage.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Appairer &amp; Contrôler le Flux Télémétrique</h3>
+              <p>Cliquez sur <strong>Appairer &amp; Connecter maintenant</strong>. Vérifiez que le voyant passe au vert (<span style="color:#10b981; font-weight:bold;">● EN LIGNE &amp; SYNCHRONISÉ</span>) avec une latence d'environ 15 à 30 ms.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 7: Troubleshooting -->
+        <section id="troubleshooting" class="docs-section">
+          <h2>7. Diagnostic sur Terrain &amp; Commandes Système</h2>
+          <div class="code-block-wrapper">
+            <div class="code-block-header">
+              <span class="code-lang">Bash (Cockpit Port 9090 ou SSH)</span>
+            </div>
+            <pre><code># Suivre en direct le démon de synchronisation cloud
+sudo journalctl -u gems -f | grep CloudManager
+
+# Tester la résolution DNS et la connectivité HTTPS sortante
+curl -Iv https://ems.newenergygrid.com/api/status
+
+# Vérifier l'état d'appairage enregistré dans la base SQLite locale
+sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_device_id FROM site_settings;"</code></pre>
+          </div>
+        </section>
+
+        <!-- Bottom Navigation Footer -->
+        <div class="doc-footer-nav">
+          <a href="configuration.html" class="footer-nav-btn prev">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-arrow-left"></use></svg>
+            <div>
+              <span class="nav-direction">Précédent</span>
+              <span class="nav-title">Référence de configuration</span>
+            </div>
+          </a>
+          <a href="user-manual.html" class="footer-nav-btn next">
+            <div>
+              <span class="nav-direction">Suivant</span>
+              <span class="nav-title">Guide d'utilisation</span>
+            </div>
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-arrow-right"></use></svg>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">Sur cette page</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#overview" class="toc-link">Vue d'ensemble &amp; Topologie</a></li>
+        <li class="toc-item"><a href="#firewall" class="toc-link">Réseau &amp; Pare-feu</a></li>
+        <li class="toc-item"><a href="#pairing" class="toc-link">Appairage &amp; Authentification</a></li>
+        <li class="toc-item"><a href="#telemetry" class="toc-link">Schéma de télémétrie</a></li>
+        <li class="toc-item"><a href="#commands" class="toc-link">Commandes à distance</a></li>
+        <li class="toc-item"><a href="#commissioning" class="toc-link">Mise en service UI</a></li>
+        <li class="toc-item"><a href="#troubleshooting" class="toc-link">Diagnostic terrain</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Rechercher dans la documentation, les paramètres, les guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Fermer la recherche">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Utilisez <kbd class="kbd-shortcut">&uarr;</kbd> <kbd class="kbd-shortcut">&darr;</kbd> pour naviguer</span>
+        <span><kbd class="kbd-shortcut">Entrée</kbd> pour sélectionner</span>
+        <span><kbd class="kbd-shortcut">Échap</kbd> pour fermer</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Documentation GEMS (New Energy Grid) &bull; Conçu avec Go, SQLite, Vue 3 et Tailwind CSS &bull; Optimisé pour Raspberry Pi</p>
+  </footer>
+
+  <script src="../js/search-index-fr.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

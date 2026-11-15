@@ -691,7 +691,7 @@
     }
 
     @media print {
-      .no-print, .interactive-toolbar {
+      .no-print, .interactive-toolbar, .lang-switcher {
         display: none !important;
       }
       .manual-page {
@@ -718,6 +718,15 @@
         placeholder="🔍 Search any setting (e.g. Curtailment, GSC, Phase Limit, Super-Dal, 1P/3P, Fallback)..."
         oninput="filterManualSettings(this.value)"
       >
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <a href="index.html" class="toolbar-pill">&larr; Hub</a>
+        <a href="gems-user-manual.pdf" class="toolbar-pill">📄 PDF</a>
+        <div class="lang-switcher no-print" style="background: #1e293b; border-color: #475569;" aria-label="Language selection">
+          <a href="gems-user-manual.html" class="active" style="background: #10b981; color: #ffffff;">EN</a>
+          <a href="nl/gems-user-manual-nl.html" style="color: #cbd5e1;">NL</a>
+          <a href="fr/gems-user-manual-fr.html" style="color: #cbd5e1;">FR</a>
+        </div>
+      </div>
     </div>
     <div class="toolbar-pills">
       <a class="toolbar-pill" href="#sec-intro">1. Brochure Tour</a>
@@ -775,7 +784,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.38.0</span>
+          <span class="cover-meta-val">GEMS v9.38.1</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Who This Guide Is For</span>

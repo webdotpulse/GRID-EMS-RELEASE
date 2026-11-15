@@ -290,11 +290,25 @@
     .page-break {
       page-break-before: always;
     }
+
+    @media print {
+      .no-print, .lang-switcher {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body>
 
   <div class="manual-page">
+
+    <div class="no-print" style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+      <nav class="lang-switcher" aria-label="Language selection">
+        <a href="gems-server-connection-manual.html" class="active" aria-current="page">EN</a>
+        <a href="nl/gems-server-connection-manual-nl.html">NL</a>
+        <a href="fr/gems-server-connection-manual-fr.html">FR</a>
+      </nav>
+    </div>
     
     <!-- ==================== COVER PAGE ==================== -->
     <div class="cover-page">
@@ -314,7 +328,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.38.0-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.38.1-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Central Cloud Service</span>
@@ -341,7 +355,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.38.0</span>
+        <span>Documentation v9.38.1</span>
       </div>
     </div>
 
@@ -762,7 +776,7 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.38.0
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.38.1
     </div>
 
   </div>

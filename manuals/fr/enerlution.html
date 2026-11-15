@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manuel Onduleurs Hybrides Enerlution &amp; Batteries LiFePO4 - GEMS</title>
+  <meta name="description" content="Manuel complet étape par étape pour le câblage parallèle BT 51,2V &amp; empilable HT des batteries Enerlution, brochage CAN RJ45, commutateurs DIP, compteurs DTSU666/SDM630, application Enerlution et optimisation GEMS.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Afficher ou masquer le menu">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Guide Onduleurs &amp; Stockage Enerlution</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Rechercher dans la documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Rechercher Enerlution, LFPWall, GroundHV, HYTH, brochage CAN, GEMS...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="gems-enerlution-manual-fr.pdf" class="nav-link-btn" target="_blank">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+        <span>PDF Enerlution</span>
+      </a>
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuration</span>
+      </a>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Basculer le thème de couleur">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Prise en main</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Portail de documentation</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Tous les modèles matériels</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Guide Enerlution</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="#compatibility" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>1. Écosystème BT vs HT</span>
+            </a>
+          </li>
+          <li>
+            <a href="#battery-wiring" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>2. Câblage Batterie BT &amp; HT</span>
+            </a>
+          </li>
+          <li>
+            <a href="#can-dip-meter" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-grid"></use></svg>
+              <span>2.2 CAN, DIP &amp; Compteur</span>
+            </a>
+          </li>
+          <li>
+            <a href="#enerlution-app" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>3. Réglages App Enerlution</span>
+            </a>
+          </li>
+          <li>
+            <a href="#gems-onboarding" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>4. Intégration dans GEMS</span>
+            </a>
+          </li>
+          <li>
+            <a href="#gems-optimization" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>5. Stratégie GEMS optimale</span>
+            </a>
+          </li>
+          <li>
+            <a href="#troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>6. Vérification &amp; Dépannage</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Manuels PDF officiels</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-enerlution-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Enerlution (PDF)</span>
+              <span class="badge" style="background:#0d9488; color:#fff; font-size:10px;">NOUVEAU</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-solis-easyway-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Solis &amp; Easyway (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-huawei-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Huawei (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-installer-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel installateur (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel utilisateur (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-p1-meter-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Compteur P1 (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-fleet-dlb-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Flotte VE &amp; DLB (PDF)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Fil d'Ariane">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <a href="devices.html">Appareils</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Guide Onduleurs Hybrides &amp; Stockage Enerlution</span>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="hero-banner">
+          <h1 class="hero-title">Guide Onduleurs Hybrides Enerlution &amp; Stockage LiFePO<sub>4</sub></h1>
+          <p class="hero-lead">
+            Manuel de référence complet pour le raccordement des batteries <strong>Enerlution Basse Tension 51,2 V (<code>LFPWall-5000</code>, <code>LFPWall-10K-V2</code>, <code>Roller-16K</code>)</strong> et <strong>Haute Tension empilables (<code>GroundHV-2500</code>, <code>GH02-5324</code> + PDU/BCU)</strong> aux <strong>onduleurs hybrides Enerlution <code>HY</code> &amp; <code>HYTH</code></strong>, la mise en service dans l'<strong>application Enerlution</strong> et l'optimisation de <strong>GRID-EMS (GEMS)</strong> pour l'écrêtement à 1 Watt près, la maîtrise du tarif capacitaire et la recharge VE.
+          </p>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <a href="gems-enerlution-manual-fr.pdf" target="_blank" class="tab-btn active" style="border-radius:var(--radius-md); display:inline-flex; align-items:center; gap:0.5rem; background:#0d9488; color:#ffffff; padding:0.6rem 1.2rem; text-decoration:none;">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Télécharger le Manuel A4 Imprimable (PDF)</span>
+            </a>
+            <a href="gems-enerlution-manual-fr.html" target="_blank" class="tab-btn" style="border-radius:var(--radius-md); display:inline-flex; align-items:center; gap:0.5rem; padding:0.6rem 1.2rem; text-decoration:none;">
+              <span>Ouvrir la Vue HTML Imprimable</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- SECTION 1 -->
+        <h2 id="compatibility">1. Écosystème Enerlution BT vs HT &amp; Matrice de compatibilité</h2>
+        <p>
+          <strong>Enerlution</strong> fabrique à la fois des batteries <strong>Basse Tension (BT / LV) 51,2 V</strong> câblées en parallèle pour les installations monophasées et des tours de batteries empilables <strong>Haute Tension (HT / HV) 150–600 V</strong> pour les systèmes triphasés. Vérifiez toujours la correspondance de classe de tension entre la batterie et l'onduleur avant de commencer l'installation.
+        </p>
+
+        <div class="callout callout-warning">
+          <strong> GARDE-FOU CRITIQUE DE TENSION — Ne croisez JAMAIS BT (51,2 V) &amp; HT (150–600 V) :</strong>
+          <ul>
+            <li><strong>Architecture A — Basse Tension 51,2 V (<code>LFPWall-5000</code>, <code>LFPWall-10K-V2</code>, <code>Roller-16K</code>) :</strong> Raccordez les banques multi-batteries <strong>exclusivement en parallèle 51,2 V</strong> (<code>P+</code> sur <code>P+</code>, <code>P-</code> sur <code>P-</code>). Connectez-les <em>uniquement</em> aux onduleurs hybrides Basse Tension 48V/51,2V (<code>Enerlution HY / L3–L6 LV</code> ou onduleurs 48V compatibles tels que <code>Solis -L</code>). Ne câblez <strong>jamais</strong> des modules BT en série !</li>
+            <li><strong>Architecture B — Haute Tension Empilable (<code>GroundHV-2500</code>, <code>GH02-5324</code> + PDU/BCU) :</strong> Les blocs s'empilent <strong>en série sous une tête de contrôle Haute Tension PDU / BCU dédiée</strong> (<code>~153 V – 500+ Vdc</code>). Connectez-les <em>uniquement</em> aux onduleurs hybrides triphasés Haute Tension (<code>Enerlution HYTH-5K..12K</code> / <code>L5–L12 HV</code>). Maintenez le sectionneur de sécurité MSD et le disjoncteur PDU sur <strong>OFF</strong> pendant tout l'assemblage !</li>
+          </ul>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Modèle Batterie Enerlution</th>
+                <th>Classe de tension</th>
+                <th>Tension nominale &amp; capacité</th>
+                <th>Charge / Décharge max.</th>
+                <th>Onduleur associé &amp; Protection DC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>LFPWall-5000</strong> (Murale LiFePO<sub>4</sub>)</td>
+                <td><strong>BT Parallèle</strong></td>
+                <td><code>51.2 V</code> &bull; <code>102 Ah</code> (<strong>5,22 kWh</strong>)</td>
+                <td><code>40 A</code> Chg / <code>75 A</code> Déch.</td>
+                <td><code>Enerlution HY / L3–L6 LV</code> &bull; <code>25 mm&sup2;</code> &bull; MCCB DC 2P <strong>125 A</strong></td>
+              </tr>
+              <tr>
+                <td><strong>LFPWall-10K-V2</strong> (Murale Haute Cap.)</td>
+                <td><strong>BT Parallèle</strong></td>
+                <td><code>51.2 V</code> &bull; <code>204 Ah</code> (<strong>10,44 kWh</strong>)</td>
+                <td><code>90 A</code> Chg / <code>140 A</code> Déch.</td>
+                <td><code>Enerlution HY / L3–L6 LV</code> &bull; <code>35 mm&sup2;</code> &bull; MCCB DC 2P <strong>160–200 A</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Roller-16K</strong> (Module mobile au sol)</td>
+                <td><strong>BT Parallèle</strong></td>
+                <td><code>51.2 V</code> &bull; <code>314 Ah</code> (<strong>16,08 kWh</strong>)</td>
+                <td><code>0.5 C</code> (~<code>150 A</code> / 7,6 kW)</td>
+                <td><code>Enerlution HY / L5–L6 LV</code> &bull; <code>35–50 mm&sup2;</code> &bull; MCCB DC 2P <strong>200 A</strong></td>
+              </tr>
+              <tr>
+                <td><strong>GroundHV-2500 + PDU</strong> (Tour HT)</td>
+                <td><strong>HT Série</strong></td>
+                <td><code>51.2 V / 2.5 kWh</code> par bloc<br>(<strong>7,5 – 20+ kWh</strong>, 3–8 blocs)</td>
+                <td><code>~25 – 50 A</code> DC HT<br>(<code>5 – 12 kW</code> continu)</td>
+                <td><code>Enerlution HYTH-5K..12K (3P)</code> &bull; <code>6–10 mm&sup2;</code> (1000V) via disjoncteur HT PDU</td>
+              </tr>
+              <tr>
+                <td><strong>GH02-5324 + BCU</strong> (Grande Tour HT)</td>
+                <td><strong>HT Série</strong></td>
+                <td>Modulaire Haute Tension<br>(<strong>15,0 – 42,0 kWh</strong>)</td>
+                <td><code>~50 A</code> DC HT<br>(<code>10 – 15+ kW</code> continu)</td>
+                <td><code>Enerlution HYTH-8K..12K (3P)</code> &bull; <code>6–10 mm&sup2;</code> (1000V) via disjoncteur HT BCU</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SECTION 2 -->
+        <h2 id="battery-wiring">2. Câblage étape par étape de la batterie &amp; du compteur intelligent</h2>
+        <p>
+          Réalisez l'intégralité du câblage puissance DC, terre de protection, commutateurs DIP, bus CAN et compteur intelligent avec le disjoncteur AC réseau, le sectionneur DC PV, le disjoncteur DC MCCB / PDU HT et tous les interrupteurs batterie strictement sur <strong>OFF</strong>.
+        </p>
+
+        <h3>2.1 Câblage parallèle BT 51,2 V vs Assemblage de tour empilable HT</h3>
+        <ul>
+          <li><strong>Architecture A — Parallèle Basse Tension 51,2 V (<code>LFPWall-5000</code>, <code>LFPWall-10K-V2</code>, <code>Roller-16K</code>) :</strong>
+            <ol>
+              <li>Installez un <strong>disjoncteur DC bipolaire non polarisé (MCCB) ou sectionneur à fusibles DC <code>gBat</code></strong> dédié (<code>&ge; 80 Vdc</code>, <code>125–200 A</code>) entre le parc batteries et les bornes <code>BAT+ / BAT-</code> de l'onduleur. N'utilisez jamais de disjoncteurs AC polarisés sur un circuit batterie bidirectionnel.</li>
+              <li><strong>2 à 3 packs en parallèle (Prise diagonale croisée) :</strong> Reliez des ponts de longueur strictement identique (<code>P+</code> vers <code>P+</code>, <code>P-</code> vers <code>P-</code>). Raccordez le câble principal <strong><code>BAT+</code></strong> de l'onduleur sur le <strong>Pack 1 (Maître) <code>P+</code></strong>, et le câble principal <strong><code>BAT-</code></strong> en diagonale sur le <strong><code>P-</code> du DERNIER Pack</strong> afin d'égaliser l'impédance de boucle.</li>
+              <li><strong>4 packs et plus en parallèle (Jeu de barres cuivre DC) :</strong> Tirez des câbles protégés de longueur identique (<code>25–35 mm&sup2;</code>) depuis chaque batterie vers des jeux de barres DC en cuivre étamé calibrés <code>250–400 A</code>, puis alimentez l'onduleur depuis ces barres.</li>
+              <li>Reliez la borne de terre châssis (<code>&#9178; PE</code>) de chaque module à la barrette PE de l'onduleur en conducteur cuivre vert/jaune <code>&ge; 6 mm&sup2;</code>.</li>
+            </ol>
+          </li>
+          <li><strong>Architecture B — Tours Série Haute Tension (<code>GroundHV-2500</code> / <code>GH02-5324</code> + PDU/BCU) :</strong>
+            <ol>
+              <li>Fixez le socle de niveau contre un mur porteur. Empilez verticalement les modules HT (minimum <code>3–4 &times; GroundHV-2500</code> = <code>~153–204 Vdc</code> pour dépasser la tension d'amorçage du <code>HYTH</code>), verrouillez les pattes anti-basculement latérales et installez la <strong>tête de contrôle PDU / BCU</strong> au sommet.</li>
+              <li>Avec le disjoncteur HT du PDU sur <strong>OFF</strong> et la fiche orange <strong>Manual Service Disconnect (MSD)</strong> retirée, raccordez les câbles HT double isolation <code>6–10 mm&sup2;</code> (<code>1000 Vdc</code>) entre les bornes <code>HV+ / HV-</code> du PDU et les entrées <code>BAT+ / BAT-</code> de l'onduleur <code>HYTH</code> jusqu'au déclic de verrouillage, puis reliez la terre châssis <code>&#9178; PE</code>.</li>
+            </ol>
+          </li>
+        </ul>
+
+        <h3 id="can-dip-meter">2.2 Brochage RJ45 CAN BMS, commutateurs DIP &amp; bornier compteur</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Broche RJ45</th>
+                <th>Couleur T568B</th>
+                <th>Port <code>CAN</code> Maître / PDU Enerlution</th>
+                <th>Port <code>BMS / CAN</code> Onduleur Enerlution</th>
+                <th>Rôle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Broches 1 &amp; 2</strong></td>
+                <td>Blanc-Orange / Orange</td>
+                <td>RS485-B / RS485-A (Optionnel)</td>
+                <td>RS485-B / RS485-A</td>
+                <td>Inutilisé en mode CAN</td>
+              </tr>
+              <tr>
+                <td><strong>Broches 3 &amp; 6</strong></td>
+                <td>Blanc-Vert / Vert</td>
+                <td>Masse signal <code>GND</code></td>
+                <td>Masse signal <code>GND</code></td>
+                <td>Masse de référence</td>
+              </tr>
+              <tr>
+                <td><strong>Broche 4</strong></td>
+                <td><strong>Bleu</strong></td>
+                <td><strong><code>CAN-H</code> (CAN High)</strong></td>
+                <td><strong><code>CAN-H</code> (CAN High)</strong></td>
+                <td><strong>CAN-H obligatoire</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Broche 5</strong></td>
+                <td><strong>Blanc / Bleu</strong></td>
+                <td><strong><code>CAN-L</code> (CAN Low)</strong></td>
+                <td><strong><code>CAN-L</code> (CAN Low)</strong></td>
+                <td><strong>CAN-L obligatoire</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Broches 7 &amp; 8</strong></td>
+                <td>Blanc-Marron / Marron</td>
+                <td>Réservé / Blindage GND</td>
+                <td>Réservé / Blindage GND</td>
+                <td>Suivre l'étiquette du cordon d'origine</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <ul>
+          <li><strong>Câbles d'interconnexion BT parallèle &amp; adressage DIP hors tension :</strong> Chaînez des cordons droits CAT5e/CAT6 depuis <strong>Pack 1 Maître <code>Link Out / RS485-B</code> &rarr; Pack 2 Esclave <code>Link In / RS485-A</code> &rarr; Pack 3 Esclave <code>Link In</code></strong>. Réglez les commutateurs DIP binaires <code>ADD</code> strictement hors tension : batterie seule = <code>0000</code> (ou <code>Address 1</code>) ; groupe multi-batteries = <strong>Pack 1 Maître : <code>ON OFF OFF OFF</code> (Adr 1)</strong>, <strong>Pack 2 Esclave : <code>OFF ON OFF OFF</code> (Adr 2)</strong>, <strong>Pack 3 Esclave : <code>ON ON OFF OFF</code> (Adr 3)</strong>, <strong>Pack 4 Esclave : <code>OFF OFF ON OFF</code> (Adr 4)</strong>.</li>
+          <li><strong>Bornes RS-485 du compteur intelligent externe (<code>9600 bps, 8N1</code>, Adresse <code>1</code>) :</strong>
+            <ul>
+              <li><strong>CHINT <code>DTSU666</code> (Triphasé) :</strong> Borne <strong><code>24</code></strong> = <code>RS485-A (+)</code>, Borne <strong><code>25</code></strong> = <code>RS485-B (-)</code>.</li>
+              <li><strong>CHINT <code>DDSU666</code> (Monophasé) :</strong> Borne <strong><code>5</code></strong> = <code>RS485-A (+)</code>, Borne <strong><code>6</code></strong> = <code>RS485-B (-)</code>.</li>
+              <li><strong>Eastron <code>SDM630-Modbus V2</code> :</strong> Borne <strong><code>A / 485A</code></strong> = <code>RS485-A (+)</code>, Borne <strong><code>B / 485B</code></strong> = <code>RS485-B (-)</code>.</li>
+              <li>Placez les tores CT juste en aval du compteur du gestionnaire de réseau, flèches orientées <strong>Réseau &rarr; Maison/Charges</strong>.</li>
+            </ul>
+          </li>
+          <li><strong>Séquence obligatoire de pré-charge (Soft-Start) :</strong> (1) Vérifiez la polarité DC à froid au multimètre &rarr; (2) Fermez le disjoncteur DC MCCB 2P BT (ou insérez la fiche MSD HT &amp; fermez le disjoncteur HT PDU) tant que le BMS est en veille &rarr; (3) Maintenez le bouton <strong><code>POWER / SW</code> du Maître/PDU enfoncé <code>2–3s</code></strong> afin que les résistances de pré-charge chargent en douceur le bus DC de l'onduleur (voyant <code>RUN</code> vert, <code>ALM</code> éteint) &rarr; (4) Enclenchez le sectionneur DC PV &rarr; (5) Enclenchez le disjoncteur AC réseau.</li>
+        </ul>
+
+        <!-- SECTION 3 -->
+        <h2 id="enerlution-app">3. Paramètres exacts de mise en service dans l'application Enerlution</h2>
+        <p>
+          Ouvrez l'<strong>application Enerlution</strong> via Bluetooth local ou le point d'accès Wi-Fi du datalogger (désactivez temporairement les données mobiles lors de la connexion au SSID local), connectez-vous avec un compte <strong>Installateur</strong>, raccordez le logger au réseau Ethernet LAN ou Wi-Fi 2,4 GHz (avec réservation IP statique DHCP sur le routeur) et vérifiez chaque paramètre ci-dessous :
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Paramètre App Enerlution</th>
+                <th>Réglage requis</th>
+                <th>Importance pour un pilotage GEMS optimal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Battery Type &amp; Protocol</strong></td>
+                <td><strong><code>Lithium-Ion (CAN)</code></strong><br><em>(Profil Enerlution / Pylon)</em></td>
+                <td>Active la télémétrie BMS en boucle fermée (<code>SOC %</code>, <code>SOH %</code>, tension pack et limites thermiques/courant). Vérifiez que l'état batterie affiche <code>Charging / Discharging / Standby</code> (jamais <code>Offline</code>).</td>
+              </tr>
+              <tr>
+                <td><strong>EMS Working Mode</strong></td>
+                <td><strong><code>Self-Consumption</code></strong></td>
+                <td>Permet à l'onduleur Enerlution d'absorber de manière autonome le surplus solaire en journée et de décharger instantanément pour couvrir les charges domestiques et les pointes du soir.</td>
+              </tr>
+              <tr>
+                <td><strong>Minimum / Reserve SOC</strong></td>
+                <td><strong><code>10 %</code></strong> <em>(<code>15–20%</code> avec secours EPS)</em></td>
+                <td>Préserve la longévité des cellules LiFePO<sub>4</sub> (90 % DoD) tout en gardant une réserve de secours si des circuits critiques sont câblés sur <code>EPS / Backup</code>. Gardez le SOC max. à <code>100 %</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>External Smart Meter</strong></td>
+                <td><strong><code>Enable</code> &rarr; <code>CHINT DTSU666</code> / <code>SDM630</code></strong></td>
+                <td>Active la régulation rapide sur l'Adresse <code>1</code> (<code>9600 8N1</code>) et transmet les mesures réseau en direct à GEMS.</td>
+              </tr>
+              <tr>
+                <td><strong>Active Power / Export Control</strong></td>
+                <td><strong><code>Disabled / Unlimited (0)</code></strong></td>
+                <td><strong>Essentiel !</strong> Laisse l'injection solaire normale et les certificats verts sans bride tout en permettant à GEMS d'écrire dynamiquement des <strong>consignes d'écrêtement au Watt près (1 W)</strong> lors des prix spot négatifs !</td>
+              </tr>
+              <tr>
+                <td><strong>Modbus TCP &amp; RS-485</strong></td>
+                <td><strong>Port <code>502</code> &bull; Slave ID <code>1</code> &bull; <code>9600 8N1</code></strong></td>
+                <td>Correspond aux paramètres vérifiés du modèle <code>enerlution_inverter</code> dans GEMS en LAN/Wi-Fi ou USB-RS485 direct.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SECTION 4 -->
+        <h2 id="gems-onboarding">4. Intégration d'Enerlution dans GEMS</h2>
+        <p>
+          Déverrouillez le <strong>Mode installateur certifié</strong> (icône cadenas 🔒 dans <strong>Paramètres</strong>), intégrez d'abord votre <strong>Compteur P1</strong> (<code>p1_serial</code>), puis cliquez sur <strong>Scanner &rarr; Analyser le sous-réseau</strong> (GEMS détecte automatiquement les préfixes MAC IEEE Enerlution <code>70:B3:D5</code> et <code>E4:5F:01</code> ainsi que les registres ASCII modèle/numéro de série) ou ajoutez-le manuellement sous <strong>Paramètres &rarr; Appareils &rarr; + Ajouter un appareil &rarr; Inverter / Solar &rarr; <code>Enerlution Hybrid Inverter</code></strong> (<code>enerlution_inverter</code>) :
+        </p>
+        <ul>
+          <li><strong>Adresse &amp; Bus :</strong> Renseignez l'IPv4 statique réservée sur le Port <code>502</code> (ou le chemin <code>/dev/serial/by-id/...</code> à <code>9600 bps, 8N1</code>) avec <code>Modbus ID = 1</code> et <code>Poll Interval = 3s</code> (LAN/RS-485) ou <code>5s</code> (Wi-Fi 2,4 GHz).</li>
+          <li><strong>Puissance nominale &amp; Écrêtement :</strong> Indiquez la puissance AC exacte de l'onduleur en kW (par ex. <code>5.0</code>, <code>6.0</code>, <code>8.0</code>, <code>10.0</code>, <code>12.0</code>) et cochez <strong><code>Allow Curtailment</code></strong> pour autoriser GEMS à réguler la sortie solaire par <strong>pas de 1 Watt</strong> (registres <code>40400</code> / <code>40441</code>).</li>
+          <li><strong>Options Phases, Compteur &amp; Batterie :</strong> Sélectionnez le câblage de phase exact (<code>L1/L2/L3</code> sur monophasé <code>HY</code> ou <code>L1-L2-L3</code> sur triphasé <code>HYTH</code>), cochez <code>Grid Meter Connected?</code> si un <code>DTSU666</code>/<code>SDM630</code> est raccordé, cochez <code>Battery Connected?</code> et indiquez la capacité totale installée en kWh (<code>5.2</code>, <code>10.4</code>, <code>16.1</code>, <code>10.0</code>, <code>15.0</code>...). <em>(Remarque : si une batterie Enerlution BT 51,2 V est câblée sur un onduleur Solis LV, sélectionnez le modèle Solis dans GEMS).</em></li>
+        </ul>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/settings_devices_inverter_form.png" alt="Formulaire de configuration Onduleur Hybride Enerlution dans GEMS" loading="lazy">
+          <div class="doc-screenshot-caption">Configuration de l'adresse Enerlution, de la puissance nominale (kW), de l'autorisation d'écrêtement à 1 Watt et de la capacité batterie totale dans GEMS.</div>
+        </div>
+
+        <!-- SECTION 5 -->
+        <h2 id="gems-optimization">5. Stratégie GEMS optimale &amp; coordination borne VE Raedian</h2>
+        <ol>
+          <li><strong>Mode Flandre (Écrêtage de pointe + protection certificats verts) :</strong> Réglez <code>Capacity Peak Limit = 2.5 kW</code> (ou la cible du site) et <code>Buffer = 200 W</code>. La boucle interne <code>Self-Consumption</code> d'Enerlution décharge la batterie pour absorber les pointes domestiques tandis que GEMS module la charge VE avant tout dépassement quart-horaire. Renseignez la valeur de vos <strong>certificats verts (GSC)</strong> (<code>€/MWh</code>) afin de maintenir l'injection jusqu'à <code>-GSC/1000 €/kWh</code>.</li>
+          <li><strong>Mode Pays-Bas (Compensation intelligente &amp; Zéro-Export au Watt près) :</strong> Activez <code>Active Inverter Curtailment</code> (seuil <code>0.00 €/kWh</code>). Le solaire diurne charge d'abord la batterie Enerlution, alimente ensuite les bornes VE et relais thermiques, puis dès que la batterie atteint 100 % lors des prix spot négatifs, GEMS bride la puissance Enerlution <strong>en continu par pas de 1 Watt</strong> pour ramener l'injection réseau exactement à <code>0 W</code>.</li>
+          <li><strong>Coordination Borne VE Raedian :</strong> Placez votre borne <strong>Raedian NEO / NEX / Gemini</strong> sur <code>PV Only (Solar)</code> ou <code>Eco</code>. Comme l'onduleur Enerlution absorbe d'abord le premier surplus dans la batterie domestique, GEMS attend que l'excédent net dépasse votre seuil de démarrage VE avant d'augmenter le courant — évitant tout pompage entre la batterie maison et la voiture !</li>
+        </ol>
+
+        <!-- SECTION 6 -->
+        <h2 id="troubleshooting">6. Référence rapide de dépannage</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Symptôme</th>
+                <th>Cause probable</th>
+                <th>Solution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>État batterie affiche <code>Offline (7)</code> ou <code>Fault (6)</code></strong></td>
+                <td>Câble CAN branché sur RS485/Link, mauvais protocole BMS, ou DIP modifiés sous tension</td>
+                <td>Éteignez complètement tous les modules, réglez les DIP <code>ADD</code> à froid, reliez le cordon RJ45 (<code>Broche 4 CAN-H</code>, <code>Broche 5 CAN-L</code>) du port <code>CAN</code> Maître/PDU au port <code>BMS</code> de l'onduleur et sélectionnez <code>Lithium-Ion (CAN)</code> dans l'application Enerlution.</td>
+              </tr>
+              <tr>
+                <td><strong>L'onduleur HT <code>HYTH</code> ne détecte pas la tour <code>GroundHV-2500</code></strong></td>
+                <td>Nombre insuffisant de blocs HT en série, fiche MSD ouverte ou disjoncteur HT PDU coupé</td>
+                <td>Installez le minimum requis de briques HT (<code>&ge; 3–4 modules</code>), verrouillez la fiche orange MSD, fermez le disjoncteur HT du PDU puis maintenez <code>POWER</code> 2–3s sur le PDU.</td>
+              </tr>
+              <tr>
+                <td><strong>Production PV bridée même à prix spot positifs</strong></td>
+                <td>Zéro-export statique laissé actif dans l'App Enerlution ou <code>Rated Power (kW)</code> erroné dans GEMS</td>
+                <td>Réglez <code>Active Power / Export Control = Disabled / Unlimited</code> dans l'application Enerlution et vérifiez la puissance AC exacte sur la fiche appareil GEMS.</td>
+              </tr>
+              <tr>
+                <td><strong>La batterie charge depuis le réseau quand la maison consomme</strong></td>
+                <td>Tores CT du <code>DTSU666</code> / <code>SDM630</code> inversés ou fils phases/RS-485 croisés</td>
+                <td>Orientez strictement les flèches des tores CT dans le sens <strong>Réseau &rarr; Maison/Charges</strong> et vérifiez les bornes <code>24 (A+)</code> &amp; <code>25 (B-)</code> du <code>DTSU666</code>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Rechercher dans la documentation, les paramètres, les guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Fermer la recherche">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Utilisez <kbd class="kbd-shortcut">&uarr;</kbd> <kbd class="kbd-shortcut">&darr;</kbd> pour naviguer</span>
+        <span><kbd class="kbd-shortcut">Entrée</kbd> pour sélectionner</span>
+        <span><kbd class="kbd-shortcut">Échap</kbd> pour fermer</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/search-index-fr.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

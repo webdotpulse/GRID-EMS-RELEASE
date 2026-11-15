@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS - Manuel Cluster de Flotte VE &amp; Dynamic Load Balancing (DLB)</title>
+  <meta name="description" content="Manuel officiel d'ingénierie terrain et d'exploitation pour le clustering de bornes VE, l'équilibrage dynamique de charge (DLB) autonome en périphérie, la protection par phase du disjoncteur et le proxy OCPP Straight-Through dans GEMS.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 12mm 16mm 12mm;
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9pt;
+      line-height: 1.5;
+    }
+
+    .manual-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 980px;
+      padding: 24px 16px 16px 16px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 24px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.25);
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 27pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 16px 0 8px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 11.5pt;
+      color: #475569;
+      margin: 0 0 18px 0;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    .cover-meta-val {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 8px 20px -4px rgba(0,0,0,0.08);
+      margin: 12px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 7.5pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Section Styles */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #7c3aed;
+      padding-bottom: 5px;
+      margin-top: 30px;
+      margin-bottom: 12px;
+      page-break-after: avoid;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11.5pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #4f46e5;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #334155;
+    }
+
+    /* Screenshot Container */
+    .manual-screenshot {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .manual-screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .manual-screenshot-caption {
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      font-size: 8.5pt;
+      line-height: 1.45;
+    }
+
+    .callout-info {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #166534;
+    }
+
+    .callout-purple {
+      background: #f5f3ff;
+      border-left: 4px solid #7c3aed;
+      color: #5b21b6;
+    }
+
+    .callout-tip {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      color: #0369a1;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #92400e;
+    }
+
+    .callout-danger {
+      background: #fef2f2;
+      border-left: 4px solid #ef4444;
+      color: #991b1b;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 8pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #e2e8f0;
+      padding: 6px 8px;
+      text-align: left;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* Terminal & Code Blocks */
+    pre.code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: 7.5pt;
+      line-height: 1.4;
+      overflow-x: auto;
+      margin: 8px 0;
+      page-break-inside: avoid;
+    }
+
+    code {
+      font-family: 'Fira Code', monospace;
+      font-size: 8pt;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    /* Architecture / ASCII Box */
+    .arch-box {
+      background: #0f172a;
+      color: #38bdf8;
+      font-family: 'Fira Code', monospace;
+      font-size: 7pt;
+      line-height: 1.3;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 10px 0;
+      page-break-inside: avoid;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .math-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #6366f1;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-family: 'Fira Code', monospace;
+      font-size: 8pt;
+      color: #1e293b;
+      margin: 10px 0;
+      line-height: 1.5;
+    }
+
+    .badge-vip {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
+    .badge-high {
+      background: #e0e7ff;
+      color: #3730a3;
+      border: 1px solid #c7d2fe;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
+    .badge-norm {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
+    .badge-solar {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    @media print {
+      .no-print, .lang-switcher {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="manual-page">
+
+    <div class="no-print" style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+      <nav class="lang-switcher" aria-label="Sélecteur de langue">
+        <a href="../gems-fleet-dlb-manual.html">EN</a>
+        <a href="../nl/gems-fleet-dlb-manual-nl.html">NL</a>
+        <a href="gems-fleet-dlb-manual-fr.html" class="active" aria-current="page">FR</a>
+      </nav>
+    </div>
+
+    <!-- ==================== COVER PAGE ==================== -->
+    <div class="cover-page">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <img src="../assets/new_energy_grid_logo.png" alt="Logo New Energy Grid" style="height: 38px; width: auto; object-fit: contain;">
+          <div class="cover-badge">
+            <span>⚡ Manuel Cluster Flotte VE &amp; Dynamic Load Balancing</span>
+          </div>
+        </div>
+
+        <h1 class="cover-title">Cluster de Flotte VE GEMS &amp;<br>Dynamic Load Balancing (DLB)</h1>
+        <div class="cover-subtitle">
+          Manuel complet d'ingénierie, d'installation et de mise en service pour les grappes de recharge VE multi-bornes, l'équilibrage dynamique de charge (DLB) autonome à la seconde, la protection par phase du disjoncteur principal, le routage du surplus solaire et le proxy OCPP Straight-Through.
+        </div>
+
+        <div class="cover-meta-grid">
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Référence Document</span>
+            <span class="cover-meta-val">GEMS-MAN-FLT-2026</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Version Applicable</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.38.1-release (Version Officielle)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Cycle du Moteur DLB</span>
+            <span class="cover-meta-val">Boucle Edge Autonome 1,0 s (100 % Immunisée Hors Ligne)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Capacité Maximale du Cluster</span>
+            <span class="cover-meta-val">Jusqu'à 32 Bornes (64 sur Raspberry Pi 5)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Matériel de Référence Privilégié</span>
+            <span class="cover-meta-val">Bornes Intelligentes Raedian (OCPP 1.6-J &amp; Modbus TCP)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Support Proxy Straight-Through</span>
+            <span class="cover-meta-val">Tunnel Bidirectionnel avec Arbitrage Autonome des Profils DLB</span>
+          </div>
+        </div>
+
+        <div class="cover-hero-img">
+          <img src="../assets/screenshots/fleet_dashboard.png" alt="Interface Cockpit Cluster de Flotte VE GEMS">
+        </div>
+      </div>
+
+      <div class="cover-footer">
+        <span>© 2026 New Energy Grid • Référence Terrain Confidentielle</span>
+        <span>Documentation v9.38.1</span>
+      </div>
+    </div>
+
+    <!-- ==================== TABLE OF CONTENTS ==================== -->
+    <h1 class="section-title">Présentation du Manuel &amp; Sommaire</h1>
+    <p>Ce manuel technique de terrain s'adresse aux électriciens agréés, installateurs tertiaires et industriels, opérateurs de points de charge (CPO) et gestionnaires de sites. Il détaille l'architecture, les règles électrotechniques, le paramétrage logiciel, le proxy OCPP straight-through et les procédures de diagnostic du système <strong>Cluster de Flotte VE &amp; Dynamic Load Balancing (DLB) Autonome GEMS</strong>.</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Section</th>
+          <th style="width: 50%;">Sujet</th>
+          <th style="width: 35%;">Public Cible</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Section 1</strong></td>
+          <td>Fondations Architecturales &amp; Topologie des Communications</td>
+          <td>Ingénieurs Système, Bureaux d'Études Électriques</td>
+        </tr>
+        <tr>
+          <td><strong>Section 2</strong></td>
+          <td>Génie Électrique, Protection des Disjoncteurs &amp; Normes</td>
+          <td>Électriciens Agréés, Ingénieurs de Mise en Service</td>
+        </tr>
+        <tr>
+          <td><strong>Section 3</strong></td>
+          <td>Moteur Dynamic Load Balancing (DLB) &amp; Modes d'Exploitation</td>
+          <td>Gestionnaires d'Énergie, Exploitants Système</td>
+        </tr>
+        <tr>
+          <td><strong>Section 4</strong></td>
+          <td>Proxy OCPP Intelligent Straight-Through (Pass-Through)</td>
+          <td>Gestionnaires de Flotte, Intégrateurs CPO</td>
+        </tr>
+        <tr>
+          <td><strong>Section 5</strong></td>
+          <td>Auto-Intégration Zero-Touch &amp; Provisionnement Raedian</td>
+          <td>Techniciens Terrain, Installateurs</td>
+        </tr>
+        <tr>
+          <td><strong>Section 6</strong></td>
+          <td>Interface Cockpit Flotte &amp; Commandes par Emplacement</td>
+          <td>Facility Managers, Coordinateurs de Parc</td>
+        </tr>
+        <tr>
+          <td><strong>Section 7</strong></td>
+          <td>Mise en Service Terrain, Vérification &amp; Essai de Surcharge</td>
+          <td>Chefs de Chantier Électriciens</td>
+        </tr>
+        <tr>
+          <td><strong>Section 8</strong></td>
+          <td>Dépannage, Diagnostics &amp; Codes de Sécurité</td>
+          <td>Ingénieurs Support Terrain, Techniciens SAV</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-purple">
+      <div class="callout-title">
+        <span>🛡️ Directive d'Autonomie Edge Intégrale</span>
+      </div>
+      <div>
+        Le moteur d'équilibrage dynamique de charge GEMS s'exécute <strong>100 % localement sur le contrôleur edge</strong> (Raspberry Pi). Contrairement aux équilibreurs gérés dans le cloud qui risquent de faire disjoncter le tableau général en cas de perte de liaison Internet, GEMS calcule et applique chaque seconde les consignes d'intensité directement auprès des bornes du réseau local sans nécessiter de connexion Internet active.
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 1 ==================== -->
+    <h1 class="section-title">Section 1 : Fondations Architecturales &amp; Topologie Système</h1>
+    
+    <h2 class="subsection-title">1.1 Clustering Multi-Bornes sur Raspberry Pi</h2>
+    <p>GEMS transforme un Raspberry Pi 4 ou Raspberry Pi 5 standard en un contrôleur industriel de parc de recharge multi-emplacements. Un seul nœud edge GEMS orchestre jusqu'à <strong>32 bornes de recharge</strong> (extensible à 64 emplacements sur Raspberry Pi 5) sous une enveloppe électrique globale rigoureusement maîtrisée.</p>
+    <p>Le contrôleur de cluster mesure en temps réel la consommation totale du site via un compteur communicant (télégramme P1 ou compteur d'énergie Modbus), détermine instantanément le talon de consommation hors recharge, et répartit dynamiquement toute la capacité électrique restante entre les emplacements actifs.</p>
+
+    <h2 class="subsection-title">1.2 Soustraction de la Charge de Fond &amp; Répartition par Phase</h2>
+    <p>Toute installation électrique comporte des charges de fond non liées aux véhicules électriques : pompes à chaleur, climatisation, éclairage tertiaire, cuisines professionnelles ou machines industrielles. GEMS soustrait ces charges en temps réel phase par phase afin que la flotte VE puisse exploiter chaque ampère disponible sans jamais dépasser le calibre du disjoncteur de tête.</p>
+
+    <div class="arch-box">┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                       TOPOLOGIE PHYSIQUE ÉLECTRIQUE &amp; DONNÉES                          │
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                        │
+│   [ RÉSEAU PUBLIC ] ──── Alimentation Triphasée (ex. 3x63A / 400V)                     │
+│           │                                                                            │
+│   [ DISJONCTEUR GÉNÉRAL ]                                                              │
+│           │                                                                            │
+│   [ COMPTEUR P1 / MODBUS ] ─── Courants L1/L2/L3 Temps Réel (1s) ──────┐               │
+│           │                                                            │               │
+│           ├───────────────── Charges de Fond Tertiaires / Domestiques  │               │
+│           │                                                            │               │
+│   [ TABLEAU DIVISIONNAIRE VE ] ── Disjoncteur Flotte (ex. 50A)         │               │
+│           │                                                            │               │
+│           ├────── Bay 01 : Raedian Smart EVSE (Triphasé / 16A) ────────┼─ Modbus/OCPP  │
+│           ├────── Bay 02 : Raedian Smart EVSE (Triphasé / 16A) ────────┼─ Modbus/OCPP  │
+│           ├────── Bay 03 : Raedian Smart EVSE (Triphasé / 16A) ────────┼─ Modbus/OCPP  │
+│           ├────── Bay 04 : Raedian Smart EVSE (Monophasé / 16A) ───────┼─ Modbus/OCPP  │
+│           └────── Bay 05 : Raedian Smart EVSE (Monophasé / 16A) ───────┼─ Modbus/OCPP  │
+│                                                                        │               │
+│                                              Sous-réseau Local (LAN)   │               │
+│                                         ┌──────────────────────────────┴───────────┐   │
+│                                         │   CONTRÔLEUR EDGE GEMS (Raspberry Pi)    │   │
+│                                         │   • Boucle DLB Autonome 1 Seconde        │   │
+│                                         │   • Protection Disjoncteur par Phase     │   │
+│                                         │   • Serveur Proxy OCPP Straight-Through  │   │
+│                                         └──────────────────────────────┬───────────┘   │
+│                                                                        │ TLS Sortant   │
+│                                                                        ▼               │
+│                                         [ PLATEFORME CPO / FACTURATION EXTERNE ]       │
+│                                         (Auth. RFID &amp; Remboursement Employeur)         │
+└────────────────────────────────────────────────────────────────────────────────────────┘</div>
+
+    <h2 class="subsection-title">1.3 Protocoles de Communication Pris en Charge</h2>
+    <p>GEMS prend en charge une architecture de communication hybride et flexible sur l'ensemble des bornes du cluster :</p>
+    <ul>
+      <li><strong>OCPP 1.6-J (JSON sur WebSockets) :</strong> Serveur natif à l'écoute sur le port dédié <code>8887</code> (<code>ws://&lt;gems-ip&gt;:8887/{chargePointId}</code>) ainsi que sur le port reverse-proxy <code>8080</code> (<code>ws://&lt;gems-ip&gt;:8080/api/ocpp/{chargePointId}</code>). Prise en charge complète des profils de charge (y compris la mise en pause de sécurité à <code>0.0 A</code>), des relevés de compteur, de l'authentification HTTP Basic optionnelle et du relais proxy transparent vers un CPO externe.</li>
+      <li><strong>Modbus TCP / RTU :</strong> Lecture et écriture directe des registres de consigne de courant (holding registers) pour les bornes industrielles telles que Raedian Modbus, Alfen Eve ou les contrôleurs Phoenix Contact.</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 2 ==================== -->
+    <h1 class="section-title">Section 2 : Génie Électrique, Protection des Disjoncteurs &amp; Normes</h1>
+
+    <h2 class="subsection-title">2.1 Protection Temps Réel du Disjoncteur &amp; Allocation par Phase</h2>
+    <p>Afin d'éviter tout déclenchement thermique du disjoncteur général tout en maximisant la puissance délivrée aux véhicules triphasés comme aux véhicules monophasés répartis par rotation de phases, GEMS évalue en continu l'appel de courant du bâtiment et du départ parking sur les phases <code>L1</code>, <code>L2</code> et <code>L3</code> :</p>
+
+    <div class="callout callout-info">
+      <div class="callout-title">⚡ Séquence de Protection Électrique Multicouche</div>
+      <ol style="margin: 6px 0 0 18px; padding: 0;">
+        <li><strong>Marge de Sécurité du Disjoncteur Principal :</strong> Maintient une garde de sécurité sous le calibre nominal physique (<code>PhaseLimitAmps</code>) sur chaque phase individuelle (<code>L1</code>, <code>L2</code>, <code>L3</code>).</li>
+        <li><strong>Isolation de la Charge de Fond du Bâtiment :</strong> Soustrait par phase les consommations actives hors VE (CVC, ascenseurs, éclairage, pompes à chaleur) afin de déterminer la marge réseau réellement disponible.</li>
+        <li><strong>Plafonnement du Tableau Divisionnaire :</strong> Limite le courant global du parking au calibre du départ dédié (<code>FleetMaxCurrentA</code>), tout en permettant à des véhicules monophasés raccordés sur des phases distinctes d'exploiter simultanément la réserve propre à chaque phase.</li>
+        <li><strong>Valorisation du Surplus Photovoltaïque :</strong> Ajoute dynamiquement la réserve d'injection solaire produite en aval du compteur (telle qu'une centrale de toiture <strong>Solis</strong>) aux bornes éco et solaires éligibles (telles que les wallbox <strong>Raedian</strong>).</li>
+      </ol>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Nom de la Variable</th>
+          <th style="width: 20%;">Valeur par Défaut</th>
+          <th style="width: 55%;">Fonction Électrotechnique &amp; Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>PhaseLimitAmps</code></td>
+          <td>40.0 A</td>
+          <td>Calibre nominal du disjoncteur général par phase. Configuré dans les Paramètres du site.</td>
+        </tr>
+        <tr>
+          <td><code>SafeLimitA</code></td>
+          <td>36.0 A (0.90x)</td>
+          <td>Seuil continu de sécurité. La marge de 10 % absorbe les pointes d'appel inductives au démarrage.</td>
+        </tr>
+        <tr>
+          <td><code>FleetMaxCurrentA</code></td>
+          <td>32.0 A</td>
+          <td>Plafond global d'intensité du tableau divisionnaire VE. Limite le courant simultané total sur l'ensemble des bornes.</td>
+        </tr>
+        <tr>
+          <td><code>MinStationAmps</code></td>
+          <td>6.0 A</td>
+          <td>Courant minimal réglementaire défini par la norme <strong>IEC 61851-1</strong>. Aucune consigne inférieure à 6 A ne peut être envoyée à un VE.</td>
+        </tr>
+        <tr>
+          <td><code>PhaseMultiplier</code></td>
+          <td>1.0 ou 3.0</td>
+          <td>Facteur lié au raccordement monophasé (230 V) ou triphasé (400 V étoile) du véhicule en charge.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">2.2 Conformité IEC 61851-1 &amp; Garde-Fous de Délestage</h2>
+    <p>La norme internationale <strong>IEC 61851-1</strong> impose que le rapport cyclique PWM du signal Control Pilot (CP) corresponde au minimum à <strong>6,0 ampères</strong> (env. 10 % de rapport cyclique) pour autoriser ou maintenir la charge d'un véhicule électrique. Une borne ne peut ni légalement ni techniquement commander 2 A, 3 A ou 5 A.</p>
+
+    <div class="callout callout-warning">
+      <div class="callout-title">
+        <span>⚠️ Règle Critique : Le Seuil Minimal de 6 Ampères</span>
+      </div>
+      <div>
+        Lorsque la marge totale disponible du cluster descend sous <code>6,0 A × Nombre de Bornes Actives</code>, l'algorithme GEMS <strong>ne bride jamais une borne sous 6,0 A</strong>, ce qui mettrait en défaut le chargeur embarqué du véhicule. À la place, GEMS suspend intelligemment les emplacements de plus faible priorité (consigne pilote à 0 A) tout en maintenant 6 A ou plus sur les bornes prioritaires restantes.
+      </div>
+    </div>
+
+    <h2 class="subsection-title">2.3 Déséquilibre de Phases &amp; Défense contre les Charges Asymétriques</h2>
+    <p>Dans les parcs mixtes, certains véhicules chargent en monophasé (tirant jusqu'à 16 A ou 32 A sur la seule phase L1) tandis que d'autres chargent en triphasé (L1, L2, L3). Sans supervision par phase, la phase L1 peut rapidement entrer en surcharge et faire sauter le disjoncteur général alors que L2 et L3 restent sous-chargées.</p>
+    <p>À chaque seconde, GEMS évalue <code>MaxPhaseA = max(L1_A, L2_A, L3_A)</code> à partir du compteur intelligent. La phase la plus sollicitée dicte la marge disponible, garantissant qu'aucune phase individuelle ne franchit jamais la courbe thermique du disjoncteur.</p>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 3 ==================== -->
+    <h1 class="section-title">Section 3 : Moteur Dynamic Load Balancing (DLB) &amp; Modes</h1>
+
+    <p>GEMS propose trois stratégies d'exploitation distinctes adaptées aux garages résidentiels multi-véhicules, aux flottes d'entreprise, aux parkings visiteurs et aux bâtiments tertiaires fortement équipés en photovoltaïque.</p>
+
+    <h2 class="subsection-title">3.1 Mode 1 : Equal Share (Répartition Équitable)</h2>
+    <p><strong>Objectif :</strong> Traiter tous les véhicules connectés sur un pied d'égalité. Idéal pour les parkings publics, copropriétés ou parkings collaborateurs où chacun partage proportionnellement la puissance disponible.</p>
+    <ul>
+      <li>Calcule <code>ShareA = AvailableClusterA / ActiveStations</code>.</li>
+      <li>En présence d'un surplus solaire local, les ampères photovoltaïques sont répartis équitablement en sus de la marge réseau.</li>
+      <li><strong>Protection par Délestage Automatique :</strong> Si <code>ShareA &lt; 6,0 A</code>, GEMS calcule <code>MaxSupported = floor(AvailableClusterA / 6,0 A)</code>. Il alloue le courant disponible aux premières bornes <em>MaxSupported</em> et met proprement en veille les bornes excédentaires jusqu'au retour d'une marge suffisante.</li>
+    </ul>
+
+    <h2 class="subsection-title">3.2 Mode 2 : Priority Queue (File Prioritaire VIP)</h2>
+    <p><strong>Objectif :</strong> Garantir une recharge rapide aux véhicules critiques (fourgons de livraison, véhicules d'astreinte, direction) tandis que les véhicules secondaires récupèrent la capacité restante.</p>
+    <p>À chaque cycle, GEMS trie l'ensemble des bornes actives selon leur niveau de priorité :</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 15%;">Niveau</th>
+          <th style="width: 15%;">Poids</th>
+          <th style="width: 35%;">Comportement d'Allocation</th>
+          <th style="width: 35%;">Cas d'Usage Terrain Typique</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge-vip">VIP</span></td>
+          <td>Poids 4</td>
+          <td>Reçoit en premier son intensité nominale maximale. Jamais délesté sauf risque immédiat pour la protection générale du bâtiment.</td>
+          <td>Utilitaires en tournée tendue, médecin de garde, emplacement direction.</td>
+        </tr>
+        <tr>
+          <td><span class="badge-high">HIGH</span></td>
+          <td>Poids 3</td>
+          <td>Alimenté immédiatement après satisfaction complète des emplacements VIP.</td>
+          <td>Commerciaux itinérants, véhicules de pool réservés.</td>
+        </tr>
+        <tr>
+          <td><span class="badge-norm">NORMAL</span></td>
+          <td>Poids 2</td>
+          <td>Partage équitablement la réserve restante entre emplacements normaux. Bridé ou mis en pause lors des pointes du bâtiment.</td>
+          <td>Stationnement collaborateurs standard, bornes visiteurs, recharge résidentielle de nuit.</td>
+        </tr>
+        <tr>
+          <td><span class="badge-solar">SOLAR ONLY</span></td>
+          <td>Poids 1</td>
+          <td>0 A prélevé sur le réseau. Fonctionne strictement lorsque l'injection PV dépasse 1 400 W.</td>
+          <td>Véhicules secondaires, stationnement longue durée hôtelier ou aéroportuaire.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">3.3 Mode 3 : Solar First (Valorisation du Surplus PV)</h2>
+    <p><strong>Objectif :</strong> Maximiser l'autoconsommation de la toiture photovoltaïque et supprimer les coûts d'achat réseau.</p>
+    <ul>
+      <li>GEMS scrute en direct l'injection mesurée par le compteur P1/Modbus. Dès que l'export dépasse <strong>1 400 Watts</strong> (seuil minimal de 6 A en monophasé), le moteur DLB distribue le courant solaire excédentaire aux bornes actives.</li>
+      <li>Lorsque l'ensoleillement augmente, l'intensité grimpe instantanément. Si l'excédent retombe sous 1 400 W, les bornes non-VIP sont mises en pause.</li>
+      <li><strong>Dérogation VIP :</strong> Les emplacements affectés à la <strong>Priorité VIP</strong> conservent un accès intégral au réseau même en mode Solar First, garantissant la disponibilité des véhicules critiques quelle que soit la météo.</li>
+    </ul>
+
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/fleet_dashboard.png" alt="Cockpit Flotte GEMS avec 6 emplacements Raedian">
+      <div class="manual-screenshot-caption">Figure 3.1 : Cockpit Flotte VE GEMS affichant en temps réel la puissance multi-bornes, la marge disponible (18,5 A), les courants triphasés et les sélecteurs de priorité par emplacement.</div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 4 ==================== -->
+    <h1 class="section-title">Section 4 : Proxy OCPP Intelligent Straight-Through</h1>
+
+    <h2 class="subsection-title">4.1 Le Défi d'Intégration en Recharge Tertiaire &amp; Flotte d'Entreprise</h2>
+    <p>La majorité des flottes commerciales et véhicules de société exigent une identification par badge RFID afin d'assurer le remboursement des frais de charge au collaborateur ou la refacturation via une plateforme CPO externe. Or, ces plateformes cloud externes sont totalement aveugles aux appels de puissance locaux du bâtiment : elles ignorent l'enclenchement des pompes à chaleur ou une chute de production solaire. Si le CPO externe ordonne une charge à pleine puissance, le disjoncteur général du site déclenche.</p>
+
+    <h2 class="subsection-title">4.2 La Solution Transparente GEMS</h2>
+    <p>GEMS résout ce conflit grâce à son <strong>Proxy OCPP Intelligent Straight-Through</strong> :</p>
+    <ul>
+      <li>La borne physique pointe son URL WebSocket directement vers GEMS sur le réseau local (LAN).</li>
+      <li>GEMS établit un tunnel WebSocket amont chiffré et transparent vers la plateforme de facturation CPO externe (ex. <code>wss://cpo.thechargegrid.com/ocpp/{chargePointId}</code>).</li>
+      <li>Les demandes d'autorisation RFID, les transactions de facturation (<code>StartTransaction</code>, <code>StopTransaction</code>) et les index énergétiques sont relayés de façon transparente vers l'amont.</li>
+      <li><strong>Arbitrage Autonome des Profils DLB :</strong> Lorsque le CPO externe transmet une consigne <code>SetChargingProfile</code>, GEMS inspecte la trame à la volée. Si le CPO autorise 32 A alors que le bâtiment ne dispose plus que de 16 A de réserve, GEMS plafonne la limite à 16 A avant de la transmettre à la borne.</li>
+      <li><strong>Immunité aux Pannes Internet :</strong> En cas de coupure d'accès Internet du bâtiment ou d'indisponibilité du serveur CPO externe, GEMS poursuit sans aucune interruption l'équilibrage électrique local.</li>
+    </ul>
+
+    <div class="arch-box">┌────────────────────────────────────────────────────────────────────────────────────────┐
+│               FLUX DE DONNÉES &amp; ARBITRAGE DU PROXY OCPP STRAIGHT-THROUGH               │
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                        │
+│   [ BORNE RAEDIAN ]              [ CONTRÔLEUR EDGE GEMS ]             [ CPO EXTERNE ]  │
+│          │                                   │                              │          │
+│          │─── Authorize.req (Carte RFID) ───►│─── Relais Transparent ──────►│          │
+│          │                                   │                              │          │
+│          │◄── Authorize.conf (Accepted) ─────│◄── Relais Transparent ───────│          │
+│          │                                   │                              │          │
+│          │─── StartTransaction.req ─────────►│─── Relais Transparent ──────►│          │
+│          │                                   │                              │          │
+│          │                                   │◄── SetChargingProfile (32A) ─│          │
+│          │                                   │                              │          │
+│          │                            [ INSPECTION &amp; ARBITRAGE ]            │          │
+│          │                            Marge Locale = 14,5 A                 │          │
+│          │                            32A &gt; 14,5A -&gt; BRIDAGE À 14,5 A       │          │
+│          │                                   │                              │          │
+│          │◄── SetChargingProfile (14.5A) ────│                              │          │
+│          │                                   │                              │          │
+│          │─── MeterValues (Toutes les 10s) ─►│─── Lu pour le DLB Local      │          │
+│          │                                   │─── Transféré en Amont ──────►│          │
+│                                                                                        │
+└────────────────────────────────────────────────────────────────────────────────────────┘</div>
+
+    <h2 class="subsection-title">4.3 Configurer le Proxy Straight-Through dans GEMS</h2>
+    <p>Ouvrez <strong>Cluster de Flotte VE</strong> (<em>Flotte EV</em>) sur le tableau de bord GEMS puis cliquez sur <strong>Paramètres du cluster</strong> (<em>Cluster Settings</em>) :</p>
+    <ol>
+      <li>Activez l'option <strong>Proxy Pass-Through OCPP CSMS Amont</strong> (<em>Straight-Through OCPP Smart Forwarder</em>).</li>
+      <li>Renseignez l'<strong>URL WebSocket CPO Amont</strong>. Utilisez le jeton dynamique <code>{chargePointId}</code> que GEMS remplace automatiquement par l'identifiant unique de chaque borne :
+        <pre class="code-block">wss://cpo.thechargegrid.com/ocpp/{chargePointId}</pre>
+      </li>
+      <li>Saisissez un <strong>En-tête d'Autorisation</strong> (<em>Authorization Header</em>) facultatif si la plateforme amont l'exige :
+        <pre class="code-block">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...</pre>
+      </li>
+      <li>Cliquez sur <strong>Enregistrer</strong> (<em>Save Configuration</em>). GEMS connecte l'ensemble des bornes provisionnées à la plateforme amont en moins de 5 secondes.</li>
+    </ol>
+
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/fleet_settings_modal.png" alt="Fenêtre de configuration du cluster GEMS">
+      <div class="manual-screenshot-caption">Figure 4.1 : Fenêtre de configuration du Cluster de Flotte VE GEMS présentant le courant maximal du cluster, le mode DLB, l'auto-intégration Zero-Touch et les paramètres du proxy OCPP Straight-Through.</div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 5 ==================== -->
+    <h1 class="section-title">Section 5 : Auto-Intégration Zero-Touch &amp; Provisionnement Raedian</h1>
+
+    <h2 class="subsection-title">5.1 Fonctionnement de l'Auto-Intégration Zero-Touch</h2>
+    <p>GEMS supprime la saisie manuelle fastidieuse lors du déploiement d'un parc de bornes. Lorsque l'option <strong>Zero-Touch Auto-Onboarding</strong> est activée dans les Paramètres du cluster :</p>
+    <ol>
+      <li>L'installateur met sous tension une nouvelle borne raccordée au réseau local (LAN).</li>
+      <li>La borne est configurée pour pointer son URL de système central vers GEMS (<code>ws://&lt;IP_GEMS&gt;:8080/api/ocpp/NUM_SERIE</code>).</li>
+      <li>La borne émet une trame OCPP initiale <code>BootNotification</code> indiquant son fabricant et son modèle.</li>
+      <li>GEMS identifie le constructeur : s'il s'agit d'une borne <strong>Raedian</strong>, le modèle matériel <code>raedian_gemini</code> lui est automatiquement associé.</li>
+      <li>GEMS lui attribue automatiquement le prochain numéro d'emplacement libre (ex. <code>Bay 07</code>), configure un calibre par défaut de 16 A en mode <code>eco</code> avec priorité <code>normal</code> et démarre immédiatement la supervision en direct.</li>
+    </ol>
+
+    <h2 class="subsection-title">5.2 Assistant d'Ajout Groupé de Bornes</h2>
+    <p>Pour les chantiers comprenant de 4 à 32 bornes installées simultanément, utilisez l'assistant <strong>Ajout groupé de bornes</strong> (<em>Bulk Add Stations</em>) depuis le Cockpit Flotte VE :</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Champ du Formulaire</th>
+          <th style="width: 25%;">Réglage Recommandé</th>
+          <th style="width: 50%;">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Préfixe du Nom (<em>Station Name Prefix</em>)</td>
+          <td><code>Raedian Bay</code></td>
+          <td>Préfixe attribué à toutes les bornes créées, suivi d'une numérotation séquentielle (01, 02, 03...).</td>
+        </tr>
+        <tr>
+          <td>Modèle Matériel (<em>Hardware Template</em>)</td>
+          <td><code>Raedian (OCPP 1.6-J / Modbus)</code></td>
+          <td>Modèle de pilote recommandé prenant en charge la modulation dynamique d'intensité et la détection des phases.</td>
+        </tr>
+        <tr>
+          <td>Nombre de Bornes (<em>Number of Stations</em>)</td>
+          <td>ex. <code>8</code></td>
+          <td>Nombre d'emplacements de charge à générer et provisionner en une seule opération.</td>
+        </tr>
+        <tr>
+          <td>Port / ID Modbus de Départ</td>
+          <td><code>8887</code> (ou 1 en Modbus)</td>
+          <td>Port de base ou identifiant esclave Modbus incrémenté automatiquement pour chaque emplacement suivant.</td>
+        </tr>
+        <tr>
+          <td>Courant Max par Borne (<em>Max Station Current</em>)</td>
+          <td><code>16 A</code> (ou 32 A)</td>
+          <td>Calibre individuel du disjoncteur divisionnaire protégeant chaque borne de recharge.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">5.3 Configuration du Matériel de Référence Raedian</h2>
+    <p><strong>Raedian</strong> constitue le matériel de référence privilégié pour les clusters de recharge GEMS grâce à la robustesse de sa pile OCPP 1.6-J, la réactivité à la sous-seconde de son interface Modbus TCP et sa coexistence transparente avec les plateformes de facturation CPO externes.</p>
+
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_devices_charger_form.png" alt="Formulaire de configuration matérielle Raedian">
+      <div class="manual-screenshot-caption">Figure 5.1 : Formulaire de configuration d'une borne intelligente RAEDIAN affichant l'adresse IP, les paramètres Modbus/OCPP et les limites maximales de courant de charge.</div>
+    </div>
+
+    <h3 class="step-title">Configurer les Bornes Raedian pour se Connecter à GEMS :</h3>
+    <ol>
+      <li>Connectez un ordinateur portable ou une tablette au Wi-Fi installateur Raedian ou à son portail web d'administration.</li>
+      <li>Accédez à la rubrique <strong>Network / Central System Settings</strong>.</li>
+      <li>Réglez <strong>Protocol</strong> sur <code>OCPP 1.6-J</code>.</li>
+      <li>Définissez <strong>Server URL / WebSocket Endpoint</strong> sur l'une des deux adresses suivantes :
+        <pre class="code-block">ws://&lt;IP_LOCALE_GEMS&gt;:8887/{chargePointId}
+ws://&lt;IP_LOCALE_GEMS&gt;:8080/api/ocpp/{chargePointId}</pre>
+        <em>(Exemple : <code>ws://192.168.1.150:8887/RD-NEO-08412</code> ou <code>ws://192.168.1.150:8080/api/ocpp/RD-NEO-08412</code>)</em>
+      </li>
+      <li>Désactivez tout délestage autonome interne à la borne afin que GEMS demeure l'unique arbitre centralisé de l'allocation d'ampérage.</li>
+      <li>Redémarrez la borne. En moins de 15 secondes, l'emplacement apparaît actif dans le Cockpit Flotte GEMS.</li>
+    </ol>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 6 ==================== -->
+    <h1 class="section-title">Section 6 : Exploitation du Cockpit Flotte &amp; Commandes par Emplacement</h1>
+
+    <h2 class="subsection-title">6.1 Vue d'Ensemble du Bandeau d'Indicateurs</h2>
+    <p>Le Cockpit Flotte GEMS (accessible depuis le menu latéral <strong>Flotte EV</strong> ou à l'adresse <code>/#fleet</code>) offre aux exploitants une visibilité instantanée sur les performances électriques du parc :</p>
+    <ul>
+      <li><strong>Puissance Totale Flotte (kW) :</strong> Puissance active cumulée instantanée appelée par l'ensemble des véhicules en charge.</li>
+      <li><strong>Marge de Courant Disponible (A) :</strong> Ampères disponibles avant d'atteindre le plafond du cluster ou du disjoncteur général, accompagnés d'une jauge colorée en pourcentage.</li>
+      <li><strong>Courants par Phase (L1 / L2 / L3) :</strong> Mesure en direct de chaque phase réseau permettant de repérer immédiatement tout déséquilibre.</li>
+      <li><strong>Mode d'équilibrage DLB :</strong> Sélecteur en direct permettant de basculer instantanément entre <em>Equal Share</em>, <em>Priority First</em> et <em>Solar First</em> sans redémarrer le système.</li>
+    </ul>
+
+    <h2 class="subsection-title">6.2 Télémétrie &amp; Commandes des Cartes d'Emplacement</h2>
+    <p>Chaque borne provisionnée est représentée par une carte interactive dédiée :</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 20%;">Élément Visuel</th>
+          <th style="width: 30%;">États Possibles</th>
+          <th style="width: 50%;">Signification &amp; Action Opérateur</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Badge d'État</strong></td>
+          <td>
+            <span style="color: #16a34a; font-weight: bold;">CHARGING</span><br>
+            <span style="color: #2563eb; font-weight: bold;">AVAILABLE</span><br>
+            <span style="color: #d97706; font-weight: bold;">SUSPENDED</span><br>
+            <span style="color: #64748b; font-weight: bold;">OFFLINE</span>
+          </td>
+          <td>
+            <strong>CHARGING :</strong> Véhicule branché et en cours de charge.<br>
+            <strong>AVAILABLE :</strong> Borne prête, aucun câble raccordé.<br>
+            <strong>SUSPENDED :</strong> Charge mise en pause par le moteur DLB pour protéger le disjoncteur.<br>
+            <strong>OFFLINE :</strong> Perte de communication avec la borne.
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Puissance Active (kW)</strong></td>
+          <td>0,0 kW à 22,0 kW</td>
+          <td>Puissance active réelle délivrée au véhicule en temps réel.</td>
+        </tr>
+        <tr>
+          <td><strong>Courant &amp; Consigne</strong></td>
+          <td>ex. <code>10.7 A / 11.0 A (SP)</code></td>
+          <td>Compare le courant réellement appelé à la consigne cible calculée par le moteur DLB.</td>
+        </tr>
+        <tr>
+          <td><strong>Mode de Phase</strong></td>
+          <td><code>1-Phase</code> ou <code>3-Phase</code></td>
+          <td>Détecté automatiquement d'après les mesures en direct de tension et de courant par phase.</td>
+        </tr>
+        <tr>
+          <td><strong>Énergie du Jour</strong></td>
+          <td>kWh (Cumulatif)</td>
+          <td>Total des kilowattheures délivrés depuis minuit (00h00). Remise à zéro quotidienne automatique.</td>
+        </tr>
+        <tr>
+          <td><strong>Boutons de Priorité</strong></td>
+          <td><code>VIP</code> | <code>HIGH</code> | <code>NORM</code> | <code>SOLAR</code></td>
+          <td>Forçage instantané de la priorité de l'emplacement. Permet de promouvoir un véhicule en VIP en un seul clic.</td>
+        </tr>
+        <tr>
+          <td><strong>Boutons de Mode</strong></td>
+          <td><code>Eco</code> | <code>Solar</code> | <code>Boost</code> | <code>Off</code></td>
+          <td>
+            <strong>Eco :</strong> Suit la politique globale DLB.<br>
+            <strong>Solar :</strong> Charge strictement limitée au surplus photovoltaïque.<br>
+            <strong>Boost :</strong> Charge immédiate à la puissance maximale autorisée.<br>
+            <strong>Off :</strong> Désactive totalement la sortie de la borne.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-info">
+      <div class="callout-title">
+        <span>💡 Forçage Tactile Instantané sur Smartphone ou Tablette</span>
+      </div>
+      <div>
+        Un responsable de site peut promouvoir n'importe quel véhicule en <strong>Priorité VIP</strong> directement depuis son smartphone ou sa tablette en touchant le bouton <code>VIP</code> de la carte correspondante. GEMS recalcule l'allocation dès la seconde suivante, réduisant les autres emplacements pour affecter la puissance maximale au véhicule prioritaire.
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 7 ==================== -->
+    <h1 class="section-title">Section 7 : Mise en Service Terrain, Vérification &amp; Essai de Surcharge</h1>
+
+    <h2 class="subsection-title">7.1 Liste de Contrôle Mécanique &amp; Électrique Avant Mise Sous Tension</h2>
+    <ul>
+      <li>[ ] Vérifier l'adéquation entre le calibre de chaque disjoncteur divisionnaire et la section des conducteurs (minimum 2,5 mm² pour 16 A, 6,0 mm² pour 32 A conformément au RGIE / NF C 15-100 / IEC 60364).</li>
+      <li>[ ] Vérifier la cohérence du repérage et du panachage des phases (L1, L2, L3) entre toutes les bornes et le compteur général.</li>
+      <li>[ ] Vérifier que le câble P1 ou le compteur d'énergie Modbus RS485 est bien raccordé au Raspberry Pi GEMS et remonte les tensions et courants en direct sur le Tableau de bord.</li>
+      <li>[ ] Confirmer que la valeur <code>PhaseLimitAmps</code> dans <strong>Paramètres &rarr; Contrat d'énergie</strong> correspond exactement au calibre physique du disjoncteur général en amont.</li>
+    </ul>
+
+    <h2 class="subsection-title">7.2 Procédure de Mise en Service Pas à Pas</h2>
+    <ol>
+      <li><strong>Démarrer le Nœud Edge GEMS :</strong> Assurez-vous que le Raspberry Pi est démarré et que le voyant vert du Tableau de bord GEMS confirme le bon état du système.</li>
+      <li><strong>Activer le Cluster Flotte :</strong> Accédez à <code>/#fleet</code>, cliquez sur <strong>Paramètres du cluster</strong> et cochez l'activation du cluster. Renseignez la limite d'intensité du tableau divisionnaire VE partagé (ex. <code>50 A</code>).</li>
+      <li><strong>Mettre les Bornes Sous Tension :</strong> Alimentez la première borne Raedian. Vérifiez dans le Cockpit Flotte que l'auto-intégration Zero-Touch l'enregistre en tant que <code>Bay 01</code>. Répétez l'opération pour les bornes suivantes.</li>
+      <li><strong>Configurer le Proxy Amont (Si requis) :</strong> Si la facturation s'effectue via une plateforme CPO externe, saisissez l'URL WebSocket amont et enregistrez. Vérifiez que le badge affiche <span style="color: #0284c7; font-weight: bold;">Proxy Active</span>.</li>
+    </ol>
+
+    <h2 class="subsection-title">7.3 Essai Réel de Protection Anti-Surcharge</h2>
+    <p>Avant de quitter le chantier, l'électricien chargé de la mise en service doit impérativement réaliser un essai physique de délestage en surcharge :</p>
+
+    <div class="callout callout-danger">
+      <div class="callout-title">
+        <span>🛑 Procédure Obligatoire de Validation de Sécurité</span>
+      </div>
+      <div>
+        <ol style="margin: 4px 0 0 0; padding-left: 18px;">
+          <li>Raccordez simultanément des bancs d'essai ou des véhicules électriques sur au moins trois emplacements de charge.</li>
+          <li>Observez sur le Cockpit Flotte la montée en courant des trois emplacements (ex. 3 × 16 A = 48 A au total).</li>
+          <li>Enclenchez une charge importante dans le bâtiment (ex. appoint électrique de pompe à chaleur, four professionnel ou banc résistif) appelant environ 20 A sur la Phase 1.</li>
+          <li><strong>Vérifier la Réaction de GEMS :</strong> En 1 à 2 secondes, GEMS doit détecter la baisse de réserve et réduire automatiquement la consigne des bornes (ex. de 16 A vers 10 A ou 8 A) afin de maintenir le prélèvement global sous <code>PhaseLimitAmps * 0.90</code>.</li>
+          <li>Coupez la charge du bâtiment : GEMS doit automatiquement remonter la puissance des bornes à leur niveau nominal.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 8 ==================== -->
+    <h1 class="section-title">Section 8 : Dépannage, Diagnostics &amp; Codes de Sécurité</h1>
+
+    <h2 class="subsection-title">8.1 Matrice de Résolution par Symptôme</h2>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 25%;">Symptôme Observé</th>
+          <th style="width: 35%;">Cause Probable</th>
+          <th style="width: 40%;">Action Corrective sur Site</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>La borne reste à <strong>0 A (Suspended)</strong> bien que le câble soit branché.</td>
+          <td>La marge disponible du cluster est inférieure au seuil minimal réglementaire IEC 61851-1 de <strong>6,0 A</strong>.</td>
+          <td>Vérifiez l'appel de puissance de fond du bâtiment. Contrôlez si <code>FleetMaxCurrentA</code> est réglé trop bas ou si des emplacements VIP monopolisent toute la réserve.</td>
+        </tr>
+        <tr>
+          <td>La borne plafonne exactement à <strong>6,0 A</strong> et refuse d'augmenter.</td>
+          <td>Le mode est réglé sur <code>Solar First</code> sans injection PV suffisante, ou le chargeur embarqué du véhicule est limité au monophasé.</td>
+          <td>Basculez le mode sur <code>Eco</code> ou cliquez sur <code>Boost</code>. Vérifiez la production solaire en direct sur le Tableau de bord principal GEMS.</td>
+        </tr>
+        <tr>
+          <td>Le Proxy OCPP indique <strong>Disconnected / 0 active</strong>.</td>
+          <td>L'URL CPO amont est erronée, le pare-feu bloque le port sortant 443 ou le jeton d'authentification est invalide.</td>
+          <td>Vérifiez que l'URL amont contient bien <code>{chargePointId}</code>. Testez la connectivité réseau avec <code>curl -I https://...</code> depuis le terminal.</td>
+        </tr>
+        <tr>
+          <td>Le disjoncteur général déclenche lors de recharges simultanées.</td>
+          <td><code>PhaseLimitAmps</code> est configuré au-dessus du calibre réel du disjoncteur, ou la lecture du compteur P1 accuse un retard.</td>
+          <td>Abaissez immédiatement <code>PhaseLimitAmps</code> dans les Paramètres. Vérifiez que le câble P1 délivre bien un télégramme chaque seconde.</td>
+        </tr>
+        <tr>
+          <td>Une nouvelle borne n'est pas auto-intégrée.</td>
+          <td>L'option Zero-Touch Auto-Onboarding est désactivée, ou la capacité maximale du cluster (32 bornes) est atteinte.</td>
+          <td>Ouvrez les Paramètres du cluster, cochez <em>Zero-Touch Auto-Onboarding</em> et vérifiez le nombre total de bornes enregistrées.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">8.2 Inspection Diagnostique en Temps Réel via le Journal GEMS</h2>
+    <p>Tous les arbitrages DLB, bridages d'intensité et échanges proxy sont horodatés à la microseconde dans GEMS. Les techniciens peuvent consulter ces flux en direct dans l'interface sous l'onglet <strong>Journal</strong> (<em>Logger</em>) ou depuis le terminal système :</p>
+
+    <pre class="code-block">
+# Consulter en direct les journaux Flotte &amp; DLB GEMS via systemd :
+sudo journalctl -u gems.service -f | grep -E "(Fleet|DLB|OCPP|Proxy)"
+
+# Exemple de sortie lors d'un bridage Dynamic Load Balancing :
+[INFO] ⚡ Fleet Auto-Onboarding: Registered new station 'Raedian Bay 04' (Bay 4, CPID: RD-NEO-08412)
+[INFO] OCPP Straight-Through Proxy CP RD-NEO-08412 connected to external CPO (subprotocol: ocpp1.6)
+[INFO] DLB Safety Arbitration: Capping external CPO limit (32.0 A) to local fuse headroom (13.5 A)
+[INFO] Cluster Setpoints Dispatched: Bay 01=16.0A, Bay 02=16.0A, Bay 03=11.0A, Bay 04=13.5A
+    </pre>
+
+    <div class="callout callout-tip">
+      <div class="callout-title">
+        <span>📞 Support Technique &amp; Mises à Jour Logicielles</span>
+      </div>
+      <div>
+        Pour toute assistance technique, modèles matériels ou mises à jour logicielles, rendez-vous sur la console centrale de gestion de flotte <strong>ems.newenergygrid.com</strong> ou consultez le portail officiel de documentation.
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

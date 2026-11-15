@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Référence de Configuration &amp; Paramètres - GEMS</title>
+  <meta name="description" content="Référence complète de configuration pour GEMS : stratégies d'optimisation, écrêtage capacitaire flamand, zéro-export Pays-Bas, arbitrage batterie EPEX, contrats d'énergie et relais intelligents.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Ouvrir ou fermer le menu de navigation">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Configuration</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Rechercher dans la documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Rechercher des paramètres, stratégies, tarifs...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="installation.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+        <span>Installation</span>
+      </a>
+      <a href="user-manual.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+        <span>Guide Utilisateur</span>
+      </a>
+      <nav class="lang-switcher no-print" aria-label="Choisir la langue de la documentation">
+        <a href="../configuration.html" hreflang="en" title="English">EN</a>
+        <a href="../nl/configuration.html" hreflang="nl" title="Nederlands">NL</a>
+        <a href="configuration.html" class="active" hreflang="fr" title="Français">FR</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Changer le thème de couleur">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Référence de configuration</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="configuration.html#strategy-modes" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>Stratégies d'optimisation</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#flanders-peak-shaving" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Écrêtage Capacitaire Flandre</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#active-curtailment" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Zéro-Export &amp; Certificats Verts</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#battery-arbitrage" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-battery"></use></svg>
+              <span>Arbitrage EPEX &amp; Batterie</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#energy-contracts" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>Contrats &amp; Tarifs Fournisseurs</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#phase-balancing" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>Équilibrage de Phases &amp; Sécurité</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#relay-automation" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-relay"></use></svg>
+              <span>Relais &amp; Règles SG-Ready</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#alerts-reporting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wifi"></use></svg>
+              <span>Alertes &amp; Rapports</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Autres manuels</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Portail de documentation</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel d'installation</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Guide d'utilisation</span>
+            </a>
+          </li>
+          <li>
+            <a href="cloud-server.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-cloud"></use></svg>
+              <span>Connexion Serveur Cloud</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NOUVEAU</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Modèles d'appareils</span>
+              <span class="badge">170</span>
+            </a>
+          </li>
+          <li>
+            <a href="p1-meter.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>Compteur P1 &amp; Câble DIY</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">NOUVEAU</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>Dépannage &amp; FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Manuels PDF Officiels</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-installer-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Installateur (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Utilisateur (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-server-connection-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Serveur (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-p1-meter-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Câble Compteur P1 (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Fil d'Ariane">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Référence de configuration</span>
+        </nav>
+
+        <h1>Manuel de Référence de Configuration &amp; Paramètres</h1>
+        <p class="hero-lead">
+          Ce manuel présente de manière exhaustive chaque paramètre de configuration disponible dans GEMS. Tous les réglages agissent directement sur le moteur de pilotage local et se configurent exclusivement depuis l'interface web.
+        </p>
+
+        <!-- Site Optimization Strategies -->
+        <h2 id="strategy-modes">1. Stratégies d'Optimisation du Site (`strategy_mode`)</h2>
+        <p>
+          Le moteur de stratégie exécute un cycle d'évaluation chaque seconde afin d'orchestrer les onduleurs solaires, le stockage par batterie et les bornes de recharge VE selon votre objectif prioritaire.
+        </p>
+
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_strategy.png" alt="Onglet Paramètres de Stratégie et Écrêtage" loading="lazy">
+            <div class="doc-screenshot-caption">Onglet Stratégie : Paramètres d'optimisation, marge de sécurité d'écrêtage, plages horaires de charge VE dynamique et limites par phase.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_strategy_modes.png" alt="Sélection des Modes de Stratégie" loading="lazy">
+            <div class="doc-screenshot-caption">Modes de stratégie : Basculez entre Tarif Capacitaire Flandre, Autoconsommation Éco, Zéro-Export Pays-Bas et Arbitrage EPEX.</div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Mode</th>
+                <th>Objectif visé</th>
+                <th>Action principale de régulation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><code>eco</code></strong></td>
+                <td>Maximiser l'autoconsommation solaire</td>
+                <td>Dirige le surplus solaire en priorité vers la batterie domestique, puis vers les bornes de recharge VE, et enfin vers les relais thermiques d'eau chaude. Ne bride pas l'import/export réseau hors règles d'arbitrage actives.</td>
+              </tr>
+              <tr>
+                <td><strong><code>flanders</code></strong></td>
+                <td>Écrêtage du Tarif Capacitaire (Capaciteitstarief)</td>
+                <td>Surveille la puissance moyenne de prélèvement sur chaque quart d'heure. Module dynamiquement les bornes VE et décharge la batterie pour plafonner les pointes mensuelles facturées.</td>
+              </tr>
+              <tr>
+                <td><strong><code>netherlands</code></strong></td>
+                <td>Zéro-Export &amp; Compensation Intelligente</td>
+                <td>Évite les pénalités d'injection sur le réseau. Absorbe la production solaire dans les batteries/bornes VE ou bride activement la puissance des onduleurs lorsque le tarif d'injection devient négatif.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Flanders Peak Shaving -->
+        <h2 id="flanders-peak-shaving">2. Écrêtage Capacitaire Flandre &amp; Suivi Mensuel (`flanders`)</h2>
+        <p>
+          En Flandre (Belgique), le tarif capacitaire (<em>capaciteitstarief</em>) facture les consommateurs en fonction de leur pointe mensuelle maximale de puissance moyenne prélevée sur 15 minutes (avec un plancher minimal de 2,5 kW).
+        </p>
+
+        <h3>Gestion Prédictive du Budget Quart-Horaire</h3>
+        <p>
+          Plutôt que d'attendre le dépassement d'une pointe, GEMS suit en continu l'énergie importée depuis le début de chaque fenêtre d'horloge de 15 minutes et ajuste de manière proactive les consignes des bornes VE, des relais intelligents et de décharge batterie sur les minutes restantes du quart d'heure, afin que la moyenne reste sous votre plafond moins la marge de sécurité.
+        </p>
+
+        <div class="alert alert-important">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+            <span>Plafond Adaptatif Intelligent en Mode Flandre</span>
+          </div>
+          <p>
+            GEMS enregistre dans SQLite la véritable pointe quart-horaire maximale du mois civil en cours (<code>/api/peaks/monthly</code>). Si une pointe inévitable survient (par ex. 4,2 kW causés par plusieurs appareils électroménagers simultanés), GEMS relève automatiquement son plafond opérationnel à 4,2 kW jusqu'à la fin du mois, accélérant la recharge VE et l'autoconsommation sans augmenter d'un centime votre facture capacitaire.
+          </p>
+        </div>
+
+        <h3>Paramètres clés d'écrêtage Flandre</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Clé de paramètre</th>
+                <th>Type</th>
+                <th>Défaut</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>capacity_peak_limit_kw</code></td>
+                <td>Float (kW)</td>
+                <td><code>2.50</code></td>
+                <td>Plafond maximal autorisé pour la puissance moyenne d'importation sur 15 minutes.</td>
+              </tr>
+              <tr>
+                <td><code>peak_shaving_buffer_w</code></td>
+                <td>Integer (W)</td>
+                <td><code>200</code></td>
+                <td>Marge de sécurité retranchée du plafond cible pour absorber les appels de puissance brusques.</td>
+              </tr>
+              <tr>
+                <td><code>peak_shaving_rampup_w</code></td>
+                <td>Integer (W)</td>
+                <td><code>500</code></td>
+                <td>Limite la vitesse de remontée en puissance des charges modulées (ex. bornes VE) lorsque la charge domestique diminue.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Active Inverter Curtailment & GSC Protection -->
+        <h2 id="active-curtailment">3. Écrêtement Actif d'Onduleur &amp; Protection des Certificats Verts (GSC)</h2>
+        <p>
+          Lors des épisodes de fort excédent renouvelable en Europe, les prix horaires Day-Ahead sur la bourse EPEX Spot peuvent devenir fortement négatifs. Pour protéger les particuliers contre les pénalités d'injection tout en garantissant que les installations subventionnées conservent l'intégralité de leurs certificats verts, GEMS intègre un <strong>écrêtement intelligent par seuil de rentabilité</strong>.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/settings_strategy_modes.png" alt="Modes de Stratégie GEMS & Préréglages Certificats Verts" loading="lazy">
+          <div class="doc-screenshot-caption">Paramètres de stratégie &mdash; Écrêtage capacitaire, écrêtement actif des onduleurs et préréglages de valeur GSC avec calcul du seuil effectif en temps réel.</div>
+        </div>
+
+        <h3>Paramètres Régionaux &amp; d'Écrêtement Actif</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Clé de paramètre</th>
+                <th>Type</th>
+                <th>Défaut</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>region</code></td>
+                <td>String</td>
+                <td><code>flanders</code></td>
+                <td>Région réglementaire cible (<code>flanders</code>, <code>brussels</code>, <code>wallonia</code> ou <code>netherlands</code>).</td>
+              </tr>
+              <tr>
+                <td><code>allowed_grid_export_kw</code></td>
+                <td>Float (kW)</td>
+                <td><code>0.0</code></td>
+                <td>Limite stricte d'injection continue vers le réseau. Réglez sur <code>0.0</code> pour un zéro-export intégral.</td>
+              </tr>
+              <tr>
+                <td><code>active_inverter_curtailment</code></td>
+                <td>Boolean</td>
+                <td><code>true</code></td>
+                <td>Autorise le moteur Go à envoyer des consignes Modbus de limitation de puissance active (ex. SunSpec <code>WMaxLimPct</code>) aux onduleurs lorsque l'injection devient déficitaire.</td>
+              </tr>
+              <tr>
+                <td><code>min_profitable_export_price</code></td>
+                <td>Float (&euro;/kWh)</td>
+                <td><code>0.00</code></td>
+                <td>Seuil de prix d'injection de base en dessous duquel l'exportation vers le réseau génère une perte financière.</td>
+              </tr>
+              <tr>
+                <td><code>gsc_value_eur_mwh</code></td>
+                <td>Float (&euro;/MWh)</td>
+                <td><code>0.0</code></td>
+                <td>Valeur des certificats verts (Groenestroomcertificaten / CV) en &euro; par 1 000 kWh (ex. 250 &euro;/certificat). Décale d'autant le seuil d'écrêtement.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert alert-tip">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-zap"></use></svg>
+            <span>Préréglages de Protection de la Valeur des Certificats Verts (GSC)</span>
+          </div>
+          <p>
+            Les propriétaires disposant d'installations photovoltaïques mises en service avant 2021 en Flandre bénéficient de certificats verts garantis. Si une installation perçoit <strong>250 &euro;/certificat (0,250 &euro;/kWh)</strong>, la production solaire reste rentable même à des prix spot négatifs descendant jusqu'à <strong>-250,0 &euro;/MWh (-0,250 &euro;/kWh)</strong> !
+          </p>
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.75rem 1rem; font-family: monospace; font-size: 0.85rem; margin: 0.5rem 0;">
+            Seuil Effectif d'Écrêtement = min_profitable_export_price - (gsc_value_eur_mwh / 1000.0)<br>
+            Exemple : 0,00 &euro; - (250 &euro; / 1000) = -0,250 &euro;/kWh (-250,0 &euro;/MWh)
+          </div>
+          <p style="margin-bottom: 0;">
+            GEMS propose des boutons de sélection directe pour tous les paliers standards : <strong>0 &euro;, 90 &euro;, 210 &euro;, 230 &euro;, 250 &euro;, 270 &euro;, 330 &euro;, 350 &euro; et 450 &euro;/MWh</strong>. L'écrêtement ne se déclenche QUE si la pénalité de marché dépasse le revenu de vos certificats.
+          </p>
+        </div>
+
+        <!-- Dynamic Pricing & Battery Arbitrage -->
+        <h2 id="battery-arbitrage">4. Arbitrage Tarifaire Day-Ahead EPEX Spot</h2>
+        <p>
+          GEMS récupère automatiquement chaque jour à 14h00 CET les prix horaires du marché Day-Ahead pour l'ensemble des zones d'enchères européennes (EPEX Spot Belgique, Pays-Bas, Allemagne, France et Luxembourg).
+        </p>
+
+        <h3>Stratégies de Charge Batterie depuis le Réseau (`battery_grid_charge_strategy`)</h3>
+        <ul>
+          <li><strong><code>price_only</code> :</strong> Charge depuis le réseau dès que le prix horaire descend sous <code>force_charge_below_euro</code> ; décharge lorsque le prix dépasse <code>force_discharge_above_euro</code>.</li>
+          <li><strong><code>super_dal_only</code> :</strong> Restreint la charge réseau strictement aux plages super-heures creuses avantageuses définies par le fournisseur.</li>
+          <li><strong><code>hybrid</code> :</strong> Combine le seuil de prix spot avec les fenêtres heures creuses contractuelles.</li>
+          <li><strong><code>dynamic_forecast</code> :</strong> Le mode le plus avancé. Calcule une planification optimale sur 24 heures en croisant les prix horaires EPEX, les prévisions d'ensoleillement Open-Meteo et le talon de consommation du foyer (<code>home_base_load_w</code>).</li>
+          <li><strong><code>winter_fallback_enabled</code> (Repli Hivernal / Faible Ensoleillement) :</strong> Lorsque l'état de charge (SoC) descend à ou sous <code>winter_fallback_trigger_soc</code> (par défaut <code>25 %</code>) en hiver ou par temps couvert et que la prévision solaire sur 24h est insuffisante, GEMS recharge automatiquement la batterie pendant les <code>winter_fallback_cheapest_hours</code> (par défaut <code>2</code> heures) les moins chères de la journée jusqu'à <code>winter_fallback_target_soc</code> (par défaut <code>65 %</code>).</li>
+        </ul>
+
+        <div class="alert alert-important">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-battery"></use></svg>
+            <span>Modélisation du Coût d'Usure Cyclique de la Batterie</span>
+          </div>
+          <p>
+            Afin d'éviter toute dégradation prématurée des cellules LiFePO4, GEMS intègre le coût d'usure configuré par kWh cyclé (ex. 0,05 &euro; / kWh) dans le calcul d'écart tarifaire. Un cycle d'arbitrage n'est exécuté <em>que</em> si l'écart de prix entre l'heure de charge et l'heure de décharge couvre le rendement aller-retour ainsi que le coût d'usure de la batterie.
+          </p>
+        </div>
+
+        <!-- Contracts & Provider Tariffs -->
+        <h2 id="energy-contracts">5. Contrats d'Énergie &amp; Formules Fournisseurs</h2>
+        <p>
+          Pour calculer avec exactitude vos coûts nets d'électricité en temps réel, GEMS applique la formule tarifaire exacte de votre fournisseur au prix spot EPEX dynamique.
+        </p>
+
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_contract.png" alt="Onglet Contrat d'énergie et Visualiseur Tarifaire 24h" loading="lazy">
+            <div class="doc-screenshot-caption">Onglet Contrat d'énergie : Préréglages des fournisseurs dynamiques belges et néerlandais (TotalEnergies, Mega, Bolt, Engie, Luminus, Eneco, Vattenfall), GRD et formules contractuelles.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_contract_tariffs.png" alt="Courbe Tarifaire Interactive sur 24 heures" loading="lazy">
+            <div class="doc-screenshot-caption">Visualiseur Tarifaire 24h : Décomposition interactive affichant le prix spot EPEX de gros, la marge fournisseur, les coûts réseau/taxes, la TVA et la courbe d'injection.</div>
+          </div>
+        </div>
+
+        <h3>Profils Fournisseurs Régionaux Pris en Charge</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Profil Fournisseur</th>
+                <th>Région</th>
+                <th>Paramètres de formule configurés</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>TotalEnergies Pixel Dynamic</strong></td>
+                <td>Belgique</td>
+                <td>Répercussion EPEX Spot BE + coefficient (<code>totalenergies_multiplier</code>) + marge (<code>totalenergies_markup</code>) + redevance fixe annuelle (<code>totalenergies_base_fee</code>).</td>
+              </tr>
+              <tr>
+                <td><strong>Mega Smart / Cosy Dynamic</strong></td>
+                <td>Belgique</td>
+                <td>EPEX Spot BE + coefficient (<code>mega_multiplier</code>) + marge commerciale (<code>mega_markup</code>) + abonnement annuel (<code>mega_base_fee</code>).</td>
+              </tr>
+              <tr>
+                <td><strong>Bolt Dynamisch</strong></td>
+                <td>Belgique</td>
+                <td>Électricité verte locale avec répercussion directe EPEX Spot BE et marge plateforme transparente.</td>
+              </tr>
+              <tr>
+                <td><strong>Engie Dynamic / Flextime</strong></td>
+                <td>Belgique</td>
+                <td>Répercussion directe EPEX Day-Ahead ou tarification horosaisonnière (heures pleines, creuses, super-creuses).</td>
+              </tr>
+              <tr>
+                <td><strong>Vattenfall Nederland — FlexPrijs</strong></td>
+                <td>Pays-Bas</td>
+                <td>EPEX Spot NL (<code>vattenfall_multiplier = 1.00</code>) + marge d'approvisionnement (<code>vattenfall_markup = 0.0211 €/kWh</code>) + abonnement annuel (<code>vattenfall_base_fee = 95.40 €/an</code>) + taxe énergétique NL (<code>0.1316 €/kWh</code>) + TVA 21 %.</td>
+              </tr>
+              <tr>
+                <td><strong>Luminus / Eneco / Frank / Ecopower</strong></td>
+                <td>BE / NL</td>
+                <td>Multiplicateurs linéaires personnalisables, retenues sur injection et abonnements fixes mensuels.</td>
+              </tr>
+              <tr>
+                <td><strong>Bi-horaire Belge (Jour / Nuit)</strong></td>
+                <td>Belgique</td>
+                <td>Grilles tarifaires résidentielles classiques jour/nuit associées à la TVA à 6 % et aux tarifs GRD régionaux.</td>
+              </tr>
+              <tr>
+                <td><strong>Enovos Dynamic</strong></td>
+                <td>Luxembourg</td>
+                <td><code>enovos_markup</code>, <code>enovos_multiplier</code>, <code>enovos_inject_multiplier</code> et frais de réseau Creos.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Préréglages des Gestionnaires de Réseau de Distribution (GRD)</h3>
+        <p>
+          GEMS propose des préréglages en un clic pour les tarifs régionaux de distribution et de transport par kWh :
+        </p>
+        <ul>
+          <li><strong>Fluvius (Flandre) :</strong> 0,0204 &euro; / kWh + TVA 6 %.</li>
+          <li><strong>ORES (Wallonie) :</strong> 0,0950 &euro; / kWh + TVA 6 %.</li>
+          <li><strong>RESA (Liège) :</strong> 0,0920 &euro; / kWh + TVA 6 %.</li>
+          <li><strong>SIBELGA (Bruxelles) :</strong> 0,0820 &euro; / kWh + TVA 6 %.</li>
+        </ul>
+
+        <!-- Phase Balancing & Safety -->
+        <h2 id="phase-balancing">6. Équilibrage Triphasé par Phase &amp; Protection du Disjoncteur</h2>
+        <p>
+          Pour éviter toute disjonction de l'alimentation principale du bâtiment, GEMS surveille en permanence le courant de chaque phase ($L_1, L_2, L_3$) via le compteur communicant P1 ou un analyseur Modbus triphasé.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Clé de paramètre</th>
+                <th>Type</th>
+                <th>Défaut</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>grid_nominal_current_a</code></td>
+                <td>Integer (A)</td>
+                <td><code>32</code></td>
+                <td>Calibre nominal du disjoncteur principal (ex. 25A, 32A, 40A, 63A). Réduit immédiatement la charge des bornes VE si l'appel total approche la limite.</td>
+              </tr>
+              <tr>
+                <td><code>phase_limit_amps</code></td>
+                <td>Float (A)</td>
+                <td><code>25.0</code></td>
+                <td>Courant maximal autorisé sur une phase individuelle ($L_1, L_2 \text{ ou } L_3$). Évite le déclenchement lié à un fort déséquilibre entre phases.</td>
+              </tr>
+              <tr>
+                <td><code>grid_system</code></td>
+                <td>Enum</td>
+                <td><code>three_phase_400v</code></td>
+                <td><code>single_phase_230v</code> (monophasé), <code>three_phase_400v</code> (triphasé 400V+N) ou <code>three_phase_230v</code> (sans neutre / réseau belge 3x230V triangle).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Relays & SG-Ready Rules -->
+        <h2 id="relay-automation">7. Relais Intelligents &amp; Automatisation Pompe à Chaleur SG-Ready</h2>
+        <p>
+          Créez des règles de commutation autonome pour les modules Shelly, contacteurs Modbus et ballons d'eau chaude sanitaire dans <strong>Paramètres &rarr; Relais &amp; Commutateurs</strong>.
+        </p>
+
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_relays.png" alt="Onglet Relais Intelligents et Règles SG-Ready" loading="lazy">
+            <div class="doc-screenshot-caption">Onglet Relais &amp; Commutateurs : Vue d'ensemble des relais connectés, prises commandées et contacteurs configurés.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_relays_rules.png" alt="Éditeur de Règles d'Automatisation des Relais" loading="lazy">
+            <div class="doc-screenshot-caption">Règles d'automatisation : Seuils de déclenchement, temporisations anti-court-cycle et correspondances thermiques SG-Ready pour pompes à chaleur.</div>
+          </div>
+        </div>
+
+        <h3>Paramètres des règles</h3>
+        <ul>
+          <li><strong>Type de condition :</strong>
+            <ul>
+              <li><code>solar_export_exceeds</code> : Active le relais lorsque l'injection solaire dépasse le seuil défini (ex. &gt; 1500 W).</li>
+              <li><code>grid_import_below</code> : Active le relais lorsque le prélèvement réseau reste inférieur au seuil (ex. &lt; 200 W).</li>
+              <li><code>price_below</code> : Active le relais lorsque le prix spot Day-Ahead descend sous le seuil choisi (ex. &lt; 0,05 &euro; / kWh).</li>
+            </ul>
+          </li>
+          <li><strong><code>min_run_time_seconds</code> (Défaut : 300s) :</strong> Maintient le relais enclenché pendant au moins 5 minutes afin d'éviter les courts-cycles néfastes pour les compresseurs et contacteurs.</li>
+          <li><strong><code>min_off_time_seconds</code> (Défaut : 300s) :</strong> Impose un temps de repos minimal de 5 minutes avant tout réenclenchement.</li>
+        </ul>
+
+        <h3>Matrice des 4 États Pompe à Chaleur SG-Ready</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>État SG-Ready</th>
+                <th>Relais 1 (K1)</th>
+                <th>Relais 2 (K2)</th>
+                <th>Comportement de la Pompe à Chaleur</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>État 1 : Verrouillage (EVU-Sperre)</strong></td>
+                <td>Fermé</td>
+                <td>Ouvert</td>
+                <td>Arrêt forcé pendant les heures de pointe tarifaire extrême (max. 2 heures consécutives).</td>
+              </tr>
+              <tr>
+                <td><strong>État 2 : Fonctionnement normal</strong></td>
+                <td>Ouvert</td>
+                <td>Ouvert</td>
+                <td>Régulation standard selon la loi d'eau interne et le thermostat d'ambiance.</td>
+              </tr>
+              <tr>
+                <td><strong>État 3 : Boost Solaire</strong></td>
+                <td>Ouvert</td>
+                <td>Fermé</td>
+                <td>Relève les consignes de chauffage et d'eau chaude sanitaire pour stocker le surplus PV sous forme thermique.</td>
+              </tr>
+              <tr>
+                <td><strong>État 4 : Stockage thermique forcé</strong></td>
+                <td>Fermé</td>
+                <td>Fermé</td>
+                <td>Force la puissance maximale du compresseur pendant les heures à prix spot négatif.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Alerts & Reporting -->
+        <h2 id="alerts-reporting">8. Alertes Webhook, Rapports E-mail &amp; Journaux de Diagnostic</h2>
+
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_notifications.png" alt="Onglet Alertes Webhook, E-mail et Journalisation" loading="lazy">
+            <div class="doc-screenshot-caption">Onglet Notifications : Alertes temps réel par webhook Discord/Slack/Ntfy, serveur SMTP, envoi hebdomadaire de rapports PDF et niveau de détail du journal.</div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Catégorie</th>
+                <th>Clé de paramètre</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Alertes</strong></td>
+                <td><code>alert_webhook_url</code></td>
+                <td>URL HTTP POST recevant les alertes automatiques : pointe quart-horaire &ge; 90 %, 3 échecs consécutifs de lecture d'un équipement ou échec de récupération tarifaire.</td>
+              </tr>
+              <tr>
+                <td><strong>Rapports e-mail</strong></td>
+                <td><code>weekly_report_enabled</code></td>
+                <td>Active la génération et l'envoi automatiques du rapport énergétique hebdomadaire au format PDF.</td>
+              </tr>
+              <tr>
+                <td><strong>Serveur SMTP</strong></td>
+                <td><code>smtp_host</code>, <code>smtp_port</code>, <code>smtp_username</code>, <code>smtp_password</code>, <code>smtp_sender</code>, <code>report_email</code></td>
+                <td>Identifiants du serveur SMTP sortant utilisé pour l'expédition des rapports PDF.</td>
+              </tr>
+              <tr>
+                <td><strong>Mises à jour OTA</strong></td>
+                <td><code>github_token</code></td>
+                <td>Jeton d'accès personnel optionnel permettant d'interroger l'API GitHub Releases sans limitation de débit par IP.</td>
+              </tr>
+              <tr>
+                <td><strong>Journaux système</strong></td>
+                <td><code>log_level</code></td>
+                <td>Niveau de verbosité des journaux (<code>INFO</code> en exploitation normale, <code>DEBUG</code> pour un diagnostic approfondi).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Central Cloud & GRID-EMS-SERVER -->
+        <h2 id="cloud-server">9. Cloud Central &amp; Intégration GRID-EMS-SERVER</h2>
+        <p>
+          Configurez la télémétrie sortante et la synchronisation de flotte vers <strong>GRID-EMS-SERVER</strong> dans <strong>Paramètres &rarr; Serveur Cloud</strong>. Pour les spécifications détaillées du protocole et des schémas JSON, consultez le <a href="cloud-server.html">Guide de Connexion GRID-EMS-SERVER</a>.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/settings_cloud.png" alt="Onglet Paramètres Serveur Cloud" loading="lazy">
+          <div class="doc-screenshot-caption">Onglet Serveur Cloud : État d'appairage en direct, latence aller-retour, saisie du jeton d'appairage et historique d'audit des commandes cloud reçues.</div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Clé de paramètre</th>
+                <th>Type</th>
+                <th>Défaut</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>cloud_enabled</code></td>
+                <td>Boolean</td>
+                <td><code>false</code></td>
+                <td>Active ou désactive la synchronisation télémétrique sortante avec GRID-EMS-SERVER.</td>
+              </tr>
+              <tr>
+                <td><code>cloud_server_url</code></td>
+                <td>String (URL)</td>
+                <td><code>https://ems.newenergygrid.com</code></td>
+                <td>URL du serveur cloud central. Peut pointer vers une instance dédiée ou auto-hébergée.</td>
+              </tr>
+              <tr>
+                <td><code>cloud_pairing_token</code></td>
+                <td>String</td>
+                <td>Vide</td>
+                <td>Jeton d'appairage matériel à usage unique généré depuis le portail central de gestion de flotte.</td>
+              </tr>
+              <tr>
+                <td><code>cloud_serial_number</code></td>
+                <td>String</td>
+                <td>Auto-détecté</td>
+                <td>Numéro de série matériel unique de l'unité edge (format : <code>TCG-EMS-&lt;asset_tag&gt;</code>, ex. <code>TCG-EMS-83daf13d05f1adad</code>).</td>
+              </tr>
+              <tr>
+                <td><code>cloud_sync_interval_sec</code></td>
+                <td>Integer (s)</td>
+                <td><code>5</code></td>
+                <td>Cadence d'envoi de la télémétrie (de 2 à 60 secondes).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Navigation Footer -->
+        <div class="page-nav-footer">
+          <a href="installation.html" class="page-nav-card">
+            <span class="page-nav-label">Précédent</span>
+            <span class="page-nav-title">&larr; Manuel d'installation</span>
+          </a>
+          <a href="cloud-server.html" class="page-nav-card" style="text-align:right;">
+            <span class="page-nav-label">Guide suivant</span>
+            <span class="page-nav-title">Connexion Serveur Cloud &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">Sur cette page</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#strategy-modes" class="toc-link">Stratégies d'optimisation</a></li>
+        <li class="toc-item"><a href="#flanders-peak-shaving" class="toc-link">Écrêtage Capacitaire Flandre</a></li>
+        <li class="toc-item"><a href="#active-curtailment" class="toc-link">Zéro-Export &amp; Certificats Verts</a></li>
+        <li class="toc-item"><a href="#battery-arbitrage" class="toc-link">Arbitrage Spot EPEX</a></li>
+        <li class="toc-item"><a href="#energy-contracts" class="toc-link">Contrats &amp; Tarifs</a></li>
+        <li class="toc-item"><a href="#phase-balancing" class="toc-link">Équilibrage de Phases</a></li>
+        <li class="toc-item"><a href="#relay-automation" class="toc-link">Relais &amp; SG-Ready</a></li>
+        <li class="toc-item"><a href="#alerts-reporting" class="toc-link">Alertes &amp; Rapports</a></li>
+        <li class="toc-item"><a href="#cloud-server" class="toc-link">Intégration Cloud</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Rechercher dans la documentation, les paramètres, les guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Fermer la recherche">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Utilisez <kbd class="kbd-shortcut">↑</kbd> <kbd class="kbd-shortcut">↓</kbd> pour naviguer</span>
+        <span><kbd class="kbd-shortcut">Entrée</kbd> pour sélectionner</span>
+        <span><kbd class="kbd-shortcut">Échap</kbd> pour fermer</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Documentation GEMS (New Energy Grid) &bull; Conçu avec Go, SQLite, Vue 3 et Tailwind CSS &bull; Optimisé pour Raspberry Pi</p>
+  </footer>
+
+  <script src="../js/search-index-fr.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

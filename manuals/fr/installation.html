@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manuel d'Installation &amp; Matériel - GEMS</title>
+  <meta name="description" content="Guide complet d'installation de GEMS (New Energy Grid) sur Raspberry Pi : image OS personnalisée, paquet Debian, montage SSD NVMe, Cockpit et câblage RS485/P1.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Ouvrir ou fermer le menu de navigation">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Installation</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Rechercher dans la documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Rechercher installation, câblage, Cockpit...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuration</span>
+      </a>
+      <a href="user-manual.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+        <span>Guide Utilisateur</span>
+      </a>
+      <nav class="lang-switcher no-print" aria-label="Choisir la langue de la documentation">
+        <a href="../installation.html" hreflang="en" title="English">EN</a>
+        <a href="../nl/installation.html" hreflang="nl" title="Nederlands">NL</a>
+        <a href="installation.html" class="active" hreflang="fr" title="Français">FR</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Changer le thème de couleur">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Prise en main</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Portail de documentation</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Manuel d'installation</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="installation.html#hardware-reference" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>Matériel de référence &amp; BOM</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#nvme-setup" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>SSD NVMe &amp; Bootloader EEPROM</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#custom-os-image" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Image OS préconfigurée (Option A)</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#deb-package" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>Paquet Debian (Option B)</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#cockpit" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-terminal"></use></svg>
+              <span>Administration Cockpit</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#rpi-connect" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wifi"></use></svg>
+              <span>Raspberry Pi Connect</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#rs485-wiring" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>Câblage RS485 &amp; Modbus</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html#p1-wiring" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Brochage RJ12 Compteur P1</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Autres manuels</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="configuration.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>Référence de configuration</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Guide d'utilisation</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Modèles d'appareils</span>
+              <span class="badge">170</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>Dépannage &amp; FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Manuels PDF Officiels</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-installer-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Installateur (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Utilisateur (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Fil d'Ariane">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Manuel d'installation</span>
+        </nav>
+
+        <h1>Manuel d'Installation &amp; Câblage Matériel</h1>
+        <p class="hero-lead">
+          Instructions complètes de déploiement de GEMS sur matériel Raspberry Pi ARM64 : images système préconfigurées, installation par paquet Debian, amorçage sur SSD NVMe et câblage physique des bus de communication.
+        </p>
+
+        <!-- PDF Manual Download Banner -->
+        <div class="alert alert-tip" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0;">
+          <div>
+            <div class="alert-header">
+              <svg width="18" height="18"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Télécharger le Manuel Installateur Imprimable Officiel (PDF)</span>
+            </div>
+            <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem;">Besoin d'un document PDF imprimable pour le tableau électrique ou la remise sur chantier ? Téléchargez le <strong>Manuel d'Installation &amp; de Mise en Service GEMS (PDF)</strong> avec schémas de câblage couleur, intégration pas à pas et liste de contrôle.</p>
+          </div>
+          <a href="gems-installer-manual-fr.pdf" target="_blank" class="tab-btn active" style="background: #0284c7; color: #fff; text-decoration: none; padding: 0.45rem 0.9rem; font-size: 0.85rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap;">
+            <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+            <span>Manuel Installateur PDF (FR)</span>
+          </a>
+        </div>
+
+        <!-- Reference Hardware BOM -->
+        <h2 id="hardware-reference">Matériel de Référence Officiellement Validé</h2>
+        <p>
+          GEMS est optimisé et qualifié sur l'ensemble matériel de référence suivant :
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Composant</th>
+                <th>Spécification matérielle</th>
+                <th>Détails techniques</th>
+                <th>Conformité &amp; Statut</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Contrôleur système &amp; Base</strong></td>
+                <td><strong>Matériel de référence Raspberry Pi 5</strong></td>
+                <td>
+                  • Raspberry Pi 5 (4 Go RAM, Quad-Core Cortex-A76 @ 2,4 GHz)<br>
+                  • Alimentation officielle Raspberry Pi 27W USB-C PD<br>
+                  • Boîtier métallique en aluminium avec refroidisseur actif<br>
+                  • Carte d'extension M.2 NVMe PCIe &amp; nappe FPC 16 broches<br>
+                  • Carte MicroSD (pour la programmation initiale du bootloader)
+                </td>
+                <td>
+                  <span class="badge-pill badge-green">Plateforme de Référence</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Stockage NVMe haute vitesse</strong></td>
+                <td><strong>SSD M.2 NVMe 128 Go+</strong></td>
+                <td>
+                  • M.2 2280 PCIe Gen 3.0 / Gen 2.0 x4 (NVMe 1.3+)<br>
+                  • Lecture jusqu'à 1 600+ Mo/s / Écriture jusqu'à 600+ Mo/s<br>
+                  • Très basse consommation électrique pour une fiabilité 24h/24<br>
+                  • Haute endurance industrielle, aucune usure de carte SD
+                </td>
+                <td>
+                  <span class="badge-pill badge-green">Stockage NVMe Vérifié</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- NVMe Setup & EEPROM Configuration -->
+        <h2 id="nvme-setup">⚡ Montage du SSD M.2 NVMe &amp; Configuration EEPROM</h2>
+        <p>
+          Lors de l'assemblage d'un Raspberry Pi 5 neuf avec une base M.2 NVMe PCIe et un SSD NVMe, <strong>le Pi 5 ne démarre pas immédiatement sur le SSD</strong> : l'EEPROM d'usine est programmée pour démarrer uniquement sur MicroSD (<code>BOOT_ORDER=0xf41</code>) sans sonder le bus PCIe au démarrage.
+        </p>
+
+        <div class="alert alert-important">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-alert-triangle"></use></svg>
+            <span>Pourquoi le Pi 5 ne détecte pas le SSD M.2 NVMe par défaut</span>
+          </div>
+          <p>
+            1. <strong>Ordre d'amorçage EEPROM :</strong> Le chargeur d'amorçage d'usine ignore le stockage NVMe tant que le mode NVMe (<code>0x6</code>) et <code>PCIE_PROBE=1</code> ne sont pas activés dans l'EEPROM.<br>
+            2. <strong>Overlay PCIe du noyau :</strong> Le noyau Linux requiert <code>dtparam=pciex1</code> dans <code>/boot/firmware/config.txt</code>.<br>
+            3. <strong>Sens de la nappe FPC :</strong> Les pistes dorées de la nappe 16 broches doivent être orientées <em>vers l'intérieur, côté ports Ethernet/USB</em> sur le Raspberry Pi 5.
+          </p>
+        </div>
+
+        <h3>Méthode 1 : Mise à jour rapide en 3 minutes (via Raspberry Pi Imager)</h3>
+        <ol>
+          <li>Insérez une <strong>carte MicroSD</strong> dans votre PC ou Mac.</li>
+          <li>Ouvrez <strong><a href="https://www.raspberrypi.com/software/" target="_blank" rel="noopener">Raspberry Pi Imager</a></strong> &rarr; Choisir le modèle : <strong>Raspberry Pi 5</strong>.</li>
+          <li>Cliquez sur <strong>Choisir le système (Choose OS)</strong> &rarr; <strong>Misc utility images</strong> &rarr; <strong>Bootloader</strong> &rarr; <strong>NVMe/PCIe Boot</strong>.</li>
+          <li>Sélectionnez votre carte MicroSD puis cliquez sur <strong>Écrire (Write)</strong>.</li>
+          <li>Insérez la carte dans le Raspberry Pi 5 (avec le SSD M.2 NVMe monté sur la carte d'extension) et branchez l'<strong>alimentation officielle 27W</strong>.</li>
+          <li>Après 5 à 10 secondes, la LED verte ACT clignote rapidement et l'écran HDMI devient <strong>vert fixe</strong>, confirmant la mise à jour permanente de l'EEPROM (<code>BOOT_ORDER=0xf461</code>, <code>PCIE_PROBE=1</code>).</li>
+          <li>Débranchez l'alimentation, <strong>retirez la carte MicroSD</strong>, flashez <code>gems-os-image.img.xz</code> directement sur le SSD NVMe et remettez sous tension. Le système démarre sur NVMe en moins de 8 secondes !</li>
+        </ol>
+
+        <h3>Méthode 2 : Flasher le SSD NVMe directement via le Terminal Web Cockpit</h3>
+        <p>Si vous ne disposez pas d'un boîtier USB-vers-NVMe externe sur votre ordinateur, vous pouvez configurer l'EEPROM et écrire l'image sur le SSD NVMe directement depuis le terminal Cockpit (<code>http://ems.local:9090</code>) après avoir démarré sur carte MicroSD :</p>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Terminal Cockpit (Port 9090)</span>
+            <button class="copy-code-btn" aria-label="Copier le code">
+              <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+              <span>Copier</span>
+            </button>
+          </div>
+          <pre><code># 1. Mettre à jour l'EEPROM pour activer le bus PCIe et l'amorçage NVMe
+sudo rpi-eeprom-config --edit
+# Vérifiez que BOOT_ORDER=0xf461 et PCIE_PROBE=1 sont définis, puis enregistrez (Ctrl+O, Ctrl+X)
+
+# 2. Télécharger et écrire GEMS directement sur le SSD NVMe (/dev/nvme0n1)
+curl -LO https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/latest/download/gems-os-image.img.xz
+xzcat gems-os-image.img.xz | sudo dd of=/dev/nvme0n1 bs=4M status=progress conv=fsync
+
+# 3. Éteindre, retirer la carte MicroSD et redémarrer !
+sudo poweroff</code></pre>
+        </div>
+
+        <!-- Option A: Custom OS Image -->
+        <h2 id="custom-os-image">Option A : Image Raspberry Pi OS Préconfigurée (Recommandé)</h2>
+        <p>
+          La méthode la plus rapide et la plus fiable pour déployer GEMS consiste à utiliser l'image officielle préconfigurée basée sur <strong>Raspberry Pi OS Lite (Bookworm ARM64)</strong>.
+        </p>
+
+        <div class="alert alert-tip">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-check"></use></svg>
+            <span>Contenu inclus dans l'image système</span>
+          </div>
+          <ul>
+            <li><strong>Noyau &amp; Système de fichiers optimisés :</strong> Réglages SQLite WAL, partitions temporaires en mémoire vive et usure minimale du support de stockage.</li>
+            <li><strong>Proxy inverse Nginx :</strong> Écoute automatiquement sur le port 80 et redirige proprement les flux WebSocket et SSE vers GEMS sur le port 8080.</li>
+            <li><strong>Environnement Kiosque Wayfire :</strong> Compositeur Wayland ultra-léger démarrant Chromium en plein écran sur <code>http://ems.local</code>.</li>
+            <li><strong>Console Web Cockpit :</strong> Terminal root complet et supervision matérielle préinstallés sur le port <code>9090</code> (connexion avec votre compte administrateur Linux).</li>
+            <li><strong>Raspberry Pi Connect :</strong> Préparé pour l'assistance et l'accès distant sécurisés sans redirection de port.</li>
+          </ul>
+        </div>
+
+        <h3>Instructions d'écriture de l'image</h3>
+        <ol>
+          <li>
+            Téléchargez la dernière archive <code>gems-os-image.img.xz</code> depuis la <a href="https://github.com/webdotpulse/GRID-EMS-RELEASE/releases" target="_blank" rel="noopener">page GitHub Releases</a>.
+          </li>
+          <li>
+            Insérez une carte MicroSD rapide (Classe 10 / U3, 8 Go minimum) ou un adaptateur NVMe dans votre ordinateur.
+          </li>
+          <li>
+            Ouvrez <a href="https://etcher.balena.io/" target="_blank" rel="noopener">BalenaEtcher</a> ou <a href="https://www.raspberrypi.com/software/" target="_blank" rel="noopener">Raspberry Pi Imager</a>.
+          </li>
+          <li>
+            Sélectionnez directement le fichier <code>.img.xz</code> téléchargé (aucune décompression préalable nécessaire), choisissez le lecteur cible et cliquez sur <strong>Flash!</strong>.
+          </li>
+          <li>
+            Une fois l'écriture et la vérification terminées, insérez le support dans votre Raspberry Pi et branchez l'alimentation.
+          </li>
+        </ol>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Premier accès</span>
+            <button class="copy-code-btn" aria-label="Copier le code">
+              <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+              <span>Copier</span>
+            </button>
+          </div>
+          <pre><code># Accès via mDNS dans votre navigateur local :
+http://ems.local
+# Ou directement par nom d'hôte :
+http://ems
+
+# Terminal Web Cockpit intégré :
+https://ems.local:9090
+# Connectez-vous avec les identifiants administrateur Linux provisionnés (ou définis dans Raspberry Pi Imager)</code></pre>
+        </div>
+
+        <!-- Option B: Debian Package -->
+        <h2 id="deb-package">Option B : Installation par Paquet Debian (.deb)</h2>
+        <p>
+          Si vous disposez déjà d'une distribution Raspberry Pi OS ou Debian/Ubuntu ARM64 opérationnelle, vous pouvez installer directement le paquet autonome.
+        </p>
+
+        <h3>1. Télécharger et installer le paquet</h3>
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Bash / Terminal</span>
+            <button class="copy-code-btn" aria-label="Copier la commande">
+              <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+              <span>Copier</span>
+            </button>
+          </div>
+          <pre><code># Télécharger le dernier paquet Debian ARM64
+TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)
+curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"
+
+# Installer le paquet
+sudo dpkg -i "gems_${TAG#v}_arm64.deb"
+
+# Résoudre automatiquement les éventuelles dépendances manquantes
+sudo apt-get install -f -y</code></pre>
+        </div>
+
+        <h3>2. Gestion du service Systemd</h3>
+        <p>
+          Le paquet Debian crée un utilisateur système dédié <code>gems</code>, installe les binaires et ressources dans <code>/opt/gems</code> et enregistre le démon <code>gems.service</code> ainsi que le service de mise à jour <code>gems-updater.path</code> :
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Opération</th>
+                <th>Commande terminal</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Vérifier l'état</strong></td>
+                <td><code>sudo systemctl status gems.service</code></td>
+                <td>Vérifie l'état d'exécution actif et l'empreinte mémoire.</td>
+              </tr>
+              <tr>
+                <td><strong>Redémarrer le service</strong></td>
+                <td><code>sudo systemctl restart gems.service</code></td>
+                <td>Redémarre proprement le moteur backend et recharge le cache SQLite.</td>
+              </tr>
+              <tr>
+                <td><strong>Arrêter le service</strong></td>
+                <td><code>sudo systemctl stop gems.service</code></td>
+                <td>Écrit tous les tampons de mesures en mémoire vers SQLite avant l'arrêt complet.</td>
+              </tr>
+              <tr>
+                <td><strong>Suivre les journaux</strong></td>
+                <td><code>sudo journalctl -u gems.service -f -n 100</code></td>
+                <td>Affiche en direct les journaux du démon depuis le journal systemd.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Cockpit Administration -->
+        <h2 id="cockpit">Terminal Web Cockpit &amp; Administration Système</h2>
+        <p>
+          Cockpit offre une interface web d'administration Linux claire et complète accessible sur le port <code>9090</code>.
+        </p>
+
+        <div class="alert alert-important">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-alert-triangle"></use></svg>
+            <span>Sécurité des identifiants d'administration</span>
+          </div>
+          <p>
+            Connectez-vous à Cockpit à l'aide de votre compte administrateur système Linux. Nous recommandons vivement de renouveler le mot de passe administrateur lors de la mise en service initiale via Cockpit &rarr; Comptes ou via la commande <code>sudo passwd</code>.
+          </p>
+        </div>
+
+        <p>Grâce à Cockpit, vous pouvez :</p>
+        <ul>
+          <li>Ouvrir un terminal bash complet avec privilèges root directement dans votre navigateur sans client SSH tiers.</li>
+          <li>Visualiser en temps réel la charge processeur, la mémoire vive et le débit réseau.</li>
+          <li>Inspecter et redémarrer les unités systemd (<code>gems.service</code>, <code>nginx.service</code>, <code>wayfire.service</code>).</li>
+          <li>Consulter les journaux du noyau (<code>dmesg</code>) et du système.</li>
+        </ul>
+
+        <!-- Raspberry Pi Connect -->
+        <h2 id="rpi-connect">Raspberry Pi Connect (Accès distant sécurisé)</h2>
+        <p>
+          Raspberry Pi Connect permet un accès distant chiffré à votre contrôleur GEMS depuis n'importe quel navigateur externe, sans redirection de port ni VPN.
+        </p>
+
+        <ol>
+          <li>Ouvrez le terminal web Cockpit sur <code>http://ems.local:9090</code>.</li>
+          <li>Exécutez la commande suivante avec l'utilisateur de session kiosque pour activer le service et lancer l'association :
+            <div class="code-block-wrapper">
+              <div class="code-header">
+                <span class="code-lang">Terminal</span>
+                <button class="copy-code-btn" aria-label="Copier la commande">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+                  <span>Copier</span>
+                </button>
+              </div>
+              <pre><code>sudo loginctl enable-linger gems-kiosk
+rpi-connect signin</code></pre>
+            </div>
+          </li>
+          <li>Cliquez ou copiez l'URL d'authentification affichée dans le terminal afin de lier l'unité à votre identifiant Raspberry Pi ID.</li>
+          <li>Rendez-vous sur <a href="https://connect.raspberrypi.com" target="_blank" rel="noopener">connect.raspberrypi.com</a> depuis votre navigateur et sélectionnez <strong><code>ems</code></strong> pour un accès shell distant chiffré. Pour des raisons de confidentialité et de sécurité, le partage d'écran sans surveillance est désactivé par défaut avec notifications de connexion activées.</li>
+        </ol>
+
+        <!-- System Health Verification -->
+        <h2 id="verification">Vérification de l'installation &amp; État du système</h2>
+        <p>
+          Une fois démarré, ouvrez l'interface web sur <code>http://ems.local</code> (ou via l'adresse IP du Raspberry Pi) et rendez-vous dans <strong>Paramètres &rarr; Infos système</strong> pour vérifier la configuration réseau et le numéro de version logicielle :
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/settings_system_info.png" alt="Onglet Infos système et Diagnostics" loading="lazy">
+          <div class="doc-screenshot-caption">Onglet Infos système : Identité de l'unité, interfaces réseau et version logicielle OTA.</div>
+        </div>
+
+        <!-- RS485 / Modbus Wiring -->
+        <h2 id="rs485-wiring">Câblage matériel : Bus RS485 &amp; Liaison Modbus RTU</h2>
+        <p>
+          Lors du raccordement d'onduleurs solaires, de compteurs d'énergie ou de bornes de recharge en Modbus RTU (série), un câblage RS485 rigoureux est indispensable à la fiabilité des échanges.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Signal</th>
+                <th>Couleur de fil habituelle</th>
+                <th>Description &amp; Polarité</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>A (D+ / TxD+ / RxD+)</strong></td>
+                <td>Blanc / Liseré bleu</td>
+                <td>Ligne de données différentielle non inverseuse (+).</td>
+              </tr>
+              <tr>
+                <td><strong>B (D- / TxD- / RxD-)</strong></td>
+                <td>Bleu uni</td>
+                <td>Ligne de données différentielle inverseuse (-).</td>
+              </tr>
+              <tr>
+                <td><strong>GND (COM)</strong></td>
+                <td>Marron / Fil de référence</td>
+                <td>Masse de référence commune du signal. Évite les dérives de potentiel en mode commun.</td>
+              </tr>
+              <tr>
+                <td><strong>Blindage (Shield)</strong></td>
+                <td>Tresse métallique nue</td>
+                <td>Relier à la terre en UN SEUL point uniquement (côté adaptateur USB du Raspberry Pi).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert alert-warning">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-alert-triangle"></use></svg>
+            <span>Résistances de terminaison (120&Omega;)</span>
+          </div>
+          <p>
+            Pour toute longueur de bus RS485 supérieure à 10 mètres, installez une <strong>résistance de 120&Omega; (0,25W)</strong> entre les bornes <code>A</code> et <code>B</code> aux deux extrémités physiques de la chaîne (sur l'adaptateur USB et sur le dernier esclave). Proscrivez les câblages en étoile ou en dérivation.
+          </p>
+        </div>
+
+        <!-- P1 DSMR Wiring -->
+        <h2 id="p1-wiring">Brochage RJ12 du Port P1 Compteur Intelligent DSMR</h2>
+        <p>
+          Les compteurs numériques communicants en Belgique (Fluvius, ORES, RESA, Sibelga) et aux Pays-Bas utilisent un connecteur RJ12 (6P6C) sur le port P1 pour transmettre les télégrammes série DSMR :
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Broche RJ12</th>
+                <th>Nom du signal</th>
+                <th>Sens</th>
+                <th>Fonction</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Broche 1</strong></td>
+                <td>Alimentation +5V</td>
+                <td>Sortie compteur</td>
+                <td>Alimente la sonde optique isolée ou le convertisseur USB (DSMR 5.0+ fournit jusqu'à 250 mA).</td>
+              </tr>
+              <tr>
+                <td><strong>Broche 2</strong></td>
+                <td>Demande de données (RTS)</td>
+                <td>Entrée compteur</td>
+                <td>Maintenir à l'état HAUT (+5V) pour activer l'émission des télégrammes par le compteur.</td>
+              </tr>
+              <tr>
+                <td><strong>Broche 3</strong></td>
+                <td>Masse données (Data GND)</td>
+                <td>-</td>
+                <td>Masse de référence pour les signaux logiques.</td>
+              </tr>
+              <tr>
+                <td><strong>Broche 4</strong></td>
+                <td>NC</td>
+                <td>-</td>
+                <td>Non connectée.</td>
+              </tr>
+              <tr>
+                <td><strong>Broche 5</strong></td>
+                <td>Sortie données (RxD)</td>
+                <td>Sortie compteur</td>
+                <td>Flux série ASCII inversé (115200 bauds, 8N1 en DSMR 5.0 ; 9600 bauds, 7E1 en DSMR 2/3).</td>
+              </tr>
+              <tr>
+                <td><strong>Broche 6</strong></td>
+                <td>Masse alimentation (Power GND)</td>
+                <td>-</td>
+                <td>Masse de retour de l'alimentation +5V.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert alert-note">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-info"></use></svg>
+            <span>Activation du port client P1 auprès du gestionnaire de réseau</span>
+          </div>
+          <p>
+            En Belgique (Fluvius, ORES, RESA, Sibelga), le port client P1 est désactivé par défaut pour des raisons de confidentialité. Vous devez activer l'ouverture du port P1 sur le portail en ligne de votre gestionnaire de réseau (par ex. sur <a href="https://mijn.fluvius.be" target="_blank" rel="noopener">Mijn Fluvius</a> ou via le portail ORES/RESA) avant que le compteur ne transmette ses télégrammes.
+          </p>
+        </div>
+
+        <!-- Navigation Footer -->
+        <div class="page-nav-footer">
+          <a href="index.html" class="page-nav-card">
+            <span class="page-nav-label">Précédent</span>
+            <span class="page-nav-title">&larr; Portail de documentation</span>
+          </a>
+          <a href="configuration.html" class="page-nav-card" style="text-align:right;">
+            <span class="page-nav-label">Guide suivant</span>
+            <span class="page-nav-title">Référence de Configuration &amp; Paramètres &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">Sur cette page</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#hardware-reference" class="toc-link">Matériel de référence &amp; BOM</a></li>
+        <li class="toc-item"><a href="#nvme-setup" class="toc-link">SSD NVMe &amp; EEPROM</a></li>
+        <li class="toc-item"><a href="#custom-os-image" class="toc-link">Option A : Image OS</a></li>
+        <li class="toc-item"><a href="#deb-package" class="toc-link">Option B : Paquet Debian</a></li>
+        <li class="toc-item"><a href="#cockpit" class="toc-link">Administration Cockpit</a></li>
+        <li class="toc-item"><a href="#rpi-connect" class="toc-link">Raspberry Pi Connect</a></li>
+        <li class="toc-item"><a href="#rs485-wiring" class="toc-link">Câblage Modbus RS485</a></li>
+        <li class="toc-item"><a href="#p1-wiring" class="toc-link">Brochage Compteur P1</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Rechercher dans la documentation, les paramètres, les guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Fermer la recherche">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Utilisez <kbd class="kbd-shortcut">↑</kbd> <kbd class="kbd-shortcut">↓</kbd> pour naviguer</span>
+        <span><kbd class="kbd-shortcut">Entrée</kbd> pour sélectionner</span>
+        <span><kbd class="kbd-shortcut">Échap</kbd> pour fermer</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Documentation GEMS (New Energy Grid) &bull; Conçu avec Go, SQLite, Vue 3 et Tailwind CSS &bull; Optimisé pour Raspberry Pi</p>
+  </footer>
+
+  <script src="../js/search-index-fr.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

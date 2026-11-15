@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS — Manuel d'Installation &amp; de Mise en Service</title>
+  <meta name="description" content="Manuel technique complet d'installation sur site et de mise en service pour GEMS (Grid Energy Management System) sur Raspberry Pi.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 14mm 16mm 14mm;
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.55;
+    }
+
+    .manual-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 980px;
+      padding: 40px 20px 20px 20px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 30px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0284c7;
+      color: #ffffff;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 9pt;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 34pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 0 0 12px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 13.5pt;
+      color: #475569;
+      margin: 0 0 26px 0;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 22px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 3px;
+    }
+
+    .cover-meta-val {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+      margin: 18px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 8.5pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Section Headings */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 17pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 6px;
+      margin-top: 36px;
+      margin-bottom: 14px;
+      page-break-after: avoid;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12.5pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 22px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #0284c7;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #334155;
+    }
+
+    /* Decision Box: When to Choose This Option */
+    .decision-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-left: 4px solid #3b82f6;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    .decision-title {
+      font-size: 9pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #1e40af;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .decision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 8.5pt;
+      margin-top: 6px;
+    }
+
+    .decision-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 10px;
+    }
+
+    .decision-item-title {
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 2px;
+    }
+
+    .decision-item-desc {
+      color: #475569;
+      line-height: 1.4;
+    }
+
+    /* Screenshots */
+    .manual-screenshot {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .manual-screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .manual-screenshot-caption {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .manual-screenshot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      font-size: 9pt;
+    }
+
+    .callout-info {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      color: #0369a1;
+    }
+
+    .callout-tip {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #15803d;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #b45309;
+    }
+
+    .callout-danger {
+      background: #fef2f2;
+      border-left: 4px solid #ef4444;
+      color: #b91c1c;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 8.5pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #e2e8f0;
+      padding: 7px 9px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* Terminal Box */
+    .terminal-box {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: 'Fira Code', monospace;
+      font-size: 8pt;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      overflow-x: hidden;
+      line-height: 1.45;
+    }
+
+    .terminal-box code {
+      color: #38bdf8;
+    }
+
+    .toc-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 18px 24px;
+      margin-bottom: 28px;
+      page-break-inside: avoid;
+    }
+
+    .toc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13pt;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      column-count: 2;
+      column-gap: 24px;
+    }
+
+    .toc-list li {
+      margin-bottom: 6px;
+      font-size: 8.5pt;
+      color: #334155;
+    }
+
+    .toc-list a {
+      color: #0284c7;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    @media print {
+      .no-print, .lang-switcher {
+        display: none !important;
+      }
+      .manual-page {
+        max-width: 100%;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="manual-page">
+
+  <!-- ==================== SCREEN-ONLY LANGUAGE SWITCHER ==================== -->
+  <div class="no-print" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #e2e8f0;">
+    <div style="display: flex; align-items: center; gap: 12px; font-size: 8.5pt;">
+      <a href="index.html" style="font-weight: 700; color: #0284c7; text-decoration: none;">&larr; Portail de documentation GEMS</a>
+      <span style="color: #cbd5e1;">|</span>
+      <a href="gems-installer-manual-fr.pdf" style="font-weight: 600; color: #475569; text-decoration: none;">📄 Télécharger le PDF</a>
+    </div>
+    <div class="lang-switcher no-print" aria-label="Sélecteur de langue">
+      <a href="../gems-installer-manual.html">EN</a>
+      <a href="../nl/gems-installer-manual-nl.html">NL</a>
+      <a href="gems-installer-manual-fr.html" class="active">FR</a>
+    </div>
+  </div>
+
+  <!-- ==================== COVER PAGE ==================== -->
+  <div class="cover-page">
+    <div>
+      <div class="cover-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px;">
+        <img src="../assets/new_energy_grid_logo.png" alt="New Energy Grid" style="height: 42px; width: auto; object-fit: contain;">
+        <div class="cover-badge" style="margin-bottom: 0;">⚡ MANUEL D'INSTALLATION SUR SITE &amp; DE MISE EN SERVICE</div>
+      </div>
+      <h1 class="cover-title">Manuel Installateur GEMS</h1>
+      <div class="cover-subtitle">Guide Technique Complet de Terrain : Assemblage Matériel, Découverte Réseau &amp; Série, 170 Modèles Matériels, Limites Triphasées, Assistants Tarifaires Dynamiques et Stratégie d'Optimisation</div>
+
+      <div class="cover-meta-grid">
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Micrologiciel / Version</span>
+          <span class="cover-meta-val" data-version-tag="release">v9.38.1-release</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Architecture Matérielle</span>
+          <span class="cover-meta-val">Raspberry Pi 5 (ARM64) + M.2 NVMe HAT</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Public Cible</span>
+          <span class="cover-meta-val">Électriciens Certifiés, Installateurs PV, Batteries &amp; Bornes VE</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Révision Documentaire</span>
+          <span class="cover-meta-val">Novembre 2026 • Édition 170 Modèles</span>
+        </div>
+      </div>
+
+      <div class="cover-hero-img">
+        <img src="../assets/screenshots/dashboard.png" alt="Tableau de bord GEMS Desktop">
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <span>Système de Gestion d'Énergie GEMS (GRID-EMS)</span>
+      <span>Référence Technique Confidentielle • Documentation v9.38.1</span>
+    </div>
+  </div>
+
+  <!-- ==================== TABLE OF CONTENTS ==================== -->
+  <div class="toc-box">
+    <div class="toc-title">Table des Matières</div>
+    <ul class="toc-list">
+      <li><strong>1.</strong> <a href="#sec-overview">Architecture Matérielle &amp; Nomenclature (BOM)</a></li>
+      <li><strong>2.</strong> <a href="#sec-nvme">Chargeur d'Amorçage NVMe &amp; Flashage EEPROM</a></li>
+      <li><strong>3.</strong> <a href="#sec-deployment">Déploiement OS &amp; Gestion des Services Système</a></li>
+      <li><strong>4.</strong> <a href="#sec-remote">Accès à Distance (Cockpit, Kiosque, VNC, Nginx)</a></li>
+      <li><strong>5.</strong> <a href="#sec-scanner">Découverte Sous-Réseau &amp; Ports Série (Scanner)</a></li>
+      <li><strong>6.</strong> <a href="#sec-devices">Intégration d'Appareils &amp; Les 170 Modèles</a></li>
+      <li><strong>7.</strong> <a href="#sec-grid">Raccordement Réseau, Limites par Phase &amp; Schémas</a></li>
+      <li><strong>8.</strong> <a href="#sec-contracts">Contrats d'Énergie &amp; Les 5 Assistants Tarifaires</a></li>
+      <li><strong>9.</strong> <a href="#sec-strategy">Stratégie d'Optimisation &amp; Écrêtage Capacitaire Flandre</a></li>
+      <li><strong>10.</strong> <a href="#sec-gsc">Protection des Certificats Verts Flamands (GSC)</a></li>
+      <li><strong>11.</strong> <a href="#sec-iec104">Télécontrôle Fluvius (IEC 60870-5-104)</a></li>
+      <li><strong>12.</strong> <a href="#sec-battery-rules">Arbitrage Batterie &amp; Règles de Priorité</a></li>
+      <li><strong>13.</strong> <a href="#sec-ev">Recharge VE : Modbus TCP vs OCPP Natif</a></li>
+      <li><strong>14.</strong> <a href="#sec-relays">Relais Intelligents &amp; Pompes à Chaleur SG-Ready</a></li>
+      <li><strong>15.</strong> <a href="#sec-alerts">Alertes, Webhooks &amp; Rapports PDF Automatisés</a></li>
+      <li><strong>16.</strong> <a href="#sec-maint">Diagnostics, Test de Mise en Service &amp; Réception</a></li>
+    </ul>
+  </div>
+
+  <!-- ==================== 1. HARDWARE ARCHITECTURE & BOM ==================== -->
+  <h1 class="section-title" id="sec-overview">1. Architecture Matérielle &amp; Nomenclature (BOM)</h1>
+  <p>
+    GEMS est un contrôleur edge autonome et ultra-réactif conçu en Go (Golang) et Vue 3. Il fonctionne intégralement sur le réseau local du client sans dépendance cloud ni abonnement obligatoire. Afin d'éliminer définitivement l'usure prématurée des cartes MicroSD dans les coffrets électriques, GEMS s'exécute exclusivement sur un disque <strong>SSD M.2 NVMe</strong> avec base de données SQLite configurée en mode Write-Ahead Logging (WAL).
+  </p>
+
+  <h2 class="subsection-title">Nomenclature Matérielle de Référence (Bill of Materials)</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width: 22%;">Composant</th>
+        <th style="width: 38%;">Spécification &amp; Référence</th>
+        <th style="width: 40%;">Recommandations Terrain &amp; Critères de Choix</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Calculateur Monocarte Hôte</strong></td>
+        <td>Raspberry Pi 5 (4 Go ou 8 Go RAM, Broadcom BCM2712 Quad-core Cortex-A76)</td>
+        <td>
+          <strong>Pourquoi le Pi 5 :</strong> Dispose d'une interface PCIe 2.0 native à 16 broches. L'empreinte mémoire reste &lt; 150 Mo de RAM avec 100 scrutations Modbus simultanées. 4 Go est idéal ; 8 Go offre une marge supplémentaire pour l'historique télémétrique local.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Disque SSD Interne</strong></td>
+        <td>SSD PCIe NVMe M.2 2280 ou 2230/2242 de 128 Go à 512 Go (NAND TLC / 3D)</td>
+        <td>
+          <strong>Pourquoi le NVMe :</strong> Offre plus de 450 Mo/s en écriture séquentielle et plus de 50 000 IOPS. Élimine toute usure flash liée à l'enregistrement haute fréquence des séries temporelles. <em>N'utilisez jamais de carte MicroSD en production.</em>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Carte d'Extension M.2 PCIe HAT</strong></td>
+        <td>Raspberry Pi M.2 HAT+ officiel ou Pimoroni NVMe Base</td>
+        <td>
+          Se monte directement au-dessus du connecteur GPIO 40 broches ou sous le Pi. Vérifiez que la nappe FPC 16 broches est bien alignée, contacts dorés orientés vers les pistes du connecteur.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Bloc d'Alimentation (PSU)</strong></td>
+        <td>Alimentation officielle Raspberry Pi 27W USB-C PD (5,1 V / 5,0 A Power Delivery)</td>
+        <td>
+          <strong>Critique :</strong> Les chargeurs téléphoniques standards de 15W provoquent des chutes de tension (brownouts) lors des appels de courant d'écriture du SSD NVMe.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Boîtier &amp; Montage Rail DIN</strong></td>
+        <td>Boîtier aluminium Armor avec ventilateur Active Cooler + clip rail DIN</td>
+        <td>
+          Maintient la température du processeur sous 48 °C dans les tableaux électriques fermés (conformité RGIE / AREI). Le ventilateur Active Cooler est régulé dynamiquement en PWM par le noyau Linux.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Adaptateur Bus de Terrain Série</strong></td>
+        <td>Adaptateur USB-vers-RS485 FTDI FT232R / FT232RL avec isolation galvanique 2,5 kV ou câble P1</td>
+        <td>
+          Requis pour Modbus RTU (Eastron, Carlo Gavazzi, Solis, RAEDIAN) ou la lecture directe du port RJ12 P1. L'isolation galvanique évite toute boucle de masse entre l'onduleur et le Raspberry Pi.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 2. NVME BOOTLOADER SETUP ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-nvme">2. Chargeur d'Amorçage NVMe &amp; Flashage EEPROM</h1>
+  <p>
+    En sortie d'usine, les unités Raspberry Pi 5 démarrent uniquement sur carte MicroSD (ordre de démarrage <code>0xf41</code>). Pour démarrer directement sur un SSD M.2 NVMe sans aucune carte MicroSD insérée, l'EEPROM du Raspberry Pi doit être mise à jour une seule fois.
+  </p>
+
+  <div class="decision-box">
+    <div class="decision-title">📋 Guide de Décision : Comment Préparer le Matériel ?</div>
+    <div class="decision-grid">
+      <div class="decision-item">
+        <div class="decision-item-title">Option 1 : En Atelier (Le Plus Rapide)</div>
+        <div class="decision-item-desc">Utilisez un boîtier externe USB M.2 NVMe branché à votre ordinateur portable. Flashez l'image OS préconfigurée directement sur le SSD avec BalenaEtcher ou Raspberry Pi Imager en 2 minutes.</div>
+      </div>
+      <div class="decision-item">
+        <div class="decision-item-title">Option 2 : Sur Site d'Intervention</div>
+        <div class="decision-item-desc">Conservez une carte MicroSD de service contenant l'utilitaire d'amorçage EEPROM Raspberry Pi dans votre sacoche. Démarrez le Pi une fois avec cette carte pour activer définitivement le démarrage PCIe NVMe.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-title">🌟 Procédure de Flashage EEPROM en 3 Minutes</div>
+    <ol style="margin: 6px 0 0 16px; padding: 0;">
+      <li>Insérez une carte MicroSD temporaire dans votre ordinateur portable.</li>
+      <li>Ouvrez <strong>Raspberry Pi Imager</strong> &rarr; Choisissez le modèle (<em>Choose Device</em>) : <strong>Raspberry Pi 5</strong>.</li>
+      <li>Choisissez le système (<em>Choose OS</em>) : <strong>Misc utility images &rarr; Bootloader &rarr; NVMe/PCIe Boot</strong>.</li>
+      <li>Sélectionnez la carte MicroSD, cliquez sur <strong>Write</strong>, puis insérez la carte dans le Raspberry Pi 5.</li>
+      <li>Mettez sous tension avec l'alimentation officielle 27W. En moins de 5 secondes, la LED verte ACT clignote rapidement et l'écran HDMI devient <strong>vert uni</strong>.</li>
+      <li>Coupez l'alimentation et retirez la carte MicroSD. Le Pi 5 est désormais configuré de façon permanente sur <code>BOOT_ORDER=0xf461</code> et démarrera automatiquement depuis le SSD NVMe !</li>
+    </ol>
+  </div>
+
+  <h2 class="subsection-title">Activer les Débits PCIe Gen 3.0 (Optimisation Atelier Optionnelle)</h2>
+  <p>
+    Par défaut, le Pi 5 pilote le bus PCIe en Gen 2.0 (500 Mo/s). Pour débloquer le mode PCIe Gen 3.0 (jusqu'à 850 Mo/s), éditez <code>/boot/firmware/config.txt</code> et ajoutez :
+  </p>
+  <div class="terminal-box">
+    # Activer les débits PCIe Gen 3.0<br>
+    dtparam=pciex1<br>
+    dtparam=pciex1_gen=3
+  </div>
+
+  <!-- ==================== 3. OS DEPLOYMENT & SERVICES ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-deployment">3. Déploiement OS &amp; Gestion des Services Système</h1>
+  <p>
+    Les installateurs peuvent déployer GEMS selon deux méthodes homologuées :
+  </p>
+
+  <h2 class="subsection-title">Comparaison des Méthodes de Déploiement</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Caractéristique</th>
+        <th>Méthode A : Image OS GEMS Précompilée (.img.xz)</th>
+        <th>Méthode B : Paquet Debian (.deb) sur OS Standard</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Recommandé pour</strong></td>
+        <td>Nouvelles installations matérielles clés en main</td>
+        <td>Systèmes Debian / Raspberry Pi OS existants</td>
+      </tr>
+      <tr>
+        <td><strong>Écran Tactile Kiosque</strong></td>
+        <td>Navigateur plein écran Wayfire Wayland préconfiguré</td>
+        <td>Configuration manuelle du navigateur requise</td>
+      </tr>
+      <tr>
+        <td><strong>Proxy Inverse</strong></td>
+        <td>Nginx préinstallé (Ports 80/443 &rarr; 8080) avec WebSockets</td>
+        <td>Backend direct standard sur le port 8080</td>
+      </tr>
+      <tr>
+        <td><strong>Console Web Distante</strong></td>
+        <td>Cockpit préinstallé sur le port 9090</td>
+        <td>Installable via <code>apt install cockpit</code></td>
+      </tr>
+      <tr>
+        <td><strong>Durée d'Installation</strong></td>
+        <td>~3 minutes (flashage direct du disque)</td>
+        <td>~5 minutes (téléchargement et installation dpkg)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="subsection-title">Méthode B : Commandes d'Installation du Paquet Debian</h2>
+  <div class="terminal-box">
+    # 1. Télécharger la dernière version officielle ARM64<br>
+    TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)<br>
+    curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"<br>
+    <br>
+    # 2. Installer le paquet et ses dépendances (ex. sudo dpkg -i gems_9.38.1_arm64.deb)<br>
+    sudo dpkg -i "gems_${TAG#v}_arm64.deb"<br>
+    sudo apt-get install -f -y<br>
+    <br>
+    # 3. Vérifier l'état des services système en arrière-plan<br>
+    sudo systemctl status gems.service gems-updater.path
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-title">📂 Emplacements des Fichiers Système</div>
+    <ul style="margin: 4px 0 0 16px; padding: 0;">
+      <li><strong>Exécutable &amp; Interface Web :</strong> <code>/opt/gems/gems-server</code> &amp; <code>/opt/gems/dist/</code></li>
+      <li><strong>Stockage de la Configuration :</strong> 100 % piloté par l'interface graphique dans SQLite (aucun fichier texte manuel)</li>
+      <li><strong>Base de Données SQLite WAL :</strong> <code>/opt/gems/gems.db</code> (accompagnée de <code>gems.db-wal</code>)</li>
+      <li><strong>Utilisateur Système :</strong> S'exécute sous le compte non privilégié <code>gems</code> membre du groupe <code>dialout</code>.</li>
+    </ul>
+  </div>
+
+  <!-- ==================== 4. REMOTE ACCESS & COCKPIT ==================== -->
+  <h1 class="section-title" id="sec-remote">4. Accès à Distance, Cockpit &amp; Affichage Kiosque</h1>
+  <p>
+    Une fois logé dans le tableau électrique, aucun clavier ni moniteur physique n'est requis. Le technicien accède à l'ensemble des outils de diagnostic et d'exploitation à distance :
+  </p>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/dashboard.png" alt="Tableau de bord GEMS Desktop">
+      <div class="manual-screenshot-caption">Figure 4.1 : Interface Web Principale (Port 80 / 8080).</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_system_info.png" alt="Console Informations Système">
+      <div class="manual-screenshot-caption">Figure 4.2 : Identité de l'unité, Configuration Réseau &amp; Version Logicielle.</div>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Interface d'Accès</th>
+        <th>URL / Point de Terminaison</th>
+        <th>Identifiants par Défaut</th>
+        <th>Usage Principal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Interface Web GEMS</strong></td>
+        <td><code>https://ems.local</code> (LAN) ou <code>http://ems.local</code> (Kiosque)</td>
+        <td>Accès direct au Tableau de bord &amp; modes VE ; <strong>Code PIN installateur</strong> pour Paramètres</td>
+        <td>Tableau de bord quotidien, configuration des appareils, contrats d'énergie et règles de stratégie.</td>
+      </tr>
+      <tr>
+        <td><strong>GRID-EMS-SERVER (Cloud)</strong></td>
+        <td><code>https://ems.newenergygrid.com</code></td>
+        <td>Jeton d'appairage (Paramètres &rarr; Serveur Cloud)</td>
+        <td>Supervision multi-sites optionnelle, diagnostics clients à distance et accès mobile.</td>
+      </tr>
+      <tr>
+        <td><strong>Console Web Cockpit</strong></td>
+        <td><code>https://&lt;ADRESSE-IP&gt;:9090</code></td>
+        <td>Compte administrateur Linux provisionné</td>
+        <td>Terminal navigateur, santé SMART du SSD NVMe, diagnostics OS et redémarrage (modifier le mot de passe initial lors de la mise en service).</td>
+      </tr>
+      <tr>
+        <td><strong>Raspberry Pi Connect</strong></td>
+        <td><code>https://connect.raspberrypi.com</code></td>
+        <td>Identifiant Raspberry Pi de l'installateur</td>
+        <td>Lien d'assistance sécurisé sans redirection de port (partage d'écran sans surveillance désactivé par défaut).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="subsection-title">4.1 Synchronisation Cloud Optionnelle (GRID-EMS-SERVER)</h2>
+  <p>
+    Les installateurs peuvent relier les unités clientes à la plateforme centrale <strong>GRID-EMS-SERVER</strong> (<code>https://ems.newenergygrid.com</code>).
+  </p>
+  <div class="callout callout-info">
+    <div class="callout-title">💡 Autonomie Edge Locale &amp; Connectivité Cloud 100 % Optionnelle</div>
+    <p>
+      GEMS repose sur une <strong>garantie d'architecture local-first</strong>. La connexion cloud est <strong>100 % optionnelle</strong> : l'unité fonctionne en totale autonomie locale pour l'équilibrage dynamique de charge (DLB) à la seconde, le bridage d'onduleur, l'arbitrage batterie et le pilotage des relais sans aucune dépendance Internet. Lorsqu'elle est appairée, elle ajoute la supervision de flotte chiffrée et l'envoi de consignes à distance sans ouvrir de ports sur le routeur.
+    </p>
+  </div>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Appairage Rapide :</strong> Ouvrez <strong>Paramètres &rarr; Serveur Cloud</strong>, saisissez le jeton d'appairage à 16 caractères et cliquez sur <em>Appairer &amp; Connecter</em>. L'enregistrement s'effectue en moins de 15 secondes.</li>
+    <li><strong>Flux Sortant TLS 1.3 Uniquement :</strong> Le contrôleur initie des connexions HTTPS sortantes chiffrées. Aucune redirection de port entrante, IP fixe publique ni DDNS n'est nécessaire.</li>
+    <li><strong>Orchestration de Flotte à Distance :</strong> Les gestionnaires peuvent modifier à distance les modes stratégiques, ajuster le fonctionnement des batteries, moduler les courants de charge VE et lancer des diagnostics.</li>
+  </ul>
+
+  <h2 class="subsection-title">4.2 Autorité de Certification (CA) Locale &amp; HTTPS Sans Avertissement (localhost, ems.local &amp; Domaines Personnalisés)</h2>
+  <p>
+    Les navigateurs rejettent nativement les certificats auto-signés standards avec des alertes de sécurité (telles que <code>NET::ERR_CERT_AUTHORITY_INVALID</code>). Afin d'offrir une expérience fluide avec cadenas vert vérifié aux clients comme aux techniciens, GEMS intègre un moteur d'<strong>Autorité de Certification (CA) locale</strong> dédié.
+  </p>
+
+  <div class="callout callout-info">
+    <div class="callout-title">🔒 Couverture SAN Automatique &amp; Rechargement à Chaud Sans Coupure</div>
+    <p>
+      GEMS renseigne automatiquement les noms alternatifs du sujet (SAN) pour toutes les adresses de bouclage (<code>localhost</code>, <code>127.0.0.1</code>, <code>::1</code>), les noms mDNS par défaut (<code>ems.local</code>, <code>gems.local</code>, <code>*.ems.local</code>, <code>*.gems.local</code>), les adresses IP locales actives et tout domaine personnalisé configuré (ex. <code>myems.lan</code>). Lors de l'ajout de domaines personnalisés, GEMS régénère et recharge le certificat à la volée sans aucune interruption de service.
+    </p>
+  </div>
+
+  <table class="data-table" style="margin-top: 12px;">
+    <thead>
+      <tr>
+        <th style="width: 25%;">Opération</th>
+        <th style="width: 40%;">Méthode / Point d'Accès</th>
+        <th style="width: 35%;">Détails d'Exécution</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Télécharger la CA Racine</strong></td>
+        <td><code>http://&lt;ip&gt;:8080/api/ca.crt</code> (ou <code>/ca.crt</code>)</td>
+        <td>Téléchargez le certificat public Root CA directement sur le smartphone, la tablette ou l'ordinateur portable.</td>
+      </tr>
+      <tr>
+        <td><strong>Configuration Auto Linux / NSS</strong></td>
+        <td><code>./scripts/setup-local-ca.sh [domaines...]</code></td>
+        <td>Automatise la génération et l'enregistrement de la CA dans Chrome NSS (<code>~/.pki/nssdb</code>) et Firefox.</td>
+      </tr>
+      <tr>
+        <td><strong>Domaines Personnalisés Web UI</strong></td>
+        <td><strong>Paramètres &rarr; Infos système &rarr; Autorité CA locale &amp; Certificat SSL</strong> <em>(Mode Installateur)</em></td>
+        <td>Déverrouillez le Mode Installateur Certifié, saisissez les domaines séparés par des virgules et cliquez sur <em>Enregistrer &amp; Régénérer le Certificat</em>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 5. SUBNET & SERIAL HARDWARE DISCOVERY ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-scanner">5. Découverte Matérielle Sous-Réseau &amp; Ports Série (Le Scanner)</h1>
+  <p>
+    Au lieu de chercher manuellement les adresses IP du routeur, les chemins série USB, les vitesses RS-485 en bauds ou les identifiants esclaves Modbus, utilisez l'outil intégré <strong>Scanner</strong> dans la barre latérale principale (accessible en <strong>Mode Installateur Certifié</strong>).
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/scanner.png" alt="Scanner Matériel Bus Série et Sous-Réseau">
+    <div class="manual-screenshot-caption">Figure 5.1 : Le Scanner identifiant automatiquement les équipements Modbus RTU RS-485 (Onduleur Hybride Solis, Borne RAEDIAN), les compteurs communicants P1 DSMR et les hôtes LAN /24.</div>
+  </div>
+
+  <h2 class="subsection-title">Découverte des Ports Série &amp; du Bus RS-485</h2>
+  <p>
+    Un clic sur <strong>« Analyser les ports série »</strong> inspecte tous les câbles USB-P1 connectés, les adaptateurs USB-RS485 (chemins persistants <code>/dev/serial/by-id/*</code>) et les interfaces UART intégrées sans interrompre les scrutations déjà actives :
+  </p>
+  <ol style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Compteurs Intelligents P1 DSMR / e-MUCS :</strong> Écoute automatiquement les télégrammes des compteurs numériques à <code>115200 8N1</code> et <code>9600 7E1</code> avec vérification du CRC-16.</li>
+    <li><strong>Équipements Énergétiques RS-485 Modbus RTU :</strong> Détecte automatiquement les onduleurs raccordés (ex. <strong>Solis</strong> S5/S6 Hybrid), les bornes VE (ex. <strong>RAEDIAN</strong> NEO / NEX) et les compteurs modulaires sur rail DIN aux débits et parités standards, avec une option <strong>Balayage RS-485 avancé</strong> pour explorer des plages d'ID esclaves personnalisées (<code>1–247</code>).</li>
+    <li><strong>Configuration Série en Un Clic :</strong> Cliquer sur <strong>« + Configurer »</strong> en regard d'un appareil détecté ouvre <strong>Paramètres &rarr; Appareils</strong> et pré-remplit automatiquement la catégorie, le modèle vérifié, le port série persistant, l'ID esclave Modbus, le débit en bauds et la parité. Vous pouvez également cliquer sur <strong>« Détecter les appareils série »</strong> ou <strong>« Détection auto »</strong> directement dans le formulaire d'ajout.</li>
+  </ol>
+
+  <h2 class="subsection-title">Découverte Réseau Local (Sous-Réseau LAN)</h2>
+  <p>
+    Lorsque vous cliquez sur <strong>« Analyser le sous-réseau »</strong>, GEMS exécute un balayage multi-étapes sur les 254 adresses hôtes du sous-réseau local <code>/24</code> :
+  </p>
+  <ol style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Auto-identification du Contrôleur GEMS :</strong> GEMS reconnaît sa propre adresse IPv4 et son adresse MAC matérielle sur le réseau et affiche le badge <code>THIS GEMS CONTROLLER</code> (<em>New Energy Grid — GEMS Edge Energy Controller</em>).</li>
+    <li><strong>Balayage Multicast &amp; Tables de Voisinage :</strong> Combine les tables ARP locales avec les diffusions mDNS et UPnP/SSDP pour résoudre les noms d'hôtes et descriptions d'équipements.</li>
+    <li><strong>Résolution IEEE OUI Multi-Masques (24, 28 et 36 bits) :</strong> Compare les adresses MAC aux registres énergétiques spécialisés et à la base complète IEEE MA-L / MA-M / MA-S (ex. <em>Solis</em>, <em>RAEDIAN</em>, <em>SMA</em>, <em>Shelly</em>).</li>
+    <li><strong>Empreinte Protocolaire &amp; OEM :</strong> Sur les équipements dotés de modules Wi-Fi/Ethernet génériques, GEMS inspecte les ports énergétiques ouverts (<code>502</code>/<code>1502</code> Modbus TCP &amp; SunSpec Model 1 / Device ID, <code>80</code>/<code>443</code>/<code>8080</code> HTTP/TLS et <code>8887</code> OCPP) pour identifier le fabricant et le modèle exacts tout en préservant les clés Modbus TCP mono-socket.</li>
+  </ol>
+
+  <!-- ==================== 6. ADDING & CONFIGURING DEVICES ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-devices">6. Intégration d'Appareils &amp; Les 170 Modèles Matériels</h1>
+  <p>
+    GEMS embarque une bibliothèque native de <strong>170 modèles matériels</strong> couvrant les principales marques européennes d'onduleurs solaires, batteries, compteurs communicants, bornes VE, routeurs solaires linéaires, pompes à chaleur SG-Ready et relais intelligents. Toute la configuration s'effectue à 100 % depuis l'interface graphique sans éditer aucun fichier texte.
+  </p>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_devices.png" alt="Liste des Appareils Configurés">
+      <div class="manual-screenshot-caption">Figure 6.1 : Liste des appareils actifs indiquant l'état de santé en direct et la scrutation.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_devices_add_modal.png" alt="Sélecteur de Catégorie d'Appareil">
+      <div class="manual-screenshot-caption">Figure 6.2 : Assistant de sélection de catégorie matérielle.</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Procédure Pas-à-Pas d'Ajout d'un Appareil</h2>
+  <ol style="margin: 6px 0 14px 18px; padding: 0;">
+    <li>Accédez à <strong>Paramètres &rarr; Appareils</strong>.</li>
+    <li>Cliquez sur <strong>« + Ajouter un appareil énergétique »</strong>.</li>
+    <li>Choisissez la catégorie matérielle (<em>Onduleurs &amp; Solaire</em>, <em>Compteurs Intelligents</em>, <em>Bornes VE</em> ou <em>Relais Intelligents</em>).</li>
+    <li>Sélectionnez le modèle matériel approprié dans la liste déroulante.</li>
+    <li>Renseignez les paramètres de communication selon les tableaux ci-dessous.</li>
+    <li>Cliquez sur <strong>« Enregistrer »</strong>. Le moteur démarre immédiatement la lecture et passe le statut sur <strong>● En ligne</strong>.</li>
+  </ol>
+
+  <div class="callout callout-tip" style="margin: 10px 0 16px 0;">
+    <div class="callout-title">Tests &amp; Simulation : Kit d'Appareils de Démonstration en 1 Clic</div>
+    <div class="callout-body">
+      Pour tester la boucle de régulation EMS, vérifier l'équilibrage dynamique de charge ou présenter le schéma animé des flux énergétiques avant le raccordement physique des équipements, cliquez sur <strong>« 🧪 Quick Add Demo Kit »</strong> dans l'onglet Appareils. Cette action déploie une suite coordonnée de 4 appareils virtuels (Compteur Intelligent, Onduleur Solaire, Batterie et Borne VE) simulant des courbes physiques réalistes. Les modèles individuels (<code>demo_meter</code>, <code>demo_solar</code>, <code>demo_battery</code>, <code>demo_charger</code>, <code>demo_relay</code>) sont également sélectionnables dans chaque catégorie.
+    </div>
+  </div>
+
+  <!-- Inverters -->
+  <h2 class="subsection-title">Catégorie A : Onduleurs Solaires &amp; Hybrides (Modbus TCP / RTU)</h2>
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_devices_inverter_form.png" alt="Formulaire de Configuration Onduleur Solaire">
+    <div class="manual-screenshot-caption">Figure 6.3 : Fenêtre de configuration d'onduleur présentant Modbus TCP/RTU, l'ID esclave, la puissance nominale et les options batterie.</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Nom du Champ</th>
+        <th>Type de Champ</th>
+        <th>Explication Installateur &amp; Quand Choisir</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>Nom de l'appareil</code></td>
+        <td>Texte</td>
+        <td>Libellé explicite affiché sur le tableau de bord (ex. <em>« Solis S6-EH3P10K Hybride »</em>).</td>
+      </tr>
+      <tr>
+        <td><code>Modèle matériel</code></td>
+        <td>Liste déroulante</td>
+        <td>
+          Sélectionnez le fabricant (modèle de référence principal : <strong>Solis 5G/S6 Hybrid</strong> ; prend aussi en charge Huawei, SMA, Enerlution, Fronius, SolarEdge, Sungrow, GoodWe, Victron ou SunSpec générique). Les badges indiquent <code>✓ Vérifié</code>, <code>1P↔3P</code> ou <code>Lecture seule</code>.
+        </td>
+      </tr>
+      <tr>
+        <td><code>IP Hôte / Port Série</code></td>
+        <td>IPv4 ou <code>/dev/serial/by-id/*</code></td>
+        <td>Adresse IP locale de la clé Ethernet/LAN de l'onduleur (ex. <code>192.168.1.120</code>) ou chemin série USB-RS485 persistant (<code>/dev/serial/by-id/*</code> à <code>9600</code>/<code>115200</code> bauds, parité <code>8N1</code>).</td>
+      </tr>
+      <tr>
+        <td><code>Port Modbus</code></td>
+        <td>Entier</td>
+        <td>Le port Modbus TCP standard est <strong>502</strong> (ou <strong>1502</strong> / <strong>8899</strong> sur certaines passerelles spécialisées).</td>
+      </tr>
+      <tr>
+        <td><code>ID Esclave Modbus</code></td>
+        <td>Entier (1–247)</td>
+        <td>Identifiant d'unité sur le bus RS-485/TCP. Par défaut <strong>1</strong> sur <strong>Solis</strong>. Attribuez des ID uniques (<code>1</code>, <code>2</code>, <code>3</code>) lors du chaînage de plusieurs équipements sur un même bus RS-485.</td>
+      </tr>
+      <tr>
+        <td><code>Puissance Nominale (kW)</code></td>
+        <td>Décimal (kW)</td>
+        <td>
+          <strong>Crucial :</strong> Saisissez la puissance AC nominale de l'onduleur (ex. <code>10.0</code> pour un onduleur Solis 10 kW). GEMS utilise cette valeur pour calculer précisément les consignes de bridage actif en pourcentage.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Câblage des Phases</code></td>
+        <td>Liste déroulante</td>
+        <td>
+          Associe l'ordre physique des phases : <code>Auto</code>, monophasé (<code>L1</code>, <code>L2</code>, <code>L3</code>) ou rotation triphasée (<code>L1-L2-L3</code>, <code>L2-L3-L1</code>, <code>L3-L1-L2</code>) pour une protection précise du disjoncteur principal par phase.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Autoriser le Bridage</code></td>
+        <td>Case à cocher</td>
+        <td>
+          <strong>Quand cocher :</strong> Lorsque le client dispose d'un contrat dynamique et que vous souhaitez que GEMS bride la production solaire lors des prix d'injection négatifs ou en mode zéro-injection.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Compteur Réseau Raccordé ?</code></td>
+        <td>Case à cocher</td>
+        <td>
+          <strong>Quand cocher :</strong> Si l'onduleur hybride possède son propre compteur à tores CT câblé directement sur l'onduleur. <strong>Quand décocher :</strong> En l'absence de compteur dédié à l'onduleur — GEMS pilotera automatiquement l'autoconsommation de la batterie à partir du compteur communicant P1 central !
+        </td>
+      </tr>
+      <tr>
+        <td><code>Batterie Raccordée ? &amp; Capacité (kWh)</code></td>
+        <td>Case + Décimal</td>
+        <td>
+          <strong>Quand cocher :</strong> Si une batterie de stockage couplée DC est reliée à l'onduleur hybride, et indiquez sa capacité utile en kWh (ex. <code>10.0 kWh</code>) pour la modélisation prédictive solaire.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Intervalle de Scrutation (s)</code></td>
+        <td>Entier (secondes)</td>
+        <td>
+          <strong>2 secondes</strong> par défaut pour une régulation réactive sans saturer les transmetteurs série ou TCP.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Smart Meters -->
+  <div class="page-break"></div>
+  <h2 class="subsection-title">Catégorie B : Compteurs Intelligents Réseau (Série P1, Ponts Wi-Fi &amp; Modbus)</h2>
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_devices_meter_form.png" alt="Fenêtre de Configuration Compteur Intelligent">
+    <div class="manual-screenshot-caption">Figure 6.4 : Fenêtre de configuration des compteurs prenant en charge les câbles série P1, clés Wi-Fi et compteurs DIN Modbus.</div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Type de Connexion</th>
+        <th>Modèles Pris en Charge</th>
+        <th>Valeurs des Champs &amp; Notes d'Installation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Câble Série P1 Direct</strong></td>
+        <td>Fluvius / ORES / Resa / Sibelga / DSMR P1 Série (Belgique &amp; Pays-Bas)</td>
+        <td>
+          Sélectionnez le chemin persistant <code>/dev/serial/by-id/...</code> (ou <code>/dev/ttyUSB0</code>). Débit : <code>115200</code> (DSMR 5.0.2 / e-MUCS v1.4) ou <code>9600</code> (DSMR 4.2). GEMS contrôle automatiquement la somme CRC de chaque télégramme.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Dongle Wi-Fi P1 (REST/TCP)</strong></td>
+        <td>HomeWizard P1 Meter, Passerelle P1 ESP8266/ESP32</td>
+        <td>
+          Saisissez l'IP locale du dongle (ex. <code>192.168.1.121</code>). Port <code>80</code> (API REST) ou Port <code>8234</code> (flux série TCP brut). Aucun câblage physique jusqu'au Raspberry Pi !
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Compteurs DIN Modbus RTU / TCP</strong></td>
+        <td>Eastron SDM630 Triphasé, Carlo Gavazzi EM24, Schneider iEM3000, Shelly 3EM / Pro 3EM</td>
+        <td>
+          Modbus RTU : adaptateur USB-RS485 à 9600 bauds, 8N1, ID esclave <code>1</code>. Modbus TCP : IP de la passerelle et port <code>502</code>. Shelly Pro 3EM : IP de l'appareil et port <code>80</code>.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- EV Chargers -->
+  <h2 class="subsection-title">Catégorie C : Bornes de Recharge VE (Modbus TCP vs OCPP Natif)</h2>
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_devices_charger_form.png" alt="Fenêtre de Configuration Borne VE">
+    <div class="manual-screenshot-caption">Figure 6.5 : Configuration de borne VE privilégiant Modbus TCP/RTU et prenant en charge OCPP 1.6-J natif.</div>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-title">⚡ Guide de Décision : Modbus TCP vs OCPP pour Bornes VE (Référence : RAEDIAN NEO / NEX)</div>
+    <div class="decision-grid">
+      <div class="decision-item" style="border-left: 3px solid #10b981;">
+        <div class="decision-item-title">Modbus TCP / RTU (Recommandé &amp; Privilégié)</div>
+        <div class="decision-item-desc">
+          <strong>Réponse inférieure à la seconde :</strong> Module de 6 A à 32 A en moins de 200 ms.<br>
+          <strong>Coexistence split-billing employeur :</strong> N'interfère PAS avec la connexion OCPP cloud de la borne (plateformes de facturation CPO externes ou services de remboursement employeur). Les deux fonctionnent simultanément !
+        </div>
+      </div>
+      <div class="decision-item" style="border-left: 3px solid #0284c7;">
+        <div class="decision-item-title">OCPP 1.6-J Natif (Alternative / Proxy)</div>
+        <div class="decision-item-desc">
+          À utiliser lorsque la borne communique uniquement par WebSocket OCPP ou via le <strong>Proxy OCPP Smart Forwarder</strong>. Pointez la borne vers <code>ws://&lt;IP-GEMS&gt;:8887/&lt;ID&gt;</code> (ou <code>ws://ems.local/ocpp/&lt;ID&gt;</code>).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:26%;">Paramètre Borne VE &amp; Flotte DLB</th>
+        <th style="width:22%;">Options / Défaut</th>
+        <th style="width:52%;">Explication Installateur &amp; Quand Configurer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>Numéro d'Emplacement &amp; Priorité</code></td>
+        <td>Emplacement <code>1–64</code> • <code>VIP</code>, <code>Haute</code>, <code>Normale</code>, <code>Solaire Seul</code></td>
+        <td>Attribue le numéro de place et la pondération DLB : <strong>VIP (1,5x)</strong>, <strong>Haute (1,25x)</strong>, <strong>Normale (1,0x)</strong> ou <strong>Solaire Seul</strong> (met en pause en l'absence de surplus photovoltaïque).</td>
+      </tr>
+      <tr>
+        <td><code>Commutation Automatique 1P/3P Solaire</code></td>
+        <td>Case à cocher (<code>Désactivé</code> / <code>Activé</code>)</td>
+        <td>Active le basculement automatique entre <strong>Monophasé (1,4–3,6 kW)</strong> et <strong>Triphasé (4,1–22 kW)</strong> sur les bornes compatibles (telles que <strong>RAEDIAN NEO</strong>) avec une pause de sécurité hors charge obligatoire de 20 secondes protégeant les contacteurs du véhicule.</td>
+      </tr>
+      <tr>
+        <td><code>DLB Flotte Actif &amp; Auto-Enregistrement</code></td>
+        <td>Interrupteurs (Bas de l'onglet Appareils)</td>
+        <td>Active l'équilibrage dynamique multi-bornes (jusqu'à 64 emplacements) et enregistre automatiquement toute borne OCPP 1.6-J entrante dès réception de sa trame <code>BootNotification</code>.</td>
+      </tr>
+      <tr>
+        <td><code>Courant Max. Cluster (A) &amp; Arbitrage</code></td>
+        <td>ex. <code>63 A</code> • <code>priority_queue</code>, <code>equal_share</code>, <code>solar_first</code></td>
+        <td>Définit la limite du départ divisionnaire alimentant le groupe de bornes et choisit le mode de répartition du courant disponible entre véhicules actifs.</td>
+      </tr>
+      <tr>
+        <td><code>Proxy OCPP Smart Forwarder</code></td>
+        <td><code>URL CPO Amont</code> + <code>En-tête Auth</code></td>
+        <td>Transfère de manière transparente la facturation et les badges RFID OCPP vers une plateforme de facturation CPO externe (supporte la variable <code>{chargePointId}</code>) pendant que GEMS injecte localement les profils <code>SetChargingProfile</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 7. GRID CONNECTION & LIMITS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-grid">7. Raccordement Réseau, Configuration Triphasée &amp; Schémas</h1>
+  <p>
+    Accédez à <strong>Paramètres &rarr; Stratégie &rarr; Raccordement Réseau &amp; Limites</strong>. Le paramétrage exact du calibre du disjoncteur principal (conformément au RGIE / AREI en Belgique ou à la norme NEN 1010 aux Pays-Bas) empêche toute disjonction générale et garantit un délestage dynamique fiable.
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_strategy.png" alt="Paramètres de Raccordement Réseau">
+    <div class="manual-screenshot-caption">Figure 7.1 : Limites physiques de l'installation électrique et seuils de gestion dynamique de charge.</div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Nom du Paramètre</th>
+        <th>Défaut / Plage</th>
+        <th>Explication Technique &amp; Critères de Sélection</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>Fuseau Horaire, Latitude &amp; Longitude</code></td>
+        <td><code>Europe/Brussels</code> + Recherche d'adresse</td>
+        <td>
+          Saisissez l'adresse du site et cliquez sur <strong>Lookup Lat/Lon</strong>. Utilisé par le moteur météorologique Open-Meteo pour calculer l'irradiance solaire attendue le lendemain (W/m&sup2;) en vue de l'arbitrage batterie nocturne.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Topologie du Réseau Électrique</code></td>
+        <td>Liste déroulante</td>
+        <td>
+          <strong>Monophasé 230V :</strong> Raccordement résidentiel classique (Phase + Neutre, 230 V AC).<br>
+          <strong>Triphasé 400V (+N) :</strong> Réseau européen triphasé standard TN/TT (3x 400 V entre phases, 230 V entre phase et neutre).<br>
+          <strong>Triphasé 230V Triangle (Delta sans Neutre) :</strong> <em>Réseau historique belge</em> (Bruxelles, certaines zones de Wallonie et de Flandre). 3x 230 V entre phases <strong>SANS conducteur neutre</strong> (applique le calcul composé &radic;3).
+        </td>
+      </tr>
+      <tr>
+        <td><code>Courant Nominal / Disjoncteur Principal (A)</code></td>
+        <td>25,0 A (16 A – 250 A)</td>
+        <td>
+          Calibre nominal du disjoncteur principal de branchement (ex. <code>25A</code>, <code>32A</code>, <code>40A</code>, <code>63A</code>). Sert de base au calcul de la puissance maximale admissible du site.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Limite par Phase (A)</code></td>
+        <td>25,0 A (16 A – 250 A)</td>
+        <td>
+          Plafond de sécurité strict par phase individuelle. Si une charge domestique asymétrique (ex. taque à induction sur la phase L1) rapproche L1 de ce seuil, GEMS réduit instantanément le courant de la borne VE afin d'éviter le déclenchement du disjoncteur principal !
+        </td>
+      </tr>
+      <tr>
+        <td><code>Prélèvement Réseau Autorisé (kW)</code></td>
+        <td>Auto (ou kW manuel)</td>
+        <td>
+          Puissance active continue maximale autorisée en prélèvement depuis le réseau. Sur un raccordement 3x400V 25A, la valeur proposée est de <code>17,2 kW</code>.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Injection Réseau Autorisée (kW)</code></td>
+        <td>Auto (ou kW manuel)</td>
+        <td>
+          Puissance active continue maximale autorisée en injection vers le réseau public. Réglez sur <code>0,0 kW</code> pour une <strong>conformité zéro-injection stricte</strong> (l'onduleur est bridé dynamiquement pour suivre la consommation exacte du bâtiment).
+        </td>
+      </tr>
+      <tr>
+        <td><code>Courant de Repli si Compteur Hors Ligne</code></td>
+        <td><code>0 A (Pause)</code>, <code>6 A</code>, <code>8 A</code>, <code>10 A</code>, <code>16 A</code></td>
+        <td>
+          Consigne de sécurité appliquée aux bornes VE en cas de perte du signal du compteur P1/Modbus pendant plus de 30 secondes. Choisissez <code>0 A (Pause — Recommandé)</code> sur les petits compteurs ou <code>6 A</code> pour maintenir une charge minimale.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 8. ENERGY CONTRACTS & THE 5 WIZARDS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-contracts">8. Contrats d'Énergie &amp; Les 5 Assistants Tarifaires</h1>
+  <p>
+    Sous <strong>Paramètres &rarr; Contrat d'énergie</strong>, GEMS modélise le contrat de fourniture du client afin de calculer précisément les coûts nets de prélèvement, les revenus d'injection et les créneaux optimaux de charge batterie. Les prix horaires EPEX Spot Day-Ahead sont récupérés chaque jour à 13h00 CET.
+  </p>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_contract.png" alt="Onglet Contrat d'Énergie">
+      <div class="manual-screenshot-caption">Figure 8.1 : Sélecteur d'assistant contractuel et paramètres régionaux du GRD.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_contract_tariffs.png" alt="Visualiseur Tarifaire">
+      <div class="manual-screenshot-caption">Figure 8.2 : Courbe sur 24 heures détaillant le tarif effectif tout compris et la valorisation d'injection.</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Les 5 Assistants de Contrat : Quand Choisir Chacun ?</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Assistant</th>
+        <th>Type de Contrat Ciblé</th>
+        <th>Préréglages &amp; Paramètres Pris en Charge</th>
+        <th>Quand le Sélectionner</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Assistant A :<br>Fixe / Variable</strong></td>
+        <td>Contrats classiques à tarif fixe ou variable mensuel</td>
+        <td>
+          - Prélèvement Heures Pleines (€/kWh)<br>
+          - Prélèvement Heures Creuses (€/kWh)<br>
+          - Tarif d'Injection Fixe (€/kWh)
+        </td>
+        <td>
+          Choisissez cette option si le client n'a <strong>pas</strong> de contrat dynamique horaire. Saisissez un tarif unique (mono-horaire) ou les tarifs Jour/Nuit (bi-horaire).
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Assistant B :<br>Dynamique Avancé</strong></td>
+        <td>Contrats dynamiques sur mesure avec éditeur visuel de formules</td>
+        <td>
+          - Flux d'enchères EPEX Spot associé<br>
+          - Blocs glisser-déposer (<code>Spot</code>, <code>Marge</code>, <code>Multiplicateur</code>, <code>GRD</code>, <code>TVA</code>)<br>
+          - Règles horaires et par jour de la semaine
+        </td>
+        <td>
+          Idéal pour les fournisseurs internationaux non répertoriés ou les contrats tertiaires/industriels exigeant des formules mathématiques personnalisées.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Assistant C :<br>Dynamic-BE</strong></td>
+        <td>Contrats horaires belges indexés EPEX Spot Day-Ahead</td>
+        <td>
+          <strong>Fournisseurs préconfigurés :</strong> TotalEnergies Pixel Dynamic, Mega Smart/Cosy, Bolt Dynamisch, Engie Dynamic, Dats 24, Luminus, Eneco, Frank Energie, Ecopower, Octa+, Trevion, Aspiravi.
+        </td>
+        <td>
+          <strong>Choix par défaut pour les contrats dynamiques en Belgique.</strong> Sélectionnez le segment (Résidentiel 6 % TVA vs Professionnel 21 % TVA) et la date de souscription pour pré-remplir la formule exacte.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Assistant D :<br>Flex-BE</strong></td>
+        <td>Contrats belges variables mensuels à plages horaires (Time-of-Use)</td>
+        <td>
+          - Moyenne mensuelle EPEX Engie Flextime<br>
+          - Marges Heures Pleines, Creuses et <strong>Super-Creuses / Super-Dal (01:00–07:00)</strong><br>
+          - Recharge nocturne automatisée de la batterie
+        </td>
+        <td>
+          À sélectionner pour un contrat Engie Flextime. Active la pré-charge automatique de la batterie durant les heures nocturnes Super-Creuses fortement remisées.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Assistant E :<br>Dynamic-NL</strong></td>
+        <td>Contrats dynamiques néerlandais intégrant la fiscalité énergétique légale</td>
+        <td>
+          <strong>Fournisseurs NL préconfigurés :</strong> <strong>Vattenfall Nederland — FlexPrijs</strong> (marge <code>1,00× EPEX NL + 0,0211 €/kWh</code> + redevance fixe <code>95,40 €/an</code> Vastrecht), Eneco Dynamic, Frank Energie Dynamic et contrats EPEX NL personnalisés.<br>
+          Inclut l'Energiebelasting légale (<code>0,1316 €/kWh</code>), 21 % de TVA et les frais d'injection (<em>Terugleverkosten</em>).
+        </td>
+        <td>
+          <strong>Standard pour les installations aux Pays-Bas.</strong> Modélise fidèlement les frais d'injection néerlandais (<em>terugleverkosten</em>) et applique une isolation réglementaire stricte par pays.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 9. OPTIMIZATION STRATEGY & PEAK SHAVING ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-strategy">9. Stratégie d'Optimisation &amp; Écrêtage Capacitaire Flandre</h1>
+  <p>
+    Accédez à <strong>Paramètres &rarr; Stratégie</strong> pour configurer le moteur central d'optimisation énergétique.
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_strategy_modes.png" alt="Modes de Stratégie d'Optimisation">
+    <div class="manual-screenshot-caption">Figure 9.1 : Mode d'Optimisation, Écrêtage du Tarif Capacitaire Flandre et Plafond Adaptatif Intelligent.</div>
+  </div>
+
+  <h2 class="subsection-title">Les Trois Modes Stratégiques Principaux</h2>
+  <div class="decision-box">
+    <div class="decision-title">🎯 Choisir le Bon Mode de Stratégie</div>
+    <div class="decision-grid">
+      <div class="decision-item">
+        <div class="decision-item-title">Mode 1 : Éco (Autoconsommation Maximale)</div>
+        <div class="decision-item-desc">
+          <strong>Idéal pour :</strong> La Wallonie (ORES, Resa), Bruxelles (Sibelga), la France, l'Allemagne ou toute région sans tarif capacitaire quart-horaire.<br>
+          Stocke 100 % du surplus solaire dans la batterie domestique et le véhicule électrique. Minimise le prélèvement réseau sans brider la puissance de pointe en kW.
+        </div>
+      </div>
+      <div class="decision-item">
+        <div class="decision-item-title">Mode 2 : Mode Flandre (Écrêtage de Pointe)</div>
+        <div class="decision-item-desc">
+          <strong>Idéal pour :</strong> La Flandre (Belgique — réseau Fluvius).<br>
+          Maintient la pointe quart-horaire glissante du <em>Tarif Capacitaire (Capaciteitstarief)</em> sous le plafond cible (2,50 kW par défaut) en déchargeant la batterie et en modulant la borne VE dès que les appareils ménagers dépassent la consigne.
+        </div>
+      </div>
+      <div class="decision-item">
+        <div class="decision-item-title">Mode 3 : Mode Pays-Bas (Compensation Intelligente &amp; Garde 3×25A)</div>
+        <div class="decision-item-desc">
+          <strong>Idéal pour :</strong> Les Pays-Bas (Liander, Enexis, Stedin).<br>
+          Protège les fusibles principaux <code>3×25A</code> phase par phase (évitant le surcoût réseau de plus de 1 000 €/an d'un passage en <code>3×35A</code>), privilégie le stockage local et la charge VE face aux frais d'injection (<em>terugleverkosten</em>), bride lors des heures EPEX NL négatives et désactive intégralement les fonctions belges/flamandes (<em>Capaciteitstarief</em>, GSC, Elia, Super-Dal, IEC-104).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Paramètres du Tarif Capacitaire Flandre (Fluvius)</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Paramètre</th>
+        <th>Valeur Recommandée</th>
+        <th>Explication Installateur &amp; Fonctionnement</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>capacity_peak_limit_kw</code></td>
+        <td><strong>2,50 kW</strong></td>
+        <td>
+          Plafond mensuel de référence. En Flandre, Fluvius facture un forfait minimal légal de 2,50 kW quelle que soit la consommation. Maintenir les pointes quart-horaires à 2,50 kW ou moins garantit la facture réseau minimale.
+        </td>
+      </tr>
+      <tr>
+        <td><code>peak_shaving_buffer_w</code></td>
+        <td><strong>200 W</strong></td>
+        <td>
+          Marge de sécurité proactive retranchée au plafond (ex. 2,50 kW &minus; 200 W = seuil d'action à 2,30 kW). Permet à l'EMS de réduire la charge VE et de solliciter la batterie <em>avant</em> que la moyenne sur 15 minutes du compteur numérique ne soit dépassée.
+        </td>
+      </tr>
+      <tr>
+        <td><code>peak_shaving_rampup_w</code></td>
+        <td><strong>150 W</strong></td>
+        <td>
+          Bande morte d'hystérésis requise sous le plafond avant de ré-accélérer une borne VE bridée. Évite les commutations répétées des relais de charge du véhicule.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Plafond Adaptatif Intelligent</strong></td>
+        <td>Automatique (Activé)</td>
+        <td>
+          Si une pointe domestique inévitable survient en cours de mois (ex. four + pompe à chaleur atteignant 4,2 kW pendant 15 minutes lorsque la batterie est vide), GEMS <strong>adapte dynamiquement son plafond opérationnel à 4,2 kW jusqu'à la fin du mois civil</strong>. Comme Fluvius facturera déjà ce pic de 4,2 kW, le client bénéficie d'une recharge VE plus rapide sans aucun centime de surcoût ! Le 1er du mois suivant, le plafond revient automatiquement à 2,50 kW.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 10. FLEMISH GSC VALUE PROTECTION ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-gsc">10. Bridage Actif d'Onduleur &amp; Protection des Certificats Verts (GSC)</h1>
+  <p>
+    Avec les contrats dynamiques, les prix de gros européens deviennent parfois négatifs lors des après-midis ensoleillés de week-end. Injecter sur le réseau durant ces heures engendre une pénalité financière. Toutefois, les installations photovoltaïques historiques en Flandre bénéficient de subventions garanties sous forme de <strong>Certificats Verts (Groenestroomcertificaten — GSC)</strong>.
+  </p>
+
+  <div class="callout callout-warning">
+    <div class="callout-title">⚠️ Pourquoi Couper Aveuglément l'Onduleur à 0,00 €/kWh Détruit la Rentabilité Client</div>
+    <p>
+      Un gestionnaire basique coupe l'onduleur dès que le tarif d'injection passe sous 0,00 €/kWh. Or, si un client perçoit <strong>250 €/certificat (0,250 €/kWh)</strong> en certificats verts flamands, arrêter l'onduleur lorsque le prix spot est de &minus;0,05 €/kWh lui fait perdre <strong>+0,20 €/kWh de bénéfice net garanti</strong> !
+    </p>
+  </div>
+
+  <h2 class="subsection-title">Formule Mathématique de Compensation GSC</h2>
+  <div class="terminal-box">
+    Seuil Effectif de Bridage (€/kWh) = Seuil de Base - (Valeur GSC €/MWh / 1000,0)<br>
+    <br>
+    Exemple (GSC à 250 €) :<br>
+    Seuil Effectif = 0,00 € - (250,0 € / 1000,0) = -0,250 €/kWh (-250,0 €/MWh)
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Préréglage GSC Flamand</th>
+        <th>Valeur de Subvention / kWh</th>
+        <th>Seuil Effectif de Bridage</th>
+        <th>Consigne pour l'Installateur</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Aucun GSC (0 €)</strong></td>
+        <td>0,000 € / kWh</td>
+        <td>&le; <strong>0,0 €/MWh (0,000 €/kWh)</strong></td>
+        <td>À choisir pour les installations postérieures à 2021 sans certificats verts. Bridage immédiat dès que le tarif d'injection passe sous zéro.</td>
+      </tr>
+      <tr>
+        <td><strong>GSC 90 €</strong></td>
+        <td>0,090 € / kWh</td>
+        <td>&le; <strong>-90,0 €/MWh (-0,090 €/kWh)</strong></td>
+        <td>L'onduleur continue d'exporter par prix négatifs jusqu'à &minus;0,090 €/kWh. Bridage uniquement sous &minus;0,090 €/kWh.</td>
+      </tr>
+      <tr>
+        <td><strong>GSC 250 €</strong></td>
+        <td>0,250 € / kWh</td>
+        <td>&le; <strong>-250,0 €/MWh (-0,250 €/kWh)</strong></td>
+        <td>Protège les installations PV flamandes de 2009–2012. Pleine production maintenue durant la quasi-totalité des heures négatives !</td>
+      </tr>
+      <tr>
+        <td><strong>GSC 350 €</strong></td>
+        <td>0,350 € / kWh</td>
+        <td>&le; <strong>-350,0 €/MWh (-0,350 €/kWh)</strong></td>
+        <td>Protège les installations historiques à haute valeur. Production maintenue jusqu'à &minus;350 €/MWh.</td>
+      </tr>
+      <tr>
+        <td><strong>GSC 450 €</strong></td>
+        <td>0,450 € / kWh</td>
+        <td>&le; <strong>-450,0 €/MWh (-0,450 €/kWh)</strong></td>
+        <td>Protège les premières installations PV flamandes (2006–2008). Revenu maximal de certificats garanti.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 11. FLUVIUS TELECONTROL (IEC 60870-5-104) ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-iec104">11. Conformité Télécontrôle Fluvius (IEC 60870-5-104)</h1>
+  <p>
+    Pour les installations tertiaires, industrielles ou résidentielles soumises aux prescriptions de téléconduite du gestionnaire de réseau Fluvius (prescriptions Synergrid C10/11), GEMS intègre nativement un <strong>serveur esclave IEC 60870-5-104</strong>.
+  </p>
+
+  <h2 class="subsection-title">Paramètres de Configuration du Télécontrôle</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Paramètre</th>
+        <th>Valeur par Défaut</th>
+        <th>Description Technique</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>iec104_enabled</code></td>
+        <td>Désactivé</td>
+        <td>Interrupteur général du démon serveur de télécontrôle IEC 60870-5-104.</td>
+      </tr>
+      <tr>
+        <td><code>iec104_port</code></td>
+        <td><code>2404</code></td>
+        <td>Port TCP normalisé par le standard international IEC 104.</td>
+      </tr>
+      <tr>
+        <td><code>iec104_common_address</code></td>
+        <td><code>1</code></td>
+        <td>Adresse commune ASDU (identifiant de poste attribué par Fluvius).</td>
+      </tr>
+      <tr>
+        <td><code>iec104_allowed_ip</code></td>
+        <td><code>0.0.0.0</code></td>
+        <td>Liste blanche IP matérielle. Renseignez l'adresse IP fixe du coffret RTU Fluvius afin de rejeter toute connexion non autorisée.</td>
+      </tr>
+      <tr>
+        <td><code>iec104_curtailment_mode</code></td>
+        <td><code>kw</code></td>
+        <td>Unité des consignes reçues : Kilowatts absolus (<code>kw</code>) ou Pourcentage de la puissance nominale (<code>percent</code>).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="subsection-title">Commandes de Simulation pour Essais de Réception Installateur</h2>
+  <p>
+    L'installateur peut valider la réponse d'urgence de la centrale directement depuis l'interface GEMS sans attendre l'envoi de signaux de test par le gestionnaire de réseau :
+  </p>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>🚨 Trip Plant (Découplage ASDU 45) :</strong> Simule un ordre d'arrêt d'urgence. GEMS transmet instantanément une consigne de puissance zéro à tous les onduleurs raccordés.</li>
+    <li><strong>✓ Reset Trip :</strong> Rétablit le fonctionnement normal après un essai de découplage.</li>
+    <li><strong>📉 Set 4.0 kW Limit (ASDU 50) :</strong> Injecte un plafond de puissance active de 4,0 kW pour vérifier le bridage rapide de l'installation en moins de 5 secondes.</li>
+    <li><strong>Release Curtailment (100 kW) :</strong> Libère la production nominale sans restriction.</li>
+  </ul>
+
+  <!-- ==================== 12. BATTERY ARBITRAGE & RULES ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-battery-rules">12. Arbitrage Batterie &amp; Optimisation par Règles de Priorité</h1>
+  <p>
+    GEMS combine l'arbitrage automatique sur les prix spot et un moteur de règles déterministes sous <strong>Paramètres &rarr; Stratégie &rarr; Optimisation Batterie par Règles Tarifaires</strong>.
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_strategy_rules.png" alt="Règles d'Optimisation des Coûts Batterie">
+    <div class="manual-screenshot-caption">Figure 12.1 : Liste ordonnée de règles prioritaires pour la charge, la décharge et le maintien de la batterie.</div>
+  </div>
+
+  <h2 class="subsection-title">Paramètres d'Arbitrage &amp; Protection Contre l'Usure Cellulaire</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Paramètre</th>
+        <th>Défaut / Plage</th>
+        <th>Explication Terrain &amp; Arbitrages Techniques</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>battery_grid_charge_strategy</code></td>
+        <td><code>dynamic_forecast</code></td>
+        <td>
+          <strong>Prévision Dynamique 24h :</strong> Simule la production solaire du lendemain (Open-Meteo) et le talon de consommation domestique pour calculer le besoin exact de recharge nocturne.<br>
+          <strong>Seuil de Prix Uniquement :</strong> Charge dès que le prix est &le; au plafond configuré.<br>
+          <strong>Super-Dal Uniquement :</strong> Charge exclusivement entre 01h00 et 07h00.<br>
+          <strong>Hybride :</strong> Combine la prévision solaire et les seuils de prix spot.
+        </td>
+      </tr>
+      <tr>
+        <td><code>force_charge_below_euro</code></td>
+        <td><code>0,08 €/kWh</code></td>
+        <td>Plafond tarifaire sous lequel la batterie se recharge activement depuis le réseau (heures creuses nocturnes ou prix spot négatifs).</td>
+      </tr>
+      <tr>
+        <td><code>force_discharge_above_euro</code></td>
+        <td><code>0,35 €/kWh</code></td>
+        <td>Plancher tarifaire au-dessus duquel la batterie décharge activement durant les pointes du soir pour maximiser le gain économique.</td>
+      </tr>
+      <tr>
+        <td><code>battery_wear_cost_eur</code></td>
+        <td><strong>0,040 €/kWh</strong> (3–6 ct)</td>
+        <td>
+          <strong>Protection Critique d'Usure :</strong> Chaque cycle sollicite les cellules lithium. GEMS exige que l'écart de prix (Prix de décharge &minus; Prix de charge) dépasse ce coût d'usure avant d'exécuter un arbitrage réseau, évitant ainsi tout micro-cyclage non rentable !
+        </td>
+      </tr>
+      <tr>
+        <td><code>winter_fallback_enabled</code><br><code>winter_fallback_trigger_soc</code><br><code>winter_fallback_target_soc</code><br><code>winter_fallback_cheapest_hours</code></td>
+        <td><strong>Activé</strong><br>Seuil : <code>25%</code><br>Cible : <code>65%</code><br>Créneau : <code>2 h</code></td>
+        <td>
+          <strong>Recharge Réseau de Repli Hiver / Faible Ensoleillement :</strong> Évite que la batterie reste immobilisée à son SoC minimal lors des semaines hivernales couvertes où l'écart tarifaire journalier est inférieur au seuil d'arbitrage complet. Lorsque le SoC descend &le; <code>25%</code> et que la prévision solaire 24h (ou la production des dernières 24h) ne suffit pas à la recharger, GEMS charge la batterie durant les <code>2</code> heures les moins chères de la journée jusqu'à <code>65%</code> de SoC, tout en respectant strictement le plafond capacitaire flamand et le disjoncteur principal.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 13. EV CHARGING CONTROLS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-ev">13. Pilotage de Charge VE &amp; Boost Réseau Vert Belge Elia</h1>
+  <p>
+    GEMS coordonne directement les bornes de recharge VE connectées afin d'ajuster dynamiquement l'intensité de charge à chaque seconde :
+  </p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Mode de Charge</th>
+        <th>Plage de Courant</th>
+        <th>Fonctionnement &amp; Usage Recommandé</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>ÉCO / Solaire Seul</strong></td>
+        <td>6 A à 16 A / 32 A (Dynamique)</td>
+        <td>Charge exclusivement à partir du surplus photovoltaïque. En cas de passage nuageux, la charge est automatiquement modulée ou suspendue pour éviter tout prélèvement coûteux sur le réseau. <em>(Note : 6 A correspond au courant minimal normalisé selon l'IEC 61851 : 1,4 kW en monophasé ou 4,1 kW en triphasé).</em></td>
+      </tr>
+      <tr>
+        <td><strong>RAPIDE (FAST / Immédiat)</strong></td>
+        <td>16 A ou 32 A (Max. Fixe)</td>
+        <td>Mobilise simultanément le solaire, la batterie et le réseau public jusqu'à la limite par phase du disjoncteur principal. À privilégier pour un départ imminent.</td>
+      </tr>
+      <tr>
+        <td><strong>Dynamique Intelligent</strong></td>
+        <td>Dynamique (Indexé Spot)</td>
+        <td>Planifie automatiquement la charge durant le nombre configuré d'<strong>Heures Spot les Moins Chères (1 à 8 heures)</strong> du contrat Day-Ahead.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="subsection-title">Boost de Synchronisation Réseau Vert Belge Elia</h2>
+  <p>
+    Lorsqu'elle est activée sous <strong>Paramètres &rarr; Stratégie</strong>, cette fonction récupère en direct par pas de 15 minutes la production renouvelable nationale auprès du gestionnaire belge de transport haute tension <strong>Elia</strong>. Dès que la part verte nationale (éolien + solaire) franchit le seuil choisi (ex. <strong>65 %</strong>), la charge VE et la pré-charge batterie sont automatiquement stimulées pour aligner la consommation locale sur l'énergie verte réellement disponible !
+  </p>
+
+  <!-- ==================== 14. SMART RELAYS & HEAT PUMPS ==================== -->
+  <h1 class="section-title" id="sec-relays">14. Relais Intelligents &amp; Pompes à Chaleur SG-Ready</h1>
+  <p>
+    GEMS pilote des relais intelligents (tels que Shelly Pro 2 ou Shelly Plus 1PM) afin d'automatiser les ballons d'eau chaude sanitaire, pompes de piscine et pompes à chaleur certifiées SG-Ready.
+  </p>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_relays.png" alt="Onglet Relais &amp; Commutateurs">
+      <div class="manual-screenshot-caption">Figure 14.1 : Relais configurés et état de commutation en temps réel.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_relays_rules.png" alt="Règles d'Automatisation des Relais">
+      <div class="manual-screenshot-caption">Figure 14.2 : Règles de déclenchement sur surplus solaire et tarifs dynamiques.</div>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Condition de Déclenchement</th>
+        <th>Seuil Configuré</th>
+        <th>Temporisation d'Hystérésis</th>
+        <th>Application Électrique Typique</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>excess_solar</code></td>
+        <td>Surplus &gt; <code>1 200 W</code></td>
+        <td>Durée ON min. : <strong>10 min</strong><br>Durée OFF min. : <strong>5 min</strong></td>
+        <td>Boost thermique de pompe à chaleur SG-Ready. Élève la consigne du ballon tampon grâce à l'énergie solaire gratuite en journée.</td>
+      </tr>
+      <tr>
+        <td><code>negative_spot_price</code></td>
+        <td>Prix &le; <code>0,02 €/kWh</code></td>
+        <td>Durée ON min. : <strong>15 min</strong></td>
+        <td>Résistance électrique d'appoint dans un chauffe-eau sanitaire.</td>
+      </tr>
+      <tr>
+        <td><code>time_window</code></td>
+        <td>13:00 à 16:00 chaque jour</td>
+        <td>Horaire fixe</td>
+        <td>Pompe de filtration de piscine programmée pendant le pic d'ensoleillement.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-warning">
+    <div class="callout-title">⚠️ Avertissement de Protection du Compresseur</div>
+    <p>
+      Configurez systématiquement une <strong>Durée Minimale de Marche (Minimum ON Time) d'au moins 10 minutes</strong> pour les pompes à chaleur. Les cycles courts répétés (arrêts/redémarrages incessants lors de passages nuageux) risquent d'endommager le compresseur et d'annuler la garantie constructeur !
+    </p>
+  </div>
+
+  <!-- ==================== 15. ALERTS & REPORTS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-alerts">15. Alertes, Webhooks &amp; Rapports PDF Automatisés</h1>
+  <p>
+    Configurez la supervision externe sous <strong>Paramètres &rarr; Notifications</strong> :
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_notifications.png" alt="Onglet Paramètres de Notifications">
+    <div class="manual-screenshot-caption">Figure 15.1 : URL Webhook Discord/Slack, identifiants SMTP et destinataire du rapport énergétique hebdomadaire.</div>
+  </div>
+
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Alertes Webhook :</strong> Collez une URL webhook Discord, Slack, Microsoft Teams ou Ntfy. GEMS expédie des alertes instantanées en cas d'échecs répétés de scrutation, d'approche de la limite du disjoncteur principal ou de perte de communication compteur.</li>
+    <li><strong>Rapport Énergétique Hebdomadaire par E-mail :</strong> Renseignez l'adresse e-mail du client et les paramètres SMTP. Chaque dimanche à 20h00, GEMS génère et envoie automatiquement une synthèse PDF présentant la production solaire, le taux d'autoconsommation (%) et les pointes de capacité.</li>
+  </ul>
+
+  <!-- ==================== 16. DIAGNOSTICS & SIGN-OFF ==================== -->
+  <h1 class="section-title" id="sec-maint">16. Assistant de Mise en Service, Code PIN Installateur, Sécurité Réseau 60s, Mises à Jour Signées &amp; Réception</h1>
+  <p>
+    Les contrôleurs commerciaux GEMS intègrent des mécanismes complets de mise en service et de sécurité terrain accessibles en <strong>Mode Installateur</strong> (déverrouillé via l'icône cadenas en haut à droite des Paramètres) :
+  </p>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Assistant Initial Guidé &amp; Séparation Mode Résident vs Mode Installateur Certifié :</strong> Se lance automatiquement au premier démarrage pour guider le choix de la langue/localisation (<code>NL</code>, <code>FR</code>, <code>EN</code>), la création du <strong>Code PIN / mot de passe installateur</strong> local, le calibre du disjoncteur principal et le schéma électrique (RGIE / AREI / NEN 1010), la détection du compteur, l'ajout des équipements de référence (<strong>Solis</strong> &amp; <strong>RAEDIAN</strong>) et le choix du contrat d'énergie. En usage quotidien (<strong>Mode Normal</strong> verrouillé), le particulier profite d'une interface épurée et sans risque — Tableau de bord en direct, choix du mode de charge VE, <strong>Appareils</strong> (avec sonde <strong>Debug</strong> en direct et envoi de rapport en un clic vers <strong>GRID-EMS-SERVER</strong>), <strong>Infos système</strong> (avec <strong>Mise à jour logicielle</strong> et <strong>Redémarrer le système</strong> confirmé) et le <strong>Journal</strong> en direct — tandis que le Scanner réseau, le raccourci Terminal Cockpit (<code>:9090</code>), les onglets Stratégie/Contrat/Relais/Réseau/Notifications/Cloud, l'ajout/modification/suppression d'appareils, la gestion <strong>Autorité CA locale &amp; Certificat SSL</strong>, les sauvegardes et la réinitialisation d'usine restent masqués jusqu'au déverrouillage du <strong>Mode Installateur Certifié</strong> (protégé contre le forçage après 5 tentatives, avec rotation du PIN sous <strong>Paramètres &rarr; Infos système</strong>).</li>
+    <li><strong>Adressage Série USB Persistant (<code>/dev/serial/by-id/*</code>) &amp; Ergonomie de la Page Appareils :</strong> L'utilisation de liens matériels persistants garantit que les adaptateurs USB-P1 et USB-RS485 ne permutent jamais de port après une coupure secteur. Dans <strong>Paramètres &rarr; Appareils</strong>, le module optionnel <strong>Cluster de Flotte VE &amp; Dynamic Load Balancing (DLB)</strong> est placé proprement en bas de page sous les cartes d'appareils individuels.</li>
+    <li><strong>Configuration Réseau Ethernet avec Annulation Automatique après 60 Secondes :</strong> Attribuez une adresse DHCP ou IPv4 statique exclusivement sur l'interface Ethernet filaire (<code>eth0</code>) sous <strong>Paramètres &rarr; Réseau</strong> (le Wi-Fi est volontairement omis pour garantir une fiabilité industrielle dans les armoires métalliques). Sans confirmation dans les 60 secondes, GEMS rétablit automatiquement le profil NetworkManager fonctionnel précédent.</li>
+    <li><strong>Suite Interactive de Test de Mise en Service &amp; Pilotage Matériel (Local &amp; Cloud) :</strong> Sous <strong>Paramètres &rarr; Test de Mise en Service</strong> (ainsi qu'à distance dans les Diagnostics <strong>GRID-EMS-SERVER</strong>), l'installateur exécute une vérification automatisée en 5 étapes couvrant l'<strong>Onduleur</strong> (ex. télémétrie en direct <strong>Solis</strong> + consigne de bridage actif à 80 % avec relecture), la <strong>Batterie</strong> (état de charge BMS + modulation bidirectionnelle charge/décharge) et la <strong>Borne VE</strong> (ex. télémétrie <strong>RAEDIAN</strong> + modulation dynamique à 6,0 A), suspendant temporairement la stratégie autonome avant de la restaurer automatiquement en toute sécurité à la fin du test. Les anomalies détectées proposent un bouton direct <strong>Corriger &amp; Re-tester</strong> ainsi que le téléchargement d'un <strong>Certificat de Mise en Service PDF</strong> au format A4.</li>
+    <li><strong>Mises à Jour Signées Cryptographiquement, Sauvegarde JSON &amp; Watchdog Matériel :</strong> Les mises à jour OTA en ligne comme les paquets <code>.deb</code> téléversés manuellement sont vérifiés par signature cryptographique Ed25519 New Energy Grid et empreinte SHA-256 avant installation. Exportez des sauvegardes JSON complètes du site avant tout remplacement matériel, exécutez des réinitialisations d'usine sécurisées et bénéficiez de la surveillance combinée <code>systemd</code> <code>WatchdogSec=30</code> et watchdog matériel Raspberry Pi.</li>
+  </ul>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_commissioning_test.png" alt="Suite de Test de Mise en Service et Pilotage Matériel">
+      <div class="manual-screenshot-caption">Figure 16.1 : Suite interactive en 5 étapes vérifiant la télémétrie et le pilotage actif de l'onduleur/batterie Solis et de la borne VE RAEDIAN.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_network.png" alt="Configuration Réseau de l'Unité">
+      <div class="manual-screenshot-caption">Figure 16.2 : Configuration Ethernet filaire IPv4 avec protection anti-blocage par rétablissement automatique après 60 secondes.</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Liste de Contrôle et de Réception sur Site (Checklist de Mise en Service)</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width: 10%;">Statut</th>
+        <th style="width: 30%;">Point de Contrôle</th>
+        <th style="width: 60%;">Procédure de Vérification</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Matériel &amp; Refroidissement</strong></td>
+        <td>Ventilateur actif du Raspberry Pi 5 fonctionnel, démarrage NVMe confirmé, température &lt; 50 °C dans Cockpit.</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Lecture du Compteur Réseau</strong></td>
+        <td>Compteur série P1 ou Modbus en ligne. La puissance de prélèvement/injection correspond à l'affichage du compteur communicant.</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Télémétrie Onduleur</strong></td>
+        <td>Communication Modbus TCP/RTU stable. Puissance solaire (W) et SoC batterie (%) correctement affichés sur le Tableau de bord.</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Consigne Borne VE</strong></td>
+        <td>Connectée en Modbus TCP/RTU (ou OCPP). Basculement fluide et réactif entre les modes Éco et Rapide.</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Limites Réseau Configurées</strong></td>
+        <td>Courant nominal et limites par phase réglés conformément au calibre du disjoncteur principal du client (RGIE / AREI).</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Plafond Capacitaire Flandre</strong></td>
+        <td>Si installation en Flandre : plafond de pointe réglé (2,50 kW par défaut) et marge tampon sur 200 W.</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Protection Certificats Verts</strong></td>
+        <td>Si le client perçoit des GSC flamands : valeur exacte du certificat (90 €, 250 €, 350 €, 450 €) enregistrée.</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Contrat &amp; Tarifs</strong></td>
+        <td>Préréglage fournisseur et GRD sélectionnés. Le visualiseur 24h affiche bien la courbe des prix spot du jour.</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Vérification du Journal</strong></td>
+        <td>Onglet Journal inspecté : aucune erreur de communication répétitive ni expiration de délai (timeout) Modbus.</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+</body>
+</html>

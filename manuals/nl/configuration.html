@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuratie- &amp; Instellingenreferentie - GEMS</title>
+  <meta name="description" content="Uitgebreide configuratiereferentie voor GEMS: optimalisatiestrategieën, Vlaamse piekbewaking, Nederlandse zero-export, batterij-arbitrage, energiecontracten en slimme relais.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Navigatiemenu openen of sluiten">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Configuratie</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Doorzoek documentatie (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Zoek naar parameters, strategieën, tarieven...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="installation.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+        <span>Installatie</span>
+      </a>
+      <a href="user-manual.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+        <span>Gebruikersgids</span>
+      </a>
+      <nav class="lang-switcher no-print" aria-label="Kies documentatietaal">
+        <a href="../configuration.html" hreflang="en" title="English">EN</a>
+        <a href="configuration.html" class="active" hreflang="nl" title="Nederlands">NL</a>
+        <a href="../fr/configuration.html" hreflang="fr" title="Français">FR</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Wissel kleurenthema">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Configuratiereferentie</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="configuration.html#strategy-modes" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>Optimalisatiestrategieën</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#flanders-peak-shaving" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Vlaamse Piekbewaking</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#active-curtailment" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Nederlandse Zero-Export &amp; GSC</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#battery-arbitrage" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-battery"></use></svg>
+              <span>EPEX-Arbitrage &amp; Batterij</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#energy-contracts" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>Energiecontracten &amp; Tarieven</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#phase-balancing" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>Fasebalancering &amp; Veiligheid</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#relay-automation" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-relay"></use></svg>
+              <span>Relais &amp; SG-Ready Regels</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html#alerts-reporting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wifi"></use></svg>
+              <span>Meldingen &amp; Rapporten</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Overige handleidingen</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Documentatieportaal</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Installatiehandleiding</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Gebruikershandleiding</span>
+            </a>
+          </li>
+          <li>
+            <a href="cloud-server.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-cloud"></use></svg>
+              <span>Cloudserver-koppeling</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NIEUW</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Toesteltemplates</span>
+              <span class="badge">170</span>
+            </a>
+          </li>
+          <li>
+            <a href="p1-meter.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>P1-meter &amp; Zelfbouwkabel</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">NIEUW</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>Probleemoplossing &amp; FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Officiële PDF-handleidingen</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-installer-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Installatiehandleiding (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Gebruikershandleiding (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-server-connection-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Serverhandleiding (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-p1-meter-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>P1-meterkabel (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Kruimelpad">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Configuratiereferentie</span>
+        </nav>
+
+        <h1>Configuratie- &amp; Instellingenreferentie</h1>
+        <p class="hero-lead">
+          Deze handleiding biedt een volledig overzicht van elke configuratieparameter in GEMS. Alle parameters werken rechtstreeks samen met de lokale regel-engine en worden uitsluitend via de webinterface ingesteld.
+        </p>
+
+        <!-- Site Optimization Strategies -->
+        <h2 id="strategy-modes">1. Optimalisatiestrategieën (`strategy_mode`)</h2>
+        <p>
+          De strategie-engine voert elke seconde een regelcyclus uit om zonne-omvormers, batterijopslag en EV-laadpalen optimaal op elkaar af te stemmen volgens uw gekozen doelstelling.
+        </p>
+
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_strategy.png" alt="Tabblad Strategie en Piekbewaking" loading="lazy">
+            <div class="doc-screenshot-caption">Tabblad Strategie: Optimalisatieparameters, veiligheidsmarge voor piekbewaking, dynamische EV-laaduren en fasebegrenzing.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_strategy_modes.png" alt="Keuze van Operationele Strategiemodi" loading="lazy">
+            <div class="doc-screenshot-caption">Strategiemodi: Schakel eenvoudig tussen Vlaams Capaciteitstarief, Eco Zon-zelfverbruik, Nederlandse Zero-Export en EPEX-arbitrage.</div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Modus</th>
+                <th>Doelstelling</th>
+                <th>Primaire Stuuractie</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><code>eco</code></strong></td>
+                <td>Maximaal Zon-zelfverbruik</td>
+                <td>Stuurt overtollige zonneproductie eerst naar de thuisbatterij, daarna naar EV-laadpalen en ten slotte naar thermische warmwaterrelais. Beperkt netafname/injectie niet tenzij arbitrageregels actief zijn.</td>
+              </tr>
+              <tr>
+                <td><strong><code>flanders</code></strong></td>
+                <td>Piekbewaking Capaciteitstarief</td>
+                <td>Bewaakt continu het voortschrijdend kwartiergemiddelde van de netafname. Knijpt dynamisch EV-laadpalen terug en ontlaadt de thuisbatterij om maandpieken te begrenzen.</td>
+              </tr>
+              <tr>
+                <td><strong><code>netherlands</code></strong></td>
+                <td>Zero-Export &amp; Slim Salderen</td>
+                <td>Voorkomt terugleverkosten en boetes bij negatieve prijzen. Stuurt zonne-energie naar batterijen/laadpalen of regelt het omvormervermogen actief terug wanneer terugleveren verlieslatend wordt.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Flanders Peak Shaving -->
+        <h2 id="flanders-peak-shaving">2. Vlaamse Piekbewaking &amp; Maandpiekopvolging (`flanders`)</h2>
+        <p>
+          In Vlaanderen wordt het <em>capaciteitstarief</em> berekend op basis van de hoogste kwartierpiek (gemiddeld afgenomen vermogen over 15 minuten) per kalendermaand, met een wettelijk basistarief van 2,5 kW.
+        </p>
+
+        <h3>Voorspellende Kwartierbudgetbewaking</h3>
+        <p>
+          In plaats van pas in te grijpen wanneer een kwartierpiek al overschreden is, volgt GEMS continu de reeds verbruikte energie binnen elk gesynchroniseerd klokkwartier. Gedurende de resterende minuten van het kwartier stuurt GEMS proactief laadpaalstromen, slimme relais en batterijontlading bij zodat het kwartiergemiddelde veilig onder uw ingestelde piekplafond min de veiligheidsmarge blijft.
+        </p>
+
+        <div class="alert alert-important">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+            <span>Slim Adaptief Piekplafond in Vlaanderen-modus</span>
+          </div>
+          <p>
+            GEMS registreert de hoogste gemeten kwartierpiek van de lopende kalendermaand in SQLite (<code>/api/peaks/monthly</code>). Ontstaat er een onvermijdelijke piek door niet-stuurbare huishoudtoestellen (bijv. 4,2 kW door kookplaat en oven tegelijk), dan verhoogt GEMS automatisch zijn operationele plafond naar 4,2 kW voor de rest van die maand. Zo laadt uw wagen sneller op zonder één cent extra capaciteitstarief te betalen!
+          </p>
+        </div>
+
+        <h3>Belangrijkste parameters voor Vlaamse piekbewaking</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Standaard</th>
+                <th>Beschrijving</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>capacity_peak_limit_kw</code></td>
+                <td>Float (kW)</td>
+                <td><code>2.50</code></td>
+                <td>Harde bovengrens voor het gemiddelde kwartiervermogen uit het elektriciteitsnet.</td>
+              </tr>
+              <tr>
+                <td><code>peak_shaving_buffer_w</code></td>
+                <td>Integer (W)</td>
+                <td><code>200</code></td>
+                <td>Veiligheidsmarge die van het doelplafond wordt afgetrokken om korte inschakelpieken op te vangen.</td>
+              </tr>
+              <tr>
+                <td><code>peak_shaving_rampup_w</code></td>
+                <td>Integer (W)</td>
+                <td><code>500</code></td>
+                <td>Begrenst hoe snel teruggeschroefde toestellen (zoals laadpalen) weer mogen opschalen zodra de netbelasting daalt.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Active Inverter Curtailment & GSC Protection -->
+        <h2 id="active-curtailment">3. Actieve Omvormerterugregeling &amp; Bescherming van Vlaamse GSC</h2>
+        <p>
+          Bij een groot Europees overschot aan zon- en windenergie kunnen de uurtarieven op de EPEX Spot Day-Ahead-markt sterk negatief worden. Om te voorkomen dat gezinnen terugleverboetes betalen — terwijl oudere installaties met groenestroomcertificaten hun subsidies wél maximaal blijven benutten — beschikt GEMS over <strong>slimme drempelgestuurde terugregeling</strong>.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/settings_strategy_modes.png" alt="GEMS Strategiemodi & Vlaamse GSC-instellingen" loading="lazy">
+          <div class="doc-screenshot-caption">Strategie-instellingen &mdash; Vlaamse piekbewaking, actieve omvormerterugregeling en Vlaamse GSC-snelkeuzes met directe drempelberekening.</div>
+        </div>
+
+        <h3>Parameters voor Terugregeling &amp; Regio</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Standaard</th>
+                <th>Beschrijving</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>region</code></td>
+                <td>String</td>
+                <td><code>flanders</code></td>
+                <td>Reguleringsgebied (<code>flanders</code>, <code>brussels</code>, <code>wallonia</code> of <code>netherlands</code>).</td>
+              </tr>
+              <tr>
+                <td><code>allowed_grid_export_kw</code></td>
+                <td>Float (kW)</td>
+                <td><code>0.0</code></td>
+                <td>Maximale continue netinjectie. Stel in op <code>0.0</code> voor strikte zero-export in Nederland.</td>
+              </tr>
+              <tr>
+                <td><code>active_inverter_curtailment</code></td>
+                <td>Boolean</td>
+                <td><code>true</code></td>
+                <td>Geeft de backend toestemming om via Modbus actieve vermogenslimieten (o.a. SunSpec <code>WMaxLimPct</code>) naar omvormers te sturen zodra terugleveren verlieslatend is.</td>
+              </tr>
+              <tr>
+                <td><code>min_profitable_export_price</code></td>
+                <td>Float (&euro;/kWh)</td>
+                <td><code>0.00</code></td>
+                <td>Basisinjectieprijs waaronder terugleveren aan het net als verlieslatend wordt beschouwd.</td>
+              </tr>
+              <tr>
+                <td><code>gsc_value_eur_mwh</code></td>
+                <td>Float (&euro;/MWh)</td>
+                <td><code>0.0</code></td>
+                <td>Waarde van Groenestroomcertificaten (GSC) in &euro; per 1.000 kWh (bijv. 250 &euro;/certificaat). Verlaagt evenredig de terugregeldrempel.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="alert alert-tip">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-zap"></use></svg>
+            <span>Vlaamse Groenestroomcertificaten (GSC) Snelkeuzeknoppen</span>
+          </div>
+          <p>
+            Eigenaars in Vlaanderen met zonnepanelen gekeurd vóór 2021 ontvangen gegarandeerde groenestroomcertificaten (GSC). Ontvangt een installatie bijvoorbeeld <strong>&euro;250/certificaat (&euro;0,250/kWh)</strong>, dan blijft zonneproductie rendabel bij negatieve spotprijzen tot wel <strong>-250,0 &euro;/MWh (-&euro;0,250/kWh)</strong>!
+          </p>
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.75rem 1rem; font-family: monospace; font-size: 0.85rem; margin: 0.5rem 0;">
+            Effectieve Terugregeldrempel = min_profitable_export_price - (gsc_value_eur_mwh / 1000.0)<br>
+            Voorbeeld: &euro;0,00 - (&euro;250 / 1000) = -&euro;0,250/kWh (-250,0 &euro;/MWh)
+          </div>
+          <p style="margin-bottom: 0;">
+            GEMS bevat directe snelkeuzeknoppen voor alle Vlaamse GSC-schijven: <strong>&euro;0, &euro;90, &euro;210, &euro;230, &euro;250, &euro;270, &euro;330, &euro;350 en &euro;450/MWh</strong>. De omvormer wordt ENKEL teruggeregeld wanneer de negatieve injectieprijs hoger oploopt dan uw GSC-opbrengst.
+          </p>
+        </div>
+
+        <!-- Dynamic Pricing & Battery Arbitrage -->
+        <h2 id="battery-arbitrage">4. Day-Ahead EPEX Spotprijs-arbitrage</h2>
+        <p>
+          GEMS haalt dagelijks om 14:00 CET automatisch de uurtarieven van de Day-Ahead elektriciteitsmarkt op voor alle Europese prijszones (EPEX Spot België, Nederland, Duitsland, Frankrijk en Luxemburg).
+        </p>
+
+        <h3>Strategieën voor Batterijladen uit het Net (`battery_grid_charge_strategy`)</h3>
+        <ul>
+          <li><strong><code>price_only</code>:</strong> Laadt de batterij vanuit het net zodra de uurprijs onder <code>force_charge_below_euro</code> zakt; ontlaadt actief wanneer de prijs boven <code>force_discharge_above_euro</code> stijgt.</li>
+          <li><strong><code>super_dal_only</code>:</strong> Beperkt netladen strikt tot extra voordelige superdal-uren binnen specifieke leverancierscontracten.</li>
+          <li><strong><code>hybrid</code>:</strong> Combineert prijsdrempels met voordelige dalvensters van de energieleverancier.</li>
+          <li><strong><code>dynamic_forecast</code>:</strong> De meest geavanceerde modus. Berekent een optimaal 24-uurs laadschema door EPEX-spotprijzen te combineren met Open-Meteo zonne-instralingsvoorspellingen en het basisverbruik van de woning (<code>home_base_load_w</code>).</li>
+          <li><strong><code>winter_fallback_enabled</code> (Winter- / Weinig-zon-terugval):</strong> Wanneer de batterijstatus (SoC) tijdens winterdagen of bewolkt weer zakt tot of onder <code>winter_fallback_trigger_soc</code> (standaard <code>25%</code>) en de verwachte zonne-opbrengst onvoldoende is, laadt GEMS de batterij automatisch bij tijdens de <code>winter_fallback_cheapest_hours</code> (standaard <code>2</code> uren) goedkoopste uren van de dag tot <code>winter_fallback_target_soc</code> (standaard <code>65%</code>).</li>
+        </ul>
+
+        <div class="alert alert-important">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-battery"></use></svg>
+            <span>Batterijslijtage &amp; Cycluskostmodellering</span>
+          </div>
+          <p>
+            Om vroegtijdige batterijveroudering te vermijden, rekent GEMS uw ingestelde slijtagekost per cyclus (bijv. &euro;0,05 / verwerkte kWh) mee in de rendementsberekening. Een arbitragecyclus wordt <em>uitsluitend</em> uitgevoerd wanneer het prijsverschil tussen laad- en ontlaaduur groter is dan het omzettingsverlies én de batterijslijtagekost samen.
+          </p>
+        </div>
+
+        <!-- Contracts & Provider Tariffs -->
+        <h2 id="energy-contracts">5. Energiecontracten &amp; Leveranciersformules</h2>
+        <p>
+          Voor een exacte berekening van uw werkelijke stroomkosten koppelt u in GEMS uw specifieke leveranciersformule rechtstreeks aan de dynamische EPEX-spotprijs.
+        </p>
+
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_contract.png" alt="Tabblad Energiecontract en 24-uurs Tariefgrafiek" loading="lazy">
+            <div class="doc-screenshot-caption">Tabblad Energiecontract: Belgische en Nederlandse leveranciersprofielen (TotalEnergies, Mega, Bolt, Engie, Luminus, Eneco, Vattenfall), netbeheerders en tariefformules.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_contract_tariffs.png" alt="24-uurs Tariefvisualisatie" loading="lazy">
+            <div class="doc-screenshot-caption">24-uurs Tariefgrafiek: Interactieve uitsplitsing van kale EPEX-spotprijs, leveranciersopslag, nettarieven/heffingen, btw en dynamische terugleververgoeding.</div>
+          </div>
+        </div>
+
+        <h3>Ondersteunde Regionale Leveranciersprofielen</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Leveranciersprofiel</th>
+                <th>Regio</th>
+                <th>Geconfigureerde Formuleparameters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>TotalEnergies Pixel Dynamic</strong></td>
+                <td>België</td>
+                <td>EPEX Spot BE doorgifte + factor (<code>totalenergies_multiplier</code>) + opslag (<code>totalenergies_markup</code>) + vaste vergoeding (<code>totalenergies_base_fee</code>).</td>
+              </tr>
+              <tr>
+                <td><strong>Mega Smart / Cosy Dynamic</strong></td>
+                <td>België</td>
+                <td>EPEX Spot BE + factor (<code>mega_multiplier</code>) + leveranciersopslag (<code>mega_markup</code>) + jaarabonnement (<code>mega_base_fee</code>).</td>
+              </tr>
+              <tr>
+                <td><strong>Bolt Dynamisch</strong></td>
+                <td>België</td>
+                <td>100% lokale groene stroom met directe EPEX Spot BE-doorgifte en transparante platformvergoeding.</td>
+              </tr>
+              <tr>
+                <td><strong>Engie Dynamic / Flextime</strong></td>
+                <td>België</td>
+                <td>Directe EPEX Day-Ahead-doorgifte of tijdgebonden tariefvensters (piek, dal, superdal).</td>
+              </tr>
+              <tr>
+                <td><strong>Vattenfall Nederland — FlexPrijs</strong></td>
+                <td>Nederland</td>
+                <td>EPEX Spot NL-doorgifte (<code>vattenfall_multiplier = 1.00</code>) + inkoopvergoeding (<code>vattenfall_markup = 0.0211 €/kWh</code>) + vaste leveringskosten (<code>vattenfall_base_fee = 95.40 €/jr</code>) + Nederlandse Energiebelasting (<code>0.1316 €/kWh</code>) + 21% btw.</td>
+              </tr>
+              <tr>
+                <td><strong>Luminus / Eneco / Frank / Ecopower</strong></td>
+                <td>BE / NL</td>
+                <td>Aanpasbare lineaire factoren, teruglevermarges en vaste maandelijkse abonnementskosten.</td>
+              </tr>
+              <tr>
+                <td><strong>Belgisch Tweevoudig Tarief (Piek/Dal)</strong></td>
+                <td>België</td>
+                <td>Klassieke dag-/nachttarieven gecombineerd met 6% btw en regionale distributienettarieven.</td>
+              </tr>
+              <tr>
+                <td><strong>Enovos Dynamic</strong></td>
+                <td>Luxemburg</td>
+                <td><code>enovos_markup</code>, <code>enovos_multiplier</code>, <code>enovos_inject_multiplier</code> en Creos-nettarieven.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Voorinstellingen voor Netbeheerders (DNB)</h3>
+        <p>
+          GEMS bevat snelkeuzes voor de regionale distributie- en transmissienettarieven per kWh:
+        </p>
+        <ul>
+          <li><strong>Fluvius (Vlaanderen):</strong> &euro;0,0204 / kWh + 6% btw.</li>
+          <li><strong>ORES (Wallonië):</strong> &euro;0,0950 / kWh + 6% btw.</li>
+          <li><strong>RESA (Luik):</strong> &euro;0,0920 / kWh + 6% btw.</li>
+          <li><strong>SIBELGA (Brussel):</strong> &euro;0,0820 / kWh + 6% btw.</li>
+        </ul>
+
+        <!-- Phase Balancing & Safety -->
+        <h2 id="phase-balancing">6. 3-Fasige Load Balancing &amp; Hoofdzekeringsbeveiliging</h2>
+        <p>
+          Om te voorkomen dat de hoofdautomaat van de woning aanspreekt, bewaakt GEMS continu de stroom per afzonderlijke fase ($L_1, L_2, L_3$) via 3-fasige P1-slimme meters of Modbus-netanalyzers.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Standaard</th>
+                <th>Beschrijving</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>grid_nominal_current_a</code></td>
+                <td>Integer (A)</td>
+                <td><code>32</code></td>
+                <td>Nominale waarde van de hoofdzekering (bijv. 25A, 32A, 40A of 63A). Regelt laadpalen direct terug zodra de totale belasting de zekering nadert.</td>
+              </tr>
+              <tr>
+                <td><code>phase_limit_amps</code></td>
+                <td>Float (A)</td>
+                <td><code>25.0</code></td>
+                <td>Maximaal toegestane stroom op één individuele fase ($L_1, L_2 \text{ of } L_3$). Voorkomt overbelasting bij scheefbelasting.</td>
+              </tr>
+              <tr>
+                <td><code>grid_system</code></td>
+                <td>Enum</td>
+                <td><code>three_phase_400v</code></td>
+                <td><code>single_phase_230v</code> (monofasig), <code>three_phase_400v</code> (3x400V+N ster) of <code>three_phase_230v</code> (zonder nulleider / Belgisch 3x230V deltanaansluiting).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Relays & SG-Ready Rules -->
+        <h2 id="relay-automation">7. Slimme Relais &amp; SG-Ready Warmtepompautomatisering</h2>
+        <p>
+          Maak autonome schakelregels aan voor Shelly-relais, Modbus-contactoren en elektrische boilers onder <strong>Instellingen &rarr; Relais &amp; Schakelaars</strong>.
+        </p>
+
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_relays.png" alt="Tabblad Relais en SG-Ready Regels" loading="lazy">
+            <div class="doc-screenshot-caption">Tabblad Relais &amp; Schakelaars: Overzicht van gekoppelde slimme relais, tussenstekkers en contactoren.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_relays_rules.png" alt="Editor voor Relais-automatiseringsregels" loading="lazy">
+            <div class="doc-screenshot-caption">Relais-automatiseringsregels: Voorwaardelijke drempels, minimale inschakel-/rusttijden en SG-Ready thermische boost-koppelingen.</div>
+          </div>
+        </div>
+
+        <h3>Regelparameters</h3>
+        <ul>
+          <li><strong>Voorwaardetype:</strong>
+            <ul>
+              <li><code>solar_export_exceeds</code>: Schakelt IN zodra de zonne-injectie naar het net de drempel overschrijdt (bijv. &gt; 1500 W).</li>
+              <li><code>grid_import_below</code>: Schakelt IN wanneer de netafname onder de drempel blijft (bijv. &lt; 200 W).</li>
+              <li><code>price_below</code>: Schakelt IN zodra de Day-Ahead stroomprijs onder de ingestelde grens daalt (bijv. &lt; &euro;0,05 / kWh).</li>
+            </ul>
+          </li>
+          <li><strong><code>min_run_time_seconds</code> (Standaard: 300s):</strong> Houdt het relais minimaal 5 minuten ingeschakeld om pendelen en slijtage aan warmtepompcompressoren of contactoren te vermijden.</li>
+          <li><strong><code>min_off_time_seconds</code> (Standaard: 300s):</strong> Dwingt een rusttijd van minimaal 5 minuten af vóór herinschakeling.</li>
+        </ul>
+
+        <h3>SG-Ready Warmtepomp 4-Standenmatrix</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>SG-Ready Stand</th>
+                <th>Relais 1 (K1)</th>
+                <th>Relais 2 (K2)</th>
+                <th>Gedrag van de Warmtepomp</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Stand 1: Blokkering (EVU-Sperre)</strong></td>
+                <td>Gesloten</td>
+                <td>Open</td>
+                <td>Geforceerd UIT tijdens extreme piektariefuren (max. 2 uur aaneengesloten).</td>
+              </tr>
+              <tr>
+                <td><strong>Stand 2: Normaal bedrijf</strong></td>
+                <td>Open</td>
+                <td>Open</td>
+                <td>Werkt volgens de standaard interne stooklijn en kamerthermostaat.</td>
+              </tr>
+              <tr>
+                <td><strong>Stand 3: Zonne-boost (Aanbevolen)</strong></td>
+                <td>Open</td>
+                <td>Gesloten</td>
+                <td>Verhoogt de aanvoer- en boilertemperatuur om overtollige PV-stroom als thermische buffer op te slaan.</td>
+              </tr>
+              <tr>
+                <td><strong>Stand 4: Maximale thermische opslag</strong></td>
+                <td>Gesloten</td>
+                <td>Gesloten</td>
+                <td>Activeert maximaal compressorvermogen tijdens uren met negatieve stroomprijzen.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Alerts & Reporting -->
+        <h2 id="alerts-reporting">8. Webhook-meldingen, E-mailrapporten &amp; Diagnostische Logboeken</h2>
+
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_notifications.png" alt="Tabblad Meldingen, E-mailrapporten en Logboeken" loading="lazy">
+            <div class="doc-screenshot-caption">Tabblad Meldingen: Realtime Discord/Slack/Ntfy webhook-waarschuwingen, SMTP-instellingen, automatische wekelijkse PDF-rapporten en logniveau.</div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Categorie</th>
+                <th>Parameter</th>
+                <th>Beschrijving</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Meldingen</strong></td>
+                <td><code>alert_webhook_url</code></td>
+                <td>HTTP POST-eindpunt voor automatische waarschuwingen: kwartierpiek &ge; 90%, 3 opeenvolgende uitleesfouten bij een toestel of mislukte tariefophaling.</td>
+              </tr>
+              <tr>
+                <td><strong>E-mailrapporten</strong></td>
+                <td><code>weekly_report_enabled</code></td>
+                <td>Schakelt automatische opmaak en verzending van het wekelijkse PDF-energierapport in of uit.</td>
+              </tr>
+              <tr>
+                <td><strong>SMTP-server</strong></td>
+                <td><code>smtp_host</code>, <code>smtp_port</code>, <code>smtp_username</code>, <code>smtp_password</code>, <code>smtp_sender</code>, <code>report_email</code></td>
+                <td>Uitgaande SMTP-mailservergegevens voor het verzenden van PDF-energierapporten.</td>
+              </tr>
+              <tr>
+                <td><strong>OTA-updates</strong></td>
+                <td><code>github_token</code></td>
+                <td>Optioneel Personal Access Token om op GitHub-releases te controleren zonder publieke API-limieten.</td>
+              </tr>
+              <tr>
+                <td><strong>Systeemlogboeken</strong></td>
+                <td><code>log_level</code></td>
+                <td>Detailniveau van het logboek (<code>INFO</code> voor dagelijks gebruik, <code>DEBUG</code> voor uitgebreide foutopsporing).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Central Cloud & GRID-EMS-SERVER -->
+        <h2 id="cloud-server">9. Centrale Cloud &amp; GRID-EMS-SERVER Integratie</h2>
+        <p>
+          Configureer uitgaande telemetriespiegeling en vlootbeheer naar <strong>GRID-EMS-SERVER</strong> onder <strong>Instellingen &rarr; Cloudserver</strong>. Raadpleeg voor uitgebreide architectuurdetails en datapakketten de aparte <a href="cloud-server.html">GRID-EMS-SERVER Koppelingshandleiding</a>.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/settings_cloud.png" alt="Tabblad Cloudserver Instellingen" loading="lazy">
+          <div class="doc-screenshot-caption">Tabblad Cloudserver: Live koppelingsstatus, round-trip synchronisatielatentie, invoer van het koppelingstoken en logboek van ontvangen cloudcommando's.</div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Standaard</th>
+                <th>Beschrijving</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>cloud_enabled</code></td>
+                <td>Boolean</td>
+                <td><code>false</code></td>
+                <td>Schakelt uitgaande telemetriesynchronisatie met GRID-EMS-SERVER in of uit.</td>
+              </tr>
+              <tr>
+                <td><code>cloud_server_url</code></td>
+                <td>String (URL)</td>
+                <td><code>https://ems.newenergygrid.com</code></td>
+                <td>Centrale cloudserver-URL. Kan ook verwijzen naar een eigen zakelijke serverinstantie.</td>
+              </tr>
+              <tr>
+                <td><code>cloud_pairing_token</code></td>
+                <td>String</td>
+                <td>Leeg</td>
+                <td>Eenmalig koppelingstoken gegenereerd in het centrale vlootportaal.</td>
+              </tr>
+              <tr>
+                <td><code>cloud_serial_number</code></td>
+                <td>String</td>
+                <td>Automatisch</td>
+                <td>Uniek serienummer van de edge-controller op basis van het hardware-ID (formaat: <code>TCG-EMS-&lt;asset_tag&gt;</code>, bijv. <code>TCG-EMS-83daf13d05f1adad</code>).</td>
+              </tr>
+              <tr>
+                <td><code>cloud_sync_interval_sec</code></td>
+                <td>Integer (s)</td>
+                <td><code>5</code></td>
+                <td>Interval voor telemetrieverzending (2 tot 60 seconden).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Navigation Footer -->
+        <div class="page-nav-footer">
+          <a href="installation.html" class="page-nav-card">
+            <span class="page-nav-label">Vorige</span>
+            <span class="page-nav-title">&larr; Installatiehandleiding</span>
+          </a>
+          <a href="cloud-server.html" class="page-nav-card" style="text-align:right;">
+            <span class="page-nav-label">Volgende gids</span>
+            <span class="page-nav-title">Cloudserver-koppeling &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">Op deze pagina</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#strategy-modes" class="toc-link">Optimalisatiestrategieën</a></li>
+        <li class="toc-item"><a href="#flanders-peak-shaving" class="toc-link">Vlaamse Piekbewaking</a></li>
+        <li class="toc-item"><a href="#active-curtailment" class="toc-link">Zero-Export &amp; GSC</a></li>
+        <li class="toc-item"><a href="#battery-arbitrage" class="toc-link">EPEX Spot Arbitrage</a></li>
+        <li class="toc-item"><a href="#energy-contracts" class="toc-link">Energiecontracten &amp; Tarieven</a></li>
+        <li class="toc-item"><a href="#phase-balancing" class="toc-link">Fase Load Balancing</a></li>
+        <li class="toc-item"><a href="#relay-automation" class="toc-link">Slimme Relais &amp; SG-Ready</a></li>
+        <li class="toc-item"><a href="#alerts-reporting" class="toc-link">Meldingen &amp; Rapporten</a></li>
+        <li class="toc-item"><a href="#cloud-server" class="toc-link">Cloudserver-integratie</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Zoek in documentatie, parameters, handleidingen..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Zoekvenster sluiten">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Gebruik <kbd class="kbd-shortcut">↑</kbd> <kbd class="kbd-shortcut">↓</kbd> om te navigeren</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> om te openen</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> om te sluiten</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>GEMS (New Energy Grid) Documentatie &bull; Gebouwd met Go, SQLite, Vue 3 en Tailwind CSS &bull; Geoptimaliseerd voor Raspberry Pi</p>
+  </footer>
+
+  <script src="../js/search-index-nl.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

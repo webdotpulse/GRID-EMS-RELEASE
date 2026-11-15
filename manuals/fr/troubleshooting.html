@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dépannage, Diagnostics &amp; FAQ - GEMS</title>
+  <meta name="description" content="Guide complet de dépannage et FAQ pour GEMS : erreurs Modbus, diagnostic des télégrammes P1, connexions WebSocket OCPP, SSD NVMe, SQLite WAL et alertes.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Ouvrir ou fermer le menu de navigation">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Dépannage</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Rechercher dans la documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Rechercher des erreurs, diagnostics, FAQ...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="installation.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+        <span>Installation</span>
+      </a>
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuration</span>
+      </a>
+      <nav class="lang-switcher no-print" aria-label="Choisir la langue de la documentation">
+        <a href="../troubleshooting.html" hreflang="en" title="English">EN</a>
+        <a href="../nl/troubleshooting.html" hreflang="nl" title="Nederlands">NL</a>
+        <a href="troubleshooting.html" class="active" hreflang="fr" title="Français">FR</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Changer le thème de couleur">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Manuel de dépannage</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="troubleshooting.html#modbus-troubleshooting" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>Erreurs Modbus TCP &amp; RTU</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#p1-troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Problèmes Compteur P1</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#ocpp-troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-charger"></use></svg>
+              <span>Diagnostics WebSocket OCPP</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#nvme-troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>SSD NVMe &amp; Bootloader</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#sd-card-sqlite" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>Santé SQLite &amp; Stockage</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#alerts-troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wifi"></use></svg>
+              <span>Alertes &amp; Webhooks</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html#faq" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Foire Aux Questions (FAQ)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Autres manuels</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Portail de documentation</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel d'installation</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>Référence de configuration</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Guide d'utilisation</span>
+            </a>
+          </li>
+          <li>
+            <a href="cloud-server.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-cloud"></use></svg>
+              <span>Connexion Serveur Cloud</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NOUVEAU</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Modèles d'appareils</span>
+              <span class="badge">170</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Manuels PDF Officiels</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-installer-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Installateur (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Utilisateur (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-server-connection-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Serveur (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">FR</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Fil d'Ariane">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Dépannage &amp; FAQ</span>
+        </nav>
+
+        <h1>Manuel de Dépannage, Diagnostics &amp; FAQ</h1>
+        <p class="hero-lead">
+          Méthodologies de diagnostic pas à pas, résolution des codes d'erreur courants, commandes d'inspection des bus matériels et réponses aux questions fréquentes.
+        </p>
+
+        <!-- Modbus Troubleshooting -->
+        <h2 id="modbus-troubleshooting">1. Dépannage Modbus TCP &amp; RTU</h2>
+        <p>
+          Lorsqu'un équipement ne répond pas, le <strong>Journal</strong> système affiche en direct un message d'erreur explicite. Consultez le tableau ci-dessous pour identifier et corriger la cause :
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/logger.png" alt="Inspection des Erreurs en Temps Réel dans le Journal" loading="lazy">
+          <div class="doc-screenshot-caption">Journal de diagnostic en direct : Tentatives de lecture Modbus, avertissements CRC et exportation immédiate des journaux.</div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Message d'erreur</th>
+                <th>Cause probable</th>
+                <th>Action corrective</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>connection refused (ECONNREFUSED)</code></td>
+                <td>L'adresse IP est joignable, mais le service Modbus TCP est désactivé ou écoute sur un autre port.</td>
+                <td>Activez Modbus TCP dans les réglages de l'onduleur ou de la borne (par ex. Huawei FusionSolar &rarr; Paramètres Dongle &rarr; Modbus TCP : Sans restriction). Vérifiez le port (<code>502</code> ou <code>1502</code>).</td>
+              </tr>
+              <tr>
+                <td><code>i/o timeout</code></td>
+                <td>L'adresse IP cible est hors ligne, filtrée par un pare-feu/VLAN ou l'équipement est en veille profonde.</td>
+                <td>Testez l'accessibilité par <code>ping &lt;ip&gt;</code>. Certains onduleurs PV purs coupent leur carte réseau la nuit lorsque la production solaire tombe à 0 W.</td>
+              </tr>
+              <tr>
+                <td><code>modbus: response slave id mismatch</code></td>
+                <td>L'équipement utilise un identifiant d'unité esclave Modbus différent.</td>
+                <td>Valeurs par défaut : Solis = <code>1</code> ; Huawei = <code>1</code> ou <code>2</code> ; SMA = <code>3</code> ou <code>126</code> ; SolarEdge = <code>1</code> ; GoodWe = <code>247</code>. Consultez la notice de l'appareil.</td>
+              </tr>
+              <tr>
+                <td><code>modbus: exception 'Illegal Data Address'</code></td>
+                <td>Le modèle interroge un registre non pris en charge par le micrologiciel actuel de l'onduleur.</td>
+                <td>Mettez à jour le firmware de l'onduleur via l'application constructeur ou vérifiez le modèle d'appareil sélectionné.</td>
+              </tr>
+              <tr>
+                <td><code>CRC check failed / framing error</code></td>
+                <td>Parasites électromagnétiques sur le bus RS485, débit en bauds incorrect ou absence de terminaison.</td>
+                <td>Vérifiez la vitesse RS485 (9600 vs 19200 vs 115200), installez des résistances de terminaison de 120&Omega; aux deux extrémités du bus et utilisez une paire torsadée blindée.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- P1 Smart Meter Debugging -->
+        <h2 id="p1-troubleshooting">2. Diagnostic du Compteur Communicant P1 DSMR</h2>
+
+        <div class="alert alert-warning">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-alert-triangle"></use></svg>
+            <span>Débit en bauds &amp; Inversion du signal série</span>
+          </div>
+          <p>
+            Les compteurs DSMR 5.0 récents (Fluvius, ORES, RESA, Sibelga et compteurs néerlandais) fonctionnent à <strong>115200 bauds, 8 bits de données, sans parité, 1 bit d'arrêt (8N1)</strong> et émettent un signal logique <em>inversé</em>. Les anciens compteurs DSMR 2.2 / 3.0 émettent à <strong>9600 bauds, 7 bits, parité paire, 1 bit d'arrêt (7E1)</strong>. Assurez-vous que votre câble USB-P1 intègre bien un circuit actif d'inversion de signal.
+          </p>
+        </div>
+
+        <h3>Tester le flux brut P1 dans le Terminal</h3>
+        <p>Ouvrez le terminal Cockpit sur le port <code>9090</code> et exécutez les commandes suivantes :</p>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Bash / Terminal</span>
+            <button class="copy-code-btn" aria-label="Copier les commandes">
+              <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+              <span>Copier</span>
+            </button>
+          </div>
+          <pre><code># 1. Vérifier que le convertisseur série USB est bien détecté
+ls -l /dev/ttyUSB*
+
+# 2. Configurer la vitesse du port série (DSMR 5.0)
+stty -F /dev/ttyUSB0 115200 cs8 -cstopb -parenb
+
+# 3. Lire le télégramme brut (doit afficher du texte lisible commençant par '/')
+cat /dev/ttyUSB0
+
+# Exemple de sortie attendue :
+# /FLU5\253769484_A
+# 1-0:1.8.1(001234.567*kWh)
+# 1-0:1.7.0(01.250*kW)
+# 1-0:31.7.0(005*A)
+# !52C1</code></pre>
+        </div>
+
+        <!-- OCPP WebSocket Diagnostics -->
+        <h2 id="ocpp-troubleshooting">3. Diagnostics de Connexion Borne VE OCPP</h2>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Symptôme</th>
+                <th>Cause racine</th>
+                <th>Action corrective</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>L'état de la borne reste « Hors ligne »</strong></td>
+                <td>La borne ne parvient pas à joindre l'URL WebSocket ou ne résout pas mDNS.</td>
+                <td>Configurez l'adresse IP directe dans la borne : <code>ws://192.168.1.50:8887/&lt;ChargerID&gt;</code> (ou <code>:8080/api/ocpp/&lt;ChargerID&gt;</code>) plutôt que <code>ems.local</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>Erreur WebSocket 404 / 400 Bad Request</strong></td>
+                <td>Le ChargePoint ID présent dans l'URL ne correspond pas au champ configuré dans GEMS.</td>
+                <td>Vérifiez que l'identifiant final de l'URL correspond exactement au ChargePoint ID saisi lors de l'ajout de l'appareil dans GEMS.</td>
+              </tr>
+              <tr>
+                <td><strong>Le courant de charge ne varie pas</strong></td>
+                <td>La borne ignore les profils <code>SetChargingProfile</code>.</td>
+                <td>Assurez-vous que la borne est réglée en mode « Auto » ou « CSMS externe / Smart Charging » dans l'application constructeur et qu'aucun forçage manuel local n'est actif.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/scanner.png" alt="Scanner Réseau Local et Analyseur de Ports" loading="lazy">
+          <div class="doc-screenshot-caption">Diagnostic par Scanner : Vérification des adresses IP locales, noms d'hôtes et ports ouverts (502 Modbus, 80/443 HTTP, 8887/8080 OCPP).</div>
+        </div>
+
+        <!-- NVMe SSD & Bootloader Diagnostics -->
+        <h2 id="nvme-troubleshooting">4. Diagnostics SSD NVMe &amp; Bootloader (Raspberry Pi 5)</h2>
+        <p>
+          Si votre Raspberry Pi 5 ne détecte pas le <strong>SSD M.2 NVMe</strong> ou échoue à démarrer sur la carte d'extension PCIe, suivez cette grille de vérification :
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Symptôme</th>
+                <th>Cause racine</th>
+                <th>Diagnostic &amp; Résolution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Écran noir au démarrage / LED ACT immobile</strong></td>
+                <td>L'EEPROM est restée sur la configuration d'usine <code>BOOT_ORDER=0xf41</code> sans détection PCIe.</td>
+                <td>Flashez l'utilitaire officiel <strong>Bootloader &rarr; NVMe/PCIe Boot</strong> sur une carte MicroSD avec Raspberry Pi Imager et démarrez 5 secondes jusqu'à l'écran HDMI vert fixe.</td>
+              </tr>
+              <tr>
+                <td><strong><code>lspci</code> n'affiche aucun périphérique NVMe</strong></td>
+                <td>La nappe FPC est inversée, mal verrouillée ou <code>dtparam=pciex1</code> est absent.</td>
+                <td>Vérifiez que les contacts dorés sont orientés vers l'intérieur côté ports USB/Ethernet du Pi 5 et que <code>/boot/firmware/config.txt</code> contient <code>dtparam=pciex1</code> et <code>dtparam=pciex1_gen=2</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>Message noyau : <code>pcieport link down</code></strong></td>
+                <td>Défaut d'intégrité du signal ou chute de tension d'alimentation.</td>
+                <td>Utilisez impérativement l'<strong>alimentation officielle 27W USB-C PD</strong> (5,1V / 5,0A). Les chargeurs 15W classiques provoquent une sous-tension lors de l'initialisation PCIe.</td>
+              </tr>
+              <tr>
+                <td><strong><code>lsblk</code> n'affiche pas <code>/dev/nvme0n1</code></strong></td>
+                <td>SSD mal inséré dans le connecteur M.2 ou disque M.2 SATA non compatible NVMe.</td>
+                <td>Réinsérez fermement le SSD M.2 NVMe à 30° et serrez la vis M2. Exécutez <code>sudo modprobe nvme</code> et <code>sudo dmesg | grep -i nvme</code> dans Cockpit.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Commandes d'inspection NVMe (Terminal Cockpit)</span>
+            <button class="copy-code-btn" aria-label="Copier les commandes">
+              <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+              <span>Copier</span>
+            </button>
+          </div>
+          <pre><code># 1. Vérifier si le contrôleur PCIe détecte le SSD NVMe :
+lspci -v
+
+# 2. Vérifier si le périphérique bloc NVMe est reconnu :
+lsblk -f
+
+# 3. Lire l'ordre d'amorçage EEPROM et l'état PCIe :
+sudo rpi-eeprom-config
+
+# 4. Inspecter les messages du noyau liés au bus PCIe/NVMe :
+sudo dmesg | grep -i -E "pci|nvme"</code></pre>
+        </div>
+
+        <!-- SQLite & SD Card Health -->
+        <h2 id="sd-card-sqlite">5. Diagnostics d'Intégrité SQLite &amp; Stockage</h2>
+        <p>
+          GEMS exploite le mode Write-Ahead Logging (WAL) de SQLite et des tampons en mémoire vive pour prévenir toute corruption disque. Vous pouvez contrôler l'état de la base depuis le terminal :
+        </p>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Commandes de diagnostic SQLite</span>
+            <button class="copy-code-btn" aria-label="Copier les commandes">
+              <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+              <span>Copier</span>
+            </button>
+          </div>
+          <pre><code># Ouvrir la base de données SQLite
+sqlite3 /opt/gems/gems.db
+
+-- 1. Vérifier l'activation du mode WAL (doit renvoyer 'wal')
+PRAGMA journal_mode;
+
+-- 2. Contrôler l'intégrité interne (doit renvoyer 'ok')
+PRAGMA integrity_check;
+
+-- 3. Examiner l'état des points de contrôle WAL
+PRAGMA wal_checkpoint(PASSIVE);
+
+-- 4. Compter le nombre total d'enregistrements de mesures
+SELECT COUNT(*) FROM measurements;
+
+.exit</code></pre>
+        </div>
+
+        <!-- Alerts & Webhooks -->
+        <h2 id="alerts-troubleshooting">6. Diagnostic des Alertes &amp; Webhooks</h2>
+        <p>
+          Pour vérifier que votre URL <code>alert_webhook_url</code> reçoit correctement les notifications :
+        </p>
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Test Webhook via Curl</span>
+            <button class="copy-code-btn" aria-label="Copier la commande curl">
+              <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+              <span>Copier</span>
+            </button>
+          </div>
+          <pre><code># Envoyer une alerte de test via l'API locale GEMS :
+curl -X POST http://localhost:8080/api/notifications/test \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Notification de test envoyée par GEMS"}'</code></pre>
+        </div>
+
+        <!-- GRID-EMS-SERVER & Cloud Diagnostics -->
+        <h2 id="cloud-troubleshooting">7. Diagnostics Cloud &amp; GRID-EMS-SERVER</h2>
+        <p>
+          Pour le détail complet des schémas JSON, de la procédure d'appairage et de la topologie réseau, consultez le <a href="cloud-server.html">Guide de Connexion GRID-EMS-SERVER</a> ou téléchargez le <a href="gems-server-connection-manual-fr.pdf" target="_blank">Manuel Serveur Imprimable (PDF)</a>.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Symptôme / Message d'erreur</th>
+                <th>Cause sous-jacente</th>
+                <th>Procédure de diagnostic &amp; résolution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Handshake failed: dial tcp lookup...</code></td>
+                <td>Échec de résolution DNS sur l'interface réseau du Raspberry Pi.</td>
+                <td>Vérifiez la passerelle et les serveurs DNS dans le terminal Cockpit : <code>curl -Iv https://ems.newenergygrid.com/api/status</code>.</td>
+              </tr>
+              <tr>
+                <td><code>HTTP 401 Unauthorized</code></td>
+                <td>Clé secrète révoquée ou unité supprimée depuis le portail central.</td>
+                <td>Générez un nouveau jeton d'appairage dans le portail cloud et relancez l'appairage dans Paramètres &rarr; Serveur Cloud.</td>
+              </tr>
+              <tr>
+                <td><code>Telemetry push network error: timeout</code></td>
+                <td>Port sortant 443 bloqué ou perte de paquets importante sur la liaison Internet.</td>
+                <td>Vérifiez l'ouverture du port TCP 443 en sortie sur le pare-feu local ainsi que le câble Ethernet.</td>
+              </tr>
+              <tr>
+                <td>Commandes distantes non appliquées</td>
+                <td>Commandes en file d'attente jusqu'au prochain cycle de synchronisation.</td>
+                <td>Consultez le tableau d'audit des commandes cloud dans Paramètres &rarr; Serveur Cloud. L'exécution intervient lors du cycle télémétrique suivant (2s à 5s).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="code-block-wrapper">
+          <div class="code-header">
+            <span class="code-lang">Journal du service Cloud</span>
+          </div>
+          <pre><code># Suivre en direct l'activité du démon de synchronisation cloud
+sudo journalctl -u gems -f | grep CloudManager</code></pre>
+        </div>
+
+        <!-- Frequently Asked Questions -->
+        <h2 id="faq">8. Foire Aux Questions (FAQ)</h2>
+
+        <div class="card-grid">
+          <div class="card">
+            <h3 class="card-title">Pourquoi n'y a-t-il pas d'API constructeur automobile ni de lecture du SoC véhicule ?</h3>
+            <p class="card-text">
+              Par philosophie d'ingénierie, GEMS s'appuie exclusivement sur des mesures matérielles locales en temps réel. Les API cloud des constructeurs automobiles sont instables, sujettes à des coupures fréquentes, à des quotas restrictifs et peuvent décharger la batterie 12V du véhicule. GEMS pilote la charge de façon fiable directement via la borne de recharge.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Pourquoi la charge CPU n'apparaît-elle pas dans Infos système ?</h3>
+            <p class="card-text">
+              GEMS est strictement optimisé pour réduire au minimum la consommation mémoire et processeur sur Raspberry Pi. L'interrogation continue des compteurs système depuis l'interface web est volontairement omise. Les diagnostics matériels complets restent accessibles à tout moment dans Cockpit sur le port 9090.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Quel est le temps de réponse du mode zéro-export ?</h3>
+            <p class="card-text">
+              Les compteurs d'énergie sont interrogés chaque seconde. Dès qu'une injection vers le réseau est détectée, les consignes d'écrêtement d'onduleur et de modulation des bornes VE sont transmises immédiatement afin de maintenir l'export aussi proche de 0 W que physiquement possible.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Comment réinitialiser le mot de passe administrateur Cockpit ?</h3>
+            <p class="card-text">
+              Ouvrez une session terminal par SSH ou clavier branché en direct, puis exécutez <code>sudo passwd admin</code> (ou votre nom d'utilisateur Linux) et saisissez deux fois le nouveau mot de passe.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Comment récupérer après une mise à jour interrompue ?</h3>
+            <p class="card-text">
+              Si une mise à jour logicielle a été coupée par une panne de courant, ouvrez le terminal Cockpit et exécutez <code>sudo dpkg --configure -a</code> suivi de <code>sudo apt-get install -f</code>.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Le système fonctionne-t-il sans connexion Internet ?</h3>
+            <p class="card-text">
+              Oui ! Toutes les boucles de régulation (mode Éco, écrêtage capacitaire flamand, zéro-export, protection du disjoncteur, Modbus et OCPP natif) s'exécutent à 100 % localement sur le Raspberry Pi sans aucune dépendance cloud. En cas de coupure Internet, la dernière grille tarifaire EPEX sur 24 heures reste utilisée.
+            </p>
+          </div>
+        </div>
+
+        <!-- Navigation Footer -->
+        <div class="page-nav-footer">
+          <a href="devices.html" class="page-nav-card">
+            <span class="page-nav-label">Précédent</span>
+            <span class="page-nav-title">&larr; Modèles d'Appareils Compatibles (170)</span>
+          </a>
+          <a href="index.html" class="page-nav-card" style="text-align:right;">
+            <span class="page-nav-label">Retour à l'accueil</span>
+            <span class="page-nav-title">Portail de documentation &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">Sur cette page</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#modbus-troubleshooting" class="toc-link">Erreurs Modbus TCP &amp; RTU</a></li>
+        <li class="toc-item"><a href="#p1-troubleshooting" class="toc-link">Problèmes Compteur P1</a></li>
+        <li class="toc-item"><a href="#ocpp-troubleshooting" class="toc-link">Diagnostics WebSocket OCPP</a></li>
+        <li class="toc-item"><a href="#nvme-troubleshooting" class="toc-link">SSD NVMe &amp; Bootloader</a></li>
+        <li class="toc-item"><a href="#sd-card-sqlite" class="toc-link">Santé SQLite &amp; Stockage</a></li>
+        <li class="toc-item"><a href="#alerts-troubleshooting" class="toc-link">Alertes &amp; Webhooks</a></li>
+        <li class="toc-item"><a href="#cloud-troubleshooting" class="toc-link">Cloud &amp; GRID-EMS-SERVER</a></li>
+        <li class="toc-item"><a href="#faq" class="toc-link">Foire Aux Questions (FAQ)</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Rechercher dans la documentation, les paramètres, les guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Fermer la recherche">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Utilisez <kbd class="kbd-shortcut">↑</kbd> <kbd class="kbd-shortcut">↓</kbd> pour naviguer</span>
+        <span><kbd class="kbd-shortcut">Entrée</kbd> pour sélectionner</span>
+        <span><kbd class="kbd-shortcut">Échap</kbd> pour fermer</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Documentation GEMS (New Energy Grid) &bull; Conçu avec Go, SQLite, Vue 3 et Tailwind CSS &bull; Optimisé pour Raspberry Pi</p>
+  </footer>
+
+  <script src="../js/search-index-fr.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

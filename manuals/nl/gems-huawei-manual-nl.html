@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS - Huawei SUN2000, LUNA2000 &amp; FusionSolar Inbedrijfstellingshandleiding</title>
+  <meta name="description" content="Volledige diepgaande veldinbedrijfstellingshandleiding voor Huawei SUN2000 hybride omvormers, LUNA2000 thuisbatterijen, SDongleA-05, EMMA-A02, FusionSolar App-parameterinstellingen en optimale GEMS-configuratie.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 12mm 16mm 12mm;
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9pt;
+      line-height: 1.5;
+    }
+
+    .manual-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 980px;
+      padding: 24px 16px 16px 16px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 24px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.25);
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 16px 0 8px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 11.5pt;
+      color: #475569;
+      margin: 0 0 18px 0;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    .cover-meta-val {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.08);
+      margin: 12px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 7.5pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Section Headings */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15.5pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #dc2626;
+      padding-bottom: 5px;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      page-break-after: avoid;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11.5pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 18px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #b91c1c;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: #334155;
+    }
+
+    ul, ol {
+      margin: 6px 0 10px 0;
+      padding-left: 20px;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    /* Screenshot Container */
+    .manual-screenshot {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .manual-screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .manual-screenshot-caption {
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    .screenshot-two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      font-size: 8.5pt;
+      line-height: 1.45;
+    }
+
+    .callout-info {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      color: #075985;
+    }
+
+    .callout-tip {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #166534;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #92400e;
+    }
+
+    .callout-danger {
+      background: #fef2f2;
+      border-left: 4px solid #dc2626;
+      color: #991b1b;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 8.2pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #cbd5e1;
+      padding: 6px 9px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .data-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Menu Path Breadcrumb Pills */
+    .menu-path {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 8pt;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .val-good {
+      display: inline-block;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-weight: 700;
+      font-size: 7.8pt;
+    }
+
+    .val-avoid {
+      display: inline-block;
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fca5a5;
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-weight: 700;
+      font-size: 7.8pt;
+    }
+
+    .diagram-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    .recipe-card {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .recipe-card h4 {
+      margin: 0 0 6px 0;
+      font-size: 9.5pt;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    code {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 8pt;
+      color: #b91c1c;
+    }
+
+    pre.code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 7.8pt;
+      line-height: 1.45;
+      overflow-x: auto;
+      page-break-inside: avoid;
+    }
+
+    @media print {
+      .no-print, .lang-switcher {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="manual-page">
+
+    <div class="no-print" style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+      <nav class="lang-switcher" aria-label="Taalkeuze">
+        <a href="../gems-huawei-manual.html">EN</a>
+        <a href="gems-huawei-manual-nl.html" class="active" aria-current="page">NL</a>
+        <a href="../fr/gems-huawei-manual-fr.html">FR</a>
+      </nav>
+    </div>
+
+    <!-- ==================== COVER PAGE ==================== -->
+    <div class="cover-page">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <span class="cover-badge">⚡ Specifieke Hardware-inbedrijfstellingshandleiding</span>
+          <img src="../assets/new_energy_grid_logo.png" alt="New Energy Grid Logo" style="height: 36px; width: auto;">
+        </div>
+
+        <h1 class="cover-title">Huawei SUN2000, LUNA2000 &amp; FusionSolar Configuratiegids</h1>
+        <p class="cover-subtitle">
+          Diepgaande installateurs- en gebruikershandleiding met elke verplichte instelling in de <strong>Huawei FusionSolar App</strong> (SDongleA-05, EMMA-A02, LUNA2000-S0/S1 &amp; Actieve Vermogensregeling) en aanbevolen optimalisatieprofielen in <strong>GRID-EMS (GEMS)</strong>.
+        </p>
+
+        <div class="cover-meta-grid">
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Documentversie</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.38.1-release (Officiële Release)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">GEMS Native Templates</span>
+            <span class="cover-meta-val">huawei_inverter • huawei_emma • huawei_scharger</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Ondersteunde Huawei Hardware</span>
+            <span class="cover-meta-val">SUN2000 (L1 / LC0 / M1 / MAP0 / MB0 / M2 / M3 / M5) &amp; LUNA2000 (S0 / S1)</span>
+          </div>
+          <div class="cover-meta-item">
+            <span class="cover-meta-label">Ondersteunde Gateways &amp; Meters</span>
+            <span class="cover-meta-val">SDongleA-05 (WLAN-FE) • EMMA-A02 • SmartLogger3000 • DTSU666-H / DDSU666-H</span>
+          </div>
+        </div>
+
+        <div class="cover-hero-img">
+          <img src="../assets/screenshots/dashboard.png" alt="GEMS Realtime Energiebeheer Dashboard">
+        </div>
+
+        <div class="callout callout-info" style="margin-top: 14px;">
+          <div class="callout-title">🎯 Waarom een correcte afstemming tussen FusionSolar &amp; GEMS essentieel is</div>
+          <div>
+            Standaard vergrendelen Huawei-omvormers uit veiligheidsoverwegingen de lokale Modbus TCP-communicatie en kunnen interne batterijschema's actief zijn die botsen met extern energiebeheer. Door beide delen van deze gids nauwkeurig te volgen — <strong>het vrijgeven van zuivere basisparameters in FusionSolar</strong> en <strong>het instellen van regionale optimalisatierecepten in GEMS</strong> — bent u verzekerd van deterministische sturing, nul communicatie-onderbrekingen, maximaal zon-zelfverbruik, nauwkeurige Vlaamse 15-minuten capaciteitspiekbewaking en slimme Day-Ahead batterij-arbitrage, terwijl uw vertrouwde FusionSolar-cloudmonitoring gewoon actief blijft.
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-footer">
+        <span>© New Energy Grid &amp; The Charge Grid — Eigendomsrechtelijke Velddocumentatie v9.37.2</span>
+        <span>Doelplatform: GRID-EMS Edge Controller (Raspberry Pi ARM64)</span>
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 1 ==================== -->
+    <h1 class="section-title">Sectie 1: Ondersteund Huawei-ecosysteem &amp; Fysieke Topologieën</h1>
+
+    <p>
+      GEMS biedt geverifieerde, lokale closed-loop integratie voor het volledige residentiële en commerciële zonne- en batterijgamma van Huawei zonder afhankelijkheid van cloud-API's. Alle realtime vermogensmetingen, LUNA2000 laad-/ontlaadcommando's en terugregelsetpoints (curtailment) worden lokaal via uw LAN of RS-485-bus uitgevoerd.
+    </p>
+
+    <h2 class="subsection-title">1.1 Overzicht Ondersteunde Huawei-hardware</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 24%;">Componentfamilie</th>
+          <th style="width: 34%;">Ondersteunde Huawei-modellen</th>
+          <th style="width: 20%;">GEMS Template</th>
+          <th style="width: 22%;">Mogelijkheden in GEMS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1-Fase Hybride Omvormers</strong></td>
+          <td><code>SUN2000-2KTL</code> t/m <code>6KTL-L1</code>, <code>SUN2000-8KTL</code> t/m <code>10KTL-LC0</code></td>
+          <td><code>huawei_inverter</code></td>
+          <td>PV-uitlezing, LUNA2000-sturing, actieve PV-terugregeling, fasetelemetrie</td>
+        </tr>
+        <tr>
+          <td><strong>3-Fase Hybride Omvormers</strong></td>
+          <td><code>SUN2000-3KTL</code> t/m <code>10KTL-M1</code>, <code>SUN2000-5KTL</code> t/m <code>12KTL-MAP0</code>, <code>SUN2000-12KTL</code> t/m <code>25KTL-MB0</code></td>
+          <td><code>huawei_inverter</code></td>
+          <td>3-fase telemetrie, bidirectionele LUNA2000-aansturing, 0,1% PV-terugregeling</td>
+        </tr>
+        <tr>
+          <td><strong>Commerciële String-omvormers</strong></td>
+          <td><code>SUN2000-12KTL</code> t/m <code>25KTL-M2/M5</code>, <code>SUN2000-30KTL</code> t/m <code>100KTL-M3</code></td>
+          <td><code>huawei_inverter</code></td>
+          <td>Zonneproductie-telemetrie, 3-fase stromen/spanningen, actieve terugregeling</td>
+        </tr>
+        <tr>
+          <td><strong>Thuisbatterijopslag (BESS)</strong></td>
+          <td><code>LUNA2000-5/10/15-S0</code> (tot 30 kWh dubbele toren), <code>LUNA2000-7/14/21-S1</code> (tot 20,7 kWh per toren)</td>
+          <td>Beheerd via <code>huawei_inverter</code> (<code>Battery Connected?</code>)</td>
+          <td>Live SOC %, laad-/ontlaadvermogen (W), live dynamische BMS-limieten, 10-min deadman-beveiliging</td>
+        </tr>
+        <tr>
+          <td><strong>Communicatiegateways</strong></td>
+          <td><code>SDongleA-05 (WLAN-FE)</code>, <code>EMMA-A02</code>, <code>SmartLogger3000</code></td>
+          <td>TCP-poort <code>502</code> Gateway</td>
+          <td>Gedeelde single-socket Modbus TCP-brug met 250 ms inter-frame pacing</td>
+        </tr>
+        <tr>
+          <td><strong>Smart Power Sensors</strong></td>
+          <td><code>EMMA-A02</code> ingebouwde meter, <code>DTSU666-H</code> (3F), <code>DDSU666-H</code> (1F)</td>
+          <td><code>huawei_emma</code> of via <code>huawei_inverter</code></td>
+          <td>Netafname/-injectie (W met teken), L1–L3 fasestromen &amp; spanningen, kWh-totalen</td>
+        </tr>
+        <tr>
+          <td><strong>EV-laadpaal (Optioneel)</strong></td>
+          <td><strong>Raedian</strong> NEO / NEX / Gemini (Aanbevolen Modbus TCP) of Huawei <code>SCharger-7KS / 22KT</code> (OCPP 1.6-J)</td>
+          <td><code>raedian_charger</code> / <code>huawei_scharger</code></td>
+          <td>Dynamische 6A–32A load balancing, laden op zonne-overschot, 1F/3F fase-omschakeling</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">1.2 De Juiste Fysieke Topologie Kiezen</h2>
+
+    <div class="diagram-box">
+      <div style="font-weight: 800; font-size: 9.5pt; color: #0f172a; margin-bottom: 8px;">
+        Topologie A (Aanbevolen Gouden Standaard): SDongleA-05 via Bekabeld Ethernet + DTSU666-H + P1 Slimme Meter
+      </div>
+      <svg viewBox="0 0 820 155" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+        <rect x="10" y="25" width="165" height="105" rx="10" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+        <text x="92" y="52" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0f172a">GEMS Controller</text>
+        <text x="92" y="70" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#0369a1">Raspberry Pi (Bekabeld eth0)</text>
+        <text x="92" y="90" text-anchor="middle" font-family="monospace" font-size="9.5" fill="#334155">Vast IP: .50</text>
+        <text x="92" y="108" text-anchor="middle" font-family="sans-serif" font-size="9.5" font-weight="bold" fill="#16a34a">+ USB P1 Slimme Meter</text>
+
+        <line x1="175" y1="65" x2="295" y2="65" stroke="#0284c7" stroke-width="2.5"/>
+        <text x="235" y="56" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#0284c7">LAN Ethernet</text>
+        <text x="235" y="80" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#475569">Modbus TCP :502</text>
+
+        <rect x="295" y="25" width="175" height="105" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="2"/>
+        <text x="382" y="52" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#991b1b">SDongleA-05 (FE)</text>
+        <text x="382" y="70" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#334155">Ingeplugd in SUN2000 USB</text>
+        <text x="382" y="90" text-anchor="middle" font-family="monospace" font-size="9.5" fill="#b91c1c">Modbus: Unrestricted</text>
+        <text x="382" y="108" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#475569">+ FusionSolar Cloud Sync</text>
+
+        <line x1="470" y1="55" x2="575" y2="55" stroke="#dc2626" stroke-width="2"/>
+        <text x="522" y="47" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#991b1b">Slave ID 1</text>
+
+        <rect x="575" y="12" width="230" height="62" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+        <text x="690" y="36" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="bold" fill="#92400e">Huawei SUN2000 + LUNA2000</text>
+        <text x="690" y="55" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#475569">DC-bus Batterij + PV-strings</text>
+
+        <line x1="690" y1="74" x2="690" y2="94" stroke="#64748b" stroke-width="2" stroke-dasharray="4,3"/>
+        <rect x="575" y="94" width="230" height="48" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.8"/>
+        <text x="690" y="115" text-anchor="middle" font-family="sans-serif" font-size="10.5" font-weight="bold" fill="#166534">DTSU666-H / DDSU666-H Sensor</text>
+        <text x="690" y="131" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#475569">RS-485 naar SUN2000 COM-poort</text>
+      </svg>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 22%;">Topologie</th>
+          <th style="width: 43%;">Aansluitwijze</th>
+          <th style="width: 35%;">Veldaanbeveling</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Topologie A: SDongleA-05 (WLAN-FE)</strong></td>
+          <td>Sluit een RJ45-Ethernetkabel aan onderin de behuizing van de <code>SDongleA-05</code>. GEMS pollt TCP-poort <code>502</code> (Modbus ID <code>1</code>). Optionele P1-kabel gaat rechtstreeks in een USB-poort van GEMS.</td>
+          <td><span class="val-good">Beste Algemene Keuze</span> Gebruik altijd <strong>bekabeld Ethernet</strong> in de SDongleA-05 in plaats van 2,4 GHz Wi-Fi om draadloze pakketvertraging en time-outs uit te sluiten.</td>
+        </tr>
+        <tr>
+          <td><strong>Topologie B: Huawei EMMA-A02</strong></td>
+          <td>Verbind de WAN/LAN-poort van de <code>EMMA-A02</code> via Ethernet met uw router. Voeg zowel <code>huawei_emma</code> (meter) als <code>huawei_inverter</code> (Slave ID <code>1</code>) toe met verwijzing naar het EMMA-IP op poort <code>502</code>.</td>
+          <td><span class="val-good">Ideaal voor Nieuwe S1-sites</span> GEMS multiplext beide toestellen automatisch over één gedeelde TCP-socket naar de EMMA-A02.</td>
+        </tr>
+        <tr>
+          <td><strong>Topologie C: Directe USB-naar-RS485</strong></td>
+          <td>Afgeschermde twisted-pair kabel van een GEMS USB-RS485-adapter rechtstreeks naar de SUN2000 COM-stekker (<code>9600 8N1</code>, Slave ID <code>1</code>).</td>
+          <td><span class="val-good">Snelste Respons</span> <strong>Uitsluitend geldig wanneer GEEN SDongleA-05 of EMMA-A02 geplaatst is</strong> (een geplaatste dongle eist het master-beheer over de RS-485-bus op).</td>
+        </tr>
+        <tr>
+          <td><strong>Topologie D: Zonder Huawei-meter + P1</strong></td>
+          <td>SUN2000 + LUNA2000 zonder DTSU666-H, gecombineerd met een digitale P1-meter op GEMS (<code>Grid Meter Connected? = Uitgevinkt</code>).</td>
+          <td><span class="val-good">Ondersteund</span> GEMS stuurt het opladen uit zonne-overschot en ontladen voor woningverbruik van de LUNA2000 actief aan vanuit de P1-metingen.</td>
+        </tr>
+        <tr>
+          <td><strong>Ingebouwde Omvormer Wi-Fi AP (<code>:6607</code>)</strong></td>
+          <td>Interne inbedrijfstellings-hotspot ingebouwd in L1/M1-omvormers (<code>192.168.200.1:6607</code>, Unit ID <code>0</code>).</td>
+          <td><span class="val-avoid">Niet Gebruiken voor 24/7 EMS</span> Enkel bedoeld voor tijdelijke inbedrijfstelling; verbreekt sessies en mist deterministische LAN-stabiliteit. Gebruik SDongleA-05, EMMA-A02 of RS-485.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">1.3 Pinbezetting Directe RS-485 COM-poort (Enkel Topologie C — Zonder SDongle / EMMA)</h2>
+    <p>
+      Bij het rechtstreeks bedraden van een afgeschermde twisted-pair kabel tussen een USB-naar-RS485-adapter op GEMS en de ronde/rechthoekige <strong>COM-stekker</strong> van de SUN2000 (<em>uitsluitend</em> gebruikt wanneer er geen <code>SDongleA-05</code> of <code>EMMA-A02</code> aanwezig is, op <code>9600 bps, 8N1</code>, Slave ID <code>1</code>):
+    </p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 28%;">Huawei Omvormerserie</th>
+          <th style="width: 24%;">RS485A+ (Data +)</th>
+          <th style="width: 24%;">RS485B- (Data -)</th>
+          <th style="width: 24%;">Gereserveerde DTSU666-H Meterpinnen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>SUN2000-2KTL–6KTL-L1</strong> (1F)</td>
+          <td>COM <strong>Pin 2</strong> (<code>485A1</code>)</td>
+          <td>COM <strong>Pin 1</strong> (<code>485B1</code>)</td>
+          <td>Pin 4 (<code>485A2</code>) &amp; Pin 3 (<code>485B2</code>)</td>
+        </tr>
+        <tr>
+          <td><strong>SUN2000-3KTL–10KTL-M1</strong> (3F)</td>
+          <td>COM <strong>Pin 1</strong> (<code>485A1-1</code>)</td>
+          <td>COM <strong>Pin 3</strong> (<code>485B1-1</code>)</td>
+          <td>Pin 7 (<code>485A2</code>) &amp; Pin 9 (<code>485B2</code>)</td>
+        </tr>
+        <tr>
+          <td><strong>SUN2000-MAP0 / MB0 / LC0</strong></td>
+          <td>Klem <code>485A1</code> (EMS/Cascade)</td>
+          <td>Klem <code>485B1</code> (EMS/Cascade)</td>
+          <td>Specifieke <code>485A2 / 485B2</code> Meterpoort</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ==================== SECTION 2 ==================== -->
+    <h1 class="section-title">Sectie 2: Verplichte Firmware- &amp; Netwerkvereisten</h1>
+
+    <p>
+      Controleer eerst deze drie basisvereisten voordat u parameters wijzigt in FusionSolar of de omvormer toevoegt in GEMS. Meer dan 90% van alle Huawei-communicatieproblemen in het veld is terug te voeren op verouderde Smart Dongle-firmware of conflicterende IP-/polling-instellingen.
+    </p>
+
+    <h2 class="subsection-title">2.1 Minimale &amp; Aanbevolen Huawei-firmwareversies</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 28%;">Huawei-component</th>
+          <th style="width: 28%;">Minimale Firmware</th>
+          <th style="width: 28%;">Aanbevolen Firmware</th>
+          <th style="width: 16%;">Waarom Vereist</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>SDongleA-05 (WLAN-FE)</strong></td>
+          <td><code>V100R001C00SPC126</code> of <code>V200R022C10SPC108</code></td>
+          <td><code>V200R022C10SPC118</code> of nieuwer</td>
+          <td>Ontgrendelt lokale Modbus TCP &amp; stabiele batterij-schrijfcommando's</td>
+        </tr>
+        <tr>
+          <td><strong>SUN2000-L1 (1-Fase)</strong></td>
+          <td><code>V200R001C00SPC130</code></td>
+          <td><code>V200R001C00SPC142</code> of nieuwer</td>
+          <td>Tijdsduur-gebaseerde geforceerde laad-/ontlaadregisters</td>
+        </tr>
+        <tr>
+          <td><strong>SUN2000-M1 (3-Fase)</strong></td>
+          <td><code>V100R001C00SPC153</code></td>
+          <td><code>V100R001C00SPC165</code> of nieuwer</td>
+          <td>Volledig LUNA2000-netladen &amp; 0,1% terugregeling</td>
+        </tr>
+        <tr>
+          <td><strong>SUN2000-LC0 / MAP0 / MB0</strong></td>
+          <td><code>V200R023C10SPC100</code></td>
+          <td>Nieuwste beschikbare <code>SPC</code>-release</td>
+          <td>Native S1 BMS-limieten &amp; asymmetrische ondersteuning</td>
+        </tr>
+        <tr>
+          <td><strong>LUNA2000-S0 / S1 Batterij</strong></td>
+          <td><code>V100R002C00SPC119</code> (S0) / <code>V200R023</code> (S1)</td>
+          <td><code>V100R002C00SPC624+</code> (S0) / Nieuwste (S1)</td>
+          <td>Nauwkeurige live dynamische laad-/ontlaadvermogenslimieten</td>
+        </tr>
+        <tr>
+          <td><strong>EMMA-A02 Assistent</strong></td>
+          <td><code>V100R023C10SPC100</code></td>
+          <td><code>V100R023C10SPC120</code> of nieuwer</td>
+          <td>Client-IP-whitelist &amp; onversleutelde poort 502-doorgifte</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-danger">
+      <div class="callout-title">🛑 Kritieke Regel: Strikte Single-Master Limiet op Poort 502</div>
+      <div>
+        Zowel de Huawei <strong>SDongleA-05</strong> als de <strong>EMMA-A02</strong> staan <strong>slechts ÉÉN actieve Modbus TCP-clientverbinding tegelijk</strong> toe.
+        <ul style="margin: 4px 0 0 0;">
+          <li><strong>Schakel secundaire polling-clients uit:</strong> Zorg dat geen enkele andere lokale domoticacontroller, script of externe laadpaal gelijktijdig het IP-adres van de Huawei-dongle op poort <code>502</code> bevraagt, anders verbreekt de dongle TCP-sockets met <code>Connection reset by peer</code>.</li>
+          <li><strong>Reserveer Vaste IPv4-adressen:</strong> Maak een vaste DHCP-reservering aan in de router op locatie voor zowel het MAC-adres van de Huawei <code>SDongleA-05</code> / <code>EMMA-A02</code> als de GEMS-controller (of stel een statisch IP in onder <strong>Instellingen &rarr; Netwerk</strong> in GEMS). Zeker bij de <code>EMMA-A02</code> geldt: als het IP-adres van GEMS wijzigt, weigert EMMA onmiddellijk alle verbindingen op poort <code>502</code>!</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 3 ==================== -->
+    <h1 class="section-title">Sectie 3: Stap-voor-Stap Huawei FusionSolar App Configuratie</h1>
+
+    <p>
+      Standaard eigenaarsweergaven in de mobiele FusionSolar-app verbergen communicatiebeveiliging en energiestuurparameters. U dient lokaal verbinding te maken via <strong>Inbedrijfstelling van apparaat (Device Commissioning)</strong> met <strong>Installateursrechten (Installer)</strong> (of via het FusionSolar Webportaal als installateur).
+    </p>
+
+    <h2 class="subsection-title">3.1 Lokaal Verbinden via FusionSolar Inbedrijfstelling (Device Commissioning)</h2>
+    <ol>
+      <li><strong>Schakel Mobiele Data op uw Smartphone Uit (Cruciale Tip):</strong> Zet tijdelijk mobiele data (4G/5G) op uw smartphone uit terwijl Wi-Fi ingeschakeld blijft. Anders sturen iOS en Android het netwerkverkeer vaak weg van de offline Wi-Fi-hotspot van de omvormer.</li>
+      <li><strong>Open Device Commissioning:</strong> Open de <strong>FusionSolar App</strong>. Tik op het aanmeldscherm (of onderaan via <strong>Ik / Me</strong> &rarr; <strong>Diensten / Services</strong>) op <strong>Inbedrijfstelling van apparaat (Device Commissioning)</strong>.</li>
+      <li><strong>Scan de Hardware QR-code:</strong> Scan de QR-codesticker op de zijkant van de <strong>SUN2000-omvormer</strong> (of rechtstreeks op de <strong>EMMA-A02</strong>-module indien uw installatie EMMA gebruikt) om verbinding te maken met het lokale Wi-Fi Access Point.</li>
+      <li><strong>Kies het Installateursaccount:</strong> Tik op <strong>Installateur (Installer)</strong> en voer het Huawei-installateurswachtwoord van de locatie in dat tijdens de eerste oplevering werd ingesteld.</li>
+    </ol>
+
+    <h2 class="subsection-title">3.2 Modbus TCP Inschakelen op de SDongleA-05 (Topologie A)</h2>
+    <p>Zodra u aangemeld bent in het lokale inbedrijfstellingsscherm van een SUN2000-omvormer met een <code>SDongleA-05</code>:</p>
+    <ol>
+      <li>Navigeer naar: <span class="menu-path">Settings &rarr; Communication Configuration &rarr; Dongle Parameter Settings &rarr; Modbus-TCP</span> <em>(Instellingen &rarr; Communicatieconfiguratie &rarr; Dongle-parameterinstellingen &rarr; Modbus-TCP)</em></li>
+      <li>Wijzig <strong>Connection (Verbinding)</strong> van <em>Disabled (Uitgeschakeld)</em> naar <span class="val-good">Enable (unrestricted)</span> <em>(Inschakelen - onbeperkt)</em> (of kies <em>Enable (restricted)</em> en vul exact het vaste IPv4-adres van uw GEMS-controller in).</li>
+      <li>Tik op <strong>Bevestigen / Opslaan (Confirm / Save)</strong>. Poort <code>502</code> is nu actief op het LAN-IP van de SDongleA-05.</li>
+      <li>Controleer het interne RS-485 Slave ID van de omvormer onder <span class="menu-path">Settings &rarr; Communication Configuration &rarr; RS485_1</span>: bevestig dat <strong>Protocol</strong> = <code>MODBUS</code>, <strong>Baud Rate</strong> = <code>9600</code>, en noteer het <strong>Communicatieadres (Communication Address)</strong> (fabrieksstandaard is <code>1</code>; soms <code>2</code> of <code>16</code> bij multi-omvormerinstallaties).</li>
+    </ol>
+
+    <div class="callout callout-tip">
+      <div class="callout-title">💡 Alternatief op Afstand via het FusionSolar Webportaal (Installateurslogin)</div>
+      <div>
+        Hebt u als installateur toegang op afstand tot de installatie in een desktopbrowser, dan kunt u SDongle Modbus TCP vanop afstand vrijgeven zonder plaatsbezoek: ga naar <strong>Plants &rarr; Device Management &rarr; Klap Omvormer open &rarr; Selecteer SDongleA-05 &rarr; Configuration (Set Parameters) &rarr; Connection Parameters &rarr; Modbus TCP &rarr; Enable (unrestricted)</strong>.
+      </div>
+    </div>
+
+    <h2 class="subsection-title">3.3 Modbus TCP Inschakelen op Huawei EMMA-A02 (Topologie B)</h2>
+    <p>Gebruikt uw installatie een Huawei <strong>EMMA-A02</strong> in plaats van een Smart Dongle, scan dan de QR-code op de voorzijde van de EMMA-A02 via <strong>Device Commissioning</strong> en pas alle vier onderstaande instellingen toe:</p>
+    <ol>
+      <li>Navigeer naar: <span class="menu-path">Settings &rarr; Communication Configuration &rarr; Modbus TCP</span></li>
+      <li>Zet <strong>Modbus TCP Connection</strong> op <span class="val-good">Enable</span> <em>(Inschakelen)</em>.</li>
+      <li>Zet <strong>TLS Encryption (TLS-versleuteling)</strong> op <span class="val-good">Disable (OFF)</span>. <em>(Verplicht: lokaal industrieel Modbus TCP op poort <code>502</code> vereist standaard onversleutelde frames; blijft TLS ingeschakeld, dan mislukt de handshake onmiddellijk).</em></li>
+      <li>Vul bij <strong>Client IP Address</strong> het <strong>exacte IPv4-adres van uw GEMS-controller</strong> in (bijvoorbeeld <code>192.168.1.50</code>). <strong>Vul nooit <code>0.0.0.0</code> in</strong> — de EMMA-A02 aanvaardt geen wildcard-adressen en weigert verbindingen tenzij het exacte GEMS-IP vermeld staat.</li>
+      <li><strong>Schakel Conflicterende EMMA Cloud AI / TOU-schema's Uit:</strong> Zet onder de energiebeheermodus van EMMA de batterijwerking op standaard <strong>Maximaal zelfverbruik (Maximum Self-Consumption)</strong> en laat EMMA's cloud-AI/TOU-planning op <strong>Uitgeschakeld (Disabled)</strong> staan zodat EMMA nooit de GEMS-setpoints overschrijft.</li>
+    </ol>
+
+    <h2 class="subsection-title">3.4 Volledige LUNA2000 Batterij-instellingenchecklist in FusionSolar</h2>
+    <p>
+      Navigeer in FusionSolar Device Commissioning naar <span class="menu-path">Settings &rarr; Energy Control</span> (of <span class="menu-path">Device Monitoring &rarr; ESS (LUNA2000) &rarr; Parameter Settings</span>) en controleer elke parameter in onderstaande tabel. Deze instellingen geven GEMS volledige, ongehinderde stuurautoriteit wanneer nodig, met autonoom zon-zelfverbruik als veilige hardwarematige terugvalmodus:
+    </p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 26%;">FusionSolar Parameter</th>
+          <th style="width: 22%;">Vereiste Instelling</th>
+          <th style="width: 52%;">Technische Reden &amp; Impact op GEMS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Working Mode</strong><br><em>(Werkingsmodus)</em></td>
+          <td><span class="val-good">Maximum Self-Consumption</span><br><em>(of <code>Fixed Charge/Discharge</code> met 0 tijdsloten bij meterloze Topologie D)</em><br><span class="val-avoid">GEEN Interne TOU-schema's</span></td>
+          <td>Stelt zuiver zon-zelfverbruik in als hardwarebasis zodra een Huawei-vermogenssensor of EMMA aanwezig is. Laat u interne <em>Time-of-Use (TOU)</em>-tijdschema's actief, dan werken Huawei-timers GEMS tegen. <strong>Topologie D (Geen EMMA &amp; Geen Huawei-meter):</strong> Als FusionSolar <em>Maximum Self-Consumption</em> uitgrijst of weigert wanneer geen <code>DTSU666-H / DDSU666-H</code> aangesloten is, kies dan <code>Fixed Charge/Discharge</code> met <strong>0 geplande tijdvakken</strong> (of <code>Fully Fed to Grid</code>) zodat GEMS ongehinderde Modbus-aansturing heeft vanuit uw P1-meter.</td>
+        </tr>
+        <tr>
+          <td><strong>Charge from AC</strong><br><em>(Opladen vanaf AC / Net)</em></td>
+          <td><span class="val-good">Enable (Inschakelen)</span></td>
+          <td><strong>Essentieel voor dynamische tarieven &amp; winterbescherming.</strong> In de modus <em>Maximum Self-Consumption</em> laadt de batterij <em>niet</em> spontaan uit het net op — deze vlag geeft GEMS enkel hardwaretoestemming om geforceerd netladen te starten tijdens goedkope/negatieve Day-Ahead uren of winterherstel bij lage SOC.</td>
+        </tr>
+        <tr>
+          <td><strong>Grid Charge Cutoff SOC</strong><br><em>(Eind-SOC AC-laden)</em></td>
+          <td><span class="val-good">100 %</span></td>
+          <td>Voorkomt dat Huawei-firmware het netladen voortijdig afbreekt op bv. 80% wanneer GEMS bewust 95%–100% absorptie aanstuurt tijdens negatieve stroomprijzen. GEMS bewaakt zelf per regel de exacte doel-SOC.</td>
+        </tr>
+        <tr>
+          <td><strong>Maximum Charge Power</strong><br><em>(Max. laadvermogen)</em></td>
+          <td><span class="val-good">Hardware Nominaal Max</span><br><em>(bv. 2500 / 5000 / 7000 / 10500 W)</em></td>
+          <td>Laat op het volledige nominale vermogen van de LUNA2000 staan (<code>2500 W</code> voor 5 kWh S0, <code>5000 W</code> voor 10–15 kWh S0, tot <code>10500 W</code> voor 21 kWh S1). Begrens dit nooit in FusionSolar, anders wordt zonne-opname en laden bij negatieve prijzen afgeknepen.</td>
+        </tr>
+        <tr>
+          <td><strong>Maximum Discharge Power</strong><br><em>(Max. ontlaadvermogen)</em></td>
+          <td><span class="val-good">Hardware Nominaal Max</span><br><em>(bv. 2500 / 5000 / 7000 / 10500 W)</em></td>
+          <td>Garandeert dat het volledige ogenblikkelijke ontlaadvermogen beschikbaar is voor GEMS om plotselinge kook- of warmtepomppieken onder het Vlaamse 15-minuten capaciteitsplafond te houden.</td>
+        </tr>
+        <tr>
+          <td><strong>End-of-Charge SOC</strong><br><em>(Eind-SOC opladen)</em></td>
+          <td><span class="val-good">100 %</span></td>
+          <td>LUNA2000 maakt gebruik van lithium-ijzerfosfaatcellen (LiFePO<sub>4</sub>), die periodiek tot 100% gebalanceerd moeten worden zodat de SOC-meting van het BMS niet verloopt.</td>
+        </tr>
+        <tr>
+          <td><strong>End-of-Discharge SOC</strong><br><em>(Minimale reservelimiet)</em></td>
+          <td><span class="val-good">5 % – 10 %</span> (Standaard)<br><span class="val-good">15 % – 20 %</span> (Backup Box)</td>
+          <td>Stel <code>5%</code> in tijdens lente/zomer voor maximale bruikbare capaciteit, of <code>10%</code> in de winter om onderhoudsladingen vanuit diepe stand-by te vermijden. Is een Huawei <strong>Backup Box / SmartGuard</strong> geplaatst, stel dan <code>15%–20%</code> in als noodstroomreserve.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">3.5 Controle van Actieve Vermogensregeling &amp; Smart Power Sensor in FusionSolar</h2>
+    <ul>
+      <li><strong>Active Power Control Mode (Actieve vermogensregeling)</strong> (<span class="menu-path">Settings &rarr; Power Adjustment &rarr; Active Power Control</span>): Zet op <span class="val-good">Unlimited (No Limit)</span> <em>(Onbeperkt)</em> tenzij uw netbeheerder wettelijk een vaste fysieke injectielimiet oplegt. <em>Waarom:</em> Schakelt u statische <em>Zero Export</em> in binnen FusionSolar, dan knijpt de omvormer de zonneproductie ook af tijdens winstgevende terugleveruren of uren met Vlaamse groenestroomcertificaten (GSC). Door FusionSolar op <em>Unlimited</em> te laten, laat GEMS winstgevende injectie dynamisch toe en regelt het de SUN2000 enkel soepel terug zodra prijzen onrendabel worden!</li>
+      <li><strong>Closed-Loop Controller</strong> (indien zichtbaar): Selecteer <span class="val-good">Inverter</span> bij enkelvoudige omvormerinstallaties (snelste hardwarerespons), of <span class="val-good">SDongle / SmartLogger</span> uitsluitend bij meerdere gecascadeerde Master/Slave SUN2000-omvormers.</li>
+      <li><strong>Controleer de stroomspoelrichting (CT) van de DTSU666-H / DDSU666-H vóór koppeling:</strong> Schakel in het realtime energiestroomscherm van FusionSolar een gekende verbruiker van ~2 kW in (zoals een waterkoker) met de batterij tijdelijk in rust. Controleer dat de netafname met +2 kW stijgt op de overeenkomstige fase en dat alle CT-pijlen (<code>K &rarr; L</code> of <code>P1 &rarr; P2</code>) <strong>van de netmeter naar het verdeelbord van de woning</strong> wijzen. Omgekeerde stroomspoelen of verwisselde fasespanningen (<code>Ua/Ub/Uc</code> niet passend bij <code>Ia/Ib/Ic</code>) veroorzaken foutief laden en ontladen van de batterij!</li>
+    </ul>
+
+    <div class="callout callout-warning">
+      <div class="callout-title">⚠️ Aandachtspunt na Updates: Controleer Modbus TCP Opnieuw na Huawei Firmware-upgrades</div>
+      <div>
+        Grote firmware-updates op afstand naar de <code>SDongleA-05</code> of <code>SUN2000</code> zetten soms de beveiligingsrechten terug, waardoor <strong>Modbus-TCP</strong> opnieuw op <em>Disabled</em> komt te staan. Meldt GEMS de Huawei-omvormer ooit plots offline vlak na een Huawei-firmware-update, controleer dan stap 3.2 opnieuw in FusionSolar.
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 4 ==================== -->
+    <h1 class="section-title">Sectie 4: Huawei-hardware Koppelen in GEMS</h1>
+
+    <p>
+      Zodra de FusionSolar-parameters opgeslagen zijn, verbreekt u op uw smartphone de verbinding met het lokale inbedrijfstellings-Wi-Fi van de omvormer zodat de SDongleA-05 of EMMA-A02 de normale LAN-communicatie hervat. Open de GEMS-webinterface (bv. <code>https://gems.local</code> of het IP-adres van uw controller), ga naar <strong>Instellingen</strong>, klik rechtsboven op het <strong>hangsloticoon 🔒</strong> en voer uw <strong>Installateurs-PIN</strong> in om de <strong>Gecertificeerde installateursmodus</strong> te ontgrendelen.
+    </p>
+
+    <h2 class="subsection-title">4.1 Stap 1 — Koppel Eerst Uw Primaire Netmeter (Aanbevolen Werkwijze)</h2>
+    <ul>
+      <li><strong>Installaties met een Digitale Meter (Fluvius / DSMR P1-poort):</strong> Ga naar <strong>Instellingen &rarr; Toestellen &rarr; Nieuw energietoestel toevoegen &rarr; Smart Meter</strong> en voeg uw <strong>P1 Serial Meter</strong> toe (<code>p1_serial</code> via de vaste poort <code>/dev/serial/by-id/...</code>) of een netwerk-P1-meter. GEMS gebruikt automatisch de zelfstandige P1-digitale meter als officiële facturatiereferentie voor Vlaamse 15-minuten capaciteitspieken en hoofdzekeringsbewaking, óók wanneer uw Huawei-omvormer over een eigen DTSU666-H beschikt!</li>
+      <li><strong>Installaties met Huawei EMMA-A02 als Primaire Netmeter (Geen P1-poort):</strong> Kies <strong>Smart Meter &rarr; Huawei EMMA-A02 / DTSU666-H Smart Power Sensor</strong> (<code>huawei_emma</code>), vul het vaste EMMA-IP-adres in, TCP-poort <code>502</code> en Modbus ID <code>1</code> (of selecteer bij een losstaande RS-485 DTSU666-H die rechtstreeks op GEMS is aangesloten zonder Huawei-omvormer de seriële poort <code>/dev/serial/by-id/...</code> met Modbus ID <code>11</code>, <code>9600 8N1</code>).</li>
+    </ul>
+
+    <h2 class="subsection-title">4.2 Stap 2 — Koppel de Huawei Hybride Omvormer &amp; LUNA2000</h2>
+    <p>
+      Navigeer naar <strong>Instellingen &rarr; Toestellen</strong>, klik op <strong>Inverter / Solar</strong> onder <em>Nieuw energietoestel toevoegen</em>, en selecteer <strong>Huawei Hybrid Inverter</strong> (<code>✓ Geverifieerd</code>). Vul elk veld nauwkeurig in volgens onderstaande referentietabel:
+    </p>
+
+    <div class="screenshot-two-col">
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="../assets/screenshots/settings_devices_add_modal.png" alt="GEMS Toestelcategorie Selecteren">
+        <div class="manual-screenshot-caption">1. Selecteer de categorie Inverter / Solar in Instellingen &rarr; Toestellen</div>
+      </div>
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="../assets/screenshots/settings_devices_inverter_form.png" alt="GEMS Hybride Omvormer Configuratieformulier">
+        <div class="manual-screenshot-caption">2. Configureer Nominaal Vermogen, Terugregeling, Poll-interval, Meter- &amp; Batterijopties</div>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 24%;">GEMS Toestelveld</th>
+          <th style="width: 26%;">Aanbevolen Waarde</th>
+          <th style="width: 50%;">Waarom Deze Exacte Instelling Essentieel Is</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Toestelnaam (Device Name)</strong></td>
+          <td>bv. <code>Huawei SUN2000 + LUNA2000</code></td>
+          <td>Duidelijk label op Dashboard-vensters, in het technisch Logboek en op PDF-energierapporten.</td>
+        </tr>
+        <tr>
+          <td><strong>Hardwaretemplate (Device Template)</strong></td>
+          <td><code>Huawei Hybrid Inverter</code></td>
+          <td>Activeert Huawei's native 250 ms bus-pacing, uitlezing van dynamische LUNA2000 BMS-limieten en de 10-minuten hardware-watchdog.</td>
+        </tr>
+        <tr>
+          <td><strong>IP-adres of Seriële Poort</strong></td>
+          <td>Vast IP van SDongle / EMMA<br><em>(bv. <code>192.168.1.120</code>)</em> of <code>/dev/serial/by-id/...</code></td>
+          <td>Vul voor Topologie A/B het gereserveerde IPv4-adres in. Klik voor Topologie C (directe RS-485 zonder dongle) op de groene vaste <code>/dev/serial/by-id/...</code>-knop (<code>9600 bps</code>, <code>8N1</code>).</td>
+        </tr>
+        <tr>
+          <td><strong>TCP Port</strong></td>
+          <td><code>502</code></td>
+          <td>Standaard Modbus TCP-poort voor SDongleA-05, EMMA-A02 en SmartLogger3000.</td>
+        </tr>
+        <tr>
+          <td><strong>Modbus ID</strong></td>
+          <td><code>1</code> <em>(standaard)</em><br><code>2, 3...</code> <em>(gecascadeerde slaves)</em></td>
+          <td>Komt overeen met het <code>RS485_1 Communication Address</code> van de omvormer in FusionSolar (vrijwel altijd <code>1</code>; controleer FusionSolar indien gewijzigd naar <code>2</code> of <code>16</code>). Voeg bij Master-Slave cascades een tweede toestel toe met hetzelfde IP en <code>Modbus ID = 2</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Rated Power (kW)</strong></td>
+          <td>Exact AC-typeplaatvermogen in kW<br><em>(bv. <code>4.6</code>, <code>5.0</code>, <code>8.0</code>, <code>10.0</code>)</em></td>
+          <td><strong>Laat dit niet op 0 staan!</strong> GEMS gebruikt <code>Rated Power (kW)</code> om uiterst nauwkeurige <code>0,1%</code> procentuele terugregelsetpoints op de SUN2000 te berekenen tijdens negatieve terugleverprijzen.</td>
+        </tr>
+        <tr>
+          <td><strong>Allow Curtailment</strong></td>
+          <td><span class="val-good">Aangevinkt (✓)</span></td>
+          <td>Staat GEMS toe om de zonneproductie vloeiend terug te regelen tot het woningverbruik zodra terugleveren geld kost en de LUNA2000 en EV's vol zijn.</td>
+        </tr>
+        <tr>
+          <td><strong>Poll Interval (seconden)</strong></td>
+          <td><span class="val-good">10 seconden</span> <em>(SDongleA-05)</em><br><span class="val-good">5 seconden</span> <em>(EMMA / RS-485)</em></td>
+          <td>GEMS vult automatisch <code>10s</code> in voor Huawei! De SDongleA-05 heeft een bescheiden embedded processor die gedeeld wordt met FusionSolar-cloudsynchronisatie — sneller pollen dan <code>8–10s</code> op een SDongle veroorzaakt buscongestie. Gebruik <code>5s</code> enkel op bekabelde EMMA-A02 of directe RS-485.</td>
+        </tr>
+        <tr>
+          <td><strong>Phase Wiring (Fase-aansluiting)</strong></td>
+          <td><code>Three-Phase — L1-L2-L3</code> (M1/MAP0/MB0)<br>of exacte fase <code>L1 / L2 / L3</code> (L1 1-Fase)</td>
+          <td>Op monofasige <code>SUN2000-L1</code>-installaties in een 3-fasige woning zorgt de selectie van de exacte automaatfase (<code>L1</code>, <code>L2</code> of <code>L3</code>) ervoor dat de fasezekeringsbewaking exact weet welke fase batterijondersteuning krijgt!</td>
+        </tr>
+        <tr>
+          <td><strong>Grid Meter Connected?</strong></td>
+          <td><span class="val-good">Aangevinkt (✓)</span> indien DTSU666-H / EMMA aanwezig<br><span class="val-avoid">Uitgevinkt (☐)</span> indien GEEN Huawei-meter</td>
+          <td>Vink <strong>✓</strong> aan zodra een Huawei DTSU666-H, DDSU666-H of EMMA-A02 op de omvormer aangesloten is (ook als u daarnaast een P1-meter gebruikt!). Laat <em>uitsluitend</em> <strong>uitgevinkt</strong> wanneer er geen enkele Huawei-sensor aanwezig is, zodat GEMS P1-gestuurd LUNA2000-zelfverbruik activeert.</td>
+        </tr>
+        <tr>
+          <td><strong>Battery Connected?</strong></td>
+          <td><span class="val-good">Aangevinkt (✓)</span> indien LUNA2000 aanwezig</td>
+          <td>Activeert LUNA2000-telemetrie en bidirectionele batterijsturing. <em>(Vink dit bij Master-Slave cascades enkel aan op de omvormer waarop de LUNA2000 fysiek aangesloten is).</em></td>
+        </tr>
+        <tr>
+          <td><strong>Battery Capacity (kWh)</strong></td>
+          <td>Totale LUNA2000-capaciteit in kWh<br><em>(bv. <code>5.0</code>, <code>10.0</code>, <code>15.0</code>, <code>6.9</code>, <code>13.8</code>, <code>20.7</code>)</em></td>
+          <td>Onmisbaar voor de <strong>Dynamic 24h Forecast</strong>-optimalisatie van GEMS, tijdsberekeningen voor Winter Fallback en SOC-verdeling bij multi-batterijsites.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 5 ==================== -->
+    <h1 class="section-title">Sectie 5: GEMS Configureren voor Optimale Werkingscondities</h1>
+
+    <p>
+      Zodra uw Huawei SUN2000, LUNA2000 en primaire netmeter <span class="val-good">● Online</span> tonen onder <strong>Instellingen &rarr; Toestellen</strong>, configureert u de drie kernoptimalisatietabbladen (<strong>Strategie</strong>, <strong>Energiecontract</strong> en <strong>Toestellen / EV-afstemming</strong>) voor maximaal financieel rendement, lange batterijlevensduur en elektrische veiligheid.
+    </p>
+
+    <h2 class="subsection-title">5.1 Locatie, Zonnevoorspelling &amp; Fysieke Netveiligheid (<code>Instellingen &rarr; Strategie</code>)</h2>
+    <ol>
+      <li><strong>Geografische Locatie &amp; Zonnevoorspelling:</strong> Selecteer uw exacte <strong>Tijdzone</strong> (<code>Europe/Brussels</code> of <code>Europe/Amsterdam</code>), vul het straatadres van de installatie in bij <strong>Address</strong> en klik op <strong>Lookup Lat/Lon</strong>. Scrol omlaag naar de Batterijkaart en controleer dat <strong>Enable Open-Meteo Solar Forecast Ingestion</strong> <span class="val-good">Aangevinkt (✓)</span> staat. Zo voorkomt GEMS dat uw LUNA2000 's nachts uit het net wordt opgeladen wanneer er voor de ochtend al volop zon voorspeld is!</li>
+      <li><strong>Netaansluiting &amp; Hoofdzekeringslimieten:</strong>
+        <ul>
+          <li><strong>Nominal Current (A) &amp; Phase Limit (A):</strong> Vul de exacte waarde van uw hoofdzekering in (bv. <code>25 A</code>, <code>32 A</code> of <code>40 A</code>).</li>
+          <li><strong>Grid System:</strong> Kies uw fysieke netstelsel in het verdeelbord: <code>Single Phase 230V</code>, <code>Three Phase 400V</code> (3×400V + N), of Belgisch <code>Three Phase 230V Delta</code> (3×230V zonder nulleider).</li>
+          <li><strong>Allowed Grid Import / Export (kW):</strong> Laat op het voorgestelde automaatmaximum staan, tenzij uw netbeheerder contractueel een strikte injectielimiet oplegt (vul enkel <code>0.0</code> in bij een permanente zero-exportverplichting).</li>
+          <li><strong>Meter Offline Fallback Current:</strong> Laat staan op <span class="val-good">0 A — Pause EV Charging (Aanbevolen Veilige Standaard)</span>. Valt het meetsignaal van de netmeter ooit langer dan 30 seconden weg, dan pauzeert GEMS de EV-laadpalen en schakelt uw Huawei LUNA2000 automatisch terug naar autonoom <em>Maximaal zelfverbruik</em>.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <div class="screenshot-two-col">
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="../assets/screenshots/settings_strategy.png" alt="GEMS Netaansluiting en Locatie-instellingen">
+        <div class="manual-screenshot-caption">Locatie &amp; Fysieke Hoofdzekeringslimieten in Instellingen &rarr; Strategie</div>
+      </div>
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="../assets/screenshots/settings_strategy_modes.png" alt="GEMS Optimalisatiestrategieën en GSC-bescherming">
+        <div class="manual-screenshot-caption">Regionale Optimalisatiestrategie, Piekbewaking &amp; GSC-bescherming</div>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">5.2 Regionale Optimalisatierecepten (Kies Uw Installatieprofiel)</h2>
+    <div class="recipe-grid">
+      <div class="recipe-card" style="border-top: 3px solid #0284c7;">
+        <h4>🇧🇪 Recept A: Vlaanderen (Piekbewaking)</h4>
+        <ul style="padding-left: 15px; font-size: 8pt; margin-bottom: 0;">
+          <li><strong>Modus:</strong> <code>Flanders Mode (Peak Shaving)</code></li>
+          <li><strong>Capaciteitspieklimiet:</strong> <code>2.5 kW</code> (standaard) of <code>3.0–3.5 kW</code> (warmtepomp + EV). <em>Smart Adaptive Ceiling</em> verhoogt automatisch de limiet als er zich een onvermijdelijke hogere maandpiek voordoet.</li>
+          <li><strong>Peak Shaving Buffer:</strong> <code>200 W</code> op bekabeld Ethernet / EMMA (gebruik <code>250 W</code> indien SDongle via Wi-Fi werkt om draadloze latentie op te vangen).</li>
+          <li><strong>Ramp-up Hysteresis:</strong> <code>500 W</code></li>
+          <li><strong>Actieve Terugregeling:</strong> <code>Aangevinkt (✓)</code>, Basis <code>0.00 €/kWh</code></li>
+          <li><strong>GSC-waarde:</strong> <code>€0</code> (moderne PV) of exacte certificaatwaarde (bv. <code>€250 / €350 / €450</code>) zodat de SUN2000 nooit terugregelt zolang certificaten injectie winstgevend houden!</li>
+        </ul>
+      </div>
+
+      <div class="recipe-card" style="border-top: 3px solid #f59e0b;">
+        <h4>🇳🇱 Recept B: Nederland (Saldering)</h4>
+        <ul style="padding-left: 15px; font-size: 8pt; margin-bottom: 0;">
+          <li><strong>Modus:</strong> <code>Netherlands Mode (Smart Saldering)</code></li>
+          <li><strong>Actieve Terugregeling:</strong> <code>Aangevinkt (✓)</code></li>
+          <li><strong>Basis Terugleverprijsdrempel:</strong> <code>0.00 €/kWh</code> (of de terugleverkostendrempel van uw energieleverancier zodat zonne-energie enkel geïnjecteerd wordt bij positief nettorendement).</li>
+          <li><strong>GSC-waarde:</strong> <code>Geen (€0)</code></li>
+          <li><strong>Werking:</strong> Slaat zonne-overschot eerst op in de LUNA2000 en EV-laadpalen; zodra de opslag tijdens negatieve rendementsuren 100% SOC bereikt, regelt GEMS het SUN2000-vermogen vloeiend terug tot exact het woningverbruik.</li>
+        </ul>
+      </div>
+
+      <div class="recipe-card" style="border-top: 3px solid #16a34a;">
+        <h4>🌿 Recept C: Vast / Tweevoudig Tarief Eco</h4>
+        <ul style="padding-left: 15px; font-size: 8pt; margin-bottom: 0;">
+          <li><strong>Modus:</strong> <code>Eco (Max Self-Consumption)</code></li>
+          <li><strong>Actieve Terugregeling:</strong> <code>Uitgevinkt (☐)</code> (tenzij uw contract negatieve terugleverboetes aanrekent).</li>
+          <li><strong>Laadstrategie:</strong> <code>Price Threshold Only</code> (met plafond <code>-0.01 €/kWh</code>) of <code>Super-Dal Only</code> wanneer uw nachttarief aanzienlijk goedkoper is dan het piektarief.</li>
+          <li><strong>Werking:</strong> Nul cyclusslijtage door netarbitrage; 100% gericht op zonne-opslag, zelfvoorziening in de avond en hoofdzekeringsbescherming.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">5.3 Optimale LUNA2000 Batterij-arbitrage, Slijtagebescherming &amp; Winterinstellingen</h2>
+    <p>
+      Scrol naar <strong>Battery Grid Charging &amp; Arbitrage</strong> onder <strong>Instellingen &rarr; Strategie</strong> (en controleer eerst uw exacte leveranciersformule onder <strong>Instellingen &rarr; Energiecontract</strong> zodat GEMS uw werkelijke all-in afname- en injectietarieven per kWh kent):
+    </p>
+
+    <div class="screenshot-two-col">
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="../assets/screenshots/settings_strategy_battery.png" alt="GEMS Batterij Netladen en Arbitrage-instellingen">
+        <div class="manual-screenshot-caption">Dynamic 24h Forecast, Slijtagekost-bescherming &amp; Winter Fallback</div>
+      </div>
+      <div class="manual-screenshot" style="margin: 0;">
+        <img src="../assets/screenshots/settings_contract_tariffs.png" alt="GEMS 24-Uurs Effectieve Tariefcurve">
+        <div class="manual-screenshot-caption">24-Uurs All-In Afname- &amp; Zonne-injectietariefcurve</div>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 28%;">GEMS Batterij-instelling</th>
+          <th style="width: 24%;">Optimale Waarde voor LUNA2000</th>
+          <th style="width: 48%;">Waarom Dit Optimale Werkingscondities Oplevert</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Charging Strategy Mode</strong></td>
+          <td><span class="val-good">Dynamic 24h Forecast</span><br><em>(of Hybrid)</em></td>
+          <td>Combineert Day-Ahead spotprijzen, Open-Meteo zonnevoorspellingen en geleerde 30-daagse week-/weekendverbruiksprofielen met inachtneming van live LUNA2000 BMS laad-/ontlaadlimieten.</td>
+        </tr>
+        <tr>
+          <td><strong>Battery Wear Cost (€/kWh)</strong></td>
+          <td><span class="val-good">0.04 €/kWh</span><br><em>(Bereik: 0.03 – 0.05 €/kWh)</em></td>
+          <td><strong>Cruciale levensduurbewaking!</strong> Houdt rekening met LiFePO<sub>4</sub>-cyclusslijtage en AC-DC-AC omzettingsverliezen (~12%–15%). Voorkomt onrendabel micro-cyclen op kleine prijsverschillen van €0,02/kWh — GEMS schakelt de LUNA2000 enkel in wanneer het prijsverschil ruimschoots de verliezen + slijtage overtreft!</td>
+        </tr>
+        <tr>
+          <td><strong>Grid Charge Ceiling (€/kWh)</strong></td>
+          <td><code>0.08 €/kWh</code> <em>(Dynamisch)</em><br><code>0.00 €/kWh</code> <em>(Enkel negatief)</em></td>
+          <td>Activeert opportunistisch netladen zodra de all-in elektriciteitsprijzen dalen naar ultragoedkope of negatieve waarden.</td>
+        </tr>
+        <tr>
+          <td><strong>Grid Discharge Floor (€/kWh)</strong></td>
+          <td><code>0.35 €/kWh</code></td>
+          <td>Houdt opgeslagen LUNA2000-energie gereserveerd voor uw eigen woning, tenzij de terugleververgoeding sterk piekt boven €0,35/kWh.</td>
+        </tr>
+        <tr>
+          <td><strong>Winter / Low-Solar Grid Charge Fallback</strong></td>
+          <td><span class="val-good">Aangevinkt (✓)</span><br>Trigger: <code>25%</code> • Doel: <code>65%</code> • Uren: <code>2u</code> <em>(<code>3u</code> voor ≥15 kWh)</em></td>
+          <td>Tijdens donkere winterweken waarin zonne-energie de LUNA2000 niet boven <code>25% SOC</code> krijgt, zou de batterij leeg op haar ondergrens blijven staan — zonder reserve voor Vlaamse piekbewaking! GEMS laadt voorzichtig bij tot <code>65% SOC</code> tijdens de 2–3 goedkoopste nachturen zonder uw 15-minuten capaciteitspiek te overschrijden, terwijl er 35% ruimte vrij blijft voor onverwachte middagzon.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">5.4 LUNA2000 Afstemmen op EV-laden (Voorkom Leegtrekken van de Thuisbatterij naar de Auto)</h2>
+    <p>
+      Een klassieke valkuil in woningen met een hybride thuisbatterij treedt op wanneer een EV-laadpaal (zoals een <strong>Raedian NEO / NEX / Gemini</strong>) 's nachts een laadsessie op hoog vermogen (7,4 kW of 11 kW) start: de DTSU666-H ziet plots een hoge woningafname, waardoor de Huawei-omvormer onmiddellijk de volledige LUNA2000-thuisbatterij leegtrekt in de wagen en er voor de dure ochtendpiek geen batterijreserve meer overblijft! Volg deze best practices in GEMS voor perfecte harmonie tussen laadpaal en LUNA2000:
+    </p>
+    <ul>
+      <li><strong>Koppel EV-laadpalen Rechtstreeks aan GEMS via Modbus TCP (Aanbevolen) of Native OCPP:</strong> Configureer uw <strong>Raedian</strong>-laadpaal in GEMS (<strong>Instellingen &rarr; Toestellen &rarr; EV Charger</strong>) via lokale Modbus TCP. Sluit nooit een laadpaal zodanig aan dat deze rechtstreeks de Huawei SDongle bevraagt.</li>
+      <li><strong>Overdag Laden op Zonne-energie (<code>PV Only</code> of <code>Eco</code>-modus):</strong> Zet de laadpaal op het GEMS <strong>Dashboard</strong> in <code>PV Only (Solar)</code> of <code>Eco / Smart</code>-modus. GEMS moduleert de laadstroom (6A–32A) dynamisch op basis van het reële zonne-overschot nadat het basisverbruik van de woning gedekt is.</li>
+      <li><strong>'s Nachts Goedkoop uit het Net Laden Zonder de LUNA2000 Leeg te Trekken:</strong> Gebruikt u <strong>Cheapest Spot Price Hours</strong> (bv. <code>3 goedkoopste uren</code>) of gepland nachtelijk EV-laden, voeg dan met één klik een <strong>Batterij-optimalisatieregel</strong> toe onder <strong>Instellingen &rarr; Strategie &rarr; Regelgebaseerde Batterij-kostenoptimalisatie</strong>:
+        <ul>
+          <li><strong>Actie:</strong> <code>Hold (Idle / No Export)</code> (of <code>Force Charge</code> wanneer de spotprijzen tegelijk ultralag zijn) tijdens uw nachtelijke EV-laadvenster (bv. <code>01:00 – 05:00</code>). De stand <code>Hold</code> instrueert de Huawei-omvormer om het ontladen van de LUNA2000 te pauzeren terwijl de wagen rechtstreeks op goedkope dalstroom laadt, zodat 100% van uw LUNA2000-lading behouden blijft voor de dure huishoudelijke ochtendpiek tussen 07:00 en 09:00!</li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <!-- ==================== SECTION 6 ==================== -->
+    <h1 class="section-title">Sectie 6: Ingebouwde Hardwarebeveiligingen, Verificatie &amp; Probleemoplossing</h1>
+
+    <h2 class="subsection-title">6.1 Hoe GEMS Uw Huawei-omvormer &amp; LUNA2000 Beschermt</h2>
+    <ul>
+      <li><strong>10-Minuten Hardware Deadman-timer:</strong> Telkens wanneer GEMS actief geforceerd laden of ontladen van de LUNA2000 aanstuurt, programmeert het een begrensd <strong>hardware-tijdsvenster van 10 minuten</strong> op de SUN2000 en ververst dit elke 5 minuten. Valt een netwerkswitch uit of raakt GEMS losgekoppeld, dan keert de Huawei-omvormer binnen enkele minuten automatisch terug naar autonoom <em>Maximaal zelfverbruik</em> — de batterij blijft dus nooit ongewenst hangen in laden of ontladen!</li>
+      <li><strong>Live Dynamische BMS-vermogensbegrenzing:</strong> Op koude winterochtenden (&lt; 5 °C) en bij een hoge laadtoestand (&gt; 90% SOC) verlaagt het BMS van de LUNA2000 het toegestane laadvermogen. GEMS leest continu de live dynamische laad-/ontlaadlimieten van de LUNA2000 uit en begrenst setpoints automatisch zodat commando's nooit door de omvormer geweigerd worden.</li>
+      <li><strong>250 ms SDongle-pacing &amp; Scannerbescherming:</strong> GEMS dwingt een minimale herstelpauze van <code>250 ms</code> tussen Modbus-frames af op Huawei-bussen en sluit geconfigureerde Huawei-IP-adressen automatisch uit van achtergrondscans op poort 502, zodat single-socket dongles nooit verbindingsbotsingen ervaren.</li>
+    </ul>
+
+    <h2 class="subsection-title">6.2 6-Punts Opleveringschecklist na Inbedrijfstelling</h2>
+    <div class="callout callout-tip">
+      <div class="callout-title">✅ Verplichte Opleveringscontrole Vóór Vertrek op Locatie</div>
+      <div>
+        <ol style="margin: 4px 0 0 0; padding-left: 18px;">
+          <li><strong>Toestel Online &amp; Live Debug-controle:</strong> Controleer onder <strong>Instellingen &rarr; Toestellen</strong> dat <code>Huawei Hybrid Inverter</code> de status <span class="val-good">● Online</span> toont. Klik op <strong>Debug</strong> op de toestelkaart en verifieer een geldige netspanning (~230 V), exacte LUNA2000 SOC % en plausibele PV-/netvermogens.</li>
+          <li><strong>Polariteitstest op het Dashboard:</strong> Zet een waterkoker (~2 kW) aan bij stabiele zon. Controleer op het GEMS <strong>Dashboard</strong> dat het Woningverbruik met ~2 kW stijgt en dat Netafname (positief) of Batterij-ontlading overeenkomstig toeneemt — nooit omgekeerd!</li>
+          <li><strong>Controle op Foutloos Logboek:</strong> Open het tabblad <strong>Logboek</strong> en filter gedurende 2 minuten op <code>HuaweiInverterPoller</code>. Bevestig dat er nul <code>connection reset</code>, <code>i/o timeout</code> of <code>illegal data address</code>-fouten optreden.</li>
+          <li><strong>Co-existentie met FusionSolar Cloud:</strong> Open de standaard <strong>FusionSolar App</strong> voor eigenaars (Plant-weergave via mobiele data) en bevestig dat de installatie nog steeds <em>Online</em> staat met live cloud-updates om de 5 minuten naast GEMS.</li>
+          <li><strong>Configuratieback-up:</strong> Klik in <strong>Instellingen &rarr; Systeeminformatie</strong> (Installateursmodus) op <strong>Configuratie exporteren (.json)</strong> en bewaar een kopie in het opleverdossier.</li>
+          <li><strong>Vergrendel de Eigenaarsweergave:</strong> Klik op het hangsloticoon in de kopbalk van Instellingen om de <strong>Gecertificeerde installateursmodus te vergrendelen</strong> zodat kritieke Modbus ID's, hoofdzekeringen en strategieregels beschermd zijn tegen onbedoelde aanpassingen.</li>
+        </ol>
+      </div>
+    </div>
+
+    <h2 class="subsection-title">6.3 Symptoomanalyse &amp; Probleemoplossingsmatrix</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width: 26%;">Waargenomen Symptoom</th>
+          <th style="width: 34%;">Waarschijnlijke Oorzaak</th>
+          <th style="width: 40%;">Corrigerende Actie in het Veld</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong><code>Connection refused</code> of <code>TCP RST</code> op poort <code>502</code></strong></td>
+          <td>Modbus TCP staat nog op <em>Disabled</em> in FusionSolar, of op de <code>EMMA-A02</code> staat TLS AAN / GEMS IPv4 staat niet op de whitelist.</td>
+          <td>Verbind via FusionSolar <strong>Device Commissioning</strong> (Installer). Zet op SDongle <code>Modbus-TCP = Enable (unrestricted)</code>. Schakel op EMMA-A02 TLS uit en vul het exacte GEMS IPv4-adres in (nooit <code>0.0.0.0</code>).</td>
+        </tr>
+        <tr>
+          <td><strong>Intermitterende <code>i/o timeout</code> of <code>EOF</code> om de paar minuten</strong></td>
+          <td>Tweede externe client pollt poort <code>502</code>, zwak 2,4 GHz Wi-Fi-signaal bij de SDongle, of Poll Interval te laag ingesteld (&lt; 8s).</td>
+          <td>Stop eventuele tweede Modbus-pollingsoftware/-scripts, sluit een RJ45-Ethernetkabel aan in de SDongleA-05 en houd het <strong>Poll Interval</strong> op <code>10 seconden</code> in GEMS.</td>
+        </tr>
+        <tr>
+          <td><strong>Verbonden via TCP, maar registers geven time-out (<code>Slave failure</code>)</strong></td>
+          <td>Verkeerd <strong>Modbus ID</strong> in GEMS (bv. ingesteld op <code>1</code> terwijl het RS485_1-adres van de omvormer op <code>2</code> of <code>16</code> staat).</td>
+          <td>Controleer <span class="menu-path">Settings &rarr; Communication Configuration &rarr; RS485_1</span> in FusionSolar en neem dat exacte <strong>Communication Address</strong> over als <code>Modbus ID</code> in GEMS.</td>
+        </tr>
+        <tr>
+          <td><strong>LUNA2000 toont SOC %, maar negeert netlaadcommando's of logt <code>server device failure</code></strong></td>
+          <td><code>Charge from AC</code> staat <em>Disabled</em> in FusionSolar, <code>Grid Charge Cutoff SOC</code> staat te laag, meterloze Topologie D zit vast in een meter-afhankelijke modus, of verouderde SDongle/SUN2000-firmware.</td>
+          <td>Zet in FusionSolar Energy Control <code>Charge from AC = Enable</code>, <code>Grid Charge Cutoff SOC = 100%</code> en <code>Max Charge/Discharge Power = Rated Max</code>. Laat zonder Huawei-meter <code>Grid Meter Connected?</code> uitgevinkt in GEMS (en kies <code>Fixed Charge/Discharge</code> met 0 tijdvakken als FusionSolar Self-Consumption blokkeert), en update SDongle-firmware naar <code>SPC126+ / V200 SPC118+</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Batterij laadt uit het net zodra woningverbruik stijgt, of injecteert onverwacht</strong></td>
+          <td><code>DTSU666-H / DDSU666-H</code> stroomspoelen (CT's) omgekeerd geplaatst (<code>L &rarr; K</code>) of fasespanningsdraden verwisseld t.o.v. CT's.</td>
+          <td>Controleer het verdeelbord: zorg dat alle drie de CT-pijlen <strong>Net &rarr; Woning</strong> wijzen en dat de spanningsaftakkingen <code>L1/L2/L3</code> exact overeenkomen met <code>CT-A / CT-B / CT-C</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Zonneproductie blijft op <code>0 W</code> voor een tweede gecascadeerde Huawei-omvormer</strong></td>
+          <td>Enkel de Master-omvormer (<code>Modbus ID 1</code>) werd toegevoegd in GEMS; de gecascadeerde Slave-omvormer is nog niet toegevoegd.</td>
+          <td>Voeg een tweede <code>Huawei Hybrid Inverter</code>-toestel toe in GEMS met verwijzing naar <strong>hetzelfde SDongle/EMMA-IP</strong> op poort <code>502</code> en <code>Modbus ID = 2</code> (GEMS deelt automatisch één TCP-socket!).</td>
+        </tr>
+        <tr>
+          <td><strong>SUN2000 regelt niet terug tijdens negatieve injectieprijzen</strong></td>
+          <td><code>Allow Curtailment</code> uitgevinkt op het toestel, <code>Active Inverter Curtailment</code> uitgevinkt in Strategie, of GSC-waarde houdt injectie nog rendabel.</td>
+          <td>Vink <code>Allow Curtailment</code> aan op de Huawei-toestelkaart, schakel <code>Active Inverter Curtailment</code> in onder Strategie, vul het exacte <code>Rated Power (kW)</code> in en controleer de banner voor de effectieve terugregeldrempel.</td>
+        </tr>
+        <tr>
+          <td><strong>Huawei reageert niet meer vlak na een nachtelijke update</strong></td>
+          <td>Huawei firmware-upgrade op afstand heeft de beveiligingsinstelling van de SDongle teruggezet naar fabrieksstandaard (<em>Disabled</em>).</td>
+          <td>Open het FusionSolar Webportaal of lokale Device Commissioning als installateur en zet <code>Modbus-TCP = Enable (unrestricted)</code> opnieuw aan.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="subsection-title">6.4 Verificatie via Live Diagnostische Logboeken</h2>
+    <p>Installateurs kunnen realtime Huawei Modbus-transacties rechtstreeks opvolgen in het GEMS-tabblad <strong>Logboek</strong> of via de Cockpit Terminal (<code>:9090</code>):</p>
+    <pre class="code-block"># Inspecteer live Huawei-omvormer &amp; LUNA2000-stuurevents via de Cockpit Terminal:
+sudo journalctl -u gems.service -f | grep -i "Huawei"
+
+# Verwachte gezonde uitvoer tijdens normale uitlezing, piekbewaking / arbitrage en herstel:
+[INFO] HuaweiInverterPoller [Huawei SUN2000 + LUNA2000]: Connected via tcp://192.168.1.120:502 (Slave ID: 1)
+[INFO] HuaweiInverterPoller [Huawei SUN2000 + LUNA2000]: Commanded forcible battery charge at 3500 W (duration=10m)
+[INFO] HuaweiInverterPoller [Huawei SUN2000 + LUNA2000]: Restored LUNA2000 Maximise Self-Consumption mode (47100=0, 47086=2)</pre>
+
+    <div class="callout callout-info">
+      <div class="callout-title">📞 Vlootmonitoring &amp; Installateursondersteuning</div>
+      <div>
+        Voor diagnose op afstand, 24-uurs voorspellingsvisualisatie en diagnostische rapporten met één klik koppelt u uw edge-controller met <strong>GRID-EMS-SERVER</strong> (<code>https://ems.newenergygrid.com</code>) via <strong>Instellingen &rarr; Cloudserver</strong>.
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

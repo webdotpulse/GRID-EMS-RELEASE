@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solis Retrofit / Hybride Omvormers &amp; Easyway UNIV5200 Batterij Handleiding - GEMS</title>
+  <meta name="description" content="Volledige stapsgewijze bekabelings-, DIP-switch-, CAN-pinbezetting-, Eastron SDM72D-M &amp; SDM630-M slimme-meter-, SolisCloud-app- en GEMS-optimalisatiehandleiding voor Solis Retrofit &amp; Hybride omvormers met Easyway 5200 (UNIV5200) LiFePO4-batterijen.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Navigatiemenu openen of sluiten">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Solis &amp; Easyway UNIV5200 Gids</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Documentatie doorzoeken (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Zoek Solis, Easyway UNIV5200, SDM72D-M, SDM630-M, CAN-pinout, DIP-switches...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="gems-solis-easyway-manual-nl.pdf" class="nav-link-btn" target="_blank">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+        <span>Solis &amp; UNIV5200 PDF</span>
+      </a>
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuratie</span>
+      </a>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Kleurthema wisselen">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Aan de slag</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Documentatiecentrum</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Alle toesteltemplates</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Solis &amp; Easyway Gids</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="#compatibility" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>1. LV-compatibiliteit &amp; Dimensionering</span>
+            </a>
+          </li>
+          <li>
+            <a href="#battery-wiring" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>2. DC- &amp; CAN-batterijbekabeling</span>
+            </a>
+          </li>
+          <li>
+            <a href="#dip-switches" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-grid"></use></svg>
+              <span>2.3 Parallelle DIP-switches</span>
+            </a>
+          </li>
+          <li>
+            <a href="#eastron-meter" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>3. SDM72D-M &amp; SDM630-M Meter</span>
+            </a>
+          </li>
+          <li>
+            <a href="#gems-connection" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wifi"></use></svg>
+              <span>4. RS-485 &amp; S2-WL-ST Koppeling</span>
+            </a>
+          </li>
+          <li>
+            <a href="#soliscloud-settings" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>5. SolisCloud-app Instellingen</span>
+            </a>
+          </li>
+          <li>
+            <a href="#gems-onboarding" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>6. Hybride vs. Retrofit in GEMS</span>
+            </a>
+          </li>
+          <li>
+            <a href="#gems-optimization" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>7. Optimale GEMS-strategie</span>
+            </a>
+          </li>
+          <li>
+            <a href="#troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>8. Controle &amp; Oplossingen</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Officiële PDF-handleidingen</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-solis-easyway-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Solis &amp; Easyway (PDF)</span>
+              <span class="badge" style="background:#ea580c; color:#fff; font-size:10px;">NIEUW</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-enerlution-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Enerlution Handleiding (PDF)</span>
+              <span class="badge" style="background:#0d9488; color:#fff; font-size:10px;">NIEUW</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-huawei-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Huawei Handleiding (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-installer-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Installateurshandleiding (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Gebruikershandleiding (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-p1-meter-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>P1-meter Handleiding (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-fleet-dlb-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>EV-Vloot &amp; DLB (PDF)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Kruimelpad">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <a href="devices.html">Toestellen</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Solis &amp; Easyway UNIV5200 Gids</span>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="hero-banner">
+          <h1 class="hero-title">Solis Retrofit / Hybride &amp; Easyway UNIV5200 Gids</h1>
+          <p class="hero-lead">
+            Volledige referentiehandleiding voor het bedraden van <strong>Easyway 5200 (<code>UNIV5200</code>, 51,2V 102Ah LiFePO<sub>4</sub>)</strong> batterijen en <strong>Eastron <code>SDM72D-M</code> / <code>SDM630-M</code></strong> slimme meters op <strong>Solis Laagspannings-Retrofit &amp; Hybride</strong> omvormers, de exacte parameterinstellingen op het meter-LCD &amp; in de <strong>SolisCloud-app</strong>, en het optimaliseren van <strong>GRID-EMS (GEMS)</strong> voor Vlaamse piekbewaking, dynamische tarieven en een maximale levensduur van uw cellen.
+          </p>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <a href="gems-solis-easyway-manual-nl.pdf" target="_blank" class="tab-btn active" style="border-radius:var(--radius-md); display:inline-flex; align-items:center; gap:0.5rem; background:#ea580c; color:#ffffff; padding:0.6rem 1.2rem; text-decoration:none;">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Download Afdrukbare A4-handleiding (PDF)</span>
+            </a>
+            <a href="gems-solis-easyway-manual-nl.html" target="_blank" class="tab-btn" style="border-radius:var(--radius-md); display:inline-flex; align-items:center; gap:0.5rem; padding:0.6rem 1.2rem; text-decoration:none;">
+              <span>Open Printklare HTML-weergave</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- SECTION 1 -->
+        <h2 id="compatibility">1. LV-spanningsgrenzen, compatibele Solis-modellen &amp; batterijdimensionering</h2>
+        <p>
+          De <strong>Easyway 5200 energieopslagbatterij (<code>UNIV5200</code>)</strong> is een <strong>51,2 V nominale (48V-klasse) LiFePO<sub>4</sub></strong>-module van <code>102 Ah</code> (<code>5,22 kWh</code> bruto / <code>~4,70 kWh</code> bruikbaar bij 90% DoD, <code>50 A</code> aanbevolen continue laad-/ontlaadstroom per pakket, uitbreidbaar tot <strong>16 parallelle pakketten = 83,52 kWh</strong>).
+        </p>
+
+        <div class="callout callout-warning">
+          <strong>KRITIEKE SPANNINGSBEVEILIGING — Uitsluitend Laagspannings- (<code>-L</code> / <code>48V</code>) Solis-omvormers:</strong>
+          <ul>
+            <li><strong>Schakel <code>UNIV5200</code>-modules nooit in serie!</strong> Meerdere pakketten moeten strikt in <strong>51,2 V parallel</strong> worden aangesloten (<code>P+</code> naar <code>P+</code>, <code>P-</code> naar <code>P-</code>).</li>
+            <li><strong>Sluit <code>UNIV5200</code>-batterijen nooit aan op Hoogspannings- (<code>-H</code>) Solis-modellen</strong> (zoals de <code>S6-EH3P-H</code> of <code>RHI-3P-HVES</code>, die op 160–600 Vdc werken). Controleer altijd het achtervoegsel <strong><code>-L</code></strong> of <strong><code>48ES</code></strong> op het typeplaatje van de omvormer!</li>
+          </ul>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Solis LV-omvormerreeks</th>
+                <th>Architectuur &amp; GEMS-template</th>
+                <th>Max. batterijstroom</th>
+                <th>Aanbevolen aantal UNIV5200</th>
+                <th>Hoofd-DC-kabel &amp; automaat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Solis RAI-3K-48ES-5G</strong> (3,0 kW 1F)</td>
+                <td>AC-Retrofit (<code>solis_retrofit</code>)</td>
+                <td><code>60 A</code> (~3,0 kW)</td>
+                <td><strong>1 – 3× UNIV5200</strong> (5,22–15,66 kWh)</td>
+                <td><code>25 mm²</code> • <strong>100 A</strong> DC MCCB</td>
+              </tr>
+              <tr>
+                <td><strong>Solis S6-EA1P(3.6–6)K-L</strong> (1F)</td>
+                <td>AC-Retrofit (<code>solis_retrofit</code>)</td>
+                <td><code>75 – 125 A</code></td>
+                <td><strong>2 – 4× UNIV5200</strong> (≥2 pakketten voor volle 5kW+)</td>
+                <td><code>35 mm²</code> • <strong>125–160 A</strong> DC MCCB</td>
+              </tr>
+              <tr>
+                <td><strong>Solis S5-EH1P(3–6)K-L</strong> (1F)</td>
+                <td>PV + Opslag (<code>solis_hybrid</code>)</td>
+                <td><code>62.5 – 100 A</code></td>
+                <td><strong>2 – 4× UNIV5200</strong> (1× begrensd op ~2,56 kW cont.)</td>
+                <td><code>25–35 mm²</code> • <strong>125 A</strong> DC MCCB</td>
+              </tr>
+              <tr>
+                <td><strong>Solis S6-EH1P(3–8)K-L-PLUS/PRO</strong></td>
+                <td>PV + Opslag (<code>solis_hybrid</code>)</td>
+                <td><code>70 – 190 A</code></td>
+                <td><strong>2 – 6× UNIV5200</strong> (≥3 pakketten voor 8 kW cont.)</td>
+                <td><code>35–50 mm²</code> • <strong>160–250 A</strong> DC MCCB</td>
+              </tr>
+              <tr>
+                <td><strong>Solis S6-EH3P(5–10)K-L / NV-YD-L</strong></td>
+                <td>3F LV Hybride (<code>solis_hybrid</code>)</td>
+                <td><code>120 – 290 A</code></td>
+                <td><strong>3 – 8× UNIV5200</strong> (via koperen DC-verzamelrail)</td>
+                <td><code>50–70 mm²</code> • <strong>200–300 A</strong> DC MCCB</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SECTION 2 -->
+        <h2 id="battery-wiring">2. Stapsgewijze bekabeling: Easyway UNIV5200 naar Solis-omvormer</h2>
+        <p>
+          Voer alle vermogens-, aardings-, DIP-switch- en communicatiebekabeling uit terwijl alle AC-, PV DC-, externe DC MCCB- en batterijschakelaars <strong>UIT</strong> staan.
+        </p>
+
+        <h3>2.1 DC-vermogen, niet-gepolariseerde DC MCCB &amp; diagonale / busbar-regels</h3>
+        <ol>
+          <li><strong>Externe 2-polige niet-gepolariseerde DC-automaat:</strong> Plaats een aparte <strong>niet-gepolariseerde 2-polige DC MCCB of NH gBat DC-zekeringlastscheider</strong> (<code>≥ 80 Vdc</code>, <code>100 A – 300 A</code> volgens bovenstaande tabel) tussen de batterijbank en de Solis <code>BAT+</code> / <code>BAT-</code>-klemmen. Gebruik nooit gepolariseerde AC-automaten in bidirectionele batterijkringen.</li>
+          <li><strong>2 tot 3 parallelle pakketten — Diagonale aftakregel:</strong> Verbind <code>P+</code> naar <code>P+</code> en <code>P-</code> naar <code>P-</code> met exact even lange brugkabels. Sluit de hoofd-<strong><code>BAT+</code></strong>-kabel van de omvormer aan op <strong>Pakket 1 (Master) <code>P+</code></strong> en sluit de hoofd-<strong><code>BAT-</code></strong>-kabel aan op de <strong><code>P-</code> van het LAATSTE pakket</strong> (Pakket 2 of Pakket 3). Door de lusweerstand gelijk te maken delen alle pakketten de laad- en ontlaadstromen exact evenredig!</li>
+          <li><strong>4 tot 16 parallelle pakketten — Koperen DC-busbarregel:</strong> Trek boven 3 modules vanuit elke <code>UNIV5200</code> even lange gezekerde <code>25 mm²</code> aftakkabels naar een positieve en negatieve <strong>vertinde koperen DC-verzamelrail</strong> (<code>250–400 A</code>) en voed de Solis-omvormer vanaf deze rails.</li>
+          <li><strong>Beschermingsaarde (<code>⏚ PE</code>):</strong> Verbind elke aardingsbout op de <code>UNIV5200</code>-behuizing en het batterijrek met de PE-rail van de Solis-omvormer met een <code>≥ 6 mm²</code> groen/gele koperen aardgeleider.</li>
+        </ol>
+
+        <h3>2.2 BMS CAN RJ45-pinbezetting (Master Pakket 1 <code>CAN</code> &harr; Solis <code>BMS</code>-poort)</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>RJ45-pin</th>
+                <th>T568B-draadkleur</th>
+                <th>Solis <code>BMS / CAN</code>-poort</th>
+                <th>Easyway UNIV5200 <code>CAN</code>-poort</th>
+                <th>Actie</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Pin 1 – 3</strong></td>
+                <td>Wit-Oranje / Oranje / Wit-Groen</td>
+                <td>NC / Enable GND / RS485-B</td>
+                <td>Gereserveerd / Interne bus</td>
+                <td><strong>Open / Niet aangesloten laten</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Pin 4</strong></td>
+                <td><strong>Blauw</strong></td>
+                <td><strong><code>CAN-H</code> (CAN High)</strong></td>
+                <td><strong><code>CAN-H</code> (CAN High)</strong></td>
+                <td><strong>Verbind Pin 4 &harr; Pin 4</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Pin 5</strong></td>
+                <td><strong>Wit / Blauw</strong></td>
+                <td><strong><code>CAN-L</code> (CAN Low)</strong></td>
+                <td><strong><code>CAN-L</code> (CAN Low)</strong></td>
+                <td><strong>Verbind Pin 5 &harr; Pin 5</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Pin 6 – 8</strong></td>
+                <td>Groen / Wit-Bruin / Bruin</td>
+                <td>RS485-A / <strong>Pin 7: +12V Enable</strong></td>
+                <td>Gereserveerd / Interne bus</td>
+                <td><strong>Open / Niet aangesloten laten</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <em>Praktijktip:</em> Door <strong>uitsluitend Pin 4 (<code>CAN-H</code>) en Pin 5 (<code>CAN-L</code>)</strong> door te verbinden voorkomt u dat Pin 7 (<code>+12V Enable</code>) of de RS-485-lijnen op Pin 3/6 van Solis terugvoeden op gereserveerde pinnen van het batterij-BMS!
+        </p>
+
+        <h3 id="dip-switches">2.3 Parallelle onderlinge Link-kabels &amp; binaire <code>ADD</code> DIP-switchtabel</h3>
+        <p>
+          Verbind standaard rechte CAT5e/CAT6-patchkabels van <strong>Pakket 1 (Master) <code>RS485-B / Link Out</code> &rarr; Pakket 2 <code>RS485-A / Link In</code> &rarr; Pakket 3 In</strong>. Laat de <code>CAN</code>-poort leeg op alle Slave-pakketten. Stel de <strong><code>ADD</code> DIP-switches in terwijl alle pakketten UIT staan</strong> (<code>ON = 1</code>, <code>OFF = 0</code>, van links naar rechts SW1..SW4):
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>UNIV5200 Pakketrol</th>
+                <th>SW 1</th>
+                <th>SW 2</th>
+                <th>SW 3</th>
+                <th>SW 4</th>
+                <th>Binair</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Enkel pakket of Master (Pakket 1)</strong></td>
+                <td><code>OFF</code></td>
+                <td><code>OFF</code></td>
+                <td><code>OFF</code></td>
+                <td><code>OFF</code></td>
+                <td><strong><code>0000</code></strong></td>
+              </tr>
+              <tr>
+                <td><strong>Slave 1 (Pakket 2 — 10,44 kWh)</strong></td>
+                <td><strong><code>ON</code></strong></td>
+                <td><code>OFF</code></td>
+                <td><code>OFF</code></td>
+                <td><code>OFF</code></td>
+                <td><code>1000</code></td>
+              </tr>
+              <tr>
+                <td><strong>Slave 2 (Pakket 3 — 15,66 kWh)</strong></td>
+                <td><code>OFF</code></td>
+                <td><strong><code>ON</code></strong></td>
+                <td><code>OFF</code></td>
+                <td><code>OFF</code></td>
+                <td><code>0100</code></td>
+              </tr>
+              <tr>
+                <td><strong>Slave 3 (Pakket 4 — 20,88 kWh)</strong></td>
+                <td><strong><code>ON</code></strong></td>
+                <td><strong><code>ON</code></strong></td>
+                <td><code>OFF</code></td>
+                <td><code>OFF</code></td>
+                <td><code>1100</code></td>
+              </tr>
+              <tr>
+                <td><strong>Slaves 4 – 15 (Pakket 5 – 16)</strong></td>
+                <td colspan="4">Vervolg binaire reeks: Pakket 5 = <code>0010</code>, Pakket 6 = <code>1010</code>, Pakket 7 = <code>0110</code> &hellip; Pakket 16 = <code>1111</code></td>
+                <td><code>0010..1111</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>2.4 Veilige Soft-Start inschakelvolgorde</h3>
+        <ol>
+          <li>Controleer spanningsloos de DC-polariteit met een multimeter (alle schakelaars UIT).</li>
+          <li>Zet de individuele <code>UNIV5200</code>-automaten <strong>AAN</strong> en sluit de externe <strong>2-polige DC MCCB</strong> terwijl de BMS-leds nog in slaapstand staan.</li>
+          <li>Houd <strong>Pakket 1 (Master) <code>SW / POWER</code></strong> gedurende <code>2–3 seconden</code> ingedrukt zodat de interne voorlaadweerstand de DC-buscondensatoren van de Solis geleidelijk oplaadt (<code>RUN</code>-led groen, <code>ALM</code>-led uit; de Slave-pakketten ontwaken automatisch na elkaar).</li>
+          <li>Zet de Solis PV DC-lastscheider <strong>AAN</strong> (bij hybride modellen) en schakel vervolgens de AC-netautomaat <strong>AAN</strong>.</li>
+        </ol>
+
+        <!-- SECTION 3 -->
+        <h2 id="eastron-meter">3. Een Eastron SDM72D-M of SDM630-M slimme meter aansluiten &amp; instellen</h2>
+        <p>
+          De 4-DIN-modulen brede driefasige bidirectionele Modbus RTU-meters van Eastron — de <strong><code>SDM72D-M</code></strong> (en vernieuwde <strong><code>SDM72D-M-2</code></strong>, direct gemeten tot <code>80A/100A</code>) en de <strong><code>SDM630-M</code></strong> (<strong><code>SDM630-Modbus V2/V3</code></strong> <code>80A/100A</code> direct of <strong><code>SDM630MCT</code></strong> met stroomspoelen) — delen dezelfde IEEE-754 <code>Float32</code>-registertabel (<code>0x0000–0x004A</code>) en werken naadloos samen met zowel Solis-omvormers als GEMS.
+        </p>
+
+        <div class="callout callout-warning">
+          <strong>ÉÉN ENKELE RS-485 MASTER — Kies Topologie 1 OF Topologie 2 (Nooit allebei op één meter!):</strong>
+          <ul>
+            <li><strong>Topologie 1 (Aanbevolen standaard — Bedraad op de Solis <code>Meter</code> RJ45-poort):</strong> Sluit de <code>SDM72D-M</code> / <code>SDM630-M</code> aan op de <code>Meter</code>-aansluiting van de Solis. Dit geeft Solis autonome hardwarematige <code>Self-Use</code>-regeling én stuurt het live netvermogen + de 3-fasestromen door naar GEMS zodra <code>Grid Meter Connected? = Aangevinkt</code> staat.</li>
+            <li><strong>Topologie 2 (Rechtstreeks op GEMS — Locaties zonder digitale P1-meter):</strong> Sluit een aparte <code>SDM72D-M</code> / <code>SDM630-M</code> rechtstreeks aan op GEMS via USB-naar-RS485 (of RS-485 TCP-gateway op <code>:502</code>) met template <code>eastron_sdm72_x96</code> of <code>eastron_sdm630</code>. <em>(Mag een GEMS USB-RS485-bus delen met Solis Optie A door Meter <code>Addr = 002</code> en Solis <code>Addr = 001</code> in te stellen).</em></li>
+            <li><strong>Regel voor driefasige aansluitingen:</strong> Plaats zelfs bij een <strong>1-fasige</strong> Solis-omvormer (<code>RAI-3K</code>, <code>S6-EA1P</code>, <code>S5-EH1P</code>, <code>S6-EH1P</code>) op een driefasige huisaansluiting altijd een 3-fasige <strong><code>SDM630-M</code> of <code>SDM72D-M-2</code></strong> (verkies V2 <code>-2</code> boven de oudere V1 voor volledige per-fase <code>V/I</code>-registers en ondersteuning van Belgische <code>3×230V</code> driehoek <code>3P3W</code>-netten!).</li>
+          </ul>
+        </div>
+
+        <h3>3.1 Aansluiten: Hoofd-AC-vermogen, plaatsing in het bord &amp; RS-485-pinbezetting</h3>
+        <ul>
+          <li><strong>Plaatsing in het verdeelbord (cruciaal voor zowel Retrofit als Hybride):</strong> Monteer de meter <strong>onmiddellijk na de digitale nutsmeter / hoofddifferentieel</strong>, strikt <strong>vóór (stroomopwaarts van)</strong> alle woningautomaten, warmtepompen, <strong>Raedian</strong> EV-laadpalen, bestaande PV-omvormers en de AC-automaat van de Solis.</li>
+          <li><strong>Direct aangesloten AC-kooiklemmen (<code>SDM72D-M</code> / <code>SDM72D-M-2</code> &amp; <code>SDM630-M</code>, tot 100 A):</strong>
+            <ul>
+              <li><strong>Bovenste klemmen (Netvoeding IN):</strong> <code>1 = L1 IN</code>, <code>2 = L2 IN</code>, <code>3 = L3 IN</code>, <code>4 = N IN</code>.</li>
+              <li><strong>Onderste klemmen (Woning / PV / Solis / EV-belasting UIT):</strong> <code>5 = L1 OUT</code>, <code>6 = L2 OUT</code>, <code>7 = L3 OUT</code>, <code>8 = N OUT</code>. <em>(Laat <code>4 &amp; 8</code> open op een Belgisch <code>3×230V</code> driehoeknet <code>3P3W</code> met <code>SDM630-M</code> / <code>SDM72D-M-2</code>; verwissel Boven IN en Onder UIT nooit!).</em></li>
+            </ul>
+          </li>
+          <li><strong>Variant met stroomtransformatoren (<code>SDM630MCT</code>):</strong> Zeker de spanningsaftakkingen af (<code>0,5A–2A</code>) op <code>V1/V2/V3/VN</code> (<code>Klemmen 4, 3, 2, 1</code>) en sluit <code>CT1 (20/19)</code>, <code>CT2 (18/17)</code>, <code>CT3 (16/15)</code> fase-op-fase aan met correct gerichte CT-pijlen.</li>
+        </ul>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>RS-485-signaal</th>
+                <th>Eastron-meterklem (<code>SDM72D-M</code> &amp; <code>SDM630-M</code>)</th>
+                <th>Topologie 1: Solis <code>Meter</code> RJ45 (T568B)</th>
+                <th>Topologie 2: GEMS USB-RS485 / Gateway</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><code>RS485-A (+)</code></strong></td>
+                <td><strong><code>A</code> / <code>A+</code> / <code>485A</code></strong> <em>(Pin <code>10</code> op SDM630-V2 Direct; Pin <code>14</code> op SDM630MCT; gemarkeerd als <code>A</code> op SDM72D-M)</em></td>
+                <td><strong>RJ45 Pin 1 (Wit/Oranje)</strong><br><em>(of schroefklem <code>MTR485A</code>)</em></td>
+                <td>Adapter <strong><code>A+</code> / <code>D+</code> / <code>T/R+</code></strong></td>
+              </tr>
+              <tr>
+                <td><strong><code>RS485-B (-)</code></strong></td>
+                <td><strong><code>B</code> / <code>B-</code> / <code>485B</code></strong> <em>(Pin <code>9</code> op SDM630-V2 Direct; Pin <code>13</code> op SDM630MCT; gemarkeerd als <code>B</code> op SDM72D-M)</em></td>
+                <td><strong>RJ45 Pin 2 (Oranje)</strong><br><em>(of schroefklem <code>MTR485B</code>)</em></td>
+                <td>Adapter <strong><code>B-</code> / <code>D-</code> / <code>T/R-</code></strong></td>
+              </tr>
+              <tr>
+                <td><strong>Afscherming / GND</strong></td>
+                <td><strong><code>G</code> / <code>GND</code></strong> <em>(Gebruik <strong>nooit</strong> de <code>+ / -</code> pulsuitgangen!)</em></td>
+                <td><strong>Laat RJ45 Pin 3 – 8 open</strong></td>
+                <td>Adapter <strong><code>GND</code></strong> (<code>120 &Omega;</code> indien &gt; 30 m)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>3.2 Configureren: Meter-LCD (wachtwoord <code>1000</code>), SolisCloud &amp; GEMS</h3>
+        <ol>
+          <li><strong>Op het frontpaneel van de meter (Standaardwachtwoord = <code>1000</code>):</strong>
+            <ul>
+              <li><em>Ontgrendelen:</em> Houd op de <code>SDM630-M</code> toets <strong><code>E</code></strong> <code>3s</code> ingedrukt &rarr; voer <code>1000</code> in &rarr; houd <code>E</code> vast. Druk op de <code>SDM72D-M</code> / <code>SDM72D-M-2</code> de voorste toets <code>3s</code> lang in &rarr; kort drukken om het cijfer te wijzigen / lang drukken om door te gaan om <code>1000</code> in te voeren.</li>
+              <li><em>Parameters:</em> Zet <strong>Adres (<code>Addr</code> / <code>Add</code>) = <code>001</code></strong> (of <code>002</code> uitsluitend op een gedeelde GEMS RS-485-bus naast Solis ID <code>1</code>), <strong>Baud (<code>bAud</code> / <code>baud</code>) = <code>9600</code></strong>, <strong>Pariteit (<code>PrtY</code> / <code>Par</code>) = <code>nO</code> / <code>none</code> (<code>8N1</code>)</strong> en <strong>Systeem (<code>SYS</code>) = <code>3P4</code></strong> (<code>3×400V+N</code>), <strong><code>3P3</code></strong> (Belgische <code>3×230V</code> driehoek) of <strong><code>1P2</code></strong> (<code>1×230V</code>). Controleer dat het <strong>telefoonhoorn-icoontje (<code>📞</code>)</strong> op het LCD-scherm verschijnt zodra het uitlezen start!</li>
+            </ul>
+          </li>
+          <li><strong>In de SolisCloud-app (Topologie 1 — Bedraad op de Solis <code>Meter</code>-poort):</strong> Kies onder <code>Advanced Settings &rarr; Storage Energy Set &rarr; Meter Set</code> voor <strong><code>Eastron 3P</code></strong> (of <strong><code>SDM630</code></strong> — werkt voor zowel <code>SDM630-M</code> als <code>SDM72D-M</code>!) en <strong>Placement = <code>Meter in Grid</code></strong>. Controleer dat er geen <code>Meter_Comm_FAIL</code>-meldingen staan onder <code>Information &rarr; Meter Info</code>.</li>
+          <li><strong>In GEMS (<code>Instellingen &rarr; Toestellen</code>):</strong>
+            <ul>
+              <li><em>Topologie 1 (Bedraad op Solis):</em> Vink eenvoudigweg <strong><code>Grid Meter Connected? = Aangevinkt</code></strong> aan op uw Solis Hybride / Retrofit-toestelkaart (voeg geen dubbele Eastron-kaart toe).</li>
+              <li><em>Topologie 2 (Rechtstreeks bedraad op GEMS):</em> Voeg een <strong>Slimme Meter</strong> toe met template <strong><code>Eastron SDM72D / SMART X96 3-Phase Meter</code></strong> (<code>eastron_sdm72_x96</code>) of <strong><code>Eastron SDM630 3-Phase Meter</code></strong> (<code>eastron_sdm630</code>) op het vaste pad <code>/dev/serial/by-id/...</code> (<code>9600 None</code>) of TCP <code>:502</code>, <code>Modbus ID = 1</code> (of <code>2</code> op een gedeelde bus), <code>Poll Interval = 2s</code>, <code>Phase Wiring = L1-L2-L3</code>.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <!-- SECTION 4 -->
+        <h2 id="gems-connection">4. Solis verbinden met GEMS (RS-485 vs. S2-WL-ST LAN-stick)</h2>
+        <ul>
+          <li><strong>Optie A (Aanbevolen gouden standaard — Rechtstreeks USB-RS485 of industriële RS-485 Ethernet-gateway):</strong> Bedraad een afgeschermde getwiste kabel (<code>9600 bps, 8N1</code>, Slave ID <code>1</code>) naar de aparte interne <code>RS485 / Modbus</code>-poort van de Solis S6 — of verbind op de 4-polige ronde <code>COM</code>-connector <strong>Pin 3 (Geel) = <code>RS485A+</code></strong> en <strong>Pin 4 (Blauw) = <code>RS485B-</code></strong> (optioneel Pin 2 Zwart = <code>GND</code>; <strong>sluit Pin 1 Rood +5V nooit aan!</strong>). Biedt deterministische <code>2–3s</code> regeling los van cloudsticks.</li>
+          <li><strong>Optie B (Bekabelde <code>S2-WL-ST</code> Dual Wi-Fi/LAN-stick of <code>DLS-L</code>):</strong> Klik een Ethernetkabel in de <code>S2-WL-ST</code>, wijs een vast DHCP-IP toe in uw router en verbind GEMS via Modbus TCP op poort <code>502</code> (<code>5s</code> Poll Interval). <em>Let op: Goedkope Wi-Fi-only <code>S3-WiFi-ST</code>-sticks sturen enkel uitgaand naar de cloud en negeren lokale verbindingen op poort <code>502</code> (<code>i/o timeout</code> ondanks zichtbaarheid in ARP/DHCP); <code>S2-WL-ST</code>-sticks met oudere firmware (<code>&lt; 100121cf</code> / <code>100141dx</code>) vereisen een externe Modbus TCP-firmware-update via Solis Support — of kies voor een bekabelde <code>S2-WL-ST</code> of Optie A.</em></li>
+        </ul>
+
+        <!-- SECTION 5 -->
+        <h2 id="soliscloud-settings">5. Exacte instellingen in de SolisCloud-app (Lokale Bluetooth-inbedrijfstelling)</h2>
+        <p>
+          Open de <strong>SolisCloud-app</strong> vlak bij de omvormer, tik op <strong>Me &rarr; More Tools &rarr; Local Operation / Local Debugging &rarr; Connect with Bluetooth</strong>, meld u aan als <strong>Installer</strong> en controleer elke instelling hieronder:
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Menu-pad in SolisCloud</th>
+                <th>Vereiste instelling</th>
+                <th>Waarom vereist</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Storage Energy Set &rarr; Battery Select</code></td>
+                <td><strong><code>Lithium Battery</code> &rarr; <code>PYLON LV</code></strong><br><em>(of <code>Lithium Battery LV</code> / <code>AoBo</code>)</em></td>
+                <td>Activeert de gesloten-lus 500 kbps CAN-koppeling met de Easyway <code>UNIV5200</code>. Controleer <code>BMS Info = Normal</code> met live SOC % en stroomlimieten!</td>
+              </tr>
+              <tr>
+                <td><code>Battery Select &rarr; Overdischarge SOC</code></td>
+                <td><strong><code>10 %</code></strong> <em>(<code>15–20%</code> bij noodstroomkringen)</em></td>
+                <td>Komt overeen met de 90% DoD-specificatie van Easyway en beschermt de levensduur van de LiFePO<sub>4</sub>-cellen.</td>
+              </tr>
+              <tr>
+                <td><code>Battery Select &rarr; Forcecharge SOC</code></td>
+                <td><strong><code>5 %</code></strong> <em>(Houd ≥5% onder Overdischarge!)</em></td>
+                <td>Voorkomt dat Solis elke nacht ongewenst noodladen vanaf het net start zodra de rust-SOC met 1% daalt!</td>
+              </tr>
+              <tr>
+                <td><code>Battery Select &rarr; Max Charge / Discharge A</code></td>
+                <td><strong><code>50 A × Aantal pakketten</code></strong><br><em>(tot het max. van de omvormer)</em></td>
+                <td>Benut het volledige batterijvermogen (<code>50 A</code> = 1 pakket, <code>100 A</code> = 2 pakketten, <code>150 A</code> = 3 pakketten).</td>
+              </tr>
+              <tr>
+                <td><code>Storage Mode Select</code></td>
+                <td><strong><code>Self-Use = ON</code></strong><br><em>(Alle TOU-timers &amp; Feed-in Priority = OFF)</em></td>
+                <td>Zorgt voor zuiver autonoom zelfverbruik zonder interne timerconflicten met GEMS.</td>
+              </tr>
+              <tr>
+                <td><code>Storage Mode Select &rarr; Allow Grid Charging</code></td>
+                <td><strong><code>Allow / Enable</code></strong></td>
+                <td>Vereist zodat GEMS tijdens goedkope/negatieve Day-Ahead uren en voor de winterterugval kan laden vanaf het net.</td>
+              </tr>
+              <tr>
+                <td><code>Meter Set</code> &amp; <code>Internal EPM</code></td>
+                <td><strong><code>Eastron 3P</code> (<code>SDM630 / SDM72D-M</code>) of <code>Acrel</code> • <code>Meter in Grid</code></strong><br><strong><code>Internal EPM = OFF</code></strong></td>
+                <td>Garandeert exacte afname-/injectiemeting (plaats de meter direct na de nutsmeter, vóór bestaande PV op Retrofit-locaties!) terwijl GEMS dynamisch terugregelt bij negatieve stroomprijzen.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SECTION 6 -->
+        <h2 id="gems-onboarding">6. Solis Hybride vs. Solis Retrofit koppelen in GEMS</h2>
+        <ul>
+          <li><strong>Solis Hybride (<code>S5-EH1P</code>, <code>S6-EH1P</code>, <code>S6-EH3P-L</code> met zonnepanelen + UNIV5200):</strong> Koppel onder <strong>Instellingen &rarr; Toestellen</strong> (met ontgrendelde Installateursmodus) eerst uw digitale <strong>P1-meter</strong> (<code>p1_serial</code>) of GEMS-bedrade <strong>Eastron <code>SDM72D-M / SDM630-M</code></strong> indien aanwezig, en kies daarna <strong>Inverter / Solar &rarr; <code>Solis S5/S6 Hybrid Inverter</code></strong> (<code>solis_hybrid</code>). Stel <code>Port = 502</code> in (of <code>/dev/serial/by-id/...</code> op <code>9600 8N1</code>), <code>Modbus ID = 1</code>, exact <code>Rated Power (kW)</code>, <code>Allow Curtailment = Aangevinkt</code>, <code>Poll Interval = 2–3s</code> (RS-485) of <code>5s</code> (<code>S2-WL-ST</code>), exacte <code>Phase Wiring</code>, <code>Grid Meter Connected? = Aangevinkt</code> (indien bedraad op Solis), <code>Battery Connected? = Aangevinkt</code> en de totale <code>Battery Capacity (kWh)</code> (<code>5.2</code>, <code>10.4</code>, <code>15.7</code>, <code>20.9</code>...).</li>
+          <li><strong>Solis AC-gekoppelde Retrofit (<code>RAI-3K-48ES-5G</code>, <code>S6-EA1P-L</code> met UNIV5200 naast een bestaande PV-omvormer):</strong> Koppel eerst uw digitale <strong>P1-meter</strong> (<code>p1_serial</code>) of GEMS-bedrade <strong><code>SDM72D-M / SDM630-M</code></strong> + uw <strong>bestaande zonne-omvormer</strong>, en voeg daarna het Solis-toestel toe onder <strong>Battery &rarr; <code>Solis Retrofit Storage System</code></strong> (<code>solis_retrofit_battery</code>, of onder <strong>Inverter / Solar &rarr; <code>Solis Retrofit Inverter (AC Storage)</code></strong>) met exacte <code>Phase Wiring</code> (<code>L1</code>, <code>L2</code> of <code>L3</code>), totale UNIV5200-capaciteit (<code>kWh</code>) en <code>Grid Meter Connected? = Aangevinkt</code> wanneer de slimme meter rechtstreeks op de Solis <code>Meter</code>-poort is aangesloten zonder aparte P1-meter op GEMS.</li>
+        </ul>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/settings_devices_inverter_form.png" alt="GEMS Solis Hybride en Opslag Configuratieformulier" loading="lazy">
+          <div class="doc-screenshot-caption">Configureren van Solis Endpoint, Nominaal vermogen, Faseaansluiting en totale Easyway UNIV5200-capaciteit in GEMS.</div>
+        </div>
+
+        <!-- SECTION 7 -->
+        <h2 id="gems-optimization">7. Optimale GEMS-strategie &amp; coördinatie met EV-laadpalen</h2>
+        <ol>
+          <li><strong>Activeer Open-Meteo Zonnevoorspelling (<code>Instellingen &rarr; Strategie</code>):</strong> Vul de coördinaten van de locatie in en vink <strong>Enable Open-Meteo Solar Forecast Ingestion</strong> aan zodat GEMS nooit onnodig geld uitgeeft aan nachtelijk netladen van de UNIV5200 vóór een zonnige ochtend.</li>
+          <li><strong>Kies uw regionale modus:</strong>
+            <ul>
+              <li><strong>Vlaanderen (<code>Flanders Mode</code>):</strong> Stel <code>Capacity Peak Limit = 2.5 kW</code> (of uw historische piek) en <code>Buffer = 150–200 W</code> in, en vul een eventuele <strong>Groenestroomcertificaten (GSC)</strong>-waarde (<code>€/MWh</code>) in — essentieel bij Solis Retrofit-uitbreidingen op bestaande daken met GSC-rechten!</li>
+              <li><strong>Nederland (<code>Netherlands Mode</code>):</strong> Schakel <code>Active Inverter Curtailment</code> in (drempel <code>0.00 €/kWh</code>) om Easyway-opslag + EV-laden voorrang te geven en terugleverkosten bij negatieve prijzen te vermijden.</li>
+            </ul>
+          </li>
+          <li><strong>Easyway UNIV5200 Arbitrage &amp; Celbescherming:</strong> Zet <strong>Charging Strategy Mode</strong> op <code>Dynamic 24h Forecast</code>, <strong>Battery Wear Cost</strong> op <strong><code>0.04 €/kWh</code></strong> en activeer <strong>Winter / Low-Solar Grid Charge Fallback</strong> (<code>Trigger 25%</code> &rarr; <code>Target 65%</code> verspreid over de <code>2–3 goedkoopste uren</code>).</li>
+          <li><strong>Voorkomen dat EV-laadpalen (Raedian) 's nachts de UNIV5200 leegtrekken:</strong> Voeg een <strong>Regelgebaseerde Batterij-kostenoptimalisatie</strong> toe met <strong>Action = <code>Hold (Idle / No Export)</code></strong> tijdens uw nachtelijke EV-laadvenster (bijv. <code>01:00 – 05:00</code>), zodat uw <strong>Raedian</strong>-laadpaal uitsluitend goedkope dalstroom uit het net neemt en 100% van uw Easyway-batterijlading gespaard blijft voor de ochtendpiek in huis!</li>
+        </ol>
+
+        <!-- SECTION 8 -->
+        <h2 id="troubleshooting">8. Beknopte probleemoplossing</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Symptoom</th>
+                <th>Waarschijnlijke oorzaak</th>
+                <th>Oplossing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><code>CAN_Comm_FAIL</code> / <code>BatName-FAIL</code></strong></td>
+                <td>Verkeerd batterijprofiel of foutieve CAN-kabel / verkeerde poort</td>
+                <td>Sluit de CAN-kabel (enkel Pin 4 &amp; 5 verbonden) aan van Master Pakket 1 (<code>ADD=0000</code>) <code>CAN</code>-poort naar de Solis <code>BMS</code>-poort; kies <code>Lithium Battery &rarr; PYLON LV</code>.</td>
+              </tr>
+              <tr>
+                <td><strong><code>Meter_Comm_FAIL</code> (of Eastron offline in GEMS)</strong></td>
+                <td><code>A/B</code> omgewisseld, <code>Even</code> pariteit, verkeerd Slave ID, aangesloten op Puls <code>+/-</code>, of twee masters tegelijk</td>
+                <td>Ontgrendel de meter (<code>PASS 1000</code>): zet <code>Addr = 001</code>, <code>9600</code>, <code>Parity = None (8N1)</code>; verbind Solis RJ45 Pin 1 (Wit-Oranje) &rarr; <code>A+</code> &amp; Pin 2 (Oranje) &rarr; <code>B-</code>; kies <code>Eastron 3P</code> in SolisCloud.</td>
+              </tr>
+              <tr>
+                <td><strong>Batterij injecteert naar het net zodra huisverbruik AAN gaat</strong></td>
+                <td><code>SDM72D-M / SDM630-M</code> Boven (<code>1–4</code> IN) &amp; Onder (<code>5–8</code> UIT) verwisseld of CT-pijl omgekeerd</td>
+                <td>Voed de netzijde bovenaan op <strong><code>1–4</code> (IN)</strong> en tak woning/PV/Solis onderaan af op <strong><code>5–8</code> (OUT)</strong>; controleer de CT-richting op een <code>SDM630MCT</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>Kort nachtelijk bijladen vanaf het net rond 10% SOC</strong></td>
+                <td><code>Forcecharge SOC</code> ligt te dicht bij <code>Overdischarge SOC</code></td>
+                <td>Zet <code>Overdischarge SOC = 10%</code> en <code>Forcecharge SOC = 5%</code> onder SolisCloud <code>Battery Select</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>5 kW omvormer begrenst batterij op ~2,55 kW</strong></td>
+                <td>Continue 50A BMS-limiet van één enkele <code>UNIV5200</code> (<code>50A &times; 51,2V</code>)</td>
+                <td>Normale celbescherming bij één module; plaats een tweede parallelle <code>UNIV5200</code> (<code>100A = 5,12 kW</code>) voor volledig 5 kW continu vermogen.</td>
+              </tr>
+              <tr>
+                <td><strong>Geforceerd netladen wordt genegeerd</strong></td>
+                <td><code>Allow Grid Charging</code> uitgeschakeld of interne TOU-tijdsloten actief</td>
+                <td>Zet <code>Self-Use = ON</code>, <code>Allow Grid Charging = Allow</code> en schakel alle interne Solis TOU-tijdsloten uit.</td>
+              </tr>
+              <tr>
+                <td><strong><code>i/o timeout</code> of <code>Connection refused</code> op poort <code>502</code></strong></td>
+                <td>Cloud-only <code>S3-WiFi-ST</code>-stick, <code>S2-WL-ST</code>-firmware zonder lokale Modbus TCP, of vastgelopen Wi-Fi-logger</td>
+                <td>Gebruik Optie A (USB-RS485 of RS-485 Ethernet-gateway op de Solis RS-485-poort), vervang een <code>S3-WiFi-ST</code> door een bekabelde <code>S2-WL-ST</code>, of vraag Solis Support om de lokale Modbus TCP-loggerfirmware (<code>&ge; 100121cf</code> / <code>100141dx</code>) te pushen.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Zoek in documentatie, parameters, handleidingen..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Zoekvenster sluiten">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Gebruik <kbd class="kbd-shortcut">&uarr;</kbd> <kbd class="kbd-shortcut">&darr;</kbd> om te navigeren</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> om te selecteren</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> om te sluiten</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/search-index-nl.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

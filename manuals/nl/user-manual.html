@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gebruikershandleiding &amp; Dashboardgids - GEMS</title>
+  <meta name="description" content="Volledige gebruikershandleiding voor GEMS: interactief PowerFlow-dashboard, historische grafieken, Vlaamse piekbewaker, netwerkscanner, native OCPP EV-laden en PDF-rapporten.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Navigatiemenu openen of sluiten">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Gebruikersgids</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Doorzoek documentatie (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Zoek in dashboard, PowerFlow, OCPP, grafieken...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuratie</span>
+      </a>
+      <a href="devices.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+        <span>Toestellen</span>
+      </a>
+      <nav class="lang-switcher no-print" aria-label="Kies documentatietaal">
+        <a href="../user-manual.html" hreflang="en" title="English">EN</a>
+        <a href="user-manual.html" class="active" hreflang="nl" title="Nederlands">NL</a>
+        <a href="../fr/user-manual.html" hreflang="fr" title="Français">FR</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Wissel kleurenthema">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Gebruikershandleiding</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="user-manual.html#dashboard-powerflow" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>Dashboard &amp; PowerFlow</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#historical-charts" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Historische Grafieken &amp; Overlays</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#flanders-gauge" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Vlaamse Kwartierpiek-monitor</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#device-management" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Toestelbeheer-wizard</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#network-scanner" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wifi"></use></svg>
+              <span>Netwerk- &amp; Seriële Scanner</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#modbus-probe" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>Modbus Verbindingstest</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#ev-charging" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-charger"></use></svg>
+              <span>Slim EV-laden (Modbus &amp; OCPP)</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html#logs-updates" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-terminal"></use></svg>
+              <span>Logboek, PDF-rapporten &amp; Updates</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Overige handleidingen</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Documentatieportaal</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Installatiehandleiding</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>Configuratiereferentie</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Toesteltemplates</span>
+              <span class="badge">180</span>
+            </a>
+          </li>
+          <li>
+            <a href="p1-meter.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>P1-meter &amp; Zelfbouwkabel</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">NIEUW</span>
+            </a>
+          </li>
+          <li>
+            <a href="cloud-server.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-cloud"></use></svg>
+              <span>Cloudserver-koppeling</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NIEUW</span>
+            </a>
+          </li>
+          <li>
+            <a href="troubleshooting.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>Probleemoplossing &amp; FAQ</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Officiële PDF-handleidingen</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-installer-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Installatiehandleiding (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Gebruikershandleiding (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-server-connection-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Serverhandleiding (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-p1-meter-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>P1-meterkabel (PDF)</span>
+              <span class="badge" style="background:#10b981; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Kruimelpad">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Gebruikershandleiding</span>
+        </nav>
+
+        <h1>Gebruikershandleiding &amp; Dashboardbediening</h1>
+        <p class="hero-lead">
+          Ontdek het dagelijkse gebruik van GEMS: navigeren door het geanimeerde PowerFlow-overzicht, historische detailgrafieken openen met één klik, EV-laadpalen aansturen via Modbus TCP of Native OCPP en overzichtelijke PDF-energierapporten exporteren.
+        </p>
+
+        <!-- PDF Manual Download Banner -->
+        <div class="alert alert-tip" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0;">
+          <div>
+            <div class="alert-header">
+              <svg width="18" height="18"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Download de Officiële Afdrukbare Gebruikershandleiding (PDF)</span>
+            </div>
+            <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem;">Liever een overzichtelijk naslagwerk op papier of tablet? Download de volledige <strong>GEMS Gebruikers- &amp; Instellingenhandleiding (PDF)</strong> met PowerFlow-schema's in hoge resolutie, grafiekuitleg en alle EV-laadmodi.</p>
+          </div>
+          <a href="gems-user-manual-nl.pdf" target="_blank" class="tab-btn active" style="background: #10b981; color: #fff; text-decoration: none; padding: 0.45rem 0.9rem; font-size: 0.85rem; border-radius: var(--radius-sm); display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap;">
+            <svg width="14" height="14"><use href="../assets/icons.svg#icon-download"></use></svg>
+            <span>Gebruikers-PDF (NL)</span>
+          </a>
+        </div>
+
+        <!-- Dashboard & Hero PowerFlow -->
+        <h2 id="dashboard-powerflow">1. Dashboard &amp; Interactief PowerFlow-diagram</h2>
+        <p>
+          Het <strong>Dashboard</strong> vormt het centrale hart van GEMS en toont uw realtime energiestromen met geanimeerde stroomlijnen waarvan snelheid en richting het actuele vermogen weerspiegelen.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/dashboard.png" alt="GEMS Desktop PowerFlow Dashboard" loading="lazy">
+          <div class="doc-screenshot-caption">Desktop Dashboard: Dynamisch PowerFlow-hoofddiagram, voortgangsbalk voor het Vlaams capaciteitstarief en realtime vermogensmeters.</div>
+        </div>
+
+        <div class="doc-screenshot-card" style="max-width: 420px; margin: 1.5rem auto;">
+          <img src="../assets/screenshots/dashboard_mobile.png" alt="GEMS Mobiel Responsief Dashboard" loading="lazy">
+          <div class="doc-screenshot-caption">Mobiele weergave (375x812): Volledig responsieve verticale opbouw voor smartphones en wandtouchscreens.</div>
+        </div>
+
+        <h3>Dynamische zichtbaarheid van knooppunten</h3>
+        <p>
+          Volgens onze ontwerpfilosofie worden energieknooppunten (Net, Zonne-omvormers, Thuisbatterij, EV-laadpalen, Warmtepomp en Slimme Relais) <strong>uitsluitend getoond wanneer ze daadwerkelijk geconfigureerd en actief verbonden zijn</strong>. Beschikt uw installatie bijvoorbeeld (nog) niet over een thuisbatterij of laadpaal, dan blijven die kaarten automatisch verborgen voor een rustig en overzichtelijk scherm.
+        </p>
+
+        <!-- Historical Charts & Overlays -->
+        <h2 id="historical-charts">2. Doorklikbare Historische Grafieken &amp; Netvergelijking</h2>
+        <p>
+          Door rechtstreeks op een knooppunt in het PowerFlow-diagram te klikken (bijv. op <em>Zon</em> of <em>Batterij</em>) opent u onmiddellijk het detailvenster met <strong>Historische Tijdreeksgrafieken</strong>.
+        </p>
+
+        <div class="doc-screenshot-grid">
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/dashboard_modal_battery.png" alt="Batterij-telemetrie en Modusselectie" loading="lazy">
+            <div class="doc-screenshot-caption">Batterijvenster: Laad-/ontlaadgeschiedenis (SoC) en directe moduskeuze (Automatisch / Vasthouden / Geforceerd laden).</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/dashboard_modal_solar.png" alt="Zonneproductiegrafiek" loading="lazy">
+            <div class="doc-screenshot-caption">Zonnevenster: 24-uurs PV-opbrengstcurve en DC-stringspanningen van de omvormer.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/dashboard_modal_grid.png" alt="Netafname- en Injectiegeschiedenis" loading="lazy">
+            <div class="doc-screenshot-caption">Netvenster: Afname- en injectiebalans met weergave van de Vlaamse kwartierpiek.</div>
+          </div>
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/dashboard_modal_charger.png" alt="EV-laadsessie en Laadmodus" loading="lazy">
+            <div class="doc-screenshot-caption">Laadpaalvenster: Actuele laadstroom in ampère, sessie-energie in kWh en directe omschakeling tussen Eco/Zon en Maximaal laden.</div>
+          </div>
+        </div>
+
+        <div class="alert alert-tip">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-check"></use></svg>
+            <span>Netstroom-vergelijkingslaag (Compare Grid Power)</span>
+          </div>
+          <p>
+            Klik in elk historisch grafiekvenster op de knop <strong>⚡ Vergelijk met Netstroom</strong> om uw realtime netafname en -injectie over de grafiek van uw zonnepanelen of thuisbatterij heen te leggen. Zo ziet u in één oogopslag hoe verbruikspieken in huis werden opgevangen door uw batterij of het net.
+          </p>
+        </div>
+
+        <h3>Keuze van Tijdsperiode &amp; Resolutie</h3>
+        <ul>
+          <li><strong>Laatste 1 uur (1m resolutie):</strong> Fijnmazig detail om korte verbruikspieken en inschakelstromen van huishoudtoestellen te analyseren.</li>
+          <li><strong>Laatste 24 uur (5m resolutie):</strong> Volledige dagcurve van zonneproductie, batterijcycli (SoC) en laadsessies.</li>
+          <li><strong>Laatste 7 dagen (15m resolutie):</strong> Wekelijkse zelfverbruikstrends en verdeling van de Vlaamse kwartierpieken.</li>
+          <li><strong>Laatste 30 dagen (1u resolutie):</strong> Maandelijkse energiebalans en totale afname-/injectievolumes.</li>
+        </ul>
+
+        <!-- Flanders Peak Monitor -->
+        <h2 id="flanders-gauge">3. Vlaamse Kwartierpiek-monitor</h2>
+        <p>
+          Meteen onder het PowerFlow-hoofddiagram volgt de Vlaamse Capaciteitsmonitor realtime het gemiddelde kwartiervermogen van uw digitale meter.
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Statuslabel</th>
+                <th>Voorwaarde</th>
+                <th>Actie van GEMS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="badge-pill badge-green">NORMAAL</span></td>
+                <td>Verwachte kwartierpiek &lt; 80% van <code>capacity_peak_limit_kw</code></td>
+                <td>Normaal bedrijf. Alle laadpalen en batterijen draaien volgens hun ingestelde programma.</td>
+              </tr>
+              <tr>
+                <td><span class="badge-pill badge-amber">WAARSCHUWING</span></td>
+                <td>Verwachte kwartierpiek tussen 80% en 99% van het piekplafond</td>
+                <td>Preventieve bewaking. Verdere verhoging van laadstromen wordt gepauzeerd om overschrijding te vermijden.</td>
+              </tr>
+              <tr>
+                <td><span class="badge-pill badge-red">BEGRENSD</span></td>
+                <td>Verwachte kwartierpiek &ge; 100% van het piekplafond</td>
+                <td>Actieve piekbewaking ingeschakeld! EV-laadpalen worden stapsgewijs verlaagd (16A &rarr; 10A &rarr; 6A &rarr; 0A) en de thuisbatterij springt bij om de verbruikspiek af te vlakken.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Device Management -->
+        <h2 id="device-management">4. Toestelbeheer &amp; Configuratiewizard</h2>
+        <p>
+          Om nieuwe energietoestellen toe te voegen of bestaande verbindingen aan te passen, gaat u naar <strong>Instellingen &rarr; Toestellen</strong>.
+        </p>
+
+        <ol>
+          <li>Klik rechtsboven op <strong>Nieuw energietoestel toevoegen</strong>.</li>
+          <li>Kies uw hardwaretemplate uit de catalogus van 180 voorgeconfigureerde fabrikantprofielen (bijv. <em>Solis Hybrid Inverter</em>, <em>RAEDIAN Wallbox</em>, <em>Fluvius P1 Slimme Meter</em> of <em>Shelly Pro 3EM</em>).</li>
+          <li>Vul het IP-adres of de seriële poort in, controleer het poortnummer (standaard <code>502</code> voor Modbus TCP) en het Modbus Slave ID. (<em>Opmerking: bij OCPP-laadpalen vult u enkel uw ChargePoint ID in</em>).</li>
+          <li>Klik op <strong>Verbinding testen</strong> om de bereikbaarheid direct te verifiëren.</li>
+          <li>Klik op <strong>Opslaan</strong>. De Go-backend start onmiddellijk met het uitlezen van de live meetwaarden.</li>
+        </ol>
+
+        <!-- Network & Serial Scanner -->
+        <h2 id="network-scanner">5. Lokale Netwerk- &amp; Seriële Poortscanner</h2>
+        <p>
+          Nieuw aangesloten RS-485-/P1-adapters of netwerk-IP-adressen van zonne-omvormers en laadpalen vindt u in enkele seconden met de ingebouwde Hardwarescanner.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/scanner.png" alt="Seriële Bus- en Lokale Netwerkscanner" loading="lazy">
+          <div class="doc-screenshot-caption">Hardwarescanner: Automatische detectie van seriële poorten &amp; RS-485-bussen naast lokale LAN-subnet-, MAC-fabrikant- en poortdetectie met één klik.</div>
+        </div>
+
+        <ul>
+          <li><strong>Seriële Poort &amp; RS-485 Detectie:</strong> Klik op <strong>Seriële poorten scannen</strong> om automatisch DSMR / e-MUCS P1-slimme meters en RS-485 Modbus RTU-energietoestellen te herkennen (zoals <em>Solis</em> hybride omvormers, <em>RAEDIAN</em> laadpalen en DIN-rail energiemeters), inclusief vaste <code>/dev/serial/by-id/*</code>-paden, baudrate, pariteit en Modbus Slave ID. Klik op <strong>+ Configureren</strong> om het toevoegformulier direct in te vullen, of start een <strong>Geavanceerde RS-485 busscan</strong> over aangepaste Slave ID-bereiken.</li>
+          <li><strong>Lokale Subnet LAN-scan:</strong> Klik op <strong>Subnet scannen</strong> om actieve Ethernet- en Wi-Fi-energietoestellen op uw lokale netwerk (bijv. <code>192.168.1.0/24</code>) te vinden met fabrikantherkenning (MAC OUI) en open poortlabels (<code>502</code>, <code>80/443</code>, <code>8887</code>).</li>
+        </ul>
+
+        <!-- Modbus Reachability Probe -->
+        <h2 id="modbus-probe">6. Modbus TCP Bereikbaarheidstest (`Test Connection`)</h2>
+        <p>
+          Vóórdat u een toestel definitief opslaat in SQLite, kunt u met één klik een diagnostische verbindingstest uitvoeren:
+        </p>
+        <ul>
+          <li>Stuurt een directe TCP-handshake naar het opgegeven IP-adres en poortnummer.</li>
+          <li>Meet de exacte antwoordtijd (latentie) in milliseconden ($ms$).</li>
+          <li>Leest ter controle het algemene Modbus-/SunSpec-identificatieregister (register <code>40001</code> / <code>0x9C41</code>) uit om te bevestigen dat het opgegeven Slave ID reageert.</li>
+        </ul>
+
+        <!-- EV Charging: Modbus TCP (Preferred) & Native OCPP Server -->
+        <h2 id="ev-charging">7. Slim EV-laden: Modbus TCP (Aanbevolen) &amp; Native OCPP-server</h2>
+        <p>
+          GEMS stuurt uw laadpaal realtime aan om zonne-overschot maximaal te benutten en Vlaamse kwartierpieken te vermijden. Laadpalen kunnen gekoppeld worden via <strong>Modbus TCP (aanbevolen voorkeur)</strong> of via de ingebouwde <strong>Native OCPP-server</strong>.
+        </p>
+
+        <div class="alert alert-success" style="border-left: 4px solid #10b981; background: var(--bg-card, #f0fdf4); margin-bottom: 1.25rem;">
+          <div class="alert-header" style="color: #059669;">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-charger"></use></svg>
+            <strong>⚡ Modbus TCP-koppeling (Aanbevolen voorkeursmethode)</strong>
+          </div>
+          <p>
+            <strong>Modbus TCP geniet de voorkeur voor lokale laadpaalsturing:</strong>
+          </p>
+          <ul style="margin: 6px 0 10px 18px;">
+            <li><strong>Directe sub-seconde terugregeling:</strong> Via Modbus-registers leest GEMS fasestromen uit en schrijft stroomlimieten (6A tot 32A) onmiddellijk weg zonder WebSocket-vertraging — cruciaal om kwartierpieken en zekeringsoverbelasting direct op te vangen.</li>
+            <li><strong>Behoud van werkgeversverrekening (Split-Billing) &amp; externe CPO:</strong> Is uw laadpaal via OCPP verbonden met een extern CPO-verrekenplatform of werkgeversvergoedingsdienst? Dan hoeft u die verbinding <em>niet</em> te verbreken. GEMS regelt het laadvermogen lokaal via Modbus TCP terwijl de automatische kostenverrekening via OCPP ongestoord doorloopt.</li>
+            <li><strong>Ondersteunde laadpalen:</strong> RAEDIAN Gemini/NEO/NEX, Alfen Eve, KEBA KeContact P30/P40, Mennekes AMTRON, Webasto Live/Next, ABB Terra AC, Phoenix Contact CHARX, Veton, SolarEdge Home EVSE en generieke Modbus TCP-laadpalen.</li>
+          </ul>
+          <p style="margin-bottom: 0;">
+            Zo koppelt u: activeer Modbus TCP in de installateursapp van uw laadpaal (poort <code>502</code>) en voeg het toestel toe in GEMS onder <strong>Instellingen &rarr; Toestellen &rarr; Laadpaal</strong> met het IP-adres en Modbus Slave ID (meestal <code>1</code>).
+          </p>
+        </div>
+
+        <div class="alert alert-important">
+          <div class="alert-header">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-charger"></use></svg>
+            <strong>Native OCPP 1.6-J Server (Direct lokaal alternatief)</strong>
+          </div>
+          <p>
+            Voor laadpalen zonder Modbus TCP of particuliere installaties zonder extern CPO-verrekenplatform draait GEMS een ingebouwde OCPP 1.6-J WebSocket-server op poort <strong>8887</strong> (<code>ws://&lt;ip&gt;:8887/&lt;ID&gt;</code>) en poort <strong>8080</strong> (<code>ws://&lt;ip&gt;:8080/api/ocpp/&lt;ID&gt;</code>). De laadpaal verbindt rechtstreeks via het lokale netwerk met de Raspberry Pi zonder enige cloudafhankelijkheid.
+          </p>
+        </div>
+
+        <h3>Uw laadpaal verbinden via Native OCPP</h3>
+        <ol>
+          <li>Open de installateursapp van uw laadpaal (bijv. <em>RAEDIAN Install</em>, <em>Easee Installer</em>, <em>Alfen ACE Service Installer</em> of <em>Wallbox App</em>).</li>
+          <li>Ga naar <strong>Connectiviteit &rarr; OCPP / CSMS-instellingen</strong>.</li>
+          <li>Stel de Server-URL / het WebSocket-eindpunt in op:
+            <div class="code-block-wrapper">
+              <div class="code-header">
+                <span class="code-lang">OCPP-eindpunt</span>
+                <button class="copy-code-btn" aria-label="Kopieer eindpunt">
+                  <svg width="14" height="14"><use href="../assets/icons.svg#icon-copy"></use></svg>
+                  <span>Kopiëren</span>
+                </button>
+              </div>
+              <pre><code>ws://&lt;raspberry-pi-ip&gt;:8887/&lt;Uw-Laadpaal-ID&gt;
+# Of via reverse-proxy poort 8080:
+ws://&lt;raspberry-pi-ip&gt;:8080/api/ocpp/&lt;Uw-Laadpaal-ID&gt;
+
+# Voorbeeld voor laadpaal-ID "CP001" op Pi-IP 192.168.1.50:
+ws://192.168.1.50:8887/CP001</code></pre>
+            </div>
+          </li>
+          <li>Voeg in GEMS een toestel toe met de template <strong>OCPP 1.6-J Smart EV Charger</strong> en vul <code>CP001</code> in als ChargePointID.</li>
+          <li>Sla het toestel op. De laadpaal stuurt direct een <code>BootNotification</code> en toont het actuele laadvermogen op uw dashboard.</li>
+        </ol>
+
+        <!-- Logger, PDF Reports & Updates -->
+        <h2 id="logs-updates">8. Realtime Logboek, PDF-energierapporten &amp; Systeemupdates</h2>
+
+        <h3>Realtime Systeemlogboek</h3>
+        <p>
+          Open de live systeemdiagnose via het tabblad <strong>Logboek</strong> in de navigatiebalk. Filter op ernstniveau (<code>INFO</code>, <code>WARN</code>, <code>ERROR</code>, <code>DEBUG</code>) of zoek op een specifieke toestelnaam. Klik op <strong>Logs exporteren</strong> om een gestructureerd <code>.txt</code>-diagnoserapport te downloaden.
+        </p>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/logger.png" alt="Realtime Systeemlogboek & Diagnoseconsole" loading="lazy">
+          <div class="doc-screenshot-caption">Live Systeemlogboek: Realtime telemetrie- en stuurberichten, filterknoppen per niveau, pauzefunctie en tekstexport.</div>
+        </div>
+
+        <h3>Visuele PDF-energierapporten</h3>
+        <p>
+          Genereer verzorgde PDF-energierapporten rechtstreeks vanaf het Dashboard: kies uit <em>Vandaag (PDF)</em>, <em>Laatste 7 dagen (PDF)</em>, <em>Laatste 30 dagen (PDF)</em>, <em>Huidig jaar (PDF)</em> of <em>Volledige historie (PDF)</em> om samenvattende grafieken, zonne-opbrengsten en zelfvoorzieningscijfers te exporteren.
+        </p>
+
+        <h3>Online &amp; Handmatige Software-updates</h3>
+        <p>
+          GEMS biedt twee eenvoudige manieren om uw controller bij te werken naar de nieuwste softwareversie:
+        </p>
+        <ul>
+          <li><strong>Online Over-The-Air (OTA) Updates:</strong> Controleert automatisch op nieuwe releases. Zodra een nieuwe versie beschikbaar is, klikt u op <strong>Downloaden &amp; installeren</strong>. De backend haalt het <code>.deb</code>-pakket binnen en installeert het via <code>dpkg -i</code> met live voortgangsweergave.</li>
+          <li><strong>Handmatige Pakketupload:</strong> In afgeschermde of offline netwerken sleept u een vooraf gedownload Debian-pakket (<code>.deb</code>, max. 64MB) naar het uploadvak en klikt u op <strong>Updatepakket uploaden &amp; installeren</strong>.</li>
+        </ul>
+        <p>
+          Tijdens de update toont GEMS live uitvoer van het installatieproces. Na voltooiing herstart de service veilig en laadt de webinterface automatisch opnieuw.
+        </p>
+
+        <!-- Navigation Footer -->
+        <div class="page-nav-footer">
+          <a href="configuration.html" class="page-nav-card">
+            <span class="page-nav-label">Vorige</span>
+            <span class="page-nav-title">&larr; Configuratiereferentie</span>
+          </a>
+          <a href="devices.html" class="page-nav-card" style="text-align:right;">
+            <span class="page-nav-label">Volgende gids</span>
+            <span class="page-nav-title">Ondersteunde Toesteltemplates (180) &rarr;</span>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">Op deze pagina</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#dashboard-powerflow" class="toc-link">Dashboard &amp; PowerFlow</a></li>
+        <li class="toc-item"><a href="#historical-charts" class="toc-link">Historische Grafieken</a></li>
+        <li class="toc-item"><a href="#flanders-gauge" class="toc-link">Vlaamse Piekmonitor</a></li>
+        <li class="toc-item"><a href="#device-management" class="toc-link">Toestelbeheer</a></li>
+        <li class="toc-item"><a href="#network-scanner" class="toc-link">Netwerk- &amp; Seriële Scanner</a></li>
+        <li class="toc-item"><a href="#modbus-probe" class="toc-link">Modbus Verbindingstest</a></li>
+        <li class="toc-item"><a href="#ev-charging" class="toc-link">EV-laden (Modbus &amp; OCPP)</a></li>
+        <li class="toc-item"><a href="#logs-updates" class="toc-link">Logboek, Rapporten &amp; Updates</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Zoek in documentatie, parameters, handleidingen..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Zoekvenster sluiten">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Gebruik <kbd class="kbd-shortcut">↑</kbd> <kbd class="kbd-shortcut">↓</kbd> om te navigeren</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> om te openen</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> om te sluiten</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>GEMS (New Energy Grid) Documentatie &bull; Gebouwd met Go, SQLite, Vue 3 en Tailwind CSS &bull; Geoptimaliseerd voor Raspberry Pi</p>
+  </footer>
+
+  <script src="../js/search-index-nl.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

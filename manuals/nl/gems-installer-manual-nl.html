@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS Installateurs- &amp; Inbedrijfstellingshandleiding</title>
+  <meta name="description" content="Uitgebreide Technische Veldhandleiding &amp; Inbedrijfstellingsreferentie voor GEMS (Grid Energy Management System) op Raspberry Pi.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 14mm 16mm 14mm;
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.55;
+    }
+
+    .manual-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 980px;
+      padding: 40px 20px 20px 20px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 30px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0284c7;
+      color: #ffffff;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 9pt;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 34pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 0 0 12px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 13.5pt;
+      color: #475569;
+      margin: 0 0 26px 0;
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 22px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 3px;
+    }
+
+    .cover-meta-val {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+      margin: 18px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 8.5pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Section Headings */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 17pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 6px;
+      margin-top: 36px;
+      margin-bottom: 14px;
+      page-break-after: avoid;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12.5pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 22px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #0284c7;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #334155;
+    }
+
+    /* Decision Box: When to Choose This Option */
+    .decision-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-left: 4px solid #3b82f6;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    .decision-title {
+      font-size: 9pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #1e40af;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .decision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 8.5pt;
+      margin-top: 6px;
+    }
+
+    .decision-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 10px;
+    }
+
+    .decision-item-title {
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 2px;
+    }
+
+    .decision-item-desc {
+      color: #475569;
+      line-height: 1.4;
+    }
+
+    /* Screenshots */
+    .manual-screenshot {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .manual-screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .manual-screenshot-caption {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .manual-screenshot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      font-size: 9pt;
+    }
+
+    .callout-info {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      color: #0369a1;
+    }
+
+    .callout-tip {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #15803d;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #b45309;
+    }
+
+    .callout-danger {
+      background: #fef2f2;
+      border-left: 4px solid #ef4444;
+      color: #b91c1c;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 8.5pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #e2e8f0;
+      padding: 7px 9px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* Terminal Box */
+    .terminal-box {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: 'Fira Code', monospace;
+      font-size: 8pt;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      overflow-x: hidden;
+      line-height: 1.45;
+    }
+
+    .terminal-box code {
+      color: #38bdf8;
+    }
+
+    .toc-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 18px 24px;
+      margin-bottom: 28px;
+      page-break-inside: avoid;
+    }
+
+    .toc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13pt;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      column-count: 2;
+      column-gap: 24px;
+    }
+
+    .toc-list li {
+      margin-bottom: 6px;
+      font-size: 8.5pt;
+      color: #334155;
+    }
+
+    .toc-list a {
+      color: #0284c7;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    @media print {
+      .no-print, .lang-switcher {
+        display: none !important;
+      }
+      .manual-page {
+        max-width: 100%;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="manual-page">
+
+  <!-- ==================== SCREEN-ONLY LANGUAGE SWITCHER ==================== -->
+  <div class="no-print" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #e2e8f0;">
+    <div style="display: flex; align-items: center; gap: 12px; font-size: 8.5pt;">
+      <a href="index.html" style="font-weight: 700; color: #0284c7; text-decoration: none;">&larr; GEMS Documentatieportaal</a>
+      <span style="color: #cbd5e1;">|</span>
+      <a href="gems-installer-manual-nl.pdf" style="font-weight: 600; color: #475569; text-decoration: none;">📄 PDF Downloaden</a>
+    </div>
+    <div class="lang-switcher no-print" aria-label="Taalkeuze">
+      <a href="../gems-installer-manual.html">EN</a>
+      <a href="gems-installer-manual-nl.html" class="active">NL</a>
+      <a href="../fr/gems-installer-manual-fr.html">FR</a>
+    </div>
+  </div>
+
+  <!-- ==================== COVER PAGE ==================== -->
+  <div class="cover-page">
+    <div>
+      <div class="cover-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px;">
+        <img src="../assets/new_energy_grid_logo.png" alt="New Energy Grid" style="height: 42px; width: auto; object-fit: contain;">
+        <div class="cover-badge" style="margin-bottom: 0;">⚡ VELDINSTALLATIE- &amp; INBEDRIJFSTELLINGSHANDLEIDING</div>
+      </div>
+      <h1 class="cover-title">GEMS Installateurshandleiding</h1>
+      <div class="cover-subtitle">Volledige Technische Veldgids: Hardware-assemblage, Lokale Subnet- &amp; Seriële Detectie, 170 Toesteltemplates, Meerfasige Netlimieten, Dynamische Contractwizards en Optimalisatiestrategie</div>
+
+      <div class="cover-meta-grid">
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Systeemfirmware / Build</span>
+          <span class="cover-meta-val" data-version-tag="release">v9.38.1-release</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Hardware-architectuur</span>
+          <span class="cover-meta-val">Raspberry Pi 5 (ARM64) + M.2 NVMe HAT</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Doelgroep</span>
+          <span class="cover-meta-val">Gecertificeerde Elektriciens, PV- &amp; Batterij-installateurs</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Documentatierevisie</span>
+          <span class="cover-meta-val">November 2026 • Editie met 170 Templates</span>
+        </div>
+      </div>
+
+      <div class="cover-hero-img">
+        <img src="../assets/screenshots/dashboard.png" alt="GEMS Dashboard Desktop">
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <span>GEMS Energiebeheersysteem (GRID-EMS)</span>
+      <span>Vertrouwelijke Technische Veldreferentie • Documentatie v9.38.1</span>
+    </div>
+  </div>
+
+  <!-- ==================== TABLE OF CONTENTS ==================== -->
+  <div class="toc-box">
+    <div class="toc-title">Inhoudsopgave</div>
+    <ul class="toc-list">
+      <li><strong>1.</strong> <a href="#sec-overview">Hardware-architectuur &amp; Stuklijst (BOM)</a></li>
+      <li><strong>2.</strong> <a href="#sec-nvme">NVMe-bootloaderconfiguratie &amp; EEPROM Flashen</a></li>
+      <li><strong>3.</strong> <a href="#sec-deployment">OS-implementatie &amp; Systeemservicebeheer</a></li>
+      <li><strong>4.</strong> <a href="#sec-remote">Toegang op afstand (Cockpit, Kiosk, VNC, Nginx)</a></li>
+      <li><strong>5.</strong> <a href="#sec-scanner">Subnet- &amp; Seriële Hardwaredetectie (De Scanner)</a></li>
+      <li><strong>6.</strong> <a href="#sec-devices">Toestellen Koppelen &amp; De 170 Templates</a></li>
+      <li><strong>7.</strong> <a href="#sec-grid">Netaansluiting, Faselimieten &amp; Netstelsels</a></li>
+      <li><strong>8.</strong> <a href="#sec-contracts">Energiecontracten &amp; De 5 Tariefwizards</a></li>
+      <li><strong>9.</strong> <a href="#sec-strategy">Optimalisatiestrategie &amp; Vlaamse Piekbewaking</a></li>
+      <li><strong>10.</strong> <a href="#sec-gsc">Vlaamse Groenestroomcertificaten (GSC) Bescherming</a></li>
+      <li><strong>11.</strong> <a href="#sec-iec104">Fluvius Telecontrole (IEC 60870-5-104)</a></li>
+      <li><strong>12.</strong> <a href="#sec-battery-rules">Batterij-arbitrage &amp; Prioriteitsregels</a></li>
+      <li><strong>13.</strong> <a href="#sec-ev">EV-laden: Modbus TCP vs. Native OCPP</a></li>
+      <li><strong>14.</strong> <a href="#sec-relays">Slimme Relais &amp; Warmtepomp SG-Ready Sturing</a></li>
+      <li><strong>15.</strong> <a href="#sec-alerts">Meldingen, Webhooks &amp; Geautomatiseerde PDF-rapporten</a></li>
+      <li><strong>16.</strong> <a href="#sec-maint">Diagnose, Opleveringstest, Updates &amp; Aftekening</a></li>
+    </ul>
+  </div>
+
+  <!-- ==================== 1. HARDWARE ARCHITECTURE & BOM ==================== -->
+  <h1 class="section-title" id="sec-overview">1. Hardware-architectuur &amp; Stuklijst (BOM)</h1>
+  <p>
+    GEMS is een autonome, lichtgewicht edge-controller ontwikkeld in Go (Golang) en Vue 3. Het systeem draait volledig op het lokale netwerk van de eindklant zonder enige verplichte cloud- of abonnementsafhankelijkheid. Om het klassieke faalpunt van slijtage aan MicroSD-kaarten in verdeelborden definitief uit te sluiten, draait GEMS uitsluitend vanaf een industriële <strong>M.2 NVMe SSD</strong> met SQLite geconfigureerd in Write-Ahead Logging (WAL)-modus.
+  </p>
+
+  <h2 class="subsection-title">Referentie-hardware Stuklijst (Bill of Materials)</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width: 22%;">Onderdeel</th>
+        <th style="width: 38%;">Specificatie &amp; Onderdeelreferentie</th>
+        <th style="width: 40%;">Praktijkadvies &amp; Afwegingen bij Installatie</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Host Single Board Computer</strong></td>
+        <td>Raspberry Pi 5 (4GB of 8GB RAM, Broadcom BCM2712 Quad-core Cortex-A76)</td>
+        <td>
+          <strong>Waarom Pi 5:</strong> Beschikt over een rechtstreekse 16-pins PCIe 2.0-interface. Het geheugengebruik blijft &lt; 150 MB RAM bij 100 gelijktijdige Modbus-polls. 4GB is optimaal; 8GB biedt extra marge voor langdurige lokale meetreeksen.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Interne Solid State Drive</strong></td>
+        <td>128GB tot 512GB M.2 2280 of 2230/2242 PCIe NVMe SSD (TLC / 3D NAND)</td>
+        <td>
+          <strong>Waarom NVMe:</strong> Levert 450+ MB/s sequentiële schrijfsnelheid en 50.000+ IOPS. Elimineert flash-slijtage bij hoogfrequente timeseries-databaseregistratie. <em>Gebruik nooit MicroSD-kaarten voor productie-installaties.</em>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>M.2 PCIe HAT-adapter</strong></td>
+        <td>Officiële Raspberry Pi M.2 HAT+ of Pimoroni NVMe Base</td>
+        <td>
+          Wordt rechtstreeks bovenop de 40-pins GPIO-header of onder de Pi gemonteerd. Controleer dat de 16-pins FPC-lintkabel recht is geplaatst met de vergulde contacten gericht naar de printplaatcontacten.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Voedingseenheid (PSU)</strong></td>
+        <td>Officiële Raspberry Pi 27W USB-C PD (5,1V / 5,0A Power Delivery)</td>
+        <td>
+          <strong>Cruciaal:</strong> Standaard 15W-telefoonladers veroorzaken onderspanningsuitval (brownouts) zodra de NVMe-schijf piekstroom trekt tijdens schrijfacties.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Behuizing &amp; DIN-railmontage</strong></td>
+        <td>Aluminium Armor-behuizing met Active Cooler-ventilator + DIN-rail montageclip</td>
+        <td>
+          Houdt de kerntemperatuur onder 48°C in gesloten elektrische verdeelkasten (conform AREI / NEN 1010). De Active Cooler-ventilatorsnelheid wordt dynamisch via PWM door de Linux-kernel aangestuurd.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Seriële Veldbusadapter</strong></td>
+        <td>FTDI FT232R / FT232RL USB-naar-RS485 met 2,5 kV galvanische scheiding of P1-kabel</td>
+        <td>
+          Vereist voor Modbus RTU (Eastron, Carlo Gavazzi, Solis, RAEDIAN) of rechtstreekse RJ12 P1-poortuitlezing. Galvanische scheiding voorkomt aardlussen tussen de omvormer en de Raspberry Pi.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 2. NVME BOOTLOADER SETUP ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-nvme">2. NVMe-bootloaderconfiguratie &amp; EEPROM Flashen</h1>
+  <p>
+    Standaard worden Raspberry Pi 5-eenheden af fabriek geleverd met een opstartvolgorde die enkel vanaf MicroSD start (boot order <code>0xf41</code>). Om rechtstreeks vanaf een M.2 NVMe SSD op te starten zonder geplaatste MicroSD-kaart, moet de Raspberry Pi EEPROM eenmalig worden bijgewerkt.
+  </p>
+
+  <div class="decision-box">
+    <div class="decision-title">📋 Keuzegids: Hoe bereidt u de hardware voor?</div>
+    <div class="decision-grid">
+      <div class="decision-item">
+        <div class="decision-item-title">Optie 1: In het Atelier / Magazijn (Snelst)</div>
+        <div class="decision-item-desc">Gebruik een USB M.2 NVMe-adapterbehuizing aan uw laptop. Flash de voorgeconfigureerde GEMS OS-image rechtstreeks naar de SSD met BalenaEtcher of Raspberry Pi Imager. Duurt circa 2 minuten.</div>
+      </div>
+      <div class="decision-item">
+        <div class="decision-item-title">Optie 2: Op Locatie bij de Klant</div>
+        <div class="decision-item-desc">Bewaar een vaste service-MicroSD-kaart met de Raspberry Pi EEPROM-bootutility in uw gereedschapskoffer. Start de Pi eenmalig op met deze kaart om PCIe NVMe-opstarten permanent te activeren.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-title">🌟 EEPROM-instelprocedure in 3 Minuten</div>
+    <ol style="margin: 6px 0 0 16px; padding: 0;">
+      <li>Plaats een tijdelijke MicroSD-kaart in uw laptop.</li>
+      <li>Open <strong>Raspberry Pi Imager</strong> &rarr; Kies toestel (<em>Choose Device</em>): <strong>Raspberry Pi 5</strong>.</li>
+      <li>Kies besturingssysteem (<em>Choose OS</em>): <strong>Misc utility images &rarr; Bootloader &rarr; NVMe/PCIe Boot</strong>.</li>
+      <li>Selecteer de MicroSD-kaart, klik op <strong>Write</strong> en plaats het kaartje in de Raspberry Pi 5.</li>
+      <li>Schakel de spanning in met de officiële 27W-voeding. Binnen 5 seconden knippert de groene ACT-LED snel en kleurt het aangesloten HDMI-scherm <strong>effen groen</strong>.</li>
+      <li>Koppel de voeding los en verwijder de MicroSD-kaart. De Pi 5 staat nu permanent ingesteld op <code>BOOT_ORDER=0xf461</code> en start voortaan automatisch op vanaf de NVMe SSD!</li>
+    </ol>
+  </div>
+
+  <h2 class="subsection-title">PCIe Gen 3.0 Snelheden Inschakelen (Optionele Atelieroptimalisatie)</h2>
+  <p>
+    Standaard werkt de PCIe-bus van de Pi 5 op Gen 2.0-snelheid (500 MB/s). Om PCIe Gen 3.0 te activeren (tot 850 MB/s), bewerkt u <code>/boot/firmware/config.txt</code> en voegt u het volgende toe:
+  </p>
+  <div class="terminal-box">
+    # Schakel PCIe Gen 3.0 snelheden in<br>
+    dtparam=pciex1<br>
+    dtparam=pciex1_gen=3
+  </div>
+
+  <!-- ==================== 3. OS DEPLOYMENT & SERVICES ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-deployment">3. OS-implementatie &amp; Systeemservicebeheer</h1>
+  <p>
+    Installateurs kunnen GEMS uitrollen via twee goedgekeurde installatiemethoden:
+  </p>
+
+  <h2 class="subsection-title">Vergelijking van Implementatiemethoden</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Kenmerk</th>
+        <th>Methode A: Voorgebouwde GEMS OS-image (.img.xz)</th>
+        <th>Methode B: Debian-pakket (.deb) op Standaard OS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Aanbevolen voor</strong></td>
+        <td>Nieuwe sleutel-op-de-deur hardware-installaties</td>
+        <td>Bestaande Debian- / Raspberry Pi OS-installaties</td>
+      </tr>
+      <tr>
+        <td><strong>Kiosk-touchscreen</strong></td>
+        <td>Voorgeconfigureerde Wayfire Wayland-browser op volledig scherm</td>
+        <td>Handmatige browserconfiguratie vereist</td>
+      </tr>
+      <tr>
+        <td><strong>Reverse Proxy</strong></td>
+        <td>Voorgeïnstalleerde Nginx (Poort 80/443 &rarr; 8080) met WebSockets</td>
+        <td>Standaard directe backend op poort 8080</td>
+      </tr>
+      <tr>
+        <td><strong>Webbeheer op afstand</strong></td>
+        <td>Voorgeïnstalleerde Cockpit op poort 9090</td>
+        <td>Optioneel te installeren via <code>apt install cockpit</code></td>
+      </tr>
+      <tr>
+        <td><strong>Installatieduur</strong></td>
+        <td>~3 minuten (directe SSD-flash)</td>
+        <td>~5 minuten (pakketdownload en dpkg-installatie)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="subsection-title">Methode B: Installatiecommando's voor het Debian-pakket</h2>
+  <div class="terminal-box">
+    # 1. Download het nieuwste officiële ARM64-releasepakket<br>
+    TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)<br>
+    curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"<br>
+    <br>
+    # 2. Installeer pakket en afhankelijkheden (bijv. sudo dpkg -i gems_9.38.1_arm64.deb)<br>
+    sudo dpkg -i "gems_${TAG#v}_arm64.deb"<br>
+    sudo apt-get install -f -y<br>
+    <br>
+    # 3. Controleer de actieve systemd-achtergrondservices<br>
+    sudo systemctl status gems.service gems-updater.path
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-title">📂 Systeembestandslocaties</div>
+    <ul style="margin: 4px 0 0 16px; padding: 0;">
+      <li><strong>Executable &amp; Webbundel:</strong> <code>/opt/gems/gems-server</code> &amp; <code>/opt/gems/dist/</code></li>
+      <li><strong>Configuratieopslag:</strong> 100% UI-gestuurd in SQLite (geen handmatige tekstbestanden nodig)</li>
+      <li><strong>SQLite WAL-database:</strong> <code>/opt/gems/gems.db</code> (met bijbehorend <code>gems.db-wal</code>)</li>
+      <li><strong>Systeemgebruiker:</strong> Draait onder niet-geprivilegieerde gebruiker <code>gems</code> met toegang tot de <code>dialout</code>-groep voor seriële poorten.</li>
+    </ul>
+  </div>
+
+  <!-- ==================== 4. REMOTE ACCESS & COCKPIT ==================== -->
+  <h1 class="section-title" id="sec-remote">4. Toegang op afstand, Cockpit &amp; Kiosk-scherm</h1>
+  <p>
+    Zodra de controller in het verdeelbord is gemonteerd, zijn een fysiek toetsenbord of beeldscherm volledig overbodig. De technicus heeft via het netwerk toegang tot alle diagnostische en operationele hulpmiddelen:
+  </p>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/dashboard.png" alt="GEMS Dashboard Desktop">
+      <div class="manual-screenshot-caption">Figuur 4.1: Primaire Webinterface (Poort 80 / 8080).</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_system_info.png" alt="Systeeminformatie Console">
+      <div class="manual-screenshot-caption">Figuur 4.2: Systeemidentiteit, Netwerkconfiguratie &amp; Buildversie.</div>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Toegangsinterface</th>
+        <th>URL / Eindpunt</th>
+        <th>Standaard Aanmeldgegevens</th>
+        <th>Primair Gebruiksdoel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>GEMS Web-UI</strong></td>
+        <td><code>https://ems.local</code> (LAN) of <code>http://ems.local</code> (Kiosk)</td>
+        <td>Geen login voor Dashboard &amp; EV-modus; <strong>Installateurs-PIN</strong> voor Instellingen</td>
+        <td>Dagelijks energiedashboard, toestelconfiguratie, energiecontracten en strategieregels.</td>
+      </tr>
+      <tr>
+        <td><strong>GRID-EMS-SERVER (Cloud)</strong></td>
+        <td><code>https://ems.newenergygrid.com</code></td>
+        <td>Koppelingstoken (Instellingen &rarr; Cloudserver)</td>
+        <td>Optioneel centraal vlootbeheer over meerdere locaties, diagnose op afstand en mobiele weergave.</td>
+      </tr>
+      <tr>
+        <td><strong>Cockpit Webconsole</strong></td>
+        <td><code>https://&lt;IP-ADRES&gt;:9090</code></td>
+        <td>Geprovisioneerd Linux-beheerdersaccount</td>
+        <td>Browserterminal, NVMe SMART-gezondheidsstatus, OS-diagnose en herstart (wijzig het initiële wachtwoord bij oplevering).</td>
+      </tr>
+      <tr>
+        <td><strong>Raspberry Pi Connect</strong></td>
+        <td><code>https://connect.raspberrypi.com</code></td>
+        <td>Raspberry Pi ID van de installateur</td>
+        <td>Beveiligde supportverbinding op afstand zonder port-forwarding (onbeheerd schermdelen standaard uitgeschakeld).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="subsection-title">4.1 Optionele Cloudsynchronisatie (GRID-EMS-SERVER)</h2>
+  <p>
+    Installateurs kunnen klantcontrollers koppelen aan het centrale cloudplatform <strong>GRID-EMS-SERVER</strong> (<code>https://ems.newenergygrid.com</code>).
+  </p>
+  <div class="callout callout-info">
+    <div class="callout-title">💡 Lokale Edge-autonomie &amp; 100% Optionele Cloudkoppeling</div>
+    <p>
+      GEMS is ontworpen volgens een <strong>local-first architectuurgarantie</strong>. Cloudconnectiviteit is <strong>100% optioneel</strong>: de eenheid werkt volledig autonoom en voert sub-seconde Dynamic Load Balancing (DLB), omvormer-terugregeling, batterij-arbitrage en relaissturing lokaal uit zonder enige cloudafhankelijkheid. Wanneer gekoppeld, biedt het versleuteld vloottoezicht en stuurcommando's op afstand zonder open routerpoorten.
+    </p>
+  </div>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Snelle Koppeling:</strong> Ga naar <strong>Instellingen &rarr; Cloudserver</strong>, voer het 16-cijferige koppelingstoken in en klik op <em>Nu koppelen &amp; verbinden</em>. De registratie is binnen 15 seconden voltooid.</li>
+    <li><strong>Uitsluitend Uitgaande TLS 1.3:</strong> Edge-controllers bouwen zelf uitgaande HTTPS-verbindingen op. Inkomende port-forwarding op de klantrouter, vaste publieke IP-adressen of DDNS zijn nooit vereist.</li>
+    <li><strong>Vlootsturing op Afstand:</strong> Beheerders kunnen op afstand strategiemodi aanpassen, batterijstatussen bijsturen, EV-laadstromen begrenzen en diagnostische controles starten.</li>
+  </ul>
+
+  <h2 class="subsection-title">4.2 Lokale CA-certificering &amp; Waarschuwingsvrij HTTPS (localhost, ems.local &amp; Eigen Domeinen)</h2>
+  <p>
+    Moderne browsers blokkeren standaard zelfondertekende certificaten met beveiligingswaarschuwingen (zoals <code>NET::ERR_CERT_AUTHORITY_INVALID</code>). Voor een naadloze, veilige gebruikers- en installateurservaring met groen slotje bevat GEMS een ingebouwde <strong>Lokale Certificate Authority (CA)-engine</strong>.
+  </p>
+
+  <div class="callout callout-info">
+    <div class="callout-title">🔒 Automatische SAN-dekking &amp; Dynamisch Herladen Zonder Onderbreking</div>
+    <p>
+      GEMS vult automatisch alle Subject Alternative Names (SAN's) in voor loopback-adressen (<code>localhost</code>, <code>127.0.0.1</code>, <code>::1</code>), standaard mDNS-hostnamen (<code>ems.local</code>, <code>gems.local</code>, <code>*.ems.local</code>, <code>*.gems.local</code>), actieve lokale netwerk-IP's én elk geconfigureerd lokaal domein (bijv. <code>myems.lan</code>). Bij toevoeging van eigen domeinen genereert GEMS het certificaat direct opnieuw en herlaadt dit live zonder onderbreking van de energiesturing.
+    </p>
+  </div>
+
+  <table class="data-table" style="margin-top: 12px;">
+    <thead>
+      <tr>
+        <th style="width: 25%;">Taak</th>
+        <th style="width: 40%;">Methode / Eindpunt</th>
+        <th style="width: 35%;">Uitvoering &amp; Toelichting</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Root-CA Downloaden</strong></td>
+        <td><code>http://&lt;ip&gt;:8080/api/ca.crt</code> (of <code>/ca.crt</code>)</td>
+        <td>Download het publieke Root-CA-certificaat rechtstreeks naar smartphone, tablet of laptop.</td>
+      </tr>
+      <tr>
+        <td><strong>Geautomatiseerde Linux / NSS-setup</strong></td>
+        <td><code>./scripts/setup-local-ca.sh [eigen domeinen...]</code></td>
+        <td>Automatiseert certificaataanmaak en registreert de CA in Chrome NSS (<code>~/.pki/nssdb</code>) en Firefox.</td>
+      </tr>
+      <tr>
+        <td><strong>Eigen Domeinen via Web-UI</strong></td>
+        <td><strong>Instellingen &rarr; Systeeminformatie &rarr; Lokale CA &amp; SSL-certificaat</strong> <em>(Installateursmodus)</em></td>
+        <td>Ontgrendel de Gecertificeerde Installateursmodus, voer kommagescheiden domeinen in en klik op <em>Opslaan &amp; Certificaat Vernieuwen</em>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 5. SUBNET & SERIAL HARDWARE DISCOVERY ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-scanner">5. Subnet- &amp; Seriële Poort Hardwaredetectie (De Scanner)</h1>
+  <p>
+    In plaats van handmatig router-IP-adressen, USB-seriële paden, RS-485 baudrates of Modbus Slave ID's te moeten opzoeken, gebruikt u de ingebouwde <strong>Scanner</strong> in de hoofdnavigatiebalk (beschikbaar zodra de <strong>Gecertificeerde Installateursmodus</strong> is ontgrendeld).
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/scanner.png" alt="Seriële Bus en Subnet Hardwarescanner">
+    <div class="manual-screenshot-caption">Figuur 5.1: Hardwarescanner die automatisch RS-485 Modbus RTU-toestellen (Solis Hybride Omvormer, RAEDIAN Wallbox), DSMR P1-slimme meters en lokale /24 LAN-toestellen identificeert.</div>
+  </div>
+
+  <h2 class="subsection-title">Seriële Poort &amp; RS-485 Busscanner</h2>
+  <p>
+    Klikken op <strong>"Seriële poorten scannen"</strong> controleert alle aangesloten USB-P1-kabels, USB-RS485-adapters (vaste <code>/dev/serial/by-id/*</code>-paden) en onboard UART-interfaces zonder reeds actieve toestelpollers te onderbreken:
+  </p>
+  <ol style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>DSMR / e-MUCS P1 Slimme Meters:</strong> Luistert automatisch naar live digitale metertelegrammen op <code>115200 8N1</code> en <code>9600 7E1</code> inclusief CRC-16 controlesomverificatie.</li>
+    <li><strong>RS-485 Modbus RTU Energietoestellen:</strong> Detecteert automatisch aangesloten omvormers (bijv. <strong>Solis</strong> S5/S6 Hybrid), EV-laadpalen (bijv. <strong>RAEDIAN</strong> NEO / NEX) en DIN-rail energiemeters over gangbare baudrates en pariteitsinstellingen, met een optionele <strong>Geavanceerde RS-485 busscan</strong> voor aangepaste multi-drop Slave ID-bereiken (<code>1–247</code>).</li>
+    <li><strong>1-Klik Seriële Koppeling:</strong> Klikken op <strong>"+ Configureren"</strong> naast een gedetecteerd serieel toestel opent <strong>Instellingen &rarr; Toestellen</strong> en vult automatisch de categorie, het geverifieerde hardwaretemplate, het vaste seriële poortpad, het Modbus Slave ID, de baudrate en de pariteit in. U kunt ook rechtstreeks in het toevoegvenster op <strong>"Seriële toestellen detecteren"</strong> of <strong>"Automatisch detecteren"</strong> klikken.</li>
+  </ol>
+
+  <h2 class="subsection-title">Lokale Subnet LAN-detectie</h2>
+  <p>
+    Wanneer u op <strong>"Subnet scannen"</strong> klikt, voert GEMS een meerfasige netwerkscan uit over het volledige lokale <code>/24</code>-subnet (254 hostadressen):
+  </p>
+  <ol style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Automatische GEMS-controller Zelfherkenning:</strong> GEMS herkent automatisch zijn eigen lokale IPv4- en hardware-MAC-adres op het netwerk en markeert deze rij met <code>THIS GEMS CONTROLLER</code> (<em>New Energy Grid — GEMS Edge Energy Controller</em>).</li>
+    <li><strong>Multicast- &amp; Buurtabel-scan:</strong> Combineert lokale ARP-/buurtabellen met mDNS- en UPnP/SSDP-broadcasts om hostnamen en modelbeschrijvingen op te halen.</li>
+    <li><strong>Multi-Mask IEEE OUI-herkenning (24-, 28- en 36-bit):</strong> Vergelijkt hardware-MAC-adressen met zowel gespecialiseerde energieregisters als de volledige IEEE MA-L / MA-M / MA-S database (bijv. <em>Solis</em>, <em>RAEDIAN</em>, <em>SMA</em>, <em>Shelly</em>).</li>
+    <li><strong>Protocol- &amp; OEM-fingerprinting:</strong> Bij toestellen met generieke ingebouwde Wi-Fi-/Ethernet-communicatiemodules inspecteert GEMS openstaande energiepoorten (<code>502</code>/<code>1502</code> Modbus TCP &amp; SunSpec Model 1 / Device ID, <code>80</code>/<code>443</code>/<code>8080</code> HTTP/TLS-eindpunten en <code>8887</code> OCPP) om de werkelijke fabrikant en het model te tonen, met strikt respect voor single-socket Modbus TCP-dongles.</li>
+  </ol>
+
+  <!-- ==================== 6. ADDING & CONFIGURING DEVICES ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-devices">6. Toestellen Koppelen &amp; De 170 Hardwaretemplates</h1>
+  <p>
+    GEMS beschikt over een ingebouwde bibliotheek van <strong>170 native hardwaretemplates</strong> voor alle gangbare Europese zonne-omvormers, thuisbatterijen, slimme meters, EV-laadpalen, lineaire zonneboilers/diverters, SG-Ready warmtepompen en slimme relais. Alle configuratie gebeurt 100% via de grafische webinterface zonder handmatige tekstbestanden.
+  </p>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_devices.png" alt="Geconfigureerde Toestellenlijst">
+      <div class="manual-screenshot-caption">Figuur 6.1: Overzicht van gekoppelde energietoestellen met live verbindings- en uitleesstatus.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_devices_add_modal.png" alt="Categorie-keuzevenster">
+      <div class="manual-screenshot-caption">Figuur 6.2: Keuzewizard voor toestelcategorieën.</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Stapsgewijze Handleiding voor Toestelkoppeling</h2>
+  <ol style="margin: 6px 0 14px 18px; padding: 0;">
+    <li>Ga naar <strong>Instellingen &rarr; Toestellen</strong>.</li>
+    <li>Klik op <strong>"+ Nieuw energietoestel toevoegen"</strong>.</li>
+    <li>Kies de gewenste toestelcategorie (<em>Omvormers &amp; Zon</em>, <em>Slimme Meters</em>, <em>EV-laadpalen</em> of <em>Slimme Relais</em>).</li>
+    <li>Selecteer het juiste hardwaretemplate uit de keuzelijst.</li>
+    <li>Vul de communicatieparameters in volgens onderstaande tabellen.</li>
+    <li>Klik op <strong>"Opslaan"</strong>. De backend start onmiddellijk de uitlezing en wijzigt de status naar <strong>● Online</strong>.</li>
+  </ol>
+
+  <div class="callout callout-tip" style="margin: 10px 0 16px 0;">
+    <div class="callout-title">Testen &amp; Simulatie: 1-Klik Demotoestellen</div>
+    <div class="callout-body">
+      Om de EMS-regellus te testen, Dynamic Load Balancing te verifiëren of het geanimeerde energiestroomschema te demonstreren voordat de fysieke hardware onder spanning staat, klikt u in het tabblad Toestellen op <strong>"🧪 Quick Add Demo Kit"</strong>. Dit configureert met één klik een gecoördineerde set van 4 testtoestellen (Slimme Meter, Zonne-omvormer, Thuisbatterij en EV-laadpaal) met realistische fysische simulaties en dynamisch variërende meetwaarden. Individuele demotemplates (<code>demo_meter</code>, <code>demo_solar</code>, <code>demo_battery</code>, <code>demo_charger</code>, <code>demo_relay</code>) kunnen ook afzonderlijk per categorie worden geselecteerd.
+    </div>
+  </div>
+
+  <!-- Inverters -->
+  <h2 class="subsection-title">Categorie A: Zonne- &amp; Hybride Omvormers (Modbus TCP / RTU)</h2>
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_devices_inverter_form.png" alt="Configuratieformulier Zonne-omvormer">
+    <div class="manual-screenshot-caption">Figuur 6.3: Configuratievenster voor omvormers met Modbus TCP/RTU, Slave ID, nominaal vermogen en batterijopties.</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Veldnaam</th>
+        <th>Veldtype</th>
+        <th>Uitleg voor Installateur &amp; Wanneer Kiezen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>Toestelnaam</code></td>
+        <td>Tekst</td>
+        <td>Herkenbare naam op het dashboard (bijv. <em>"Solis S6-EH3P10K Hybrid"</em>).</td>
+      </tr>
+      <tr>
+        <td><code>Hardwaretemplate</code></td>
+        <td>Keuzelijst</td>
+        <td>
+          Selecteer uw fabrikant (primaire referentietemplate: <strong>Solis 5G/S6 Hybrid</strong>; ondersteunt tevens Huawei, SMA, Enerlution, Fronius, SolarEdge, Sungrow, GoodWe, Victron of Generieke SunSpec). Badges tonen <code>✓ Geverifieerd</code>, <code>1F↔3F</code> of <code>Enkel uitlezing</code>.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Host-IP / Seriële Poort</code></td>
+        <td>IPv4 of <code>/dev/serial/by-id/*</code></td>
+        <td>Lokaal IP-adres van de Ethernet-/LAN-dongle van de omvormer (bijv. <code>192.168.1.120</code>) of het vaste USB-RS485 seriële pad (<code>/dev/serial/by-id/*</code> met baudrate <code>9600</code>/<code>115200</code> en pariteit <code>8N1</code>).</td>
+      </tr>
+      <tr>
+        <td><code>Modbus-poort</code></td>
+        <td>Geheel getal</td>
+        <td>Standaard Modbus TCP-poort is <strong>502</strong> (of <strong>1502</strong> / <strong>8899</strong> op specifieke gateways).</td>
+      </tr>
+      <tr>
+        <td><code>Modbus Slave ID</code></td>
+        <td>Geheel getal (1–247)</td>
+        <td>Unit-ID op de RS-485/TCP-bus. <strong>Solis</strong> staat standaard op <strong>1</strong>. Wijs unieke Slave ID's toe (<code>1</code>, <code>2</code>, <code>3</code>) wanneer meerdere toestellen in daisy-chain op één RS-485-bus zijn aangesloten.</td>
+      </tr>
+      <tr>
+        <td><code>Nominaal Vermogen (kW)</code></td>
+        <td>Decimaal (kW)</td>
+        <td>
+          <strong>Cruciaal:</strong> Voer het nominale AC-vermogen van de omvormer in (bijv. <code>10.0</code> voor een 10 kW Solis-omvormer). GEMS gebruikt deze waarde om procentuele stuurcommando's voor actieve terugregeling (curtailment) exact te schalen.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Fase-aansluiting</code></td>
+        <td>Keuzelijst</td>
+        <td>
+          Koppelt de fysieke fasevolgorde: <code>Auto</code>, enkelfasig (<code>L1</code>, <code>L2</code>, <code>L3</code>) of driefasige faserotatie (<code>L1-L2-L3</code>, <code>L2-L3-L1</code>, <code>L3-L1-L2</code>) voor nauwkeurige per-fase hoofdzekeringbewaking.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Terugregeling toestaan</code></td>
+        <td>Selectievakje</td>
+        <td>
+          <strong>Wanneer aanvinken:</strong> Wanneer de klant een dynamisch energiecontract heeft en u wilt dat GEMS de PV-productie automatisch terugregelt tijdens negatieve terugleverprijzen of voor zero-export neteisen.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Eigen Netmeter Aangesloten?</code></td>
+        <td>Selectievakje</td>
+        <td>
+          <strong>Wanneer aanvinken:</strong> Vink aan als de hybride omvormer een eigen CT-energiemeter rechtstreeks op de omvormer heeft aangesloten. <strong>Wanneer uitvinken:</strong> Als er geen eigen omvormermeter aanwezig is—GEMS stuurt het batterij-zelfverbruik dan automatisch aan op basis van de centrale digitale P1-meter!
+        </td>
+      </tr>
+      <tr>
+        <td><code>Batterij Aangesloten? &amp; Capaciteit (kWh)</code></td>
+        <td>Selectievakje + Decimaal</td>
+        <td>
+          <strong>Wanneer aanvinken:</strong> Vink aan wanneer een DC-gekoppelde thuisbatterij op de hybride omvormer is aangesloten en voer de bruikbare opslagcapaciteit in kWh in (bijv. <code>10.0 kWh</code>) voor nauwkeurige zonneprognose- en laadberekeningen.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Uitleesinterval (s)</code></td>
+        <td>Geheel getal (seconden)</td>
+        <td>
+          Standaard <strong>2 seconden</strong> voor snelle regeling zonder seriële of TCP-transceivers te overbelasten.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Smart Meters -->
+  <div class="page-break"></div>
+  <h2 class="subsection-title">Categorie B: Slimme Netmeters (P1 Serieel, Wi-Fi Bridges &amp; Modbus)</h2>
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_devices_meter_form.png" alt="Configuratievenster Slimme Meter">
+    <div class="manual-screenshot-caption">Figuur 6.4: Configuratievenster voor slimme meters met ondersteuning voor P1-seriële kabels, Wi-Fi-dongles en Modbus DIN-railmeters.</div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Type Meterverbinding</th>
+        <th>Ondersteunde Templates</th>
+        <th>Veldwaarden &amp; Installatieopmerkingen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Directe Seriële P1-kabel</strong></td>
+        <td>Fluvius / DSMR P1 Serieel (België &amp; Nederland)</td>
+        <td>
+          Selecteer het vaste pad <code>/dev/serial/by-id/...</code> (of <code>/dev/ttyUSB0</code>). Baudrate: <code>115200</code> (DSMR 5.0.2 / e-MUCS v1.4) of <code>9600</code> (DSMR 4.2). GEMS valideert automatisch de CRC-controlesommen van elk P1-telegram.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>P1 Wi-Fi-dongle (REST/TCP)</strong></td>
+        <td>HomeWizard P1 Meter, ESP8266/ESP32 P1 Bridge</td>
+        <td>
+          Voer het lokale IP-adres van de dongle in (bijv. <code>192.168.1.121</code>). Poort <code>80</code> (REST API) of poort <code>8234</code> (raw TCP seriële stream). Geen fysieke bekabeling naar de Raspberry Pi vereist!
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Modbus RTU / TCP DIN-meters</strong></td>
+        <td>Eastron SDM630 3-Fase, Carlo Gavazzi EM24, Schneider iEM3000, Shelly 3EM / Pro 3EM</td>
+        <td>
+          Modbus RTU: USB-naar-RS485-adapter op 9600 baud, 8N1, Slave ID <code>1</code>. Modbus TCP: Voer het bridge-IP en poort <code>502</code> in. Shelly Pro 3EM: Voer het toestel-IP en poort <code>80</code> in.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- EV Chargers -->
+  <h2 class="subsection-title">Categorie C: EV-laadpalen (Modbus TCP vs. Native OCPP)</h2>
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_devices_charger_form.png" alt="Configuratievenster EV-laadpaal">
+    <div class="manual-screenshot-caption">Figuur 6.5: Configuratievenster voor EV-laadpalen met voorkeursoptie Modbus TCP/RTU en native OCPP 1.6-J.</div>
+  </div>
+
+  <div class="decision-box">
+    <div class="decision-title">⚡ Keuzegids: Modbus TCP vs. OCPP voor EV-laadpalen (Referentie: RAEDIAN NEO / NEX)</div>
+    <div class="decision-grid">
+      <div class="decision-item" style="border-left: 3px solid #10b981;">
+        <div class="decision-item-title">Modbus TCP / RTU (Aanbevolen Voorkeursmethode)</div>
+        <div class="decision-item-desc">
+          <strong>Sub-seconde respons:</strong> Regelt laadstroom van 6A tot 32A bij in minder dan 200 ms.<br>
+          <strong>Naadloze split-billing met werkgever:</strong> Laat de bestaande cloud-OCPP-verbinding van de laadpaal (externe CPO-facturatieplatformen of terugbetalingsdiensten van werkgevers) volledig intact. Beide werken gelijktijdig!
+        </div>
+      </div>
+      <div class="decision-item" style="border-left: 3px solid #0284c7;">
+        <div class="decision-item-title">Native OCPP 1.6-J (Alternatief / Pass-Through Proxy)</div>
+        <div class="decision-item-desc">
+          Gebruik wanneer de laadpaal via OCPP WebSocket verbindt of in combinatie met de <strong>Straight-Through OCPP Smart Forwarder</strong>. Verwijs de laadpaal naar <code>ws://&lt;GEMS-IP&gt;:8887/&lt;ID&gt;</code> (of <code>ws://ems.local/ocpp/&lt;ID&gt;</code>).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:26%;">EV-laadpaal &amp; Vloot-DLB Instelling</th>
+        <th style="width:22%;">Opties / Standaard</th>
+        <th style="width:52%;">Uitleg voor Installateur &amp; Wanneer Configureren</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>Laadpuntnummer &amp; Vlootprioriteit</code></td>
+        <td>Laadpunt <code>1–64</code> • <code>VIP</code>, <code>Hoog</code>, <code>Normaal</code>, <code>Enkel Zon</code></td>
+        <td>Wijst het fysieke parkeervak en de DLB-wegingsfactor toe: <strong>VIP (1,5x)</strong>, <strong>Hoog (1,25x)</strong>, <strong>Normaal (1,0x)</strong> of <strong>Enkel Zon</strong> (pauzeert zodra er geen zonne-overschot beschikbaar is).</td>
+      </tr>
+      <tr>
+        <td><code>Automatische 1F/3F Fase-omschakeling</code></td>
+        <td>Selectievakje (<code>Uit</code> / <code>Aan</code>)</td>
+        <td>Activeert automatische omschakeling tussen <strong>1-Fase (1,4–3,6 kW)</strong> en <strong>3-Fasen (4,1–22 kW)</strong> op geschikte laadpalen (zoals <strong>RAEDIAN NEO</strong>) met een verplichte stroomloze contactorpauze van 20 seconden om het vastlassen van voertuigrelais te voorkomen.</td>
+      </tr>
+      <tr>
+        <td><code>Vloot-DLB Actief &amp; Zero-Touch Auto Onboard</code></td>
+        <td>Schakelaars (Onderaan tabblad Toestellen)</td>
+        <td>Activeert Dynamic Load Balancing over meerdere laadpalen (tot 64 laadpunten) en registreert binnenkomende OCPP 1.6-J laadpalen automatisch bij hun eerste <code>BootNotification</code>.</td>
+      </tr>
+      <tr>
+        <td><code>Cluster Max. Stroom (A) &amp; Verdelingsmodus</code></td>
+        <td>bijv. <code>63 A</code> • <code>priority_queue</code>, <code>equal_share</code>, <code>solar_first</code></td>
+        <td>Bepaalt de maximale groepszekering van het laadplein en kiest hoe de beschikbare laadruimte over actieve voertuigen wordt verdeeld.</td>
+      </tr>
+      <tr>
+        <td><code>Straight-Through OCPP Smart Forwarder</code></td>
+        <td><code>Upstream CPO URL</code> + <code>Auth Header</code></td>
+        <td>Stuurt OCPP-verrekenings- en RFID-verkeer transparant door naar een extern CPO-facturatieplatform (ondersteunt de URL-variabele <code>{chargePointId}</code>) terwijl GEMS lokaal <code>SetChargingProfile</code>-stroomlimieten injecteert.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 7. GRID CONNECTION & LIMITS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-grid">7. Netaansluiting, Meerfasige Configuratie &amp; Netstelsels</h1>
+  <p>
+    Ga naar <strong>Instellingen &rarr; Strategie &rarr; Elektrische Netaansluiting &amp; Limieten</strong>. Een correcte instelling van de fysieke hoofdzekering (conform AREI in België of NEN 1010 in Nederland) voorkomt het uitvallen van de hoofdautomaat en vormt de basis voor Dynamic Load Balancing.
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_strategy.png" alt="Instellingen Netaansluiting">
+    <div class="manual-screenshot-caption">Figuur 7.1: Fysieke limieten van de elektrische installatie en drempelwaarden voor dynamische stroombewaking.</div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Parameternaam</th>
+        <th>Standaard / Bereik</th>
+        <th>Technische Toelichting &amp; Wanneer Selecteren</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>Tijdzone, Breedte- &amp; Lengtegraad</code></td>
+        <td><code>Europe/Brussels</code> + Adresopzoeking</td>
+        <td>
+          Voer het installatieadres in en klik op <strong>Lookup Lat/Lon</strong>. Wordt gebruikt door de Open-Meteo zonne-instralingsvoorspeller om de verwachte PV-opbrengst van morgen (W/m&sup2;) te berekenen voor nachtelijke batterij-arbitrage.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Elektrisch Netstelsel</code></td>
+        <td>Keuzelijst</td>
+        <td>
+          <strong>Enkelfasig 230V (1x230V + N):</strong> Standaard monofasige huisaansluiting (Fase + Nulgeleider, 230V AC).<br>
+          <strong>Driefasig 400V (+N):</strong> Standaard Europees 3-fasen TN/TT-stelsel (3x 400V lijnspanning, 230V fasespanning).<br>
+          <strong>Driefasig 230V Delta (3x230V zonder N):</strong> <em>Klassiek Belgisch driehoeksnet</em> (Brussel en delen van Vlaanderen &amp; Wallonië). 3x 230V tussen de fasen <strong>zonder nulgeleider</strong> (past &radic;3 lijn-tot-lijn vermogensberekening toe).
+        </td>
+      </tr>
+      <tr>
+        <td><code>Nominale Stroom / Hoofdzekering (A)</code></td>
+        <td>25,0 A (16A – 250A)</td>
+        <td>
+          De nominale uitschakelstroom van de hoofdautomaat in de tellerkast (bijv. <code>25A</code>, <code>32A</code>, <code>40A</code>, <code>63A</code>). GEMS berekent hiermee het maximale toelaatbare aansluitvermogen.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Faselimiet (A)</code></td>
+        <td>25,0 A (16A – 250A)</td>
+        <td>
+          Het harde veiligheidsplafond per afzonderlijke fase. Zodra asymmetrische huishoudelijke verbruikers (bijv. een inductiekookplaat op fase L1) de stroom op L1 richting deze limiet duwen, knijpt GEMS onmiddellijk de EV-laadstroom om uitschakeling van de hoofdzekering te vermijden!
+        </td>
+      </tr>
+      <tr>
+        <td><code>Toegestane Netafname (kW)</code></td>
+        <td>Auto (of handmatig kW)</td>
+        <td>
+          Maximaal continu vermogen dat uit het distributienet mag worden afgenomen. Op een 3x400V 25A-aansluiting bedraagt dit standaard <code>17,2 kW</code>.
+        </td>
+      </tr>
+      <tr>
+        <td><code>Toegestane Netinjectie (kW)</code></td>
+        <td>Auto (of handmatig kW)</td>
+        <td>
+          Maximaal continu vermogen dat in het distributienet mag worden geïnjecteerd. Stel in op <code>0,0 kW</code> voor strikte <strong>zero-export conformiteit</strong> (de omvormer wordt dynamisch teruggeregeld tot exact het actuele woningverbruik).
+        </td>
+      </tr>
+      <tr>
+        <td><code>Terugvalstroom bij Meteruitval</code></td>
+        <td><code>0 A (Pauze)</code>, <code>6 A</code>, <code>8 A</code>, <code>10 A</code>, <code>16 A</code></td>
+        <td>
+          Veilige noodstroomlimiet voor EV-laadpalen wanneer de P1- of Modbus-netmeting langer dan 30 seconden wegvalt. Kies <code>0 A (Pauze — Aanbevolen)</code> bij krappe hoofdzekeringen of <code>6 A</code> om minimale druppellading toe te staan.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 8. ENERGY CONTRACTS & THE 5 WIZARDS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-contracts">8. Energiecontracten &amp; De 5 Tariefwizards</h1>
+  <p>
+    Onder <strong>Instellingen &rarr; Energiecontract</strong> modelleert GEMS het stroomcontract van de klant om netto afnamekosten, injectievergoedingen en optimale laadvensters voor de thuisbatterij te berekenen. GEMS haalt dagelijks om 13:00 CET de uurlijkse EPEX Spot Day-Ahead marktprijzen op.
+  </p>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_contract.png" alt="Tabblad Energiecontract">
+      <div class="manual-screenshot-caption">Figuur 8.1: Selectie van de Contractwizard en regionale netbeheerdersparameters.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_contract_tariffs.png" alt="Tariefvisualisatie">
+      <div class="manual-screenshot-caption">Figuur 8.2: 24-uurs curve met volledige all-in tariefopbouw en injectievergoeding.</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">De 5 Contractwizards: Wanneer Welke Kiezen?</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Wizard</th>
+        <th>Doeltype Contract</th>
+        <th>Ondersteunde Presets &amp; Parameters</th>
+        <th>Wanneer Selecteren</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Wizard A:<br>Vast / Variabel</strong></td>
+        <td>Klassieke energiecontracten met vaste of maandelijks variabele tarieven</td>
+        <td>
+          - Piektarief Afname (€/kWh)<br>
+          - Daltarief Afname (€/kWh)<br>
+          - Vaste Terugleververgoeding (€/kWh)
+        </td>
+        <td>
+          Kies wanneer de klant <strong>geen</strong> dynamisch uurtarief heeft. Vul gelijke bedragen in voor enkelvoudig tarief of Dag-/Nachttarieven bij een tweevoudig uurtarief.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Wizard B:<br>Geavanceerd Dynamisch</strong></td>
+        <td>Maatwerk dynamische contracten met visuele formulebouwer</td>
+        <td>
+          - Gekoppelde EPEX Spot-veilingfeed<br>
+          - Drag-and-drop formuleblokken (<code>Spot</code>, <code>Opslag</code>, <code>Factor</code>, <code>Nettarief</code>, <code>BTW</code>)<br>
+          - Tijdvenster- en weekdag-uitzonderingen
+        </td>
+        <td>
+          Kies voor niet-voorgedefinieerde internationale leveranciers of zakelijke maatwerkcontracten met specifieke prijsformules.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Wizard C:<br>Dynamic-BE</strong></td>
+        <td>Belgische uurlijkse EPEX Spot Day-Ahead contracten</td>
+        <td>
+          <strong>Voorgeprogrammeerde leveranciers:</strong> TotalEnergies Pixel Dynamic, Mega Smart/Cosy, Bolt Dynamisch, Engie Dynamic, Dats 24, Luminus, Eneco, Frank Energie, Ecopower, Octa+, Trevion, Aspiravi.
+        </td>
+        <td>
+          <strong>Standaardkeuze voor dynamische contracten in België.</strong> Selecteer klantsegment (Particulier 6% BTW vs. Zakelijk 21% BTW) en afsluitdatum om de exacte tariefformule in te laden.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Wizard D:<br>Flex-BE</strong></td>
+        <td>Belgische maandelijks variabele contracten met Time-of-Use tariefschijven</td>
+        <td>
+          - Engie Flextime maandelijks EPEX-gemiddelde<br>
+          - Piek-, Dal- en <strong>Super-Dal (01:00–07:00)</strong> opslagen<br>
+          - Geautomatiseerd nachtelijk batterijladen
+        </td>
+        <td>
+          Kies wanneer de klant een Engie Flextime-contract heeft. Activeert automatisch voorladen van de batterij tijdens de sterk verlaagde Super-Dal nachturen.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Wizard E:<br>Dynamic-NL</strong></td>
+        <td>Nederlandse dynamische contracten met wettelijke energiebelastingen</td>
+        <td>
+          <strong>Voorgeprogrammeerde NL-leveranciers:</strong> <strong>Vattenfall Nederland — FlexPrijs</strong> (<code>1,00× EPEX NL + 0,0211 €/kWh</code> inkoopvergoeding + <code>95,40 €/jr</code> Vastrecht), Eneco Dynamisch, Frank Energie Dynamisch en vrije Nederlandse EPEX Day-Ahead contracten.<br>
+          Inclusief wettelijke Energiebelasting (<code>0,1316 €/kWh</code>), 21% BTW en Terugleverkosten.
+        </td>
+        <td>
+          <strong>Standaardkeuze voor installaties in Nederland.</strong> Verrekent nauwkeurig Nederlandse <em>terugleverkosten</em> en dwingt strikte NL-landisolatie af.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 9. OPTIMIZATION STRATEGY & PEAK SHAVING ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-strategy">9. Optimalisatiestrategie &amp; Vlaamse Piekbewaking (Capaciteitstarief)</h1>
+  <p>
+    Ga naar <strong>Instellingen &rarr; Strategie</strong> om de centrale optimalisatie-engine in te stellen.
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_strategy_modes.png" alt="Modi voor Optimalisatiestrategie">
+    <div class="manual-screenshot-caption">Figuur 9.1: Optimalisatiemodus, Vlaamse Capaciteitstarief Piekbewaking en Slim Adaptief Piekplafond.</div>
+  </div>
+
+  <h2 class="subsection-title">De Drie Kernstrategiemodi</h2>
+  <div class="decision-box">
+    <div class="decision-title">🎯 De Juiste Strategiemodus Kiezen</div>
+    <div class="decision-grid">
+      <div class="decision-item">
+        <div class="decision-item-title">Modus 1: Eco (Maximaal Zelfverbruik)</div>
+        <div class="decision-item-desc">
+          <strong>Ideaal voor:</strong> Wallonië, Brussel, Duitsland of regio's zonder kwartierpiek-capaciteitstarief.<br>
+          Slaat 100% van het zonne-overschot op in de thuisbatterij en elektrische wagen. Minimaliseert netafname zonder een kW-piekplafond op te leggen.
+        </div>
+      </div>
+      <div class="decision-item">
+        <div class="decision-item-title">Modus 2: Vlaanderen-modus (Piekbewaking)</div>
+        <div class="decision-item-desc">
+          <strong>Ideaal voor:</strong> Vlaanderen (Fluvius).<br>
+          Bewaakt het voortschrijdende kwartiergemiddelde voor het <em>Fluvius Capaciteitstarief</em> (standaard 2,50 kW). Ontlaadt de batterij en knijpt EV-laadstromen zodra huishoudtoestellen de ingestelde kwartierpiek dreigen te overschrijden.
+        </div>
+      </div>
+      <div class="decision-item">
+        <div class="decision-item-title">Modus 3: Nederland-modus (Slimme Saldering &amp; 3×25A Bewaking)</div>
+        <div class="decision-item-desc">
+          <strong>Ideaal voor:</strong> Nederland (Liander, Enexis, Stedin).<br>
+          Bewaakt per fase de <code>3×25A</code> hoofdzekering via Dynamic Load Balancing (bespaart €1.000+/jaar aan verzwaringskosten naar <code>3×35A</code> vastrecht), geeft voorrang aan lokale PV-opslag/EV-laden tegen <em>terugleverkosten</em>, regelt terug bij negatieve EPEX NL-uren en verbergt automatisch alle Vlaamse <em>Capaciteitstarief</em>-, GSC-, Elia-, Super-Dal- en IEC-104-functies.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Parameters Vlaams Capaciteitstarief (Fluvius)</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Aanbevolen Waarde</th>
+        <th>Uitleg voor Installateur &amp; Werking</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>capacity_peak_limit_kw</code></td>
+        <td><strong>2,50 kW</strong></td>
+        <td>
+          Het maandelijkse basispiekplafond. In Vlaanderen rekent Fluvius altijd een wettelijke minimumbijdrage van 2,50 kW aan, ongeacht een lager verbruik. Door de kwartierpiek op of onder 2,50 kW te houden, betaalt de klant het laagst mogelijke distributietarief.
+        </td>
+      </tr>
+      <tr>
+        <td><code>peak_shaving_buffer_w</code></td>
+        <td><strong>200 W</strong></td>
+        <td>
+          Proactieve veiligheidsmarge die van het piekplafond wordt afgetrokken (bijv. 2,50 kW &minus; 200 W = 2,30 kW drempel). Hierdoor begint GEMS al met het terugregelen van de laadpaal en het bijleveren uit de batterij <em>voordat</em> het 15-minutengemiddelde van de digitale meter wordt overschreden.
+        </td>
+      </tr>
+      <tr>
+        <td><code>peak_shaving_rampup_w</code></td>
+        <td><strong>150 W</strong></td>
+        <td>
+          Hysterese-drempel (vermogensdaling onder het plafond) voordat geknepen EV-laadpalen weer mogen opschalen. Voorkomt onrustig pendelen van voertuigcontactoren.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Slim Adaptief Piekplafond</strong></td>
+        <td>Automatisch (Ingeschakeld)</td>
+        <td>
+          Als er toch een onvermijdelijke huishoudpiek optreedt (bijv. oven + warmtepomp halen samen gedurende een kwartier 4,2 kW bij lege batterij), <strong>verhoogt GEMS zijn actieve stuurplafond automatisch naar 4,2 kW voor de rest van die kalendermaand</strong>. Omdat Fluvius deze 4,2 kW die maand sowieso aanrekent, laat GEMS de wagen sneller laden voor maximaal comfort zonder één eurocent extra netkosten! Op de 1e van de volgende maand reset het plafond automatisch terug naar 2,50 kW.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 10. FLEMISH GSC VALUE PROTECTION ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-gsc">10. Actieve Omvormer-terugregeling &amp; Vlaamse GSC-bescherming</h1>
+  <p>
+    Bij dynamische energiecontracten duiken Europese groothandelsprijzen op zonnige weekendmiddagen regelmatig onder nul. Stroom injecteren tijdens negatieve prijsuren kost dan geld. Bestaande Vlaamse PV-installaties ontvangen echter vaak nog gegarandeerde <strong>Groenestroomcertificaten (GSC)</strong> per geproduceerde MWh.
+  </p>
+
+  <div class="callout callout-warning">
+    <div class="callout-title">⚠️ Waarom Blind Afschakelen bij €0,00/kWh Rendement Vernietigt</div>
+    <p>
+      Eenvoudige energiemanagers schakelen de omvormer al uit zodra de terugleverprijs onder €0,00/kWh zakt. Ontvangt een klant echter <strong>€250/certificaat (€0,250/kWh)</strong> aan Vlaamse groenestroomcertificaten, dan betekent afschakelen bij een marktprijs van &minus;€0,05/kWh dat de klant netto <strong>+€0,20/kWh aan gegarandeerde opbrengst misloopt</strong>!
+    </p>
+  </div>
+
+  <h2 class="subsection-title">De Wiskundige GSC-terugregelformule</h2>
+  <div class="terminal-box">
+    Effectieve Terugregeldrempel (€/kWh) = Basisdrempel - (GSC-waarde €/MWh / 1000,0)<br>
+    <br>
+    Voorbeeld (€250 GSC):<br>
+    Effectieve Drempel = €0,00 - (€250,0 / 1000,0) = -0,250 €/kWh (-250,0 €/MWh)
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Vlaamse GSC-preset</th>
+        <th>Subsidiewaarde per kWh</th>
+        <th>Effectieve Terugregeldrempel</th>
+        <th>Actie voor Installateur</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Geen GSC (€0)</strong></td>
+        <td>€0,000 / kWh</td>
+        <td>&le; <strong>0,0 €/MWh (0,000 €/kWh)</strong></td>
+        <td>Selecteer voor installaties na 2021 zonder GSC-rechten. Regelt direct terug zodra de injectieprijs onder nul zakt (en batterij/EV vol zijn).</td>
+      </tr>
+      <tr>
+        <td><strong>€90 GSC</strong></td>
+        <td>€0,090 / kWh</td>
+        <td>&le; <strong>-90,0 €/MWh (-0,090 €/kWh)</strong></td>
+        <td>Omvormer blijft doorproduceren bij licht negatieve prijzen tot &minus;€0,090/kWh. Pas onder &minus;€0,090/kWh wordt teruggeregeld.</td>
+      </tr>
+      <tr>
+        <td><strong>€250 GSC</strong></td>
+        <td>€0,250 / kWh</td>
+        <td>&le; <strong>-250,0 €/MWh (-0,250 €/kWh)</strong></td>
+        <td>Beschermt bestaande Vlaamse PV-installaties (2009–2012). Volledige opwekking blijft behouden tijdens vrijwel alle negatieve uren!</td>
+      </tr>
+      <tr>
+        <td><strong>€350 GSC</strong></td>
+        <td>€0,350 / kWh</td>
+        <td>&le; <strong>-350,0 €/MWh (-0,350 €/kWh)</strong></td>
+        <td>Beschermt oudere installaties met hoge certificaatwaarde. Productie blijft actief tot &minus;350 €/MWh.</td>
+      </tr>
+      <tr>
+        <td><strong>€450 GSC</strong></td>
+        <td>€0,450 / kWh</td>
+        <td>&le; <strong>-450,0 €/MWh (-0,450 €/kWh)</strong></td>
+        <td>Beschermt vroege Vlaamse PV-installaties (2006–2008). Maximale certificaatopbrengst gegarandeerd.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 11. FLUVIUS TELECONTROL (IEC 60870-5-104) ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-iec104">11. Fluvius Telecontrole (IEC 60870-5-104) Conformiteit</h1>
+  <p>
+    Voor commerciële en grotere decentrale productie-installaties die moeten voldoen aan de technische netvoorschriften (Synergrid C10/11) en directe telecontrolesturing door Fluvius, bevat GEMS een ingebouwde <strong>IEC 60870-5-104 slave-server</strong>.
+  </p>
+
+  <h2 class="subsection-title">Configuratieparameters voor Telecontrole</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Standaardwaarde</th>
+        <th>Technische Omschrijving</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>iec104_enabled</code></td>
+        <td>Uitgeschakeld</td>
+        <td>Hoofdschakelaar voor de ingebouwde IEC 60870-5-104 telecontrole-serverdaemon.</td>
+      </tr>
+      <tr>
+        <td><code>iec104_port</code></td>
+        <td><code>2404</code></td>
+        <td>Standaard TCP-communicatiepoort volgens het IEC 104-protocol.</td>
+      </tr>
+      <tr>
+        <td><code>iec104_common_address</code></td>
+        <td><code>1</code></td>
+        <td>ASDU Common Address (stationsadres toegekend door netbeheerder Fluvius).</td>
+      </tr>
+      <tr>
+        <td><code>iec104_allowed_ip</code></td>
+        <td><code>0.0.0.0</code></td>
+        <td>IP-whitelist voor hardwarebeveiliging. Vul het vaste IP-adres van de Fluvius RTU-kast in om ongeautoriseerde verbindingen te weigeren.</td>
+      </tr>
+      <tr>
+        <td><code>iec104_curtailment_mode</code></td>
+        <td><code>kw</code></td>
+        <td>Eenheid van binnenkomende stuursetpoints: Absolute kilowatt (<code>kw</code>) of Percentage van nominaal vermogen (<code>percent</code>).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="subsection-title">Simulatieknoppen voor Opleveringskeuring op Locatie</h2>
+  <p>
+    Installateurs kunnen de noodafschakeling en terugregeling rechtstreeks in de GEMS-webinterface verifiëren zonder te hoeven wachten op externe testsignalen van de netbeheerder:
+  </p>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>🚨 Trip Plant (ASDU 45 Noodafschakeling):</strong> Simuleert een direct ontkoppelingscommando. GEMS stuurt onmiddellijk een 0 kW-setpoint naar alle gekoppelde omvormers.</li>
+    <li><strong>✓ Reset Trip:</strong> Herstelt de normale bedrijfstoestand na afloop van de afschakeltest.</li>
+    <li><strong>📉 Set 4.0 kW Limit (ASDU 50):</strong> Injecteert een actief vermogensplafond van 4,0 kW om te verifiëren dat de installatie binnen 5 seconden terugregelt.</li>
+    <li><strong>Release Curtailment (100 kW):</strong> Geeft het volledige omvormervermogen opnieuw vrij.</li>
+  </ul>
+
+  <!-- ==================== 12. BATTERY ARBITRAGE & RULES ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-battery-rules">12. Batterij-arbitrage &amp; Regelgebaseerde Kostenoptimalisatie</h1>
+  <p>
+    GEMS ondersteunt automatische spotprijs-arbitrage én deterministische prioriteitsregels onder <strong>Instellingen &rarr; Strategie &rarr; Regelgebaseerde Batterij-kostenoptimalisatie</strong>.
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_strategy_rules.png" alt="Regels voor Batterij-kostenoptimalisatie">
+    <div class="manual-screenshot-caption">Figuur 12.1: Prioriteitslijst met regels voor geautomatiseerd laden, ontladen en vasthouden van de thuisbatterij.</div>
+  </div>
+
+  <h2 class="subsection-title">Arbitrageparameters &amp; Slijtagebescherming van Batterijcellen</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Instelling</th>
+        <th>Standaard / Bereik</th>
+        <th>Toelichting voor Installateur &amp; Praktijkafwegingen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>battery_grid_charge_strategy</code></td>
+        <td><code>dynamic_forecast</code></td>
+        <td>
+          <strong>Dynamische 24u-voorspelling:</strong> Combineert de zonneprognose van morgen (Open-Meteo) en het basisverbruik van de woning om exact de benodigde nachtelijke bijlading te bepalen.<br>
+          <strong>Enkel Prijsdrempel:</strong> Laadt vanuit het net zodra de prijs &le; het ingestelde prijsplafond ligt.<br>
+          <strong>Enkel Super-Dal:</strong> Laadt uitsluitend tussen 01:00 en 07:00 uur.<br>
+          <strong>Hybride:</strong> Combineert de zonneprognose met dynamische spotprijsdrempels.
+        </td>
+      </tr>
+      <tr>
+        <td><code>force_charge_below_euro</code></td>
+        <td><code>0,08 €/kWh</code></td>
+        <td>Prijsplafond waaronder de batterij actief vanuit het net wordt opgeladen (bijv. goedkope nachturen of negatieve middagprijzen).</td>
+      </tr>
+      <tr>
+        <td><code>force_discharge_above_euro</code></td>
+        <td><code>0,35 €/kWh</code></td>
+        <td>Prijsondergrens waarboven de batterij actief mag ontladen tijdens dure avondpiekuren om maximale besparing of injectiewinst te realiseren.</td>
+      </tr>
+      <tr>
+        <td><code>battery_wear_cost_eur</code></td>
+        <td><strong>0,040 €/kWh</strong> (3–6 ct)</td>
+        <td>
+          <strong>Essentiële Slijtagebewaking:</strong> Elke laadcyclus belast de lithiumcellen. GEMS voert enkel netarbitrage uit wanneer het prijsverschil (Ontlaadprijs &minus; Laadprijs) groter is dan deze ingestelde slijtagekost, zodat onrendabele micro-cycli worden vermeden!
+        </td>
+      </tr>
+      <tr>
+        <td><code>winter_fallback_enabled</code><br><code>winter_fallback_trigger_soc</code><br><code>winter_fallback_target_soc</code><br><code>winter_fallback_cheapest_hours</code></td>
+        <td><strong>Ingeschakeld</strong><br>Trigger: <code>25%</code><br>Doel: <code>65%</code><br>Venster: <code>2 uur</code></td>
+        <td>
+          <strong>Winter / Weinig-Zon Terugvallading:</strong> Voorkomt dat de thuisbatterij tijdens bewolkte winterweken werkloos op minimale SoC blijft staan wanneer dagelijkse prijsspreads kleiner zijn dan de volledige arbitragedrempel. Zodra SoC &le; <code>25%</code> en de 24-uurs zonneprognose (of gemeten 24-uurs PV-opbrengst) onvoldoende is om bij te laden, laadt GEMS de batterij tijdens de <code>2</code> goedkoopste uren van het etmaal op tot <code>65%</code> SoC—met strikte bewaking van het Vlaamse kwartierpiekplafond en de hoofdzekering.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 13. EV CHARGING CONTROLS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-ev">13. EV-laadsturing &amp; Belgische Elia Groene Stroom Boost</h1>
+  <p>
+    GEMS stuurt gekoppelde EV-laadpalen rechtstreeks aan om de laadstroom elke seconde dynamisch te optimaliseren:
+  </p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Laadmodus</th>
+        <th>Stroombereik</th>
+        <th>Werking &amp; Aanbevolen Toepassing</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>ECO / Enkel Zon</strong></td>
+        <td>6A tot 16A / 32A (Dynamisch)</td>
+        <td>Laadt uitsluitend met overtollige zonne-energie. Bij bewolking wordt de laadstroom automatisch verlaagd of gepauzeerd om dure netafname te vermijden. <em>(Opmerking: 6A is de minimale genormeerde EV-laadstroom volgens IEC 61851: 1,4 kW enkelfasig of 4,1 kW driefasig).</em></td>
+      </tr>
+      <tr>
+        <td><strong>FAST / Direct Laden</strong></td>
+        <td>16A of 32A (Vast Max.)</td>
+        <td>Benut gelijktijdig zon, batterij en netstroom tot tegen de ingestelde faselimiet van de hoofdzekering. Ideaal bij onmiddellijk vertrek.</td>
+      </tr>
+      <tr>
+        <td><strong>Slim Dynamisch</strong></td>
+        <td>Dynamisch (Spotprijs-gestuurd)</td>
+        <td>Plant de laadsessie automatisch in tijdens het ingestelde aantal <strong>Goedkoopste Spotprijs-uren (1 tot 8 uur)</strong> van het Day-Ahead contract.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="subsection-title">Belgische Elia Groene Stroom Synchronisatie-boost</h2>
+  <p>
+    Wanneer ingeschakeld onder <strong>Instellingen &rarr; Strategie</strong>, leest GEMS elke 15 minuten de actuele nationale hernieuwbare energiemix uit van de Belgische hoogspanningsnetbeheerder <strong>Elia</strong>. Zodra het aandeel Belgische wind- en zonne-energie de ingestelde drempel overschrijdt (bijv. <strong>65%</strong>), krijgen het laden van de wagen en de thuisbatterij automatisch een boost—zodat lokaal verbruik maximaal samenvalt met echte Belgische groene stroom!
+  </p>
+
+  <!-- ==================== 14. SMART RELAYS & HEAT PUMPS ==================== -->
+  <h1 class="section-title" id="sec-relays">14. Slimme Relais &amp; Warmtepomp SG-Ready Automatisering</h1>
+  <p>
+    GEMS integreert slimme relais (zoals Shelly Pro 2 of Shelly Plus 1PM) om sanitaire warmwaterboilers, zwembadpompen en SG-Ready warmtepompen automatisch aan te sturen.
+  </p>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_relays.png" alt="Tabblad Relais &amp; Schakelaars">
+      <div class="manual-screenshot-caption">Figuur 14.1: Geconfigureerde slimme relais en actuele schakelstatus.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_relays_rules.png" alt="Relais-automatiseringsregels">
+      <div class="manual-screenshot-caption">Figuur 14.2: Automatiseringsregels op basis van zonne-overschot en dynamische tarieven.</div>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Triggervoorwaarde</th>
+        <th>Drempelinstelling</th>
+        <th>Hysterese &amp; Schakeltijden</th>
+        <th>Typische Elektrische Toepassing</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>excess_solar</code></td>
+        <td>Overschot &gt; <code>1.200 W</code></td>
+        <td>Minimaal AAN: <strong>10 min</strong><br>Minimaal UIT: <strong>5 min</strong></td>
+        <td>SG-Ready warmtepomp thermische boost. Verhoogt de buffertank- en boilertemperatuur met gratis zonne-energie overdag.</td>
+      </tr>
+      <tr>
+        <td><code>negative_spot_price</code></td>
+        <td>Prijs &le; <code>0,02 €/kWh</code></td>
+        <td>Minimaal AAN: <strong>15 min</strong></td>
+        <td>Elektrische weerstandsverwarming in een sanitaire warmwaterboiler.</td>
+      </tr>
+      <tr>
+        <td><code>time_window</code></td>
+        <td>Dagelijks 13:00 tot 16:00</td>
+        <td>Vast tijdschema</td>
+        <td>Zwembadfilterpomp ingepland tijdens de zonnigste middaguren.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-warning">
+    <div class="callout-title">⚠️ Belangrijke Waarschuwing voor Compressorbeveiliging</div>
+    <p>
+      Stel voor warmtepompen altijd een <strong>Minimale Inschakeltijd (Minimum ON Time) van ten minste 10 minuten</strong> in. Kortcyclisch pendelen (het snel achter elkaar in- en uitschakelen van de compressor bij voorbijtrekkende wolken) kan ernstige motorschade veroorzaken en de fabrieksgarantie doen vervallen!
+    </p>
+  </div>
+
+  <!-- ==================== 15. ALERTS & REPORTS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-alerts">15. Meldingen, Webhooks &amp; Geautomatiseerde PDF-rapporten</h1>
+  <p>
+    Configureer proactieve externe meldingen onder <strong>Instellingen &rarr; Meldingen</strong>:
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_notifications.png" alt="Tabblad Meldingen">
+    <div class="manual-screenshot-caption">Figuur 15.1: Discord-/Slack-webhook-URL's, SMTP-servergegevens en ontvanger voor het wekelijkse energierapport.</div>
+  </div>
+
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Webhook-meldingen:</strong> Plak een webhook-URL van Discord, Slack, Microsoft Teams of Ntfy. GEMS verstuurt onmiddellijk waarschuwingen bij aanhoudende communicatiefouten, naderende hoofdzekeringslimieten of uitval van de slimme meter.</li>
+    <li><strong>Wekelijks Energierapport per E-mail:</strong> Vul het e-mailadres van de bewoner en de SMTP-gegevens in. Elke zondag om 20:00 uur genereert en mailt GEMS automatisch een verzorgd PDF-overzicht met zonne-opbrengst, zelfvoorzieningsgraad (%) en gemeten maandpiek.</li>
+  </ul>
+
+  <!-- ==================== 16. DIAGNOSTICS & SIGN-OFF ==================== -->
+  <h1 class="section-title" id="sec-maint">16. Inbedrijfstellingswizard, Installateurs-PIN, Netwerk-terugvalbeveiliging, Ondertekende Updates &amp; Oplevering</h1>
+  <p>
+    Commerciële GEMS-controllers beschikken over uitgebreide opleverings- en veiligheidsfuncties onder de <strong>Installateursmodus</strong> (te ontgrendelen via het hangsloticoon rechtsboven in Instellingen):
+  </p>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Begeleide Inbedrijfstellingswizard &amp; Scheiding Bewonersmodus vs. Gecertificeerde Installateursmodus:</strong> Start automatisch bij de eerste opstart en doorloopt taalkeuze/locatie (<code>NL</code>, <code>FR</code>, <code>EN</code>), aanmaak van de lokale <strong>Installateurs-PIN/wachtwoord</strong>, hoofdzekering &amp; netstelsel (AREI / NEN 1010), slimme meterdetectie, koppeling van referentiehardware (<strong>Solis</strong> &amp; <strong>RAEDIAN</strong>) en energiecontractselectie. In de dagelijkse <strong>Normale Bewonersmodus</strong> (vergrendeld) ziet de klant een overzichtelijke, veilige interface—live Dashboard-energiestromen, dagelijkse EV-laadkeuze, <strong>Toestellen</strong> (met live <strong>Debug</strong>-diagnose en 1-klik rapportverzending naar <strong>GRID-EMS-SERVER</strong>), <strong>Systeeminformatie</strong> (met <strong>Software-update</strong> en bevestigde <strong>Systeem herstarten</strong>) en het live <strong>Logboek</strong>—terwijl de Netwerkscanner, Cockpit-terminal (<code>:9090</code>), de tabbladen Strategie/Energiecontract/Relais/Netwerk/Meldingen/Cloudserver, het toevoegen/bewerken/verwijderen van toestellen, <strong>Lokale CA &amp; SSL-certificaat</strong>-beheer, back-ups en fabrieksreset netjes verborgen blijven totdat de <strong>Gecertificeerde Installateursmodus</strong> wordt ontgrendeld via het hangsloticoon (met blokkering na 5 foutieve pogingen en PIN-rotatie onder <strong>Instellingen &rarr; Systeeminformatie</strong>).</li>
+    <li><strong>Vaste USB-seriële Poortkoppeling (<code>/dev/serial/by-id/*</code>) &amp; Overzichtelijke Toestellenpagina:</strong> Door te binden op vaste hardware-symlinks wisselen USB-P1- en USB-RS485-adapters nooit van poortnummer na een spanningsonderbreking. Op <strong>Instellingen &rarr; Toestellen</strong> staat de optionele kaart <strong>EV-Laadcluster &amp; Dynamic Load Balancing (DLB)</strong> overzichtelijk onderaan onder de individuele toestelkaarten.</li>
+    <li><strong>Ethernet Netwerkconfiguratie met 60-Seconden Terugvalbeveiliging:</strong> Wijs DHCP of een statisch IPv4-adres uitsluitend toe op bekabelde Ethernet-interfaces (<code>eth0</code>) onder <strong>Instellingen &rarr; Netwerk</strong> (draadloze interfaces zijn bewust weggelaten voor maximale industriële betrouwbaarheid in metalen verdeelkasten). Wordt het nieuwe IP-adres niet binnen 60 seconden bevestigd, dan herstelt GEMS automatisch het vorige werkende NetworkManager-profiel.</li>
+    <li><strong>Interactieve Opleverings- &amp; Aansturingstest (Lokaal &amp; Cloud):</strong> Onder <strong>Instellingen &rarr; Opleveringstest</strong> (én op afstand via <strong>GRID-EMS-SERVER</strong> Toesteldiagnose) voeren installateurs een geautomatiseerde 5-stappenverificatie uit over <strong>Omvormer</strong> (bijv. <strong>Solis</strong> live telemetrie + 80% actieve terugregeling schrijven/teruglezen), <strong>Thuisbatterij</strong> (BMS State-of-Charge + bidirectionele laad-/ontlaadsturing) en <strong>EV-laadpaal</strong> (bijv. <strong>RAEDIAN</strong> live telemetrie + 6,0 A dynamische stroomsturing), waarbij de autonome strategie tijdelijk wordt gepauzeerd en na afloop automatisch veilig wordt hervat. Gedetecteerde verbindings- of configuratiepunten bieden directe <strong>Herstellen &amp; Opnieuw Testen</strong>-acties én een downloadbaar A4 <strong>PDF-Opleveringscertificaat</strong>.</li>
+    <li><strong>Cryptografisch Ondertekende Software-updates, Back-up &amp; Hardware Watchdog:</strong> Zowel online OTA-updates als handmatig geüploade <code>.deb</code>-pakketten worden vóór installatie geverifieerd tegen de ingebouwde Ed25519-releasehandtekening van New Energy Grid en SHA-256-controlesom. Exporteer draagbare JSON-back-ups vóór een hardwarewissel, voer beveiligde fabrieksresets uit en vertrouw op <code>systemd</code> <code>WatchdogSec=30</code> in combinatie met de Raspberry Pi hardware-watchdog voor volledig onbeheerd herstel.</li>
+  </ul>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_commissioning_test.png" alt="Opleverings- en Hardware-aansturingstest">
+      <div class="manual-screenshot-caption">Figuur 16.1: Interactieve 5-stappen Opleverings- &amp; Aansturingstest voor verificatie van Solis Omvormer/Batterij en RAEDIAN EV-laadpaal.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_network.png" alt="Ethernet Netwerkconfiguratie">
+      <div class="manual-screenshot-caption">Figuur 16.2: Bekabelde Ethernet IPv4-configuratie met automatische 60-seconden terugvalbeveiliging tegen buitensluiting.</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Aftekenlijst voor Veldoplevering (Commissioning Checklist)</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width: 10%;">Status</th>
+        <th style="width: 30%;">Controlepunt</th>
+        <th style="width: 60%;">Verificatieprocedure</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Hardware &amp; Koeling</strong></td>
+        <td>Raspberry Pi 5 Active Cooler draait vrij, NVMe-boot bevestigd, kerntemperatuur &lt; 50°C in Cockpit.</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Uitlezing Slimme Meter</strong></td>
+        <td>P1-seriële of Modbus-netmeter online. Afname-/injectievermogen komt overeen met het scherm van de digitale meter.</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Omvormertelemetrie</strong></td>
+        <td>Modbus TCP/RTU reageert stabiel. Zonneproductie (W) en batterij-SoC (%) worden correct op het Dashboard getoond.</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>EV-laadpaal Sturing</strong></td>
+        <td>Verbonden via Modbus TCP/RTU (of OCPP). Laadmodus schakelt foutloos om tussen Eco en Fast.</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Netlimieten Geconfigureerd</strong></td>
+        <td>Nominale stroom en faselimieten exact afgestemd op de fysieke hoofdzekering van de klant (AREI / NEN 1010).</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Vlaams Piekplafond</strong></td>
+        <td>Indien in Vlaanderen: Capaciteitstarief-piekplafond ingesteld (standaard 2,50 kW), buffer op 200 W.</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>GSC-beschermingswaarde</strong></td>
+        <td>Indien klant Vlaamse groenestroomcertificaten ontvangt: Juiste certificaatwaarde (€90, €250, €350, €450) opgeslagen.</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Contract &amp; Tarieven</strong></td>
+        <td>Juiste leverancierspreset en netbeheerder geselecteerd. 24-uurs tariefvisualisatie toont actuele uurtarieven.</td>
+      </tr>
+      <tr>
+        <td>[ &nbsp; ]</td>
+        <td><strong>Logboekcontrole</strong></td>
+        <td>Tabblad Logboek gecontroleerd: Geen herhalende communicatiefouten of Modbus-time-outmeldingen.</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+</body>
+</html>

@@ -28,7 +28,10 @@
   .copy-code-btn,
   .page-nav-footer,
   .site-footer,
-  .mobile-menu-btn {
+  .mobile-menu-btn,
+  .lang-switcher,
+  .interactive-toolbar,
+  .no-print {
     display: none !important;
   }
 

@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS — Brochure Interactive, Configuration Pas-à-Pas &amp; Manuel Complet des Paramètres</title>
+  <meta name="description" content="Brochure interactive officielle, guide de configuration pas-à-pas, manuel d'utilisation quotidienne et encyclopédie complète des paramètres pour GEMS (GRID-EMS) par New Energy Grid &amp; The Charge Grid.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 12mm 13mm 14mm 13mm;
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9.2pt;
+      line-height: 1.52;
+    }
+
+    .manual-page {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 20px 18px;
+    }
+
+    /* Interactive Web Toolbar (Hidden in Print/PDF) */
+    .interactive-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(10px);
+      color: #f8fafc;
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.35);
+      border: 1px solid #334155;
+    }
+
+    .toolbar-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .toolbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 10.5pt;
+      color: #10b981;
+    }
+
+    .toolbar-search {
+      flex: 1;
+      min-width: 240px;
+      max-width: 380px;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #ffffff;
+      border-radius: 9999px;
+      padding: 7px 14px;
+      font-size: 9pt;
+      outline: none;
+    }
+
+    .toolbar-search:focus {
+      border-color: #10b981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+    }
+
+    .toolbar-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .toolbar-pill {
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      border-radius: 9999px;
+      padding: 4px 10px;
+      font-size: 8pt;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .toolbar-pill:hover {
+      background: #10b981;
+      color: #ffffff;
+      border-color: #10b981;
+      text-decoration: none;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 980px;
+      padding: 32px 20px 18px 20px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 28px;
+      background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 36%);
+      border-radius: 16px;
+      border: 1px solid #d1fae5;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #ffffff;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 8.5pt;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 31pt;
+      font-weight: 800;
+      line-height: 1.12;
+      color: #0f172a;
+      margin: 0 0 10px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 12pt;
+      color: #334155;
+      margin: 0 0 20px 0;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    .brochure-highlight-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .brochure-stat-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-top: 3px solid #10b981;
+      border-radius: 10px;
+      padding: 10px 12px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .brochure-stat-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 14pt;
+      font-weight: 800;
+      color: #047857;
+      display: block;
+    }
+
+    .brochure-stat-lbl {
+      font-size: 7.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #64748b;
+      letter-spacing: 0.04em;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    .cover-meta-val {
+      font-size: 9pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+      margin: 12px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 8pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+    }
+
+    /* Section Headings */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16.5pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #10b981;
+      padding-bottom: 6px;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      page-break-after: avoid;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 18px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 10pt;
+      font-weight: 700;
+      color: #047857;
+      margin-top: 12px;
+      margin-bottom: 5px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 9px;
+      color: #334155;
+    }
+
+    /* Brochure Feature Cards & Comic Timeline */
+    .brochure-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    .brochure-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px 14px;
+      page-break-inside: avoid;
+    }
+
+    .brochure-card-icon {
+      font-size: 16pt;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+
+    .brochure-card-title {
+      font-weight: 800;
+      font-size: 9.5pt;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .brochure-card-desc {
+      font-size: 8.3pt;
+      color: #475569;
+      line-height: 1.42;
+    }
+
+    /* Fun 24h Day-in-the-Life Storyboard */
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    .timeline-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #10b981;
+      border-radius: 8px;
+      padding: 10px 12px;
+      page-break-inside: avoid;
+    }
+
+    .timeline-time {
+      display: inline-block;
+      background: #0f172a;
+      color: #34d399;
+      font-family: monospace;
+      font-size: 8pt;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-bottom: 4px;
+    }
+
+    .timeline-headline {
+      font-weight: 800;
+      font-size: 9.2pt;
+      color: #0f172a;
+      margin-bottom: 3px;
+    }
+
+    /* Step-by-Step Roadmap Cards */
+    .step-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 10px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .step-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .step-number-badge {
+      background: #10b981;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 8.5pt;
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .step-card-title {
+      font-weight: 800;
+      font-size: 10pt;
+      color: #0f172a;
+    }
+
+    /* Setting Encyclopedia Cards (What it does / When to use / Recommended) */
+    .setting-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    .setting-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-top: 3px solid #0284c7;
+      border-radius: 8px;
+      padding: 10px 12px;
+      page-break-inside: avoid;
+    }
+
+    .setting-card.green { border-top-color: #10b981; }
+    .setting-card.amber { border-top-color: #f59e0b; }
+    .setting-card.purple { border-top-color: #8b5cf6; }
+    .setting-card.rose { border-top-color: #f43f5e; }
+
+    .setting-name {
+      font-weight: 800;
+      font-size: 9.3pt;
+      color: #0f172a;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .setting-default-pill {
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      font-family: monospace;
+      font-size: 7.5pt;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .setting-meta-row {
+      font-size: 8.2pt;
+      color: #334155;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .badge-what {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 800;
+      font-size: 7pt;
+      padding: 1px 5px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      margin-right: 4px;
+    }
+
+    .badge-when {
+      display: inline-block;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      font-size: 7pt;
+      padding: 1px 5px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      margin-right: 4px;
+    }
+
+    .badge-tip {
+      display: inline-block;
+      background: #fef3c7;
+      color: #b45309;
+      font-weight: 800;
+      font-size: 7pt;
+      padding: 1px 5px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      margin-right: 4px;
+    }
+
+    /* Decision Box */
+    .decision-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-left: 4px solid #10b981;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    .decision-title {
+      font-size: 9pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #047857;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .decision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 8.4pt;
+      margin-top: 6px;
+    }
+
+    .decision-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 10px;
+    }
+
+    .decision-item-title {
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 2px;
+    }
+
+    .decision-item-desc {
+      color: #475569;
+      line-height: 1.4;
+    }
+
+    /* Screenshots */
+    .manual-screenshot {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .manual-screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .manual-screenshot-caption {
+      font-size: 8pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    .manual-screenshot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 8px;
+      padding: 10px 13px;
+      margin: 10px 0;
+      page-break-inside: avoid;
+      font-size: 8.7pt;
+    }
+
+    .callout-info {
+      background: #f0fdf4;
+      border-left: 4px solid #10b981;
+      color: #047857;
+    }
+
+    .callout-tip {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      color: #0369a1;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #b45309;
+    }
+
+    .callout-title {
+      font-weight: 800;
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: 8.2pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #e2e8f0;
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .toc-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 16px 22px;
+      margin-bottom: 24px;
+      page-break-inside: avoid;
+    }
+
+    .toc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 13pt;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      column-count: 2;
+      column-gap: 22px;
+    }
+
+    .toc-list li {
+      margin-bottom: 5px;
+      font-size: 8.3pt;
+      color: #334155;
+      break-inside: avoid;
+    }
+
+    .toc-list a {
+      color: #047857;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* Interactive Sandbox Box (Shown on Web, Clean Summary in Print) */
+    .interactive-sandbox {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #f8fafc;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin: 14px 0;
+      border: 1px solid #334155;
+      page-break-inside: avoid;
+    }
+
+    .sandbox-btn {
+      background: #334155;
+      color: #e2e8f0;
+      border: 1px solid #475569;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 8pt;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .sandbox-btn.active {
+      background: #10b981;
+      color: #0f172a;
+      border-color: #34d399;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    @media print {
+      .no-print, .lang-switcher, .interactive-toolbar {
+        display: none !important;
+      }
+      .manual-page {
+        max-width: 100%;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="manual-page">
+
+  <!-- ==================== INTERACTIVE BROCHURE EXPLORER BAR (WEB ONLY) ==================== -->
+  <div class="interactive-toolbar no-print">
+    <div class="toolbar-top">
+      <div class="toolbar-brand">
+        <span>⚡ GEMS — Brochure Interactive &amp; Encyclopédie des Paramètres</span>
+      </div>
+      <input
+        type="text"
+        id="settingSearchInput"
+        class="toolbar-search"
+        placeholder="🔍 Rechercher un paramètre (ex. Bridage, GSC, Limite par Phase, Super-Dal, 1P/3P, Repli)..."
+        oninput="filterManualSettings(this.value)"
+      >
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <a href="index.html" class="toolbar-pill">&larr; Portail</a>
+        <a href="gems-user-manual-fr.pdf" class="toolbar-pill">📄 PDF</a>
+        <div class="lang-switcher no-print" style="background: #1e293b; border-color: #475569;" aria-label="Sélecteur de langue">
+          <a href="../gems-user-manual.html" style="color: #cbd5e1;">EN</a>
+          <a href="../nl/gems-user-manual-nl.html" style="color: #cbd5e1;">NL</a>
+          <a href="gems-user-manual-fr.html" class="active" style="background: #10b981; color: #ffffff;">FR</a>
+        </div>
+      </div>
+    </div>
+    <div class="toolbar-pills">
+      <a class="toolbar-pill" href="#sec-intro">1. Visite Brochure</a>
+      <a class="toolbar-pill" href="#sec-day-life">2. 24h avec GEMS</a>
+      <a class="toolbar-pill" href="#sec-wizard">3. Assistant Initial</a>
+      <a class="toolbar-pill" href="#sec-modes">4. Mode Normal vs Installateur</a>
+      <a class="toolbar-pill" href="#sec-powerflow">5. Tableau de Bord</a>
+      <a class="toolbar-pill" href="#sec-ev">6. Recharge VE</a>
+      <a class="toolbar-pill" href="#sec-tab-devices">7. Onglet : Appareils &amp; Flotte</a>
+      <a class="toolbar-pill" href="#sec-tab-strategy">8. Onglet : Stratégie &amp; Batterie</a>
+      <a class="toolbar-pill" href="#sec-tab-contract">9. Onglet : Contrat d'Énergie</a>
+      <a class="toolbar-pill" href="#sec-tab-relays">10. Onglet : Relais Intelligents</a>
+      <a class="toolbar-pill" href="#sec-tab-network">11. Onglet : Réseau</a>
+      <a class="toolbar-pill" href="#sec-tab-sysinfo">12. Onglet : Infos Système</a>
+      <a class="toolbar-pill" href="#sec-tab-notifications">13. Onglet : Notifications</a>
+      <a class="toolbar-pill" href="#sec-tab-cloud">14. Onglet : Serveur Cloud</a>
+      <a class="toolbar-pill" href="#sec-tools">15. Scanner, Journal &amp; Rapports</a>
+      <a class="toolbar-pill" href="#sec-faq">16. FAQ &amp; Mémo Rapide</a>
+    </div>
+    <div id="searchStatusBanner" style="display:none; margin-top:8px; font-size:8.5pt; color:#34d399; font-weight:700;"></div>
+  </div>
+
+  <!-- ==================== COVER PAGE ==================== -->
+  <div class="cover-page">
+    <div>
+      <div class="cover-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+        <img src="../assets/new_energy_grid_logo.png" alt="New Energy Grid" style="height: 42px; width: auto; object-fit: contain;">
+        <div class="cover-badge">⚡ BROCHURE INTERACTIVE • GUIDE PAS-À-PAS • ENCYCLOPÉDIE DES PARAMÈTRES</div>
+      </div>
+
+      <h1 class="cover-title">Manuel Utilisateur &amp; Configuration GEMS</h1>
+      <div class="cover-subtitle">
+        La Brochure Interactive Complète, le Guide d'Installation Pas-à-Pas, le Manuel d'Utilisation Quotidienne et la Référence Détaillée de Chaque Paramètre pour <strong>GRID-EMS (GEMS)</strong> par <strong>New Energy Grid</strong> &amp; <strong>The Charge Grid</strong>
+      </div>
+
+      <div class="brochure-highlight-strip">
+        <div class="brochure-stat-card">
+          <span class="brochure-stat-num">100 % Local</span>
+          <span class="brochure-stat-lbl">Zéro Abonnement</span>
+        </div>
+        <div class="brochure-stat-card">
+          <span class="brochure-stat-num">1 Seconde</span>
+          <span class="brochure-stat-lbl">Régulation Temps Réel</span>
+        </div>
+        <div class="brochure-stat-card">
+          <span class="brochure-stat-num">8 Onglets</span>
+          <span class="brochure-stat-lbl">Chaque Option Expliquée</span>
+        </div>
+        <div class="brochure-stat-card">
+          <span class="brochure-stat-num">4 Niveaux</span>
+          <span class="brochure-stat-lbl">Bouclier Prix Négatifs</span>
+        </div>
+      </div>
+
+      <div class="cover-meta-grid">
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Version du Système</span>
+          <span class="cover-meta-val">GEMS v9.38.1</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">À Qui S'adresse Ce Guide</span>
+          <span class="cover-meta-val">Particuliers, Résidents, Gestionnaires de Site &amp; Installateurs</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Écosystème Matériel de Référence</span>
+          <span class="cover-meta-val">Onduleurs Hybrides &amp; Stockage Solis • Bornes VE Intelligentes Raedian • P1 &amp; Shelly</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Édition Documentaire</span>
+          <span class="cover-meta-val">Brochure Interactive &amp; Référence Complète des Paramètres de A à Z</span>
+        </div>
+      </div>
+
+      <div class="cover-hero-img">
+        <img src="../assets/screenshots/dashboard.png" alt="Tableau de bord GEMS Desktop">
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <span>Système de Gestion d'Énergie GEMS (GRID-EMS) • New Energy Grid &amp; The Charge Grid</span>
+      <span>Intelligence Edge 100 % Autonome • Synchronisation Cloud Optionnelle</span>
+    </div>
+  </div>
+
+  <!-- ==================== TABLE OF CONTENTS ==================== -->
+  <div class="toc-box">
+    <div class="toc-title">📖 Feuille de Route Interactive &amp; Table des Matières</div>
+    <ul class="toc-list">
+      <li><strong>Partie I — La Visite Interactive</strong></li>
+      <li><strong>1.</strong> <a href="#sec-intro">Bienvenue dans GEMS : Pourquoi Votre Maison Mérite un Cerveau Énergétique</a></li>
+      <li><strong>2.</strong> <a href="#sec-day-life">24 Heures dans la Vie de GEMS (Storyboard Interactif)</a></li>
+      <li><strong>Partie II — Guide de Configuration Pas-à-Pas</strong></li>
+      <li><strong>3.</strong> <a href="#sec-wizard">Pas-à-Pas : L'Assistant Initial de Mise en Service en 4 Étapes</a></li>
+      <li><strong>4.</strong> <a href="#sec-modes">Mode Résident Normal vs Mode Installateur Certifié (Cadenas)</a></li>
+      <li><strong>Partie III — Tableau de Bord Quotidien &amp; Commandes Intelligentes</strong></li>
+      <li><strong>5.</strong> <a href="#sec-powerflow">Le Tableau de Bord PowerFlow, les KPI &amp; Fenêtres Détaillées</a></li>
+      <li><strong>6.</strong> <a href="#sec-ev">Modes de Charge VE, Commutation Solaire 1P/3P &amp; Split-Billing</a></li>
+      <li><strong>Partie IV — Encyclopédie Complète des Paramètres (Les 8 Onglets)</strong></li>
+      <li><strong>7.</strong> <a href="#sec-tab-devices">Onglet 1 : Appareils &amp; Cluster Flotte VE DLB</a></li>
+      <li><strong>8.</strong> <a href="#sec-tab-strategy">Onglet 2 : Stratégie, Écrêtage, GSC, Fluvius &amp; Règles Batterie</a></li>
+      <li><strong>9.</strong> <a href="#sec-tab-contract">Onglet 3 : Contrat d'Énergie &amp; Les 5 Assistants Tarifaires</a></li>
+      <li><strong>10.</strong> <a href="#sec-tab-relays">Onglet 4 : Relais Intelligents, Chauffe-eau &amp; PAC SG-Ready</a></li>
+      <li><strong>11.</strong> <a href="#sec-tab-network">Onglet 5 : Réseau Ethernet Filaire &amp; Sécurité Anti-Blocage 60s</a></li>
+      <li><strong>12.</strong> <a href="#sec-tab-sysinfo">Onglet 6 : Infos Système, Sauvegarde, PIN, OTA &amp; SSL Local</a></li>
+      <li><strong>13.</strong> <a href="#sec-tab-notifications">Onglet 7 : Notifications, Webhooks, E-mail Hebdomadaire &amp; Debug</a></li>
+      <li><strong>14.</strong> <a href="#sec-tab-cloud">Onglet 8 : Serveur Cloud Optionnel (GRID-EMS-SERVER)</a></li>
+      <li><strong>Partie V — Outils, Application Mobile &amp; Référence Rapide</strong></li>
+      <li><strong>15.</strong> <a href="#sec-tools">Scanner, Journal Système en Direct, Rapports PDF &amp; App Mobile</a></li>
+      <li><strong>16.</strong> <a href="#sec-faq">Foire Aux Questions (FAQ) &amp; Mémo Rapide des Paramètres</a></li>
+    </ul>
+  </div>
+
+  <!-- ==================== 1. WELCOME TO GEMS (BROCHURE TOUR) ==================== -->
+  <h1 class="section-title" id="sec-intro">1. Bienvenue dans GEMS : Pourquoi Votre Maison Mérite un Cerveau Énergétique</h1>
+  <p>
+    Bienvenue dans <strong>GEMS (Grid Energy Management System)</strong> conçu par <strong>New Energy Grid</strong> et <strong>The Charge Grid</strong> ! Installé directement dans votre tableau électrique sur un calculateur industriel Raspberry Pi 5 doté d'un stockage SSD NVMe ultra-endurant, GEMS est le chef d'orchestre autonome de l'ensemble de votre installation électrique.
+  </p>
+
+  <div class="brochure-grid-3">
+    <div class="brochure-card">
+      <span class="brochure-card-icon">☀️🔋</span>
+      <div class="brochure-card-title">Maximiser le Solaire Gratuit &amp; le Stockage</div>
+      <div class="brochure-card-desc">
+        Chaque watt excédentaire issu de votre <strong>Onduleur Hybride Solis</strong> alimente d'abord votre foyer, puis votre batterie domestique, ensuite votre <strong>Borne VE Raedian</strong> et enfin votre production d'eau chaude — portant l'autoconsommation à plus de 85 %.
+      </div>
+    </div>
+    <div class="brochure-card">
+      <span class="brochure-card-icon">🛡️📉</span>
+      <div class="brochure-card-title">Écrêtage Capacitaire &amp; Protection Disjoncteur</div>
+      <div class="brochure-card-desc">
+        Lit votre compteur numérique P1 à chaque seconde. Si la cuisson et la lessive provoquent un appel de puissance, GEMS décharge aussitôt la batterie et module la borne VE afin de contenir votre pointe quart-horaire (<em>Tarif capacitaire Flandre</em>) et d'éviter toute disjonction.
+      </div>
+    </div>
+    <div class="brochure-card">
+      <span class="brochure-card-icon">💶⚡</span>
+      <div class="brochure-card-title">Tarifs Dynamiques &amp; Bouclier Prix Négatifs</div>
+      <div class="brochure-card-desc">
+        Télécharge chaque jour à 13h00 CET les prix horaires EPEX Spot Day-Ahead. Recharge votre batterie et votre véhicule durant les heures nocturnes les moins chères et vous protège des pénalités d'injection lorsque les prix deviennent négatifs l'après-midi.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-title">🔒 Autonomie Edge 100 % Locale — Zéro Abonnement, Zéro Dépendance Cloud</div>
+    <p style="margin:0;">
+      Contrairement aux boîtiers dépendants du cloud qui cessent de fonctionner lors d'une coupure Internet ou imposent un abonnement mensuel, GEMS exécute toutes les mesures, l'équilibrage dynamique de charge, le pilotage batterie et les calculs tarifaires <strong>100 % localement chez vous</strong>. En option, vous pouvez l'associer gratuitement à <strong>GRID-EMS-SERVER</strong> (<code>https://ems.newenergygrid.com</code>) pour le suivi sur smartphone et le diagnostic installateur à distance.
+    </p>
+  </div>
+
+  <!-- ==================== 2. 24 HOURS IN THE LIFE OF GEMS ==================== -->
+  <h1 class="section-title" id="sec-day-life">2. 24 Heures dans la Vie de GEMS (Storyboard Interactif)</h1>
+  <p>
+    Vous vous demandez ce que fait concrètement GEMS pendant que vous dormez, travaillez, cuisinez et vous détendez ? Suivez une journée type de 24 heures dans une habitation équipée d'un <strong>Onduleur Hybride Solis S6 + Batterie</strong>, d'une <strong>Borne Intelligente Raedian NEO</strong>, d'un compteur communicant P1 et d'une pompe à chaleur SG-Ready :
+  </p>
+
+  <!-- Interactive Time-of-Day Simulator (Web Interactive + Print Expanded) -->
+  <div class="interactive-sandbox no-print">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+      <strong style="color:#34d399; font-size:9.5pt;">🎮 Simulateur Interactif : Cliquez sur un Moment de la Journée pour Voir la Réaction de GEMS !</strong>
+      <div style="display:flex; gap:6px; flex-wrap:wrap;">
+        <button class="sandbox-btn active" onclick="showScenario(0, this)">🌙 02:30 Nuit Super-Creuse</button>
+        <button class="sandbox-btn" onclick="showScenario(1, this)">☀️ 11:00 Matin Ensoleillé</button>
+        <button class="sandbox-btn" onclick="showScenario(2, this)">📉 14:00 Prix Négatif (-0,08 €)</button>
+        <button class="sandbox-btn" onclick="showScenario(3, this)">🍳 18:30 Garde Pointe du Soir</button>
+      </div>
+    </div>
+    <div id="scenarioDisplay" style="background:#0f172a; border:1px solid #334155; border-radius:8px; padding:12px; font-size:8.8pt; line-height:1.5;">
+      <strong style="color:#38bdf8;">🌙 02h30 — Créneau Spot Économique (0,04 €/kWh) :</strong> Les prévisions météo annoncent un ciel très couvert demain et les prix spot atteignent leur plus bas niveau de la nuit. GEMS commande automatiquement à l'<strong>Onduleur Hybride Solis</strong> de pré-charger la batterie jusqu'à <strong>80 % de SoC cible</strong> et programme la <strong>Borne VE Raedian</strong> sur les 4 heures les moins chères — tout en restant strictement sous le <strong>plafond capacitaire flamand de 2,50 kW</strong> !
+    </div>
+  </div>
+
+  <div class="timeline-grid">
+    <div class="timeline-card">
+      <span class="timeline-time">02:00 – 05:00 • ARBITRAGE NOCTURNE</span>
+      <div class="timeline-headline">1. Pré-Charge Nocturne Intelligente (Super-Dal &amp; Spot)</div>
+      <div style="font-size:8.2pt; color:#475569;">
+        GEMS consulte la prévision solaire Open-Meteo du lendemain. Si la journée s'annonce nuageuse et que le tarif EPEX descend sous votre <strong>Plafond de Charge Réseau (€/kWh)</strong>, GEMS pré-charge votre batterie Solis et votre borne Raedian tout en plafonnant le prélèvement total à <code>2,50 kW</code>.
+      </div>
+    </div>
+    <div class="timeline-card" style="border-left-color:#f59e0b;">
+      <span class="timeline-time">09:30 – 12:30 • RÉCOLTE SOLAIRE</span>
+      <div class="timeline-headline">2. 100 % Solaire Gratuit &amp; Commutation VE 1P/3P</div>
+      <div style="font-size:8.2pt; color:#475569;">
+        Dès que la production solaire grimpe à <code>2,8 kW</code>, GEMS démarre votre borne Raedian en <strong>Monophasé (1P)</strong> pour capter le moindre rayon matinal. Lorsque le surplus dépasse <code>4,3 kW</code>, GEMS bascule automatiquement la borne en <strong>Triphasé (3P)</strong> après une pause de sécurité de 20 secondes !
+      </div>
+    </div>
+    <div class="timeline-card" style="border-left-color:#8b5cf6;">
+      <span class="timeline-time">13:30 – 15:30 • BOUCLIER PRIX NÉGATIFS</span>
+      <div class="timeline-headline">3. Défense à 4 Niveaux Contre les Prix d'Injection Négatifs</div>
+      <div style="font-size:8.2pt; color:#475569;">
+        Les prix spot tombent à <code>-0,09 €/kWh</code>. GEMS remplit la batterie (Niveau 1), pousse la borne VE à pleine puissance (Niveau 2), enclenche le relais PAC SG-Ready (Niveau 3) et — une fois tous les stockages pleins — bride l'onduleur Solis (Niveau 4) pour payer <strong>0,00 € de pénalité d'injection</strong> (tout en préservant les certificats verts flamands GSC !).
+      </div>
+    </div>
+    <div class="timeline-card" style="border-left-color:#ef4444;">
+      <span class="timeline-time">18:00 – 21:00 • ÉCRÊTAGE DU SOIR</span>
+      <div class="timeline-headline">4. Préparation du Repas &amp; Protection Capacitaire</div>
+      <div style="font-size:8.2pt; color:#475569;">
+        La taque à induction, le four et la pompe à chaleur appellent <code>5,2 kW</code> alors que l'électricité est au tarif fort (<code>0,34 €/kWh</code>). En 1 seconde, GEMS suspend la charge VE et décharge <code>3,2 kW</code> depuis votre batterie domestique, maintenant le prélèvement réseau sous votre cible mensuelle de <code>2,50 kW</code> !
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 3. STEP-BY-STEP FIRST-BOOT WIZARD ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-wizard">3. Configuration Pas-à-Pas : L'Assistant Initial en 4 Étapes</h1>
+  <p>
+    Lors de la mise sous tension d'une unité GEMS neuve (ou réinitialisée d'usine), ouvrez <code>http://ems.local</code> (ou son adresse IP) dans votre navigateur : GEMS lance automatiquement un <strong>Assistant de mise en service initiale en 4 étapes</strong> permettant de configurer votre installation en moins de 3 minutes :
+  </p>
+
+  <div class="step-card">
+    <div class="step-card-header">
+      <span class="step-number-badge">Étape 1 sur 4</span>
+      <span class="step-card-title">Choix de la Langue, Code PIN Local &amp; Confirmation de Sécurité</span>
+    </div>
+    <div class="setting-card-grid">
+      <div class="setting-card green">
+        <div class="setting-name"><span>Langue de l'Interface</span> <span class="setting-default-pill">NL / FR / EN</span></div>
+        <div class="setting-meta-row"><span class="badge-what">Fonction</span> Bascule instantanément toute l'interface GEMS, les infobulles et les bannières d'état entre <strong>Français (FR)</strong>, <strong>Nederlands (NL)</strong> et <strong>English (EN)</strong>.</div>
+        <div class="setting-meta-row"><span class="badge-when">Quand l'Utiliser</span> Sélectionnez la langue souhaitée ; vous pourrez la changer à tout moment dans la barre supérieure.</div>
+      </div>
+      <div class="setting-card amber">
+        <div class="setting-name"><span>Code PIN d'Accès Installateur Local</span> <span class="setting-default-pill">Min. 6 caract.</span></div>
+        <div class="setting-meta-row"><span class="badge-what">Fonction</span> Définit le mot de passe déverrouillant le <strong>Mode Installateur Certifié</strong> (icône cadenas dans Paramètres). Chiffré localement et protégé par un verrouillage anti-forçage après 5 tentatives.</div>
+        <div class="setting-meta-row"><span class="badge-tip">Important</span> Notez soigneusement ce code PIN ! Les résidents n'ont jamais besoin de mot de passe au quotidien pour consulter le tableau de bord, changer le mode VE ou exporter des PDF — ce PIN protège uniquement les réglages électriques et contractuels.</div>
+      </div>
+    </div>
+    <p style="font-size:8.3pt; margin:4px 0 0 0; color:#475569;">
+      <strong>Case Obligatoire de Sécurité Électrique :</strong> Confirmez que les protections physiques contre les surintensités et courants différentiels sont conformes au RGIE / AREI (Belgique) ou à la norme NEN 1010 (Pays-Bas) avant de cliquer sur <strong>Suivant &rarr;</strong>.
+    </p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-card-header">
+      <span class="step-number-badge">Étape 2 sur 4</span>
+      <span class="step-card-title">Pays, Région, Topologie du Réseau &amp; Disjoncteur Principal</span>
+    </div>
+    <div class="setting-card-grid">
+      <div class="setting-card">
+        <div class="setting-name"><span>Pays &amp; Région</span> <span class="setting-default-pill">BE (Flandre/Wallonie) / NL</span></div>
+        <div class="setting-meta-row"><span class="badge-what">Fonction</span> Sélectionne la <strong>Belgique (BE)</strong> (avec les régions <em>Flandre</em>, <em>Wallonie</em> ou <em>Bruxelles</em>) ou les <strong>Pays-Bas (NL)</strong>.</div>
+        <div class="setting-meta-row"><span class="badge-when">Quand l'Utiliser</span> Choisissez <strong>BE + Flandre</strong> pour activer l'écrêtage quart-horaire du <em>Tarif capacitaire</em> et Elia Réseau Vert. Choisissez <strong>NL</strong> pour activer la <em>Compensation intelligente</em> néerlandaise et masquer les widgets belges.</div>
+      </div>
+      <div class="setting-card">
+        <div class="setting-name"><span>Topologie du Réseau Électrique</span> <span class="setting-default-pill">1x230V / 3x400V / 3x230V</span></div>
+        <div class="setting-meta-row"><span class="badge-what">Fonction</span> Indique le schéma de raccordement afin de convertir exactement les Ampères en Watts sur chaque phase :
+          <br>• <code>single_phase_230v</code> : Monophasé 230 V + Neutre (ex. 40 A = 9,2 kW)
+          <br>• <code>three_phase_400v</code> : Triphasé 400 V + Neutre étoile (ex. 3x25 A = 17,3 kW)
+          <br>• <code>three_phase_230v_delta</code> : Triphasé 230 V Triangle sans Neutre (fréquent dans les rues belges anciennes ; applique le facteur &radic;3).
+        </div>
+      </div>
+      <div class="setting-card rose">
+        <div class="setting-name"><span>Calibre du Disjoncteur Principal (A)</span> <span class="setting-default-pill">16 A – 250 A (ex. 25A/40A)</span></div>
+        <div class="setting-meta-row"><span class="badge-what">Fonction</span> Aligne votre <strong>Limite par Phase (A)</strong> et votre <strong>Courant Nominal (A)</strong> sur le calibre physique inscrit sur votre disjoncteur de branchement (ex. <code>25 A</code>, <code>32 A</code>, <code>40 A</code> ou <code>63 A</code>).</div>
+        <div class="setting-meta-row"><span class="badge-when">Pourquoi Critique</span> GEMS interdit à la borne VE ou à la charge batterie de dépasser cette intensité sur l'une des phases (L1, L2 ou L3), évitant toute coupure générale.</div>
+      </div>
+      <div class="setting-card amber">
+        <div class="setting-name"><span>Courant de Repli si Compteur Hors Ligne (A)</span> <span class="setting-default-pill">Défaut : 6 A (0A–32A)</span></div>
+        <div class="setting-meta-row"><span class="badge-what">Fonction</span> Définit le courant de sécurité imposé aux bornes VE si le câble P1 est accidentellement débranché ou ne répond plus depuis plus de 30 secondes.</div>
+        <div class="setting-meta-row"><span class="badge-when">Quand l'Utiliser</span> Réglez sur <code>0 A</code> (Pause) sur un disjoncteur serré de 25 A, ou sur <code>6 A</code> (charge minimale) pour permettre une recharge lente de secours durant la nuit.</div>
+      </div>
+    </div>
+    <p style="font-size:8.3pt; margin:4px 0 0 0; color:#475569;">
+      <strong>Plafond Tarif Capacitaire Flandre (kW) :</strong> Affiché automatiquement lorsque la Flandre est sélectionnée (<code>2,5 kW</code> par défaut) pour fixer la consigne mensuelle d'écrêtage sur 15 minutes.
+    </p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-card-header">
+      <span class="step-number-badge">Étape 3 sur 4</span>
+      <span class="step-card-title">Découverte Matérielle Rapide (Scan Série USB &amp; Réseau LAN)</span>
+    </div>
+    <p style="font-size:8.4pt; margin:0;">
+      Cliquez sur <strong>Relancer l'analyse</strong>. GEMS inspecte automatiquement les chemins USB Linux persistants (<code>/dev/serial/by-id/*</code>) pour identifier les câbles compteurs P1 (<code>115200 8N1</code> / <code>9600 7E1</code>) et adaptateurs RS-485 Modbus RTU, tout en balayant le sous-réseau Ethernet <code>/24</code> à la recherche d'onduleurs <strong>Solis</strong>, bornes <strong>Raedian</strong> et relais <strong>Shelly</strong>.
+    </p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-card-header">
+      <span class="step-number-badge">Étape 4 sur 4</span>
+      <span class="step-card-title">Appairage Cloud Optionnel (GRID-EMS-SERVER) &amp; Fin</span>
+    </div>
+    <p style="font-size:8.4pt; margin:0;">
+      Si vous disposez d'un jeton d'appairage (ex. <code>PAIR-XXXX-TCG</code>) issu de <code>https://ems.newenergygrid.com</code>, collez-le ici pour activer l'accès distant — ou laissez le champ vide pour un fonctionnement 100 % hors ligne. Cliquez sur <strong>Terminer la mise en service</strong> !
+    </p>
+  </div>
+
+  <!-- ==================== 4. NORMAL VS INSTALLER MODE ==================== -->
+  <h1 class="section-title" id="sec-modes">4. Mode Résident Normal vs Mode Installateur Certifié (🔒 Cadenas)</h1>
+  <p>
+    GEMS est pensé pour offrir aux <strong>particuliers un pilotage quotidien simple et sans mot de passe</strong>, tout en gardant les <strong>paramètres électriques critiques verrouillés en sécurité</strong> derrière une icône cadenas discrète en haut à droite de la page <strong>Paramètres</strong>.
+  </p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:26%;">Fonction / Action</th>
+        <th style="width:37%;">🏡 Mode Résident Normal (Par Défaut — Verrouillé 🔒)</th>
+        <th style="width:37%;">🛠️ Mode Installateur Certifié (Déverrouillé par PIN 🔓)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Connexion Requise</strong></td>
+        <td><strong>Aucun mot de passe !</strong> S'ouvre instantanément sur le Wi-Fi / réseau local de la maison.</td>
+        <td>Cliquez sur le <strong>badge 🔒 Cadenas</strong> dans Paramètres et saisissez le code PIN installateur (6+ caract.).</td>
+      </tr>
+      <tr>
+        <td><strong>Tableau de Bord &amp; Modes VE</strong></td>
+        <td>Accès complet : PowerFlow en direct, graphiques historiques au clic, modes VE (<code>Eco</code>, <code>PV Only</code>, <code>Fast</code>, <code>Off</code>) et rapports énergétiques PDF imprimables.</td>
+        <td>Accès complet + sélecteur rapide du mode stratégique.</td>
+      </tr>
+      <tr>
+        <td><strong>Onglets Paramètres Visibles</strong></td>
+        <td><strong>2 Onglets Sécurisés :</strong> <code>Appareils</code> (état en lecture seule + sonde <code>&lt;/&gt; Debug</code> &amp; envoi de rapport) et <code>Infos système</code> (IP/version, <code>Redémarrer le système</code> et <code>Mise à jour logicielle</code> signée).</td>
+        <td><strong>Les 8+ Onglets Complets :</strong> <code>Stratégie</code>, <code>Contrat d'énergie</code>, <code>Appareils</code> (ajout/édition/suppression + Flotte DLB), <code>Relais &amp; Commutateurs</code>, <code>Réseau</code>, <code>Infos système</code> (Sauvegarde/Restauration, PIN, SSL, Usine), <code>Notifications</code> et <code>Serveur Cloud</code> (ainsi que <code>Test de Mise en Service</code>).</td>
+      </tr>
+      <tr>
+        <td><strong>Outils de la Barre Latérale</strong></td>
+        <td><code>Tableau de bord</code>, <code>Journal</code> (journaux en direct &amp; export) et <code>Paramètres</code>.</td>
+        <td>Ajoute <code>Scanner</code> (découverte LAN/Modbus) et <code>Cockpit Terminal (:9090)</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 5. POWERFLOW DASHBOARD & MODALS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-powerflow">5. Le Tableau de Bord Interactif PowerFlow, les KPI &amp; Fenêtres Détaillées</h1>
+  <p>
+    Votre <strong>Tableau de bord</strong> principal se met à jour chaque seconde par flux WebSocket temps réel. Au centre trône le synoptique animé <strong>PowerFlow</strong>, entouré d'indicateurs financiers et énergétiques en direct.
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/dashboard.png" alt="Tableau de bord PowerFlow GEMS">
+    <div class="manual-screenshot-caption">Figure 5.1 : Le Tableau de bord GEMS affichant le Solaire en direct, la Charge Maison, le SoC Batterie Solis, le Prélèvement/Injection Réseau et la Borne VE Raedian.</div>
+  </div>
+
+  <h2 class="subsection-title">Explication de Chaque Cercle &amp; Carte KPI du Tableau de Bord</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:22%;">Nœud / Carte KPI</th>
+        <th style="width:18%;">Couleur / Exemple</th>
+        <th style="width:60%;">Signification &amp; Action au Clic</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>☀️ Nœud Solaire</strong></td>
+        <td><span style="color:#d97706; font-weight:bold;">● Or</span> (<code>4,8 kW</code>)</td>
+        <td>Production photovoltaïque instantanée et cumul journalier en kWh. <strong>Cliquez sur le cercle</strong> pour afficher la courbe solaire 24h, la puissance crête et l'historique de bridage.</td>
+      </tr>
+      <tr>
+        <td><strong>🔋 Nœud Batterie</strong></td>
+        <td><span style="color:#10b981; font-weight:bold;">● Émeraude</span> (<code>85 % SoC</code>)</td>
+        <td>Puissance de charge/décharge en direct et état de charge (SoC %) de votre batterie <strong>Solis</strong>. <strong>Cliquez sur le cercle</strong> pour inspecter le SoC sur 24h, les flux kW et la température/santé batterie.</td>
+      </tr>
+      <tr>
+        <td><strong>⚡ Nœud Réseau</strong></td>
+        <td><span style="color:#0284c7; font-weight:bold;">● Bleu</span> (<code>-1,2 kW</code>)</td>
+        <td>Bilan net au compteur de rue (Prélèvement depuis la rue vs Injection vers la rue). <strong>Cliquez sur le cercle</strong> pour consulter les tensions par phase (L1/L2/L3), les courbes d'échange et le suivi quart-horaire Flandre.</td>
+      </tr>
+      <tr>
+        <td><strong>🏠 Charge Maison</strong></td>
+        <td><span style="color:#0d9488; font-weight:bold;">● Sarcelle</span> (<code>0,95 kW</code>)</td>
+        <td>Puissance totale consommée par les équipements domestiques à cet instant. <strong>Cliquez sur le cercle</strong> pour visualiser le profil de consommation sur 24h.</td>
+      </tr>
+      <tr>
+        <td><strong>🚗 Borne VE</strong></td>
+        <td><span style="color:#8b5cf6; font-weight:bold;">● Violet</span> (<code>7,4 kW</code>)</td>
+        <td>Vitesse de charge et mode actif de votre borne <strong>Raedian</strong>. <strong>Cliquez sur le cercle</strong> pour basculer de mode (<code>Eco</code>, <code>PV Only</code>, <code>Fast</code>, <code>Off</code>) ou suivre les kWh de la session.</td>
+      </tr>
+      <tr>
+        <td><strong>🔥 Relais / Pompe à Chaleur</strong></td>
+        <td><span style="color:#ea580c; font-weight:bold;">● Orange</span> (<code>ON / OFF</code>)</td>
+        <td>Indique si votre chauffe-eau intelligent ou PAC SG-Ready est enclenché. <strong>Cliquez sur le cercle</strong> pour voir le temps de marche thermique et le forçage manuel.</td>
+      </tr>
+      <tr>
+        <td><strong>📊 Autoconsommation vs Autosuffisance</strong></td>
+        <td><code>78 %</code> / <code>92 %</code></td>
+        <td><strong>Autoconsommation :</strong> % de votre production solaire conservé dans la maison/batterie/VE. <strong>Autosuffisance :</strong> % des besoins électriques du foyer couverts par votre solaire + batterie sans recourir au réseau.</td>
+      </tr>
+      <tr>
+        <td><strong>💶 Économies Estimées GRID-EMS</strong></td>
+        <td><span style="color:#059669; font-weight:bold;">4,82 € / Jour</span></td>
+        <td>Économies réelles calculées sur la période choisie (Jour, Mois, Année), ventilées entre <strong>Autoconsommation Solaire</strong>, <strong>Arbitrage Batterie</strong>, <strong>Charge VE Heures Creuses &amp; Bouclier Prix Négatifs</strong> et (en Flandre uniquement) <strong>Écrêtage Capacitaire</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>🛡️ Pointe Mensuelle (Flandre Uniquement)</strong></td>
+        <td><code>2,50 kW</code></td>
+        <td>Plus forte moyenne quart-horaire de prélèvement enregistrée durant le mois civil en cours (remise à zéro le 1er de chaque mois à 00h00). Strictement réservée aux installations flamandes (<code>BE</code> + <code>flanders</code>) — automatiquement masquée et désactivée ailleurs.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/dashboard_modal_solar.png" alt="Fenêtre Historique Solaire">
+      <div class="manual-screenshot-caption">Figure 5.2 : Fenêtre détaillée Solaire au clic avec sélecteur 1h/24h/7j/30j et superposition « ⚡ Compare Grid Power ».</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/dashboard_modal_battery.png" alt="Fenêtre Historique Batterie">
+      <div class="manual-screenshot-caption">Figure 5.3 : Fenêtre détaillée Batterie présentant l'état de charge (SoC %) sur 24 heures et les cycles de charge/décharge.</div>
+    </div>
+  </div>
+
+  <!-- ==================== 6. EV CHARGING MODES & 1P/3P ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-ev">6. Modes de Charge VE, Commutation Automatique 1P/3P &amp; Split-Billing</h1>
+  <p>
+    Que vous touchiez le cercle Borne VE sur le Tableau de bord ou configuriez votre borne <strong>Raedian</strong> dans les Paramètres, GEMS met à votre disposition quatre modes de charge intelligents accompagnés d'une adaptation automatique monophasé/triphasé :
+  </p>
+
+  <div class="decision-box">
+    <div class="decision-title">🚗 Quand Utiliser Chaque Mode de Charge VE ?</div>
+    <div class="decision-grid">
+      <div class="decision-item" style="border-left: 3px solid #10b981;">
+        <div class="decision-item-title">1. ÉCO (Solaire Intelligent + Complément Spot Bas)</div>
+        <div class="decision-item-desc">
+          <strong>Idéal au quotidien !</strong> Privilégie le surplus solaire gratuit en journée et complète automatiquement durant les <em>Heures Spot les Moins Chères</em> configurées (ex. 01h00–05h00) ou lorsque la part renouvelable belge <em>Elia</em> dépasse 65 %.
+        </div>
+      </div>
+      <div class="decision-item" style="border-left: 3px solid #f59e0b;">
+        <div class="decision-item-title">2. PV ONLY (100 % Pur Soleil)</div>
+        <div class="decision-item-desc">
+          <strong>Parfait en télétravail par beau temps.</strong> Ne démarre que lorsque le surplus solaire dépasse le seuil minimal VE de 6 A (1,4 kW en 1P / 4,1 kW en 3P). Aucun kilowattheure payant n'est prélevé sur le réseau !
+        </div>
+      </div>
+      <div class="decision-item" style="border-left: 3px solid #ef4444;">
+        <div class="decision-item-title">3. FAST (Vitesse Maximale Sécurisée)</div>
+        <div class="decision-item-desc">
+          <strong>Lorsque vous devez repartir rapidement.</strong> Charge immédiatement à la puissance maximale (11 kW ou 22 kW) pendant que l'équilibrage dynamique GEMS protège votre disjoncteur principal contre toute surcharge !
+        </div>
+      </div>
+      <div class="decision-item" style="border-left: 3px solid #64748b;">
+        <div class="decision-item-title">4. OFF (En Pause / Maintien)</div>
+        <div class="decision-item-desc">
+          <strong>Pour réserver toute l'énergie à la maison.</strong> Maintient la session de charge en pause même lorsque le câble reste branché au véhicule.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-title">🔄 Fonctionnement de la Commutation Automatique 1P/3P (Plage Continue de 1,4 kW &rarr; 22 kW)</div>
+    <p style="margin:0;">
+      En temps normal, une borne triphasée exige au minimum <code>3 &times; 6 A = 4,14 kW</code> de surplus solaire avant de pouvoir démarrer — gaspillant ainsi l'ensoleillement modéré du matin ou de fin d'après-midi ! En activant la <strong>Commutation Automatique 1P/3P Solaire</strong> sur une borne compatible (telle que la <strong>Raedian NEO</strong>), GEMS démarre dès 1,4 kW de surplus en <strong>Monophasé (1,4 kW à 3,6 kW)</strong>. Dès que l'excédent solaire dépasse durablement <code>4,2 kW</code>, GEMS envoie un ordre de pause, observe un <strong>délai obligatoire anti-soudure de 20 secondes</strong> afin que les relais embarqués du véhicule s'ouvrent hors charge, bascule le contacteur en <strong>Triphasé (4,1 kW à 22 kW)</strong> et reprend la charge en toute fluidité !
+    </p>
+  </div>
+
+  <!-- ==================== 7. SETTINGS TAB 1: DEVICES & FLEET DLB ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-tab-devices">7. Onglet Paramètres 1 : Appareils &amp; Cluster Flotte VE DLB</h1>
+  <p>
+    Rendez-vous dans <strong>Paramètres &rarr; Appareils</strong>. En Mode Normal, vous consultez l'état en direct des équipements et lancez des sondes de diagnostic <code>&lt;/&gt; Debug</code>. Le déverrouillage du <strong>Mode Installateur Certifié (🔓)</strong> donne accès à la découverte matérielle, à l'ajout/modification parmi plus de 170 modèles vérifiés (emmenés par <strong>Solis</strong> et <strong>Raedian</strong>), ainsi qu'au module <strong>Cluster de Flotte VE &amp; DLB</strong>.
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_devices.png" alt="Onglet Paramètres Appareils">
+    <div class="manual-screenshot-caption">Figure 7.1 : Paramètres &rarr; Appareils présentant l'Onduleur Hybride Solis S6, la Borne Raedian NEO, le Compteur P1 et le Relais Shelly Pro connectés.</div>
+  </div>
+
+  <h2 class="subsection-title">Pas-à-Pas : Ajouter ou Modifier un Appareil (Chaque Champ Expliqué)</h2>
+  <p>
+    Cliquez sur <strong>🔍 Détecter les appareils série</strong> (pour identifier automatiquement les compteurs USB P1 et adaptateurs RS-485), ou cliquez sur <strong>+ Ajouter un appareil</strong> sous <em>Onduleurs &amp; Solaire</em>, <em>Compteurs Intelligents</em>, <em>Batteries &amp; Stockage</em>, <em>Bornes VE</em> ou <em>Relais Intelligents</em> :
+  </p>
+
+  <div class="setting-card-grid">
+    <div class="setting-card green">
+      <div class="setting-name"><span>Nom de l'Appareil &amp; Modèle Matériel</span> <span class="setting-default-pill">170+ Modèles</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Attribue un nom convivial (ex. <code>Solis Toiture Hybride</code> ou <code>Allée Raedian NEO</code>) et charge la table exacte des registres et du protocole.</div>
+      <div class="setting-meta-row"><span class="badge-tip">Badges</span> Les modèles affichent <code>✓ Vérifié</code> (validé en production), <code>1P↔3P</code> (commutation de phases) ou <code>Lecture seule</code>. N'activez <strong>Afficher les pilotes expérimentaux</strong> que pour tester des pilotes bêta.</div>
+    </div>
+
+    <div class="setting-card">
+      <div class="setting-name"><span>IP Hôte &amp; Port TCP / Port Série</span> <span class="setting-default-pill">LAN ou /dev/serial/by-id/*</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Pour un équipement réseau, indiquez son adresse IPv4 locale (ex. <code>192.168.1.50</code>) et son port (<code>502</code> par défaut en Modbus TCP, <code>80</code> en REST/Shelly). En USB, sélectionnez le chemin persistant <code>/dev/serial/by-id/...</code>, le débit (<code>115200</code> ou <code>9600</code>) et la parité (<code>8N1</code> ou <code>7E1</code>).</div>
+    </div>
+
+    <div class="setting-card">
+      <div class="setting-name"><span>ID Esclave Modbus (Unit ID)</span> <span class="setting-default-pill">Défaut : 1 (1–247)</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Adresse Modbus configurée dans le menu interne de l'onduleur, du compteur ou de la borne.</div>
+      <div class="setting-meta-row"><span class="badge-when">Quand Modifier</span> Conservez <code>1</code> pour la majorité des équipements Solis et Raedian. Si plusieurs appareils RS-485 partagent le même câble, attribuez un ID distinct à chacun (<code>1</code>, <code>2</code>, <code>3</code>).</div>
+    </div>
+
+    <div class="setting-card amber">
+      <div class="setting-name"><span>Puissance Nominale (kW) &amp; Bridage</span> <span class="setting-default-pill">ex. 5,0 kW / 11,0 kW</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Renseigne la puissance maximale de l'équipement (ex. <code>5,0 kW</code> pour un onduleur Solis ou <code>11,0 kW</code> pour une borne triphasée Raedian).</div>
+      <div class="setting-meta-row"><span class="badge-when">Autoriser le Bridage</span> Cochez <strong>Allow Curtailment</strong> sur votre onduleur solaire afin d'autoriser GEMS à réduire l'injection lors des prix spot négatifs ou en mode zéro-injection.</div>
+    </div>
+
+    <div class="setting-card purple">
+      <div class="setting-name"><span>Rotation du Câblage des Phases</span> <span class="setting-default-pill">Auto / L1 / L1-L2-L3</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Déclare sur quelle(s) phase(s) physique(s) du bâtiment l'appareil est raccordé : <code>Auto</code>, monophasé (<code>L1</code>, <code>L2</code> ou <code>L3</code>) ou rotation triphasée (<code>L1-L2-L3</code>, <code>L2-L3-L1</code>, <code>L3-L1-L2</code>).</div>
+      <div class="setting-meta-row"><span class="badge-when">Pourquoi Essentiel</span> Si l'électricien a câblé une seconde borne avec permutation <code>L2-L3-L1</code> pour équilibrer le tableau, ce réglage garantit que GEMS protège exactement le bon pôle du disjoncteur !</div>
+    </div>
+
+    <div class="setting-card green">
+      <div class="setting-name"><span>Options Onduleur Hybride (Compteur &amp; Batterie)</span> <span class="setting-default-pill">Solis Hybrid</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> S'affiche sur les onduleurs hybrides :
+        <br>• <strong>Grid Meter Connected?</strong> Décochez si l'onduleur ne possède pas ses propres tores CT ; GEMS pilotera automatiquement la batterie grâce à votre compteur communicant P1 !
+        <br>• <strong>Battery Connected? &amp; Capacity (kWh) :</strong> Active le suivi du SoC et définit la capacité utile de stockage (ex. <code>10,0 kWh</code>).
+      </div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Champs Spécifiques aux Bornes VE &amp; Module Optionnel Cluster Flotte DLB</h2>
+  <p>
+    Lors de la configuration d'une borne VE (ou en activant <strong>Cluster de Flotte VE &amp; DLB</strong> au bas de l'onglet Appareils pour les parkings multi-bornes jusqu'à 64 emplacements), ces réglages spécialisés sont proposés :
+  </p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:26%;">Paramètre VE / Flotte</th>
+        <th style="width:20%;">Options / Défaut</th>
+        <th style="width:54%;">Fonction &amp; Cas d'Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Emplacement &amp; Priorité Flotte</strong></td>
+        <td>Place <code>1–64</code><br><code>VIP</code>, <code>High</code>, <code>Normal</code>, <code>Solar Only</code></td>
+        <td>Attribue un numéro d'emplacement et une priorité de charge : <strong>VIP (poids 1,5x)</strong> pour la direction/visiteurs urgents, <strong>Haute (1,25x)</strong>, <strong>Normale (1,0x)</strong> ou <strong>Solaire Seul</strong> (suspendu hors surplus solaire).</td>
+      </tr>
+      <tr>
+        <td><strong>Commutation Automatique 1P/3P Solaire</strong></td>
+        <td>Case à cocher (<code>Off</code> / <code>On</code>)</td>
+        <td>Active le basculement dynamique Monophasé (1,4–3,6 kW) &harr; Triphasé (4,1–22 kW) sur les bornes compatibles (comme <strong>Raedian</strong>) avec temporisation de protection de 20 secondes.</td>
+      </tr>
+      <tr>
+        <td><strong>DLB Flotte Actif &amp; Auto-Enregistrement</strong></td>
+        <td>Interrupteurs Carte Flotte</td>
+        <td>Active l'équilibrage dynamique multi-bornes jusqu'à 32/64 bornes. Avec <strong>Zero-Touch Auto Onboard</strong>, toute nouvelle borne OCPP pointant vers <code>ws://ems.local/ocpp/{id}</code> est ajoutée automatiquement dès son premier <code>BootNotification</code> !</td>
+      </tr>
+      <tr>
+        <td><strong>Courant Max. Cluster (A) &amp; Arbitrage DLB</strong></td>
+        <td>ex. <code>63 A</code> / <code>80 A</code><br><code>priority_queue</code>, <code>equal_share</code>, <code>solar_first</code></td>
+        <td>Plafonne le courant total appelé par le groupe de bornes. Choisissez <strong>Priority Queue</strong> (pondéré VIP/Haute/Normale), <strong>Equal Share</strong> (partage égal entre voitures) ou <strong>Solar First</strong> (distribution prioritaire du solaire).</td>
+      </tr>
+      <tr>
+        <td><strong>Proxy OCPP Smart Forwarder</strong></td>
+        <td><code>URL CPO Amont</code> + <code>En-tête Auth</code></td>
+        <td>Permet à GEMS d'assurer l'équilibrage local en OCPP tout en relayant de manière transparente les autorisations RFID et transactions (<code>StartTransaction</code>, <code>MeterValues</code>, <code>StopTransaction</code>) vers une plateforme de facturation CPO externe ou un service de remboursement employeur ! Utilisez <code>{chargePointId}</code> dans l'URL.</td>
+      </tr>
+      <tr>
+        <td><strong>Authentification Entrante OCPP 1.6-J</strong></td>
+        <td><code>Identifiant</code> &amp; <code>Mot de passe</code></td>
+        <td>Identifiants HTTP Basic Auth optionnels exigés des bornes se connectant au serveur WebSocket OCPP local de GEMS.</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- ==================== 8. SETTINGS TAB 2: STRATEGY ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-tab-strategy">8. Onglet Paramètres 2 : Stratégie, Écrêtage, Certificats Verts (GSC), Fluvius &amp; Règles Batterie</h1>
+  <p>
+    <strong>Paramètres &rarr; Stratégie</strong> constitue le cerveau analytique de GEMS, structuré en 8 cartes logiques. Voici chaque champ expliqué clairement afin que vous sachiez exactement à quoi il sert et comment l'ajuster :
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_strategy.png" alt="Onglet Paramètres Stratégie">
+    <div class="manual-screenshot-caption">Figure 8.1 : Paramètres &rarr; Stratégie affichant la localisation géographique, les limites du disjoncteur principal, le mode d'optimisation, la protection des certificats verts (GSC) et l'arbitrage batterie.</div>
+  </div>
+
+  <h2 class="subsection-title">8.1 Localisation Géographique &amp; Limites de Raccordement Réseau</h2>
+  <div class="setting-card-grid">
+    <div class="setting-card">
+      <div class="setting-name"><span>Fuseau Horaire, Adresse &amp; Recherche Lat/Lon</span> <span class="setting-default-pill">Europe/Brussels</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Définit les coordonnées exactes de votre toiture (Latitude &amp; Longitude). Saisissez votre rue/ville et cliquez sur <strong>Lookup Lat/Lon</strong> pour remplir automatiquement les coordonnées.</div>
+      <div class="setting-meta-row"><span class="badge-when">Utilité</span> GEMS utilise ces coordonnées pour interroger les prévisions horaires hyper-locales d'irradiance solaire (W/m&sup2;) via Open-Meteo afin que votre batterie sache si la journée de demain sera ensoleillée ou couverte !</div>
+    </div>
+
+    <div class="setting-card rose">
+      <div class="setting-name"><span>Courant Nominal (A) &amp; Limite par Phase (A)</span> <span class="setting-default-pill">ex. 25 A / 40 A</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Définit le calibre physique de votre disjoncteur principal par phase. GEMS calcule chaque seconde la marge instantanée disponible par phase (<code>Limite Phase - Charge Active</code>).</div>
+      <div class="setting-meta-row"><span class="badge-when">Réglage</span> Renseignez toujours le calibre exact de votre disjoncteur de branchement (ex. <code>25 A</code> en 3x400V ou <code>40 A</code> en 1x230V) conformément au RGIE / AREI.</div>
+    </div>
+
+    <div class="setting-card">
+      <div class="setting-name"><span>Prélèvement / Injection Réseau Autorisés (kW)</span> <span class="setting-default-pill">ex. 17,3 kW / 10,0 kW</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Plafonne la puissance active totale prélevée sur le réseau ou injectée vers la rue.</div>
+      <div class="setting-meta-row"><span class="badge-tip">Zéro-Injection</span> Si votre gestionnaire de réseau interdit toute réinjection solaire, réglez <strong>Injection Réseau Autorisée (kW)</strong> sur <code>0,0 kW</code> et activez le <strong>Bridage Onduleur Actif</strong> !</div>
+    </div>
+
+    <div class="setting-card amber">
+      <div class="setting-name"><span>Courant de Repli si Compteur Hors Ligne</span> <span class="setting-default-pill">0 A (Pause) – 16 A</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Sélectionne la consigne de courant sécurisée appliquée aux bornes VE en cas de perte de communication avec le compteur P1 : <code>0 A (Pause — Recommandé)</code>, <code>6 A</code>, <code>8 A</code>, <code>10 A</code> ou <code>16 A</code>.</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">8.2 Stratégie d'Optimisation, Tarif Capacitaire Flandre &amp; Protection des Certificats Verts (GSC)</h2>
+  <div class="decision-box">
+    <div class="decision-title">🧭 Quel Mode d'Optimisation Devez-Vous Choisir ?</div>
+    <div class="decision-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="decision-item" style="border-top: 3px solid #10b981;">
+        <div class="decision-item-title">1. Éco (Autoconsommation Maximale)</div>
+        <div class="decision-item-desc">
+          <strong>Choisir si :</strong> Vous résidez en Wallonie, à Bruxelles, en France ou disposez d'un compteur sans facturation capacitaire quart-horaire. Maximise l'autoconsommation solaire directe dans le bâtiment.
+        </div>
+      </div>
+      <div class="decision-item" style="border-top: 3px solid #0284c7;">
+        <div class="decision-item-title">2. Flandre (Écrêtage de Pointe)</div>
+        <div class="decision-item-desc">
+          <strong>Choisir si :</strong> Vous habitez en Flandre (Fluvius). Active l'écrêtage de la pointe quart-horaire glissante (<em>Tarif capacitaire Flandre / Capaciteitstarief</em>) et le Plafond Adaptatif Intelligent !
+        </div>
+      </div>
+      <div class="decision-item" style="border-top: 3px solid #f59e0b;">
+        <div class="decision-item-title">3. Pays-Bas (Saldering Intelligent &amp; Garde 3×25A)</div>
+        <div class="decision-item-desc">
+          <strong>Choisir si :</strong> Vous résidez aux Pays-Bas. Protège les raccordements résidentiels <code>3×25A</code> contre le surcoût annuel (&gt; 1 000 €/an) d'un passage en <code>3×35A</code>, absorbe localement le surplus solaire face aux <em>terugleverkosten</em>, bride lors des heures EPEX NL négatives et désactive strictement toutes les règles flamandes / GSC / Elia.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="setting-card-grid">
+    <div class="setting-card green">
+      <div class="setting-name"><span>Plafond de Pointe Capacitaire (kW)</span> <span class="setting-default-pill">Défaut : 2,50 kW</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Votre plafond cible pour la puissance quart-horaire moyenne prélevée en Flandre (Fluvius facture un forfait minimal incompressible de <code>2,50 kW</code>).</div>
+      <div class="setting-meta-row"><span class="badge-tip">Plafond Adaptatif Intelligent</span> Si une pointe inévitable (ex. <code>3,8 kW</code> alors que la batterie était vide) survient en cours de mois, GEMS relève automatiquement son plafond actif à <code>3,8 kW</code> jusqu'à la fin du mois pour vous offrir davantage de confort sans aucun surcoût réseau, puis se réinitialise à <code>2,50 kW</code> le 1er du mois suivant !</div>
+    </div>
+
+    <div class="setting-card green">
+      <div class="setting-name"><span>Tampon d'Écrêtage (W) &amp; Hystérésis (W)</span> <span class="setting-default-pill">150 W / 250 W</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Le <strong>Tampon d'Écrêtage (W)</strong> (défaut <code>150 W</code>) déclenche la décharge batterie légèrement avant le plafond exact (ex. dès <code>2 350 W</code>) afin d'absorber tout appel brusque d'électroménager. L'<strong>Hystérésis de Relance (W)</strong> (défaut <code>250 W</code>) évite les oscillations rapides de la borne VE lors de passages nuageux.</div>
+    </div>
+
+    <div class="setting-card amber">
+      <div class="setting-name"><span>Bridage Onduleur Actif &amp; Seuil de Base</span> <span class="setting-default-pill">Interrupteur + 0,00 €/kWh</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Lorsqu'il est activé, GEMS module dynamiquement votre onduleur <strong>Solis</strong> pour suivre exactement la consommation de la maison dès que votre tarif d'injection descend sous le <strong>Seuil de Prix d'Injection de Base (€/kWh)</strong> (défaut <code>0,00 €/kWh</code>) et que votre batterie et votre véhicule sont pleins.</div>
+    </div>
+
+    <div class="setting-card purple">
+      <div class="setting-name"><span>Subside Certificats Verts (GSC)</span> <span class="setting-default-pill">Préréglages : 0 € à 450 €/MWh</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Protège les installations bénéficiant de <em>Certificats verts / Groenestroomcertificaten</em> historiques (ex. <code>90 €</code>, <code>210 €</code>, <code>250 €</code>, <code>350 €</code> ou <code>450 €</code> par 1 000 kWh produits).</div>
+      <div class="setting-meta-row"><span class="badge-when">Formule</span> <code>Seuil Effectif de Bridage = Seuil de Base - (GSC / 1000)</code>. Avec un certificat vert de <strong>250 €</strong>, GEMS maintient vos panneaux à 100 % tant que le prix spot ne descend pas sous <strong>-0,250 €/kWh</strong>, préservant ainsi intégralement vos primes !</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">8.3 Téléconduite Fluvius (IEC 60870-5-104)</h2>
+  <p>
+    Requis uniquement sur les installations tertiaires ou de forte puissance où le gestionnaire de réseau (Fluvius) installe un coffret RTU de téléconduite dans l'armoire électrique :
+  </p>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:25%;">Paramètre Fluvius 104</th>
+        <th style="width:20%;">Valeur par Défaut</th>
+        <th style="width:55%;">Fonction &amp; Cas d'Utilisation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Activé, Port TCP &amp; Adresse Commune (ASDU)</strong></td>
+        <td><code>Off</code> • Port <code>2404</code> • ASDU <code>1</code></td>
+        <td>Démarre le serveur esclave local IEC 60870-5-104 sur le port <code>2404</code>. Laissez sur <strong>Off</strong> en résidentiel classique ; n'activez qu'en présence d'un coffret RTU GRD.</td>
+      </tr>
+      <tr>
+        <td><strong>IP / CIDR RTU Autorisée &amp; Unité de Consigne</strong></td>
+        <td><code>192.168.1.0/24</code> • <code>kW</code> ou <code>%</code></td>
+        <td>Restreint l'adresse IP autorisée à émettre des ordres de bridage et définit si les consignes ASDU 50 sont exprimées en kilowatts (<code>kw</code>) ou en pourcentage de la puissance nominale (<code>percent</code>).</td>
+      </tr>
+      <tr>
+        <td><strong>Boutons de Test de Conformité Installateur</strong></td>
+        <td><code>Trip Plant</code>, <code>Set 4.0 kW Limit</code>, <code>Release</code></td>
+        <td>Permet à l'installateur et à l'agent Fluvius de simuler sur site un ordre ASDU Type 45 (Découplage d'urgence) et ASDU Type 50 (Plafond de puissance active) lors de la réception technique.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="subsection-title">8.4 Charge Réseau Batterie, Arbitrage &amp; Optimisation par Règles Tarifaires</h2>
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_strategy_battery.png" alt="Arbitrage Batterie et Règles">
+    <div class="manual-screenshot-caption">Figure 8.2 : Stratégie de charge réseau batterie, coût d'usure cyclique, plages horaires personnalisées et règles d'optimisation par priorité.</div>
+  </div>
+
+  <div class="setting-card-grid">
+    <div class="setting-card green">
+      <div class="setting-name"><span>Mode de Stratégie de Charge</span> <span class="setting-default-pill">4 Modes Disponibles</span></div>
+      <div class="setting-meta-row">
+        • <strong>Dynamique + Prévision Solaire (Recommandé) :</strong> Combine les prix EPEX Spot avec la prévision d'ensoleillement Open-Meteo du lendemain. N'achète de l'électricité la nuit que si le soleil du lendemain ne suffira pas à remplir la batterie !<br>
+        • <strong>Seuil Prix Spot Uniquement :</strong> Recharge depuis le réseau dès que le tarif &le; Plafond, quelle que soit la météo.<br>
+        • <strong>Plage Super-Dal Uniquement (01:00–07:00) :</strong> Charge exclusivement durant la fenêtre nocturne Super-Dal.<br>
+        • <strong>Hybride :</strong> Combine la charge nocturne Super-Dal et l'absorption des prix négatifs en journée.
+      </div>
+    </div>
+
+    <div class="setting-card">
+      <div class="setting-name"><span>Plafond de Charge, Plancher de Décharge &amp; Usure</span> <span class="setting-default-pill">Seuils €/kWh</span></div>
+      <div class="setting-meta-row">
+        • <strong>Plafond de Charge Réseau (€/kWh) :</strong> Prix maximal auquel GEMS accepte d'acheter du courant réseau pour charger la batterie (ex. <code>0,08 €/kWh</code>).<br>
+        • <strong>Plancher de Décharge Réseau (€/kWh) :</strong> Prix minimal requis avant d'autoriser la décharge batterie pour couvrir la maison (ex. <code>0,18 €/kWh</code>).<br>
+        • <strong>Coût d'Usure Batterie (€/kWh) :</strong> Intègre le vieillissement cyclique des cellules LFP (ex. <code>0,02 €/kWh</code>). GEMS n'effectue un arbitrage que si l'écart tarifaire dépasse ce coût d'usure !
+      </div>
+    </div>
+
+    <div class="setting-card purple">
+      <div class="setting-name"><span>Plages de Charge Personnalisées</span> <span class="setting-default-pill">Début • Fin • SoC Cible %</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Cliquez sur <strong>+ Ajouter une plage</strong> pour définir des créneaux quotidiens fixes (ex. <code>02:00</code> à <code>05:00</code> &rarr; <code>SoC Cible 85 %</code>) garantissant un niveau de charge souhaité avant le réveil.</div>
+    </div>
+
+    <div class="setting-card green">
+      <div class="setting-name"><span>Repli Charge Réseau Hiver / Faible Solaire</span> <span class="setting-default-pill">Défaut : Actif (25 % &rarr; 65 %, 2h)</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Lorsque votre batterie descend sous le <strong>Seuil SoC Bas</strong> (défaut <code>25 %</code>) en hiver ou par mauvais temps et que la prévision solaire à 24 h ne permet pas de la recharger, GEMS recharge automatiquement la batterie durant les <strong>Heures les Moins Chères</strong> (défaut <code>2 h</code>) jusqu'au <strong>SoC Cible de Repli</strong> (défaut <code>65 %</code>) afin de garantir l'écrêtage capacitaire et la consommation du soir tout en conservant une réserve pour une éclaircie imprévue.</div>
+    </div>
+
+    <div class="setting-card amber">
+      <div class="setting-name"><span>Optimisation Batterie par Règles Tarifaires</span> <span class="setting-default-pill">Priorité #1, #2, #3...</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Permet d'ordonner des règles déterministes évaluées de haut en bas. Inclut 4 modèles prêts à l'emploi en un clic :
+        <br>1. <strong>⚡ Absorption Prix Négatifs</strong> (Charge forcée à 100 % si prix &lt; 0,00 €)
+        <br>2. <strong>💶 Arbitrage Pointe du Soir</strong> (Décharge durant la pointe coûteuse 17:00–21:00)
+        <br>3. <strong>🌙 Fenêtre Tarif Creux Nocturne</strong> (Charge durant les heures creuses 01:00–06:00)
+        <br>4. <strong>☀️ Préservation Solaire Week-end</strong> (Maintien de capacité libre pour le soleil de l'après-midi).
+      </div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">8.5 Optimisation Intelligente VE, Synchro Réseau Vert Elia &amp; Charge de Fond</h2>
+  <div class="setting-card-grid">
+    <div class="setting-card">
+      <div class="setting-name"><span>Heures Spot les Moins Chères (0 – 8 h)</span> <span class="setting-default-pill">Défaut : 4 h</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Lorsque votre borne VE est en mode <strong>Éco</strong>, GEMS autorise automatiquement le complément réseau durant les <code>N</code> heures spot les moins chères de chaque cycle de 24 h (4 heures sur une borne 11 kW apportent ~44 kWh, soit plus de 220 km d'autonomie !). Réglez sur <code>0</code> pour un fonctionnement strictement solaire.</div>
+    </div>
+
+    <div class="setting-card green">
+      <div class="setting-name"><span>Boost Synchro Réseau Vert Elia (Belgique)</span> <span class="setting-default-pill">Défaut : 65 % Renouvelable</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Interroge en direct le gestionnaire belge de transport haute tension <strong>Elia</strong> sur la part éolienne et photovoltaïque du mix national. Dès que la part renouvelable dépasse votre curseur (30 %–95 %, défaut <code>65 %</code>), GEMS favorise la charge VE et batterie pour absorber une énergie nationale décarbonée !</div>
+    </div>
+
+    <div class="setting-card purple">
+      <div class="setting-name"><span>Optimisation Super-Dal (01:00 – 07:00)</span> <span class="setting-default-pill">Interrupteur + SoC Cible %</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Conçu spécifiquement pour les contrats proposant un tarif ultra-creux entre 01h00 et 07h00. Pré-charge votre batterie jusqu'au <strong>SoC Cible Super-Dal (%)</strong> tout en respectant votre plafond capacitaire flamand de <code>2,50 kW</code>.</div>
+    </div>
+
+    <div class="setting-card">
+      <div class="setting-name"><span>Consommation de Fond du Foyer (Watts)</span> <span class="setting-default-pill">Défaut : 350 W</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Consommation permanente typique du logement (réfrigérateur, VMC, routeur, veilles). Utilisée par le moteur prédictif solaire pour calculer combien de kWh votre maison consommera durant la nuit avant le lever du soleil.</div>
+    </div>
+  </div>
+
+  <!-- ==================== 9. SETTINGS TAB 3: ENERGY CONTRACT ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-tab-contract">9. Onglet Paramètres 3 : Contrat d'Énergie &amp; Les 5 Assistants Tarifaires</h1>
+  <p>
+    <strong>Paramètres &rarr; Contrat d'énergie</strong> convertit les cotations de gros de la bourse électrique en votre <strong>coût réel tout compris par kWh</strong> (incluant marge fournisseur, frais d'équilibrage, coûts de distribution GRD, accises et TVA).
+  </p>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_contract.png" alt="Assistants Contrat d'Énergie">
+      <div class="manual-screenshot-caption">Figure 9.1 : Sélection de l'un des 5 Assistants Tarifaires, préréglages régionaux GRD et composantes fiscales.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_contract_tariffs.png" alt="Courbe Tarifaire Effective sur 24h">
+      <div class="manual-screenshot-caption">Figure 9.2 : Visualiseur en direct de la courbe tarifaire effective sur 24 heures détaillant les taxes empilées et le tarif d'injection solaire.</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Pas-à-Pas : Choisir le Bon Assistant Tarifaire (Les 5 Assistants Expliqués)</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:22%;">Assistant Tarifaire</th>
+        <th style="width:26%;">Pour Quel Profil</th>
+        <th style="width:52%;">Explication Détaillée de Chaque Champ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Tarifs Fixes / Variables</strong></td>
+        <td>Foyers équipés d'un tarif classique mono-horaire ou bi-horaire (Heures Pleines / Heures Creuses) et d'un tarif d'injection fixe.</td>
+        <td>
+          • <strong>Tarif Heures Pleines (€/kWh) :</strong> Tarif de jour (07:00–22:00 en semaine).<br>
+          • <strong>Tarif Heures Creuses (€/kWh) :</strong> Tarif nuit &amp; week-end (22:00–07:00 + week-ends).<br>
+          • <strong>Tarif d'Injection Solaire (€/kWh) :</strong> Rémunération fixe versée par kWh injecté sur le réseau.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>2. Dynamique Avancé (Éditeur Visuel de Formules)</strong></td>
+        <td>Contrats dynamiques sur mesure ou utilisateurs avancés souhaitant composer visuellement leurs formules par glisser-déposer.</td>
+        <td>
+          • <strong>Source de Prix Marché :</strong> Relié en direct aux prix Day-Ahead EPEX Spot (<code>€/MWh</code> ou <code>€ct/kWh</code>).<br>
+          • <strong>Éditeur Glisser-Déposer Interactif :</strong> Cliquez ou glissez des briques (<code>EPEX_EUR_KWH</code>, <code>+</code>, <code>*</code>, <code>0.105</code>) pour composer vos formules exactes de prélèvement et d'injection, avec <strong>Règles Horaires</strong> optionnelles.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>3. Dynamic-BE (EPEX Horaire Belgique)</strong></td>
+        <td>Particuliers ou entreprises en Belgique disposant d'un contrat dynamique horaire.</td>
+        <td>
+          • <strong>Segment Client :</strong> <code>Particulier (TVA 6 %)</code> ou <code>Entreprise (TVA 21 %)</code>.<br>
+          • <strong>Préréglage Fournisseur Belge &amp; Date de Souscription :</strong> Pré-remplit les formules officielles vérifiées :<br>
+          &nbsp;&nbsp;– <code>consumption_multiplier</code> &amp; <code>consumption_adder</code> (appliqués à <code>EPEX * 0.001 * mult + adder</code>)<br>
+          &nbsp;&nbsp;– <code>injection_multiplier</code> &amp; <code>injection_adder</code> (gère les pénalités d'injection négative)<br>
+          &nbsp;&nbsp;– <code>Redevance Fixe Annuelle (€/an)</code>.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>4. Flex-BE (Plages Horaires + EPEX Mensuel)</strong></td>
+        <td>Contrats belges variables/flex comportant les tranches Heures Pleines, Heures Creuses et Super-Dal (01:00–07:00).</td>
+        <td>
+          • <strong>Supplément Pleines / Creuses / Super-Dal (€/kWh) :</strong> Tarif fournisseur propre à chaque tranche horaire.<br>
+          • <strong>Multiplicateur &amp; Terme Fixe d'Injection :</strong> Calcul de la rémunération d'injection solaire.<br>
+          • <strong>Charger Automatiquement la Batterie en Fenêtre Super-Dal (01:00–07:00) :</strong> Interrupteur rapide + <strong>SoC Cible (%)</strong> pour remplir la batterie la nuit au tarif Super-Dal.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>5. Dynamic-NL (EPEX Horaire Pays-Bas)</strong></td>
+        <td>Ménages néerlandais disposant d'un contrat dynamique horaire aux Pays-Bas.</td>
+        <td>
+          • <strong>Préréglages Fournisseurs NL :</strong> Inclut <strong>Vattenfall Nederland — FlexPrijs</strong> (<code>1,00× EPEX NL + 0,0211 €/kWh</code> de marge, <code>95,40 €/an</code> Vastrecht, <code>0,1316 €/kWh</code> Energiebelasting, <code>21 %</code> BTW, injection <code>1,00×</code>), <strong>Eneco Dynamic</strong> et <strong>Frank Energie Dynamic</strong> :<br>
+          &nbsp;&nbsp;– <code>Inkoopvergoeding Prélèvement / Injection (€/kWh)</code> (frais d'achat fournisseur)<br>
+          &nbsp;&nbsp;– <code>Energiebelasting (€/kWh)</code> (taxe énergétique NL, défaut <code>0,1316 €/kWh</code>)<br>
+          &nbsp;&nbsp;– <code>Terugleverkosten (€/kWh)</code> (frais de réinjection solaire) &amp; <code>Vastrecht (€/an)</code>.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="subsection-title">Préréglages GRD Régionaux, Taxes &amp; Visualiseur Tarifaire 24h en Direct</h2>
+  <div class="setting-card-grid">
+    <div class="setting-card">
+      <div class="setting-name"><span>Préréglage GRD &amp; Coûts de Distribution (€/kWh)</span> <span class="setting-default-pill">Fluvius / ORES / Resa / NL</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Cliquez sur le bouton de votre gestionnaire de réseau régional (<strong>Fluvius</strong>, <strong>ORES</strong>, <strong>Resa</strong>, <strong>Sibelga</strong> ou <strong>GRD NL</strong>) pour pré-remplir automatiquement les <strong>Coûts de Distribution &amp; Transport (€/kWh)</strong> ainsi que le <strong>Taux de TVA</strong> (<code>0.06</code> pour 6 % résidentiel belge, <code>0.21</code> pour 21 % Pays-Bas / Entreprise).</div>
+    </div>
+
+    <div class="setting-card green">
+      <div class="setting-name"><span>Visualiseur de Courbe Tarifaire Effective 24h</span> <span class="setting-default-pill">Courbes Empilées &amp; Nettes</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Affiche votre tarif exact heure par heure pour la journée : <strong>Prix Tout Compris Actuel</strong>, <strong>Créneau 24h le Moins Cher</strong> (idéal pour VE/batterie), <strong>Pointe 24h la Plus Chère</strong> et <strong>Injection Solaire Actuelle</strong>, accompagné d'une <strong>Bannière d'Alerte de Bridage Solaire</strong> dès que les prix d'injection deviennent négatifs l'après-midi !</div>
+    </div>
+  </div>
+
+  <!-- ==================== 10. SETTINGS TAB 4: SMART RELAYS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-tab-relays">10. Onglet Paramètres 4 : Relais Intelligents, Chauffe-eau &amp; PAC SG-Ready</h1>
+  <p>
+    <strong>Paramètres &rarr; Relais &amp; Commutateurs</strong> transforme vos excédents solaires et les heures à prix négatifs en eau chaude sanitaire et en chauffage gratuits en pilotant des contacteurs intelligents (Shelly Pro/Plus, relais Modbus TCP/RTU et pompes à chaleur SG-Ready).
+  </p>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_relays.png" alt="Onglet Relais Intelligents">
+      <div class="manual-screenshot-caption">Figure 10.1 : Relais intelligents configurés avec état ON/OFF en direct et bouton de forçage manuel.</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/settings_relays_rules.png" alt="Règles d'Automatisation Relais">
+      <div class="manual-screenshot-caption">Figure 10.2 : Création d'une règle d'automatisation avec temporisateurs anti-courts-cycles (durée minimale de marche et d'arrêt).</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Explication de Chaque Paramètre des Règles d'Automatisation</h2>
+  <div class="setting-card-grid">
+    <div class="setting-card green">
+      <div class="setting-name"><span>Type de Condition (4 Déclencheurs)</span> <span class="setting-default-pill">Solaire ou Prix Spot</span></div>
+      <div class="setting-meta-row">
+        • <code>solar_export_exceeds</code> : S'enclenche lorsque l'injection solaire nette vers la rue dépasse <strong>X Watts</strong> (ex. <code>1500 W</code>).<br>
+        • <code>grid_import_below</code> : S'enclenche lorsque le prélèvement réseau est inférieur à <strong>X Watts</strong>.<br>
+        • <code>spot_price_below</code> : S'enclenche lorsque le tarif dynamique est &le; <strong>X €/kWh</strong> (ex. <code>0,04 €/kWh</code>).<br>
+        • <code>spot_price_negative</code> : S'enclenche automatiquement dès que le prix spot passe sous <code>0,00 €/kWh</code> !
+      </div>
+    </div>
+
+    <div class="setting-card rose">
+      <div class="setting-name"><span>Durée Min. Marche (s) &amp; Durée Min. Arrêt (s)</span> <span class="setting-default-pill">Protection Compresseur</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Empêche les compresseurs de pompes à chaleur et contacteurs de commuter sans cesse ON/OFF (« courts-cycles ») lorsqu'un nuage réduit brièvement la production solaire.</div>
+      <div class="setting-meta-row"><span class="badge-when">Recommandation</span> Pour une pompe à chaleur, réglez <strong>Durée Min. de Marche</strong> sur <code>900–1800 sec</code> (15–30 min) et <strong>Durée Min. d'Arrêt</strong> sur <code>600 sec</code> (10 min). Pour un ballon d'eau chaude résistif, <code>300 sec</code> (5 min) est idéal.</div>
+    </div>
+  </div>
+
+  <h2 class="subsection-title">Matrice de Fonctionnement Pompe à Chaleur SG-Ready (2 Relais)</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>État SG-Ready</th>
+        <th>Relais 1 : Relais 2</th>
+        <th>Comportement de la Pompe à Chaleur &amp; Activation par GEMS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>État 1 — Délestage / Verrouillage</strong></td>
+        <td><code>1 : 0</code></td>
+        <td>Bloque temporairement le compresseur lors de pointes capacitaires extrêmes (si configuré).</td>
+      </tr>
+      <tr>
+        <td><strong>État 2 — Mode Éco Normal</strong></td>
+        <td><code>0 : 0</code></td>
+        <td>Régulation standard sur thermostat (état quotidien par défaut).</td>
+      </tr>
+      <tr>
+        <td><strong>État 3 — Consigne Boost Solaire</strong></td>
+        <td><code>0 : 1</code></td>
+        <td>Relève la consigne d'eau chaude sanitaire et du ballon tampon en présence d'un surplus solaire modéré (ex. &gt; <code>1 200 W</code>) ou d'un tarif spot nocturne très bas.</td>
+      </tr>
+      <tr>
+        <td><strong>État 4 — Stockage Thermique Maximal Forcé</strong></td>
+        <td><code>1 : 1</code></td>
+        <td>Commande immédiatement la surchauffe thermique maximale lors d'un fort excédent solaire (&gt; <code>2 500 W</code>) ou de prix spot négatifs.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 11. SETTINGS TAB 5: NETWORK ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-tab-network">11. Onglet Paramètres 5 : Réseau Ethernet Filaire &amp; Rétablissement 60s</h1>
+  <p>
+    <strong>Paramètres &rarr; Réseau</strong> (accessible en Mode Installateur Certifié) pilote l'interface Ethernet filaire principale (<code>eth0</code>) de votre contrôleur Raspberry Pi. Afin de garantir une fiabilité industrielle maximale dans les coffrets électriques métalliques, le Wi-Fi est volontairement écarté au profit d'une liaison Ethernet câblée.
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_network.png" alt="Onglet Paramètres Réseau">
+    <div class="manual-screenshot-caption">Figure 11.1 : Configuration Ethernet filaire (eth0) en Automatique (DHCP) ou IPv4 Statique avec sécurité anti-blocage automatique de 60 secondes.</div>
+  </div>
+
+  <div class="setting-card-grid">
+    <div class="setting-card">
+      <div class="setting-name"><span>Mode d'Adressage : DHCP vs IPv4 Statique</span> <span class="setting-default-pill">DHCP par Défaut</span></div>
+      <div class="setting-meta-row">
+        • <strong>Automatique (DHCP) :</strong> Votre routeur attribue automatiquement l'adresse IP, la passerelle et les serveurs DNS.<br>
+        • <strong>IPv4 Statique (Manuel) :</strong> Fixe une adresse IP permanente (ex. <code>192.168.1.200/24</code>), une <strong>Passerelle</strong> (<code>192.168.1.1</code>) et des <strong>Serveurs DNS</strong> (<code>1.1.1.1, 8.8.8.8</code>). Recommandé lorsque des bornes OCPP ou un coffret RTU Fluvius pointent vers l'adresse IP du contrôleur GEMS.
+      </div>
+    </div>
+
+    <div class="setting-card green">
+      <div class="setting-name"><span>🛡️ Rétablissement Automatique après 60 Secondes</span> <span class="setting-default-pill">Garde Anti-Blocage</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Dès que vous cliquez sur <strong>Appliquer la configuration réseau</strong> pour passer en IP fixe, GEMS démarre un compte à rebours de sécurité de 60 secondes et ouvre une fenêtre de confirmation. Si une faute de frappe dans l'adresse IP ou le masque empêche votre navigateur de joindre l'unité dans les 60 secondes, <strong>GEMS rétablit automatiquement la configuration réseau précédente</strong> afin que vous ne perdiez jamais l'accès !</div>
+    </div>
+  </div>
+
+  <!-- ==================== 12. SETTINGS TAB 6: SYSTEM INFO ==================== -->
+  <h1 class="section-title" id="sec-tab-sysinfo">12. Onglet Paramètres 6 : Infos Système, Sauvegardes, PIN, Mises à Jour OTA &amp; SSL</h1>
+  <p>
+    <strong>Paramètres &rarr; Infos système</strong> regroupe l'identité de l'unité, le redémarrage sécurisé, les mises à jour logicielles signées cryptographiquement, l'export/import de sauvegardes JSON, la modification du code PIN et les certificats HTTPS locaux :
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_system_info.png" alt="Onglet Infos Système">
+    <div class="manual-screenshot-caption">Figure 12.1 : Infos système affichant le nom d'hôte, l'adresse IP, la version logicielle, l'Asset Tag, la sauvegarde/restauration et les mises à jour signées.</div>
+  </div>
+
+  <div class="setting-card-grid">
+    <div class="setting-card">
+      <div class="setting-name"><span>Identité Système, Redémarrage &amp; Réinitialisation</span> <span class="setting-default-pill">Toujours Visible</span></div>
+      <div class="setting-meta-row">
+        Affiche le <strong>Nom d'hôte</strong>, l'<strong>Adresse IP</strong>, le <strong>Masque</strong>, la <strong>Passerelle</strong>, la <strong>Version logicielle</strong> (<code>v9.37.2</code>) et l'identifiant matériel unique <strong>Asset Tag</strong>.<br>
+        • <strong>Redémarrer le système :</strong> Vide proprement le journal SQLite WAL sur disque et redémarre le contrôleur en plaçant les équipements en sécurité.<br>
+        • <strong>Réinitialisation d'usine (Mode Installateur) :</strong> Efface la configuration et l'historique énergétique puis relance l'Assistant Initial en 4 Étapes.
+      </div>
+    </div>
+
+    <div class="setting-card green">
+      <div class="setting-name"><span>Sauvegarde &amp; Restauration (.json)</span> <span class="setting-default-pill">Mode Installateur</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Cliquez sur <strong>Exporter la configuration (.json)</strong> pour télécharger une archive portable contenant tous vos appareils, seuils de stratégie, formules tarifaires et règles de relais. Cliquez sur <strong>Importer la configuration (.json)</strong> pour cloner ou restaurer une installation en 5 secondes !</div>
+    </div>
+
+    <div class="setting-card purple">
+      <div class="setting-name"><span>Mise à Jour Logicielle (OTA en Ligne &amp; .deb Manuel)</span> <span class="setting-default-pill">Vérifié Ed25519</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Cliquez sur <strong>Vérifier les mises à jour</strong> pour installer la dernière version en ligne (OTA), ou glissez-déposez un paquet <code>.deb</code> hors ligne. Chaque mise à jour est authentifiée cryptographiquement (signature Ed25519 + empreinte SHA-256) avec suivi en direct dans un terminal intégré.</div>
+    </div>
+
+    <div class="setting-card amber">
+      <div class="setting-name"><span>Autorité CA Locale &amp; Certificat SSL + Code PIN</span> <span class="setting-default-pill">Confiance HTTPS</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Téléchargez le <strong>Certificat Racine CA GEMS (<code>.crt</code>)</strong> ou ajoutez des noms de domaine locaux personnalisés (ex. <code>gems.home.lan</code>) avec rechargement instantané et guides d'approbation pas-à-pas pour Chrome, Safari/iOS, macOS, Windows et Android. Vous pouvez également modifier ici votre <strong>Code PIN Installateur</strong>.</div>
+    </div>
+  </div>
+
+  <!-- ==================== 13. SETTINGS TAB 7: NOTIFICATIONS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-tab-notifications">13. Onglet Paramètres 7 : Notifications, Webhooks, E-mail Hebdomadaire &amp; Debug</h1>
+  <p>
+    <strong>Paramètres &rarr; Notifications</strong> vous informe proactivement grâce aux alertes Webhook en temps réel, au rapport énergétique envoyé chaque dimanche soir par e-mail et au contrôle du niveau de diagnostic :
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_notifications.png" alt="Onglet Paramètres Notifications">
+    <div class="manual-screenshot-caption">Figure 13.1 : Configuration de l'URL d'alerte Webhook, des paramètres SMTP du Rapport Énergétique Hebdomadaire et du mode Debug.</div>
+  </div>
+
+  <div class="setting-card-grid">
+    <div class="setting-card">
+      <div class="setting-name"><span>URL Webhook &amp; Tester le Webhook</span> <span class="setting-default-pill">HTTP POST JSON</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Envoie instantanément des alertes JSON vers Slack, Discord, passerelles Telegram ou serveurs domotiques dès que votre pointe quart-horaire flamande atteint <strong>&ge; 90 %</strong> de votre plafond, ou si un onduleur/borne passe hors ligne. Cliquez sur <strong>Tester le Webhook</strong> pour valider immédiatement la réception.</div>
+    </div>
+
+    <div class="setting-card green">
+      <div class="setting-name"><span>Rapport Énergétique Hebdomadaire &amp; SMTP</span> <span class="setting-default-pill">Dimanche à 20h00</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Expédie chaque dimanche à 20h00 un bilan énergétique mis en page (kWh solaires, taux d'autosuffisance %, kWh VE et pointe kW). Renseignez l'<strong>E-mail destinataire</strong>, le <strong>Serveur SMTP</strong> (ex. <code>smtp.gmail.com</code>), le <strong>Port</strong> (<code>587</code>), l'<strong>Identifiant</strong>, le <strong>Mot de passe</strong> et l'<strong>Adresse d'expéditeur</strong>.</div>
+    </div>
+
+    <div class="setting-card amber" style="grid-column: span 2;">
+      <div class="setting-name"><span>Mode Debug (Journaux de Diagnostic Système Détaillés)</span> <span class="setting-default-pill">Défaut : Désactivé (INFO)</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Bascule le journal système du niveau standard <code>INFO</code> au niveau détaillé <code>DEBUG</code> (consignant les trames brutes de registres Modbus, les messages OCPP et les calculs d'arbitrage). Laissez <strong>Désactivé</strong> en fonctionnement normal pour préserver l'endurance du stockage flash/NVMe ; n'activez que ponctuellement lors du diagnostic d'un nouvel équipement.</div>
+    </div>
+  </div>
+
+  <!-- ==================== 14. SETTINGS TAB 8: CLOUD SERVER ==================== -->
+  <h1 class="section-title" id="sec-tab-cloud">14. Onglet Paramètres 8 : Serveur Cloud Optionnel (GRID-EMS-SERVER)</h1>
+  <p>
+    <strong>Paramètres &rarr; Serveur Cloud</strong> gère la liaison chiffrée optionnelle avec <strong>GRID-EMS-SERVER</strong> (<code>https://ems.newenergygrid.com</code>) pour la supervision à distance depuis n'importe où dans le monde et l'assistance technique de votre installateur.
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_cloud.png" alt="Onglet Serveur Cloud">
+    <div class="manual-screenshot-caption">Figure 14.1 : Interface d'appairage Serveur Cloud, indicateurs de latence de synchronisation en direct et journal d'audit des commandes distantes reçues.</div>
+  </div>
+
+  <div class="setting-card-grid">
+    <div class="setting-card green">
+      <div class="setting-name"><span>Synchronisation Cloud &amp; Jeton d'Appairage</span> <span class="setting-default-pill">PAIR-XXXX-TCG</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Collez votre jeton d'appairage à 16 caractères généré sur <code>https://ems.newenergygrid.com</code> et cliquez sur <strong>Pair &amp; Connect Now</strong>. Repose exclusivement sur des connexions sortantes chiffrées TLS 1.3 — <strong>aucune ouverture de port (port forwarding) sur votre routeur n'est requise</strong> !</div>
+    </div>
+
+    <div class="setting-card">
+      <div class="setting-name"><span>Test d'Envoi Télémétrie &amp; Journal d'Audit</span> <span class="setting-default-pill">Vérification Temps Réel</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Consultez l'<strong>ID d'appareil</strong>, la <strong>Latence de synchronisation (ms)</strong> et l'horodatage du dernier envoi. Cliquez sur <strong>Test Telemetry Push</strong> pour forcer un envoi immédiat, ou inspectez le journal <strong>Dispatched Cloud Commands</strong> retraçant chaque changement de mode distant acquitté par votre contrôleur.</div>
+    </div>
+  </div>
+
+  <!-- ==================== 15. SCANNER, LOGGER, PDF REPORTS & MOBILE ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-tools">15. Scanner Réseau, Journal en Direct, Rapports PDF &amp; App Mobile</h1>
+
+  <div class="manual-screenshot-grid">
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/scanner.png" alt="Scanner Réseau et Modbus">
+      <div class="manual-screenshot-caption">Figure 15.1 : Menu latéral &rarr; Scanner : découverte automatique LAN &amp; Modbus TCP/RTU avec intégration en un clic (« + Configurer »).</div>
+    </div>
+    <div class="manual-screenshot">
+      <img src="../assets/screenshots/logger.png" alt="Journal Système">
+      <div class="manual-screenshot-caption">Figure 15.2 : Menu latéral &rarr; Journal : flux d'événements coloré en direct avec filtrage par niveau, recherche, Pause et export (.log).</div>
+    </div>
+  </div>
+
+  <div class="setting-card-grid">
+    <div class="setting-card">
+      <div class="setting-name"><span>📡 Menu Latéral &rarr; Scanner (Mode Installateur)</span> <span class="setting-default-pill">Découverte Auto</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Identifie automatiquement le contrôleur GEMS lui-même (<code>THIS GEMS CONTROLLER</code>), balaye votre sous-réseau local <code>/24</code> via mDNS, UPnP/SSDP, résolution IEEE MAC OUI 24/28/36 bits et empreinte protocolaire Modbus/HTTP/TLS, et analyse les adaptateurs série USB/RS-485 connectés avec ajout d'appareil en un clic via <strong>+ Configurer</strong>.</div>
+    </div>
+
+    <div class="setting-card green">
+      <div class="setting-name"><span>📄 Rapports Énergétiques PDF Imprimables en Un Clic</span> <span class="setting-default-pill">Jour / Semaine / Mois / Année</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Depuis le Tableau de bord principal, choisissez <strong>Aujourd'hui</strong>, <strong>7 derniers jours</strong>, <strong>30 derniers jours</strong> ou <strong>Année en cours</strong> et cliquez sur <strong>Exporter PDF</strong> pour télécharger une synthèse claire de votre production solaire, de vos cycles batterie, de vos recharges VE et des économies réalisées sur la pointe capacitaire.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-title">📱 Astuce Pro : Installez GEMS en Application Plein Écran sur Votre Smartphone</div>
+    <p style="margin:0;">
+      Connectez votre smartphone à votre Wi-Fi domestique et ouvrez <code>http://ems.local</code> dans Safari (iPhone) ou Chrome (Android). Appuyez sur <strong>Partager &rarr; Sur l'écran d'accueil</strong>. GEMS s'ouvre alors comme une véritable application mobile plein écran dotée d'une barre de navigation inférieure ergonomique !
+    </p>
+  </div>
+
+  <!-- ==================== 16. FAQ & QUICK SETTINGS CHEAT SHEET ==================== -->
+  <h1 class="section-title" id="sec-faq">16. Foire Aux Questions (FAQ) &amp; Mémo Rapide des Paramètres</h1>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:32%;">Objectif / Scénario</th>
+        <th style="width:30%;">Où Aller dans GEMS</th>
+        <th style="width:38%;">Paramètre Exact à Ajuster</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Recharger ma voiture uniquement avec 100 % de soleil gratuit</strong></td>
+        <td>Tableau de bord &rarr; Cliquez sur le <strong>Cercle Borne VE</strong></td>
+        <td>Sélectionnez le mode <strong>PV Uniquement</strong> (ou <strong>Éco</strong> avec <em>Heures Spot les Moins Chères = 0</em>). Activez également la <strong>Commutation Automatique 1P/3P</strong> sur votre borne Raedian !</td>
+      </tr>
+      <tr>
+        <td><strong>Maintenir ma pointe mensuelle flamande au minimum de 2,50 kW</strong></td>
+        <td>Paramètres &rarr; <strong>Stratégie</strong></td>
+        <td>Réglez <strong>Mode d'Optimisation</strong> = <code>Flandre (Écrêtage de Pointe)</code>, <strong>Plafond de Pointe Capacitaire</strong> = <code>2,50 kW</code> et <strong>Tampon d'Écrêtage</strong> = <code>150 W</code>.</td>
+      </tr>
+      <tr>
+        <td><strong>Éviter toute pénalité lorsque les prix spot solaires deviennent négatifs</strong></td>
+        <td>Paramètres &rarr; <strong>Stratégie</strong> &amp; <strong>Appareils</strong></td>
+        <td>Cochez <strong>Allow Curtailment</strong> sur votre onduleur Solis dans <em>Appareils</em>, puis activez <strong>Bridage Onduleur Actif</strong> dans <em>Stratégie</em> avec <strong>Seuil de Base</strong> = <code>0,00 €/kWh</code>.</td>
+      </tr>
+      <tr>
+        <td><strong>Protéger mes Certificats Verts (GSC) lors des prix négatifs</strong></td>
+        <td>Paramètres &rarr; <strong>Stratégie</strong></td>
+        <td>Sélectionnez votre <strong>Préréglage GSC</strong> (ex. <code>250 €</code> ou <code>350 €/MWh</code>). GEMS ne bridera le solaire que si le prix négatif dépasse la valeur de votre prime !</td>
+      </tr>
+      <tr>
+        <td><strong>Pré-charger ma batterie domestique la nuit avant une journée d'hiver grise</strong></td>
+        <td>Paramètres &rarr; <strong>Stratégie</strong></td>
+        <td>Sous <em>Charge Réseau Batterie</em>, choisissez <strong>Dynamique + Prévision Solaire</strong> et définissez votre <strong>Plafond de Charge Réseau (€/kWh)</strong> (ex. <code>0,10 €/kWh</code>) ou ajoutez une <strong>Plage Personnalisée</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>Chauffer mon ballon d'eau chaude ou ma PAC SG-Ready avec le surplus solaire</strong></td>
+        <td>Paramètres &rarr; <strong>Relais &amp; Commutateurs</strong></td>
+        <td>Ajoutez une règle avec <strong>Condition</strong> = <code>solar_export_exceeds</code> (ex. <code>1500 W</code>) et réglez <strong>Durée Min. de Marche</strong> = <code>900 sec</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<script>
+  const scenarios = [
+    "🌙 <strong style='color:#38bdf8;'>02h30 — Créneau Spot Économique (0,04 €/kWh) :</strong> Les prévisions météo annoncent un ciel très couvert demain et les prix spot atteignent leur plus bas niveau de la nuit. GEMS commande automatiquement à l'<strong>Onduleur Hybride Solis</strong> de pré-charger la batterie jusqu'à <strong>80 % de SoC cible</strong> et programme la <strong>Borne VE Raedian</strong> sur les 4 heures les moins chères — tout en restant strictement sous le <strong>plafond capacitaire flamand de 2,50 kW</strong> !",
+    "☀️ <strong style='color:#fbbf24;'>11h00 — Matin Ensoleillé (3,2 kW Solaire) :</strong> Vos panneaux produisent 3,2 kW alors que la maison ne consomme que 400 W. GEMS dirige les 2,8 kW d'excédent vers votre <strong>Batterie Solis</strong> et démarre votre <strong>Borne VE Raedian</strong> en mode <strong>Monophasé (1P)</strong> à 10 Ampères. Dès que le solaire dépasse 4,3 kW à midi, GEMS bascule automatiquement la borne en <strong>Triphasé (3P)</strong> !",
+    "📉 <strong style='color:#a78bfa;'>14h00 — Prix Spot de Gros Négatif (-0,08 €/kWh) :</strong> Les prix de gros deviennent négatifs ! GEMS déploie sa <strong>Défense à 4 Niveaux</strong> : (1) Charge la batterie Solis à 100 %, (2) Pousse la borne Raedian à puissance maximale, (3) Enclenche le relais PAC SG-Ready pour stocker de l'eau chaude thermique, et (4) Une fois tous les stockages pleins, bride l'onduleur Solis sur la consommation exacte du foyer pour payer <strong>0,00 € de pénalité d'injection</strong> !",
+    "🍳 <strong style='color:#f87171;'>18h30 — Garde Pointe du Soir (Charge 5,2 kW) :</strong> La taque à induction et le four s'allument alors que l'électricité coûte 0,34 €/kWh. En moins d'une seconde, GEMS met en pause la charge VE et commande à la <strong>Batterie Solis</strong> de décharger 3,2 kW — maintenant votre prélèvement réseau bien en dessous de votre <strong>plafond capacitaire flamand de 2,50 kW</strong> !"
+  ];
+
+  function showScenario(index, btn) {
+    const display = document.getElementById('scenarioDisplay');
+    if (display) display.innerHTML = scenarios[index];
+    document.querySelectorAll('.sandbox-btn').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+  }
+
+  function filterManualSettings(query) {
+    const q = (query || '').trim().toLowerCase();
+    const cards = document.querySelectorAll('.setting-card, .data-table tbody tr, .step-card');
+    const banner = document.getElementById('searchStatusBanner');
+    let matchCount = 0;
+
+    cards.forEach(el => {
+      if (!q) {
+        el.style.outline = '';
+        el.style.opacity = '1';
+        return;
+      }
+      const text = (el.innerText || '').toLowerCase();
+      if (text.includes(q)) {
+        el.style.outline = '2px solid #10b981';
+        el.style.opacity = '1';
+        matchCount++;
+      } else {
+        el.style.outline = '';
+        el.style.opacity = '0.35';
+      }
+    });
+
+    if (banner) {
+      if (!q) {
+        banner.style.display = 'none';
+      } else {
+        banner.style.display = 'block';
+        banner.textContent = `${matchCount} bloc(s) de paramètres trouvé(s) pour « ${query} » — mis en évidence en vert émeraude ci-dessous !`;
+      }
+    }
+  }
+</script>
+
+</body>
+</html>

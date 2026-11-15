@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEMS P1-Poort Aansluiting &amp; Zelfbouw-Kabelhandleiding</title>
+  <meta name="description" content="Complete handleiding voor het aansluiten van GEMS op de P1-poort van digitale slimme meters (Fluvius, DSMR), zelfbouw van USB-naar-RJ11/RJ12-kabels, inverter-schema's en seriële diagnostiek.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+  <style>
+    @page {
+      size: A4;
+      margin: 14mm 14mm 16mm 14mm;
+    }
+
+    body {
+      background: #ffffff;
+      color: #0f172a;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.55;
+    }
+
+    .manual-page {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 20px 18px;
+    }
+
+    /* Cover Page */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 960px;
+      padding: 36px 20px 20px 20px;
+      page-break-after: always;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 28px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0284c7;
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 8.5pt;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .cover-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 30pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #0f172a;
+      margin: 0 0 10px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-size: 13pt;
+      color: #475569;
+      margin: 0 0 24px 0;
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    .cover-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-meta-label {
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 3px;
+    }
+
+    .cover-meta-val {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .cover-hero-img {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);
+      margin: 16px 0;
+    }
+
+    .cover-hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cover-footer {
+      font-size: 8pt;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Headings */
+    h1.section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16pt;
+      font-weight: 800;
+      color: #0f172a;
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 6px;
+      margin-top: 32px;
+      margin-bottom: 14px;
+      page-break-after: avoid;
+    }
+
+    h2.subsection-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12pt;
+      font-weight: 700;
+      color: #1e293b;
+      margin-top: 22px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    h3.step-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #0284c7;
+      margin-top: 16px;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #334155;
+    }
+
+    /* Screenshot Container */
+    .manual-screenshot {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .manual-screenshot img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .manual-screenshot-caption {
+      font-size: 8pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* Callouts */
+    .callout {
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+      font-size: 9pt;
+    }
+
+    .callout-info {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      color: #0369a1;
+    }
+
+    .callout-tip {
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      color: #15803d;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      color: #b45309;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 8.5pt;
+      page-break-inside: avoid;
+    }
+
+    .data-table th, .data-table td {
+      border: 1px solid #e2e8f0;
+      padding: 7px 10px;
+      text-align: left;
+    }
+
+    .data-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .data-table tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    /* Code Blocks */
+    .terminal-box {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: 'Fira Code', monospace;
+      font-size: 8.5pt;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin: 12px 0;
+      page-break-inside: avoid;
+      overflow-x: hidden;
+      line-height: 1.45;
+    }
+
+    .terminal-box code {
+      color: #38bdf8;
+      background: transparent;
+      padding: 0;
+    }
+
+    /* Schematics / Diagram Box */
+    .schematic-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 16px 0;
+      font-family: 'Fira Code', monospace;
+      font-size: 8pt;
+      line-height: 1.35;
+      color: #1e293b;
+      page-break-inside: avoid;
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    .pinout-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+    }
+
+    .toc-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 18px 24px;
+      margin-bottom: 26px;
+      page-break-inside: avoid;
+    }
+
+    .toc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12pt;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      column-count: 2;
+      column-gap: 24px;
+    }
+
+    .toc-list li {
+      margin-bottom: 5px;
+      font-size: 8.5pt;
+      color: #334155;
+    }
+
+    .toc-list a {
+      color: #0284c7;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    @media print {
+      .no-print, .lang-switcher {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="manual-page">
+
+  <div class="no-print" style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+    <nav class="lang-switcher" aria-label="Taalkeuze">
+      <a href="../gems-p1-meter-manual.html">EN</a>
+      <a href="gems-p1-meter-manual-nl.html" class="active" aria-current="page">NL</a>
+      <a href="../fr/gems-p1-meter-manual-fr.html">FR</a>
+    </nav>
+  </div>
+
+  <!-- ==================== COVER PAGE ==================== -->
+  <div class="cover-page">
+    <div>
+      <div class="cover-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <img src="../assets/new_energy_grid_logo.png" alt="New Energy Grid" style="height: 40px; width: auto; object-fit: contain;">
+        <div class="cover-badge" style="margin-bottom: 0;">⚡ HARDWARE-INTEGRATIE &amp; ZELFBOUW-KABELHANDLEIDING</div>
+      </div>
+      <h1 class="cover-title">GEMS P1-Poort Aansluiting &amp; Zelfbouw-Kabelgids</h1>
+      <div class="cover-subtitle">GEMS aansluiten op digitale elektriciteitsmeters via de P1-poort, assemblage van zelfbouw USB-naar-RJ11/RJ12-kabels, signaalinverter-schema's &amp; Fluvius e-MUCS / DSMR-telemetrie</div>
+
+      <div class="cover-meta-grid">
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Systeemfirmware</span>
+          <span class="cover-meta-val" data-version-tag="release">v9.38.1-release (Officiële Release)</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Ondersteunde Standaarden</span>
+          <span class="cover-meta-val">DSMR 5.0.2 / Belgische e-MUCS v1.4 / SMR 5.0</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Fysieke Interface</span>
+          <span class="cover-meta-val">RJ12 (6P6C) of RJ11 (6P4C) naar USB-UART</span>
+        </div>
+        <div class="cover-meta-item">
+          <span class="cover-meta-label">Doelgroep</span>
+          <span class="cover-meta-val">Elektriciens, Installateurs &amp; Doe-het-zelvers</span>
+        </div>
+      </div>
+
+      <div class="cover-hero-img">
+        <img src="../assets/screenshots/settings_devices_meter_form.png" alt="GEMS Slimme Meter Configuratie">
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <span>GEMS Energiebeheersysteem (GRID-EMS)</span>
+      <span>Officiële Hardwaregids • P1 Slimme Meter Interface</span>
+    </div>
+  </div>
+
+  <!-- ==================== TABLE OF CONTENTS ==================== -->
+  <div class="toc-box">
+    <div class="toc-title">Inhoudsopgave</div>
+    <ul class="toc-list">
+      <li><strong>1.</strong> <a href="#sec-intro">Werking van de P1-gebruikerspoort</a></li>
+      <li><strong>2.</strong> <a href="#sec-meters">Ondersteunde Slimme Meters &amp; Netbeheerders</a></li>
+      <li><strong>3.</strong> <a href="#sec-pinout">RJ12 vs. RJ11 Pinbezetting &amp; Elektrische Specs</a></li>
+      <li><strong>4.</strong> <a href="#sec-inversion">Geïnverteerde Logica &amp; Open-Collector Uitgelegd</a></li>
+      <li><strong>5.</strong> <a href="#sec-bom">Onderdelenlijst (BOM) &amp; Benodigd Gereedschap</a></li>
+      <li><strong>6.</strong> <a href="#sec-hardware-inverter">Methode A: Hardware Transistor-inverter</a></li>
+      <li><strong>7.</strong> <a href="#sec-ftdi-inverter">Methode B: FTDI Software-inversie (Zonder componenten)</a></li>
+      <li><strong>8.</strong> <a href="#sec-assembly">Stapsgewijze Kabelassemblage &amp; Controle</a></li>
+      <li><strong>9.</strong> <a href="#sec-activation">P1-poort Activeren (Mijn Fluvius / Netbeheerder)</a></li>
+      <li><strong>10.</strong> <a href="#sec-linux">Linux-herkenning &amp; Ruwe Seriële Verificatie</a></li>
+      <li><strong>11.</strong> <a href="#sec-ui">De P1-meter Configureren in de GEMS UI</a></li>
+      <li><strong>12.</strong> <a href="#sec-obis">OBIS-telegramdecodering &amp; Vlaamse Kwartierpieken</a></li>
+      <li><strong>13.</strong> <a href="#sec-troubleshoot">Uitgebreide Probleemoplossing &amp; Veelgestelde Vragen</a></li>
+    </ul>
+  </div>
+
+  <!-- ==================== 1. UNDERSTANDING THE P1 USER PORT ==================== -->
+  <h1 class="section-title" id="sec-intro">1. Werking van de P1-gebruikerspoort</h1>
+  <p>
+    Elke moderne digitale elektriciteitsmeter die door distributienetbeheerders in België (Fluvius, Sibelga, ORES, RESA), Nederland (Liander, Enexis, Stedin) en Luxemburg (Creos Smarty) wordt geplaatst, is voorzien van een fysieke gebruikerspoort met het label <strong>P1</strong>.
+  </p>
+  <p>
+    De P1-poort is een gestandaardiseerde seriële communicatie-interface die speciaal is ontworpen voor woningeigenaren en energiebeheersystemen. In tegenstelling tot afgeschermde optische ijkpoorten biedt de P1-poort een eenrichtings-datastroom in realtime rechtstreeks vanuit de officiële verrekeningsmeter naar GEMS.
+  </p>
+
+  <h2 class="subsection-title">Welke Gegevens Leest GEMS uit de P1-poort?</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Meetwaarde</th>
+        <th>Frequentie</th>
+        <th>Rol binnen GEMS-optimalisatie</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Actief Afnamevermogen (Watt)</strong></td>
+        <td>Elke 1 seconde</td>
+        <td>Ogenblikkelijke netafname. Wordt door de Vlaamse piekbewakingscontroller gebruikt om plotselinge verbruikspieken (bijv. inductiekookplaat, droogkast) direct te detecteren en onmiddellijke batterij-ontlading of terugregeling van de laadpaal te starten.</td>
+      </tr>
+      <tr>
+        <td><strong>Actief Injectievermogen (Watt)</strong></td>
+        <td>Elke 1 seconde</td>
+        <td>Zonne-overschot dat naar het elektriciteitsnet wordt geïnjecteerd. GEMS moduleert EV-laadstromen (6A–32A) en schakelt slimme relais (SG-Ready warmtepompen) in om 100% van dit overschot lokaal te benutten.</td>
+      </tr>
+      <tr>
+        <td><strong>Stroom (A) &amp; Spanning (V) per Fase</strong></td>
+        <td>Elke 1 seconde</td>
+        <td>Bewaakt fase L1, L2 en L3 om het uitvallen van de hoofdzekering te voorkomen en scheve fasebelasting te berekenen.</td>
+      </tr>
+      <tr>
+        <td><strong>Fiscale Maandpiek Kwartiervermogen (kW)</strong><br><code>OBIS 1-0:1.6.0</code></td>
+        <td>Elk telegram</td>
+        <td>Het officiële hoogste gemiddelde kwartiervermogen dat tijdens de lopende kalendermaand door de netbeheerder is geregistreerd. GEMS gebruikt deze waarde voor het <strong>Slim Adaptief Piekplafond</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>Energietelwerken (kWh)</strong><br>Afname T1, T2 &amp; Injectie T1, T2</td>
+        <td>Cumulatief</td>
+        <td>Officiële facturatieregisters van de netbeheerder. Worden opgeslagen in de historische database van GEMS voor 100% nauwkeurige energierapporten die exact overeenkomen met uw eindafrekening.</td>
+      </tr>
+      <tr>
+        <td><strong>Gasmeterverbruik (m³)</strong></td>
+        <td>Elke 5 minuten</td>
+        <td>Subbemeten gasverbruik dat draadloos of bekabeld via M-Bus vanaf de digitale gasmeter naar de elektriciteitsmeter wordt doorgestuurd.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 2. SUPPORTED SMART METERS ==================== -->
+  <h1 class="section-title" id="sec-meters">2. Ondersteunde Slimme Meters &amp; Netbeheerders</h1>
+  <p>
+    GEMS ondersteunt alle slimme metermodellen die zijn uitgerold onder de Dutch Smart Meter Requirements (DSMR 4.0, 4.2, 5.0.2) en de Belgische begeleidende specificaties (e-MUCS v1.4):
+  </p>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Netbeheerder / Regio</th>
+        <th>Meterfabrikant &amp; Modellen</th>
+        <th>Standaard</th>
+        <th>Baudrate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Fluvius (Vlaanderen, België)</strong></td>
+        <td>Sagemcom T211 (driefasig), S211 (monofasig)<br>Landis+Gyr E360</td>
+        <td>e-MUCS v1.4 / DSMR 5.0.2</td>
+        <td><strong>115.200 baud</strong> (8N1)</td>
+      </tr>
+      <tr>
+        <td><strong>Sibelga (Brussel, België)</strong></td>
+        <td>Sagemcom T211 / S211</td>
+        <td>e-MUCS v1.4 / DSMR 5.0.2</td>
+        <td><strong>115.200 baud</strong> (8N1)</td>
+      </tr>
+      <tr>
+        <td><strong>ORES &amp; RESA (Wallonië, België)</strong></td>
+        <td>Sagemcom T211 / Landis+Gyr E360</td>
+        <td>e-MUCS v1.4 / DSMR 5.0.2</td>
+        <td><strong>115.200 baud</strong> (8N1)</td>
+      </tr>
+      <tr>
+        <td><strong>Liander, Enexis, Stedin (Nederland)</strong></td>
+        <td>Landis+Gyr (E350, E360), Kaifa (MA105, MA304), Iskra (ME382, MT382), Kamstrup</td>
+        <td>DSMR 5.0.2<br>DSMR 4.0 / 4.2</td>
+        <td><strong>115.200 baud</strong> (DSMR 5)<br><strong>9.600 baud</strong> (DSMR 4 / ouder)</td>
+      </tr>
+      <tr>
+        <td><strong>Creos (Luxemburg)</strong></td>
+        <td>Smarty (Sagemcom T210-D)</td>
+        <td>e-MUCS / DSMR 5.0</td>
+        <td><strong>115.200 baud</strong> (8N1)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 3. RJ12 VS RJ11 PINOUT & ELECTRICAL SPECS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-pinout">3. RJ12 vs. RJ11 Pinbezetting &amp; Elektrische Specificaties</h1>
+  <p>
+    De fysieke P1-aansluiting op de digitale meter is een standaard <strong>6-positie, 6-contact (6P6C) modulaire connector</strong> (doorgaans aangeduid als een <strong>RJ12</strong>-aansluiting).
+  </p>
+
+  <div class="callout callout-info">
+    <div class="callout-title">💡 Kunt u een standaard RJ11 (6P4C)-telefoonkabel gebruiken?</div>
+    <p>
+      <strong>Ja!</strong> Een gangbare telefoonstekker is fysiek een <strong>RJ11 (6P4C)</strong>-connector. Deze heeft 6 plastic posities, waarvan alleen de middelste 4 posities metalen contactpennen bevatten (overeenkomend met Pin 2, 3, 4 en 5 van de RJ12-poort).
+    </p>
+    <p>
+      Omdat Pin 2 (RTS / Data Request), Pin 3 (GND) en Pin 5 (Data) zich allemaal op deze middelste posities bevinden, <strong>werkt een 4-aderige RJ11-kabel uitstekend</strong> voor het uitlezen van telemetrie in GEMS! De enige ontbrekende pin op RJ11 is Pin 1 (+5V voedingsuitgang). Aangezien GEMS wordt aangesloten op een USB-poort van de Raspberry Pi, haalt de USB-adapter zijn 5V-voeding al uit de Pi en is Pin 1 volledig optioneel!
+    </p>
+  </div>
+
+  <h2 class="subsection-title">Officiële P1-interface Pinbezetting (DSMR 5.0 / e-MUCS)</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Pin #</th>
+        <th>Signaalnaam</th>
+        <th>Elektrische Beschrijving</th>
+        <th>RJ12 (6P6C)</th>
+        <th>RJ11 (6P4C)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Pin 1</strong></td>
+        <td><strong>+5V Voeding</strong></td>
+        <td>+5 VDC-uitgang (tot 250 mA op DSMR 5.0-meters). Voedt externe dongles.</td>
+        <td>Verbonden</td>
+        <td><em>Niet aanwezig</em> (Niet vereist)</td>
+      </tr>
+      <tr>
+        <td><strong>Pin 2</strong></td>
+        <td><strong>Data Request (RTS)</strong></td>
+        <td>Stuuringang. <strong>Moet HOOG (+5V) getrokken worden</strong> om telegramstreaming te activeren.</td>
+        <td>Verbonden</td>
+        <td>Verbonden (Pin 1 op 4-aderig)</td>
+      </tr>
+      <tr>
+        <td><strong>Pin 3</strong></td>
+        <td><strong>Data Ground (GND)</strong></td>
+        <td>Signaalmassa (referentie).</td>
+        <td>Verbonden</td>
+        <td>Verbonden (Pin 2 op 4-aderig)</td>
+      </tr>
+      <tr>
+        <td><strong>Pin 4</strong></td>
+        <td><strong>Gereserveerd (NC)</strong></td>
+        <td>Niet aangesloten / Gereserveerd.</td>
+        <td>Verbonden / NC</td>
+        <td>Verbonden / NC</td>
+      </tr>
+      <tr>
+        <td><strong>Pin 5</strong></td>
+        <td><strong>Data-uitgang (TxD)</strong></td>
+        <td>Open-collector data-uitgang (Geïnverteerde UART, 0V = Mark, 5V = Space).</td>
+        <td>Verbonden</td>
+        <td>Verbonden (Pin 4 op 4-aderig)</td>
+      </tr>
+      <tr>
+        <td><strong>Pin 6</strong></td>
+        <td><strong>Power Ground (GND)</strong></td>
+        <td>Voedingsmassa (intern in de meter doorverbonden met Pin 3).</td>
+        <td>Verbonden</td>
+        <td><em>Niet aanwezig</em></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pinout-card">
+    <div style="font-weight: 700; color: #0f172a; margin-bottom: 8px;">Fysieke Pin-oriëntatie (Vooraanzicht op de stekker met koperen contacten naar u toe en kabel omlaag):</div>
+    <div class="schematic-box">       RJ12 (6P6C) Modulaire Stekker           RJ11 (6P4C) Modulaire Stekker
+      ┌─────────────────────────┐             ┌─────────────────────────┐
+      │  [1] [2] [3] [4] [5] [6]│             │  [ ] [1] [2] [3] [4] [ ]│
+      │   │   │   │   │   │   │ │             │       │   │   │   │     │
+      │  +5V RTS GND  NC TXD GND│             │      RTS GND  NC TXD    │
+      │                         │             │                         │
+      │      Plastic Lipje      │             │      Plastic Lipje      │
+      │     (aan achterzijde)   │             │     (aan achterzijde)   │
+      └───────────┬─┬───────────┘             └───────────┬─┬───────────┘
+                  │ │                                     │ │
+             Platte Kabel                            Platte Kabel</div>
+  </div>
+
+  <!-- ==================== 4. INVERTED LOGIC EXPLAINED ==================== -->
+  <h1 class="section-title" id="sec-inversion">4. Geïnverteerde Logica &amp; Open-Collector Uitgelegd</h1>
+  <p>
+    De meest voorkomende oorzaak waarom zelfbouwkabels voor de P1-poort niet werken, is het ontbreken van <strong>signaalinversie</strong>.
+  </p>
+  <p>
+    Standaard TTL seriële UART (bijvoorbeeld op een Arduino of standaard USB-naar-serieel adapter) werkt met niet-geïnverteerde logica:
+  </p>
+  <ul style="margin: 6px 0 10px 18px; padding: 0;">
+    <li>Rusttoestand (Idle) = Hoog (+5V / +3,3V) &rarr; Logische 1</li>
+    <li>Actieve startbit = Laag (0V) &rarr; Logische 0</li>
+  </ul>
+  <p>
+    De DSMR- / Fluvius P1-specificatie gebruikt daarentegen een <strong>open-collector uitgang met geïnverteerde logica</strong>:
+  </p>
+  <ul style="margin: 6px 0 10px 18px; padding: 0;">
+    <li>Rusttoestand (Idle) = Laag getrokken (0V) &rarr; Logische 1</li>
+    <li>Actieve overdracht = Hoog getrokken (+5V) &rarr; Logische 0</li>
+  </ul>
+  <p>
+    Als u Pin 5 rechtstreeks aansluit op de RX-pin van een standaard USB-serieelconverter, leest het besturingssysteem omgekeerde enen en nullen in. Dit resulteert in volledig onleesbare binaire ruis (framing-fouten en vreemde tekens zoals <code>\xff\xfc\x00</code>).
+  </p>
+  <p>
+    <strong>Om dit op te lossen moet het signaal worden geïnverteerd.</strong> GEMS ondersteunt twee nette oplossingen:
+  </p>
+  <ol style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Methode A (Hardware Transistor-inverter):</strong> Plaats één goedkope NPN-transistor (bijv. BC547) en een pull-upweerstand tussen Pin 5 en de USB RX-pin. Werkt met <em>elke</em> USB-naar-serieel adapter (CH340, CP2102, FTDI, PL2303).</li>
+    <li><strong>Methode B (FTDI Software-inversie):</strong> Gebruik een originele FTDI FT232RL- of FT232R-USB-adapter. FTDI-chips beschikken over interne logische poorten die de RX-polariteit in de hardware-EEPROM kunnen omkeren zonder enige externe transistor of weerstand!</li>
+  </ol>
+
+  <!-- ==================== 5. BILL OF MATERIALS (BOM) ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-bom">5. Onderdelenlijst (BOM) &amp; Benodigd Gereedschap</h1>
+  <p>
+    Het bouwen van uw eigen professionele USB-naar-P1-kabel kost ongeveer 15 minuten en minder dan € 5 aan onderdelen.
+  </p>
+
+  <h2 class="subsection-title">Benodigde Componenten</h2>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Aanbevolen Onderdeel</th>
+        <th>Richtprijs</th>
+        <th>Functie</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>USB-naar-Serieel UART-module</strong></td>
+        <td>FTDI FT232RL USB UART-adapter (of CH340G / CP2102) met 5V-logicajumper</td>
+        <td>€ 3,50 – € 6,00</td>
+        <td>Zet seriële bits om naar USB voor de Raspberry Pi. FTDI wordt aanbevolen voor softwarematige signaalinversie.</td>
+      </tr>
+      <tr>
+        <td><strong>Modulaire Kabel &amp; Stekker</strong></td>
+        <td>RJ12 (6P6C) of RJ11 (6P4C) krimpstekker met 1–2 meter 4-aderige of 6-aderige platte telefoonkabel (of CAT5/CAT6 UTP-kabel)</td>
+        <td>€ 1,00</td>
+        <td>Fysieke stekker die in de P1-poort van de slimme meter klikt.</td>
+      </tr>
+      <tr>
+        <td><strong>NPN-transistor</strong><br><em>(Alleen Methode A)</em></td>
+        <td>BC547, BC548, 2N3904 of 2N2222 universele NPN bipolaire transistor</td>
+        <td>€ 0,15</td>
+        <td>Inverteert het open-collectorsignaal uit de meter vóór de UART RX-pin.</td>
+      </tr>
+      <tr>
+        <td><strong>Weerstand R1 (Pull-up)</strong><br><em>(Alleen Methode A)</em></td>
+        <td>1 kΩ (of 2,2 kΩ) 1/4W metaalfilmweerstand</td>
+        <td>€ 0,05</td>
+        <td>Trekt de collector van de transistor omhoog naar +5V.</td>
+      </tr>
+      <tr>
+        <td><strong>Weerstand R2 (Basis)</strong><br><em>(Alleen Methode A)</em></td>
+        <td>10 kΩ (of 4,7 kΩ) 1/4W metaalfilmweerstand</td>
+        <td>€ 0,05</td>
+        <td>Begrenst de basisstroom vanuit de P1 Data-uitgang naar de transistor.</td>
+      </tr>
+      <tr>
+        <td><strong>Krimpkous</strong></td>
+        <td>3 mm en 6 mm polyolefine krimpkous</td>
+        <td>€ 0,20</td>
+        <td>Isoleert soldeerverbindingen en voorkomt onbedoelde kortsluiting.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="subsection-title">Benodigd Gereedschap</h2>
+  <ul style="margin: 6px 0 12px 18px; padding: 0;">
+    <li><strong>Modulaire Krimptang:</strong> Voor het aankrimpen van RJ11- / RJ12-stekkers. (Tip: u kunt ook een bestaande telefoonkabel doormidden knippen en de aders aanstrippen!).</li>
+    <li><strong>Striptang &amp; Zijsnijtang:</strong> Voor het netjes blootleggen van de binnenaders.</li>
+    <li><strong>Soldeerbout &amp; Loodvrij Soldeertin:</strong> Voor het solderen van de componenten op de headerpinnen van de USB-adapter.</li>
+    <li><strong>Digitale Multimeter:</strong> Voor doorgangscontrole en om te verifiëren dat er geen sluiting (0,00 Ω) tussen +5V en GND bestaat.</li>
+  </ul>
+
+  <!-- ==================== 6. METHOD A: HARDWARE TRANSISTOR INVERTER ==================== -->
+  <h1 class="section-title" id="sec-hardware-inverter">6. Methode A: Opbouw met Hardware Transistor-inverter</h1>
+  <p>
+    Deze schakeling werkt universeel met <strong>elke USB-serieelchip op de markt</strong> (CH340G, CP2102, PL2303, FTDI en Raspberry Pi GPIO UART).
+  </p>
+
+  <h2 class="subsection-title">Elektrisch Schema</h2>
+  <div class="schematic-box">  SLIMME METER P1-POORT                             USB-UART ADAPTER (bijv. CH340 / FTDI)
+  =====================                             =====================================
+
+  [ Pin 2: RTS ] ─────────────────────────────────────────── [ +5V VCC-pin ]
+                                                      (Trekt RTS HOOG om streaming te starten)
+
+  [ Pin 3: GND ] ─────────────────────────────────────────── [ GND-pin ]
+                                                      (Gemeenschappelijke signaalmassa)
+
+                                  +5V (uit USB)
+                                       │
+                                      ┌┴┐
+                                      │ │ R1 (1 kΩ Pull-up)
+                                      └┬┘
+                                       ├──────────── [ RXD-pin ] (Geïnverteerde TTL-ingang)
+                                       │
+                                     C │
+  [ Pin 5: TXD ] ────[ 10 kΩ R2 ]────┤  BC547 (NPN-transistor)
+                                     B ╲
+                                       │ E
+                                       │
+  [ Pin 3/6: GND ] ────────────────────┴──────────── [ GND-pin ]</div>
+
+  <h2 class="subsection-title">Werking van de Transistorschakeling</h2>
+  <ol style="margin: 6px 0 12px 18px; padding: 0;">
+    <li>Wanneer P1 Pin 5 <strong>Laag (0V / Rust)</strong> is, loopt er geen stroom in de basis van de BC547. De transistor spert (open). Weerstand R1 trekt de RXD-pin van de USB-adapter omhoog naar <strong>+5V (Hoog)</strong>. Dit komt exact overeen met de standaard UART-rusttoestand!</li>
+    <li>Wanneer P1 Pin 5 <strong>Hoog (+5V / Bit 0)</strong> wordt, loopt er stroom via R2 naar de basis, waardoor de transistor geleidt (verzadigd). De collector trekt de RXD-pin van de USB-adapter direct naar <strong>0V (GND)</strong>.</li>
+    <li>Het logische niveau wordt op nanosecondesnelheid strak geïnverteerd, waardoor een perfecte 115.200 baud UART-golfvorm ontstaat!</li>
+  </ol>
+
+  <!-- ==================== 7. METHOD B: FTDI SOFTWARE INVERSION ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-ftdi-inverter">7. Methode B: FTDI Software-inversie (Zonder Extra Componenten!)</h1>
+  <p>
+    Gebruikt u een originele <strong>FTDI FT232R</strong> USB-UART-adapter, dan hebt u geen enkele transistor of weerstand nodig! De FT232R-chip bevat interne programmeerbare inverterpoorten op zijn I/O-pinnen.
+  </p>
+
+  <h2 class="subsection-title">Overzichtelijk 3-draads Aansluitschema</h2>
+  <div class="schematic-box">  SLIMME METER P1-POORT (RJ11 of RJ12)              FTDI FT232RL USB-ADAPTER
+  ====================================              ========================
+
+  [ Pin 2: Data Request (RTS) ] ──────────────────── [ +5V (VCC) ] (Trekt RTS Hoog)
+
+  [ Pin 3: Data GND ] ────────────────────────────── [ GND ]
+
+  [ Pin 5: Data TxD ] ────────────────────────────── [ RXD ] (Rechtstreekse verbinding!)</div>
+
+  <h2 class="subsection-title">FTDI RX-inversie Programmeren onder Linux (ftdi_eeprom)</h2>
+  <p>
+    U kunt de EEPROM van de FTDI-adapter binnen 60 seconden permanent programmeren op uw Raspberry Pi:
+  </p>
+
+  <div class="terminal-box">
+    # 1. Installeer het open-source hulpprogramma ftdi-eeprom<br>
+    <code>sudo apt-get update &amp;&amp; sudo apt-get install -y ftdi-eeprom</code><br><br>
+    # 2. Maak een tijdelijk configuratiebestand aan<br>
+    <code>cat &lt;&lt; 'EOF' &gt; ftdi_p1.conf<br>
+vendor_id=0x0403<br>
+product_id=0x6001<br>
+invert_rxd=true<br>
+EOF</code><br><br>
+    # 3. Schrijf de inversie-vlag weg naar het FTDI EEPROM-geheugen<br>
+    <code>sudo ftdi_eeprom --flash-eeprom ftdi_p1.conf</code><br><br>
+    # 4. Koppel de USB-adapter kort los en sluit deze opnieuw aan<br>
+    <code># De adapter inverteert inkomende seriële bits nu direct in hardware!</code>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-title">🌟 Programmeren via Windows (FT_Prog)</div>
+    <p>
+      Werkt u op Windows, download dan het gratis hulpprogramma <strong>FT_Prog</strong> van de officiële FTDI-website. Sluit de adapter aan &rarr; klik op <strong>Scan and Parse</strong> &rarr; klap <strong>Hardware Specific &rarr; Invert RS232 Signals</strong> uit &rarr; vink <strong>Invert RXD</strong> aan &rarr; klik op <strong>Program</strong> (bliksem-icoon). Klaar!
+    </p>
+  </div>
+
+  <!-- ==================== 8. STEP-BY-STEP CABLE ASSEMBLY ==================== -->
+  <h1 class="section-title" id="sec-assembly">8. Stapsgewijze Kabelassemblage &amp; Verificatie</h1>
+
+  <h3 class="step-title">Stap 1: Kabel Aanstrippen en Voorbereiden</h3>
+  <p>
+    Verwijder 25 mm van de buitenmantel van de telefoon- of UTP-kabel zonder de isolatie van de binnenaders te beschadigen. Strip 4 mm isolatie van elke benodigde ader aan de zijde van de USB-adapter.
+  </p>
+
+  <h3 class="step-title">Stap 2: De RJ11- / RJ12-stekker Aankrimpen</h3>
+  <p>
+    Houd de transparante modulaire stekker vast met het <strong>plastic vergrendellipje van u af gericht (omlaag)</strong> en de vergulde contactmesjes omhoog. Voer de aders van links naar rechts in:
+  </p>
+  <ul style="margin: 4px 0 10px 18px; padding: 0;">
+    <li><strong>Voor RJ12 (6P6C):</strong> Pin 1 (uiterst links, +5V optioneel) &bull; Pin 2 (RTS Request) &bull; Pin 3 (GND) &bull; Pin 4 (NC) &bull; Pin 5 (TxD Data) &bull; Pin 6 (uiterst rechts, GND).</li>
+    <li><strong>Voor RJ11 (4-aderige platte kabel):</strong> Ader 1 &rarr; Pin 2 (RTS) &bull; Ader 2 &rarr; Pin 3 (GND) &bull; Ader 3 &rarr; Pin 4 (NC) &bull; Ader 4 &rarr; Pin 5 (TxD Data).</li>
+  </ul>
+  <p>
+    Schuif de aders stevig door tot ze tegen de voorzijde van de stekker aanliggen en knijp de krimptang volledig dicht tot de ratel ontgrendelt.
+  </p>
+
+  <h3 class="step-title">Stap 3: Aansluitingen op de USB-adapter Solderen</h3>
+  <p>
+    Soldeer de kabeladers aan uw USB-UART-printplaat volgens Methode A (met transistor) of Methode B (directe FTDI). Controleer dat de spanningskeuze-jumper op het USB-UART-bordje op <strong>5V</strong> staat ingesteld (niet op 3,3V).
+  </p>
+
+  <h3 class="step-title">Stap 4: Multimetercontrole vóór Inpluggen (Cruciale Veiligheidsstap!)</h3>
+  <div class="callout callout-warning">
+    <div class="callout-title">⚠️ Verplichte Multimetertest vóór het Aansluiten</div>
+    <p>
+      Neem voordat u de stekker in uw digitale elektriciteitsmeter steekt uw digitale multimeter en zet deze op de <strong>Doorgangs- / Weerstandsstand (Ω)</strong>:
+    </p>
+    <ul style="margin: 4px 0 0 18px; padding: 0;">
+      <li>Meet tussen <strong>+5V (Pin 2 / USB 5V)</strong> en <strong>GND (Pin 3)</strong>: controleer dat er <strong>GEEN kortsluiting</strong> is (weerstand moet oneindig / OL zijn).</li>
+      <li>Meet tussen <strong>TxD (Pin 5)</strong> en <strong>GND</strong>: controleer dat er geen kortsluiting bestaat.</li>
+    </ul>
+    <p style="margin-top: 6px;">
+      Een kortsluiting tussen +5V en GND kan de interne polyfuse van de slimme meter aanspreken of de USB-bus van uw Raspberry Pi beschadigen!
+    </p>
+  </div>
+
+  <!-- ==================== 9. ACTIVATING THE P1 PORT ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-activation">9. De P1-poort Activeren bij uw Netbeheerder</h1>
+  <p>
+    In België (Fluvius) is de P1-gebruikerspoort <strong>standaard elektronisch vergrendeld</strong> ter bescherming van de consumentenprivacy. U moet eenmalig online activering aanvragen voordat de meter meetgegevens uitstuurt.
+  </p>
+
+  <h2 class="subsection-title">Activeringsstappen bij Fluvius (Vlaanderen, België)</h2>
+  <ol style="margin: 6px 0 14px 18px; padding: 0;">
+    <li>Ga naar <strong><a href="https://www.fluvius.be" target="_blank">www.fluvius.be</a></strong> en meld u aan op uw persoonlijke portaal <strong>"Mijn Fluvius"</strong>.</li>
+    <li>Navigeer naar <strong>Meters &amp; Aansluitingen</strong> &rarr; selecteer uw digitale elektriciteitsmeter (EAN-code).</li>
+    <li>Zoek het onderdeel <strong>"Poorten digitaal beheer (P1 en S1)"</strong>.</li>
+    <li>Klik op <strong>"Activeer gebruikerspoorten"</strong> en bevestig de privacyvoorwaarden.</li>
+    <li><strong>Activeringsduur:</strong> Het mobiele communicatienetwerk van de netbeheerder stuurt draadloos een activeringscommando naar uw digitale meter. Dit is doorgaans binnen <strong>15 minuten tot maximaal 72 uur</strong> voltooid.</li>
+    <li><strong>Visuele Controle op het Meterdisplay:</strong> Kijk op het lcd-scherm van uw digitale meter.
+      <ul style="margin: 4px 0 0 16px; padding: 0;">
+        <li>Bij <strong>VERGRENDELD</strong>: Er staat een geel/zwart <strong>hangslot-icoon (🔒)</strong> boven "P1".</li>
+        <li>Bij <strong>ACTIEF</strong>: Het hangslot verdwijnt en er verschijnt een klein <strong>driehoekje omlaag (▼)</strong> boven "P1", wat aangeeft dat de poort open is en live data verstuurt!</li>
+      </ul>
+    </li>
+  </ol>
+
+  <div class="callout callout-info">
+    <div class="callout-title">💡 Nederlandse Slimme Meters (Liander, Enexis, Stedin)</div>
+    <p>
+      In Nederland staan de P1-poorten van slimme meters onder DSMR 4 en DSMR 5 <strong>af fabriek standaard open en actief</strong>. Er hoeft geen online activeringsaanvraag te worden ingediend.
+    </p>
+  </div>
+
+  <!-- ==================== 10. LINUX RECOGNITION & SERIAL TESTING ==================== -->
+  <h1 class="section-title" id="sec-linux">10. Linux-herkenning &amp; Ruwe Seriële Verificatie</h1>
+  <p>
+    Sluit uw voltooide USB-P1-kabel aan op een vrije USB-poort van uw GEMS Raspberry Pi 5.
+  </p>
+
+  <h2 class="subsection-title">1. USB-apparaatherkenning Controleren</h2>
+  <p>Open de Cockpit-terminal op poort 9090 of maak verbinding via SSH met uw Raspberry Pi en voer uit:</p>
+  <div class="terminal-box">
+    <code>dmesg | grep -E "ttyUSB|FTDI|ch341"</code>
+  </div>
+  <p>U ziet nu uitvoer vergelijkbaar met:</p>
+  <div class="terminal-box" style="color: #4ade80;">
+    [ 124.512] usb 1-1.2: FTDI USB Serial Device converter detected<br>
+    [ 124.513] usb 1-1.2: Detected FT232RL<br>
+    [ 124.514] usb 1-1.2: FTDI USB Serial Device converter now attached to ttyUSB0
+  </div>
+
+  <h2 class="subsection-title">2. Ruwe Telegramstroom Testen in de Terminal</h2>
+  <p>
+    Stel de seriële poortparameters in (115.200 baud, 8 databits, geen pariteit, 1 stopbit) en lees de live telegrammen uit:
+  </p>
+  <div class="terminal-box">
+    <code>stty -F /dev/ttyUSB0 115200 cs8 -cstopb -parenb</code><br>
+    <code>cat /dev/ttyUSB0</code>
+  </div>
+  <p>
+    Binnen 1 à 2 seconden verschijnen er schone ASCII-teksttelegrammen op uw scherm:
+  </p>
+  <div class="terminal-box" style="color: #38bdf8; font-size: 8pt; line-height: 1.3;">
+    /FLU5\253769484_A<br><br>
+    0-0:96.1.4(50217)<br>
+    0-0:96.1.1(3153414733313030313233343536)<br>
+    0-0:1.0.0(260912224500S)<br>
+    1-0:1.8.1(004218.412*kWh)<br>
+    1-0:1.8.2(003189.102*kWh)<br>
+    1-0:2.8.1(001890.871*kWh)<br>
+    1-0:2.8.2(000652.319*kWh)<br>
+    1-0:1.7.0(01.850*kW)<br>
+    1-0:2.7.0(00.000*kW)<br>
+    1-0:1.6.0(260908183000S)(02.450*kW)<br>
+    1-0:31.7.0(008.2*A)<br>
+    1-0:32.7.0(231.4*V)<br>
+    !5F2A
+  </div>
+
+  <p>
+    Ziet u leesbare tekst die begint met <code>/FLU5...</code> en eindigt op een controlegetal <code>!CRC</code>, dan <strong>werkt uw zelfbouwkabel voor 100%!</strong>
+  </p>
+
+  <!-- ==================== 11. UI CONFIGURATION IN GEMS ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-ui">11. De P1-meter Configureren in de GEMS UI</h1>
+  <p>
+    Zodra de kabel is aangesloten en getest, voegt u de slimme meter zonder enige programmeerarbeid toe in GEMS:
+  </p>
+
+  <div class="manual-screenshot">
+    <img src="../assets/screenshots/settings_devices_meter_form.png" alt="Configuratie van de Slimme Meter in GEMS">
+    <div class="manual-screenshot-caption">Figuur 11.1: Configureren van de DSMR P1 Slimme Meter in GEMS onder Instellingen &rarr; Toestellen.</div>
+  </div>
+
+  <h2 class="subsection-title">Stapsgewijze Inbedrijfstelling</h2>
+  <ol style="margin: 6px 0 14px 18px; padding: 0;">
+    <li>Open uw webbrowser en navigeer naar <strong><code>http://ems.local</code></strong>.</li>
+    <li>Klik op <strong>Instellingen</strong> (<em>Settings</em>) in het zijmenu (ontgrendel de <strong>Gecertificeerde Installateursmodus</strong> via het hangslot-icoon) en open het tabblad <strong>Toestellen</strong> (<em>Devices</em>).</li>
+    <li><em>Snelste Methode (Automatische Detectie met Één Klik):</em> Klik op <strong>Seriële toestellen detecteren</strong> (<em>Auto-Detect Serial Devices</em>) in de koptekst van het toevoegformulier (of gebruik <strong>Scanner &rarr; Seriële poorten scannen &rarr; Configureren</strong>). GEMS herkent automatisch uw DSMR / e-MUCS P1-slimme meter, het vaste kabelpad onder <code>/dev/serial/by-id/*</code> en de juiste baudrate (<code>115200</code> of <code>9600</code>) en vult het formulier direct voor u in.</li>
+    <li><em>Handmatige Selectie:</em> Kies als alternatief de categoriekaart <strong>Smart Meter</strong> en selecteer:
+      <ul style="margin: 4px 0 4px 16px; padding: 0;">
+        <li><strong>DSMR P1 RJ12 Serial Dongle (/dev/serial/by-id)</strong> &mdash; voor een rechtstreekse USB-kabelverbinding (u kunt ook naast het veld voor de seriële poort op <strong>Automatisch detecteren</strong> klikken).</li>
+        <li><em>(Of kies "Fluvius / DSMR P1 Smart Meter (Wi-Fi/USB)" wanneer u een lokale Wi-Fi P1-netwerkdongle gebruikt).</em></li>
+      </ul>
+    </li>
+    <li>Vul de verbindingsvelden in:
+      <table class="data-table" style="margin-top: 8px;">
+        <thead>
+          <tr>
+            <th>Instelling</th>
+            <th>Aanbevolen Waarde</th>
+            <th>Toelichting voor de Installateur</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Toestelnaam</strong> (<em>Device Name</em>)</td>
+            <td><code>Grid Main Smart Meter</code></td>
+            <td>Een duidelijke herkenbare naam voor weergave op het dashboard en in de toestellenlijst.</td>
+          </tr>
+          <tr>
+            <td><strong>Seriële Poort</strong> (<em>Serial Port Path</em>)</td>
+            <td><code>/dev/serial/by-id/usb-FTDI_...</code><br><em>(of <code>/dev/ttyUSB0</code>)</em></td>
+            <td>GEMS herkent aangesloten USB-serieeladapters automatisch en toont klikbare <strong>vaste <code>/dev/serial/by-id/*</code> snelkeuzeknoppen</strong>, zodat uw P1-kabel na een herstart nooit van poortnummer verwisselt met USB-RS485-adapters.</td>
+          </tr>
+          <tr>
+            <td><strong>Baudrate</strong> (<em>Baud Rate</em>)</td>
+            <td><code>115200</code></td>
+            <td>Kies <strong>115200</strong> voor Fluvius (België) en DSMR 5.0 (Nederland). Kies uitsluitend <strong>9600</strong> bij oudere Nederlandse DSMR 2/3/4-meters.</td>
+          </tr>
+          <tr>
+            <td><strong>Uitleesinterval</strong> (<em>Poll Interval</em>)</td>
+            <td><code>1</code> (of <code>2</code> seconden)</td>
+            <td>Hoe vaak GEMS inkomende telegrammen verwerkt. Een interval van 1 seconde garandeert sub-seconde reactietijd voor piekbewaking.</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>Klik op <strong>Add Device</strong> (Toestel toevoegen). De toestelkaart verschijnt direct met een groene badge <span style="color:#10b981; font-weight:bold;">● Online</span> en het live netvermogen wordt onmiddellijk zichtbaar op uw Dashboard!</li>
+  </ol>
+
+  <!-- ==================== 12. OBIS TELEGRAM DECODING ==================== -->
+  <h1 class="section-title" id="sec-obis">12. OBIS-telegramdecodering &amp; Vlaamse Kwartierpieken</h1>
+  <p>
+    De P1-datastroom volgt de internationale <strong>OBIS-standaard (Object Identification System)</strong>. GEMS ontleedt elk binnenkomend telegram en verwerkt de volgende kernregisters:
+  </p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>OBIS-code</th>
+        <th>Veldbeschrijving</th>
+        <th>Voorbeeldwaarde</th>
+        <th>Gebruik binnen GEMS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong><code>1-0:1.7.0</code></strong></td>
+        <td>Actueel Actief Afnamevermogen (+P)</td>
+        <td><code>01.850*kW</code> (1.850 W)</td>
+        <td>Realtime netafname. Wordt geplot op het dashboard en continu bewaakt voor piekbewaking.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:2.7.0</code></strong></td>
+        <td>Actueel Actief Injectievermogen (-P)</td>
+        <td><code>00.000*kW</code> (0 W)</td>
+        <td>Realtime teruglevering van zonne-overschot. Gebruikt voor dynamisch EV-laden en relais-aansturing.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:1.6.0</code></strong></td>
+        <td><strong>Maximale Maandpiek Kwartiervermogen</strong></td>
+        <td><code>(260908183000S)(02.450*kW)</code></td>
+        <td><strong>Officiële Fluvius-maandpiek</strong> geregistreerd op 2026-09-08 om 18:30. GEMS haalt zowel het exacte tijdstip als het vermogen op voor sturing van het Slim Adaptief Piekplafond!</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:1.4.0</code></strong></td>
+        <td>Huidig Gemiddeld Kwartiervermogen</td>
+        <td><code>01.920*kW</code> (1.920 W)</td>
+        <td>Voortschrijdend gemiddeld afnamevermogen binnen het lopende facturatiekwartier van 15 minuten.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:1.8.1</code></strong></td>
+        <td>Energieafname Tarief 1 (Dag / Piek)</td>
+        <td><code>004218.412*kWh</code></td>
+        <td>Fiscaal dagtelwerk voor controle van de energiefactuur.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:1.8.2</code></strong></td>
+        <td>Energieafname Tarief 2 (Nacht / Dal)</td>
+        <td><code>003189.102*kWh</code></td>
+        <td>Fiscaal nacht- en weekendtelwerk voor afname.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:2.8.1</code></strong></td>
+        <td>Energie-injectie Tarief 1 (Dag / Piek)</td>
+        <td><code>001890.871*kWh</code></td>
+        <td>Zonne-energie geïnjecteerd op het net tijdens piekuren.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:2.8.2</code></strong></td>
+        <td>Energie-injectie Tarief 2 (Nacht / Dal)</td>
+        <td><code>000652.319*kWh</code></td>
+        <td>Zonne-energie geïnjecteerd tijdens dal- en weekenduren.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:31.7.0</code></strong></td>
+        <td>Ogenblikkelijke Stroomsterkte Fase L1</td>
+        <td><code>008.2*A</code></td>
+        <td>Stroomopname op Fase 1 voor overbelastingsbeveiliging van de hoofdzekering.</td>
+      </tr>
+      <tr>
+        <td><strong><code>1-0:32.7.0</code></strong></td>
+        <td>Ogenblikkelijke Spanning Fase L1</td>
+        <td><code>231.4*V</code></td>
+        <td>Netspanningsbewaking (detecteert uitvalrisico van zonne-omvormers bij overspanning &gt; 253V).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 13. TROUBLESHOOTING & FAQ ==================== -->
+  <div class="page-break"></div>
+  <h1 class="section-title" id="sec-troubleshoot">13. Uitgebreide Probleemoplossing &amp; Veelgemaakte Fouten</h1>
+
+  <h2 class="subsection-title">Probleem 1: Terminal toont uitsluitend vreemde tekens of vraagtekens</h2>
+  <p><strong>Oorzaak:</strong> Signaalinversie ontbreekt of er is een verkeerde baudrate ingesteld.</p>
+  <ul style="margin: 4px 0 10px 18px; padding: 0;">
+    <li><strong>Oplossing:</strong> Controleer of uw hardware-invertertransistor (Methode A) correct is aangesloten met een pull-upweerstand naar +5V op de collector en een 10 kΩ-weerstand aan de basis. Gebruikt u Methode B, controleer dan of <code>invert_rxd=true</code> daadwerkelijk naar de FTDI-EEPROM is geflasht.</li>
+    <li><strong>Baudrate:</strong> Controleer dat de baudrate op <code>115200</code> staat voor Fluvius / DSMR 5. Betreft het een oudere DSMR 3- of 4-meter, schakel dan over naar <code>9600</code>.</li>
+  </ul>
+
+  <h2 class="subsection-title">Probleem 2: <code>cat /dev/ttyUSB0</code> toont helemaal niets (cursor blijft stil staan)</h2>
+  <p><strong>Oorzaak:</strong> Pin 2 (Data Request / RTS) wordt niet HOOG getrokken, of de P1-poort is elektronisch vergrendeld.</p>
+  <ul style="margin: 4px 0 10px 18px; padding: 0;">
+    <li><strong>Controleer RTS Pin 2:</strong> Meet met uw multimeter de gelijkspanning tussen Pin 2 en Pin 3. Deze <strong>moet +5,0V bedragen</strong>. Staat hier 0V op, dan blijft de slimme meter volledig stil! Verbind Pin 2 rechtstreeks met de +5V VCC-aansluiting van de USB-adapter.</li>
+    <li><strong>Controleer P1-vergrendeling:</strong> Kijk op het scherm van uw digitale meter. Staat er een hangslot-icoon (🔒) boven "P1", dan is de poort nog vergrendeld bij de netbeheerder. Log in op "Mijn Fluvius" en vraag activering van de gebruikerspoort aan.</li>
+  </ul>
+
+  <h2 class="subsection-title">Probleem 3: Linux meldt "Permission denied" bij openen van <code>/dev/ttyUSB0</code></h2>
+  <p><strong>Oorzaak:</strong> De systeemgebruiker <code>gems</code> moet lid zijn van de groep <code>dialout</code>.</p>
+  <ul style="margin: 4px 0 10px 18px; padding: 0;">
+    <li><strong>Oplossing:</strong> Voer uit: <code>sudo usermod -a -G dialout gems &amp;&amp; sudo systemctl restart gems</code>.</li>
+  </ul>
+
+  <h2 class="subsection-title">Probleem 4: Naam van de USB-poort wijzigt na herstart (bijv. van <code>ttyUSB0</code> naar <code>ttyUSB1</code>)</h2>
+  <p><strong>Oorzaak:</strong> Er zijn meerdere USB-serieeladapters aangesloten op de Raspberry Pi.</p>
+  <ul style="margin: 4px 0 10px 18px; padding: 0;">
+    <li><strong>Oplossing:</strong> Gebruik altijd het permanente hardwarepad in plaats van het generieke <code>/dev/ttyUSB0</code>. Voer in de terminal uit:
+      <div class="terminal-box">
+        <code>ls -l /dev/serial/by-id/</code>
+      </div>
+      Kopieer het vaste pad (bijv. <code>/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A50285BI-if00-port0</code>) en plak dit rechtstreeks in het veld Seriële poort binnen GEMS!
+    </li>
+  </ul>
+
+  <div class="callout callout-tip">
+    <div class="callout-title">🛠️ Samenvattende Checklist voor een Foutloze P1-installatie</div>
+    <ul style="margin: 4px 0 0 16px; padding: 0;">
+      <li>[✓] P1-poort geactiveerd op Mijn Fluvius (hangslot-icoon verdwenen, driehoekje zichtbaar).</li>
+      <li>[✓] Pin 2 (RTS) omhoog getrokken naar +5V.</li>
+      <li>[✓] Signaal geïnverteerd (via BC547-transistor of FTDI-EEPROM).</li>
+      <li>[✓] Baudrate ingesteld op 115.200 (8N1).</li>
+      <li>[✓] Met multimeter gecontroleerd op afwezigheid van sluiting tussen 5V en GND vóór inpluggen.</li>
+      <li>[✓] GEMS-toesteltemplate toegevoegd met een uitleesinterval van 1 seconde.</li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,9 +1,43 @@
 /**
  * GEMS (New Energy Grid) Documentation Site Core JavaScript
- * Handles themes, mobile drawer, search modal, tabs, code copying, and scrollspy.
+ * Handles themes, language switcher (EN/NL/FR), mobile drawer, search modal, tabs, code copying, and scrollspy.
  */
 
+const DOC_LANG = (() => {
+  const raw = (document.documentElement.getAttribute('lang') || 'en').toLowerCase();
+  if (raw.startsWith('nl')) return 'nl';
+  if (raw.startsWith('fr')) return 'fr';
+  if (/\/nl\/[^/]*$/.test(window.location.pathname)) return 'nl';
+  if (/\/fr\/[^/]*$/.test(window.location.pathname)) return 'fr';
+  return 'en';
+})();
+
+const IN_LANG_SUBDIR = DOC_LANG === 'nl' || DOC_LANG === 'fr' || /\/(nl|fr)\/[^/]*$/.test(window.location.pathname);
+const ASSETS_PREFIX = IN_LANG_SUBDIR ? '../assets' : 'assets';
+
+const UI_I18N = {
+  en: {
+    loadingSearch: 'Search index loading...',
+    noMatches: 'No documentation matches found for',
+    copied: 'Copied!',
+    switchLangLabel: 'Switch documentation language'
+  },
+  nl: {
+    loadingSearch: 'Zoekindex laden...',
+    noMatches: 'Geen resultaten gevonden voor',
+    copied: 'Gekopieerd!',
+    switchLangLabel: 'Kies documentatietaal'
+  },
+  fr: {
+    loadingSearch: 'Chargement de l’index de recherche...',
+    noMatches: 'Aucun résultat trouvé pour',
+    copied: 'Copié !',
+    switchLangLabel: 'Choisir la langue de la documentation'
+  }
+}[DOC_LANG];
+
 document.addEventListener('DOMContentLoaded', () => {
+  initLangSwitcher();
   initTheme();
   initMobileNav();
   initSearch();
@@ -12,25 +46,72 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollspy();
 });
 
+/* --- Language Switcher (EN / NL / FR) --- */
+function initLangSwitcher() {
+  if (document.querySelector('.lang-switcher')) return;
+
+  const rawFile = window.location.pathname.split('/').pop() || 'index.html';
+  const filename = rawFile.endsWith('.html') ? rawFile : 'index.html';
+  const hash = window.location.hash || '';
+
+  let enHref, nlHref, frHref;
+  if (filename.startsWith('gems-') && filename.includes('-manual')) {
+    const stem = filename.replace(/-(en|nl|fr)\.html$/, '').replace(/\.html$/, '');
+    enHref = (IN_LANG_SUBDIR ? `../${stem}.html` : `${stem}.html`) + hash;
+    nlHref = (DOC_LANG === 'nl' ? `${stem}-nl.html` : (IN_LANG_SUBDIR ? `../nl/${stem}-nl.html` : `nl/${stem}-nl.html`)) + hash;
+    frHref = (DOC_LANG === 'fr' ? `${stem}-fr.html` : (IN_LANG_SUBDIR ? `../fr/${stem}-fr.html` : `fr/${stem}-fr.html`)) + hash;
+  } else {
+    enHref = (IN_LANG_SUBDIR ? `../${filename}` : filename) + hash;
+    nlHref = (DOC_LANG === 'nl' ? filename : (IN_LANG_SUBDIR ? `../nl/${filename}` : `nl/${filename}`)) + hash;
+    frHref = (DOC_LANG === 'fr' ? filename : (IN_LANG_SUBDIR ? `../fr/${filename}` : `fr/${filename}`)) + hash;
+  }
+
+  const switcher = document.createElement('nav');
+  switcher.className = 'lang-switcher no-print';
+  switcher.setAttribute('aria-label', UI_I18N.switchLangLabel);
+  switcher.innerHTML = `
+    <a href="${enHref}" class="${DOC_LANG === 'en' ? 'active' : ''}" hreflang="en" title="English">EN</a>
+    <a href="${nlHref}" class="${DOC_LANG === 'nl' ? 'active' : ''}" hreflang="nl" title="Nederlands">NL</a>
+    <a href="${frHref}" class="${DOC_LANG === 'fr' ? 'active' : ''}" hreflang="fr" title="Français">FR</a>
+  `;
+
+  const headerRight = document.querySelector('.header-right');
+  if (headerRight) {
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    if (themeBtn) {
+      headerRight.insertBefore(switcher, themeBtn);
+    } else {
+      headerRight.appendChild(switcher);
+    }
+    return;
+  }
+
+  const toolbarTop = document.querySelector('.interactive-toolbar .toolbar-top');
+  if (toolbarTop) {
+    toolbarTop.appendChild(switcher);
+  }
+}
+
 /* --- Theme Management --- */
 function initTheme() {
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
   const storedTheme = localStorage.getItem('gems-docs-theme');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
+
+  // Printable manuals have explicit light theme on <html> and no #theme-toggle-btn; respect that
+  if (!themeToggleBtn) return;
+
   const currentTheme = storedTheme || (prefersDark ? 'dark' : 'light');
   document.documentElement.setAttribute('data-theme', currentTheme);
   updateThemeIcon(currentTheme);
 
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const activeTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('gems-docs-theme', newTheme);
-      updateThemeIcon(newTheme);
-    });
-  }
+  themeToggleBtn.addEventListener('click', () => {
+    const activeTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('gems-docs-theme', newTheme);
+    updateThemeIcon(newTheme);
+  });
 
   // Listen for OS system theme changes
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
@@ -45,7 +126,7 @@ function initTheme() {
 function updateThemeIcon(theme) {
   const iconUse = document.querySelector('#theme-toggle-btn use');
   if (iconUse) {
-    iconUse.setAttribute('href', theme === 'dark' ? 'assets/icons.svg#icon-sun' : 'assets/icons.svg#icon-moon');
+    iconUse.setAttribute('href', theme === 'dark' ? `${ASSETS_PREFIX}/icons.svg#icon-sun` : `${ASSETS_PREFIX}/icons.svg#icon-moon`);
   }
 }
 
@@ -188,7 +269,7 @@ function initSearch() {
   function renderSearchResults(query) {
     selectedIndex = -1;
     if (!window.DOCS_SEARCH_INDEX) {
-      searchResults.innerHTML = '<li class="search-result-item" style="cursor:default; color:var(--text-muted);">Search index loading...</li>';
+      searchResults.innerHTML = `<li class="search-result-item" style="cursor:default; color:var(--text-muted);">${UI_I18N.loadingSearch}</li>`;
       return;
     }
 
@@ -211,7 +292,7 @@ function initSearch() {
     if (matches.length === 0) {
       searchResults.innerHTML = `
         <li class="search-result-item" style="cursor:default; text-align:center; padding: 2rem 1rem; color:var(--text-muted);">
-          No documentation matches found for "<strong>${escapeHtml(query)}</strong>"
+          ${UI_I18N.noMatches} "<strong>${escapeHtml(query)}</strong>"
         </li>
       `;
     } else {
@@ -233,7 +314,7 @@ function initSearch() {
     return `
       <li class="search-result-item" data-url="${item.url}">
         <div class="search-result-title">
-          <svg width="16" height="16" style="flex-shrink:0; color:var(--brand-primary);"><use href="assets/icons.svg#icon-book"></use></svg>
+          <svg width="16" height="16" style="flex-shrink:0; color:var(--brand-primary);"><use href="${ASSETS_PREFIX}/icons.svg#icon-book"></use></svg>
           <span>${titleHtml}</span>
           <span class="search-result-category" style="margin-left:auto;">${escapeHtml(item.category)}</span>
         </div>
@@ -305,8 +386,8 @@ function initCodeCopy() {
         await navigator.clipboard.writeText(textToCopy);
         const originalHtml = copyBtn.innerHTML;
         copyBtn.innerHTML = `
-          <svg width="14" height="14"><use href="assets/icons.svg#icon-check"></use></svg>
-          <span>Copied!</span>
+          <svg width="14" height="14"><use href="${ASSETS_PREFIX}/icons.svg#icon-check"></use></svg>
+          <span>${UI_I18N.copied}</span>
         `;
         copyBtn.style.color = 'var(--alert-tip-border)';
         setTimeout(() => {

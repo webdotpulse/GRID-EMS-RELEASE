@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="nl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRID-EMS-SERVER Koppelingshandleiding - GEMS Documentatie</title>
+  <meta name="description" content="Officiële integratiehandleiding voor het koppelen van GEMS edge-controllers aan GRID-EMS-SERVER: architectuur, koppelingstoken, telemetrieschema, externe commando's en diagnose.">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Navigatiemenu openen of sluiten">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Cloudkoppeling</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Doorzoek documentatie (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Zoek in cloud, koppeling, telemetrie, commando's...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuratie</span>
+      </a>
+      <a href="gems-server-connection-manual-nl.pdf" class="nav-link-btn" target="_blank">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+        <span>Download PDF</span>
+      </a>
+      <nav class="lang-switcher no-print" aria-label="Kies documentatietaal">
+        <a href="../cloud-server.html" hreflang="en" title="English">EN</a>
+        <a href="cloud-server.html" class="active" hreflang="nl" title="Nederlands">NL</a>
+        <a href="../fr/cloud-server.html" hreflang="fr" title="Français">FR</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Wissel kleurenthema">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Cloudhandleiding</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="#overview" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-cloud"></use></svg>
+              <span>Overzicht &amp; Topologie</span>
+            </a>
+          </li>
+          <li>
+            <a href="#firewall" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>Netwerk &amp; Firewall</span>
+            </a>
+          </li>
+          <li>
+            <a href="#pairing" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-check"></use></svg>
+              <span>Koppeling &amp; Handshake</span>
+            </a>
+          </li>
+          <li>
+            <a href="#telemetry" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Telemetrieschema</span>
+            </a>
+          </li>
+          <li>
+            <a href="#commands" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-terminal"></use></svg>
+              <span>Externe Commando's</span>
+            </a>
+          </li>
+          <li>
+            <a href="#commissioning" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>UI-inbedrijfstelling</span>
+            </a>
+          </li>
+          <li>
+            <a href="#troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>Probleemoplossing</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Officiële PDF-handleidingen</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-installer-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Installatiehandleiding (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Gebruikershandleiding (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-server-connection-manual-nl.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Serverhandleiding (PDF)</span>
+              <span class="badge" style="background:#0284c7; color:#fff; font-size:10px;">NL</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Overige gidsen</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Documentatieportaal</span>
+            </a>
+          </li>
+          <li>
+            <a href="installation.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Installatiehandleiding</span>
+            </a>
+          </li>
+          <li>
+            <a href="configuration.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>Configuratiereferentie</span>
+            </a>
+          </li>
+          <li>
+            <a href="user-manual.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>Gebruikershandleiding</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+        
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Kruimelpad">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <span>Handleidingen</span>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">GRID-EMS-SERVER Koppeling</span>
+        </nav>
+
+        <div class="hero-banner">
+          <h1 class="hero-title">GRID-EMS-SERVER Koppelingshandleiding</h1>
+          <p class="hero-lead">
+            Leer hoe u uw lokale GEMS Raspberry Pi edge-controller veilig koppelt aan <strong>GRID-EMS-SERVER</strong> (<code>https://ems.newenergygrid.com</code>) voor multi-site vlootopvolging, continue realtime telemetrie en tweerichtingssturing op afstand — volledig zonder inkomende port forwarding.
+          </p>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1rem;">
+            <a href="gems-server-connection-manual-nl.pdf" target="_blank" class="tab-btn active" style="background:#0284c7; color:#fff; text-decoration:none; padding:0.5rem 1rem; border-radius:var(--radius-md); display:inline-flex; align-items:center; gap:0.4rem; font-weight:600;">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Download Afdrukbare PDF-handleiding (NL)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Section 1: Overview & Topology -->
+        <section id="overview" class="docs-section">
+          <h2>1. Overzicht &amp; Communicatiearchitectuur</h2>
+          <p>
+            GEMS werkt volgens een <strong>decentrale, lokaal-eerst</strong> architectuur. Wanneer de eenheid verbonden is met <strong>GRID-EMS-SERVER</strong>, spiegelt de edge-controller zijn realtime meetwaarden naar het cloudportaal en haalt hij wachtende stuurcommando's op zonder ooit inkomende poorten op uw router open te zetten.
+          </p>
+
+          <div class="doc-screenshot-card">
+            <img src="../assets/screenshots/settings_cloud.png" alt="GEMS Cloudserver Instellingenscherm" loading="lazy">
+            <div class="doc-screenshot-caption">Instellingen &rarr; Cloudserver: Overzicht van live koppelingsstatus, round-trip latentie en het auditlogboek van uitgevoerde cloudcommando's.</div>
+          </div>
+
+          <div class="callout callout-info" style="margin-top:1.5rem;">
+            <div class="callout-title">
+              <svg width="18" height="18"><use href="../assets/icons.svg#icon-info"></use></svg>
+              <span>Decentrale Bedrijfszekerheid</span>
+            </div>
+            <p style="margin:0; font-size:0.9rem;">
+              De lokale controller is voor elektrische veiligheid of energie-optimalisatie nooit afhankelijk van een actieve internetverbinding. Valt het internet weg, dan blijven Vlaamse piekbewaking, Modbus EV-sturing, zon-zelfverbruik en batterijschema's lokaal 100% ononderbroken doorwerken.
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 2: Network & Firewall -->
+        <section id="firewall" class="docs-section">
+          <h2>2. Netwerk- &amp; Uitgaande Firewallregels</h2>
+          <p>
+            Alle netwerkcommunicatie vanuit GEMS verloopt strikt <strong>uitgaand</strong> over standaard versleutelde HTTPS (poort 443).
+          </p>
+
+          <div class="table-container">
+            <table class="api-table">
+              <thead>
+                <tr>
+                  <th>Bestemming</th>
+                  <th>Protocol</th>
+                  <th>Poort</th>
+                  <th>Richting</th>
+                  <th>Functie</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>ems.newenergygrid.com</code></td>
+                  <td>HTTPS (TLS 1.3)</td>
+                  <td>443</td>
+                  <td>Uitgaand</td>
+                  <td>Koppeling (<code>/register</code>), Telemetrie (<code>/telemetry</code>), Bevestiging (<code>/commands/.../ack</code>)</td>
+                </tr>
+                <tr>
+                  <td>Lokale Gateway / DNS</td>
+                  <td>DNS</td>
+                  <td>53</td>
+                  <td>Uitgaand</td>
+                  <td>Omzetten van serverdomeinnaam naar IP-adres</td>
+                </tr>
+                <tr>
+                  <td><code>pool.ntp.org</code></td>
+                  <td>NTP</td>
+                  <td>123</td>
+                  <td>Uitgaand</td>
+                  <td>Kloksynchronisatie voor geldige TLS-certificaatcontrole</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Section 3: Pairing & Handshake -->
+        <section id="pairing" class="docs-section">
+          <h2>3. Koppeling &amp; Authenticatie-handshake</h2>
+          <p>
+            De koppeling verbindt de fysieke Raspberry Pi edge-controller veilig aan uw klant- of installateursomgeving in het centrale portaal via een eenmalig token.
+          </p>
+          <ol style="padding-left:1.25rem; color:var(--text-secondary); line-height:1.7;">
+            <li>Meld u aan op <code>https://ems.newenergygrid.com</code> en ga naar <strong>Vloot &rarr; Eenheid toevoegen</strong> om een koppelingstoken aan te maken (bijv. <code>PAIR-8821-X9K2</code>).</li>
+            <li>Open de lokale GEMS-webinterface en navigeer naar <strong>Instellingen &rarr; Cloudserver</strong>.</li>
+            <li>Plak uw koppelingstoken in het invoerveld en klik op <strong>Koppelen &amp; Nu verbinden</strong>.</li>
+            <li>GEMS verstuurt het token samen met het unieke hardwareserienummer naar <code>/api/v1/device/register</code>. De server antwoordt met een uniek <code>device_id</code> en een cryptografisch <code>device_secret</code>.</li>
+            <li>GEMS slaat deze inloggegevens veilig op in de lokale SQLite-database en maakt het eenmalige koppelingstoken ongeldig.</li>
+          </ol>
+        </section>
+
+        <!-- Section 4: Telemetry Schema -->
+        <section id="telemetry" class="docs-section">
+          <h2>4. Live Telemetrieschema</h2>
+          <p>
+            Elke 2 tot 5 seconden verstuurt GEMS een gestandaardiseerd JSON-pakket met alle actuele energiemetingen:
+          </p>
+
+          <div class="code-block-wrapper">
+            <div class="code-block-header">
+              <span class="code-lang">JSON (POST /api/v1/device/telemetry)</span>
+            </div>
+            <pre><code>{
+  "solar_power_watts": 4800,
+  "grid_power_watts": -1450,
+  "battery_power_watts": -1200,
+  "battery_soc": 78.5,
+  "battery_temperature": 24.2,
+  "battery_health": 99.0,
+  "home_consumption_watts": 850,
+  "ev_power_watts": 1300,
+  "ev_charging_mode": "eco",
+  "ev_connected": 1,
+  "heat_pump_watts": 1200,
+  "heat_pump_state": "boost",
+  "relay1_state": 1,
+  "relay2_state": 0,
+  "current_tariff_eur_kwh": 0.1245,
+  "spot_price_eur_mwh": 80.0,
+  "l1_current_amps": 6.3,
+  "l2_current_amps": 0.0,
+  "l3_current_amps": 0.0,
+  "voltage_v": 231.4,
+  "solar_energy_today_kwh": 24.6,
+  "grid_import_today_kwh": 2.1,
+  "grid_export_today_kwh": 14.8,
+  "home_energy_today_kwh": 11.4
+}</code></pre>
+          </div>
+        </section>
+
+        <!-- Section 5: Remote Commands -->
+        <section id="commands" class="docs-section">
+          <h2>5. Overzicht van Externe Stuurcommando's</h2>
+          <p>
+            Bij elke telemetrie-overdracht stuurt de cloudserver eventuele klaargezette commando's direct mee terug in het HTTP-antwoord:
+          </p>
+
+          <div class="table-container">
+            <table class="api-table">
+              <thead>
+                <tr>
+                  <th>Commando</th>
+                  <th>Parameters</th>
+                  <th>Beschrijving</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>SET_OPERATING_MODE</code> / <code>set_strategy_mode</code></td>
+                  <td><code>mode</code>, <code>peak_limit_kw</code></td>
+                  <td>Schakelt tussen Vlaamse Piekbewaking, Eco Zon-zelfverbruik of Nederlandse Zero-Export.</td>
+                </tr>
+                <tr>
+                  <td><code>SET_BATTERY_MODE</code></td>
+                  <td><code>device_id</code>, <code>mode</code>, <code>target_power_w</code></td>
+                  <td>Wijzigt de batterijsturing (<code>auto</code>, <code>hold</code>, <code>force_charge</code>, <code>force_discharge</code>) of stelt een vermogensdoel in.</td>
+                </tr>
+                <tr>
+                  <td><code>SET_EV_CHARGE_MODE</code> / <code>SET_EV_CURRENT</code></td>
+                  <td><code>device_id</code>, <code>charge_mode</code>, <code>max_current_a</code></td>
+                  <td>Wijzigt de EV-laadmodus (<code>now</code>, <code>eco</code>, <code>pv_only</code>, <code>off</code>) of past de maximale laadstroom aan (6A–32A).</td>
+                </tr>
+                <tr>
+                  <td><code>TOGGLE_RELAY</code> / <code>set_relay</code></td>
+                  <td><code>device_id</code>, <code>state</code></td>
+                  <td>Schakelt een slim relais of contactor voor SG-Ready warmtepompboost of sanitair warm water.</td>
+                </tr>
+                <tr>
+                  <td><code>UPDATE_SETTINGS</code> / <code>OTA_UPDATE</code> / <code>REBOOT</code></td>
+                  <td>Instellingsvelden of <code>delay_sec</code></td>
+                  <td>Past gevalideerde systeeminstellingen toe, start een ondertekende OTA-update of herstart de controller veilig.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Section 6: UI Commissioning -->
+        <section id="commissioning" class="docs-section">
+          <h2>6. Stapsgewijze Inbedrijfstelling via de UI</h2>
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Open Instellingen &rarr; Cloudserver</h3>
+              <p>Ga in het menu naar Instellingen en open het tabblad <strong>Cloudserver</strong>.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Controleer Server-URL &amp; Koppelingstoken</h3>
+              <p>Bevestig de server-URL (<code>https://ems.newenergygrid.com</code>) en vul uw koppelingstoken in.</p>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Koppel &amp; Controleer de Telemetriestroom</h3>
+              <p>Klik op <strong>Koppelen &amp; Nu verbinden</strong>. Controleer dat de statusindicator groen kleurt (<span style="color:#10b981; font-weight:bold;">● ONLINE &amp; GESYNCHRONISEERD</span>) met een latentie van circa 15–30 ms.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 7: Troubleshooting -->
+        <section id="troubleshooting" class="docs-section">
+          <h2>7. Praktijkdiagnose &amp; Controlecommando's</h2>
+          <div class="code-block-wrapper">
+            <div class="code-block-header">
+              <span class="code-lang">Bash (Cockpit Poort 9090 of SSH)</span>
+            </div>
+            <pre><code># Volg live het cloudsynchronisatieproces
+sudo journalctl -u gems -f | grep CloudManager
+
+# Test DNS-omzetting en uitgaande HTTPS-verbinding
+curl -Iv https://ems.newenergygrid.com/api/status
+
+# Controleer de opgeslagen koppelingsstatus in de lokale database
+sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_device_id FROM site_settings;"</code></pre>
+          </div>
+        </section>
+
+        <!-- Bottom Navigation Footer -->
+        <div class="doc-footer-nav">
+          <a href="configuration.html" class="footer-nav-btn prev">
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-arrow-left"></use></svg>
+            <div>
+              <span class="nav-direction">Vorige</span>
+              <span class="nav-title">Configuratiereferentie</span>
+            </div>
+          </a>
+          <a href="user-manual.html" class="footer-nav-btn next">
+            <div>
+              <span class="nav-direction">Volgende</span>
+              <span class="nav-title">Gebruikershandleiding</span>
+            </div>
+            <svg width="18" height="18"><use href="../assets/icons.svg#icon-arrow-right"></use></svg>
+          </a>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- On-This-Page Table of Contents -->
+    <aside class="docs-toc">
+      <div class="toc-title">Op deze pagina</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#overview" class="toc-link">Overzicht &amp; Topologie</a></li>
+        <li class="toc-item"><a href="#firewall" class="toc-link">Netwerk &amp; Firewall</a></li>
+        <li class="toc-item"><a href="#pairing" class="toc-link">Koppeling &amp; Handshake</a></li>
+        <li class="toc-item"><a href="#telemetry" class="toc-link">Telemetrieschema</a></li>
+        <li class="toc-item"><a href="#commands" class="toc-link">Externe Commando's</a></li>
+        <li class="toc-item"><a href="#commissioning" class="toc-link">UI-inbedrijfstelling</a></li>
+        <li class="toc-item"><a href="#troubleshooting" class="toc-link">Praktijkdiagnose</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Zoek in documentatie, parameters, handleidingen..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Zoekvenster sluiten">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Gebruik <kbd class="kbd-shortcut">&uarr;</kbd> <kbd class="kbd-shortcut">&darr;</kbd> om te navigeren</span>
+        <span><kbd class="kbd-shortcut">Enter</kbd> om te openen</span>
+        <span><kbd class="kbd-shortcut">Esc</kbd> om te sluiten</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>GEMS (New Energy Grid) Documentatie &bull; Gebouwd met Go, SQLite, Vue 3 en Tailwind CSS &bull; Geoptimaliseerd voor Raspberry Pi</p>
+  </footer>
+
+  <script src="../js/search-index-nl.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

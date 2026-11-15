@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manuel Onduleurs Solis Retrofit / Hybrides &amp; Batterie Easyway UNIV5200 - GEMS</title>
+  <meta name="description" content="Manuel complet étape par étape de câblage, commutateurs DIP, brochage CAN, configuration des compteurs intelligents Eastron SDM72D-M &amp; SDM630-M, application SolisCloud et optimisation GEMS pour onduleurs Solis Retrofit &amp; Hybrides avec batteries LiFePO4 Easyway 5200 (UNIV5200).">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-menu-btn" id="mobile-menu-btn" aria-label="Afficher ou masquer le menu">
+        <svg width="20" height="20"><use href="../assets/icons.svg#icon-menu"></use></svg>
+      </button>
+      <a href="index.html" class="logo-link">
+        <span class="logo-badge">⚡</span>
+        <span>GEMS Docs</span>
+      </a>
+      <span class="version-tag">Guide Solis &amp; Easyway UNIV5200</span>
+    </div>
+
+    <div class="header-center">
+      <button class="search-trigger-btn" aria-label="Rechercher dans la documentation (Ctrl+K)">
+        <span class="search-icon-text">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-search"></use></svg>
+          <span>Rechercher Solis, Easyway UNIV5200, SDM72D-M, SDM630-M, brochage CAN, DIP...</span>
+        </span>
+        <span class="kbd-shortcut">Ctrl K</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <a href="gems-solis-easyway-manual-fr.pdf" class="nav-link-btn" target="_blank">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+        <span>PDF Solis &amp; UNIV5200</span>
+      </a>
+      <a href="configuration.html" class="nav-link-btn">
+        <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+        <span>Configuration</span>
+      </a>
+      <button class="icon-btn" id="theme-toggle-btn" aria-label="Basculer le thème de couleur">
+        <svg width="18" height="18"><use href="../assets/icons.svg#icon-sun"></use></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="docs-container">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Prise en main</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="index.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-book"></use></svg>
+              <span>Portail de documentation</span>
+            </a>
+          </li>
+          <li>
+            <a href="devices.html" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>Tous les modèles matériels</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Guide Solis &amp; Easyway</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="#compatibility" class="sidebar-link active">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-shield"></use></svg>
+              <span>1. Compatibilité BT &amp; Dimensionnement</span>
+            </a>
+          </li>
+          <li>
+            <a href="#battery-wiring" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-bolt"></use></svg>
+              <span>2. Câblage Batterie DC &amp; CAN</span>
+            </a>
+          </li>
+          <li>
+            <a href="#dip-switches" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-grid"></use></svg>
+              <span>2.3 Commutateurs DIP Parallèles</span>
+            </a>
+          </li>
+          <li>
+            <a href="#eastron-meter" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-gauge"></use></svg>
+              <span>3. Compteurs SDM72D-M &amp; SDM630-M</span>
+            </a>
+          </li>
+          <li>
+            <a href="#gems-connection" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wifi"></use></svg>
+              <span>4. Liaisons RS-485 &amp; S2-WL-ST</span>
+            </a>
+          </li>
+          <li>
+            <a href="#soliscloud-settings" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-settings"></use></svg>
+              <span>5. Réglages App SolisCloud</span>
+            </a>
+          </li>
+          <li>
+            <a href="#gems-onboarding" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>6. Hybride vs Retrofit dans GEMS</span>
+            </a>
+          </li>
+          <li>
+            <a href="#gems-optimization" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-sun"></use></svg>
+              <span>7. Stratégie GEMS optimale</span>
+            </a>
+          </li>
+          <li>
+            <a href="#troubleshooting" class="sidebar-link">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-wrench"></use></svg>
+              <span>8. Vérification &amp; Dépannage</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-nav-group">
+        <div class="sidebar-group-title">Manuels PDF officiels</div>
+        <ul class="sidebar-links">
+          <li>
+            <a href="gems-solis-easyway-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Solis &amp; Easyway (PDF)</span>
+              <span class="badge" style="background:#ea580c; color:#fff; font-size:10px;">NOUVEAU</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-enerlution-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Enerlution (PDF)</span>
+              <span class="badge" style="background:#0d9488; color:#fff; font-size:10px;">NOUVEAU</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-huawei-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Huawei (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-installer-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel installateur (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-user-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel utilisateur (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-p1-meter-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Manuel Compteur P1 (PDF)</span>
+            </a>
+          </li>
+          <li>
+            <a href="gems-fleet-dlb-manual-fr.pdf" class="sidebar-link" target="_blank">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Flotte VE &amp; DLB (PDF)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="docs-content">
+      <div class="content-wrapper">
+
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Fil d'Ariane">
+          <a href="index.html">Docs</a>
+          <span class="breadcrumb-separator">/</span>
+          <a href="devices.html">Appareils</a>
+          <span class="breadcrumb-separator">/</span>
+          <span style="color:var(--text-primary); font-weight:600;">Guide Solis &amp; Easyway UNIV5200</span>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="hero-banner">
+          <h1 class="hero-title">Guide Onduleurs Solis Retrofit / Hybrides &amp; Easyway UNIV5200</h1>
+          <p class="hero-lead">
+            Manuel de référence complet pour le raccordement des batteries <strong>Easyway 5200 (<code>UNIV5200</code>, 51,2 V 102 Ah LiFePO<sub>4</sub>)</strong> et des compteurs intelligents <strong>Eastron <code>SDM72D-M</code> / <code>SDM630-M</code></strong> aux onduleurs <strong>Solis Basse Tension Retrofit &amp; Hybrides</strong>, le paramétrage exact sur l'écran LCD du compteur &amp; l'<strong>application SolisCloud</strong>, et l'optimisation de <strong>GRID-EMS (GEMS)</strong> pour l'écrêtage capacitaire, les tarifs dynamiques et la longévité des cellules.
+          </p>
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <a href="gems-solis-easyway-manual-fr.pdf" target="_blank" class="tab-btn active" style="border-radius:var(--radius-md); display:inline-flex; align-items:center; gap:0.5rem; background:#ea580c; color:#ffffff; padding:0.6rem 1.2rem; text-decoration:none;">
+              <svg width="16" height="16"><use href="../assets/icons.svg#icon-download"></use></svg>
+              <span>Télécharger le Manuel A4 Imprimable (PDF)</span>
+            </a>
+            <a href="gems-solis-easyway-manual-fr.html" target="_blank" class="tab-btn" style="border-radius:var(--radius-md); display:inline-flex; align-items:center; gap:0.5rem; padding:0.6rem 1.2rem; text-decoration:none;">
+              <span>Ouvrir la Vue HTML Imprimable</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- SECTION 1 -->
+        <h2 id="compatibility">1. Garde-fous de tension BT, modèles Solis compatibles &amp; dimensionnement</h2>
+        <p>
+          La batterie de stockage <strong>Easyway 5200 (<code>UNIV5200</code>)</strong> est un pack <strong>LiFePO<sub>4</sub> de 51,2 V nominal (classe 48 V)</strong> calibré à <code>102 Ah</code> (<code>5,22 kWh</code> bruts / <code>~4,70 kWh</code> utiles à 90 % DoD, <code>50 A</code> continus recommandés en charge/décharge par pack, extensible jusqu'à <strong>16 packs en parallèle = 83,52 kWh</strong>).
+        </p>
+
+        <div class="callout callout-warning">
+          <strong>GARDE-FOU CRITIQUE DE TENSION — Onduleurs Solis Basse Tension (<code>-L</code> / <code>48V</code>) UNIQUEMENT :</strong>
+          <ul>
+            <li><strong>Ne raccordez jamais des modules <code>UNIV5200</code> en série !</strong> Les banques multi-batteries doivent être câblées exclusivement en <strong>parallèle 51,2 V</strong> (<code>P+</code> sur <code>P+</code>, <code>P-</code> sur <code>P-</code>).</li>
+            <li><strong>Ne connectez jamais des batteries <code>UNIV5200</code> à des modèles Solis Haute Tension (<code>-H</code>)</strong> (tels que les <code>S6-EH3P-H</code> ou <code>RHI-3P-HVES</code> qui fonctionnent en 160–600 Vdc). Vérifiez systématiquement le suffixe <strong><code>-L</code></strong> ou <strong><code>48ES</code></strong> sur la plaque signalétique de l'onduleur !</li>
+          </ul>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Gamme d'onduleurs Solis BT</th>
+                <th>Architecture &amp; Modèle GEMS</th>
+                <th>Courant batterie max.</th>
+                <th>Nombre d'UNIV5200 recommandé</th>
+                <th>Câble DC principal &amp; Disjoncteur</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Solis RAI-3K-48ES-5G</strong> (3,0 kW 1P)</td>
+                <td>Retrofit AC (<code>solis_retrofit</code>)</td>
+                <td><code>60 A</code> (~3,0 kW)</td>
+                <td><strong>1 – 3× UNIV5200</strong> (5,22–15,66 kWh)</td>
+                <td><code>25 mm²</code> • MCCB DC <strong>100 A</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Solis S6-EA1P(3.6–6)K-L</strong> (1P)</td>
+                <td>Retrofit AC (<code>solis_retrofit</code>)</td>
+                <td><code>75 – 125 A</code></td>
+                <td><strong>2 – 4× UNIV5200</strong> (≥2 packs pour 5 kW+ pleins)</td>
+                <td><code>35 mm²</code> • MCCB DC <strong>125–160 A</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Solis S5-EH1P(3–6)K-L</strong> (1P)</td>
+                <td>PV + Stockage (<code>solis_hybrid</code>)</td>
+                <td><code>62.5 – 100 A</code></td>
+                <td><strong>2 – 4× UNIV5200</strong> (1× limité à ~2,56 kW cont.)</td>
+                <td><code>25–35 mm²</code> • MCCB DC <strong>125 A</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Solis S6-EH1P(3–8)K-L-PLUS/PRO</strong></td>
+                <td>PV + Stockage (<code>solis_hybrid</code>)</td>
+                <td><code>70 – 190 A</code></td>
+                <td><strong>2 – 6× UNIV5200</strong> (≥3 packs pour 8 kW cont.)</td>
+                <td><code>35–50 mm²</code> • MCCB DC <strong>160–250 A</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Solis S6-EH3P(5–10)K-L / NV-YD-L</strong></td>
+                <td>Hybride BT 3P (<code>solis_hybrid</code>)</td>
+                <td><code>120 – 290 A</code></td>
+                <td><strong>3 – 8× UNIV5200</strong> (sur jeu de barres cuivre DC)</td>
+                <td><code>50–70 mm²</code> • MCCB DC <strong>200–300 A</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SECTION 2 -->
+        <h2 id="battery-wiring">2. Câblage étape par étape : Easyway UNIV5200 vers Onduleur Solis</h2>
+        <p>
+          Effectuez tous les raccordements de puissance, de mise à la terre, des commutateurs DIP et de communication avec l'ensemble des coupures AC, PV DC, MCCB DC externe et interrupteurs batterie sur <strong>OFF</strong>.
+        </p>
+
+        <h3>2.1 Puissance DC, disjoncteur DC non polarisé &amp; règles diagonale / jeu de barres</h3>
+        <ol>
+          <li><strong>Disjoncteur DC bipolaire externe non polarisé :</strong> Installez un <strong>disjoncteur DC 2 pôles non polarisé (MCCB) ou sectionneur à fusibles DC NH gBat</strong> dédié (calibré <code>≥ 80 Vdc</code>, <code>100 A – 300 A</code> selon le tableau ci-dessus) entre le parc batteries et les bornes Solis <code>BAT+</code> / <code>BAT-</code>. N'utilisez jamais de disjoncteurs AC polarisés sur des circuits batterie bidirectionnels.</li>
+          <li><strong>2 à 3 packs en parallèle — Règle diagonale (prise croisée) :</strong> Reliez <code>P+</code> à <code>P+</code> et <code>P-</code> à <code>P-</code> à l'aide de ponts de longueur strictement identique. Raccordez le câble principal <strong><code>BAT+</code></strong> de l'onduleur sur le <strong>Pack 1 (Maître) <code>P+</code></strong>, et le câble principal <strong><code>BAT-</code></strong> sur le <strong><code>P-</code> du DERNIER Pack</strong> (Pack 2 ou Pack 3). L'égalisation de la résistance de boucle garantit un équilibrage parfait des courants entre tous les packs !</li>
+          <li><strong>4 à 16 packs en parallèle — Règle du jeu de barres en cuivre :</strong> Au-delà de 3 modules, tirez des câbles protégés de même longueur (<code>25 mm²</code>) depuis chaque <code>UNIV5200</code> vers des <strong>jeux de barres DC positif et négatif en cuivre étamé</strong> (<code>250–400 A</code>), puis alimentez l'onduleur Solis depuis ces jeux de barres.</li>
+          <li><strong>Terre de protection (<code>⏚ PE</code>) :</strong> Reliez la vis de masse châssis de chaque <code>UNIV5200</code> et du rack batterie au bornier PE de l'onduleur Solis en conducteur vert/jaune <code>≥ 6 mm²</code>.</li>
+        </ol>
+
+        <h3>2.2 Brochage du cordon RJ45 CAN BMS (Port <code>CAN</code> Pack 1 Maître &harr; Port <code>BMS</code> Solis)</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Broche RJ45</th>
+                <th>Couleur fil T568B</th>
+                <th>Port Solis <code>BMS / CAN</code></th>
+                <th>Port Easyway UNIV5200 <code>CAN</code></th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Broches 1 – 3</strong></td>
+                <td>Blanc-Orange / Orange / Blanc-Vert</td>
+                <td>NC / Enable GND / RS485-B</td>
+                <td>Réservé / Bus interne</td>
+                <td><strong>Laisser ouvert / Non connecté</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Broche 4</strong></td>
+                <td><strong>Bleu</strong></td>
+                <td><strong><code>CAN-H</code> (CAN High)</strong></td>
+                <td><strong><code>CAN-H</code> (CAN High)</strong></td>
+                <td><strong>Relier Broche 4 &harr; Broche 4</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Broche 5</strong></td>
+                <td><strong>Blanc / Bleu</strong></td>
+                <td><strong><code>CAN-L</code> (CAN Low)</strong></td>
+                <td><strong><code>CAN-L</code> (CAN Low)</strong></td>
+                <td><strong>Relier Broche 5 &harr; Broche 5</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Broches 6 – 8</strong></td>
+                <td>Vert / Blanc-Marron / Marron</td>
+                <td>RS485-A / <strong>Broche 7 : +12V Enable</strong></td>
+                <td>Réservé / Bus interne</td>
+                <td><strong>Laisser ouvert / Non connecté</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <em>Conseil pro :</em> Le fait d'isoler <strong>uniquement la Broche 4 (<code>CAN-H</code>) et la Broche 5 (<code>CAN-L</code>)</strong> évite que le <code>+12V Enable</code> (Broche 7) ou les lignes RS-485 (Broches 3/6) de l'onduleur Solis ne réinjectent de tension sur les broches réservées du BMS !
+        </p>
+
+        <h3 id="dip-switches">2.3 Cordons d'interconnexion parallèle &amp; table binaire des DIP <code>ADD</code></h3>
+        <p>
+          Connectez des cordons droits standard CAT5e/CAT6 depuis le <strong>Pack 1 (Maître) <code>RS485-B / Link Out</code> &rarr; Pack 2 <code>RS485-A / Link In</code> &rarr; Pack 3 In</strong>. Laissez le port <code>CAN</code> libre sur tous les packs esclaves. Réglez les commutateurs DIP <strong><code>ADD</code> lorsque tous les packs sont éteints (OFF)</strong> (<code>ON = 1</code>, <code>OFF = 0</code>, de gauche à droite SW1..SW4) :
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Rôle du Pack UNIV5200</th>
+                <th>SW 1</th>
+                <th>SW 2</th>
+                <th>SW 3</th>
+                <th>SW 4</th>
+                <th>Binaire</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Pack unique ou Maître (Pack 1)</strong></td>
+                <td><code>OFF</code></td>
+                <td><code>OFF</code></td>
+                <td><code>OFF</code></td>
+                <td><code>OFF</code></td>
+                <td><strong><code>0000</code></strong></td>
+              </tr>
+              <tr>
+                <td><strong>Esclave 1 (Pack 2 — 10,44 kWh)</strong></td>
+                <td><strong><code>ON</code></strong></td>
+                <td><code>OFF</code></td>
+                <td><code>OFF</code></td>
+                <td><code>OFF</code></td>
+                <td><code>1000</code></td>
+              </tr>
+              <tr>
+                <td><strong>Esclave 2 (Pack 3 — 15,66 kWh)</strong></td>
+                <td><code>OFF</code></td>
+                <td><strong><code>ON</code></strong></td>
+                <td><code>OFF</code></td>
+                <td><code>OFF</code></td>
+                <td><code>0100</code></td>
+              </tr>
+              <tr>
+                <td><strong>Esclave 3 (Pack 4 — 20,88 kWh)</strong></td>
+                <td><strong><code>ON</code></strong></td>
+                <td><strong><code>ON</code></strong></td>
+                <td><code>OFF</code></td>
+                <td><code>OFF</code></td>
+                <td><code>1100</code></td>
+              </tr>
+              <tr>
+                <td><strong>Esclaves 4 – 15 (Packs 5 – 16)</strong></td>
+                <td colspan="4">Poursuivre la séquence binaire : Pack 5 = <code>0010</code>, Pack 6 = <code>1010</code>, Pack 7 = <code>0110</code> &hellip; Pack 16 = <code>1111</code></td>
+                <td><code>0010..1111</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>2.4 Séquence sécurisée de mise sous tension progressive (Soft-Start)</h3>
+        <ol>
+          <li>Vérifiez la polarité DC hors tension à l'aide d'un multimètre (tous interrupteurs sur OFF).</li>
+          <li>Enclenchez les disjoncteurs individuels des <code>UNIV5200</code> sur <strong>ON</strong> et fermez le <strong>disjoncteur DC MCCB bipolaire externe</strong> pendant que les voyants du BMS sont encore éteints.</li>
+          <li>Maintenez enfoncé le bouton <strong><code>SW / POWER</code> du Pack 1 (Maître)</strong> pendant <code>2–3 secondes</code> afin que la résistance interne de pré-charge charge en douceur les condensateurs du bus DC Solis (voyant <code>RUN</code> vert, voyant <code>ALM</code> éteint ; les packs esclaves s'éveillent ensuite automatiquement).</li>
+          <li>Enclenchez le sectionneur DC PV Solis sur <strong>ON</strong> (modèles hybrides), puis enclenchez le disjoncteur AC réseau sur <strong>ON</strong>.</li>
+        </ol>
+
+        <!-- SECTION 3 -->
+        <h2 id="eastron-meter">3. Raccordement &amp; configuration d'un compteur intelligent Eastron SDM72D-M ou SDM630-M</h2>
+        <p>
+          Les compteurs bidirectionnels triphasés Modbus RTU sur rail DIN (4 modules) d'Eastron — <strong><code>SDM72D-M</code></strong> (ainsi que la version <strong><code>SDM72D-M-2</code></strong> à raccordement direct jusqu'à <code>80A/100A</code>) et <strong><code>SDM630-M</code></strong> (<strong><code>SDM630-Modbus V2/V3</code></strong> direct <code>80A/100A</code> ou <strong><code>SDM630MCT</code></strong> sur tores CT) — partagent la même table de registres IEEE-754 <code>Float32</code> (<code>0x0000–0x004A</code>) et s'intègrent aussi bien aux onduleurs Solis qu'à GEMS.
+        </p>
+
+        <div class="callout callout-warning">
+          <strong>RÈGLE DU MAÎTRE RS-485 UNIQUE — Choisissez la Topologie 1 OU la Topologie 2 (Jamais les deux sur un même compteur !) :</strong>
+          <ul>
+            <li><strong>Topologie 1 (Standard recommandé — Câblé sur le port RJ45 <code>Meter</code> du Solis) :</strong> Raccordez le <code>SDM72D-M</code> / <code>SDM630-M</code> sur l'entrée <code>Meter</code> de l'onduleur Solis. Cela assure à Solis une régulation matérielle autonome <code>Self-Use</code> et transmet la puissance réseau + les courants des 3 phases à GEMS dès que <code>Grid Meter Connected? = Coché</code>.</li>
+            <li><strong>Topologie 2 (Direct sur GEMS — Sites dépourvus de port P1 communicant) :</strong> Raccordez un <code>SDM72D-M</code> / <code>SDM630-M</code> dédié directement à GEMS en USB vers RS-485 (ou passerelle TCP RS-485 <code>:502</code>) via le modèle <code>eastron_sdm72_x96</code> ou <code>eastron_sdm630</code>. <em>(Peut partager un bus USB-RS485 GEMS avec Solis Option A en réglant Compteur <code>Addr = 002</code> et Solis <code>Addr = 001</code>).</em></li>
+            <li><strong>Règle en installation triphasée :</strong> Même avec un onduleur Solis <strong>monophasé</strong> (<code>RAI-3K</code>, <code>S6-EA1P</code>, <code>S5-EH1P</code>, <code>S6-EH1P</code>) sur un raccordement triphasé, installez toujours un compteur triphasé <strong><code>SDM630-M</code> ou <code>SDM72D-M-2</code></strong> (privilégiez la V2 <code>-2</code> à l'ancienne V1 pour bénéficier des registres <code>V/I</code> par phase et de la compatibilité réseau belge <code>3×230V</code> triangle <code>3P3W</code> !).</li>
+          </ul>
+        </div>
+
+        <h3>3.1 Raccordement : Puissance AC principale, emplacement au tableau &amp; brochage RS-485</h3>
+        <ul>
+          <li><strong>Emplacement dans le tableau électrique (crucial en Retrofit comme en Hybride) :</strong> Installez le compteur <strong>immédiatement en aval du compteur GRD / différentiel général</strong>, strictement <strong>en amont</strong> de tous les disjoncteurs domestiques, pompes à chaleur, bornes VE <strong>Raedian</strong>, onduleurs PV existants et du disjoncteur AC Solis.</li>
+          <li><strong>Bornes AC à raccordement direct (<code>SDM72D-M</code> / <code>SDM72D-M-2</code> &amp; <code>SDM630-M</code>, jusqu'à 100 A) :</strong>
+            <ul>
+              <li><strong>Bornes supérieures (Arrivée Réseau IN) :</strong> <code>1 = L1 IN</code>, <code>2 = L2 IN</code>, <code>3 = L3 IN</code>, <code>4 = N IN</code>.</li>
+              <li><strong>Bornes inférieures (Départ Maison / PV / Solis / VE OUT) :</strong> <code>5 = L1 OUT</code>, <code>6 = L2 OUT</code>, <code>7 = L3 OUT</code>, <code>8 = N OUT</code>. <em>(Laissez <code>4 &amp; 8</code> libres sur un réseau belge <code>3×230V</code> sans neutre <code>3P3W</code> avec un <code>SDM630-M</code> / <code>SDM72D-M-2</code> ; n'inversez jamais Haut IN et Bas OUT !).</em></li>
+            </ul>
+          </li>
+          <li><strong>Variante sur transformateurs de courant (<code>SDM630MCT</code>) :</strong> Protégez les prises de tension par fusibles (<code>0,5A–2A</code>) sur <code>V1/V2/V3/VN</code> (<code>Bornes 4, 3, 2, 1</code>) et raccordez <code>CT1 (20/19)</code>, <code>CT2 (18/17)</code>, <code>CT3 (16/15)</code> phase par phase en respectant scrupuleusement le sens des flèches des tores CT.</li>
+        </ul>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Signal RS-485</th>
+                <th>Borne compteur Eastron (<code>SDM72D-M</code> &amp; <code>SDM630-M</code>)</th>
+                <th>Topologie 1 : RJ45 <code>Meter</code> Solis (T568B)</th>
+                <th>Topologie 2 : USB-RS485 / Passerelle GEMS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><code>RS485-A (+)</code></strong></td>
+                <td><strong><code>A</code> / <code>A+</code> / <code>485A</code></strong> <em>(Broche <code>10</code> sur SDM630-V2 Direct ; Broche <code>14</code> sur SDM630MCT ; repérée <code>A</code> sur SDM72D-M)</em></td>
+                <td><strong>RJ45 Broche 1 (Blanc/Orange)</strong><br><em>(ou bornier à vis <code>MTR485A</code>)</em></td>
+                <td>Adaptateur <strong><code>A+</code> / <code>D+</code> / <code>T/R+</code></strong></td>
+              </tr>
+              <tr>
+                <td><strong><code>RS485-B (-)</code></strong></td>
+                <td><strong><code>B</code> / <code>B-</code> / <code>485B</code></strong> <em>(Broche <code>9</code> sur SDM630-V2 Direct ; Broche <code>13</code> sur SDM630MCT ; repérée <code>B</code> sur SDM72D-M)</em></td>
+                <td><strong>RJ45 Broche 2 (Orange)</strong><br><em>(ou bornier à vis <code>MTR485B</code>)</em></td>
+                <td>Adaptateur <strong><code>B-</code> / <code>D-</code> / <code>T/R-</code></strong></td>
+              </tr>
+              <tr>
+                <td><strong>Blindage / Masse</strong></td>
+                <td><strong><code>G</code> / <code>GND</code></strong> <em>(N'utilisez <strong>jamais</strong> les bornes d'impulsions <code>+ / -</code> !)</em></td>
+                <td><strong>Laisser les Broches RJ45 3 – 8 ouvertes</strong></td>
+                <td>Adaptateur <strong><code>GND</code></strong> (<code>120 &Omega;</code> si &gt; 30 m)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>3.2 Configuration : Écran LCD du compteur (mot de passe <code>1000</code>), SolisCloud &amp; GEMS</h3>
+        <ol>
+          <li><strong>Sur la face avant du compteur (Mot de passe par défaut = <code>1000</code>) :</strong>
+            <ul>
+              <li><em>Déverrouillage :</em> Sur le <code>SDM630-M</code>, maintenez <strong><code>E</code></strong> pendant <code>3s</code> &rarr; saisissez <code>1000</code> &rarr; maintenez <code>E</code>. Sur le <code>SDM72D-M</code> / <code>SDM72D-M-2</code>, appuyez longuement <code>3s</code> sur le bouton frontal &rarr; appui court pour incrémenter le chiffre / appui long pour avancer et saisir <code>1000</code>.</li>
+              <li><em>Paramètres :</em> Réglez <strong>Adresse (<code>Addr</code> / <code>Add</code>) = <code>001</code></strong> (ou <code>002</code> uniquement sur un bus RS-485 GEMS partagé avec Solis ID <code>1</code>), <strong>Débit (<code>bAud</code> / <code>baud</code>) = <code>9600</code></strong>, <strong>Parité (<code>PrtY</code> / <code>Par</code>) = <code>nO</code> / <code>none</code> (<code>8N1</code>)</strong> et <strong>Système (<code>SYS</code>) = <code>3P4</code></strong> (<code>3×400V+N</code>), <strong><code>3P3</code></strong> (réseau belge <code>3×230V</code> triangle) ou <strong><code>1P2</code></strong> (<code>1×230V</code>). Vérifiez l'apparition de l'icône <strong>combiné téléphonique (<code>📞</code>)</strong> sur l'écran LCD dès le début des requêtes !</li>
+            </ul>
+          </li>
+          <li><strong>Dans l'application SolisCloud (Topologie 1 — Câblé sur le port <code>Meter</code> Solis) :</strong> Sous <code>Advanced Settings &rarr; Storage Energy Set &rarr; Meter Set</code>, choisissez <strong><code>Eastron 3P</code></strong> (ou <strong><code>SDM630</code></strong> — compatible à la fois avec <code>SDM630-M</code> et <code>SDM72D-M</code> !) et <strong>Placement = <code>Meter in Grid</code></strong>. Vérifiez l'absence d'alarme <code>Meter_Comm_FAIL</code> sous <code>Information &rarr; Meter Info</code>.</li>
+          <li><strong>Dans GEMS (<code>Paramètres &rarr; Appareils</code>) :</strong>
+            <ul>
+              <li><em>Topologie 1 (Câblé sur Solis) :</em> Cochez simplement <strong><code>Grid Meter Connected? = Coché</code></strong> sur la fiche de votre onduleur Solis Hybride / Retrofit (n'ajoutez pas de seconde fiche Eastron).</li>
+              <li><em>Topologie 2 (Câblé directement sur GEMS) :</em> Ajoutez un <strong>Compteur Intelligent</strong> avec le modèle <strong><code>Eastron SDM72D / SMART X96 3-Phase Meter</code></strong> (<code>eastron_sdm72_x96</code>) ou <strong><code>Eastron SDM630 3-Phase Meter</code></strong> (<code>eastron_sdm630</code>) sur le port persistant <code>/dev/serial/by-id/...</code> (<code>9600 None</code>) ou TCP <code>:502</code>, <code>Modbus ID = 1</code> (ou <code>2</code> sur bus partagé), <code>Poll Interval = 2s</code>, <code>Phase Wiring = L1-L2-L3</code>.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <!-- SECTION 4 -->
+        <h2 id="gems-connection">4. Connexion de l'onduleur Solis à GEMS (RS-485 vs clé LAN S2-WL-ST)</h2>
+        <ul>
+          <li><strong>Option A (Standard de référence recommandé — USB-RS485 direct ou passerelle Ethernet RS-485 industrielle) :</strong> Raccordez une paire torsadée blindée (<code>9600 bps, 8N1</code>, Slave ID <code>1</code>) au port interne dédié <code>RS485 / Modbus</code> des Solis S6 — ou sur les connecteurs ronds <code>COM</code> à 4 broches, reliez <strong>Broche 3 (Jaune) = <code>RS485A+</code></strong> et <strong>Broche 4 (Bleu) = <code>RS485B-</code></strong> (Broche 2 Noir = <code>GND</code> facultative ; <strong>ne raccordez jamais la Broche 1 Rouge +5V !</strong>). Offre un pilotage déterministe en <code>2–3s</code> totalement indépendant des clés cloud.</li>
+          <li><strong>Option B (Clé mixte Wi-Fi/LAN <code>S2-WL-ST</code> filaire ou <code>DLS-L</code>) :</strong> Branchez un câble Ethernet sur la clé <code>S2-WL-ST</code>, fixez une réservation IP DHCP sur votre routeur et connectez GEMS en Modbus TCP sur le port <code>502</code> (<code>Poll Interval = 5s</code>). <em>Remarque : les clés Wi-Fi seul d'entrée de gamme <code>S3-WiFi-ST</code> communiquent uniquement vers le cloud et ignorent le port local <code>502</code> (<code>i/o timeout</code> même si l'IP répond sur le LAN) ; les clés <code>S2-WL-ST</code> dotées d'un ancien firmware (<code>&lt; 100121cf</code> / <code>100141dx</code>) nécessitent une mise à jour Modbus TCP poussée par le support Solis — sinon passez sur une clé <code>S2-WL-ST</code> câblée ou l'Option A.</em></li>
+        </ul>
+
+        <!-- SECTION 5 -->
+        <h2 id="soliscloud-settings">5. Réglages exacts dans l'application SolisCloud (Mise en service Bluetooth locale)</h2>
+        <p>
+          Ouvrez l'<strong>application SolisCloud</strong> à proximité de l'onduleur, appuyez sur <strong>Me &rarr; More Tools &rarr; Local Operation / Local Debugging &rarr; Connect with Bluetooth</strong>, connectez-vous en tant qu'<strong>Installateur</strong> et vérifiez chacun des paramètres ci-dessous :
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Chemin menu SolisCloud</th>
+                <th>Réglage requis</th>
+                <th>Raison technique</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Storage Energy Set &rarr; Battery Select</code></td>
+                <td><strong><code>Lithium Battery</code> &rarr; <code>PYLON LV</code></strong><br><em>(ou <code>Lithium Battery LV</code> / <code>AoBo</code>)</em></td>
+                <td>Établit la communication CAN 500 kbps en boucle fermée avec l'Easyway <code>UNIV5200</code>. Vérifiez <code>BMS Info = Normal</code> avec le SOC % et les limites de courant en direct !</td>
+              </tr>
+              <tr>
+                <td><code>Battery Select &rarr; Overdischarge SOC</code></td>
+                <td><strong><code>10 %</code></strong> <em>(<code>15–20%</code> avec sortie Backup)</em></td>
+                <td>Respecte la profondeur de décharge de 90 % DoD d'Easyway tout en préservant la durée de vie des cellules LiFePO<sub>4</sub>.</td>
+              </tr>
+              <tr>
+                <td><code>Battery Select &rarr; Forcecharge SOC</code></td>
+                <td><strong><code>5 %</code></strong> <em>(Garder ≥5 % sous Overdischarge !)</em></td>
+                <td>Empêche l'onduleur Solis de déclencher chaque nuit des micro-recharges réseau d'urgence dès que le SOC en veille glisse de 1 % !</td>
+              </tr>
+              <tr>
+                <td><code>Battery Select &rarr; Max Charge / Discharge A</code></td>
+                <td><strong><code>50 A × Nombre de packs</code></strong><br><em>(dans la limite max. onduleur)</em></td>
+                <td>Débloque la pleine puissance du parc batteries (<code>50 A</code> = 1 pack, <code>100 A</code> = 2 packs, <code>150 A</code> = 3 packs).</td>
+              </tr>
+              <tr>
+                <td><code>Storage Mode Select</code></td>
+                <td><strong><code>Self-Use = ON</code></strong><br><em>(Toutes plages TOU &amp; Feed-in Priority = OFF)</em></td>
+                <td>Garantit une base d'autoconsommation autonome propre sans aucun conflit d'horloge interne avec GEMS.</td>
+              </tr>
+              <tr>
+                <td><code>Storage Mode Select &rarr; Allow Grid Charging</code></td>
+                <td><strong><code>Allow / Enable</code></strong></td>
+                <td>Indispensable pour permettre à GEMS de lancer les recharges lors des prix spot bas/négatifs et le secours hivernal.</td>
+              </tr>
+              <tr>
+                <td><code>Meter Set</code> &amp; <code>Internal EPM</code></td>
+                <td><strong><code>Eastron 3P</code> (<code>SDM630 / SDM72D-M</code>) ou <code>Acrel</code> • <code>Meter in Grid</code></strong><br><strong><code>Internal EPM = OFF</code></strong></td>
+                <td>Assure une mesure fidèle d'import/export (placer le compteur juste après le compteur GRD, en amont du PV existant sur les sites Retrofit !) tout en laissant GEMS gérer dynamiquement l'écrêtement à prix négatifs.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SECTION 6 -->
+        <h2 id="gems-onboarding">6. Intégration de Solis Hybride vs Solis Retrofit dans GEMS</h2>
+        <ul>
+          <li><strong>Solis Hybride (<code>S5-EH1P</code>, <code>S6-EH1P</code>, <code>S6-EH3P-L</code> avec panneaux PV + UNIV5200) :</strong> Dans <strong>Paramètres &rarr; Appareils</strong> (Mode Installateur déverrouillé), intégrez d'abord votre <strong>Compteur P1</strong> (<code>p1_serial</code>) ou compteur <strong>Eastron <code>SDM72D-M / SDM630-M</code></strong> câblé sur GEMS s'il est présent, puis sélectionnez <strong>Inverter / Solar &rarr; <code>Solis S5/S6 Hybrid Inverter</code></strong> (<code>solis_hybrid</code>). Réglez <code>Port = 502</code> (ou <code>/dev/serial/by-id/...</code> à <code>9600 8N1</code>), <code>Modbus ID = 1</code>, <code>Rated Power (kW)</code> exact, <code>Allow Curtailment = Coché</code>, <code>Poll Interval = 2–3s</code> (RS-485) ou <code>5s</code> (<code>S2-WL-ST</code>), <code>Phase Wiring</code> exact, <code>Grid Meter Connected? = Coché</code> (si raccordé au Solis), <code>Battery Connected? = Coché</code> et la capacité totale <code>Battery Capacity (kWh)</code> (<code>5.2</code>, <code>10.4</code>, <code>15.7</code>, <code>20.9</code>...).</li>
+          <li><strong>Solis Retrofit couplé AC (<code>RAI-3K-48ES-5G</code>, <code>S6-EA1P-L</code> avec UNIV5200 en complément d'un onduleur PV existant) :</strong> Intégrez d'abord votre <strong>Compteur P1</strong> (<code>p1_serial</code>) ou compteur <strong><code>SDM72D-M / SDM630-M</code></strong> câblé sur GEMS + votre <strong>onduleur solaire PV existant</strong>, puis ajoutez l'unité Solis sous <strong>Battery &rarr; <code>Solis Retrofit Storage System</code></strong> (<code>solis_retrofit_battery</code>, ou sous <strong>Inverter / Solar &rarr; <code>Solis Retrofit Inverter (AC Storage)</code></strong>) avec le raccordement de phase exact (<code>L1</code>, <code>L2</code> ou <code>L3</code>), la capacité totale UNIV5200 (<code>kWh</code>) et <code>Grid Meter Connected? = Coché</code> lorsque le compteur intelligent est câblé sur le port <code>Meter</code> du Solis sans compteur P1 séparé sur GEMS.</li>
+        </ul>
+
+        <div class="doc-screenshot-card">
+          <img src="../assets/screenshots/settings_devices_inverter_form.png" alt="Formulaire GEMS de configuration Solis Hybride et Stockage" loading="lazy">
+          <div class="doc-screenshot-caption">Configuration de l'adresse Solis, de la puissance nominale, du câblage de phase et de la capacité totale Easyway UNIV5200 dans GEMS.</div>
+        </div>
+
+        <!-- SECTION 7 -->
+        <h2 id="gems-optimization">7. Stratégie GEMS optimale &amp; coordination avec les bornes VE</h2>
+        <ol>
+          <li><strong>Activer la prévision solaire Open-Meteo (<code>Paramètres &rarr; Stratégie</code>) :</strong> Saisissez les coordonnées du site et cochez <strong>Enable Open-Meteo Solar Forecast Ingestion</strong> afin que GEMS ne gaspille jamais d'électricité réseau la nuit pour charger l'UNIV5200 à la veille d'une matinée ensoleillée.</li>
+          <li><strong>Choisir votre mode régional :</strong>
+            <ul>
+              <li><strong>Flandre (<code>Flanders Mode</code>) :</strong> Réglez <code>Capacity Peak Limit = 2.5 kW</code> (ou la pointe historique), <code>Buffer = 150–200 W</code> et renseignez la valeur d'éventuels <strong>certificats verts (GSC)</strong> (<code>€/MWh</code>) — indispensable sur les ajouts Solis Retrofit d'installations photovoltaïques bénéficiant encore de certificats !</li>
+              <li><strong>Pays-Bas (<code>Netherlands Mode</code>) :</strong> Activez <code>Active Inverter Curtailment</code> (seuil <code>0.00 €/kWh</code>) pour prioriser le stockage Easyway + l'absorption VE et éviter toute pénalité d'injection négative.</li>
+            </ul>
+          </li>
+          <li><strong>Arbitrage &amp; longévité Easyway UNIV5200 :</strong> Réglez <strong>Charging Strategy Mode</strong> = <code>Dynamic 24h Forecast</code>, <strong>Battery Wear Cost</strong> = <strong><code>0.04 €/kWh</code></strong> et activez <strong>Winter / Low-Solar Grid Charge Fallback</strong> (<code>Trigger 25%</code> &rarr; <code>Target 65%</code> sur les <code>2–3 heures les moins chères</code>).</li>
+          <li><strong>Empêcher les bornes VE (Raedian) de vider l'UNIV5200 la nuit :</strong> Ajoutez une règle sous <strong>Optimisation Batterie par Règles Tarifaires</strong> avec <strong>Action = <code>Hold (Idle / No Export)</code></strong> pendant votre plage nocturne de charge VE (par ex. <code>01:00 – 05:00</code>) afin que votre borne <strong>Raedian</strong> tire uniquement l'électricité heures creuses du réseau et conserve 100 % de votre batterie Easyway pour la pointe matinale du foyer !</li>
+        </ol>
+
+        <!-- SECTION 8 -->
+        <h2 id="troubleshooting">8. Référence rapide de dépannage</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Symptôme</th>
+                <th>Cause probable</th>
+                <th>Solution</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong><code>CAN_Comm_FAIL</code> / <code>BatName-FAIL</code></strong></td>
+                <td>Mauvais profil Battery Select ou erreur de broche/port sur le câble CAN</td>
+                <td>Branchez le cordon CAN (Broches 4 &amp; 5 isolées) du port <code>CAN</code> du Pack 1 Maître (<code>ADD=0000</code>) vers le port <code>BMS</code> Solis ; sélectionnez <code>Lithium Battery &rarr; PYLON LV</code>.</td>
+              </tr>
+              <tr>
+                <td><strong><code>Meter_Comm_FAIL</code> (ou Eastron hors ligne dans GEMS)</strong></td>
+                <td><code>A/B</code> inversés, parité <code>Even</code>, mauvais Slave ID, câblé sur les bornes Pulse <code>+/-</code>, ou deux maîtres connectés</td>
+                <td>Déverrouillez le compteur (<code>PASS 1000</code>) : réglez <code>Addr = 001</code>, <code>9600</code>, <code>Parity = None (8N1)</code> ; reliez RJ45 Solis Broche 1 (Blanc-Orange) &rarr; <code>A+</code> &amp; Broche 2 (Orange) &rarr; <code>B-</code> ; choisissez <code>Eastron 3P</code> dans SolisCloud.</td>
+              </tr>
+              <tr>
+                <td><strong>La batterie exporte vers le réseau quand la maison consomme</strong></td>
+                <td>Bornes Haut (<code>1–4</code> IN) &amp; Bas (<code>5–8</code> OUT) du <code>SDM72D-M / SDM630-M</code> inversées ou flèche CT retournée</td>
+                <td>Alimentez l'arrivée réseau par le <strong>Haut <code>1–4</code> (IN)</strong> et le départ maison/PV/Solis par le <strong>Bas <code>5–8</code> (OUT)</strong> ; vérifiez l'orientation des tores sur <code>SDM630MCT</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>Courte recharge réseau chaque nuit autour de 10 % SOC</strong></td>
+                <td><code>Forcecharge SOC</code> trop proche de <code>Overdischarge SOC</code></td>
+                <td>Réglez <code>Overdischarge SOC = 10%</code> et <code>Forcecharge SOC = 5%</code> dans SolisCloud <code>Battery Select</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>Onduleur 5 kW plafonne la batterie à ~2,55 kW</strong></td>
+                <td>Limite continue 50 A du BMS d'un seul pack <code>UNIV5200</code> (<code>50A &times; 51,2V</code>)</td>
+                <td>Protection normale sur pack unique ; ajoutez un 2<sup>e</sup> module <code>UNIV5200</code> en parallèle (<code>100A = 5,12 kW</code>) pour débloquer les 5 kW continus.</td>
+              </tr>
+              <tr>
+                <td><strong>Charge réseau forcée ignorée</strong></td>
+                <td><code>Allow Grid Charging</code> désactivé ou programmation TOU interne active</td>
+                <td>Réglez <code>Self-Use = ON</code>, <code>Allow Grid Charging = Allow</code> et désactivez toutes les plages horaires TOU internes Solis.</td>
+              </tr>
+              <tr>
+                <td><strong><code>i/o timeout</code> ou <code>Connection refused</code> sur le port <code>502</code></strong></td>
+                <td>Clé cloud uniquement <code>S3-WiFi-ST</code>, firmware <code>S2-WL-ST</code> antérieur au Modbus TCP local, ou pile Wi-Fi figée</td>
+                <td>Câblez l'Option A (USB-RS485 ou passerelle Ethernet RS-485 sur le port RS-485 Solis), remplacez la <code>S3-WiFi-ST</code> par une <code>S2-WL-ST</code> câblée en Ethernet, ou demandez au support Solis la mise à jour Modbus TCP local (<code>&ge; 100121cf</code> / <code>100141dx</code>).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal-backdrop" id="search-modal-backdrop">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="18" height="18" style="color:var(--text-muted);"><use href="../assets/icons.svg#icon-search"></use></svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Rechercher dans la documentation, les paramètres, les guides..." autocomplete="off">
+        <button class="icon-btn" id="search-close-btn" aria-label="Fermer la recherche">
+          <svg width="16" height="16"><use href="../assets/icons.svg#icon-close"></use></svg>
+        </button>
+      </div>
+      <ul class="search-results" id="search-results"></ul>
+      <div class="search-footer">
+        <span>Utilisez <kbd class="kbd-shortcut">&uarr;</kbd> <kbd class="kbd-shortcut">&darr;</kbd> pour naviguer</span>
+        <span><kbd class="kbd-shortcut">Entrée</kbd> pour sélectionner</span>
+        <span><kbd class="kbd-shortcut">Échap</kbd> pour fermer</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/search-index-fr.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
