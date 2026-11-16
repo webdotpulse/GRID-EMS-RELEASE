@@ -2558,17 +2558,17 @@ Compteur triphasé largement déployé ; fournit la télémétrie fondamentale p
 
 - **Identifiant du Modèle**: `eastron_sdm72_x96`
 - **Fabricant / Marque**: Eastron
-- **Modèles Matériels Compatibles**: Eastron SDM72D-Modbus, SDM72DR, SMART X96-1 / X96-5 Compteurs Multifonctions
-- **Interface de Communication**: Modbus RTU via pont RS485-vers-Ethernet (Port par défaut : 502, ID esclave : 1)
+- **Modèles Matériels Compatibles**: Eastron SDM72D-M / SDM72D-M-2, SDM72DR, SMART X96-1 / X96-5 Compteurs Multifonctions
+- **Interface de Communication**: USB-RS485 RTU direct (`/dev/serial/by-id/...`, 9600 8N1) ou Modbus TCP via pont RS485-vers-Ethernet (Port par défaut : 502, ID esclave : 1 ou 2)
 
 #### Données de Télémétrie Lues par GEMS
-Puissance active totale (W), Énergie active prélevée/injectée (kWh), Courants triphasés (L1, L2, L3 en A), Tensions triphasées (L1, L2, L3 en V).
+Puissance active totale (W, registre bidirectionnel `0x0034`), Énergie active prélevée et injectée (`0x0048` / `0x004A` kWh), Courants triphasés (L1, L2, L3 en A), Tensions triphasées (L1, L2, L3 en V).
 
 #### Consignes Pilotables & Données Écrites par GEMS
-Télémétrie réseau en lecture seule.
+Télémétrie réseau ou sous-compteur photovoltaïque en lecture seule.
 
 #### Rôle Pratique & Automatisation GEMS
-Comptage compact sur rail DIN ; alimente la boucle de régulation GEMS en mesures temps réel pour moduler les bornes et générer les rapports énergétiques.
+Prend en charge deux rôles via **Rôle de Mesure du Compteur** : (1) **Compteur Principal Réseau (PCC)** pour l'équilibrage dynamique des bornes, ou (2) **Compteur de Production Solaire / PV** (`pv_production`) câblé sur le départ AC d'un onduleur photovoltaïque existant dépourvu de port Modbus/API — mesurant la production solaire en direct (W), les courants par phase et le rendement cumulé (kWh) avec détection automatique du sens de câblage et filtrage de la veille nocturne.
 
 ---
 

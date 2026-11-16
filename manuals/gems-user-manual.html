@@ -784,7 +784,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.39.1</span>
+          <span class="cover-meta-val">GEMS v9.40.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Who This Guide Is For</span>
@@ -1229,6 +1229,12 @@
         <br>• <strong>Grid Meter Connected?</strong> Uncheck if the inverter has no dedicated CT clamps; GEMS will automatically steer the battery using your P1 Smart Meter!
         <br>• <strong>Battery Connected? &amp; Capacity (kWh):</strong> Enables battery SoC tracking and enters usable storage size (e.g. <code>10.0 kWh</code>).
       </div>
+    </div>
+
+    <div class="setting-card amber">
+      <div class="setting-name"><span>Meter Measurement Role (Non-Communicating Solar)</span> <span class="setting-default-pill">Eastron SDM72D-M</span></div>
+      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Lets any standalone Modbus or smart DIN submeter (such as an <strong>Eastron SDM72D-M</strong>) operate as a <strong>Solar / PV Production Meter</strong> on the AC output feeder of an older solar inverter that has no Modbus or LAN port.</div>
+      <div class="setting-meta-row"><span class="badge-when">Why Important</span> Feeds live solar wattage (W), per-phase currents, and cumulative kWh yield directly into the Dashboard Solar PV node and Kirchhoff household load calculation without affecting your main P1/Grid meter.</div>
     </div>
   </div>
 

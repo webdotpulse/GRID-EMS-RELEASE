@@ -2556,17 +2556,17 @@ Widely deployed 3-phase meter; provides foundational telemetry for GEMS Flanders
 
 - **Template Identifier**: `eastron_sdm72_x96`
 - **Manufacturer / Vendor**: Eastron
-- **Supported Hardware Models**: Eastron SDM72D-Modbus, SDM72DR, SMART X96-1 / X96-5 Multifunction Meters
-- **Communication Interface**: Modbus RTU via RS485-to-Ethernet Bridge (Default Port: 502, Slave ID: 1)
+- **Supported Hardware Models**: Eastron SDM72D-M / SDM72D-M-2, SDM72DR, SMART X96-1 / X96-5 Multifunction Meters
+- **Communication Interface**: Direct USB-to-RS485 RTU (`/dev/serial/by-id/...`, 9600 8N1) or Modbus TCP via RS485-to-Ethernet Bridge (Default Port: 502, Slave ID: 1 or 2)
 
 #### Telemetry Data Read by GEMS
-Total active power (W), Active import/export energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts).
+Total active power (W, signed bidirectional reg `0x0034`), Active import & export energy (`0x0048` / `0x004A` kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts).
 
 #### Controllable Setpoints & Data Written by GEMS
-Read-only grid telemetry.
+Read-only grid or PV production submeter telemetry.
 
 #### What GEMS Actually Does With This Device
-High-density DIN-rail energy monitoring; feeds live grid metrics into GEMS strategy loop to throttle chargers and log energy reports.
+Supports dual measurement roles via **Meter Measurement Role**: (1) **Main Grid Meter (PCC)** to feed live per-phase grid metrics into dynamic load balancing, or (2) **Solar / PV Production Meter** (`pv_production`) wired on the AC output circuit of legacy/non-communicating solar PV inverters—reporting live solar generation (W), per-phase currents, and cumulative solar yield (kWh) with automatic forward/reverse wiring polarity detection and night-time standby draw suppression.
 
 ---
 

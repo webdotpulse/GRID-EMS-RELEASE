@@ -700,7 +700,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Software Version</span>
-          <span class="cover-meta-val" data-version-release>v9.39.1-release (Official Tag)</span>
+          <span class="cover-meta-val" data-version-release>v9.40.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Native Templates</span>
@@ -2815,12 +2815,12 @@
             </td>
             <td><code>eastron_sdm72_x96</code></td>
             <td>
-              <span class="badge badge-modbus">MODBUS</span><br>
-              <span style="font-size: 7pt; color: #64748b;">Modbus RTU via RS485-to-Ethernet Bridge (Default Port: 502</span>
+              <span class="badge badge-serial">P1 / SERIAL</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Direct USB-to-RS485 RTU (`/dev/serial/by-id/...`</span>
             </td>
-            <td>Total active power (W), Active import/export energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts).</td>
-            <td>Read-only grid telemetry.</td>
-            <td>High-density DIN-rail energy monitoring; feeds live grid metrics into GEMS strategy loop to throttle chargers and log energy reports.</td>
+            <td>Total active power (W, signed bidirectional reg <code>0x0034</code>), Active import &amp; export energy (<code>0x0048</code> / <code>0x004A</code> kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts).</td>
+            <td>Read-only grid or PV production submeter telemetry.</td>
+            <td>Supports dual measurement roles via **Meter Measurement Role**: (1) **Main Grid Meter (PCC)** to feed live per-phase grid metrics into dynamic load balancing, or (2) **Solar / PV Production Meter** (<code>pv_production</code>) wired on the AC output circuit of legacy/non-communicating solar PV inverters—reporting live solar generation (W), per-phase currents, and cumulative solar yield (kWh) with automatic forward/reverse wiring polarity detection and night-time standby draw suppression.</td>
           </tr>
           <tr class="matrix-device-row" data-cat="meter" data-preferred="0">
             <td>
@@ -7884,28 +7884,28 @@
         <div class="device-tags">
           
           <span class="badge badge-readonly">Monitor Only</span>
-          <span class="badge badge-modbus">MODBUS</span>
+          <span class="badge badge-serial">P1 / SERIAL</span>
         </div>
       </div>
 
       <div class="device-meta-row">
         <div><strong>Manufacturer / Vendor:</strong> Eastron</div>
-        <div><strong>Communication Interface:</strong> Modbus RTU via RS485-to-Ethernet Bridge (Default Port: 502, Slave ID: 1)</div>
-        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Eastron SDM72D-Modbus, SDM72DR, SMART X96-1 / X96-5 Multifunction Meters</div>
+        <div><strong>Communication Interface:</strong> Direct USB-to-RS485 RTU (<code>/dev/serial/by-id/...</code>, 9600 8N1) or Modbus TCP via RS485-to-Ethernet Bridge (Default Port: 502, Slave ID: 1 or 2)</div>
+        <div style="grid-column: span 2;"><strong>Supported Hardware Models:</strong> Eastron SDM72D-M / SDM72D-M-2, SDM72DR, SMART X96-1 / X96-5 Multifunction Meters</div>
       </div>
 
       <div class="capability-grid">
         <div class="cap-box read">
           <div class="cap-box-title">🔍 Telemetry Read Out</div>
-          <p>Total active power (W), Active import/export energy (kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts).</p>
+          <p>Total active power (W, signed bidirectional reg <code>0x0034</code>), Active import &amp; export energy (<code>0x0048</code> / <code>0x004A</code> kWh), 3-Phase currents (L1, L2, L3 in Amps), 3-Phase voltages (L1, L2, L3 in Volts).</p>
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Controlled Setpoints</div>
-          <p>Read-only grid telemetry.</p>
+          <p>Read-only grid or PV production submeter telemetry.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Handled &amp; Automation Role</div>
-          <p>High-density DIN-rail energy monitoring; feeds live grid metrics into GEMS strategy loop to throttle chargers and log energy reports.</p>
+          <p>Supports dual measurement roles via **Meter Measurement Role**: (1) **Main Grid Meter (PCC)** to feed live per-phase grid metrics into dynamic load balancing, or (2) **Solar / PV Production Meter** (<code>pv_production</code>) wired on the AC output circuit of legacy/non-communicating solar PV inverters—reporting live solar generation (W), per-phase currents, and cumulative solar yield (kWh) with automatic forward/reverse wiring polarity detection and night-time standby draw suppression.</p>
         </div>
       </div>
     </div>

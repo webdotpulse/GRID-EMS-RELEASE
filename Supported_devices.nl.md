@@ -2558,17 +2558,17 @@ Breed toegepaste driefasige meter; levert de basistelemetrie voor Vlaams capacit
 
 - **Template-ID**: `eastron_sdm72_x96`
 - **Fabrikant / Merk**: Eastron
-- **Ondersteunde Hardwaremodellen**: Eastron SDM72D-Modbus, SDM72DR, SMART X96-1 / X96-5 Multifunctionele Meters
-- **Communicatie-interface**: Modbus RTU via RS485-naar-Ethernet-bridge (Standaardpoort: 502, Slave-ID: 1)
+- **Ondersteunde Hardwaremodellen**: Eastron SDM72D-M / SDM72D-M-2, SDM72DR, SMART X96-1 / X96-5 Multifunctionele Meters
+- **Communicatie-interface**: Directe USB-naar-RS485 RTU (`/dev/serial/by-id/...`, 9600 8N1) of Modbus TCP via RS485-naar-Ethernet-bridge (Standaardpoort: 502, Slave-ID: 1 of 2)
 
 #### Uitgelezen Telemetrie door GEMS
-Totaal actief vermogen (W), Actieve afname-/injectie-energie (kWh), 3-fasenstromen (L1, L2, L3 in Ampère), 3-fasenspanningen (L1, L2, L3 in Volt).
+Totaal actief vermogen (W, bidirectioneel reg `0x0034`), Actieve afname- en injectie-energie (`0x0048` / `0x004A` kWh), 3-fasenstromen (L1, L2, L3 in Ampère), 3-fasenspanningen (L1, L2, L3 in Volt).
 
 #### Stuurbare Setpoints & Geschreven Data door GEMS
-Alleen-lezen nettelemetrie.
+Alleen-lezen net- of PV-submetertelemetrie.
 
 #### Wat GEMS Concreet met dit Toestel Doet
-Compacte DIN-rail energiemeting; voedt live netwaarden aan de GEMS-regelcyclus om laadpalen bij te sturen en energierapporten op te bouwen.
+Ondersteunt twee meetrollen via **Meetrol van Energiemeter**: (1) **Hoofdnetmeter (PCC)** voor live driefasige netbewaking en laadpaalsturing, of (2) **Zonne- / PV-productiemeter** (`pv_production`) op de AC-uitgangskring van bestaande zonne-omvormers zonder eigen Modbus- of API-communicatie — registreert live zonneproductie (W), fasestromen en cumulatieve zonne-opbrengst (kWh) met automatische polariteitsdetectie en onderdrukking van nachtelijk sluipverbruik.
 
 ---
 

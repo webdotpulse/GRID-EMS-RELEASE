@@ -700,7 +700,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Softwareversie</span>
-          <span class="cover-meta-val" data-version-release>v9.39.1-release (Officiële Tag)</span>
+          <span class="cover-meta-val" data-version-release>v9.40.0-release (Officiële Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Ingebouwde Templates</span>
@@ -2815,12 +2815,12 @@
             </td>
             <td><code>eastron_sdm72_x96</code></td>
             <td>
-              <span class="badge badge-modbus">MODBUS</span><br>
-              <span style="font-size: 7pt; color: #64748b;">Modbus RTU via RS485-naar-Ethernet-bridge (Standaardpoort: 502</span>
+              <span class="badge badge-serial">P1 / SERIEEL</span><br>
+              <span style="font-size: 7pt; color: #64748b;">Directe USB-naar-RS485 RTU (`/dev/serial/by-id/...`</span>
             </td>
-            <td>Totaal actief vermogen (W), Actieve afname-/injectie-energie (kWh), 3-fasenstromen (L1, L2, L3 in Ampère), 3-fasenspanningen (L1, L2, L3 in Volt).</td>
-            <td>Alleen-lezen nettelemetrie.</td>
-            <td>Compacte DIN-rail energiemeting; voedt live netwaarden aan de GEMS-regelcyclus om laadpalen bij te sturen en energierapporten op te bouwen.</td>
+            <td>Totaal actief vermogen (W, bidirectioneel reg <code>0x0034</code>), Actieve afname- en injectie-energie (<code>0x0048</code> / <code>0x004A</code> kWh), 3-fasenstromen (L1, L2, L3 in Ampère), 3-fasenspanningen (L1, L2, L3 in Volt).</td>
+            <td>Alleen-lezen net- of PV-submetertelemetrie.</td>
+            <td>Ondersteunt twee meetrollen via **Meetrol van Energiemeter**: (1) **Hoofdnetmeter (PCC)** voor live driefasige netbewaking en laadpaalsturing, of (2) **Zonne- / PV-productiemeter** (<code>pv_production</code>) op de AC-uitgangskring van bestaande zonne-omvormers zonder eigen Modbus- of API-communicatie — registreert live zonneproductie (W), fasestromen en cumulatieve zonne-opbrengst (kWh) met automatische polariteitsdetectie en onderdrukking van nachtelijk sluipverbruik.</td>
           </tr>
           <tr class="matrix-device-row" data-cat="meter" data-preferred="0">
             <td>
@@ -7884,28 +7884,28 @@
         <div class="device-tags">
           
           <span class="badge badge-readonly">Enkel uitlezing</span>
-          <span class="badge badge-modbus">MODBUS</span>
+          <span class="badge badge-serial">P1 / SERIEEL</span>
         </div>
       </div>
 
       <div class="device-meta-row">
         <div><strong>Fabrikant / Merk:</strong> Eastron</div>
-        <div><strong>Communicatie-interface:</strong> Modbus RTU via RS485-naar-Ethernet-bridge (Standaardpoort: 502, Slave-ID: 1)</div>
-        <div style="grid-column: span 2;"><strong>Ondersteunde Hardwaremodellen:</strong> Eastron SDM72D-Modbus, SDM72DR, SMART X96-1 / X96-5 Multifunctionele Meters</div>
+        <div><strong>Communicatie-interface:</strong> Directe USB-naar-RS485 RTU (<code>/dev/serial/by-id/...</code>, 9600 8N1) of Modbus TCP via RS485-naar-Ethernet-bridge (Standaardpoort: 502, Slave-ID: 1 of 2)</div>
+        <div style="grid-column: span 2;"><strong>Ondersteunde Hardwaremodellen:</strong> Eastron SDM72D-M / SDM72D-M-2, SDM72DR, SMART X96-1 / X96-5 Multifunctionele Meters</div>
       </div>
 
       <div class="capability-grid">
         <div class="cap-box read">
           <div class="cap-box-title">🔍 Uitgelezen Telemetrie</div>
-          <p>Totaal actief vermogen (W), Actieve afname-/injectie-energie (kWh), 3-fasenstromen (L1, L2, L3 in Ampère), 3-fasenspanningen (L1, L2, L3 in Volt).</p>
+          <p>Totaal actief vermogen (W, bidirectioneel reg <code>0x0034</code>), Actieve afname- en injectie-energie (<code>0x0048</code> / <code>0x004A</code> kWh), 3-fasenstromen (L1, L2, L3 in Ampère), 3-fasenspanningen (L1, L2, L3 in Volt).</p>
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Stuurbare Setpoints</div>
-          <p>Alleen-lezen nettelemetrie.</p>
+          <p>Alleen-lezen net- of PV-submetertelemetrie.</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Praktische Rol &amp; Automatisering</div>
-          <p>Compacte DIN-rail energiemeting; voedt live netwaarden aan de GEMS-regelcyclus om laadpalen bij te sturen en energierapporten op te bouwen.</p>
+          <p>Ondersteunt twee meetrollen via **Meetrol van Energiemeter**: (1) **Hoofdnetmeter (PCC)** voor live driefasige netbewaking en laadpaalsturing, of (2) **Zonne- / PV-productiemeter** (<code>pv_production</code>) op de AC-uitgangskring van bestaande zonne-omvormers zonder eigen Modbus- of API-communicatie — registreert live zonneproductie (W), fasestromen en cumulatieve zonne-opbrengst (kWh) met automatische polariteitsdetectie en onderdrukking van nachtelijk sluipverbruik.</p>
         </div>
       </div>
     </div>
