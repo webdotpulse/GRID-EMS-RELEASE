@@ -422,7 +422,7 @@
         <div class="cover-meta-grid">
           <div class="cover-meta-item">
             <span class="cover-meta-label">Version du Document</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.41.0-release (Version Officielle)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.41.1-release (Version Officielle)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Modèles de Référence Principaux GEMS</span>
@@ -451,7 +451,7 @@
       </div>
 
       <div class="cover-footer">
-        <span>© New Energy Grid &amp; The Charge Grid — Documentation Terrain Propriétaire — Documentation v9.41.0</span>
+        <span>© New Energy Grid &amp; The Charge Grid — Documentation Terrain Propriétaire — Documentation v9.41.1</span>
         <span>Plateforme Cible : Contrôleur Edge GRID-EMS (Raspberry Pi ARM64)</span>
       </div>
     </div>
@@ -1455,7 +1455,7 @@
 
     <h2 class="subsection-title">8.1 Comment GEMS Protège la Mémoire Flash Solis &amp; les Cellules Easyway UNIV5200</h2>
     <ul>
-      <li><strong>Télécommande Volatile Zéro Usure EEPROM :</strong> Les contrôleurs rudimentaires réécrivent toutes les quelques secondes le registre flash non volatil du mode de stockage Solis, usant l'EEPROM de l'onduleur en moins d'un an. GEMS vérifie les permissions de base <em>une seule fois</em> et exécute toute la modulation de charge, de décharge et de maintien exclusivement via les <strong>registres volatils RAM Remote Control</strong> de Solis avec un chien de garde de 60 secondes — garantissant zéro usure de mémoire flash !</li>
+      <li><strong>Télécommande Volatile Zéro Usure EEPROM :</strong> Les contrôleurs rudimentaires réécrivent toutes les quelques secondes le registre flash non volatil du mode de stockage Solis, usant l'EEPROM de l'onduleur en moins d'un an. GEMS vérifie les permissions de base <em>une seule fois</em> et exécute toute la modulation de charge, de décharge et de maintien exclusivement via les <strong>registres volatils RAM Remote Control</strong> de Solis (<code>43135</code> mode forcé, <code>43136</code> puissance de charge et <code>43129</code> puissance de décharge) avec un chien de garde de 25 secondes — garantissant zéro usure de mémoire flash !</li>
       <li><strong>Écrêtage Dynamique de Courant par le BMS en Direct :</strong> Un local technique froid en hiver (&lt; 10 °C) ou un état de charge élevé (&gt; 90 % SOC) amène le BMS Easyway <code>UNIV5200</code> à réduire automatiquement le courant de charge autorisé. GEMS lit en direct les limites d'intensité BMS et la tension du pack via l'onduleur Solis et ajuste ses consignes sans à-coups.</li>
       <li><strong>Équilibrage Haut Périodique à 100 % LiFePO<sub>4</sub> :</strong> Les cellules LiFePO<sub>4</sub> présentant un plateau de tension très plat entre 20 % et 90 % de SOC, laisser la pile UNIV5200 atteindre <code>100 % SOC</code> grâce au solaire (ou ponctuellement sur heures creuses) au moins une fois toutes les 1 à 2 semaines maintient une précision parfaite du compteur coulombmétrique sur tous les packs en parallèle.</li>
     </ul>

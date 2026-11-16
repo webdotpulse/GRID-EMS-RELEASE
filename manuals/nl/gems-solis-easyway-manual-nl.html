@@ -422,7 +422,7 @@
         <div class="cover-meta-grid">
           <div class="cover-meta-item">
             <span class="cover-meta-label">Documentversie</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.41.0-release (Officiële Release)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.41.1-release (Officiële Release)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Primaire GEMS Referentietemplates</span>
@@ -1455,7 +1455,7 @@
 
     <h2 class="subsection-title">8.1 Hoe GEMS het Solis Flashgeheugen &amp; de Easyway UNIV5200-cellen Beschermt</h2>
     <ul>
-      <li><strong>Vluchtige Afstandssturing Zonder EEPROM-slijtage:</strong> Eenvoudige sturingen overschrijven elke paar seconden het niet-vluchtige flashregister van de Solis-opslagmodus, waardoor het EEPROM-geheugen van de omvormer binnen een jaar verslijt. GEMS controleert de basisrechten <em>slechts éénmaal</em> en voert alle realtime laad-, ontlaad- en vasthoudmodulatie uitsluitend uit via de <strong>vluchtige RAM Remote Control-registers</strong> van Solis met een 60-seconden watchdog keepalive — met nul slijtage aan het flashgeheugen!</li>
+      <li><strong>Vluchtige Afstandssturing Zonder EEPROM-slijtage:</strong> Eenvoudige sturingen overschrijven elke paar seconden het niet-vluchtige flashregister van de Solis-opslagmodus, waardoor het EEPROM-geheugen van de omvormer binnen een jaar verslijt. GEMS controleert de basisrechten <em>slechts éénmaal</em> en voert alle realtime laad-, ontlaad- en vasthoudmodulatie uitsluitend uit via de <strong>vluchtige RAM Remote Control-registers</strong> van Solis (<code>43135</code> modus, <code>43136</code> laadvermogen en <code>43129</code> ontlaadvermogen) met een 25-seconden watchdog keepalive — met nul slijtage aan het flashgeheugen!</li>
       <li><strong>Live Dynamische BMS-stroombegrenzing:</strong> Koude winterse bergingen (&lt; 10 °C) en een hoge laadtoestand (&gt; 90% SOC) zorgen ervoor dat het Easyway <code>UNIV5200</code> BMS de toegestane laadstroom automatisch verlaagt. GEMS leest live de BMS laad-/ontlaadstroomlimieten en batterijspanning rechtstreeks uit de Solis-omvormer en begrenst setpoints vloeiend.</li>
       <li><strong>Periodieke 100% LiFePO<sub>4</sub> Top-balancering:</strong> Omdat LiFePO<sub>4</sub>-cellen tussen 20% en 90% SOC een zeer vlakke spanningscurve hebben, houdt het minstens éénmaal per 1–2 weken volladen van de UNIV5200-stapel tot <code>100% SOC</code> via zonne-energie (of occasionele goedkope uren) de SOC-teller van het BMS over alle parallelle modules haarscherp gekalibreerd.</li>
     </ul>
