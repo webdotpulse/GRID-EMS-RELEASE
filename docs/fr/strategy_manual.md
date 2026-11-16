@@ -31,6 +31,15 @@ La boucle de régulation principale s'exécute chaque seconde :
 | :---: | :---: |
 | ![Onglet Stratégie](../../screenshots/settings_strategy.png) | ![Modes de Stratégie](../../screenshots/settings_strategy_modes.png) |
 
+### 2.0 Profils de Stratégie Optimaux (Préréglages 1-Clic)
+En haut de **Paramètres → Stratégie**, GEMS propose des **Profils de Stratégie Optimaux en 1 clic** filtrés par région, accompagnés d'explications claires (**Fonctionnement** et **Quand l'utiliser**) :
+1. **Autoconsommation Solaire Pure (`ÉCO`) :** Charge la batterie exclusivement via le surplus photovoltaïque gratuit (`0 W` de charge réseau payante, `force_discharge_above_euro = 999`) sans bridage PV. Idéal pour les contrats fixes ou variables.
+2. **Pays-Bas Zéro Injection Nette (`Bouclier 0-Export & Terugleverkosten` — `NL` Uniquement) :** Dirige d'abord le surplus solaire vers les bornes **Raedian** et le stockage **Solis** (`price_and_solar` avec `force_charge_below_euro = 0`), puis module progressivement l'onduleur PV sur la charge domestique (`active_inverter_curtailment = true`, `min_profitable_export_price = 999`) afin de maintenir l'injection nette à `0 W` sur les contrats néerlandais fixes, variables ou dynamiques.
+3. **Flandre Bouclier Capacitaire (`Fluvius` — `BE` + `flanders` Uniquement) :** Protège votre plafond quart-horaire *Capaciteitstarief* (`2,50 kW` minimum + marge `200 W`) via `hybrid`, l'écrêtement des prix négatifs et le secours hivernal.
+4. **Wallonie Pilotage `Tarif Impact` (`ORES / RESA` — `BE` + `wallonia` Uniquement) :** Précharge durant les plages `ECO` wallonnes (`01:00–07:00` & `11:00–17:00`) et réserve la batterie pour couvrir la pointe `PIC` (`17:00–22:00`).
+5. **Tarif Dynamique — Prévision Intelligente 24h :** Profil polyvalent `dynamic_forecast` combinant prévisions solaires Open-Meteo, profil de consommation appris, bridage des prix négatifs (`0,00 €/kWh`) et décharge sur demande locale (`force_discharge_above_euro = 999`).
+6. **Tarif Dynamique — Arbitrage Actif des Écarts :** Étend `dynamic_forecast` pour les batteries de grande capacité (`10+ kWh`), chargeant sous `0,05 €/kWh` et réinjectant au-dessus de `0,35 €/kWh` lorsque l'écart dépasse le coût d'usure (`0,04 €/kWh`).
+
 ### 2.1 Mode Éco (Autoconsommation Maximale)
 **Objectif :** Maximiser l'autoconsommation directe de la production solaire photovoltaïque et limiter le recours au réseau.
 - **Comportement :** Oriente prioritairement le surplus solaire vers la charge de la batterie domestique et la recharge VE avant toute injection sur le réseau. Lorsque l'ensoleillement diminue, la batterie se décharge automatiquement pour couvrir les charges domestiques.
@@ -84,10 +93,10 @@ GEMS intègre les prix spot Day-Ahead EPEX (récupérés chaque jour à 14h00 CE
 - **`price_only`** : Force la charge batterie depuis le réseau lorsque le prix spot passe sous `force_charge_below_euro` et autorise la décharge vers le réseau au-dessus de `force_discharge_above_euro`.
 - **`super_dal_only`** : Limite la charge réseau aux plages super-creuses contractuelles du fournisseur (par ex. Engie Superdal).
 - **`hybrid`** : Combine les seuils de prix spot avec l'optimisation des heures super-creuses fournisseur.
-- **`dynamic_forecast`** : Calcule une trajectoire optimale sur 24 heures en croisant les prix EPEX horaires/quart-horaires, les prévisions solaires et des **profils de consommation Semaine vs Week-end** appris sur les 30 derniers jours (avec `home_base_load_w` en repli).
+- **`dynamic_forecast`** : Calcule une trajectoire optimale sur 24 heures en croisant les prix EPEX horaires/quart-horaires, les prévisions solaires et des **profils de consommation Semaine vs Week-end** appris sur les 30 derniers jours (avec `home_base_load_w` en repli), réservant l'énergie stockée aux pointes du soir, privilégiant le surplus solaire gratuit et couvrant uniquement la demande locale sauf si `force_discharge_above_euro` est configuré.
 
-### 3.2 Enveloppes Dynamiques BMS en Direct & Équilibrage SOC Multi-Batteries
-- **Limitation Dynamique par le BMS en Direct** : Le pilotage temps réel comme le solveur prévisionnel 24h interrogent les limites dynamiques de puissance de charge et de décharge issues en direct du BMS (courants admissibles et tension pack). Cela évite tout rejet de consigne lorsque des cellules froides ou un SOC élevé (>90 %) réduisent le courant de charge admissible.
+### 3.2 Enveloppes Dynamiques BMS, Marge Solaire & Équilibrage SOC Multi-Batteries
+- **Limitation Dynamique BMS & Marge AC Onduleur Hybride** : Le pilotage temps réel comme le solveur prévisionnel 24h interrogent les limites dynamiques de puissance issues du BMS et plafonnent la décharge batterie des onduleurs hybrides à la marge AC restante afin de ne jamais écrêter la production photovoltaïque active.
 - **Répartition Multi-Batteries Pondérée par la Marge SOC** : Sur les sites équipés de plusieurs onduleurs hybrides ou unités BESS, GEMS répartit la puissance de charge proportionnellement à la capacité restante à charger ($\text{MaxCap}_i \times (100 - \text{SOC}_i)$) et la décharge proportionnellement à l'énergie disponible au-dessus de la réserve ($\text{MaxCap}_i \times (\text{SOC}_i - \text{MinSOC})$), assurant une convergence équilibrée du SOC.
 - **Régulation Amortie en Boucle Fermée** : Lors de la compensation du prélèvement réseau ou de l'écrêtement zéro-export face à un compteur externe, GEMS applique un amortissement de consigne éliminant toute oscillation liée au temps de réponse entre compteur et onduleur.
 

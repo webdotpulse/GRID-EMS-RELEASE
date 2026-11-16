@@ -31,20 +31,21 @@ This group of settings defines the core behavior of the EMS, governing how it in
 * **`active_inverter_curtailment`**
   * **Description:** Allows the EMS to actively throttle solar inverter active power output via Modbus registers to match house load when dynamic market export return is negative and unprofitable. Available across all strategy modes.
 * **`min_profitable_export_price`**
-  * **Description:** Base threshold for profitable solar export (€/kWh). Export is permitted when real-time return is at or above this threshold minus GSC compensation. When below, excess power is sunk into battery/EV storage, and inverters are curtailed if storage is full.
+  * **Description:** Base threshold for profitable solar export (€/kWh). Export is permitted when real-time return is at or above this threshold minus GSC compensation. When below, excess power is sunk into battery/EV storage, and inverters are curtailed if storage is full. On Dutch (`NL`) installations, setting `min_profitable_export_price >= 99` (e.g. `999` via the **Netherlands Zero Net Export** profile) with `active_inverter_curtailment: true` enforces strict `0 W` net grid injection across both fixed/variable and dynamic contracts.
 * **`gsc_value_eur_mwh`**
   * **Description:** Guaranteed value of Flemish/Belgian Groenestroomcertificaten (GSC) in € per certificate or €/MWh (e.g. 250, 350, 450). Solar generation and injection remain profitable during negative spot price hours as long as the negative price does not outweigh the GSC value. Curtailment only activates when the export price drops below `min_profitable_export_price - (gsc_value_eur_mwh / 1000.0)` (e.g. at -251 €/MWh for a 250 €/MWh GSC).
 * **`battery_grid_charge_strategy`**
   * **Description:** Controls how the home battery utilizes grid power for charging and arbitrage.
   * **Values:**
     * `price_only`: Charges/discharges based strictly on EPEX spot price thresholds (`force_charge_below_euro` / `force_discharge_above_euro`).
+    * `price_and_solar`: Combines Open-Meteo solar headroom protection with strict price-ceiling charging (`force_charge_below_euro`).
     * `super_dal_only`: Restricts grid charging to supplier off-peak contract windows (e.g. Engie Superdal).
     * `hybrid`: Combines price-based threshold charging with supplier off-peak windows.
-    * `dynamic_forecast`: Solves a 24-hour cost-optimal charge/discharge curve using Open-Meteo solar forecasts and household base load.
+    * `dynamic_forecast`: Solves a 24-hour cost-optimal charge/discharge curve using Open-Meteo solar forecasts and adaptive household load, reserving stored capacity for peak tariffs and supplying local demand without forced grid export.
 * **`force_charge_below_euro`**
-  * **Description:** Spot price threshold (€/kWh) to trigger forced grid battery charging.
+  * **Description:** Effective price threshold (€/kWh, default `0.0`) to trigger forced grid battery charging.
 * **`force_discharge_above_euro`**
-  * **Description:** Spot price threshold (€/kWh) to allow battery grid feed-in during peak market rates.
+  * **Description:** Explicit price spike threshold (€/kWh, default `999.0` = disabled) above which the battery injects stored energy into the grid. When disabled (`999.0`), the battery covers local site demand only.
 * **`smart_ev_cheapest_hours`**
   * **Description:** Automatically identifies the specified number of cheapest hours of the day (e.g. 3) to charge your EV.
 * **`grid_nominal_current_a`**
@@ -204,7 +205,7 @@ Available in **Certified Installer Mode** (`Settings -> Commissioning Test`) and
 
 ![Commissioning & Hardware Control Test Suite](../screenshots/settings_commissioning_test.png)
 
-* **5-Step Per-Device Verification**: Checks (1) Configuration & Control Readiness, (2) Transport & Bus Reachability (Modbus TCP, RS-485 Serial, OCPP 1.6-J, or Local REST), (3) Live Telemetry Poll & Electrical Sanity, (4) Active Control Write & Readback (80% rated inverter curtailment pulse, safe battery charge/discharge modulation, and 6.0 A EV charger setpoint modulation), and (5) Safe Autonomous Restoration.
+* **5-Step Per-Device Verification**: Checks (1) Configuration & Control Readiness, (2) Transport & Bus Reachability (Modbus TCP, RS-485 Serial, OCPP 1.6-J, or Local REST), (3) Live Telemetry Poll & Electrical Sanity, (4) Active Control Write & Readback (80% rated inverter curtailment pulse, sustained 2-minute active battery charge and 2-minute active battery discharge with live BMS readback, and 6.0 A EV charger setpoint modulation), and (5) Safe Autonomous Restoration.
 * **Guided Issue Remediation**: Detects misconfigurations or offline buses (such as disabled inverter curtailment, unconfigured hybrid battery capacity, EV charger locked in `Off` mode, or tripped communication circuit breakers) and provides one-click **Apply Fix & Re-Test** actions locally and from the cloud portal.
 * **Official Verification Report**: Generates a downloadable A4 PDF Commissioning Certificate and machine-readable JSON verification archive, while streaming live step-by-step progress to **GRID-EMS-SERVER**.
 

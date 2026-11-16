@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Systeemversie</span>
-          <span class="cover-meta-val">GEMS v9.40.0</span>
+          <span class="cover-meta-val">GEMS v9.41.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Voor Wie Is Deze Gids</span>
@@ -1294,7 +1294,15 @@
 
   <div class="manual-screenshot">
     <img src="../assets/screenshots/settings_strategy.png" alt="Instellingen Tabblad Strategie">
-    <div class="manual-screenshot-caption">Figuur 8.1: Instellingen &rarr; Strategie met Geografische Locatie, Netlimieten, Optimalisatiemodus, GSC-subsidiebescherming en Batterij-arbitrage.</div>
+    <div class="manual-screenshot-caption">Figuur 8.1: Instellingen &rarr; Strategie met 1-Klik Optimale Strategieprofielen, Geografische Locatie, Netlimieten, Optimalisatiemodus, GSC-subsidiebescherming en Batterij-arbitrage.</div>
+  </div>
+
+  <div class="setting-card-grid">
+    <div class="setting-card emerald">
+      <div class="setting-name"><span>Optimale Strategieprofielen (1-Klik Presets)</span> <span class="setting-default-pill">Regiobewust</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Laadt met één klik een compleet afgestemd profiel inclusief uitleg over <strong>Hoe het werkt</strong> en <strong>Wanneer gebruiken</strong>: <em>Puur Zon-Zelfverbruik (ECO)</em>, <em>Nederland Nul-Teruglevering (0-Export &amp; Terugleverkosten Schild)</em> (enkel <code>NL</code>), <em>Vlaanderen Capaciteitspiek-Schild</em> (enkel Vlaanderen), <em>Wallonië Tarif Impact Sturing</em> (enkel Wallonië), <em>Dynamisch — Slimme 24u Voorspelling</em> en <em>Dynamisch — Actieve Prijs-Spread Handel</em>.</div>
+      <div class="setting-meta-row"><span class="badge-when">Wanneer Gebruiken</span> Klik op <strong>Profiel toepassen</strong> en vervolgens op <strong>Instellingen opslaan</strong> om direct de optimale drempelwaarden voor uw contract en regio te activeren.</div>
+    </div>
   </div>
 
   <h2 class="subsection-title">8.1 Geografische Locatie &amp; Limieten van de Netaansluiting</h2>
@@ -1413,7 +1421,7 @@
     <div class="setting-card green">
       <div class="setting-name"><span>Laadstrategiemodus</span> <span class="setting-default-pill">4 Modi Beschikbaar</span></div>
       <div class="setting-meta-row">
-        • <strong>Dynamisch + Zonneprognose (Aanbevolen):</strong> Combineert EPEX Spot-uurprijzen met de Open-Meteo zonnevoorspelling van morgen. Koopt 's nachts enkel netstroom in als de zon de batterij morgen niet zelf vult!<br>
+        • <strong>Dynamisch + Zonneprognose (Aanbevolen):</strong> Combineert EPEX Spot-prijzen met de Open-Meteo zonnevoorspelling en uw adaptieve woningverbruik—reserveert batterijcapaciteit voor dure avondpieken, geeft gratis zonne-overschot voorrang boven netinkoop en dekt het eigen verbruik zonder geforceerde teruglevering!<br>
         • <strong>Enkel Spotprijsdrempel:</strong> Laadt uit het net zodra de prijs &le; het ingestelde plafond ligt, ongeacht het weer.<br>
         • <strong>Enkel Super-Dal Venster (01:00–07:00):</strong> Laadt uitsluitend tijdens goedkope nachtelijke Super-Dal uren.<br>
         • <strong>Hybride:</strong> Combineert het Super-Dal nachtvenster met opname van negatieve middagprijzen.
@@ -1423,9 +1431,9 @@
     <div class="setting-card">
       <div class="setting-name"><span>Netlaadplafond, Ontlaadvloer &amp; Slijtagekost</span> <span class="setting-default-pill">€/kWh Drempels</span></div>
       <div class="setting-meta-row">
-        • <strong>Netlaadplafond (€/kWh):</strong> Maximale stroomprijs waartegen GEMS netstroom mag inkopen om de batterij te vullen (bijv. <code>0,08 €/kWh</code>).<br>
-        • <strong>Ontlaadvloer (€/kWh):</strong> Minimale stroomprijs voordat de batterij ontlaadt om dure netafname te vermijden (bijv. <code>0,18 €/kWh</code>).<br>
-        • <strong>Batterijslijtagekost (€/kWh):</strong> Verrekent LFP-celdegradatie per cyclus (bijv. <code>0,02 €/kWh</code>). GEMS voert enkel prijsarbitrage uit als de winstmarge groter is dan deze slijtagekost!
+        • <strong>Netlaadplafond (€/kWh):</strong> Maximale stroomprijs waartegen GEMS netstroom inkoopt om de batterij te vullen (standaard <code>0,00 €/kWh</code> = enkel negatieve prijzen; bijv. <code>0,08 €/kWh</code>).<br>
+        • <strong>Ontlaadvloer (€/kWh):</strong> Expliciete prijspiekdrempel voor actieve netinjectie vanuit de batterij (standaard <code>999,0 €/kWh</code> = uitgeschakeld, batterij dekt uitsluitend het eigen woningverbruik).<br>
+        • <strong>Batterijslijtagekost (€/kWh):</strong> Verrekent LFP-celdegradatie per cyclus (bijv. <code>0,04 €/kWh</code>). GEMS voert enkel prijsarbitrage uit als de winstmarge groter is dan deze slijtagekost!
       </div>
     </div>
 

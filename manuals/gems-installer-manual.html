@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.40.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.41.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -1408,7 +1408,7 @@
         <td><code>battery_grid_charge_strategy</code></td>
         <td><code>dynamic_forecast</code></td>
         <td>
-          <strong>Dynamic 24h Forecast:</strong> Simulates day-ahead solar yield (Open-Meteo) and household baseline load to determine exact battery pre-charge needs.<br>
+          <strong>Dynamic 24h Forecast:</strong> Combines day-ahead solar yield (Open-Meteo), adaptive household load, and effective quarter-hour/hourly prices to reserve stored capacity for peak tariffs, prioritize free solar surplus over paid grid charging, and supply local site demand without forced grid export.<br>
           <strong>Price Threshold Only:</strong> Charges purely when price &le; configured ceiling.<br>
           <strong>Super-Dal Only:</strong> Charges exclusively between 01:00 and 07:00.<br>
           <strong>Hybrid:</strong> Combines solar forecast with spot price thresholds.
@@ -1416,13 +1416,13 @@
       </tr>
       <tr>
         <td><code>force_charge_below_euro</code></td>
-        <td><code>0.08 €/kWh</code></td>
-        <td>Ceiling below which the battery will force-charge from the grid (e.g. night hours or negative spot hours).</td>
+        <td><code>0.00 €/kWh</code> (e.g. <code>0.08</code>)</td>
+        <td>Ceiling below which the battery force-charges from the grid (default <code>0.00 €/kWh</code> charges from grid only during negative prices).</td>
       </tr>
       <tr>
         <td><code>force_discharge_above_euro</code></td>
-        <td><code>0.35 €/kWh</code></td>
-        <td>Floor above which the battery will force-discharge to the grid during evening peak hours to capture high feed-in profit.</td>
+        <td><code>999.0 €/kWh</code> (Disabled)</td>
+        <td>Explicit price spike floor above which the battery injects stored energy into the grid. Keep at <code>999</code> (disabled) so the battery supplies local site consumption only without forced grid feed-in.</td>
       </tr>
       <tr>
         <td><code>battery_wear_cost_eur</code></td>
@@ -1561,7 +1561,7 @@
     <li><strong>Guided First-Boot Commissioning Wizard &amp; Clean Homeowner vs. Certified Installer Mode:</strong> Automatically launches on unconfigured units to guide language/location setup (<code>NL</code>, <code>FR</code>, <code>EN</code>), local <strong>Installer PIN/password</strong> creation, main breaker &amp; wiring topology, grid meter discovery, reference hardware onboarding (<strong>Solis</strong> &amp; <strong>RAEDIAN</strong>), and energy contract selection. In everyday <strong>Normal Mode</strong> (locked), homeowners see a clean, clutter-free interface—live Dashboard telemetry, daily EV charging mode switching, <strong>Connected Devices</strong> (with live <strong>Debug</strong> diagnostics &amp; one-click report dispatch to <strong>GRID-EMS-SERVER</strong>), <strong>System Info</strong> (with <strong>Software Update</strong> &amp; confirmed <strong>Reboot System</strong>), and the live <strong>Logger</strong>—while the Network Scanner, Cockpit Terminal (<code>:9090</code>) shortcut, Strategy/Contract/Relays/Network/Notifications/Cloud tabs, device add/edit/delete controls, <strong>Local CA &amp; SSL Certificate</strong> management, backups, and factory reset remain hidden until <strong>Certified Installer Mode</strong> is unlocked via the discreet padlock icon (with 5-attempt lockout protection and PIN rotation under <strong>Settings &rarr; System Info</strong>).</li>
     <li><strong>Persistent USB Serial Binding (<code>/dev/serial/by-id/*</code>) &amp; Devices Page Layout:</strong> Selecting persistent hardware symlinks ensures USB-P1 and USB-RS485 adapters never swap device numbers across power cycles. On <strong>Settings &rarr; Devices</strong>, the optional <strong>EV Fleet Cluster &amp; Dynamic Load Balancing (DLB)</strong> card is positioned cleanly at the bottom below individual device cards.</li>
     <li><strong>Appliance Ethernet Network UI with 60-Second Rollback:</strong> Assign DHCP or static IPv4 addresses exclusively on wired Ethernet (<code>eth0</code>) interfaces under <strong>Settings &rarr; Network</strong> (wireless interfaces are omitted for deterministic industrial reliability). If the new IP is not confirmed within 60 seconds, GEMS automatically restores the prior working NetworkManager profile.</li>
-    <li><strong>Interactive Commissioning &amp; Hardware Control Test Suite (Local &amp; Cloud):</strong> Under <strong>Settings &rarr; Commissioning Test</strong> (and remotely in <strong>GRID-EMS-SERVER</strong> Device Diagnostics), installers can execute an automated 5-step verification across <strong>Inverter</strong> (e.g., <strong>Solis</strong> live telemetry + 80% active power curtailment write/readback), <strong>Battery Storage</strong> (BMS State-of-Charge + bidirectional charge/discharge modulation), and <strong>EV Charger</strong> (e.g., <strong>RAEDIAN</strong> live telemetry + 6.0 A dynamic current modulation), temporarily pausing autonomous strategy dispatch and automatically restoring safe autonomous operation upon completion. Detected configuration or transport issues offer inline <strong>Apply Fix &amp; Re-Test</strong> actions alongside a downloadable A4 <strong>PDF Commissioning Certificate</strong>.</li>
+    <li><strong>Interactive Commissioning &amp; Hardware Control Test Suite (Local &amp; Cloud):</strong> Under <strong>Settings &rarr; Commissioning Test</strong> (and remotely in <strong>GRID-EMS-SERVER</strong> Device Diagnostics), installers can execute an automated 5-step verification across <strong>Inverter</strong> (e.g., <strong>Solis</strong> live telemetry + 80% active power curtailment write/readback), <strong>Battery Storage</strong> (BMS State-of-Charge + sustained <strong>2-minute active charge</strong> and <strong>2-minute active discharge</strong> dispatch with live BMS wattage readback), and <strong>EV Charger</strong> (e.g., <strong>RAEDIAN</strong> live telemetry + 6.0 A dynamic current modulation), temporarily pausing autonomous strategy dispatch and automatically restoring safe autonomous operation upon completion. Detected configuration or transport issues offer inline <strong>Apply Fix &amp; Re-Test</strong> actions alongside a downloadable A4 <strong>PDF Commissioning Certificate</strong>.</li>
     <li><strong>Cryptographically Signed Software Updates, Backup &amp; Hardware Watchdog:</strong> Both over-the-air (OTA) and single-file manual <code>.deb</code> package uploads are verified against New Energy Grid's embedded Ed25519 release signature and SHA-256 checksum prior to installation. Export portable JSON site backups before hardware swaps, execute verified Factory Resets, and rely on integrated <code>systemd</code> <code>WatchdogSec=30</code> + Raspberry Pi hardware watchdog supervision for unattended recovery.</li>
   </ul>
 

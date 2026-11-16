@@ -32,6 +32,15 @@ The core control loop executes every second:
 | :---: | :---: |
 | ![Strategy Tab](../screenshots/settings_strategy.png) | ![Strategy Modes](../screenshots/settings_strategy_modes.png) |
 
+### 2.0 Optimal Strategy Profiles (1-Click Presets)
+At the top of **Settings → Strategy**, GEMS provides region-filtered **1-Click Optimal Strategy Profiles** with built-in **How it works** and **When to use it** guidance:
+1. **Pure Solar Self-Consumption (`ECO`):** Charges the battery strictly from free solar PV surplus (`0 W` paid grid charging, `force_discharge_above_euro = 999`) with uncurtailed PV. Best for fixed or variable electricity contracts.
+2. **Netherlands Zero Net Export (`0-Export & Terugleverkosten Shield` — `NL` Only):** Routes surplus solar to **Raedian** EV wallboxes and **Solis** storage first (`price_and_solar` with `force_charge_below_euro = 0`), then smoothly curtails inverter output down to local house load (`active_inverter_curtailment = true`, `min_profitable_export_price = 999`) so net grid injection stays at `0 W` on both fixed/variable and dynamic Dutch contracts.
+3. **Flanders Capacity Peak Shield (`Fluvius` — `BE` + `flanders` Only):** Guards your rolling 15-minute *Capaciteitstarief* ceiling (`2.50 kW` floor + `200 W` safety buffer) via `hybrid` solar + spot forecasting, negative-price curtailment, and winter low-SoC reserve protection.
+4. **Wallonia `Tarif Impact` Shifter (`ORES / RESA` — `BE` + `wallonia` Only):** Pre-charges during Wallonian `ECO` slots (`01:00–07:00` & `11:00–17:00`) and reserves stored battery energy to cover the `17:00–22:00` `PIC` distribution tariff peak.
+5. **Dynamic Tariff — Smart 24h Forecast:** All-round `dynamic_forecast` profile combining Open-Meteo solar forecasts, learned household load, negative-price curtailment (`0.00 €/kWh`), and load-following discharge (`force_discharge_above_euro = 999`).
+6. **Dynamic Tariff — Active Spread Arbitrage:** Extends `dynamic_forecast` for larger batteries (`10+ kWh`), charging below `0.05 €/kWh` and actively exporting excess battery energy above `0.35 €/kWh` when the spread beats battery wear (`0.04 €/kWh`).
+
 ### 2.1 Eco Mode (Maximum Self-Consumption)
 **Goal:** Maximize direct self-consumption of rooftop solar generation and minimize grid reliance.
 - **Behavior:** Directs surplus solar generation to home battery charging and EV charging before feeding into the grid. When solar diminishes, the home battery automatically discharges to support household base loads.
@@ -86,10 +95,10 @@ GEMS integrates EPEX Spot Day-Ahead electricity prices (fetched daily at 14:00 C
 - **`price_only`**: Force charges the battery from the grid when the spot price drops below `force_charge_below_euro`, and discharges to the grid when price spikes above `force_discharge_above_euro`.
 - **`super_dal_only`**: Restricts grid charging exclusively to provider off-peak contract windows (e.g., Engie Superdal).
 - **`hybrid`**: Combines price-based charging with provider off-peak window optimization.
-- **`dynamic_forecast`**: Computes an optimal 24-hour linear schedule by combining EPEX hourly/quarter-hour spot prices with solar forecasts and separate **Weekday vs. Weekend adaptive load profiles** learned over the trailing 30 days (`home_base_load_w` fallback).
+- **`dynamic_forecast`**: Computes an optimal 24-hour schedule by combining EPEX hourly/quarter-hour spot prices with solar forecasts and separate **Weekday vs. Weekend adaptive load profiles** learned over the trailing 30 days (`home_base_load_w` fallback), reserving stored battery energy ahead of peak evening tariffs, prioritizing free rooftop solar surplus over paid grid import, and covering local demand without forced grid feed-in unless `force_discharge_above_euro` is explicitly configured.
 
-### 3.2 Live BMS Dynamic Power Envelopes & Multi-Battery SOC Balancing
-- **Live BMS Power Clamping**: Both real-time battery dispatch and the 24-hour dynamic arbitrage forecast query live BMS dynamic maximum charge and discharge power limits derived from real-time BMS current envelopes and pack voltage. This prevents setpoint rejection when cold cells or high State-of-Charge (>90% SOC) derate battery charge acceptance.
+### 3.2 Live BMS Dynamic Power Envelopes, Solar Headroom & Multi-Battery SOC Balancing
+- **Live BMS & Hybrid Inverter AC Headroom Clamping**: Both real-time battery dispatch and the 24-hour dynamic arbitrage forecast query live BMS dynamic maximum charge and discharge power limits derived from real-time BMS current envelopes and pack voltage, while capping hybrid inverter battery discharge to remaining AC output stage headroom so active rooftop solar PV generation is never clipped.
 - **SOC-Headroom-Weighted Multi-Battery Distribution**: On sites with multiple hybrid inverters or dedicated BESS units, GEMS distributes total charge power proportionally to each unit's remaining charge headroom ($\text{MaxCap}_i \times (100 - \text{SOC}_i)$) and discharge power proportionally to available stored energy above the reserve floor ($\text{MaxCap}_i \times (\text{SOC}_i - \text{MinSOC})$), ensuring all battery banks converge toward balanced SOC.
 - **Damped Closed-Loop Setpoint Regulation**: When compensating net household grid import or modulating zero-export PV curtailment against an external smart meter, GEMS applies closed-loop setpoint damping to eliminate meter-to-inverter phase-lag oscillation.
 

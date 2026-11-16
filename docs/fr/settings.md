@@ -31,20 +31,21 @@ Ce groupe de paramètres définit le comportement fondamental de l'EMS : son int
 * **`active_inverter_curtailment`**
   * **Description :** Autorise l'EMS à brider activement la puissance de sortie des onduleurs solaires via registres Modbus pour suivre la consommation domestique lorsque le tarif net d'injection devient négatif. Disponible dans tous les modes de stratégie.
 * **`min_profitable_export_price`**
-  * **Description :** Seuil de base de rentabilité pour l'injection solaire (€/kWh). L'injection est autorisée tant que le revenu net égale ou dépasse ce seuil diminué de la compensation GSC. En dessous, l'excédent charge la batterie/VE, puis les onduleurs sont écrêtés une fois le stockage plein.
+  * **Description :** Seuil de base de rentabilité pour l'injection solaire (€/kWh). L'injection est autorisée tant que le revenu net égale ou dépasse ce seuil diminué de la compensation GSC. En dessous, l'excédent charge la batterie/VE, puis les onduleurs sont écrêtés une fois le stockage plein. Sur les sites néerlandais (`NL`), régler `min_profitable_export_price >= 99` (par ex. `999` via le profil **Pays-Bas Zéro Injection Nette**) avec `active_inverter_curtailment: true` impose une injection nette stricte à `0 W` sur les contrats fixes, variables ou dynamiques.
 * **`gsc_value_eur_mwh`**
   * **Description :** Valeur garantie des Certificats Verts flamands/belges (GSC) en € par certificat ou €/MWh (par ex. 250, 350, 450). La production et l'injection restent rentables lors des prix spot négatifs tant que la pénalité ne dépasse pas la valeur du certificat. L'écrêtement ne s'active qu'en dessous de `min_profitable_export_price - (gsc_value_eur_mwh / 1000.0)` (par ex. à -251 €/MWh pour un GSC à 250 €/MWh).
 * **`battery_grid_charge_strategy`**
   * **Description :** Définit la façon dont la batterie domestique utilise le réseau pour se charger et réaliser de l'arbitrage tarifaire.
   * **Valeurs :**
     * `price_only` : Charge/décharge strictement selon les seuils de prix spot EPEX (`force_charge_below_euro` / `force_discharge_above_euro`).
+    * `price_and_solar` : Combine la réservation de capacité solaire Open-Meteo avec la charge sous plafond tarifaire (`force_charge_below_euro`).
     * `super_dal_only` : Restreint la charge réseau aux fenêtres super-creuses du fournisseur (par ex. Engie Superdal).
     * `hybrid` : Combine les seuils de prix spot avec les fenêtres super-creuses contractuelles.
-    * `dynamic_forecast` : Calcule une trajectoire optimale sur 24 heures à partir des prévisions solaires Open-Meteo et du talon de consommation domestique.
+    * `dynamic_forecast` : Calcule une trajectoire optimale sur 24 heures à partir des prévisions solaires Open-Meteo et de la consommation adaptative du foyer, réservant la capacité aux heures de pointe et couvrant la demande locale sans injection forcée.
 * **`force_charge_below_euro`**
-  * **Description :** Seuil de prix spot (€/kWh) déclenchant la charge forcée de la batterie depuis le réseau.
+  * **Description :** Seuil de prix effectif (€/kWh, défaut `0.0`) déclenchant la charge forcée de la batterie depuis le réseau.
 * **`force_discharge_above_euro`**
-  * **Description :** Seuil de prix spot (€/kWh) autorisant la décharge batterie vers le réseau lors des fortes pointes tarifaires.
+  * **Description :** Seuil explicite de pointe tarifaire (€/kWh, défaut `999.0` = désactivé) autorisant l'injection batterie vers le réseau. Lorsqu'il est désactivé (`999.0`), la batterie couvre uniquement la demande locale.
 * **`smart_ev_cheapest_hours`**
   * **Description :** Sélectionne automatiquement le nombre d'heures les moins chères de la journée (par ex. 3) pour recharger le véhicule électrique.
 * **`grid_nominal_current_a`**
@@ -204,6 +205,6 @@ Disponible en **Mode installateur certifié** (`Paramètres -> Test de Mise en S
 
 ![Test Installateur de Mise en Service & Pilotage](../../screenshots/settings_commissioning_test.png)
 
-* **Vérification en 5 Étapes par Équipement** : Contrôle (1) la préparation de la configuration et des permissions de pilotage, (2) la joignabilité réseau/bus (Modbus TCP, série RS-485, OCPP 1.6-J ou REST local), (3) la cohérence électrique de la télémétrie en direct, (4) l'écriture de consigne active et sa relecture (impulsion d'écrêtement à 80 % sur l'onduleur, modulation charge/décharge sécurisée de la batterie et consigne 6,0 A sur la borne VE), puis (5) la restauration sécurisée en fonctionnement autonome.
+* **Vérification en 5 Étapes par Équipement** : Contrôle (1) la préparation de la configuration et des permissions de pilotage, (2) la joignabilité réseau/bus (Modbus TCP, série RS-485, OCPP 1.6-J ou REST local), (3) la cohérence électrique de la télémétrie en direct, (4) l'écriture de consigne active et sa relecture (impulsion d'écrêtement à 80 % sur l'onduleur, cycle maintenu de 2 minutes de charge active et 2 minutes de décharge active de la batterie avec relecture BMS en direct et consigne 6,0 A sur la borne VE), puis (5) la restauration sécurisée en fonctionnement autonome.
 * **Corrections Guidées des Anomalies** : Détecte les erreurs de paramétrage ou de bus (écrêtement onduleur désactivé, capacité batterie hybride non renseignée, borne VE verrouillée en mode `Off`, disjoncteur de communication ouvert) et propose des actions en un clic **Corriger & Re-tester** en local comme depuis le portail cloud.
 * **Certificat Officiel de Mise en Service** : Génère un certificat de mise en service PDF A4 téléchargeable (**Télécharger le Rapport PDF**) et une archive JSON vérifiable, tout en diffusant la progression étape par étape vers **GRID-EMS-SERVER**.

@@ -31,6 +31,15 @@ De centrale regellus wordt elke seconde uitgevoerd:
 | :---: | :---: |
 | ![Tabblad Strategie](../../screenshots/settings_strategy.png) | ![Strategiemodi](../../screenshots/settings_strategy_modes.png) |
 
+### 2.0 Optimale Strategieprofielen (1-Klik Presets)
+Bovenaan **Instellingen → Strategie** biedt GEMS regiobewuste **1-Klik Optimale Strategieprofielen** met ingebouwde uitleg over **Hoe het werkt** en **Wanneer gebruiken**:
+1. **Puur Zon-Zelfverbruik (`ECO`):** Laadt de thuisbatterij uitsluitend met gratis zonne-overschot (`0 W` betaalde netlading, `force_discharge_above_euro = 999`) zonder omvormer-aftopping. Ideaal bij vaste of variabele contracten.
+2. **Nederland Nul-Teruglevering (`0-Export & Terugleverkosten Schild` — Enkel `NL`):** Stuurt zonne-overschot eerst naar **Raedian** EV-laadpalen en **Solis** batterijopslag (`price_and_solar` met `force_charge_below_euro = 0`) en regelt daarna de zonne-omvormer traploos terug op het actuele woningverbruik (`active_inverter_curtailment = true`, `min_profitable_export_price = 999`) zodat de netto teruglevering op `0 W` blijft bij zowel vaste/variabele als dynamische Nederlandse contracten.
+3. **Vlaanderen Capaciteitspiek-Schild (`Fluvius` — Enkel `BE` + `flanders`):** Bewaakt uw rollende 15-minuten kwartierpiek (`2,50 kW` minimum + `200 W` veiligheidsmarge) met `hybrid` zon-/prijssturing, terugregeling bij negatieve prijzen en winterreserve.
+4. **Wallonië `Tarif Impact` Sturing (`ORES / RESA` — Enkel `BE` + `wallonia`):** Laadt bij tijdens Waalse `ECO`-uren (`01:00–07:00` & `11:00–17:00`) en reserveert batterijcapaciteit om de `17:00–22:00` `PIC`-avondpiek te overbruggen.
+5. **Dynamisch Tarief — Slimme 24u Voorspelling:** Allround `dynamic_forecast`-profiel met Open-Meteo zonneprognoses, aangeleerd verbruiksprofiel, terugregeling bij negatieve prijzen (`0,00 €/kWh`) en lastvolgende ontlading (`force_discharge_above_euro = 999`).
+6. **Dynamisch Tarief — Actieve Prijs-Spread Handel:** Breidt `dynamic_forecast` uit voor grotere batterijen (`10+ kWh`): laadt onder `0,05 €/kWh` en levert actief terug boven `0,35 €/kWh` zodra de marge hoger is dan de slijtagekost (`0,04 €/kWh`).
+
 ### 2.1 Eco-modus (Maximaal Zelfverbruik)
 **Doel:** Het directe zelfverbruik van opgewekte zonne-energie maximaliseren en netafname minimaliseren.
 - **Werking:** Stuurt overtollige zonne-energie eerst naar het opladen van de thuisbatterij en de EV-laadpaal voordat er naar het net wordt geïnjecteerd. Zodra de zonproductie afneemt, ontlaadt de thuisbatterij automatisch om het basisverbruik van de woning te dekken.
@@ -84,10 +93,10 @@ GEMS integreert EPEX Spot Day-Ahead elektriciteitsprijzen (dagelijks opgehaald o
 - **`price_only`**: Laadt de batterij geforceerd op vanuit het net zodra de spotprijs onder `force_charge_below_euro` daalt, en ontlaadt naar het net wanneer de prijs boven `force_discharge_above_euro` piekt.
 - **`super_dal_only`**: Beperkt netladen uitsluitend tot superdal-vensters van de energieleverancier (bijv. Engie Superdal).
 - **`hybrid`**: Combineert prijsgestuurde drempels met de superdal-vensters van het contract.
-- **`dynamic_forecast`**: Berekent een kostenoptimaal 24-uurs laad-/ontlaadschema door uurlijkse/kwartier-EPEX-prijzen te combineren met zonneprognoses en afzonderlijke **weekdag- versus weekend-verbruiksprofielen** op basis van de afgelopen 30 dagen (met `home_base_load_w` als terugvalwaarde).
+- **`dynamic_forecast`**: Berekent een kostenoptimaal 24-uurs laad-/ontlaadschema door uurlijkse/kwartier-EPEX-prijzen te combineren met zonneprognoses en afzonderlijke **weekdag- versus weekend-verbruiksprofielen** op basis van de afgelopen 30 dagen (met `home_base_load_w` als terugvalwaarde), waarbij batterijcapaciteit wordt gereserveerd voor avondpieken, gratis zonne-overschot voorrang krijgt en enkel het lokale verbruik wordt gedekt tenzij `force_discharge_above_euro` expliciet is ingesteld.
 
-### 3.2 Live BMS Vermogensgrenzen & Multi-batterij SOC-balancering
-- **Live BMS-vermogensbegrenzing**: Zowel de realtime batterijsturing als de 24-uurs dynamische prognose gebruiken de live maximale laad- en ontlaadvermogens uit het BMS (op basis van actuele stroomlimieten en batterijspanning). Dit voorkomt geweigerde setpoints wanneer koude cellen of een hoge laadtoestand (>90% SOC) het laadvermogen begrenzen.
+### 3.2 Live BMS Vermogensgrenzen, Zonne-ruimte & Multi-batterij SOC-balancering
+- **Live BMS- & Hybride AC-vermogensbegrenzing**: Zowel de realtime batterijsturing als de 24-uurs dynamische prognose gebruiken de live maximale laad- en ontlaadvermogens uit het BMS en begrenzen batterij-ontlading op hybride omvormers tot de resterende AC-uitgangsruimte zodat actieve zonneproductie nooit wordt afgetopt.
 - **SOC-gewogen Verdeling bij Meerdere Batterijen**: Op locaties met meerdere hybride omvormers of BESS-eenheden verdeelt GEMS het totale laadvermogen naar rato van de resterende laadruimte ($\text{MaxCap}_i \times (100 - \text{SOC}_i)$) en het ontlaadvermogen naar rato van de bruikbare energie boven de ondergrens ($\text{MaxCap}_i \times (\text{SOC}_i - \text{MinSOC})$), zodat alle batterijbanken gelijkmatig naar dezelfde SOC convergeren.
 - **Gedempte Closed-Loop Regeling**: Bij het compenseren van het netto woningverbruik of bij zero-export PV-terugregeling op basis van een externe slimme meter past GEMS closed-loop demping toe om oscillaties tussen meter en omvormer te elimineren.
 

@@ -784,7 +784,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.40.0</span>
+          <span class="cover-meta-val">GEMS v9.41.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Who This Guide Is For</span>
@@ -1294,7 +1294,15 @@
 
   <div class="manual-screenshot">
     <img src="assets/screenshots/settings_strategy.png" alt="Settings Strategy Tab">
-    <div class="manual-screenshot-caption">Figure 8.1: Settings &rarr; Strategy showing Geographic Location, Grid Limits, Optimization Mode, GSC Subsidy Protection, and Battery Arbitrage.</div>
+    <div class="manual-screenshot-caption">Figure 8.1: Settings &rarr; Strategy showing 1-Click Optimal Strategy Profiles, Geographic Location, Grid Limits, Optimization Mode, GSC Subsidy Protection, and Battery Arbitrage.</div>
+  </div>
+
+  <div class="setting-card-grid">
+    <div class="setting-card emerald">
+      <div class="setting-name"><span>Optimal Strategy Profiles (1-Click Presets)</span> <span class="setting-default-pill">Region-Aware</span></div>
+      <div class="setting-meta-row"><span class="badge-what">How It Works</span> Loads a complete, pre-tuned parameter bundle in one click—with built-in <strong>How it works</strong> and <strong>When to use it</strong> guidance—covering <em>Pure Solar Self-Consumption (ECO)</em>, <em>Netherlands Zero Net Export (0-Export &amp; Terugleverkosten Shield)</em> (<code>NL</code> only), <em>Flanders Capacity Peak Shield</em> (<code>BE</code> Flanders only), <em>Wallonia Tarif Impact Shifter</em> (<code>BE</code> Wallonia only), <em>Dynamic Smart 24h Forecast</em>, and <em>Dynamic Active Spread Arbitrage</em>.</div>
+      <div class="setting-meta-row"><span class="badge-when">When To Use</span> Click <strong>Apply Profile</strong> to pre-fill optimal strategy, curtailment, and battery thresholds for your contract and grid region, then click <strong>Save Settings</strong>.</div>
+    </div>
   </div>
 
   <h2 class="subsection-title">8.1 Geographic Location &amp; Grid Connection Limits</h2>
@@ -1413,7 +1421,7 @@
     <div class="setting-card green">
       <div class="setting-name"><span>Charging Strategy Mode</span> <span class="setting-default-pill">4 Modes Available</span></div>
       <div class="setting-meta-row">
-        • <strong>Dynamic + Solar Forecast (Recommended):</strong> Combines EPEX Spot prices with tomorrow's Open-Meteo solar irradiance forecast. Only buys grid power at night if tomorrow's sun won't fill the battery!<br>
+        • <strong>Dynamic + Solar Forecast (Recommended):</strong> Combines EPEX Spot prices with Open-Meteo solar irradiance forecasts and adaptive site load—reserving stored battery capacity for peak evening tariffs, prioritizing free rooftop solar surplus over paid grid import, and covering household demand without forced grid export!<br>
         • <strong>Spot Price Threshold Only:</strong> Charges from the grid whenever price &le; Ceiling, regardless of weather.<br>
         • <strong>Super-Dal Window Only (01:00–07:00):</strong> Charges strictly during night Super-Dal off-peak hours.<br>
         • <strong>Hybrid:</strong> Combines Super-Dal night window with daytime negative-price absorption.
@@ -1423,9 +1431,9 @@
     <div class="setting-card">
       <div class="setting-name"><span>Grid Charge Ceiling, Discharge Floor &amp; Wear Cost</span> <span class="setting-default-pill">€/kWh Thresholds</span></div>
       <div class="setting-meta-row">
-        • <strong>Grid Charge Ceiling (€/kWh):</strong> Maximum price at which GEMS is willing to buy grid electricity to charge the battery (e.g. <code>0.08 €/kWh</code>).<br>
-        • <strong>Grid Discharge Floor (€/kWh):</strong> Minimum price required before discharging the battery to save expensive grid import (e.g. <code>0.18 €/kWh</code>).<br>
-        • <strong>Battery Wear Cost (€/kWh):</strong> Accounts for lithium-iron-phosphate (LFP) cell cycle wear (e.g. <code>0.02 €/kWh</code>). GEMS only performs price arbitrage if the profit spread exceeds this wear cost!
+        • <strong>Grid Charge Ceiling (€/kWh):</strong> Maximum price at which GEMS buys grid electricity to charge the battery (default <code>0.00 €/kWh</code> = negative prices only; e.g. <code>0.08 €/kWh</code>).<br>
+        • <strong>Grid Discharge Floor (€/kWh):</strong> Explicit price spike threshold required before injecting battery energy into the grid (default <code>999.0 €/kWh</code> = disabled, battery supplies local household demand only).<br>
+        • <strong>Battery Wear Cost (€/kWh):</strong> Accounts for lithium-iron-phosphate (LFP) cell cycle wear (e.g. <code>0.04 €/kWh</code>). GEMS only performs price arbitrage if the profit spread exceeds this wear cost!
       </div>
     </div>
 

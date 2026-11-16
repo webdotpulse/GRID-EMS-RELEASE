@@ -31,20 +31,21 @@ Deze groep instellingen bepaalt het kerngedrag van het EMS: hoe het samenwerkt m
 * **`active_inverter_curtailment`**
   * **Beschrijving:** Geeft het EMS toestemming om het actieve uitgangsvermogen van zonne-omvormers via Modbus-registers terug te regelen tot het eigen woningverbruik wanneer de netto terugleververgoeding negatief en onrendabel is. Beschikbaar in alle strategiemodi.
 * **`min_profitable_export_price`**
-  * **Beschrijving:** Basisdrempel voor rendabele teruglevering (€/kWh). Injectie naar het net is toegestaan zolang de realtime vergoeding groter of gelijk is aan deze drempel min eventuele GSC-compensatie. Daaronder wordt overschot opgeslagen in batterij/EV, en worden omvormers teruggeregeld zodra de opslag vol is.
+  * **Beschrijving:** Basisdrempel voor rendabele teruglevering (€/kWh). Injectie naar het net is toegestaan zolang de realtime vergoeding groter of gelijk is aan deze drempel min eventuele GSC-compensatie. Daaronder wordt overschot opgeslagen in batterij/EV, en worden omvormers teruggeregeld zodra de opslag vol is. Op Nederlandse (`NL`) installaties dwingt `min_profitable_export_price >= 99` (bijv. `999` via het profiel **Nederland Nul-Teruglevering**) met `active_inverter_curtailment: true` strikte `0 W` netto teruglevering af bij zowel vaste/variabele als dynamische contracten.
 * **`gsc_value_eur_mwh`**
   * **Beschrijving:** Gegarandeerde waarde van Vlaamse/Belgische Groenestroomcertificaten (GSC) in € per certificaat of €/MWh (bijv. 250, 350, 450). Zonneproductie en injectie blijven rendabel bij negatieve spotprijzen zolang de negatieve prijs niet groter is dan de GSC-waarde. Terugregeling treedt pas op onder `min_profitable_export_price - (gsc_value_eur_mwh / 1000.0)` (bijv. pas bij -251 €/MWh bij een GSC van 250 €/MWh).
 * **`battery_grid_charge_strategy`**
   * **Beschrijving:** Bepaalt hoe de thuisbatterij stroom uit het net gebruikt voor opladen en tariefsturing.
   * **Waarden:**
     * `price_only`: Laadt/ontlaadt strikt op basis van EPEX-spotprijsdrempels (`force_charge_below_euro` / `force_discharge_above_euro`).
+    * `price_and_solar`: Combineert Open-Meteo zonneprognose-ruimte met strikt laden onder de ingestelde prijsgrens (`force_charge_below_euro`).
     * `super_dal_only`: Beperkt netladen tot superdal-uren van het leverancierscontract (bijv. Engie Superdal).
     * `hybrid`: Combineert prijsdrempels met superdal-vensters van de leverancier.
-    * `dynamic_forecast`: Berekent een kostenoptimale 24-uurs laad-/ontlaadcurve op basis van Open-Meteo zonneprognoses en het basisverbruik van de woning.
+    * `dynamic_forecast`: Berekent een kostenoptimale 24-uurs laad-/ontlaadcurve op basis van Open-Meteo zonneprognoses en het adaptieve woningverbruik, waarbij capaciteit wordt gereserveerd voor piektarieven en enkel het eigen verbruik wordt gedekt zonder geforceerde teruglevering.
 * **`force_charge_below_euro`**
-  * **Beschrijving:** Spotprijsdrempel (€/kWh) waaronder de batterij geforceerd vanuit het net wordt opgeladen.
+  * **Beschrijving:** Effectieve prijsdrempel (€/kWh, standaard `0.0`) waaronder de batterij geforceerd vanuit het net wordt opgeladen.
 * **`force_discharge_above_euro`**
-  * **Beschrijving:** Spotprijsdrempel (€/kWh) waarboven de batterij naar het net mag ontladen tijdens piektarieven.
+  * **Beschrijving:** Expliciete prijspiekdrempel (€/kWh, standaard `999.0` = uitgeschakeld) waarboven de batterij actief naar het net injecteert. Wanneer uitgeschakeld (`999.0`), dekt de batterij uitsluitend het lokale verbruik.
 * **`smart_ev_cheapest_hours`**
   * **Beschrijving:** Selecteert automatisch het opgegeven aantal goedkoopste uren van de dag (bijv. 3) om uw elektrische wagen op te laden.
 * **`grid_nominal_current_a`**
@@ -204,6 +205,6 @@ Beschikbaar in de **Gecertificeerde installateursmodus** (`Instellingen -> Oplev
 
 ![Installateur Opleverings- & Aansturingstest](../../screenshots/settings_commissioning_test.png)
 
-* **5-Stappen Verificatie per Toestel**: Controleert (1) Configuratie- & Aansturingsgereedheid, (2) Transport- & Busbereikbaarheid (Modbus TCP, RS-485 Serieel, OCPP 1.6-J of Lokale REST), (3) Live Telemetrie & Elektrische Plausibiliteit, (4) Actieve Stuuropdracht & Terugmelding (80% terugregelpuls op omvormer, veilige laad-/ontlaadmodulatie op batterij en 6,0 A stroomsetpoint op EV-laadpaal) en (5) Veilig Herstel naar Autonome Werking.
+* **5-Stappen Verificatie per Toestel**: Controleert (1) Configuratie- & Aansturingsgereedheid, (2) Transport- & Busbereikbaarheid (Modbus TCP, RS-485 Serieel, OCPP 1.6-J of Lokale REST), (3) Live Telemetrie & Elektrische Plausibiliteit, (4) Actieve Stuuropdracht & Terugmelding (80% terugregelpuls op omvormer, 2 minuten actief laden en 2 minuten actief ontladen op de thuisbatterij met live BMS-terugmelding en 6,0 A stroomsetpoint op EV-laadpaal) en (5) Veilig Herstel naar Autonome Werking.
 * **Begeleid Herstel van Aandachtspunten**: Detecteert configuratiefouten of busproblemen (zoals uitgeschakelde omvormer-terugregeling, ontbrekende batterijcapaciteit, laadpaal vergrendeld in `Off`-modus of uitgeschakelde communicatie-automaten) en biedt een directe **Herstellen & Opnieuw Testen**-knop zowel lokaal als vanuit het cloudportaal.
 * **Officieel Opleveringscertificaat**: Genereert een downloadbaar A4 PDF-opleveringsrapport (**PDF-Rapport Downloaden**) en een machineleesbaar JSON-verificatiearchief, terwijl de live voortgang stap voor stap naar **GRID-EMS-SERVER** wordt gestreamd.
