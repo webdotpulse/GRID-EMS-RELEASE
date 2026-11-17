@@ -151,3 +151,10 @@ GEMS computes real-time **Estimated GRID-EMS Savings** (`Today`, `Month`, `Year`
 - **Battery Discharge & Arbitrage (`battery_savings_eur`)**: Stored battery energy discharged during expensive hours valued against the actual charging cost of that stored energy.
 - **Smart Off-Peak Dispatch & Negative-Export Shield (`smart_dispatch_savings_eur`)**: Verified off-peak EV/battery price-spread gains vs. the daily mean tariff plus avoided negative export charges from active solar curtailment and local sinking.
 - **Capacity Peak Shaving (`peak_shaving_savings_eur`, Flanders Only)**: Avoided monthly *Capaciteitstarief* kW surcharges when active battery/EV peak shaving holds the 15-minute grid peak below unshaved site load (strictly `€0.00` and hidden outside Flanders).
+
+---
+
+## 6. 24-Hour Dynamic Battery Planner, EV Departure Scheduling & Thermal Buffering
+- **Peak-Aware 24-Hour Battery Planning & Morning Solar Headroom (`solar_hold`)**: Evaluates 15-minute (`15m`) and hourly (`60m`) effective import and export tariffs alongside de-polluted Weekday/Weekend household load profiles and geometry-aware solar forecasts. When afternoon export prices turn unprofitable or negative, GEMS holds morning battery SoC headroom (`solar_hold`) while solar exports profitably so the battery absorbs midday solar before inverter curtailment is needed.
+- **Charger-Side EV Departure Target (`+kWh by HH:MM`)**: Allocates solar surplus and the lowest-cost 15-minute slots ahead of `departure_time` while respecting Flanders capacity peak ceilings and per-phase main fuse limits, automatically engaging continuous peak-safe catch-up charging when remaining time requires it.
+- **4-State SG-Ready & Thermostat Thermal Pre-Heating / Peak Shedding**: Raises thermal comfort targets during solar surplus, negative prices, or low-cost pre-peak slots (`State 3` / `State 4`) and sheds non-essential thermal boost or commands bounded `State 1` lockout only as a last resort when EV charging is already at `0 A` and battery support is maxed out.

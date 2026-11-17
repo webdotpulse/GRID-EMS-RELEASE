@@ -149,3 +149,10 @@ GEMS calcule en temps réel les **Économies Estimées GRID-EMS** (`Jour`, `Mois
 - **Batterie & Arbitrage Tarifaire (`battery_savings_eur`)** : Énergie batterie restituée pendant les heures chères valorisée par rapport au coût réel de recharge de cette énergie stockée.
 - **Charge VE & Écrêtement (`smart_dispatch_savings_eur`)** : Gains d'écart tarifaire lors des charges en heures creuses par rapport au tarif moyen journalier, additionnés aux pénalités d'injection négatives évitées grâce à l'écrêtement solaire actif.
 - **Écrêtage Capacitaire (`peak_shaving_savings_eur`, Flandre Uniquement)** : Suppléments mensuels *Capaciteitstarief* (kW) évités lorsque l'écrêtage actif batterie/VE maintient la pointe quart-horaire sous la charge brute du site (strictement fixé à `0,00 €` et masqué hors Flandre).
+
+---
+
+## 6. Planificateur Batterie Dynamique 24h, Échéance de Départ VE & Tampon Thermique
+- **Planification Batterie 24h Consciente des Pointes & Réserve Solaire Matinale (`solar_hold`)** : Évalue les tarifs effectifs d'importation et d'injection quart-horaires (`15m`) et horaires (`60m`) avec les profils épurés de charge Semaine/Week-end et la prévision solaire orientée toiture. Lorsque l'injection de l'après-midi devient déficitaire ou négative, GEMS préserve de la capacité batterie le matin (`solar_hold`) pendant que l'exportation est rentable afin d'absorber le photovoltaïque de midi avant tout écrêtement.
+- **Objectif de Départ Borne VE (`+kWh avant HH:MM`)** : Sélectionne le surplus solaire et les créneaux de 15 minutes les moins coûteux avant `departure_time` dans le respect du plafond capacitaire flamand et des fusibles principaux, avec rattrapage continu sécurisé lorsque le temps restant l'exige.
+- **SG-Ready 4 États & Préchauffage Thermique / Délestage Ultime** : Relève la consigne thermique lors de surplus solaires, prix négatifs ou heures creuses pré-pointe (`État 3` / `État 4`) et ne déleste en `État 1` temporisé qu'en tout dernier recours lorsque les bornes VE sont déjà à `0 A` et le soutien batterie au maximum.

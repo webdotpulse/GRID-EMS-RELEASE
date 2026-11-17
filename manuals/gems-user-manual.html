@@ -784,7 +784,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.42.1</span>
+          <span class="cover-meta-val">GEMS v9.43.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Who This Guide Is For</span>
@@ -1834,7 +1834,22 @@
       <tr>
         <td><strong>Heat my water boiler or SG-Ready heat pump with excess solar</strong></td>
         <td>Settings &rarr; <strong>Relays &amp; Switches</strong></td>
-        <td>Add a rule with <strong>Condition</strong> = <code>solar_export_exceeds</code> (e.g. <code>1500 W</code>) and set <strong>Min Run Time</strong> = <code>900 sec</code>.</td>
+        <td>Add a rule with <strong>Condition</strong> = <code>solar_export_exceeds</code> (e.g. <code>1500 W</code>) and set <strong>Min Run Time</strong> = <code>900 sec</code>, or bind two relays into a <strong>4-State SG-Ready Heat Pump</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>Deliver +20 kWh to my EV by 07:00 without car APIs</strong></td>
+        <td>Dashboard &rarr; <strong>EV Charger</strong> (or Settings &rarr; <strong>Devices</strong>)</td>
+        <td>Set <strong>Target Session Energy (+kWh)</strong> and <strong>Departure Time (HH:MM)</strong> on your <strong>Raedian</strong> wallbox. GEMS tracks delivered energy on the charger meter and schedules solar + cheapest peak-safe 15-min slots automatically.</td>
+      </tr>
+      <tr>
+        <td><strong>Keep battery headroom open for negative afternoon solar prices</strong></td>
+        <td>Dashboard &rarr; <strong>Battery 24h Forecast</strong></td>
+        <td>Automatic under <strong>Dynamic 24h Forecast</strong>: GEMS holds morning battery SoC (<code>solar_hold</code>) while solar exports profitably so empty <strong>Solis</strong> battery capacity absorbs negative-price midday solar before inverter curtailment is needed.</td>
+      </tr>
+      <tr>
+        <td><strong>Stream read-only telemetry to local MQTT or LAN Modbus TCP</strong></td>
+        <td>Settings &rarr; <strong>Network</strong></td>
+        <td>Enable outbound <strong>MQTT v3.1.1</strong> (with 1-click Home Assistant Auto-Discovery) or the LAN-only <strong>Read-Only Modbus TCP Server</strong> (port <code>1502</code>, <code>FC03</code>/<code>FC04</code> only).</td>
       </tr>
     </tbody>
   </table>

@@ -2,7 +2,7 @@
 
 > 🌐 **Language**: **🇬🇧 English** | [🇳🇱 Nederlands (`Supported_devices.nl.md`)](Supported_devices.nl.md) | [🇫🇷 Français (`Supported_devices.fr.md`)](Supported_devices.fr.md)
 
-> **GEMS (Grid Energy Management System)** — Complete Hardware Compatibility, Register Telemetry, Writable Setpoints, and Practical Automation Capabilities for All 168 Hardware Profiles (180 Registered Templates).
+> **GEMS (Grid Energy Management System)** — Complete Hardware Compatibility, Register Telemetry, Writable Setpoints, and Practical Automation Capabilities for All 172 Hardware Profiles (184 Registered Templates).
 
 ---
 
@@ -974,6 +974,24 @@ Full closed-loop control for KACO blueplanet hybrid NH3 and commercial gridsave 
 
 ---
 
+### 1.38 Custom Modbus Inverter (UI Register Profile)
+
+- **Template Identifier**: `custom_modbus_inverter`
+- **Manufacturer / Vendor**: Custom Modbus
+- **Supported Hardware Models**: Any Modbus TCP or RS-485 RTU String, Micro, or Hybrid Inverter configured via the Certified Installer UI Register Profile Builder
+- **Communication Interface**: Modbus TCP / RTU (Configurable Port or `/dev/serial/by-id/*` Bus, Unit ID, `FC03`/`FC04` Reads & Optional `FC06`/`FC16` Writes)
+
+#### Telemetry Data Read by GEMS
+UI-mapped Solar PV Power (W), Battery Power (W), Battery SOC (%), Net Grid Power (W), Cumulative Energy (kWh), 3-Phase Voltages & Currents (`int16`, `uint16`, `int32`, `uint32`, `float32`, or SunSpec Scale Factor `ABCD`/`CDAB`/`BADC`/`DCBA`).
+
+#### Controllable Setpoints & Data Written by GEMS
+Optional UI-mapped Active Power Curtailment Limit (`curtailment_limit_w` / `curtailment_limit_pct`), Battery Charge/Discharge Power (`battery_power_w`), Periodic Hardware Watchdog Heartbeat, and Safe Shutdown Fallback Register.
+
+#### What GEMS Actually Does With This Device
+Enables certified installers to onboard non-catalog solar and hybrid inverters directly from the web UI with live register testing, JSON profile import/export, and safe fail-safe shutdown restoration.
+
+---
+
 ## 2. Dedicated Battery Energy Storage Systems (BESS) (18 Devices)
 
 Dedicated residential BESS storage devices interface over Modbus TCP or local HTTP REST APIs to monitor stationary battery storage systems independent of solar inverters. They provide real-time State of Charge (SOC %), charge/discharge wattage, and grid exchange metrics to power GEMS energy arbitrage, self-consumption maximization, and peak shaving algorithms.
@@ -1299,6 +1317,24 @@ Remote PCS Start/Standby (`600`), Constant-Power PQ Mode (`601`), Signed Active 
 
 #### What GEMS Actually Does With This Device
 Closed-loop industrial and C&I battery control for Sinexcel PWS storage converters: automates high-power peak shaving, grid transformer capacity protection, and Day-Ahead spot arbitrage.
+
+---
+
+### 2.19 Custom Modbus Battery Storage (UI Register Profile)
+
+- **Template Identifier**: `custom_modbus_battery`
+- **Manufacturer / Vendor**: Custom Modbus
+- **Supported Hardware Models**: Any Modbus TCP or RS-485 RTU Stationary Home Battery, PCS, or BMS Gateway configured via the Certified Installer UI Register Profile Builder
+- **Communication Interface**: Modbus TCP / RTU (Configurable Port or `/dev/serial/by-id/*` Bus, Unit ID, `FC03`/`FC04` Reads & Optional `FC06`/`FC16` Writes)
+
+#### Telemetry Data Read by GEMS
+UI-mapped Battery Charge/Discharge Power (W), Battery SOC (%), Live BMS Max Charge/Discharge Limits (W), Cumulative Energy (kWh), and 3-Phase Voltages & Currents.
+
+#### Controllable Setpoints & Data Written by GEMS
+Optional UI-mapped Signed or Directional Battery Power Setpoints (`battery_power_w`, `battery_charge_w`, `battery_discharge_w`), Clamped Min/Max Safety Bounds, Watchdog Heartbeat, and Safe Self-Consumption Fallback.
+
+#### What GEMS Actually Does With This Device
+Integrates custom residential and commercial Modbus BESS units into GEMS 24-hour dynamic arbitrage, Flanders peak shaving, and negative-price solar absorption without custom code.
 
 ---
 
@@ -2404,6 +2440,24 @@ Dynamic Local REST Current Limit (`PUT /api/v1/chargecontrols/1/mode` with `manu
 
 ---
 
+### 3.62 Custom Modbus EV Charger (UI Register Profile)
+
+- **Template Identifier**: `custom_modbus_charger`
+- **Manufacturer / Vendor**: Custom Modbus
+- **Supported Hardware Models**: Any Modbus TCP or RS-485 RTU AC EV Wallbox or Charge Controller configured via the Certified Installer UI Register Profile Builder
+- **Communication Interface**: Modbus TCP / RTU (Configurable Port or `/dev/serial/by-id/*` Bus, Unit ID, `FC03`/`FC04` Reads & Optional `FC06`/`FC16` Writes)
+
+#### Telemetry Data Read by GEMS
+UI-mapped Charging Power (W), Cumulative Session Energy (kWh), Plug/Session Status, and 3-Phase Currents & Voltages (`int16`/`uint16`/`int32`/`uint32`/`float32` + SunSpec SF).
+
+#### Controllable Setpoints & Data Written by GEMS
+Optional UI-mapped Dynamic Charging Current Limit (`ev_max_current_a`, clamped to breaker bounds), Periodic Watchdog Heartbeat, and Safe Fallback Amperage on Shutdown.
+
+#### What GEMS Actually Does With This Device
+Brings non-catalog Modbus EV wallboxes into GEMS sub-second dynamic load balancing, solar surplus charging, departure-deadline (`+kWh by HH:MM`) scheduling, and main fuse protection.
+
+---
+
 ## 4. Grid Smart Meters & Energy Analyzers (40 Devices)
 
 Grid meters provide the foundational telemetry for the entire EMS closed-loop control cycle. They monitor net household import/export wattage, 3-phase currents (L1, L2, L3 in Amps), line voltages (L1, L2, L3 in Volts), energy registers (kWh), coupled gas meter volume (m³), and the official Flemish 15-minute maximum peak capacity demand register (W). Sub-second boundary metering enables instantaneous reactive load shedding, zero-export enforcement, and main fuse protection.
@@ -3128,6 +3182,24 @@ Cloud-free optical IR smart meter reading for modern European digital utility me
 
 ---
 
+### 4.41 Custom Modbus Smart Meter (UI Register Profile)
+
+- **Template Identifier**: `custom_modbus_meter`
+- **Manufacturer / Vendor**: Custom Modbus
+- **Supported Hardware Models**: Any Modbus TCP or RS-485 RTU DIN-Rail Grid Analyzer or PV Production Submeter configured via the Certified Installer UI Register Profile Builder
+- **Communication Interface**: Modbus TCP / RTU (Configurable Port or `/dev/serial/by-id/*` Bus, Unit ID, `FC03`/`FC04` Input & Holding Registers)
+
+#### Telemetry Data Read by GEMS
+UI-mapped Net Grid or PV Power (W), Import & Export Energy Counters (kWh), Per-Phase Currents (`L1, L2, L3` in A) & Voltages (`L1, L2, L3` in V) across all byte orders (`ABCD`, `CDAB`, `BADC`, `DCBA`).
+
+#### Controllable Setpoints & Data Written by GEMS
+Autonomous / Read-Only
+
+#### What GEMS Actually Does With This Device
+Provides verified custom register mapping with live one-click register read testing for industrial and regional Modbus energy meters (as either Main Grid Meter or PV Production Submeter).
+
+---
+
 ## 5. Smart Relays & Load Actuators (12 Devices)
 
 Smart relays and contactors control heavy thermal appliances—such as Heat Pumps (via potential-free SG-Ready terminals), domestic hot water (DHW) immersion boilers, swimming pool circulation pumps, and electric heating elements. GEMS engages contactors dynamically when solar surplus exceeds configurable wattage thresholds or when electricity prices turn negative, with strict anti-cycling hysteresis to protect mechanical compressors.
@@ -3190,17 +3262,17 @@ Industrial-grade contactor switching for high-current loads, three-phase thermal
 
 - **Template Identifier**: `sgready_heatpump`
 - **Manufacturer / Vendor**: SG-Ready (Daikin, Nibe, Bosch/Nefit, Vaillant, Panasonic, Mitsubishi, Stiebel Eltron, Wolf)
-- **Supported Hardware Models**: Standard SG-Ready (Smart Grid Ready) Heat Pumps via dual potential-free relay contacts or local smart module
-- **Communication Interface**: Local HTTP REST / Relay Controller (Default Port: 80, REST Endpoint: /api/sgready)
+- **Supported Hardware Models**: Standard 4-State SG-Ready Heat Pumps via two bound RelayController channels (`sgready_relay1_id` + `sgready_relay2_id`, e.g. Shelly or Modbus relays) or Local HTTP REST gateway
+- **Communication Interface**: Dual-Relay 4-State Binding (`[1,0]`, `[0,0]`, `[0,1]`, `[1,1]`) or Local HTTP REST (`/api/sgready`)
 
 #### Telemetry Data Read by GEMS
-Operating State (Operating State 1: Lock / State 2: Normal / State 3: Boost / State 4: Fast Heat), Power Consumption (W).
+4-State SG-Ready Operating State (State 1 `[1,0]`: Grid Lockout / State 2 `[0,0]`: Normal / State 3 `[0,1]`: Solar & Cheap Tariff Recommended / State 4 `[1,1]`: Forced Thermal Boost), Combined Relay Power Consumption (W).
 
 #### Controllable Setpoints & Data Written by GEMS
-SG-Ready Operating Mode (State 2 Normal vs. State 3 Thermal Boost).
+Full 4-State SG-Ready Mode Actuation (`State 1` Peak Shedding Lockout with 2-hour max cap, `State 2` Normal, `State 3` Solar/Pre-Peak Comfort Boost, `State 4` Negative-Price Forced Boost) with 600s compressor anti-short-cycling guard.
 
 #### What GEMS Actually Does With This Device
-Automated heat pump thermal storage: commands State 3 (increased thermal setpoint) during solar surplus or negative dynamic price hours to preheat domestic water and buffers; returns to State 2 during grid peaks.
+Full 4-state thermal storage & peak protection: preheats domestic water and thermal buffers during solar surplus or cheap pre-peak slots (`State 3`), maximizes thermal storage on negative prices (`State 4`), and safely sheds compressor peaks (`State 1`) only as a last resort when EVs are paused and battery support is exhausted.
 
 ---
 

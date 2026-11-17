@@ -2,7 +2,7 @@
 
 > 🌐 **Taal**: [🇬🇧 English (`Supported_devices.md`)](Supported_devices.md) | **🇳🇱 Nederlands** | [🇫🇷 Français (`Supported_devices.fr.md`)](Supported_devices.fr.md)
 
-> **GEMS (Grid Energy Management System)** — Volledig overzicht van hardwarecompatibiliteit, registertelemetrie, stuurbare setpoints en praktische automatiseringsmogelijkheden voor alle 168 hardwareprofielen (180 geregistreerde templates).
+> **GEMS (Grid Energy Management System)** — Volledig overzicht van hardwarecompatibiliteit, registertelemetrie, stuurbare setpoints en praktische automatiseringsmogelijkheden voor alle 172 hardwareprofielen (184 geregistreerde templates).
 
 ---
 
@@ -976,6 +976,24 @@ Volledige closed-loop aansturing voor KACO blueplanet hybrid NH3 en commerciële
 
 ---
 
+### 1.38 Aangepaste Modbus-omvormer (UI Registerprofiel)
+
+- **Template-ID**: `custom_modbus_inverter`
+- **Fabrikant / Merk**: Custom Modbus
+- **Ondersteunde Hardwaremodellen**: Elke Modbus TCP- of RS-485 RTU string-, micro- of hybride omvormer geconfigureerd via de gecertificeerde UI Registerprofielbouwer
+- **Communicatie-interface**: Modbus TCP / RTU (Configureerbare poort of `/dev/serial/by-id/*` bus, Unit-ID, `FC03`/`FC04` uitlezing & optionele `FC06`/`FC16` setpoints)
+
+#### Uitgelezen Telemetrie door GEMS
+Via UI gekoppeld PV-zonnevermogen (W), Batterijvermogen (W), Batterij-SOC (%), Netto netvermogen (W), Cumulatieve energie (kWh), 3-fasenspanningen & -stromen (`int16`, `uint16`, `int32`, `uint32`, `float32` of SunSpec-schaalfactor `ABCD`/`CDAB`/`BADC`/`DCBA`).
+
+#### Stuurbare Setpoints & Geschreven Data door GEMS
+Optionele via UI gekoppelde actieve vermogensbegrenzing (`curtailment_limit_w` / `curtailment_limit_pct`), Batterij laad-/ontlaadvermogen (`battery_power_w`), periodieke hardware-watchdog heartbeat en veilige afsluit-terugvalwaarde.
+
+#### Wat GEMS Concreet met dit Toestel Doet
+Stelt gecertificeerde installateurs in staat om niet-standaard zonne- en hybride omvormers rechtstreeks vanuit de webinterface te koppelen met live registertests, JSON-profielimport/-export en veilige fail-safe terugval.
+
+---
+
 ## 2. Toegewijde Batterij-energieopslagsystemen (BESS) (18 Toestellen)
 
 Toegewijde BESS-opslagsystemen communiceren via Modbus TCP/RTU of lokale HTTP REST-API's om stationaire thuis- en bedrijfsbatterijen onafhankelijk van PV-omvormers aan te sturen of te monitoren. Ze leveren realtime laadtoestand (SOC %), laad-/ontlaadvermogen en live BMS-limieten voor GEMS-arbitrage, maximalisatie van zelfverbruik en piekafvlakking.
@@ -1301,6 +1319,24 @@ Externe PCS Start/Stand-by (`600`), constant-vermogen PQ-modus (`601`), richting
 
 #### Wat GEMS Concreet met dit Toestel Doet
 Closed-loop industriële en C&I-batterijsturing voor Sinexcel PWS-opslagomvormers: automatiseert hoogvermogen piekbewaking, transformatorbeveiliging en Day-Ahead spotarbitrage.
+
+---
+
+### 2.19 Aangepaste Modbus-batterijopslag (UI Registerprofiel)
+
+- **Template-ID**: `custom_modbus_battery`
+- **Fabrikant / Merk**: Custom Modbus
+- **Ondersteunde Hardwaremodellen**: Elke Modbus TCP- of RS-485 RTU stationaire thuisbatterij, PCS of BMS-gateway geconfigureerd via de gecertificeerde UI Registerprofielbouwer
+- **Communicatie-interface**: Modbus TCP / RTU (Configureerbare poort of `/dev/serial/by-id/*` bus, Unit-ID, `FC03`/`FC04` uitlezing & optionele `FC06`/`FC16` setpoints)
+
+#### Uitgelezen Telemetrie door GEMS
+Via UI gekoppeld batterij laad-/ontlaadvermogen (W), Batterij-SOC (%), Live BMS max. laad-/ontlaadlimieten (W), Cumulatieve energie (kWh) en 3-fasenspanningen & -stromen.
+
+#### Stuurbare Setpoints & Geschreven Data door GEMS
+Optionele via UI gekoppelde richtingsgevoelige of gescheiden batterijvermogenssetpoints (`battery_power_w`, `battery_charge_w`, `battery_discharge_w`), begrensde min/max veiligheidsgrenzen, watchdog heartbeat en veilige zelfverbruik-terugval.
+
+#### Wat GEMS Concreet met dit Toestel Doet
+Integreert aangepaste residentiële en commerciële Modbus-batterijsystemen in GEMS 24-uurs dynamische arbitrage, Vlaamse capaciteitspiekbewaking en negatieve-prijs zonne-absorptie zonder maatwerkcode.
 
 ---
 
@@ -2406,6 +2442,24 @@ Dynamische lokale REST-stroomlimiet (`PUT /api/v1/chargecontrols/1/mode` met `ma
 
 ---
 
+### 3.62 Aangepaste Modbus EV-laadpaal (UI Registerprofiel)
+
+- **Template-ID**: `custom_modbus_charger`
+- **Fabrikant / Merk**: Custom Modbus
+- **Ondersteunde Hardwaremodellen**: Elke Modbus TCP- of RS-485 RTU AC EV-wallbox of laadcontroller geconfigureerd via de gecertificeerde UI Registerprofielbouwer
+- **Communicatie-interface**: Modbus TCP / RTU (Configureerbare poort of `/dev/serial/by-id/*` bus, Unit-ID, `FC03`/`FC04` uitlezing & optionele `FC06`/`FC16` setpoints)
+
+#### Uitgelezen Telemetrie door GEMS
+Via UI gekoppeld laadvermogen (W), Cumulatieve sessie-energie (kWh), Stekker-/sessiestatus en 3-fasenstromen & -spanningen (`int16`/`uint16`/`int32`/`uint32`/`float32` + SunSpec SF).
+
+#### Stuurbare Setpoints & Geschreven Data door GEMS
+Optionele via UI gekoppelde dynamische laadstroomlimiet (`ev_max_current_a`, begrensd op zekeringlimieten), periodieke watchdog heartbeat en veilige terugvalstroom bij afsluiten.
+
+#### Wat GEMS Concreet met dit Toestel Doet
+Koppelt niet-standaard Modbus EV-laadpalen aan GEMS sub-seconde dynamic load balancing, zonneladen, vertrekdoelplanning (`+kWh tegen UU:MM`) en hoofdzekeringbeveiliging.
+
+---
+
 ## 4. Slimme Netmeters & Energie-analyzers (40 Toestellen)
 
 Slimme netmeters vormen het fundament van de volledige GEMS-regelcyclus in gesloten lus. Ze meten het netto afname-/injectievermogen op het netaansluitpunt, de individuele fasestromen (L1, L2, L3 in Ampère), lijnspanningen (L1, L2, L3 in Volt), energietellers (kWh), gekoppeld gasverbruik (m³) en de officiële Vlaamse kwartierpiek (W). Sub-seconde meting maakt onmiddellijke afschakeling bij overbelasting, zero-export handhaving en hoofdzekeringbeveiliging mogelijk.
@@ -3130,6 +3184,24 @@ Cloudvrije optische IR-uitlezing voor moderne Europese digitale nutsmeters zonde
 
 ---
 
+### 4.41 Aangepaste Modbus Slimme Meter (UI Registerprofiel)
+
+- **Template-ID**: `custom_modbus_meter`
+- **Fabrikant / Merk**: Custom Modbus
+- **Ondersteunde Hardwaremodellen**: Elke Modbus TCP- of RS-485 RTU DIN-rail netmeter of PV-productietussenmeter geconfigureerd via de gecertificeerde UI Registerprofielbouwer
+- **Communicatie-interface**: Modbus TCP / RTU (Configureerbare poort of `/dev/serial/by-id/*` bus, Unit-ID, `FC03`/`FC04` Input- & Holding-registers)
+
+#### Uitgelezen Telemetrie door GEMS
+Via UI gekoppeld netto net- of PV-vermogen (W), Afname- & injectietellers (kWh), Fasestromen (`L1, L2, L3` in A) & Spanningen (`L1, L2, L3` in V) over alle bytevolgordes (`ABCD`, `CDAB`, `BADC`, `DCBA`).
+
+#### Stuurbare Setpoints & Geschreven Data door GEMS
+Autonoom / Enkel uitlezing
+
+#### Wat GEMS Concreet met dit Toestel Doet
+Biedt geverifieerde aangepaste registerkoppeling met live één-klik registertest voor industriële en regionale Modbus-energiemeters (zowel als hoofdnetmeter als PV-productiemeter).
+
+---
+
 ## 5. Slimme Relais & Thermische Actuatoren (12 Toestellen)
 
 Slimme relais, PV-diverters en contactoren sturen grote thermische verbruikers aan — zoals warmtepompen (via potentiaalvrije SG-Ready contacten of directe Modbus TCP), elektrische SWW-boilers, zwembadpompen en verwarmingsweerstanden. GEMS schakelt deze verbruikers dynamisch in bij PV-overschot of negatieve EPEX-prijzen, met strikte in- en uitschakelhysterese om pendelen van compressoren te voorkomen.
@@ -3192,17 +3264,17 @@ Industriële contactorschakeling voor zware verbruikers, driefasige verwarmingsb
 
 - **Template-ID**: `sgready_heatpump`
 - **Fabrikant / Merk**: SG-Ready (Daikin, Nibe, Bosch/Nefit, Vaillant, Panasonic, Mitsubishi, Stiebel Eltron, Wolf)
-- **Ondersteunde Hardwaremodellen**: Standard SG-Ready (Smart Grid Ready) Warmtepompen via dubbele potentiaalvrije relaiscontacten of lokale slimme module
-- **Communicatie-interface**: Lokale HTTP REST- / Relaiscontroller (Standaardpoort: 80, REST Endpoint: /api/sgready)
+- **Ondersteunde Hardwaremodellen**: Standaard 4-standen SG-Ready warmtepompen via twee gekoppelde RelayController-kanalen (`sgready_relay1_id` + `sgready_relay2_id`, bijv. Shelly- of Modbus-relais) of lokale HTTP REST-gateway
+- **Communicatie-interface**: Dubbel-relais 4-standen koppeling (`[1,0]`, `[0,0]`, `[0,1]`, `[1,1]`) of lokale HTTP REST (`/api/sgready`)
 
 #### Uitgelezen Telemetrie door GEMS
-SG-Ready bedrijfsstatus (Status 1: Blokkering / Status 2: Normaal / Status 3: Boost / Status 4: Maximaal), elektrisch verbruik (W).
+4-standen SG-Ready bedrijfsstatus (Stand 1 `[1,0]`: Netblokkering / Stand 2 `[0,0]`: Normaal / Stand 3 `[0,1]`: Zonne- & daltariefaanbeveling / Stand 4 `[1,1]`: Geforceerde thermische boost), gecombineerd elektrisch verbruik (W).
 
 #### Stuurbare Setpoints & Geschreven Data door GEMS
-SG-Ready bedrijfsmodus (Status 2 Normaal vs. Status 3 Thermische Boost).
+Volledige 4-standen SG-Ready aansturing (`Stand 1` piekafschakeling met max. 2 uur limiet, `Stand 2` Normaal, `Stand 3` zonne-/pre-piek comfortboost, `Stand 4` negatieve-prijs geforceerde boost) met 600s compressor anti-pendelbeveiliging.
 
 #### Wat GEMS Concreet met dit Toestel Doet
-Geautomatiseerde thermische opslag met warmtepompen: activeert Status 3 (verhoogd thermisch setpoint) tijdens zonne-overschot of negatieve dynamische uurprijzen om sanitair warm water en buffervaten voor te verwarmen, en keert terug naar Status 2 tijdens netpieken.
+Volledige 4-standen thermische opslag & piekbewaking: verwarmt sanitair warm water en buffervaten voor tijdens zonne-overschot of goedkope uren vóór avondpieken (`Stand 3`), maximaliseert thermische opslag bij negatieve prijzen (`Stand 4`) en schakelt enkel als laatste redmiddel (`Stand 1`) af wanneer EV-laders gepauzeerd zijn en batterijsteun uitgeput is.
 
 ---
 

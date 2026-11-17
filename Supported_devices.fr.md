@@ -2,7 +2,7 @@
 
 > 🌐 **Langue** : [🇬🇧 English (`Supported_devices.md`)](Supported_devices.md) | [🇳🇱 Nederlands (`Supported_devices.nl.md`)](Supported_devices.nl.md) | **🇫🇷 Français**
 
-> **GEMS (Grid Energy Management System)** — Référentiel complet de compatibilité matérielle, registres de télémétrie, consignes pilotables et automatisations concrètes pour l'ensemble des 168 profils matériels (180 modèles enregistrés).
+> **GEMS (Grid Energy Management System)** — Référentiel complet de compatibilité matérielle, registres de télémétrie, consignes pilotables et automatisations concrètes pour l'ensemble des 172 profils matériels (184 modèles enregistrés).
 
 ---
 
@@ -976,6 +976,24 @@ Pilotage complet en boucle fermée pour installations KACO blueplanet hybrid NH3
 
 ---
 
+### 1.38 Onduleur Modbus Personnalisé (Profil Registres UI)
+
+- **Identifiant du Modèle**: `custom_modbus_inverter`
+- **Fabricant / Marque**: Custom Modbus
+- **Modèles Matériels Compatibles**: Tout onduleur photovoltaïque string, micro ou hybride Modbus TCP ou RS-485 RTU configuré via l'Éditeur UI de Profils Registres certifié
+- **Interface de Communication**: Modbus TCP / RTU (Port configurable ou bus `/dev/serial/by-id/*`, ID d'unité, lectures `FC03`/`FC04` & écritures optionnelles `FC06`/`FC16`)
+
+#### Données de Télémétrie Lues par GEMS
+Puissance solaire PV (W), Puissance batterie (W), SOC batterie (%), Puissance nette réseau (W), Énergie cumulée (kWh), Tensions & courants triphasés mappés via l'UI (`int16`, `uint16`, `int32`, `uint32`, `float32` ou facteur d'échelle SunSpec `ABCD`/`CDAB`/`BADC`/`DCBA`).
+
+#### Consignes Pilotables & Données Écrites par GEMS
+Limite optionnelle de bridage de puissance active (`curtailment_limit_w` / `curtailment_limit_pct`), Puissance de charge/décharge batterie (`battery_power_w`), battement périodique Watchdog matériel et registre de repli sécurisé à l'arrêt.
+
+#### Rôle Pratique & Automatisation GEMS
+Permet aux installateurs certifiés d'intégrer des onduleurs solaires et hybrides hors catalogue directement depuis l'interface web avec test de registre en direct, import/export JSON et repli fail-safe.
+
+---
+
 ## 2. Systèmes Dédiés de Stockage d'Énergie par Batterie (BESS) (18 Appareils)
 
 Les systèmes dédiés de stockage stationnaire (BESS) s'interfacent en Modbus TCP/RTU ou via des API HTTP REST locales pour superviser et piloter les batteries résidentielles et tertiaires indépendamment des onduleurs solaires. Ils fournissent en temps réel l'état de charge (SOC %), la puissance active et les limites dynamiques du BMS afin d'alimenter les algorithmes d'arbitrage, d'autoconsommation et d'écrêtement de pointe.
@@ -1301,6 +1319,24 @@ Marche/Veille PCS à distance (`600`), mode PQ à puissance constante (`601`), c
 
 #### Rôle Pratique & Automatisation GEMS
 Contrôle batterie industriel et C&I en boucle fermée pour convertisseurs de stockage Sinexcel PWS : automatise l'écrêtage haute puissance, la protection du transformateur réseau et l'arbitrage spot Day-Ahead.
+
+---
+
+### 2.19 Stockage Batterie Modbus Personnalisé (Profil Registres UI)
+
+- **Identifiant du Modèle**: `custom_modbus_battery`
+- **Fabricant / Marque**: Custom Modbus
+- **Modèles Matériels Compatibles**: Toute batterie domestique stationnaire, convertisseur PCS ou passerelle BMS Modbus TCP ou RS-485 RTU configurée via l'Éditeur UI de Profils Registres certifié
+- **Interface de Communication**: Modbus TCP / RTU (Port configurable ou bus `/dev/serial/by-id/*`, ID d'unité, lectures `FC03`/`FC04` & écritures optionnelles `FC06`/`FC16`)
+
+#### Données de Télémétrie Lues par GEMS
+Puissance de charge/décharge batterie (W), SOC batterie (%), Limites max. BMS charge/décharge en direct (W), Énergie cumulée (kWh) et tensions/courants triphasés mappés via l'UI.
+
+#### Consignes Pilotables & Données Écrites par GEMS
+Consignes optionnelles signées ou séparées de puissance batterie (`battery_power_w`, `battery_charge_w`, `battery_discharge_w`), bornes min/max de sécurité, battement Watchdog et repli sécurisé en autoconsommation.
+
+#### Rôle Pratique & Automatisation GEMS
+Intègre des systèmes BESS Modbus résidentiels et tertiaires sur mesure dans l'arbitrage dynamique 24 h GEMS, l'écrêtement capacitaire flamand et l'absorption solaire à prix négatifs sans développement spécifique.
 
 ---
 
@@ -2406,6 +2442,24 @@ Modulation locale du courant 100 % sans cloud pour bornes Hardy Barth Salia et e
 
 ---
 
+### 3.62 Borne VE Modbus Personnalisée (Profil Registres UI)
+
+- **Identifiant du Modèle**: `custom_modbus_charger`
+- **Fabricant / Marque**: Custom Modbus
+- **Modèles Matériels Compatibles**: Toute borne de recharge VE AC ou contrôleur de charge Modbus TCP ou RS-485 RTU configuré via l'Éditeur UI de Profils Registres certifié
+- **Interface de Communication**: Modbus TCP / RTU (Port configurable ou bus `/dev/serial/by-id/*`, ID d'unité, lectures `FC03`/`FC04` & écritures optionnelles `FC06`/`FC16`)
+
+#### Données de Télémétrie Lues par GEMS
+Puissance de charge (W), Énergie de session cumulée (kWh), État prise/session et courants/tensions triphasés mappés via l'UI (`int16`/`uint16`/`int32`/`uint32`/`float32` + SunSpec SF).
+
+#### Consignes Pilotables & Données Écrites par GEMS
+Limite dynamique optionnelle du courant de charge (`ev_max_current_a`, bornée aux limites du disjoncteur), battement Watchdog périodique et courant de repli sécurisé à l'arrêt.
+
+#### Rôle Pratique & Automatisation GEMS
+Intègre des bornes VE Modbus hors catalogue dans l'équilibrage dynamique infra-seconde GEMS, la charge solaire, la planification d'échéance de départ (`+kWh avant HH:MM`) et la protection des fusibles principaux.
+
+---
+
 ## 4. Compteurs Intelligents & Analyseurs de Réseau (40 Appareils)
 
 Les compteurs de tête constituent la base télémétrique de toute la boucle de régulation GEMS. Ils mesurent en continu la puissance nette prélevée/injectée, les courants par phase (L1, L2, L3 en A), les tensions simples/composées (L1, L2, L3 en V), les index d'énergie (kWh), le volume de gaz couplé (m³) et le registre officiel flamand de pointe quart-horaire (W). Cette lecture infra-seconde garantit un délestage instantané, le respect du zéro-injection et la protection des fusibles principaux.
@@ -3130,6 +3184,24 @@ Lecture optique infrarouge sans cloud pour compteurs numériques européens dép
 
 ---
 
+### 4.41 Compteur Intelligent Modbus Personnalisé (Profil Registres UI)
+
+- **Identifiant du Modèle**: `custom_modbus_meter`
+- **Fabricant / Marque**: Custom Modbus
+- **Modèles Matériels Compatibles**: Tout analyseur réseau rail DIN ou sous-compteur de production PV Modbus TCP ou RS-485 RTU configuré via l'Éditeur UI de Profils Registres certifié
+- **Interface de Communication**: Modbus TCP / RTU (Port configurable ou bus `/dev/serial/by-id/*`, ID d'unité, registres d'entrée et de maintien `FC03`/`FC04`)
+
+#### Données de Télémétrie Lues par GEMS
+Puissance nette réseau ou PV (W), Compteurs d'énergie prélevée & injectée (kWh), Courants de phase (`L1, L2, L3` en A) & Tensions (`L1, L2, L3` en V) mappés via l'UI selon tous les ordres d'octets (`ABCD`, `CDAB`, `BADC`, `DCBA`).
+
+#### Consignes Pilotables & Données Écrites par GEMS
+Autonome / Lecture seule
+
+#### Rôle Pratique & Automatisation GEMS
+Permet un mappage de registres vérifié avec test de lecture en un clic pour les compteurs d'énergie Modbus industriels et régionaux (en compteur principal réseau ou sous-compteur de production PV).
+
+---
+
 ## 5. Relais Intelligents & Actionneurs Thermiques (12 Appareils)
 
 Les relais intelligents, routeurs solaires et contacteurs pilotent les charges thermiques importantes — pompes à chaleur (via contacts secs SG-Ready ou Modbus TCP direct), ballons d'eau chaude sanitaire (ECS), pompes de filtration de piscine et thermoplongeurs électriques. GEMS enclenche ces équipements dès que le surplus solaire dépasse les seuils configurés ou lorsque les prix spot deviennent négatifs, avec une hystérésis stricte anti-court-cycle pour protéger les compresseurs.
@@ -3192,17 +3264,17 @@ Commutation industrielle de contacteurs pour charges de forte intensité, batter
 
 - **Identifiant du Modèle**: `sgready_heatpump`
 - **Fabricant / Marque**: SG-Ready (Daikin, Nibe, Bosch/Nefit, Vaillant, Panasonic, Mitsubishi, Stiebel Eltron, Wolf)
-- **Modèles Matériels Compatibles**: Standard SG-Ready (Smart Grid Ready) Pompes à Chaleur via doubles contacts secs libres de potentiel ou module local
-- **Interface de Communication**: API HTTP REST locale / Contrôleur relais (Port par défaut : 80, REST Endpoint: /api/sgready)
+- **Modèles Matériels Compatibles**: Pompes à chaleur standard SG-Ready 4 états via deux canaux RelayController liés (`sgready_relay1_id` + `sgready_relay2_id`, ex. relais Shelly ou Modbus) ou passerelle HTTP REST locale
+- **Interface de Communication**: Liaison Double Relais 4 États (`[1,0]`, `[0,0]`, `[0,1]`, `[1,1]`) ou API HTTP REST locale (`/api/sgready`)
 
 #### Données de Télémétrie Lues par GEMS
-État de fonctionnement SG-Ready (État 1 : Délestage / État 2 : Normal / État 3 : Boost / État 4 : Marche forcée), puissance consommée (W).
+État de fonctionnement SG-Ready 4 états (État 1 `[1,0]` : Délestage réseau / État 2 `[0,0]` : Normal / État 3 `[0,1]` : Solaire & tarif creux recommandé / État 4 `[1,1]` : Boost thermique forcé), puissance électrique cumulée (W).
 
 #### Consignes Pilotables & Données Écrites par GEMS
-Mode de fonctionnement SG-Ready (État 2 Normal vs État 3 Boost thermique).
+Pilotage complet SG-Ready 4 états (`État 1` délestage de pointe limité à 2 h max., `État 2` Normal, `État 3` préchauffage confort solaire/pré-pointe, `État 4` boost forcé à prix négatifs) avec temporisation anti-court-cycle compresseur de 600 s.
 
 #### Rôle Pratique & Automatisation GEMS
-Stockage thermique automatisé par pompe à chaleur : commande l'état 3 (consigne thermique relevée) durant les surplus solaires ou heures à prix négatifs pour préchauffer l'ECS et les ballons tampons, puis revient à l'état 2 lors des pointes réseau.
+Stockage thermique 4 états & protection de pointe : préchauffe l'ECS et les ballons tampons lors de surplus solaires ou de créneaux peu coûteux avant les pointes du soir (`État 3`), maximise le stockage thermique en cas de prix négatifs (`État 4`) et ne déleste le compresseur (`État 1`) qu'en dernier recours lorsque les VE sont en pause et l'appui batterie épuisé.
 
 ---
 

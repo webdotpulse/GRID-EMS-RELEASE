@@ -149,3 +149,10 @@ GEMS berekent de live **Geschatte GRID-EMS Besparing** (`Dag`, `Maand`, `Jaar` e
 - **Batterij & Tariefsturing (`battery_savings_eur`)**: Opgeslagen batterij-energie die tijdens dure uren wordt ontladen, afgezet tegen de werkelijke laadkost van die opgeslagen energie.
 - **Slim EV-laden & Terugregeling (`smart_dispatch_savings_eur`)**: Gerealiseerd tariefvoordeel door laden in daluren t.o.v. het daggemiddelde plus vermeden negatieve terugleverkosten dankzij actieve PV-terugregeling en lokale sturing.
 - **Capaciteitspiek-besparing (`peak_shaving_savings_eur`, enkel Vlaanderen)**: Vermeden maandelijkse *Capaciteitstarief*-toeslagen doordat batterij- en EV-piekbewaking de kwartierpiek lager houdt dan de ongestuurde belasting (strikt `€ 0,00` en verborgen buiten Vlaanderen).
+
+---
+
+## 6. 24-uurs Dynamische Batterijplanner, EV-vertrekplanning & Thermische Buffering
+- **Piekbewuste 24-uurs Batterijplanning & Ochtend-zonneruimte (`solar_hold`)**: Combineert 15-minuten (`15m`) en uurlijkse (`60m`) effectieve afname- en teruglevertarieven met zuivere weekdag/weekend basislastprofielen en dakoriëntatie-bewuste PV-voorspellingen. Bij onrendabele of negatieve middagprijzen houdt GEMS 's ochtends batterijruimte vrij (`solar_hold`) tijdens rendabele teruglevering zodat de batterij 's middags gratis zonnestroom opvangt vóór terugregeling nodig is.
+- **Laadpaal-gestuurd EV-vertrekdoel (`+kWh tegen UU:MM`)**: Selecteert zonne-overschot en de goedkoopste kwartieren vóór `departure_time` binnen het Vlaamse piekplafond en de hoofdzekering, met automatische piekveilige inhaalsturing zodra de resterende tijd dit vereist.
+- **4-Standen SG-Ready & Thermische Voorverwarming / Noodafschakeling**: Verhoogt thermische comfortdoelen bij zonne-overschot, negatieve prijzen of goedkope uren vóór avondpieken (`Stand 3` / `Stand 4`) en schakelt enkel als laatste redmiddel terug (`Stand 1` met compressorbescherming) wanneer EV-laden reeds op `0 A` staat en batterijsteun volledig benut is.

@@ -209,4 +209,15 @@ Available in **Certified Installer Mode** (`Settings -> Commissioning Test`) and
 * **Guided Issue Remediation**: Detects misconfigurations or offline buses (such as disabled inverter curtailment, unconfigured hybrid battery capacity, EV charger locked in `Off` mode, or tripped communication circuit breakers) and provides one-click **Apply Fix & Re-Test** actions locally and from the cloud portal.
 * **Official Verification Report**: Generates a downloadable A4 PDF Commissioning Certificate and machine-readable JSON verification archive, while streaming live step-by-step progress to **GRID-EMS-SERVER**.
 
+---
+
+## 10. Roof PV Geometry, EV Departure Targets, Custom Modbus & Local Read-Only Integration
+
+* **Dual-Orientation Roof PV Geometry (`Settings -> Devices -> Inverter`)**: Configure primary array roof tilt (`pv_tilt_deg`, default `35°`) and azimuth (`pv_azimuth_deg`, `0°` South, `-90°` East, `+90°` West) plus optional secondary MPPT string capacity, tilt, and azimuth (`pv_string2_*`) on inverters such as **Solis** for plane-of-array solar forecasting with automatic roof-shading calibration.
+* **Charger-Side EV Departure Target (`Settings -> Devices -> EV Charger` & Dashboard Modal)**: Configure an optional session energy target (`target_session_energy_kwh`, e.g. `+20 kWh`) and departure time (`departure_time`, e.g. `07:00`) on wallboxes such as **RAEDIAN**—tracked strictly via the charger's own meter with zero vehicle APIs.
+* **4-State Dual-Relay SG-Ready & Thermal Pre-Heating (`Settings -> Relays` & `Settings -> Strategy`)**: Bind two relay channels (`sgready_relay1_id` + `sgready_relay2_id`) into a unified 4-state SG-Ready heat pump controller (`State 1` Lockout, `State 2` Normal, `State 3` Solar/Cheap Recommended, `State 4` Negative-Price Boost) and configure optional thermal comfort pre-heating (`thermal_preheat_enabled`, `thermal_preheat_offset_c`).
+* **Custom Modbus Profile Builder (`Settings -> Devices`, Certified Installer Mode)**: Onboard non-catalog Modbus TCP/RTU meters, inverters, batteries, and EV chargers using UI-mapped `FC03`/`FC04` telemetry registers, optional `FC06`/`FC16` setpoints with watchdog/fallback safety, live **Read / Test Register**, and JSON profile import/export.
+* **Read-Only Local Integration Surface (`Settings -> Network`)**: Enable outbound MQTT v3.1.1 telemetry publishing (`mqtt_enabled`, optional TLS, credentials, and one-click Home Assistant MQTT Auto-Discovery) and/or the opt-in LAN-only Read-Only Modbus TCP server (`local_modbus_tcp_enabled`, default port `1502`, `FC03`/`FC04` only, rejecting external write commands).
+
+
 

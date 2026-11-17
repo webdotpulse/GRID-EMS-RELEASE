@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Version du Système</span>
-          <span class="cover-meta-val">GEMS v9.42.1</span>
+          <span class="cover-meta-val">GEMS v9.43.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">À Qui S'adresse Ce Guide</span>
@@ -1836,7 +1836,22 @@
       <tr>
         <td><strong>Chauffer mon ballon d'eau chaude ou ma PAC SG-Ready avec le surplus solaire</strong></td>
         <td>Paramètres &rarr; <strong>Relais &amp; Commutateurs</strong></td>
-        <td>Ajoutez une règle avec <strong>Condition</strong> = <code>solar_export_exceeds</code> (ex. <code>1500 W</code>) et réglez <strong>Durée Min. de Marche</strong> = <code>900 sec</code>.</td>
+        <td>Ajoutez une règle avec <strong>Condition</strong> = <code>solar_export_exceeds</code> (ex. <code>1500 W</code>) et <strong>Durée Min. de Marche</strong> = <code>900 sec</code>, ou liez deux relais en une <strong>PAC SG-Ready 4 États</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>Fournir +20 kWh à mon VE avant 07:00 sans API véhicule</strong></td>
+        <td>Tableau de bord &rarr; <strong>Borne VE</strong> (ou Paramètres &rarr; <strong>Appareils</strong>)</td>
+        <td>Définissez l'<strong>Énergie Cible (+kWh)</strong> et l'<strong>Heure de Départ (HH:MM)</strong> sur votre borne <strong>Raedian</strong>. GEMS suit les kWh via le compteur de la borne et planifie le solaire et les quarts d'heure les moins chers sans dépasser vos plafonds.</td>
+      </tr>
+      <tr>
+        <td><strong>Garder de la réserve batterie pour les prix solaires négatifs de l'après-midi</strong></td>
+        <td>Tableau de bord &rarr; <strong>Prévision Batterie 24h</strong></td>
+        <td>Automatique en mode <strong>Prévision Dynamique 24h</strong> : GEMS maintient la réserve matinale (<code>solar_hold</code>) pendant l'injection rentable afin que la batterie <strong>Solis</strong> absorbe le solaire à prix négatif à midi avant tout écrêtement.</td>
+      </tr>
+      <tr>
+        <td><strong>Diffuser la télémétrie en lecture seule via MQTT local ou Modbus TCP LAN</strong></td>
+        <td>Paramètres &rarr; <strong>Réseau</strong></td>
+        <td>Activez la publication sortante <strong>MQTT v3.1.1</strong> (avec auto-découverte Home Assistant en un clic) ou le <strong>Serveur Modbus TCP Lecture Seule</strong> sur le LAN (port <code>1502</code>, <code>FC03</code>/<code>FC04</code> uniquement).</td>
       </tr>
     </tbody>
   </table>

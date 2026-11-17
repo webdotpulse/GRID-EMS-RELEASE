@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Systeemversie</span>
-          <span class="cover-meta-val">GEMS v9.42.1</span>
+          <span class="cover-meta-val">GEMS v9.43.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Voor Wie Is Deze Gids</span>
@@ -1834,7 +1834,22 @@
       <tr>
         <td><strong>Mijn warmwaterboiler of SG-Ready warmtepomp opwarmen met zonne-overschot</strong></td>
         <td>Instellingen &rarr; <strong>Relais &amp; Schakelaars</strong></td>
-        <td>Voeg een regel toe met <strong>Voorwaarde</strong> = <code>solar_export_exceeds</code> (bijv. <code>1500 W</code>) en stel <strong>Min. Inschakeltijd</strong> = <code>900 sec</code> in.</td>
+        <td>Voeg een regel toe met <strong>Voorwaarde</strong> = <code>solar_export_exceeds</code> (bijv. <code>1500 W</code>) en <strong>Min. Inschakeltijd</strong> = <code>900 sec</code>, of koppel twee relais tot een <strong>4-Standen SG-Ready Warmtepomp</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>+20 kWh in mijn wagen laden tegen 07:00 zonder voertuig-API's</strong></td>
+        <td>Dashboard &rarr; <strong>EV-laadpaal</strong> (of Instellingen &rarr; <strong>Toestellen</strong>)</td>
+        <td>Stel <strong>Sessiedoel (+kWh)</strong> en <strong>Vertrektijd (UU:MM)</strong> in op uw <strong>Raedian</strong>-laadpaal. GEMS meet de geladen kWh op de laadpaalmeter en kiest automatisch zon + de goedkoopste piekveilige kwartieren.</td>
+      </tr>
+      <tr>
+        <td><strong>Batterijruimte vrijhouden voor negatieve middagprijzen</strong></td>
+        <td>Dashboard &rarr; <strong>Batterij 24u Prognose</strong></td>
+        <td>Automatisch actief bij <strong>Dynamische 24u-prognose</strong>: GEMS houdt 's ochtends batterijruimte vrij (<code>solar_hold</code>) bij rendabele injectie zodat uw <strong>Solis</strong>-batterij 's middags negatieve zonnestroom opvangt vóór terugregeling nodig is.</td>
+      </tr>
+      <tr>
+        <td><strong>Alleen-lezen telemetrie delen via lokale MQTT of LAN Modbus TCP</strong></td>
+        <td>Instellingen &rarr; <strong>Netwerk</strong></td>
+        <td>Schakel uitgaande <strong>MQTT v3.1.1</strong> (met 1-klik Home Assistant Auto-Discovery) of de LAN-only <strong>Alleen-lezen Modbus TCP-server</strong> (poort <code>1502</code>, enkel <code>FC03</code>/<code>FC04</code>) in.</td>
       </tr>
     </tbody>
   </table>
