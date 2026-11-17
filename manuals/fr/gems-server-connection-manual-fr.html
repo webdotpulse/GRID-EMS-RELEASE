@@ -330,7 +330,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Version Applicable</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.41.1-release (Version Officielle)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.42.0-release (Version Officielle)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Service Cloud Central</span>
@@ -357,7 +357,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Référence Terrain Confidentielle</span>
-        <span>Documentation v9.41.1</span>
+        <span>Documentation v9.42.0</span>
       </div>
     </div>
 
@@ -669,6 +669,11 @@ Content-Type: application/json
           <td>Applique les paramètres validés de tarifs, d'écrêtage de pointe, de règles relais ou de cluster DLB à la base locale, ou déclenche l'envoi immédiat d'un instantané de configuration assaini (<code>POST /api/v1/device/settings</code>) excluant tout mot de passe ou jeton local.</td>
         </tr>
         <tr>
+          <td><code>ADD_HARDWARE_DEVICE</code> / <code>UPDATE_HARDWARE_DEVICE</code> / <code>DELETE_HARDWARE_DEVICE</code></td>
+          <td><code>id</code> : int (modification/suppression), <code>template</code> : string, <code>host</code> : string, <code>port</code> / <code>modbus_id</code> / paramètres pilote</td>
+          <td>Ajoute, modifie ou supprime à distance des équipements terrain (tels que les onduleurs hybrides/retrofit <strong>Solis</strong>, les bornes <strong>Raedian</strong>, les compteurs intelligents et les relais) dans la base SQLite locale, recharge immédiatement les pollers actifs tout en préservant les mots de passe locaux masqués et renvoie un instantané matériel mis à jour au cloud.</td>
+        </tr>
+        <tr>
           <td><code>OTA_UPDATE</code> / <code>REBOOT</code></td>
           <td><code>target_tag</code> : string (optionnel, dernière version)<br><code>delay_sec</code> : int (défaut 5)</td>
           <td>Lance une mise à jour logicielle OTA vérifiée cryptographiquement (diffusant sa progression sous la source de journal <code>updater</code> avant redémarrage) ou exécute un redémarrage propre du boîtier après acquittement ACK.</td>
@@ -776,7 +781,7 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • Manuel Officiel de Connexion Terrain GRID-EMS-SERVER • Version v9.41.1
+      GEMS (New Energy Grid) • Manuel Officiel de Connexion Terrain GRID-EMS-SERVER • Version v9.42.0
     </div>
 
   </div>

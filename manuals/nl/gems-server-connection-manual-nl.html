@@ -330,7 +330,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Toepasselijke Release</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.41.1-release (Officiële Release)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.42.0-release (Officiële Release)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Centrale Cloudservice</span>
@@ -357,7 +357,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Vertrouwelijke Veldreferentie</span>
-        <span>Documentatie v9.41.1</span>
+        <span>Documentatie v9.42.0</span>
       </div>
     </div>
 
@@ -669,6 +669,11 @@ Content-Type: application/json
           <td>Past gevalideerde tarief-, piekbewakings-, relaisregel- of EV-cluster-DLB-instellingen toe op de edge-database, of start direct een geschoonde configuratie-push (<code>POST /api/v1/device/settings</code>) zonder wachtwoorden of lokale tokens.</td>
         </tr>
         <tr>
+          <td><code>ADD_HARDWARE_DEVICE</code> / <code>UPDATE_HARDWARE_DEVICE</code> / <code>DELETE_HARDWARE_DEVICE</code></td>
+          <td><code>id</code>: int (bij wijzigen/verwijderen), <code>template</code>: string, <code>host</code>: string, <code>port</code> / <code>modbus_id</code> / driverparameters</td>
+          <td>Voegt gekoppelde hardwaretoestellen (zoals <strong>Solis</strong> hybride/retrofit-omvormers, <strong>Raedian</strong> laadpunten, slimme meters en relais) op afstand toe, werkt deze bij of verwijdert ze uit de lokale SQLite-database, herlaadt direct de actieve pollers met behoud van gemaskeerde lokale wachtwoorden en stuurt een bijgewerkte hardwaresnapshot terug naar de cloud.</td>
+        </tr>
+        <tr>
           <td><code>OTA_UPDATE</code> / <code>REBOOT</code></td>
           <td><code>target_tag</code>: string (optioneel, nieuwste)<br><code>delay_sec</code>: int (standaard 5)</td>
           <td>Start een cryptografisch geverifieerde over-the-air software-update (met live statusrapportage onder de logbron <code>updater</code> vóór herstart) of voert na commando-ACK een gecontroleerde systeemherstart uit.</td>
@@ -776,7 +781,7 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Officiële Verbindingshandleiding • Versie v9.41.1
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Officiële Verbindingshandleiding • Versie v9.42.0
     </div>
 
   </div>

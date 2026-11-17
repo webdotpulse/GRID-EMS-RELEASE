@@ -350,6 +350,11 @@
                   <td>Actuates smart relay or contactor for SG-Ready heat pump boost or domestic hot water heating.</td>
                 </tr>
                 <tr>
+                  <td><code>ADD_HARDWARE_DEVICE</code> / <code>UPDATE_HARDWARE_DEVICE</code> / <code>DELETE_HARDWARE_DEVICE</code></td>
+                  <td><code>id</code>, <code>template</code>, <code>host</code>, driver parameters</td>
+                  <td>Remotely adds, edits, or removes hardware devices (e.g. <strong>Solis</strong> inverters, <strong>Raedian</strong> wallboxes, smart meters) while preserving masked local credentials.</td>
+                </tr>
+                <tr>
                   <td><code>UPDATE_SETTINGS</code> / <code>OTA_UPDATE</code> / <code>REBOOT</code></td>
                   <td>Setting keys or <code>delay_sec</code></td>
                   <td>Applies validated site parameters, triggers signed OTA package installation, or executes a graceful appliance reboot.</td>

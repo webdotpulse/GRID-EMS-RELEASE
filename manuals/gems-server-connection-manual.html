@@ -328,7 +328,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.41.1-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.42.0-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Central Cloud Service</span>
@@ -355,7 +355,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.41.1</span>
+        <span>Documentation v9.42.0</span>
       </div>
     </div>
 
@@ -669,6 +669,11 @@ Content-Type: application/json
           <td>Applies validated site tariff, peak-shaving, relay rule, or fleet cluster DLB settings to the edge database, or triggers an immediate sanitized configuration snapshot push (<code>POST /api/v1/device/settings</code>) excluding all passwords and local tokens.</td>
         </tr>
         <tr>
+          <td><code>ADD_HARDWARE_DEVICE</code> / <code>UPDATE_HARDWARE_DEVICE</code> / <code>DELETE_HARDWARE_DEVICE</code></td>
+          <td><code>id</code>: int (for update/delete), <code>template</code>: string, <code>host</code>: string, <code>port</code> / <code>modbus_id</code> / driver parameters</td>
+          <td>Adds, edits, or removes field hardware devices (such as <strong>Solis</strong> hybrid/retrofit inverters, <strong>Raedian</strong> wallboxes, smart meters, and relays) in the local SQLite database, reloads active pollers immediately, preserves existing on-site credentials when masked, and pushes an updated hardware snapshot back to the cloud.</td>
+        </tr>
+        <tr>
           <td><code>OTA_UPDATE</code> / <code>REBOOT</code></td>
           <td><code>target_tag</code>: string (optional, latest)<br><code>delay_sec</code>: int (default 5)</td>
           <td>Initiates a cryptographically verified over-the-air software update (streaming status under the <code>updater</code> log source before rebooting) or executes a graceful appliance reboot after command ACK.</td>
@@ -776,7 +781,7 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.41.1
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.42.0
     </div>
 
   </div>
