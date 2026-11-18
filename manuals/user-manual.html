@@ -246,9 +246,9 @@
           <div class="doc-screenshot-caption">Mobile Viewport (375x812): Fully responsive vertical stack for smartphone and touchscreen kiosk monitoring.</div>
         </div>
 
-        <h3>Dynamic Node Visibility</h3>
+        <h3>Dynamic Node Visibility &amp; Stale/Offline Telemetry Safeguards</h3>
         <p>
-          In accordance with strict UI directives, hardware nodes (Grid, Solar Inverters, Battery Storage, EV Chargers, Heat Pump, Smart Relays) appear <strong>only when configured and physically communicating</strong>. If your installation has no battery or EV charger, those cards are cleanly hidden, keeping your dashboard clutter-free.
+          In accordance with strict UI directives, hardware nodes (Grid, Solar Inverters, Battery Storage, EV Chargers, Heat Pump, Smart Relays) appear <strong>only when configured and physically communicating</strong>. If your installation has no battery or EV charger, those cards are cleanly hidden, keeping your dashboard clutter-free. Whenever live telemetry turns stale or a device goes offline, GEMS displays a prominent warning banner, excludes offline devices from live power aggregates, and enforces safe EV fallback limits across <code>1×230V</code>, <code>3×230V</code> Delta, and <code>3×400V+N</code> supplies. Clicking the Battery node also reveals the 24-hour peak-aware forecast (including morning <code>solar_hold</code> headroom), while EV wallboxes (such as <strong>Raedian</strong>) support optional charger-side departure targets (<code>+kWh by HH:MM</code>, zero vehicle APIs).
         </p>
 
         <!-- Historical Charts & Overlays -->

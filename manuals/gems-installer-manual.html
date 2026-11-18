@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.43.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.43.1-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -988,8 +988,8 @@
     <tbody>
       <tr>
         <td><code>Bay Number &amp; Fleet Priority</code></td>
-        <td>Bay <code>1–64</code> • <code>VIP</code>, <code>High</code>, <code>Normal</code>, <code>Solar Only</code></td>
-        <td>Assigns physical bay number and DLB weighting: <strong>VIP (1.5x)</strong>, <strong>High (1.25x)</strong>, <strong>Normal (1.0x)</strong>, or <strong>Solar Only</strong> (pauses when no surplus solar is available).</td>
+        <td>Bay <code>1–64</code> • <code>VIP</code>, <code>High</code>, <code>Normal</code>, <code>Low</code>, <code>Solar Only</code></td>
+        <td>Assigns physical bay number and strict Priority Queue rank (<code>VIP &gt; High &gt; Normal &gt; Low &gt; Solar Only</code>): <strong>Low</strong> yields to Normal bays under load constraints while keeping grid/off-peak access, whereas <strong>Solar Only</strong> pauses when no surplus solar is available.</td>
       </tr>
       <tr>
         <td><code>Enable Automatic 1P/3P Solar Phase Switching</code></td>
@@ -1423,6 +1423,16 @@
         <td><code>force_discharge_above_euro</code></td>
         <td><code>999.0 €/kWh</code> (Disabled)</td>
         <td>Explicit price spike floor above which the battery injects stored energy into the grid. Keep at <code>999</code> (disabled) so the battery supplies local site consumption only without forced grid feed-in.</td>
+      </tr>
+      <tr>
+        <td><code>min_battery_soc</code><br><code>max_battery_soc</code></td>
+        <td>Min: <code>10%</code> (<code>0–80%</code>)<br>Max: <code>100%</code> (<code>50–100%</code>)</td>
+        <td>Configurable battery State of Charge operating guardrails (<code>min_battery_soc &lt; max_battery_soc</code>). Discharging stops once SoC reaches <code>min_battery_soc</code> to protect reserve capacity, and charging caps at <code>max_battery_soc</code> to reduce upper-end cell stress.</td>
+      </tr>
+      <tr>
+        <td><code>solar_forecast_enabled</code></td>
+        <td><strong>Enabled</strong> (<code>true</code>)</td>
+        <td>Enables 24-hour Open-Meteo solar irradiance forecasting (paired with dual-orientation roof tilt/azimuth) and morning <strong>Solar Headroom Hold (<code>solar_hold</code>)</strong> ahead of negative-price afternoon solar surpluses.</td>
       </tr>
       <tr>
         <td><code>battery_wear_cost_eur</code></td>

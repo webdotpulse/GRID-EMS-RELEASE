@@ -46,6 +46,12 @@ Deze groep instellingen bepaalt het kerngedrag van het EMS: hoe het samenwerkt m
   * **Beschrijving:** Effectieve prijsdrempel (€/kWh, standaard `0.0`) waaronder de batterij geforceerd vanuit het net wordt opgeladen.
 * **`force_discharge_above_euro`**
   * **Beschrijving:** Expliciete prijspiekdrempel (€/kWh, standaard `999.0` = uitgeschakeld) waarboven de batterij actief naar het net injecteert. Wanneer uitgeschakeld (`999.0`), dekt de batterij uitsluitend het lokale verbruik.
+* **`min_battery_soc`**
+  * **Beschrijving:** Minimale batterijreserve-laadtoestand (`0`–`80%`, standaard `10%`, strikt lager dan `max_battery_soc`). Het ontladen stopt zodra deze ondergrens is bereikt om reservestroom en levensduur te beschermen.
+* **`max_battery_soc`**
+  * **Beschrijving:** Maximaal batterijlaadplafond (`50`–`100%`, standaard `100%`, strikt hoger dan `min_battery_soc`) om celbelasting aan de bovenkant te beperken wanneer niet dagelijks tot 100% geladen hoeft te worden.
+* **`solar_forecast_enabled`**
+  * **Beschrijving:** Schakelt de 24-uurs Open-Meteo zonneprognose (`true` standaard) in of uit voor dynamische batterijplanning en ochtend-zonneruimte (`solar_hold`) bij negatieve middagprijzen.
 * **`smart_ev_cheapest_hours`**
   * **Beschrijving:** Selecteert automatisch het opgegeven aantal goedkoopste uren van de dag (bijv. 3) om uw elektrische wagen op te laden.
 * **`grid_nominal_current_a`**
@@ -215,6 +221,7 @@ Beschikbaar in de **Gecertificeerde installateursmodus** (`Instellingen -> Oplev
 
 * **Dubbele PV-dakoriëntatie (`Instellingen -> Toestellen -> Omvormer`)**: Stel de dakhelling (`pv_tilt_deg`, standaard `35°`) en oriëntatie/azimut (`pv_azimuth_deg`, `0°` Zuid, `-90°` Oost, `+90°` West) plus een optionele tweede MPPT-string (`pv_string2_*`) in op omvormers zoals **Solis** voor nauwkeurige zonnevoorspellingen met automatische schaduwkalibratie.
 * **Laadpaal-gestuurd EV-vertrekdoel (`Instellingen -> Toestellen -> EV-laadpaal` & Dashboard)**: Configureer optioneel een sessiedoel (`target_session_energy_kwh`, bijv. `+20 kWh`) en vertrektijd (`departure_time`, bijv. `07:00`) op laadpalen zoals **RAEDIAN** — volledig gemeten via de eigen meter van de laadpaal zonder voertuig-API's.
+* **EV-Vloot Prioriteitsniveaus (`Instellingen -> Toestellen -> EV-laadpaal` & `Vloot`):** Wijs aan elk laadpunt een prioriteitsniveau toe voor de DLB-modus `Priority Queue`: **`vip`** (`VIP`), **`high`** (`Hoog`), **`normal`** (`Normaal`), **`low`** (`Laag`) of **`solar_only`** (`Enkel Zon`) — strikt geordend als `VIP > Hoog > Normaal > Laag > Enkel Zon`. Laadpunten op `Laag` mogen nog vanuit het net of in daluren laden nadat `Normaal` is bediend, terwijl `Enkel Zon` pauzeert zonder zonne-overschot.
 * **4-Standen Dubbel-Relais SG-Ready & Thermische Voorverwarming (`Instellingen -> Relais` & `Instellingen -> Strategie`)**: Koppel twee relaiskanalen (`sgready_relay1_id` + `sgready_relay2_id`) tot een 4-standen SG-Ready warmtepompregeling (`Stand 1` Blokkering, `Stand 2` Normaal, `Stand 3` Zon/Dal Aanbevolen, `Stand 4` Negatieve-prijs Boost) en activeer optionele thermische voorverwarming (`thermal_preheat_enabled`, `thermal_preheat_offset_c`).
 * **Aangepaste Modbus-profielbouwer (`Instellingen -> Toestellen`, Gecertificeerde installateursmodus)**: Koppel niet-standaard Modbus TCP/RTU meters, omvormers, batterijen en laadpalen via UI-gekoppelde `FC03`/`FC04`-registers, optionele `FC06`/`FC16`-setpoints met watchdog- en terugvalbeveiliging, een live **Register Testen**-knop en JSON-import/export.
 * **Alleen-lezen Lokale Integratie (`Instellingen -> Netwerk`)**: Schakel uitgaande MQTT v3.1.1-telemetrie in (`mqtt_enabled`, optionele TLS en één-klik Home Assistant MQTT Auto-Discovery) en/of de opt-in LAN-only alleen-lezen Modbus TCP-server (`local_modbus_tcp_enabled`, standaardpoort `1502`, enkel `FC03`/`FC04`, schrijfacties geblokkeerd).

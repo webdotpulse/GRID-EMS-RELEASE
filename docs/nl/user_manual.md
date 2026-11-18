@@ -76,7 +76,8 @@ De `gems.service` systemd-service start automatisch op poort `8080`.
 
 * **Energieoverzicht & Geschatte GRID-EMS Besparing:** Biedt een dagelijks/maandelijks/jaarlijks overzicht van zonne-opbrengst, netafname/-injectie, zelfvoorzieningsgraad én een kaart **Geschatte GRID-EMS Besparing** die de gerealiseerde besparing in euro's uitsplitst over **Zon-zelfverbruik**, **Batterij & Tariefsturing**, **Slim EV-laden & Terugregeling** en (uitsluitend in Vlaanderen) **Capaciteitspiek-besparing**.
 * **Strikte Landspecifieke Weergave:** Vlaamse 15-minuten *Capaciteitstarief*-meters en Belgische Elia groene-energiemix-badges verschijnen uitsluitend op Belgische/Vlaamse locaties, terwijl Nederlandse (`NL`) installaties een zuiver overzicht van `3×25A` fasestromen en *Slim Salderen* tonen zonder buitenlandse tarieftermen.
-* **Live Veiligheids- & Statusmeldingen:** Zowel op desktop als mobiel verschijnen duidelijke waarschuwingsbanners zodra de netmeter uitvalt (met veilige terugvalstroom voor EV-laden), de hoofdzekeringsbewaking actief ingrijpt of een energietoestel offline raakt.
+* **Live Veiligheids- & Statusmeldingen:** Zowel op desktop als mobiel verschijnen duidelijke waarschuwingsbanners zodra de netmeter uitvalt (met veilige terugvalstroom voor EV-laden), live telemetrie veroudert of toestellen offline gaan (waarbij offline toestellen niet worden meegeteld in totale vermogens), de hoofdzekeringsbewaking over `1×230V`, `3×230V` Delta of `3×400V+N` actief ingrijpt of een energietoestel offline raakt.
+* **24-uurs Batterijprognose & EV-vertrekdoel:** Klik op de Batterijkaart op het Dashboard om de piekbewuste 24-uurs prognose te bekijken (inclusief ochtend-zonneruimte `solar_hold` vóór middagen met negatieve prijzen), en stel optioneel **Sessiedoel (`+kWh`)** en **Vertrektijd (`UU:MM`)** in op laadpalen zoals **RAEDIAN** (gemeten via de laadpaalmeter zonder voertuig-API's).
 * **Afdrukbare PDF-energierapporten:** Exporteer dag-, week-, maand- of jaarrapporten in PDF-formaat (inclusief financiële besparingsspecificatie) rechtstreeks vanuit het Dashboard.
 
 ---
@@ -109,6 +110,9 @@ Open **Instellingen** via de navigatiezijbalk (in- of uitklapbaar met de menukno
   * `dynamic_forecast`: Berekent optimale laad-/ontlaadschema's op basis van zonneprognoses en het verbruiksprofiel van de woning.
 * **`force_charge_below_euro`**: Spotprijsdrempel (€/kWh) voor geforceerd netladen.
 * **`force_discharge_above_euro`**: Spotprijsdrempel (€/kWh) waarboven batterij-injectie naar het net wordt toegestaan.
+* **`min_battery_soc` & `max_battery_soc`**: Instelbare ondergrens (`0%–80%`, standaard `10%`) en laadplafond (`50%–100%`, standaard `100%`) om batterijreserve en levensduur te beschermen.
+* **`solar_forecast_enabled`**: Schakelt de 24-uurs zonneprognose en ochtend-zonneruimte (`solar_hold`) in of uit.
+* **EV-Vloot Prioriteitsniveaus (`fleet_priority`)**: In de laadcluster-modus `Priority Queue` gelden vijf geordende niveaus (`VIP > Hoog > Normaal > Laag > Enkel Zon`).
 
 ### 4.3 Energiecontracten & 24-uurs Tariefcurve
 

@@ -46,6 +46,12 @@ Ce groupe de paramètres définit le comportement fondamental de l'EMS : son int
   * **Description :** Seuil de prix effectif (€/kWh, défaut `0.0`) déclenchant la charge forcée de la batterie depuis le réseau.
 * **`force_discharge_above_euro`**
   * **Description :** Seuil explicite de pointe tarifaire (€/kWh, défaut `999.0` = désactivé) autorisant l'injection batterie vers le réseau. Lorsqu'il est désactivé (`999.0`), la batterie couvre uniquement la demande locale.
+* **`min_battery_soc`**
+  * **Description :** Plancher minimal de réserve d'état de charge batterie (`0`–`80 %`, défaut `10 %`, strictement inférieur à `max_battery_soc`). La décharge s'interrompt dès ce seuil pour préserver la réserve et la longévité des cellules.
+* **`max_battery_soc`**
+  * **Description :** Plafond maximal de charge batterie (`50`–`100 %`, défaut `100 %`, strictement supérieur à `min_battery_soc`) pour limiter le vieillissement en fin de charge lorsque le 100 % quotidien n'est pas nécessaire.
+* **`solar_forecast_enabled`**
+  * **Description :** Active ou désactive la prévision d'irradiance solaire Open-Meteo sur 24 heures (`true` par défaut) pour la planification dynamique batterie et la réserve solaire matinale (`solar_hold`).
 * **`smart_ev_cheapest_hours`**
   * **Description :** Sélectionne automatiquement le nombre d'heures les moins chères de la journée (par ex. 3) pour recharger le véhicule électrique.
 * **`grid_nominal_current_a`**
@@ -215,6 +221,7 @@ Disponible en **Mode installateur certifié** (`Paramètres -> Test de Mise en S
 
 * **Géométrie PV Double Orientation (`Paramètres -> Appareils -> Onduleur`)** : Configurez l'inclinaison (`pv_tilt_deg`, `35°` par défaut) et l'azimut (`pv_azimuth_deg`, `0°` Sud, `-90°` Est, `+90°` Ouest) ainsi qu'une seconde chaîne MPPT optionnelle (`pv_string2_*`) sur les onduleurs tels que **Solis** pour une prévision solaire précise avec étalonnage automatique d'ombrage.
 * **Objectif de Départ Borne VE (`Paramètres -> Appareils -> Borne VE` & Tableau de bord)** : Définissez une cible énergétique de session (`target_session_energy_kwh`, ex. `+20 kWh`) et une heure de départ (`departure_time`, ex. `07:00`) sur les bornes telles que **RAEDIAN** — suivies exclusivement par le compteur de la borne sans aucune API véhicule.
+* **Niveaux de Priorité Flotte VE (`Paramètres -> Appareils -> Borne VE` & `Flotte`) :** Attribuez à chaque emplacement un niveau de priorité pour le mode DLB `Priority Queue` : **`vip`** (`VIP`), **`high`** (`Haute`), **`normal`** (`Normale`), **`low`** (`Basse`) ou **`solar_only`** (`Solaire Seul`) — strictement hiérarchisés `VIP > Haute > Normale > Basse > Solaire Seul`. Les bornes `Basse` conservent l'accès au réseau après les emplacements `Normale`, tandis que `Solaire Seul` se met en pause hors surplus PV.
 * **SG-Ready 4 États Double Relais & Préchauffage Thermique (`Paramètres -> Relais` & `Paramètres -> Stratégie`)** : Associez deux canaux relais (`sgready_relay1_id` + `sgready_relay2_id`) en un contrôleur pompe à chaleur SG-Ready 4 états (`État 1` Délestage, `État 2` Normal, `État 3` Solaire/Creux Recommandé, `État 4` Boost Prix Négatifs) et activez le préchauffage confort optionnel (`thermal_preheat_enabled`, `thermal_preheat_offset_c`).
 * **Éditeur UI de Profils Modbus Personnalisés (`Paramètres -> Appareils`, Mode Installateur Certifié)** : Intégrez des compteurs, onduleurs, batteries et bornes VE Modbus TCP/RTU hors catalogue avec mappage UI des registres `FC03`/`FC04`, consignes optionnelles `FC06`/`FC16` sécurisées par watchdog/repli, bouton **Lire / Tester Registre** en direct et import/export JSON.
 * **Surface d'Intégration Locale en Lecture Seule (`Paramètres -> Réseau`)** : Activez la publication sortante MQTT v3.1.1 (`mqtt_enabled`, TLS optionnel et auto-découverte Home Assistant en un clic) et/ou le serveur local LAN Modbus TCP en lecture seule (`local_modbus_tcp_enabled`, port `1502` par défaut, `FC03`/`FC04` uniquement, écritures externes refusées).

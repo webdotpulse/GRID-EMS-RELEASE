@@ -347,6 +347,17 @@
       text-transform: uppercase;
     }
 
+    .badge-low {
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
     .badge-solar {
       background: #dcfce7;
       color: #166534;
@@ -403,7 +414,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.43.0-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.43.1-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Balancing Engine Cycle</span>
@@ -430,7 +441,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.43.0</span>
+        <span>Documentation v9.43.1</span>
       </div>
     </div>
 
@@ -653,25 +664,31 @@
       <tbody>
         <tr>
           <td><span class="badge-vip">VIP</span></td>
-          <td>Weight 4</td>
+          <td>Tier 5 (Highest)</td>
           <td>Receives full rated current (up to max station Amps) first. Never shed unless entire building is at risk.</td>
           <td>Fleet vans on tight delivery schedule, on-call doctor, executive bay.</td>
         </tr>
         <tr>
           <td><span class="badge-high">HIGH</span></td>
-          <td>Weight 3</td>
+          <td>Tier 4</td>
           <td>Receives power immediately after VIP stations have been satisfied.</td>
           <td>Key staff, scheduled company pool cars.</td>
         </tr>
         <tr>
           <td><span class="badge-norm">NORMAL</span></td>
-          <td>Weight 2</td>
+          <td>Tier 3</td>
           <td>Shares remaining cluster headroom equally among all normal bays. Throttled or shed during peak site load.</td>
           <td>Standard employee parking, visitor chargers, overnight residential bays.</td>
         </tr>
         <tr>
+          <td><span class="badge-low">LOW</span></td>
+          <td>Tier 2</td>
+          <td>Yields to Normal bays during capacity constraints, while remaining eligible for grid and off-peak charging.</td>
+          <td>Non-urgent fleet pool vehicles, extended-stay visitor or overnight staff bays.</td>
+        </tr>
+        <tr>
           <td><span class="badge-solar">SOLAR ONLY</span></td>
-          <td>Weight 1</td>
+          <td>Tier 1 (Lowest)</td>
           <td>Receives 0A from grid. Operates strictly when PV export exceeds 1,400W.</td>
           <td>Secondary vehicles, long-dwell airport or hotel parking.</td>
         </tr>
@@ -894,7 +911,7 @@ ws://&lt;GEMS_LOCAL_IP&gt;:8080/api/ocpp/{chargePointId}</pre>
         </tr>
         <tr>
           <td><strong>Priority Buttons</strong></td>
-          <td><code>VIP</code> | <code>HIGH</code> | <code>NORM</code> | <code>SOLAR</code></td>
+          <td><code>VIP</code> | <code>HIGH</code> | <code>NORM</code> | <code>LOW</code> | <code>SOLAR</code></td>
           <td>Instant bay priority override. Operator can promote a vehicle to VIP status with a single click.</td>
         </tr>
         <tr>

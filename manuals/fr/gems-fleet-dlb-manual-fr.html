@@ -347,6 +347,17 @@
       text-transform: uppercase;
     }
 
+    .badge-low {
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
     .badge-solar {
       background: #dcfce7;
       color: #166534;
@@ -403,7 +414,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Version Applicable</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.43.0-release (Version Officielle)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.43.1-release (Version Officielle)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Cycle du Moteur DLB</span>
@@ -430,7 +441,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Référence Terrain Confidentielle</span>
-        <span>Documentation v9.43.0</span>
+        <span>Documentation v9.43.1</span>
       </div>
     </div>
 
@@ -651,25 +662,31 @@
       <tbody>
         <tr>
           <td><span class="badge-vip">VIP</span></td>
-          <td>Poids 4</td>
+          <td>Rang 5 (Max)</td>
           <td>Reçoit en premier son intensité nominale maximale. Jamais délesté sauf risque immédiat pour la protection générale du bâtiment.</td>
           <td>Utilitaires en tournée tendue, médecin de garde, emplacement direction.</td>
         </tr>
         <tr>
           <td><span class="badge-high">HIGH</span></td>
-          <td>Poids 3</td>
+          <td>Rang 4</td>
           <td>Alimenté immédiatement après satisfaction complète des emplacements VIP.</td>
           <td>Commerciaux itinérants, véhicules de pool réservés.</td>
         </tr>
         <tr>
           <td><span class="badge-norm">NORMAL</span></td>
-          <td>Poids 2</td>
+          <td>Rang 3</td>
           <td>Partage équitablement la réserve restante entre emplacements normaux. Bridé ou mis en pause lors des pointes du bâtiment.</td>
           <td>Stationnement collaborateurs standard, bornes visiteurs, recharge résidentielle de nuit.</td>
         </tr>
         <tr>
+          <td><span class="badge-low">LOW</span></td>
+          <td>Rang 2</td>
+          <td>Cède le pas aux emplacements Normaux en cas de contrainte réseau, tout en restant autorisé à charger sur le réseau et en heures creuses.</td>
+          <td>Véhicules de service sans urgence, stationnement prolongé ou charge nocturne non prioritaire.</td>
+        </tr>
+        <tr>
           <td><span class="badge-solar">SOLAR ONLY</span></td>
-          <td>Poids 1</td>
+          <td>Rang 1 (Min)</td>
           <td>0 A prélevé sur le réseau. Fonctionne strictement lorsque l'injection PV dépasse 1 400 W.</td>
           <td>Véhicules secondaires, stationnement longue durée hôtelier ou aéroportuaire.</td>
         </tr>
@@ -890,7 +907,7 @@ ws://&lt;IP_LOCALE_GEMS&gt;:8080/api/ocpp/{chargePointId}</pre>
         </tr>
         <tr>
           <td><strong>Boutons de Priorité</strong></td>
-          <td><code>VIP</code> | <code>HIGH</code> | <code>NORM</code> | <code>SOLAR</code></td>
+          <td><code>VIP</code> | <code>HIGH</code> | <code>NORM</code> | <code>LOW</code> | <code>SOLAR</code></td>
           <td>Forçage instantané de la priorité de l'emplacement. Permet de promouvoir un véhicule en VIP en un seul clic.</td>
         </tr>
         <tr>

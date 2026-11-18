@@ -347,6 +347,17 @@
       text-transform: uppercase;
     }
 
+    .badge-low {
+      background: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #bae6fd;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 7pt;
+      text-transform: uppercase;
+    }
+
     .badge-solar {
       background: #dcfce7;
       color: #166534;
@@ -403,7 +414,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Toepasselijke Release</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.43.0-release (Officiële Release)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.43.1-release (Officiële Release)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Balanceringscyclus</span>
@@ -430,7 +441,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Vertrouwelijke Veldreferentie</span>
-        <span>Documentatie v9.43.0</span>
+        <span>Documentatie v9.43.1</span>
       </div>
     </div>
 
@@ -651,25 +662,31 @@
       <tbody>
         <tr>
           <td><span class="badge-vip">VIP</span></td>
-          <td>Gewicht 4</td>
+          <td>Niveau 5 (Hoogste)</td>
           <td>Ontvangt als eerste de volledige nominale stroom (tot het maximum van de laadpaal). Wordt nooit gepauzeerd tenzij de hoofdzekering van het gebouw direct gevaar loopt.</td>
           <td>Bestelbussen met strakke rittenplanning, arts van wacht, directieparkeerplaats.</td>
         </tr>
         <tr>
           <td><span class="badge-high">HIGH</span></td>
-          <td>Gewicht 3</td>
+          <td>Niveau 4</td>
           <td>Ontvangt direct vermogen zodra alle VIP-laadpunten volledig zijn voorzien.</td>
           <td>Buitendienstmedewerkers, ingeplande deelauto's.</td>
         </tr>
         <tr>
           <td><span class="badge-norm">NORMAL</span></td>
-          <td>Gewicht 2</td>
+          <td>Niveau 3</td>
           <td>Deelt de resterende clusterruimte gelijkmatig onder alle normale laadpunten. Wordt geknepen of gepauzeerd tijdens piekbelasting in het gebouw.</td>
           <td>Standaard personeelsparkeerplaatsen, bezoekersladers, nachtelijk thuisladen.</td>
         </tr>
         <tr>
+          <td><span class="badge-low">LOW</span></td>
+          <td>Niveau 2</td>
+          <td>Maakt bij capaciteitsbeperking plaats voor Normale laadpunten, maar blijft in tegenstelling tot Enkel Zon wél op net- en dalstroom laden.</td>
+          <td>Niet-dringende poolwagens, langparkerende medewerkers of nachtladen met lage urgentie.</td>
+        </tr>
+        <tr>
           <td><span class="badge-solar">SOLAR ONLY</span></td>
-          <td>Gewicht 1</td>
+          <td>Niveau 1 (Laagste)</td>
           <td>Neemt 0A uit het net af. Laadt uitsluitend wanneer de PV-injectie hoger is dan 1.400 W.</td>
           <td>Tweede gezinswagen, langparkeerders bij hotels of luchthavens.</td>
         </tr>
@@ -890,7 +907,7 @@ ws://&lt;GEMS_LOKAAL_IP&gt;:8080/api/ocpp/{chargePointId}</pre>
         </tr>
         <tr>
           <td><strong>Prioriteitsknoppen</strong></td>
-          <td><code>VIP</code> | <code>HIGH</code> | <code>NORM</code> | <code>SOLAR</code></td>
+          <td><code>VIP</code> | <code>HIGH</code> | <code>NORM</code> | <code>LOW</code> | <code>SOLAR</code></td>
           <td>Directe aanpassing van de prioriteit per laadpunt. De beheerder kan een voertuig met één klik promoveren naar VIP.</td>
         </tr>
         <tr>

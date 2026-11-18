@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Systeemversie</span>
-          <span class="cover-meta-val">GEMS v9.43.0</span>
+          <span class="cover-meta-val">GEMS v9.43.1</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Voor Wie Is Deze Gids</span>
@@ -1119,6 +1119,11 @@
         <td><code>2,50 kW</code></td>
         <td>Hoogste geregistreerde 15-minuten kwartierpiek in de lopende kalendermaand (reset op de 1e van elke maand om 00:00). Strikt beperkt tot Vlaamse (<code>BE</code> + <code>flanders</code>) installaties—automatisch verborgen en uitgeschakeld in Nederland en andere landen.</td>
       </tr>
+      <tr>
+        <td><strong>⚠️ Telemetrie- &amp; Veiligheidsbewaking</strong></td>
+        <td><span style="color:#d97706; font-weight:bold;">● VEROUDERD / OFFLINE</span></td>
+        <td>Zodra meetwaarden verouderen of een meter/omvormer offline raakt, toont GEMS een live waarschuwingsbanner, sluit offline toestellen uit van de totaalcijfers en handhaaft veilige hoofdzekeringlimieten voor <code>1×230V</code>, <code>3×230V</code> Delta en <code>3×400V+N</code>.</td>
+      </tr>
     </tbody>
   </table>
 
@@ -1255,8 +1260,8 @@
     <tbody>
       <tr>
         <td><strong>Laadpuntnummer &amp; Vlootprioriteit</strong></td>
-        <td>Laadpunt <code>1–64</code><br><code>VIP</code>, <code>High</code>, <code>Normal</code>, <code>Solar Only</code></td>
-        <td>Wijst een parkeervaknummer en laadprioriteit toe: <strong>VIP (1,5x gewicht)</strong> voor directie/bezoekers, <strong>Hoog (1,25x)</strong>, <strong>Normaal (1,0x)</strong> of <strong>Enkel Zon</strong> (pauzeert wanneer er geen zonne-overschot is).</td>
+        <td>Laadpunt <code>1–64</code><br><code>VIP</code>, <code>Hoog</code>, <code>Normaal</code>, <code>Laag</code>, <code>Enkel Zon</code></td>
+        <td>Wijst een parkeervaknummer en laadprioriteit toe (<code>VIP &gt; Hoog &gt; Normaal &gt; Laag &gt; Enkel Zon</code>): <strong>VIP</strong> voor directie/bezoekers, <strong>Hoog</strong>, <strong>Normaal</strong>, <strong>Laag</strong> (maakt bij krapte plaats voor Normale laadpunten maar behoudt toegang tot netstroom) of <strong>Enkel Zon</strong> (pauzeert zonder zonne-overschot).</td>
       </tr>
       <tr>
         <td><strong>Automatische 1F/3F Zonne-omschakeling</strong></td>
@@ -1271,7 +1276,7 @@
       <tr>
         <td><strong>Cluster Max. Stroom (A) &amp; DLB-verdeling</strong></td>
         <td>bijv. <code>63 A</code> / <code>80 A</code><br><code>priority_queue</code>, <code>equal_share</code>, <code>solar_first</code></td>
-        <td>Begrenst de gezamenlijke stroom van de hele laadgroep. Kies <strong>Priority Queue</strong> (gewogen volgens VIP/Hoog/Normaal), <strong>Equal Share</strong> (gelijke ampères per auto) of <strong>Solar First</strong> (zonne-overschot eerst verdelen).</td>
+        <td>Begrenst de gezamenlijke stroom van de hele laadgroep. Kies <strong>Priority Queue</strong> (geordend volgens VIP/Hoog/Normaal/Laag/Enkel Zon), <strong>Equal Share</strong> (gelijke ampères per auto) of <strong>Solar First</strong> (zonne-overschot eerst verdelen).</td>
       </tr>
       <tr>
         <td><strong>Straight-Through OCPP Smart Forwarder (Proxy)</strong></td>
@@ -1433,7 +1438,9 @@
       <div class="setting-meta-row">
         • <strong>Netlaadplafond (€/kWh):</strong> Maximale stroomprijs waartegen GEMS netstroom inkoopt om de batterij te vullen (standaard <code>0,00 €/kWh</code> = enkel negatieve prijzen; bijv. <code>0,08 €/kWh</code>).<br>
         • <strong>Ontlaadvloer (€/kWh):</strong> Expliciete prijspiekdrempel voor actieve netinjectie vanuit de batterij (standaard <code>999,0 €/kWh</code> = uitgeschakeld, batterij dekt uitsluitend het eigen woningverbruik).<br>
-        • <strong>Batterijslijtagekost (€/kWh):</strong> Verrekent LFP-celdegradatie per cyclus (bijv. <code>0,04 €/kWh</code>). GEMS voert enkel prijsarbitrage uit als de winstmarge groter is dan deze slijtagekost!
+        • <strong>Batterijslijtagekost (€/kWh):</strong> Verrekent LFP-celdegradatie per cyclus (bijv. <code>0,04 €/kWh</code>). GEMS voert enkel prijsarbitrage uit als de winstmarge groter is dan deze slijtagekost!<br>
+        • <strong>Min. Reserve SoC (%) &amp; Max. Laad-SoC (%):</strong> Stelt uw minimale batterijreserve (<code>0%–80%</code>, standaard <code>10%</code>) en maximale laadlimiet (<code>50%–100%</code>, standaard <code>100%</code>) in om batterijcellen en noodreserve te beschermen.<br>
+        • <strong>Zonneprognose Ingeschakeld:</strong> Schakelt de 24-uurs zonneprognose en ochtend-zonneruimte (<code>solar_hold</code>) vóór middagen met negatieve prijzen in of uit.
       </div>
     </div>
 

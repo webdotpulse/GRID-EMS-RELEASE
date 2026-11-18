@@ -784,7 +784,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.43.0</span>
+          <span class="cover-meta-val">GEMS v9.43.1</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Who This Guide Is For</span>
@@ -1118,6 +1118,11 @@
         <td><code>2.50 kW</code></td>
         <td>Highest 15-minute rolling average grid import recorded this calendar month (resets on the 1st of each month at 00:00). Strictly isolated to Flemish (<code>BE</code> + <code>flanders</code>) installations—automatically hidden and disabled in the Netherlands and other countries.</td>
       </tr>
+      <tr>
+        <td><strong>⚠️ Telemetry &amp; Safety Guardrails</strong></td>
+        <td><span style="color:#d97706; font-weight:bold;">● STALE / OFFLINE</span></td>
+        <td>Whenever telemetry ages out or a meter/inverter drops offline, GEMS displays a live warning banner with last-seen age, excludes offline units from aggregate totals, and enforces safe main-fuse fallback across <code>1×230V</code>, <code>3×230V</code> Delta, and <code>3×400V+N</code> connections.</td>
+      </tr>
     </tbody>
   </table>
 
@@ -1254,8 +1259,8 @@
     <tbody>
       <tr>
         <td><strong>Bay Number &amp; Fleet Priority</strong></td>
-        <td>Bay <code>1–64</code><br><code>VIP</code>, <code>High</code>, <code>Normal</code>, <code>Solar Only</code></td>
-        <td>Assigns a parking bay number and charging priority: <strong>VIP (1.5x weight)</strong> for directors/urgent guests, <strong>High (1.25x)</strong>, <strong>Normal (1.0x)</strong>, or <strong>Solar Only</strong> (pauses when no solar surplus is available).</td>
+        <td>Bay <code>1–64</code><br><code>VIP</code>, <code>High</code>, <code>Normal</code>, <code>Low</code>, <code>Solar Only</code></td>
+        <td>Assigns a parking bay number and charging priority (<code>VIP &gt; High &gt; Normal &gt; Low &gt; Solar Only</code>): <strong>VIP</strong> for directors/urgent guests, <strong>High</strong>, <strong>Normal</strong>, <strong>Low</strong> (yields to Normal bays under load constraints while keeping grid/off-peak access), or <strong>Solar Only</strong> (pauses when no solar surplus is available).</td>
       </tr>
       <tr>
         <td><strong>Enable Automatic 1P/3P Solar Phase Switching</strong></td>
@@ -1270,7 +1275,7 @@
       <tr>
         <td><strong>Cluster Max Current (A) &amp; DLB Arbitration Mode</strong></td>
         <td>e.g. <code>63 A</code> / <code>80 A</code><br><code>priority_queue</code>, <code>equal_share</code>, <code>solar_first</code></td>
-        <td>Caps total combined current of all chargers in the parking group. Choose <strong>Priority Queue</strong> (weighted by VIP/High/Normal), <strong>Equal Share</strong> (identical amps for every active car), or <strong>Solar First</strong> (surplus solar distributed first).</td>
+        <td>Caps total combined current of all chargers in the parking group. Choose <strong>Priority Queue</strong> (ordered by VIP/High/Normal/Low/Solar Only), <strong>Equal Share</strong> (identical amps for every active car), or <strong>Solar First</strong> (surplus solar distributed first).</td>
       </tr>
       <tr>
         <td><strong>Straight-Through OCPP Smart Forwarder (Proxy)</strong></td>
@@ -1433,7 +1438,9 @@
       <div class="setting-meta-row">
         • <strong>Grid Charge Ceiling (€/kWh):</strong> Maximum price at which GEMS buys grid electricity to charge the battery (default <code>0.00 €/kWh</code> = negative prices only; e.g. <code>0.08 €/kWh</code>).<br>
         • <strong>Grid Discharge Floor (€/kWh):</strong> Explicit price spike threshold required before injecting battery energy into the grid (default <code>999.0 €/kWh</code> = disabled, battery supplies local household demand only).<br>
-        • <strong>Battery Wear Cost (€/kWh):</strong> Accounts for lithium-iron-phosphate (LFP) cell cycle wear (e.g. <code>0.04 €/kWh</code>). GEMS only performs price arbitrage if the profit spread exceeds this wear cost!
+        • <strong>Battery Wear Cost (€/kWh):</strong> Accounts for lithium-iron-phosphate (LFP) cell cycle wear (e.g. <code>0.04 €/kWh</code>). GEMS only performs price arbitrage if the profit spread exceeds this wear cost!<br>
+        • <strong>Min Reserve SoC (%) &amp; Max Charge SoC (%):</strong> Sets your minimum battery reserve floor (<code>0%–80%</code>, default <code>10%</code>) where discharging stops and your maximum charge ceiling (<code>50%–100%</code>, default <code>100%</code>) to protect battery health.<br>
+        • <strong>Solar Forecast Enabled:</strong> Toggles 24-hour solar forecasting and morning <strong>Solar Headroom Hold (<code>solar_hold</code>)</strong> ahead of negative-price afternoon surpluses.
       </div>
     </div>
 

@@ -95,7 +95,8 @@ GEMS integrates EPEX Spot Day-Ahead electricity prices (fetched daily at 14:00 C
 - **`price_only`**: Force charges the battery from the grid when the spot price drops below `force_charge_below_euro`, and discharges to the grid when price spikes above `force_discharge_above_euro`.
 - **`super_dal_only`**: Restricts grid charging exclusively to provider off-peak contract windows (e.g., Engie Superdal).
 - **`hybrid`**: Combines price-based charging with provider off-peak window optimization.
-- **`dynamic_forecast`**: Computes an optimal 24-hour schedule by combining EPEX hourly/quarter-hour spot prices with solar forecasts and separate **Weekday vs. Weekend adaptive load profiles** learned over the trailing 30 days (`home_base_load_w` fallback), reserving stored battery energy ahead of peak evening tariffs, prioritizing free rooftop solar surplus over paid grid import, and covering local demand without forced grid feed-in unless `force_discharge_above_euro` is explicitly configured.
+- **`dynamic_forecast`**: Computes an optimal 24-hour schedule by combining EPEX hourly/quarter-hour spot prices with solar forecasts (`solar_forecast_enabled`, default `true`) and separate **Weekday vs. Weekend adaptive load profiles** learned over the trailing 30 days (`home_base_load_w` fallback), reserving stored battery energy ahead of peak evening tariffs, prioritizing free rooftop solar surplus over paid grid import, and covering local demand without forced grid feed-in unless `force_discharge_above_euro` is explicitly configured.
+- **Configured Battery SoC Guardrails (`min_battery_soc` & `max_battery_soc`)**: Discharging automatically stops at `min_battery_soc` (`0%–80%`, default `10%`), and scheduled/grid/solar charging respects `max_battery_soc` (`50%–100%`, default `100%`, with `min_battery_soc < max_battery_soc`) to protect cycle longevity and reserve capacity.
 
 ### 3.2 Live BMS Dynamic Power Envelopes, Solar Headroom & Multi-Battery SOC Balancing
 - **Live BMS & Hybrid Inverter AC Headroom Clamping**: Both real-time battery dispatch and the 24-hour dynamic arbitrage forecast query live BMS dynamic maximum charge and discharge power limits derived from real-time BMS current envelopes and pack voltage, while capping hybrid inverter battery discharge to remaining AC output stage headroom so active rooftop solar PV generation is never clipped.
@@ -115,7 +116,7 @@ GEMS controls smart EV charging stations via **Modbus TCP/RTU fieldbus (preferre
 - **Why Modbus TCP is Preferred**: Modbus register writes provide instantaneous, sub-second current throttling (6A to 32A). This is essential for reactive Flanders capacity peak shaving and solar surplus matching. Crucially, it allows home or fleet wallboxes to remain connected to employer reimbursement / CPO backends over OCPP without interference.
 - **Native OCPP Server**: Available for chargers without Modbus TCP or installations requiring standalone, zero-cloud residential charging.
 - **`smart_ev_cheapest_hours`**: Automatically scans the 24-hour EPEX tariff curve and boosts EV charging current during the $N$ cheapest hours of the day.
-- **Dynamic Load Balancing**: Continuously balances EV setpoints against main grid fuse limits (`grid_nominal_current_a`) and phase imbalances (`phase_limit_amps`).
+- **Dynamic Load Balancing & Priority Tiers**: Continuously balances EV setpoints against main grid fuse limits (`grid_nominal_current_a`) and phase imbalances (`phase_limit_amps`) across `1×230V`, `3×230V` Delta, and `3×400V+N` topologies. In Fleet `Priority Queue` mode, stations follow five strict tiers (`VIP > High > Normal > Low > Solar Only`), where `Low` yields to `Normal` bays during capacity constraints while remaining eligible for grid/off-peak charging.
 
 ---
 

@@ -77,7 +77,8 @@ The `gems.service` systemd daemon will start automatically on port `8080`.
 
 * **Metrics Board & Estimated GRID-EMS Savings:** Provides an aggregated daily/monthly/yearly view of solar yield, grid import/export totals, self-consumption ratios, and a live **Estimated GRID-EMS Savings** card attributing real euro savings across **Solar Self-Consumption**, **Battery Arbitrage**, **Smart Off-Peak Dispatch & Negative-Export Shield**, and (on Flemish sites only) **Capacity Peak Shaving**.
 * **Strict Country-Isolated Views:** Flemish 15-minute *Capaciteitstarief* trackers and Belgian Elia renewable mix badges appear strictly on Belgian/Flemish sites, whereas Dutch (`NL`) sites display clean per-phase main-fuse (`3×25A`) and *Smart Saldering* metrics with zero foreign tariff terminology.
-* **Live Safety & Status Banners:** Both desktop and mobile dashboards surface prominent, real-time warning banners whenever the primary grid meter goes offline (confirming safe EV current fallback), main circuit breaker protection actively throttles loads, or a connected device reports communication faults.
+* **Live Safety & Status Banners:** Both desktop and mobile dashboards surface prominent, real-time warning banners whenever the primary grid meter goes offline (confirming safe EV current fallback), live telemetry becomes stale or devices drop offline (automatically excluding offline devices from live power totals), main circuit breaker protection actively throttles loads across `1×230V`, `3×230V` Delta, or `3×400V+N` supplies, or a connected device reports communication faults.
+* **24-Hour Peak-Aware Battery Forecast & EV Departure Target:** Click the Battery card on the Dashboard to inspect the 24-hour forecast schedule (including morning **Solar Headroom Hold** `solar_hold` ahead of negative-price afternoons), and configure optional per-wallbox **Target Session Energy (`+kWh`)** and **Departure Time (`HH:MM`)** on EV chargers such as **RAEDIAN** (tracked strictly from the charger meter with zero vehicle APIs).
 * **Printable PDF Performance Reports:** Export Daily, Weekly, Monthly, or Yearly formatted PDF energy summaries (including itemized financial savings) directly from the Dashboard.
 
 ---
@@ -110,6 +111,9 @@ Access the **Settings** view from the navigation sidebar (which can be collapsed
   * `dynamic_forecast`: Solves optimal charge/discharge schedules based on solar forecasts and baseline consumption.
 * **`force_charge_below_euro`**: Spot price threshold (€/kWh) to trigger forced grid charging.
 * **`force_discharge_above_euro`**: Spot price threshold (€/kWh) to allow battery feed-in during peak pricing.
+* **`min_battery_soc` & `max_battery_soc`**: Configurable battery reserve floor (`0%–80%`, default `10%`) and upper charge ceiling (`50%–100%`, default `100%`) to protect battery health and reserve capacity.
+* **`solar_forecast_enabled`**: Enables or disables 24-hour solar irradiance forecasting and morning solar headroom reservation (`solar_hold`).
+* **EV Fleet Priority Tiers (`fleet_priority`)**: In multi-charger `Priority Queue` mode, stations follow five ordered tiers (`VIP > High > Normal > Low > Solar Only`).
 
 ### 4.3 Energy Contracts & 24-Hour Tariff Visualizer
 

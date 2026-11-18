@@ -93,7 +93,8 @@ GEMS integreert EPEX Spot Day-Ahead elektriciteitsprijzen (dagelijks opgehaald o
 - **`price_only`**: Laadt de batterij geforceerd op vanuit het net zodra de spotprijs onder `force_charge_below_euro` daalt, en ontlaadt naar het net wanneer de prijs boven `force_discharge_above_euro` piekt.
 - **`super_dal_only`**: Beperkt netladen uitsluitend tot superdal-vensters van de energieleverancier (bijv. Engie Superdal).
 - **`hybrid`**: Combineert prijsgestuurde drempels met de superdal-vensters van het contract.
-- **`dynamic_forecast`**: Berekent een kostenoptimaal 24-uurs laad-/ontlaadschema door uurlijkse/kwartier-EPEX-prijzen te combineren met zonneprognoses en afzonderlijke **weekdag- versus weekend-verbruiksprofielen** op basis van de afgelopen 30 dagen (met `home_base_load_w` als terugvalwaarde), waarbij batterijcapaciteit wordt gereserveerd voor avondpieken, gratis zonne-overschot voorrang krijgt en enkel het lokale verbruik wordt gedekt tenzij `force_discharge_above_euro` expliciet is ingesteld.
+- **`dynamic_forecast`**: Berekent een kostenoptimaal 24-uurs laad-/ontlaadschema door uurlijkse/kwartier-EPEX-prijzen te combineren met zonneprognoses (`solar_forecast_enabled`, standaard `true`) en afzonderlijke **weekdag- versus weekend-verbruiksprofielen** op basis van de afgelopen 30 dagen (met `home_base_load_w` als terugvalwaarde), waarbij batterijcapaciteit wordt gereserveerd voor avondpieken, gratis zonne-overschot voorrang krijgt en enkel het lokale verbruik wordt gedekt tenzij `force_discharge_above_euro` expliciet is ingesteld.
+- **Ingestelde Batterij SoC-grenzen (`min_battery_soc` & `max_battery_soc`)**: Ontladen stopt automatisch bij `min_battery_soc` (`0%–80%`, standaard `10%`), terwijl laden de bovengrens `max_battery_soc` (`50%–100%`, standaard `100%`, met `min_battery_soc < max_battery_soc`) respecteert om cellevensduur en noodreserve te waarborgen.
 
 ### 3.2 Live BMS Vermogensgrenzen, Zonne-ruimte & Multi-batterij SOC-balancering
 - **Live BMS- & Hybride AC-vermogensbegrenzing**: Zowel de realtime batterijsturing als de 24-uurs dynamische prognose gebruiken de live maximale laad- en ontlaadvermogens uit het BMS en begrenzen batterij-ontlading op hybride omvormers tot de resterende AC-uitgangsruimte zodat actieve zonneproductie nooit wordt afgetopt.
@@ -113,7 +114,7 @@ GEMS stuurt slimme EV-laadpalen aan via **Modbus TCP/RTU-veldbus (aanbevolen)** 
 - **Waarom Modbus TCP de Voorkeur Heeft**: Modbus-registers bieden directe, sub-seconde stroomregeling (6 A tot 32 A). Dit is essentieel voor reactieve Vlaamse piekbewaking en nauwkeurig zonneladen. Bovendien kan de laadpaal tegelijkertijd via OCPP verbonden blijven met een extern CPO-afrekenplatform of werkgeversvergoedingsdienst zonder enige verstoring.
 - **Ingebouwde OCPP-server**: Beschikbaar voor laadpalen zonder Modbus TCP of voor volledig zelfstandige thuisinstallaties zonder cloud-CPO.
 - **`smart_ev_cheapest_hours`**: Analyseert automatisch de 24-uurs EPEX-tariefcurve en verhoogt het EV-laadvermogen tijdens de $N$ goedkoopste uren van het etmaal.
-- **Dynamic Load Balancing**: Balanceert continu de laadstroom ten opzichte van de hoofdzekering (`grid_nominal_current_a`) en individuele fasestromen (`phase_limit_amps`).
+- **Dynamic Load Balancing & Prioriteitsniveaus**: Balanceert continu de laadstroom ten opzichte van de hoofdzekering (`grid_nominal_current_a`) en individuele fasestromen (`phase_limit_amps`) over `1×230V`, `3×230V` Delta en `3×400V+N` netstelsels. In de vlootmodus `Priority Queue` gelden vijf strikte niveaus (`VIP > Hoog > Normaal > Laag > Enkel Zon`), waarbij `Laag` bij schaarste voorrang verleent aan `Normaal` maar wel op net- of dalstroom mag blijven laden.
 
 ---
 

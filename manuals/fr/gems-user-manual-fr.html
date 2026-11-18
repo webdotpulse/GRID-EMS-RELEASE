@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Version du Système</span>
-          <span class="cover-meta-val">GEMS v9.43.0</span>
+          <span class="cover-meta-val">GEMS v9.43.1</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">À Qui S'adresse Ce Guide</span>
@@ -1119,6 +1119,11 @@
         <td><code>2,50 kW</code></td>
         <td>Plus forte moyenne quart-horaire de prélèvement enregistrée durant le mois civil en cours (remise à zéro le 1er de chaque mois à 00h00). Strictement réservée aux installations flamandes (<code>BE</code> + <code>flanders</code>) — automatiquement masquée et désactivée ailleurs.</td>
       </tr>
+      <tr>
+        <td><strong>⚠️ Télémétrie &amp; Garde-Fous Réseau</strong></td>
+        <td><span style="color:#d97706; font-weight:bold;">● OBSOLÈTE / HORS LIGNE</span></td>
+        <td>Dès qu'une mesure devient obsolète ou qu'un compteur/onduleur passe hors ligne, GEMS affiche un bandeau d'alerte dédié, exclut les appareils hors ligne des totaux et protège les raccordements <code>1×230V</code>, <code>3×230V</code> Delta et <code>3×400V+N</code>.</td>
+      </tr>
     </tbody>
   </table>
 
@@ -1255,8 +1260,8 @@
     <tbody>
       <tr>
         <td><strong>Emplacement &amp; Priorité Flotte</strong></td>
-        <td>Place <code>1–64</code><br><code>VIP</code>, <code>High</code>, <code>Normal</code>, <code>Solar Only</code></td>
-        <td>Attribue un numéro d'emplacement et une priorité de charge : <strong>VIP (poids 1,5x)</strong> pour la direction/visiteurs urgents, <strong>Haute (1,25x)</strong>, <strong>Normale (1,0x)</strong> ou <strong>Solaire Seul</strong> (suspendu hors surplus solaire).</td>
+        <td>Place <code>1–64</code><br><code>VIP</code>, <code>Haute</code>, <code>Normale</code>, <code>Basse</code>, <code>Solaire Seul</code></td>
+        <td>Attribue un numéro d'emplacement et une priorité de charge (<code>VIP &gt; Haute &gt; Normale &gt; Basse &gt; Solaire Seul</code>) : <strong>VIP</strong> pour la direction/visiteurs urgents, <strong>Haute</strong>, <strong>Normale</strong>, <strong>Basse</strong> (cède le pas aux bornes Normales lors des pointes tout en gardant l'accès réseau) ou <strong>Solaire Seul</strong> (suspendu hors surplus solaire).</td>
       </tr>
       <tr>
         <td><strong>Commutation Automatique 1P/3P Solaire</strong></td>
@@ -1271,7 +1276,7 @@
       <tr>
         <td><strong>Courant Max. Cluster (A) &amp; Arbitrage DLB</strong></td>
         <td>ex. <code>63 A</code> / <code>80 A</code><br><code>priority_queue</code>, <code>equal_share</code>, <code>solar_first</code></td>
-        <td>Plafonne le courant total appelé par le groupe de bornes. Choisissez <strong>Priority Queue</strong> (pondéré VIP/Haute/Normale), <strong>Equal Share</strong> (partage égal entre voitures) ou <strong>Solar First</strong> (distribution prioritaire du solaire).</td>
+        <td>Plafonne le courant total appelé par le groupe de bornes. Choisissez <strong>Priority Queue</strong> (ordonné VIP/Haute/Normale/Basse/Solaire Seul), <strong>Equal Share</strong> (partage égal entre voitures) ou <strong>Solar First</strong> (distribution prioritaire du solaire).</td>
       </tr>
       <tr>
         <td><strong>Proxy OCPP Smart Forwarder</strong></td>
@@ -1435,7 +1440,9 @@
       <div class="setting-meta-row">
         • <strong>Plafond de Charge Réseau (€/kWh) :</strong> Prix maximal auquel GEMS achète du courant réseau pour charger la batterie (défaut <code>0,00 €/kWh</code> = prix négatifs uniquement ; ex. <code>0,08 €/kWh</code>).<br>
         • <strong>Plancher de Décharge Réseau (€/kWh) :</strong> Seuil explicite de pointe tarifaire requis avant d'injecter vers le réseau (défaut <code>999,0 €/kWh</code> = désactivé, la batterie couvre uniquement la consommation locale).<br>
-        • <strong>Coût d'Usure Batterie (€/kWh) :</strong> Intègre le vieillissement cyclique des cellules LFP (ex. <code>0,04 €/kWh</code>). GEMS n'effectue un arbitrage que si l'écart tarifaire dépasse ce coût d'usure !
+        • <strong>Coût d'Usure Batterie (€/kWh) :</strong> Intègre le vieillissement cyclique des cellules LFP (ex. <code>0,04 €/kWh</code>). GEMS n'effectue un arbitrage que si l'écart tarifaire dépasse ce coût d'usure !<br>
+        • <strong>SoC Réserve Min. (%) &amp; SoC Charge Max. (%) :</strong> Définit le plancher minimal de réserve (<code>0 %–80 %</code>, défaut <code>10 %</code>) et le plafond maximal de charge (<code>50 %–100 %</code>, défaut <code>100 %</code>) pour préserver la longévité batterie.<br>
+        • <strong>Prévision Solaire Activée :</strong> Active ou désactive la prévision solaire sur 24 h et le maintien matinal de réserve solaire (<code>solar_hold</code>) avant les prix négatifs de l'après-midi.
       </div>
     </div>
 

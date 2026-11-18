@@ -76,7 +76,8 @@ Le démon `systemd` `gems.service` démarre automatiquement sur le port `8080`.
 
 * **Bilan Énergétique & Économies Estimées GRID-EMS :** Présente une synthèse journalière/mensuelle/annuelle du rendement solaire, des volumes importés/injectés, du taux d'autosuffisance ainsi qu'une carte **Économies Estimées GRID-EMS** détaillant les gains financiers réels entre **Autoconsommation Solaire**, **Batterie & Arbitrage Tarifaire**, **Charge VE & Écrêtement** et (en Flandre uniquement) **Écrêtage Capacitaire**.
 * **Isolation Stricte par Pays :** Les jauges quart-horaires du *Capaciteitstarief* flamand et l'indicateur renouvelable belge Elia s'affichent exclusivement sur les sites belges/flamands, tandis que les sites néerlandais (`NL`) présentent la surveillance triphasée `3×25A` et le *Smart Saldering* sans terminologie étrangère.
-* **Bandeaux d'Alerte & de Sécurité en Direct :** Les interfaces bureau et mobile affichent immédiatement une bannière d'alerte en cas de perte du compteur réseau (confirmant le courant de repli sécurisé VE), de délestage actif sur surcharge disjoncteur ou de défaut de communication matériel.
+* **Bandeaux d'Alerte & de Sécurité en Direct :** Les interfaces bureau et mobile affichent immédiatement une bannière d'alerte en cas de perte du compteur réseau (confirmant le courant de repli sécurisé VE), de données obsolètes ou d'appareils hors ligne (exclus automatiquement des totaux de puissance), de délestage actif sur surcharge disjoncteur (`1×230V`, `3×230V` Delta ou `3×400V+N`) ou de défaut de communication matériel.
+* **Prévision Batterie 24h & Objectif de Départ VE :** Cliquez sur la carte Batterie du Tableau de bord pour consulter la planification prévisionnelle sur 24 heures (incluant la réserve solaire matinale `solar_hold` avant les après-midis à prix négatifs), et définissez en option une **Énergie Cible (`+kWh`)** et une **Heure de Départ (`HH:MM`)** sur vos bornes telles que **RAEDIAN** (mesure exclusivement via le compteur de la borne sans API véhicule).
 * **Rapports Énergétiques PDF Imprimables :** Exportez directement depuis le Tableau de bord des synthèses PDF quotidiennes, hebdomadaires, mensuelles ou annuelles incluant le détail des économies réalisées.
 
 ---
@@ -109,6 +110,9 @@ Ouvrez la vue **Paramètres** depuis le menu latéral (réductible via le bouton
   * `dynamic_forecast` : Calcule le programme optimal de charge/décharge selon les prévisions d'ensoleillement et la consommation de base.
 * **`force_charge_below_euro`** : Seuil de prix spot (€/kWh) déclenchant la charge réseau forcée.
 * **`force_discharge_above_euro`** : Seuil de prix spot (€/kWh) autorisant l'injection batterie lors des fortes pointes tarifaires.
+* **`min_battery_soc` & `max_battery_soc`** : Plancher de réserve (`0 %–80 %`, défaut `10 %`) et plafond de charge (`50 %–100 %`, défaut `100 %`) configurables pour préserver la réserve et la longévité des cellules.
+* **`solar_forecast_enabled`** : Active ou désactive la prévision solaire sur 24 heures et la réserve solaire matinale (`solar_hold`).
+* **Priorités Flotte VE (`fleet_priority`)** : En mode multi-bornes `Priority Queue`, cinq niveaux hiérarchisés s'appliquent (`VIP > Haute > Normale > Basse > Solaire Seul`).
 
 ### 4.3 Contrats d'Énergie & Visualiseur Tarifaire 24h
 

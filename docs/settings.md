@@ -46,6 +46,12 @@ This group of settings defines the core behavior of the EMS, governing how it in
   * **Description:** Effective price threshold (€/kWh, default `0.0`) to trigger forced grid battery charging.
 * **`force_discharge_above_euro`**
   * **Description:** Explicit price spike threshold (€/kWh, default `999.0` = disabled) above which the battery injects stored energy into the grid. When disabled (`999.0`), the battery covers local site demand only.
+* **`min_battery_soc`**
+  * **Description:** Minimum battery reserve State of Charge floor (`0`–`80%`, default `10%`, strictly less than `max_battery_soc`). Discharging stops once the battery reaches this floor to preserve backup reserve and cycle life.
+* **`max_battery_soc`**
+  * **Description:** Maximum battery charge ceiling (`50`–`100%`, default `100%`, strictly greater than `min_battery_soc`) to limit upper-end cell stress when a lower daily charge ceiling is preferred.
+* **`solar_forecast_enabled`**
+  * **Description:** Enables or disables 24-hour Open-Meteo solar irradiance forecasting (`true` by default) for dynamic battery planning and morning negative-price solar headroom reservation (`solar_hold`).
 * **`smart_ev_cheapest_hours`**
   * **Description:** Automatically identifies the specified number of cheapest hours of the day (e.g. 3) to charge your EV.
 * **`grid_nominal_current_a`**
@@ -215,6 +221,7 @@ Available in **Certified Installer Mode** (`Settings -> Commissioning Test`) and
 
 * **Dual-Orientation Roof PV Geometry (`Settings -> Devices -> Inverter`)**: Configure primary array roof tilt (`pv_tilt_deg`, default `35°`) and azimuth (`pv_azimuth_deg`, `0°` South, `-90°` East, `+90°` West) plus optional secondary MPPT string capacity, tilt, and azimuth (`pv_string2_*`) on inverters such as **Solis** for plane-of-array solar forecasting with automatic roof-shading calibration.
 * **Charger-Side EV Departure Target (`Settings -> Devices -> EV Charger` & Dashboard Modal)**: Configure an optional session energy target (`target_session_energy_kwh`, e.g. `+20 kWh`) and departure time (`departure_time`, e.g. `07:00`) on wallboxes such as **RAEDIAN**—tracked strictly via the charger's own meter with zero vehicle APIs.
+* **EV Fleet Priority Tiers (`Settings -> Devices -> EV Charger` & `Fleet`):** Assign each charger bay a priority tier in `Priority Queue` DLB mode: **`vip`** (`VIP`), **`high`** (`High`), **`normal`** (`Normal`), **`low`** (`Low`), or **`solar_only`** (`Solar Only`)—ordered strictly `VIP > High > Normal > Low > Solar Only`. `Low` stations continue grid/off-peak charging after `Normal` bays are served, whereas `Solar Only` pauses whenever no PV surplus is available.
 * **4-State Dual-Relay SG-Ready & Thermal Pre-Heating (`Settings -> Relays` & `Settings -> Strategy`)**: Bind two relay channels (`sgready_relay1_id` + `sgready_relay2_id`) into a unified 4-state SG-Ready heat pump controller (`State 1` Lockout, `State 2` Normal, `State 3` Solar/Cheap Recommended, `State 4` Negative-Price Boost) and configure optional thermal comfort pre-heating (`thermal_preheat_enabled`, `thermal_preheat_offset_c`).
 * **Custom Modbus Profile Builder (`Settings -> Devices`, Certified Installer Mode)**: Onboard non-catalog Modbus TCP/RTU meters, inverters, batteries, and EV chargers using UI-mapped `FC03`/`FC04` telemetry registers, optional `FC06`/`FC16` setpoints with watchdog/fallback safety, live **Read / Test Register**, and JSON profile import/export.
 * **Read-Only Local Integration Surface (`Settings -> Network`)**: Enable outbound MQTT v3.1.1 telemetry publishing (`mqtt_enabled`, optional TLS, credentials, and one-click Home Assistant MQTT Auto-Discovery) and/or the opt-in LAN-only Read-Only Modbus TCP server (`local_modbus_tcp_enabled`, default port `1502`, `FC03`/`FC04` only, rejecting external write commands).

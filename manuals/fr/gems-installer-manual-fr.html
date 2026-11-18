@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Micrologiciel / Version</span>
-          <span class="cover-meta-val" data-version-tag="release">v9.43.0-release</span>
+          <span class="cover-meta-val" data-version-tag="release">v9.43.1-release</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Architecture Matérielle</span>
@@ -438,7 +438,7 @@
 
     <div class="cover-footer">
       <span>Système de Gestion d'Énergie GEMS (GRID-EMS)</span>
-      <span>Référence Technique Confidentielle • Documentation v9.43.0</span>
+      <span>Référence Technique Confidentielle • Documentation v9.43.1</span>
     </div>
   </div>
 
@@ -620,7 +620,7 @@
     TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)<br>
     curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"<br>
     <br>
-    # 2. Installer le paquet et ses dépendances (ex. sudo dpkg -i gems_9.43.0_arm64.deb)<br>
+    # 2. Installer le paquet et ses dépendances (ex. sudo dpkg -i gems_9.43.1_arm64.deb)<br>
     sudo dpkg -i "gems_${TAG#v}_arm64.deb"<br>
     sudo apt-get install -f -y<br>
     <br>
@@ -987,8 +987,8 @@
     <tbody>
       <tr>
         <td><code>Numéro d'Emplacement &amp; Priorité</code></td>
-        <td>Emplacement <code>1–64</code> • <code>VIP</code>, <code>Haute</code>, <code>Normale</code>, <code>Solaire Seul</code></td>
-        <td>Attribue le numéro de place et la pondération DLB : <strong>VIP (1,5x)</strong>, <strong>Haute (1,25x)</strong>, <strong>Normale (1,0x)</strong> ou <strong>Solaire Seul</strong> (met en pause en l'absence de surplus photovoltaïque).</td>
+        <td>Emplacement <code>1–64</code> • <code>VIP</code>, <code>Haute</code>, <code>Normale</code>, <code>Basse</code>, <code>Solaire Seul</code></td>
+        <td>Attribue le numéro de place et le rang strict dans la file Priority Queue (<code>VIP &gt; Haute &gt; Normale &gt; Basse &gt; Solaire Seul</code>) : <strong>Basse</strong> cède le pas aux bornes Normales lors des pointes tout en gardant l'accès au réseau/heures creuses, tandis que <strong>Solaire Seul</strong> se met en pause hors surplus photovoltaïque.</td>
       </tr>
       <tr>
         <td><code>Commutation Automatique 1P/3P Solaire</code></td>
@@ -1422,6 +1422,16 @@
         <td><code>force_discharge_above_euro</code></td>
         <td><code>999,0 €/kWh</code> (Désactivé)</td>
         <td>Plancher explicite de pointe tarifaire au-dessus duquel la batterie injecte vers le réseau. Conserver sur <code>999</code> pour couvrir uniquement la consommation locale sans injection forcée.</td>
+      </tr>
+      <tr>
+        <td><code>min_battery_soc</code><br><code>max_battery_soc</code></td>
+        <td>Min : <code>10%</code> (<code>0–80%</code>)<br>Max : <code>100%</code> (<code>50–100%</code>)</td>
+        <td>Bornes configurables d'état de charge (<code>min_battery_soc &lt; max_battery_soc</code>). La décharge s'arrête au plancher <code>min_battery_soc</code> pour préserver la réserve et la charge s'interrompt au plafond <code>max_battery_soc</code> afin de ménager les cellules.</td>
+      </tr>
+      <tr>
+        <td><code>solar_forecast_enabled</code></td>
+        <td><strong>Activé</strong> (<code>true</code>)</td>
+        <td>Active la prévision solaire Open-Meteo sur 24 heures (avec géométrie de toiture double orientation) et le maintien matinal de marge solaire (<code>solar_hold</code>) avant les prix négatifs de l'après-midi.</td>
       </tr>
       <tr>
         <td><code>battery_wear_cost_eur</code></td>

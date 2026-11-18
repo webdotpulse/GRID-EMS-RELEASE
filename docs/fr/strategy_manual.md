@@ -93,7 +93,8 @@ GEMS intègre les prix spot Day-Ahead EPEX (récupérés chaque jour à 14h00 CE
 - **`price_only`** : Force la charge batterie depuis le réseau lorsque le prix spot passe sous `force_charge_below_euro` et autorise la décharge vers le réseau au-dessus de `force_discharge_above_euro`.
 - **`super_dal_only`** : Limite la charge réseau aux plages super-creuses contractuelles du fournisseur (par ex. Engie Superdal).
 - **`hybrid`** : Combine les seuils de prix spot avec l'optimisation des heures super-creuses fournisseur.
-- **`dynamic_forecast`** : Calcule une trajectoire optimale sur 24 heures en croisant les prix EPEX horaires/quart-horaires, les prévisions solaires et des **profils de consommation Semaine vs Week-end** appris sur les 30 derniers jours (avec `home_base_load_w` en repli), réservant l'énergie stockée aux pointes du soir, privilégiant le surplus solaire gratuit et couvrant uniquement la demande locale sauf si `force_discharge_above_euro` est configuré.
+- **`dynamic_forecast`** : Calcule une trajectoire optimale sur 24 heures en croisant les prix EPEX horaires/quart-horaires, les prévisions solaires (`solar_forecast_enabled`, `true` par défaut) et des **profils de consommation Semaine vs Week-end** appris sur les 30 derniers jours (avec `home_base_load_w` en repli), réservant l'énergie stockée aux pointes du soir, privilégiant le surplus solaire gratuit et couvrant uniquement la demande locale sauf si `force_discharge_above_euro` est configuré.
+- **Limites SoC Batterie Configurables (`min_battery_soc` & `max_battery_soc`)** : La décharge s'arrête automatiquement au plancher `min_battery_soc` (`0 %–80 %`, défaut `10 %`) et la charge respecte le plafond `max_battery_soc` (`50 %–100 %`, défaut `100 %`, avec `min_battery_soc < max_battery_soc`) afin de préserver la durée de vie des cellules et la réserve.
 
 ### 3.2 Enveloppes Dynamiques BMS, Marge Solaire & Équilibrage SOC Multi-Batteries
 - **Limitation Dynamique BMS & Marge AC Onduleur Hybride** : Le pilotage temps réel comme le solveur prévisionnel 24h interrogent les limites dynamiques de puissance issues du BMS et plafonnent la décharge batterie des onduleurs hybrides à la marge AC restante afin de ne jamais écrêter la production photovoltaïque active.
@@ -113,7 +114,7 @@ GEMS pilote les bornes de recharge VE via **bus de terrain Modbus TCP/RTU (recom
 - **Pourquoi Privilégier Modbus TCP** : L'écriture directe dans les registres Modbus permet une modulation de courant instantanée inférieure à la seconde (6 A à 32 A), indispensable pour l'écrêtage capacitaire flamand et le suivi précis du surplus solaire. Surtout, la borne conserve sa connexion OCPP vers une plateforme externe CPO ou un service de remboursement employeur sans aucune interférence.
 - **Serveur OCPP Natif** : Destiné aux bornes dépourvues de Modbus TCP ou aux installations résidentielles autonomes sans cloud externe.
 - **`smart_ev_cheapest_hours`** : Analyse automatiquement la courbe EPEX sur 24h et accélère la charge VE durant les $N$ heures les moins chères de la journée.
-- **Dynamic Load Balancing** : Adapte en permanence le courant de charge VE selon le calibre du disjoncteur principal (`grid_nominal_current_a`) et les courants par phase (`phase_limit_amps`).
+- **Dynamic Load Balancing & Niveaux de Priorité** : Adapte en permanence le courant de charge VE selon le calibre du disjoncteur principal (`grid_nominal_current_a`) et les courants par phase (`phase_limit_amps`) sur les réseaux `1×230V`, `3×230V` Delta et `3×400V+N`. En mode flotte `Priority Queue`, cinq niveaux stricts s'appliquent (`VIP > Haute > Normale > Basse > Solaire Seul`), où `Basse` cède la priorité aux bornes `Normale` en cas de contrainte réseau tout en conservant l'accès aux heures creuses.
 
 ---
 

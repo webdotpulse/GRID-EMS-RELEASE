@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Systeemfirmware / Build</span>
-          <span class="cover-meta-val" data-version-tag="release">v9.43.0-release</span>
+          <span class="cover-meta-val" data-version-tag="release">v9.43.1-release</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware-architectuur</span>
@@ -438,7 +438,7 @@
 
     <div class="cover-footer">
       <span>GEMS Energiebeheersysteem (GRID-EMS)</span>
-      <span>Vertrouwelijke Technische Veldreferentie • Documentatie v9.43.0</span>
+      <span>Vertrouwelijke Technische Veldreferentie • Documentatie v9.43.1</span>
     </div>
   </div>
 
@@ -620,7 +620,7 @@
     TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)<br>
     curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"<br>
     <br>
-    # 2. Installeer pakket en afhankelijkheden (bijv. sudo dpkg -i gems_9.43.0_arm64.deb)<br>
+    # 2. Installeer pakket en afhankelijkheden (bijv. sudo dpkg -i gems_9.43.1_arm64.deb)<br>
     sudo dpkg -i "gems_${TAG#v}_arm64.deb"<br>
     sudo apt-get install -f -y<br>
     <br>
@@ -987,8 +987,8 @@
     <tbody>
       <tr>
         <td><code>Laadpuntnummer &amp; Vlootprioriteit</code></td>
-        <td>Laadpunt <code>1–64</code> • <code>VIP</code>, <code>Hoog</code>, <code>Normaal</code>, <code>Enkel Zon</code></td>
-        <td>Wijst het fysieke parkeervak en de DLB-wegingsfactor toe: <strong>VIP (1,5x)</strong>, <strong>Hoog (1,25x)</strong>, <strong>Normaal (1,0x)</strong> of <strong>Enkel Zon</strong> (pauzeert zodra er geen zonne-overschot beschikbaar is).</td>
+        <td>Laadpunt <code>1–64</code> • <code>VIP</code>, <code>Hoog</code>, <code>Normaal</code>, <code>Laag</code>, <code>Enkel Zon</code></td>
+        <td>Wijst het fysieke parkeervak en de strikte Priority Queue-rangorde toe (<code>VIP &gt; Hoog &gt; Normaal &gt; Laag &gt; Enkel Zon</code>): <strong>Laag</strong> maakt bij stroomtekort plaats voor Normale laadpunten maar behoudt toegang tot net- en dalstroom, terwijl <strong>Enkel Zon</strong> pauzeert zodra er geen zonne-overschot beschikbaar is.</td>
       </tr>
       <tr>
         <td><code>Automatische 1F/3F Fase-omschakeling</code></td>
@@ -1422,6 +1422,16 @@
         <td><code>force_discharge_above_euro</code></td>
         <td><code>999,0 €/kWh</code> (Uitgeschakeld)</td>
         <td>Expliciete prijspiekdrempel waarboven de batterij actief naar het net injecteert. Laat op <code>999</code> staan zodat de batterij uitsluitend het eigen verbruik dekt zonder geforceerde teruglevering.</td>
+      </tr>
+      <tr>
+        <td><code>min_battery_soc</code><br><code>max_battery_soc</code></td>
+        <td>Min: <code>10%</code> (<code>0–80%</code>)<br>Max: <code>100%</code> (<code>50–100%</code>)</td>
+        <td>Instelbare SoC-grenzen (<code>min_battery_soc &lt; max_battery_soc</code>). Ontladen stopt bij de ondergrens <code>min_battery_soc</code> om reserve te bewaren, terwijl laden stopt bij het laadplafond <code>max_battery_soc</code> om celveroudering aan de bovenkant te beperken.</td>
+      </tr>
+      <tr>
+        <td><code>solar_forecast_enabled</code></td>
+        <td><strong>Ingeschakeld</strong> (<code>true</code>)</td>
+        <td>Schakelt de 24-uurs Open-Meteo zonneprognose (inclusief dubbele dakoriëntatie) en ochtend-zonneruimte (<code>solar_hold</code>) vóór middaguren met negatieve stroomprijzen in of uit.</td>
       </tr>
       <tr>
         <td><code>battery_wear_cost_eur</code></td>
