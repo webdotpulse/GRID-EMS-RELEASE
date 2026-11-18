@@ -405,7 +405,7 @@
         <div class="cover-meta-grid">
           <div class="cover-meta-item">
             <span class="cover-meta-label">Version du Document</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.43.1-release (Version Officielle)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.43.2-release (Version Officielle)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Modèles Natifs GEMS</span>
@@ -434,7 +434,7 @@
       </div>
 
       <div class="cover-footer">
-        <span>© New Energy Grid &amp; The Charge Grid — Documentation Terrain Propriétaire — Documentation v9.43.1</span>
+        <span>© New Energy Grid &amp; The Charge Grid — Documentation Terrain Propriétaire — Documentation v9.43.2</span>
         <span>Plateforme Cible : Contrôleur Edge GRID-EMS (Raspberry Pi ARM64)</span>
       </div>
     </div>
@@ -1036,7 +1036,7 @@
     <ul>
       <li><strong>Minuterie Matérielle Deadman de 10 Minutes :</strong> Chaque fois que GEMS commande une charge ou une décharge forcée active sur la LUNA2000, il programme une <strong>fenêtre matérielle bornée de 10 minutes</strong> sur le SUN2000 et la rafraîchit toutes les 5 minutes. Si un switch réseau perd son alimentation ou si GEMS est débranché, l'onduleur Huawei revient automatiquement en <em>Autoconsommation maximale</em> autonome en quelques minutes — ne laissant jamais la batterie bloquée en charge ou en décharge !</li>
       <li><strong>Écrêtage Dynamique selon les Limites BMS en Direct :</strong> Par matinée froide d'hiver (&lt; 5 °C) ou à état de charge élevé (&gt; 90 % SOC), le BMS de la LUNA2000 réduit la puissance de charge admissible. GEMS lit en continu les limites dynamiques de charge/décharge de la LUNA2000 et ajuste automatiquement ses consignes pour qu'aucune commande ne soit rejetée.</li>
-      <li><strong>Cadencement SDongle de 250 ms &amp; Protection contre le Scanner :</strong> GEMS impose un délai minimal de récupération inter-trame de <code>250 ms</code> sur les bus Modbus Huawei et exclut automatiquement les adresses IP Huawei configurées des balayages réseau en arrière-plan sur le port 502 afin d'éviter toute collision de socket sur les dongles mono-client.</li>
+      <li><strong>Cadencement SDongle de 250 ms, Blocs de Registres Groupés &amp; Protection contre le Scanner :</strong> GEMS regroupe la télémétrie onduleur, batterie et capteur de puissance en blocs de registres contigus, impose un délai minimal inter-trame de <code>250 ms</code> avec reprise automatique en cas de passerelle occupée, conserve les profils de registres détectés lors des reconnexions Wi-Fi/LAN temporaires et exclut les adresses IP Huawei configurées des balayages réseau en arrière-plan sur le port 502 afin d'éviter toute collision de socket sur les dongles mono-client.</li>
     </ul>
 
     <h2 class="subsection-title">6.2 Liste de Vérification en 6 Points Après Mise en Service</h2>
@@ -1070,7 +1070,7 @@
           <td>Connectez-vous via FusionSolar <strong>Device Commissioning</strong> (Installer). Sur SDongle, réglez <code>Modbus-TCP = Enable (unrestricted)</code>. Sur EMMA-A02, désactivez TLS et saisissez l'adresse IPv4 exacte de GEMS (jamais <code>0.0.0.0</code>).</td>
         </tr>
         <tr>
-          <td><strong>Erreurs intermittentes <code>i/o timeout</code> ou <code>EOF</code> toutes les quelques minutes</strong></td>
+          <td><strong>Erreurs intermittentes <code>i/o timeout</code>, <code>request timed out</code> ou <code>server device busy</code></strong></td>
           <td>Un second client externe interroge le port <code>502</code>, signal Wi-Fi 2,4 GHz faible au niveau du SDongle, ou intervalle d'interrogation trop court (&lt; 8s).</td>
           <td>Arrêtez tout logiciel/script Modbus secondaire, raccordez un câble Ethernet RJ45 dans le SDongleA-05 et maintenez <strong>Poll Interval</strong> à <code>10 secondes</code> dans GEMS.</td>
         </tr>
@@ -1115,7 +1115,7 @@ sudo journalctl -u gems.service -f | grep -i "Huawei"
 # Sortie nominale attendue lors de la lecture normale, de l'écrêtage / arbitrage et du retour autonome :
 [INFO] HuaweiInverterPoller [Huawei SUN2000 + LUNA2000]: Connected via tcp://192.168.1.120:502 (Slave ID: 1)
 [INFO] HuaweiInverterPoller [Huawei SUN2000 + LUNA2000]: Commanded forcible battery charge at 3500 W (duration=10m)
-[INFO] HuaweiInverterPoller [Huawei SUN2000 + LUNA2000]: Restored LUNA2000 Maximise Self-Consumption mode (47100=0, 47086=2)</pre>
+[INFO] HuaweiInverterPoller [Huawei SUN2000 + LUNA2000]: Stopped forcible battery dispatch (47100=0, 47086=2)</pre>
 
     <div class="callout callout-info">
       <div class="callout-title">📞 Supervision de Flotte &amp; Support Installateur</div>

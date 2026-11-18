@@ -405,7 +405,7 @@
         <div class="cover-meta-grid">
           <div class="cover-meta-item">
             <span class="cover-meta-label">Documentversie</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.43.1-release (Officiële Release)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.43.2-release (Officiële Release)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">GEMS Native Templates</span>
@@ -1036,7 +1036,7 @@
     <ul>
       <li><strong>10-Minuten Hardware Deadman-timer:</strong> Telkens wanneer GEMS actief geforceerd laden of ontladen van de LUNA2000 aanstuurt, programmeert het een begrensd <strong>hardware-tijdsvenster van 10 minuten</strong> op de SUN2000 en ververst dit elke 5 minuten. Valt een netwerkswitch uit of raakt GEMS losgekoppeld, dan keert de Huawei-omvormer binnen enkele minuten automatisch terug naar autonoom <em>Maximaal zelfverbruik</em> — de batterij blijft dus nooit ongewenst hangen in laden of ontladen!</li>
       <li><strong>Live Dynamische BMS-vermogensbegrenzing:</strong> Op koude winterochtenden (&lt; 5 °C) en bij een hoge laadtoestand (&gt; 90% SOC) verlaagt het BMS van de LUNA2000 het toegestane laadvermogen. GEMS leest continu de live dynamische laad-/ontlaadlimieten van de LUNA2000 uit en begrenst setpoints automatisch zodat commando's nooit door de omvormer geweigerd worden.</li>
-      <li><strong>250 ms SDongle-pacing &amp; Scannerbescherming:</strong> GEMS dwingt een minimale herstelpauze van <code>250 ms</code> tussen Modbus-frames af op Huawei-bussen en sluit geconfigureerde Huawei-IP-adressen automatisch uit van achtergrondscans op poort 502, zodat single-socket dongles nooit verbindingsbotsingen ervaren.</li>
+      <li><strong>250 ms SDongle-pacing, Gebundelde Registerblokken &amp; Scannerbescherming:</strong> GEMS bundelt omvormer-, batterij- en vermogensmetertelemetrie in aaneengesloten registerblokken, dwingt een minimale herstelpauze van <code>250 ms</code> af met automatische herstelpogingen bij een bezette dongle, bewaart geleerde registerprofielen over tijdelijke Wi-Fi/LAN-herverbindingen heen en sluit geconfigureerde Huawei-IP-adressen uit van achtergrondscans op poort 502 zodat single-socket dongles nooit verbindingsbotsingen ervaren.</li>
     </ul>
 
     <h2 class="subsection-title">6.2 6-Punts Opleveringschecklist na Inbedrijfstelling</h2>
@@ -1070,7 +1070,7 @@
           <td>Verbind via FusionSolar <strong>Device Commissioning</strong> (Installer). Zet op SDongle <code>Modbus-TCP = Enable (unrestricted)</code>. Schakel op EMMA-A02 TLS uit en vul het exacte GEMS IPv4-adres in (nooit <code>0.0.0.0</code>).</td>
         </tr>
         <tr>
-          <td><strong>Intermitterende <code>i/o timeout</code> of <code>EOF</code> om de paar minuten</strong></td>
+          <td><strong>Intermitterende <code>i/o timeout</code>, <code>request timed out</code> of <code>server device busy</code></strong></td>
           <td>Tweede externe client pollt poort <code>502</code>, zwak 2,4 GHz Wi-Fi-signaal bij de SDongle, of Poll Interval te laag ingesteld (&lt; 8s).</td>
           <td>Stop eventuele tweede Modbus-pollingsoftware/-scripts, sluit een RJ45-Ethernetkabel aan in de SDongleA-05 en houd het <strong>Poll Interval</strong> op <code>10 seconden</code> in GEMS.</td>
         </tr>
@@ -1115,7 +1115,7 @@ sudo journalctl -u gems.service -f | grep -i "Huawei"
 # Verwachte gezonde uitvoer tijdens normale uitlezing, piekbewaking / arbitrage en herstel:
 [INFO] HuaweiInverterPoller [Huawei SUN2000 + LUNA2000]: Connected via tcp://192.168.1.120:502 (Slave ID: 1)
 [INFO] HuaweiInverterPoller [Huawei SUN2000 + LUNA2000]: Commanded forcible battery charge at 3500 W (duration=10m)
-[INFO] HuaweiInverterPoller [Huawei SUN2000 + LUNA2000]: Restored LUNA2000 Maximise Self-Consumption mode (47100=0, 47086=2)</pre>
+[INFO] HuaweiInverterPoller [Huawei SUN2000 + LUNA2000]: Stopped forcible battery dispatch (47100=0, 47086=2)</pre>
 
     <div class="callout callout-info">
       <div class="callout-title">📞 Vlootmonitoring &amp; Installateursondersteuning</div>

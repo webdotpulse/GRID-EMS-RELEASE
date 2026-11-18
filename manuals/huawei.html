@@ -413,7 +413,7 @@
                 <td>Set SDongle <code>Modbus-TCP = Enable (unrestricted)</code>; on EMMA-A02 disable TLS and whitelist exact GEMS IPv4 (never <code>0.0.0.0</code>).</td>
               </tr>
               <tr>
-                <td><strong>Intermittent <code>i/o timeout</code> drops</strong></td>
+                <td><strong>Intermittent <code>i/o timeout</code> / <code>request timed out</code> / <code>server device busy</code></strong></td>
                 <td>Second Modbus master on port <code>502</code>, weak Wi-Fi, or Poll &lt; 8s</td>
                 <td>Stop other polling clients, connect Ethernet RJ45 inside SDongleA-05, and keep GEMS Poll Interval at <code>10s</code>.</td>
               </tr>
