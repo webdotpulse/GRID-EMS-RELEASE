@@ -182,7 +182,7 @@ Disconnect your phone from the inverter's commissioning Wi-Fi AP, open GEMS in y
 ## 6. Verification Checklist & Troubleshooting
 
 ### 6.1 Post-Commissioning Verification
-1. Confirm `Huawei Hybrid Inverter` shows **`● Online`** under `Settings -> Connected Devices` and inspect live voltage, SOC %, and wattage via **Debug**.
+1. Confirm `Huawei Hybrid Inverter` shows **`● Online`** under `Settings -> Connected Devices` and inspect live voltage, SOC %, wattage, and detected **Dongle / Inverter / Battery firmware versions** via **Debug** (also automatically displayed under **Connected Modbus & Network Hardware** in **GRID-EMS-SERVER**).
 2. Switch on a ~2 kW household appliance and verify on the **Dashboard** that Home Consumption and Grid Import / Battery Discharge move in the expected positive direction.
 3. Check the **Logger** tab for `HuaweiInverterPoller` and verify clean polling with zero timeouts or illegal register errors.
 4. Confirm the homeowner **FusionSolar App** continues updating cloud telemetry every 5 minutes.

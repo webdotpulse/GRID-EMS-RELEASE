@@ -405,7 +405,7 @@
         <div class="cover-meta-grid">
           <div class="cover-meta-item">
             <span class="cover-meta-label">Document Version</span>
-            <span class="cover-meta-val">v9.43.2-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.44.0-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">GEMS Native Templates</span>
@@ -434,7 +434,7 @@
       </div>
 
       <div class="cover-footer">
-        <span>© New Energy Grid &amp; The Charge Grid — Proprietary Field Documentation v9.43.2</span>
+        <span>© New Energy Grid &amp; The Charge Grid — Proprietary Field Documentation v9.44.0</span>
         <span>Target Platform: GRID-EMS Edge Controller (Raspberry Pi ARM64)</span>
       </div>
     </div>
@@ -1044,7 +1044,7 @@
       <div class="callout-title">✅ Mandatory Handover Checklist Before Leaving Site</div>
       <div>
         <ol style="margin: 4px 0 0 0; padding-left: 18px;">
-          <li><strong>Device Online &amp; Live Debug Probe:</strong> In <strong>Settings &rarr; Connected Devices</strong>, confirm <code>Huawei Hybrid Inverter</code> displays <span class="val-good">● Online</span>. Click <strong>Debug</strong> on the device card and verify non-zero Voltage (~230 V), accurate LUNA2000 SOC %, and plausible PV / Grid power values.</li>
+          <li><strong>Device Online &amp; Live Debug Probe:</strong> In <strong>Settings &rarr; Connected Devices</strong>, confirm <code>Huawei Hybrid Inverter</code> displays <span class="val-good">● Online</span>. Click <strong>Debug</strong> on the device card and verify non-zero Voltage (~230 V), accurate LUNA2000 SOC %, plausible PV / Grid power values, and detected Dongle / Inverter / Battery firmware versions (which also synchronize automatically to <strong>Connected Modbus &amp; Network Hardware</strong> in <strong>GRID-EMS-SERVER</strong>).</li>
           <li><strong>Polarity Check on Dashboard:</strong> Boil a ~2 kW kettle with solar steady. Verify on the GEMS <strong>Dashboard</strong> that Home Consumption increases by ~2 kW and Grid Import (positive) or Battery Discharge rises accordingly—never inverted!</li>
           <li><strong>Logger Cleanliness Check:</strong> Open the <strong>Logger</strong> tab and filter for <code>HuaweiInverterPoller</code> for 2 minutes. Confirm zero <code>connection reset</code>, <code>i/o timeout</code>, or <code>illegal data address</code> errors.</li>
           <li><strong>FusionSolar Cloud Coexistence:</strong> Open the standard homeowner <strong>FusionSolar App</strong> (Plant View over cellular data) and confirm the plant still shows <em>Online</em> with live cloud telemetry updating every 5 minutes alongside GEMS.</li>

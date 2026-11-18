@@ -182,7 +182,7 @@ Verbreek de verbinding van uw smartphone met de tijdelijke wifi-hotspot van de o
 ## 6. Controlelijst na Oplevering & Probleemoplossing
 
 ### 6.1 Verificatie na Inbedrijfstelling
-1. Controleer dat `Huawei Hybrid Inverter` op **`● Online`** staat onder `Instellingen -> Verbonden Toestellen` en bekijk live spanning, SOC % en vermogen via **Debug**.
+1. Controleer dat `Huawei Hybrid Inverter` op **`● Online`** staat onder `Instellingen -> Verbonden Toestellen` en bekijk live spanning, SOC %, vermogen en gedetecteerde **Dongle- / Omvormer- / Batterij-firmwareversies** via **Debug** (ook automatisch zichtbaar onder **Verbonden Modbus- & Netwerkhardware** in **GRID-EMS-SERVER**).
 2. Schakel een huishoudtoestel van ~2 kW in en controleer op het **Dashboard** dat het Woningverbruik en de Netafname / Batterij-ontlading correct meebewegen.
 3. Controleer het **Logboek** op `HuaweiInverterPoller` en verifieer dat de uitlezing foutloos verloopt zonder time-outs of ongeldige registermeldingen.
 4. Controleer dat de **FusionSolar App** van de klant elke 5 minuten telemetrie blijft bijwerken.
