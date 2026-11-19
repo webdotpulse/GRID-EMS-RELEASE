@@ -397,8 +397,8 @@ window.DOCS_SEARCH_INDEX = [
     title: "Mise en Service App SolisCloud & Réglages Optimaux GEMS pour Solis + UNIV5200",
     category: "Manuel Solis & Easyway",
     url: "solis.html#soliscloud-settings",
-    snippet: "Réglages Bluetooth local SolisCloud : sélection batterie PYLON LV, Overdischarge SOC 10 %, Forcecharge SOC 5 %, Autoconsommation, Autoriser charge réseau, RS-485 / S2-WL-ST et règles GEMS.",
-    keywords: ["application soliscloud", "local debugging", "pylon lv", "overdischarge soc", "forcecharge soc", "allow grid charging", "charge réseau", "s2-wl-st", "can_comm_fail", "réglages gems solis"]
+    snippet: "Réglages Bluetooth local SolisCloud : sélection batterie Modèle Lithium Battery LV (et NON PYLON LV), Overdischarge SOC 10 %, Forcecharge SOC 5 %, Autoconsommation, Autoriser charge réseau, RS-485 / S2-WL-ST et règles GEMS.",
+    keywords: ["application soliscloud", "local debugging", "lithium battery lv", "battery select", "overdischarge soc", "forcecharge soc", "allow grid charging", "charge réseau", "s2-wl-st", "can_comm_fail", "réglages gems solis"]
   },
 
   // --- Manuel Onduleurs Hybrides Enerlution & Batteries LiFePO4 ---

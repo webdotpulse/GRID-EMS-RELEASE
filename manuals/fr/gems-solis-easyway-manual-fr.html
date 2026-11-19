@@ -422,7 +422,7 @@
         <div class="cover-meta-grid">
           <div class="cover-meta-item">
             <span class="cover-meta-label">Version du Document</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.47.0-release (Version Officielle)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.47.1-release (Version Officielle)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Modèles de Référence Principaux GEMS</span>
@@ -451,7 +451,7 @@
       </div>
 
       <div class="cover-footer">
-        <span>© New Energy Grid &amp; The Charge Grid — Documentation Terrain Propriétaire — Documentation v9.47.0</span>
+        <span>© New Energy Grid &amp; The Charge Grid — Documentation Terrain Propriétaire — Documentation v9.47.1</span>
         <span>Plateforme Cible : Contrôleur Edge GRID-EMS (Raspberry Pi ARM64)</span>
       </div>
     </div>
@@ -1154,7 +1154,7 @@
         <rect x="615" y="22" width="192" height="110" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
         <text x="711" y="48" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="bold" fill="#166534">Easyway UNIV5200</text>
         <text x="711" y="67" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#334155">1 à 16 Modules Parallèles</text>
-        <text x="711" y="86" text-anchor="middle" font-family="monospace" font-size="9" fill="#0f172a">51.2V • PYLON LV CAN</text>
+        <text x="711" y="86" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#0f172a">51.2V • Lithium Battery LV</text>
         <text x="711" y="105" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#475569">Limites BMS en Direct</text>
       </svg>
     </div>
@@ -1216,9 +1216,9 @@
       </thead>
       <tbody>
         <tr>
-          <td><span class="menu-path">Storage Energy Set &rarr; Battery Select</span><br><strong>Type &amp; Profil de Batterie</strong></td>
-          <td><span class="val-good">Lithium Battery</span> &rarr;<br><span class="val-good">PYLON LV</span> <em>(ou <code>Lithium Battery LV</code> / <code>AoBo</code>)</em></td>
-          <td>Établit la communication CAN 500 kbps en boucle fermée avec le BMS Easyway <code>UNIV5200</code> sur les broches 4 &amp; 5. Ne sélectionnez <strong>jamais</strong> <em>Lead-Acid</em> ou <em>No Battery</em>, et évitez les profils annotés <em>(RS485)</em>. Vérifiez aussitôt dans <strong>Information &rarr; BMS Info</strong> que l'état indique <strong>Normal</strong> avec SOC % et limites de courant en direct !</td>
+          <td><span class="menu-path">Storage Energy Set &rarr; Battery Select</span><br><strong>Type &amp; Modèle de Batterie</strong></td>
+          <td><span class="val-good">Lithium Battery</span> &rarr;<br>Modèle : <span class="val-good">Lithium Battery LV</span><br><span class="val-avoid">NE PAS choisir PYLON LV !</span></td>
+          <td>Établit la communication CAN 500 kbps en boucle fermée avec le BMS Easyway <code>UNIV5200</code> sur les broches 4 &amp; 5. <strong>Important :</strong> Sélectionnez le modèle <strong><code>Lithium Battery LV</code></strong> — la batterie Easyway <code>UNIV5200</code> ne fonctionne <strong>PAS</strong> avec <code>PYLON LV</code> (ne sélectionnez jamais non plus <em>Lead-Acid</em>, <em>No Battery</em> ou les profils annotés <em>RS485</em>). Vérifiez aussitôt dans <strong>Information &rarr; BMS Info</strong> que l'état indique <strong>Normal</strong> avec SOC % et limites de courant en direct !</td>
         </tr>
         <tr>
           <td><span class="menu-path">Battery Select</span><br><strong>Overdischarge SOC</strong></td>
@@ -1487,8 +1487,8 @@
       <tbody>
         <tr>
           <td><strong>Alarme Solis <code>CAN_Comm_FAIL</code> ou <code>BatName-FAIL</code></strong></td>
-          <td>Mauvais profil Battery Select, câble CAN branché sur un module Esclave ou un port RS485, ou brochage RJ45 erroné.</td>
-          <td>Branchez le cordon CAN strictement entre le <strong>port <code>CAN</code> du Module 1 (Maître, <code>ADD=0000</code>)</strong> et le <strong>port <code>BMS</code></strong> Solis (broche 4 <code>CAN-H</code>, broche 5 <code>CAN-L</code> isolées). Sélectionnez <code>Lithium Battery &rarr; PYLON LV</code> dans SolisCloud.</td>
+          <td>Mauvais modèle Battery Select (ex. <code>PYLON LV</code> sélectionné — ne fonctionne PAS avec l'Easyway <code>UNIV5200</code>), câble CAN branché sur un module Esclave ou un port RS485, ou brochage RJ45 erroné.</td>
+          <td>Branchez le cordon CAN strictement entre le <strong>port <code>CAN</code> du Module 1 (Maître, <code>ADD=0000</code>)</strong> et le <strong>port <code>BMS</code></strong> Solis (broche 4 <code>CAN-H</code>, broche 5 <code>CAN-L</code> isolées). Dans SolisCloud, sélectionnez <code>Lithium Battery &rarr; Modèle : Lithium Battery LV</code> (et <strong>non</strong> <code>PYLON LV</code>).</td>
         </tr>
         <tr>
           <td><strong>Alarme Solis <code>Meter_Comm_FAIL</code> (ou Eastron hors ligne dans GEMS)</strong></td>

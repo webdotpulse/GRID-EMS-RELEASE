@@ -170,7 +170,7 @@ Stand near the inverter with phone Bluetooth ON, open **SolisCloud App → Me �
 
 | SolisCloud Menu Path | Parameter | Required Setting | Technical Reason |
 | :--- | :--- | :--- | :--- |
-| `Storage Energy Set -> Battery Select` | **Battery Type / Brand** | **`Lithium Battery` → `PYLON LV`** *(or `Lithium Battery LV` / `AoBo`)* | Establishes 500 kbps CAN handshake over Pins 4 & 5. Confirm `Information -> BMS Info = Normal` with live SOC % and current limits! |
+| `Storage Energy Set -> Battery Select` | **Battery Type / Model** | **`Lithium Battery` → Model: `Lithium Battery LV`** *(Do **NOT** use `PYLON LV`!)* | Establishes 500 kbps CAN handshake over Pins 4 & 5. **Important:** Easyway `UNIV5200` does **NOT** work with `PYLON LV`. Confirm `Information -> BMS Info = Normal` with live SOC % and current limits! |
 | `Battery Select` | **Overdischarge SOC** | **`10 %`** *(`15–20%` if Backup port used)* | Matches Easyway's 90% DoD rating while preserving cell longevity. |
 | `Battery Select` | **Forcecharge SOC** | **`5 %`** *(Keep ≥5% below Overdischarge!)* | **Eliminates nightly grid bounce-charging!** Keeping a 5% gap below `Overdischarge SOC` prevents 1% overnight standby drift from triggering forced AC recharges. |
 | `Battery Select` | **Max Charge / Discharge Current** | **`50 A × Pack Count`** *(capped at Inverter Max A)* | Unlocks full continuous stack power (`50 A` = 1 pack, `100 A` = 2 packs, `150 A` = 3 packs). |

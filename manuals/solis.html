@@ -513,8 +513,8 @@
             <tbody>
               <tr>
                 <td><code>Storage Energy Set &rarr; Battery Select</code></td>
-                <td><strong><code>Lithium Battery</code> &rarr; <code>PYLON LV</code></strong><br><em>(or <code>Lithium Battery LV</code> / <code>AoBo</code>)</em></td>
-                <td>Establishes closed-loop 500 kbps CAN handshake with Easyway <code>UNIV5200</code>. Confirm <code>BMS Info = Normal</code> with live SOC % and current limits!</td>
+                <td><strong><code>Lithium Battery</code> &rarr; Model: <code>Lithium Battery LV</code></strong><br><strong style="color:#dc2626;">(Do NOT use <code>PYLON LV</code>!)</strong></td>
+                <td>Establishes closed-loop 500 kbps CAN handshake with Easyway <code>UNIV5200</code>. <strong>Do NOT select <code>PYLON LV</code></strong>—it does not work with the Easyway <code>UNIV5200</code> battery. Confirm <code>BMS Info = Normal</code> with live SOC % and current limits!</td>
               </tr>
               <tr>
                 <td><code>Battery Select &rarr; Overdischarge SOC</code></td>
@@ -590,8 +590,8 @@
             <tbody>
               <tr>
                 <td><strong><code>CAN_Comm_FAIL</code> / <code>BatName-FAIL</code></strong></td>
-                <td>Wrong Battery Select profile or CAN cable pin/port mismatch</td>
-                <td>Plug CAN cable (Pins 4 &amp; 5 isolated) from Master Pack 1 (<code>ADD=0000</code>) <code>CAN</code> port to Solis <code>BMS</code> port; select <code>Lithium Battery &rarr; PYLON LV</code>.</td>
+                <td>Wrong Battery Select model (e.g. <code>PYLON LV</code> selected—does NOT work with Easyway <code>UNIV5200</code>) or CAN cable pin/port mismatch</td>
+                <td>Plug CAN cable (Pins 4 &amp; 5 isolated) from Master Pack 1 (<code>ADD=0000</code>) <code>CAN</code> port to Solis <code>BMS</code> port; select <code>Lithium Battery &rarr; Model: Lithium Battery LV</code> (<strong>not</strong> <code>PYLON LV</code>).</td>
               </tr>
               <tr>
                 <td><strong><code>Meter_Comm_FAIL</code> (or Eastron offline in GEMS)</strong></td>

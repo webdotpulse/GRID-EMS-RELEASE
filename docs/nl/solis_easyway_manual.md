@@ -170,7 +170,7 @@ Ga met ingeschakelde Bluetooth naast de omvormer staan, open **SolisCloud App �
 
 | Menu in SolisCloud | Parameter | Vereiste Instelling | Technische Reden |
 | :--- | :--- | :--- | :--- |
-| `Storage Energy Set -> Battery Select` | **Battery Type / Brand** | **`Lithium Battery` → `PYLON LV`** *(of `Lithium Battery LV` / `AoBo`)* | Bouwt de 500 kbps CAN-verbinding op via Pin 4 & 5. Controleer dat `Information -> BMS Info = Normal` live SOC % en stroomgrenzen toont! |
+| `Storage Energy Set -> Battery Select` | **Battery Type / Model** | **`Lithium Battery` → Model: `Lithium Battery LV`** *(Kies **NIET** `PYLON LV`!)* | Bouwt de 500 kbps CAN-verbinding op via Pin 4 & 5. **Belangrijk:** De Easyway `UNIV5200` werkt **NIET** met `PYLON LV`. Controleer dat `Information -> BMS Info = Normal` live SOC % en stroomgrenzen toont! |
 | `Battery Select` | **Overdischarge SOC** | **`10 %`** *(`15–20%` bij gebruik Backup-poort)* | Komt overeen met 90% DoD van Easyway voor optimale cellevensduur. |
 | `Battery Select` | **Forcecharge SOC** | **`5 %`** *(Houd ≥5% onder Overdischarge!)* | **Voorkomt nachtelijk jojo-bijladen uit het net!** Een marge van 5% onder `Overdischarge SOC` voorkomt dat 1% sluimerdaling een geforceerde AC-lading triggert. |
 | `Battery Select` | **Max Charge / Discharge Current** | **`50 A × Aantal Pakketten`** *(begrensd op max. omvormerstroom)* | Ontgrendelt het volledige continue vermogen (`50 A` = 1 pakket, `100 A` = 2 pakketten, `150 A` = 3 pakketten). |

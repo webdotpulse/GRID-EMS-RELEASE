@@ -508,8 +508,8 @@
             <tbody>
               <tr>
                 <td><code>Storage Energy Set &rarr; Battery Select</code></td>
-                <td><strong><code>Lithium Battery</code> &rarr; <code>PYLON LV</code></strong><br><em>(ou <code>Lithium Battery LV</code> / <code>AoBo</code>)</em></td>
-                <td>Établit la communication CAN 500 kbps en boucle fermée avec l'Easyway <code>UNIV5200</code>. Vérifiez <code>BMS Info = Normal</code> avec le SOC % et les limites de courant en direct !</td>
+                <td><strong><code>Lithium Battery</code> &rarr; Modèle : <code>Lithium Battery LV</code></strong><br><strong style="color:#dc2626;">(NE PAS choisir <code>PYLON LV</code> !)</strong></td>
+                <td>Établit la communication CAN 500 kbps en boucle fermée avec l'Easyway <code>UNIV5200</code>. <strong>Ne sélectionnez PAS <code>PYLON LV</code></strong> — ce profil ne fonctionne pas avec la batterie Easyway <code>UNIV5200</code>. Vérifiez <code>BMS Info = Normal</code> avec le SOC % et les limites de courant en direct !</td>
               </tr>
               <tr>
                 <td><code>Battery Select &rarr; Overdischarge SOC</code></td>
@@ -585,8 +585,8 @@
             <tbody>
               <tr>
                 <td><strong><code>CAN_Comm_FAIL</code> / <code>BatName-FAIL</code></strong></td>
-                <td>Mauvais profil Battery Select ou erreur de broche/port sur le câble CAN</td>
-                <td>Branchez le cordon CAN (Broches 4 &amp; 5 isolées) du port <code>CAN</code> du Pack 1 Maître (<code>ADD=0000</code>) vers le port <code>BMS</code> Solis ; sélectionnez <code>Lithium Battery &rarr; PYLON LV</code>.</td>
+                <td>Mauvais modèle Battery Select (ex. <code>PYLON LV</code> choisi — ne fonctionne PAS avec l'Easyway <code>UNIV5200</code>) ou erreur de broche/port sur le câble CAN</td>
+                <td>Branchez le cordon CAN (Broches 4 &amp; 5 isolées) du port <code>CAN</code> du Pack 1 Maître (<code>ADD=0000</code>) vers le port <code>BMS</code> Solis ; sélectionnez <code>Lithium Battery &rarr; Modèle : Lithium Battery LV</code> (et <strong>non</strong> <code>PYLON LV</code>).</td>
               </tr>
               <tr>
                 <td><strong><code>Meter_Comm_FAIL</code> (ou Eastron hors ligne dans GEMS)</strong></td>

@@ -508,8 +508,8 @@
             <tbody>
               <tr>
                 <td><code>Storage Energy Set &rarr; Battery Select</code></td>
-                <td><strong><code>Lithium Battery</code> &rarr; <code>PYLON LV</code></strong><br><em>(of <code>Lithium Battery LV</code> / <code>AoBo</code>)</em></td>
-                <td>Activeert de gesloten-lus 500 kbps CAN-koppeling met de Easyway <code>UNIV5200</code>. Controleer <code>BMS Info = Normal</code> met live SOC % en stroomlimieten!</td>
+                <td><strong><code>Lithium Battery</code> &rarr; Model: <code>Lithium Battery LV</code></strong><br><strong style="color:#dc2626;">(NIET <code>PYLON LV</code> kiezen!)</strong></td>
+                <td>Activeert de gesloten-lus 500 kbps CAN-koppeling met de Easyway <code>UNIV5200</code>. <strong>Kies NIET voor <code>PYLON LV</code></strong> — dit werkt niet met de Easyway <code>UNIV5200</code>-batterij. Controleer <code>BMS Info = Normal</code> met live SOC % en stroomlimieten!</td>
               </tr>
               <tr>
                 <td><code>Battery Select &rarr; Overdischarge SOC</code></td>
@@ -585,8 +585,8 @@
             <tbody>
               <tr>
                 <td><strong><code>CAN_Comm_FAIL</code> / <code>BatName-FAIL</code></strong></td>
-                <td>Verkeerd batterijprofiel of foutieve CAN-kabel / verkeerde poort</td>
-                <td>Sluit de CAN-kabel (enkel Pin 4 &amp; 5 verbonden) aan van Master Pakket 1 (<code>ADD=0000</code>) <code>CAN</code>-poort naar de Solis <code>BMS</code>-poort; kies <code>Lithium Battery &rarr; PYLON LV</code>.</td>
+                <td>Verkeerd batterijmodel (bv. <code>PYLON LV</code> gekozen — werkt NIET met Easyway <code>UNIV5200</code>) of foutieve CAN-kabel / verkeerde poort</td>
+                <td>Sluit de CAN-kabel (enkel Pin 4 &amp; 5 verbonden) aan van Master Pakket 1 (<code>ADD=0000</code>) <code>CAN</code>-poort naar de Solis <code>BMS</code>-poort; kies <code>Lithium Battery &rarr; Model: Lithium Battery LV</code> (<strong>niet</strong> <code>PYLON LV</code>).</td>
               </tr>
               <tr>
                 <td><strong><code>Meter_Comm_FAIL</code> (of Eastron offline in GEMS)</strong></td>

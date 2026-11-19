@@ -170,7 +170,7 @@ Placez-vous près de l'onduleur avec le Bluetooth activé, ouvrez **SolisCloud A
 
 | Chemin Menu SolisCloud | Paramètre | Réglage Requis | Justification Technique |
 | :--- | :--- | :--- | :--- |
-| `Storage Energy Set -> Battery Select` | **Battery Type / Brand** | **`Lithium Battery` → `PYLON LV`** *(ou `Lithium Battery LV` / `AoBo`)* | Établit le dialogue CAN 500 kbps sur les broches 4 & 5. Vérifiez que `Information -> BMS Info = Normal` affiche le SOC % et les limites ! |
+| `Storage Energy Set -> Battery Select` | **Battery Type / Modèle** | **`Lithium Battery` → Modèle : `Lithium Battery LV`** *(Ne **PAS** choisir `PYLON LV` !)* | Établit le dialogue CAN 500 kbps sur les broches 4 & 5. **Important :** La batterie Easyway `UNIV5200` ne fonctionne **PAS** avec `PYLON LV`. Vérifiez que `Information -> BMS Info = Normal` affiche le SOC % et les limites ! |
 | `Battery Select` | **Overdischarge SOC** | **`10 %`** *(`15–20 %` si port Backup utilisé)* | Correspond au DoD 90 % d'Easyway pour préserver la longévité des cellules. |
 | `Battery Select` | **Forcecharge SOC** | **`5 %`** *(Garder ≥5 % sous Overdischarge !)* | **Supprime les micro-recharges nocturnes sur le réseau !** Cet écart de 5 % évite qu'une dérive de veille de 1 % ne déclenche une recharge AC forcée. |
 | `Battery Select` | **Max Charge / Discharge Current** | **`50 A × Nombre de Packs`** *(plafonné au courant max onduleur)* | Débloque la pleine puissance continue du banc (`50 A` = 1 pack, `100 A` = 2 packs, `150 A` = 3 packs). |

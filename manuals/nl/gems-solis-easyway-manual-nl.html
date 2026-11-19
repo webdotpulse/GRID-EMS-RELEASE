@@ -422,7 +422,7 @@
         <div class="cover-meta-grid">
           <div class="cover-meta-item">
             <span class="cover-meta-label">Documentversie</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.47.0-release (Officiële Release)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.47.1-release (Officiële Release)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Primaire GEMS Referentietemplates</span>
@@ -1154,7 +1154,7 @@
         <rect x="615" y="22" width="192" height="110" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
         <text x="711" y="48" text-anchor="middle" font-family="sans-serif" font-size="11.5" font-weight="bold" fill="#166534">Easyway UNIV5200</text>
         <text x="711" y="67" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#334155">1 tot 16 Parallelle Modules</text>
-        <text x="711" y="86" text-anchor="middle" font-family="monospace" font-size="9" fill="#0f172a">51.2V • PYLON LV CAN</text>
+        <text x="711" y="86" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#0f172a">51.2V • Lithium Battery LV</text>
         <text x="711" y="105" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#475569">Live BMS Vermogenslimieten</text>
       </svg>
     </div>
@@ -1216,9 +1216,9 @@
       </thead>
       <tbody>
         <tr>
-          <td><span class="menu-path">Storage Energy Set &rarr; Battery Select</span><br><strong>Battery Type &amp; Merkprofiel</strong></td>
-          <td><span class="val-good">Lithium Battery</span> &rarr;<br><span class="val-good">PYLON LV</span> <em>(of <code>Lithium Battery LV</code> / <code>AoBo</code>)</em></td>
-          <td>Start closed-loop 500 kbps CAN-communicatie met het Easyway <code>UNIV5200</code> BMS over Pin 4 &amp; 5. Kies <strong>nooit</strong> <em>Lead-Acid</em> of <em>No Battery</em>, en vermijd profielen met de aanduiding <em>(RS485)</em>. Controleer direct onder <strong>Information &rarr; BMS Info</strong> dat de status <strong>Normal</strong> toont met live SOC % en stroomlimieten!</td>
+          <td><span class="menu-path">Storage Energy Set &rarr; Battery Select</span><br><strong>Battery Type &amp; Batterijmodel</strong></td>
+          <td><span class="val-good">Lithium Battery</span> &rarr;<br>Model: <span class="val-good">Lithium Battery LV</span><br><span class="val-avoid">NIET PYLON LV kiezen!</span></td>
+          <td>Start closed-loop 500 kbps CAN-communicatie met het Easyway <code>UNIV5200</code> BMS over Pin 4 &amp; 5. <strong>Belangrijk:</strong> Kies Model <strong><code>Lithium Battery LV</code></strong> — de Easyway <code>UNIV5200</code> werkt <strong>NIET</strong> met <code>PYLON LV</code> (kies ook nooit <em>Lead-Acid</em>, <em>No Battery</em> of profielen met de aanduiding <em>RS485</em>). Controleer direct onder <strong>Information &rarr; BMS Info</strong> dat de status <strong>Normal</strong> toont met live SOC % en stroomlimieten!</td>
         </tr>
         <tr>
           <td><span class="menu-path">Battery Select</span><br><strong>Overdischarge SOC</strong></td>
@@ -1487,8 +1487,8 @@
       <tbody>
         <tr>
           <td><strong>Solis-alarm <code>CAN_Comm_FAIL</code> of <code>BatName-FAIL</code></strong></td>
-          <td>Verkeerd Battery Select-profiel, CAN-kabel in Slave- of RS485-poort geplugd, of foutieve RJ45-pinbezetting.</td>
-          <td>Sluit de CAN-kabel uitsluitend aan tussen de <strong><code>CAN</code>-poort van Module 1 (Master, <code>ADD=0000</code>)</strong> en de <strong><code>BMS</code>-poort</strong> van Solis (Pin 4 <code>CAN-H</code>, Pin 5 <code>CAN-L</code> geïsoleerd). Selecteer <code>Lithium Battery &rarr; PYLON LV</code> in SolisCloud.</td>
+          <td>Verkeerd Battery Select-model (bv. <code>PYLON LV</code> gekozen — werkt NIET met de Easyway <code>UNIV5200</code>), CAN-kabel in Slave- of RS485-poort geplugd, of foutieve RJ45-pinbezetting.</td>
+          <td>Sluit de CAN-kabel uitsluitend aan tussen de <strong><code>CAN</code>-poort van Module 1 (Master, <code>ADD=0000</code>)</strong> en de <strong><code>BMS</code>-poort</strong> van Solis (Pin 4 <code>CAN-H</code>, Pin 5 <code>CAN-L</code> geïsoleerd). Selecteer in SolisCloud <code>Lithium Battery &rarr; Model: Lithium Battery LV</code> (<strong>niet</strong> <code>PYLON LV</code>).</td>
         </tr>
         <tr>
           <td><strong>Solis-alarm <code>Meter_Comm_FAIL</code> (of Eastron offline in GEMS)</strong></td>

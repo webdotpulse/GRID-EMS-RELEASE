@@ -397,8 +397,8 @@ window.DOCS_SEARCH_INDEX = [
     title: "SolisCloud-app Inbedrijfstelling & Optimale GEMS-instellingen voor Solis + UNIV5200",
     category: "Solis & Easyway Handleiding",
     url: "solis.html#soliscloud-settings",
-    snippet: "Lokale Bluetooth-instellingen in SolisCloud: Batterijselectie PYLON LV, Overdischarge SOC 10%, Forcecharge SOC 5%, Zelfverbruik, Netladen toestaan, RS-485 / S2-WL-ST en GEMS-regels.",
-    keywords: ["soliscloud app", "local debugging", "pylon lv", "overdischarge soc", "forcecharge soc", "allow grid charging", "netladen", "s2-wl-st", "can_comm_fail", "solis gems instellingen"]
+    snippet: "Lokale Bluetooth-instellingen in SolisCloud: Batterijselectie Model Lithium Battery LV (NIET PYLON LV), Overdischarge SOC 10%, Forcecharge SOC 5%, Zelfverbruik, Netladen toestaan, RS-485 / S2-WL-ST en GEMS-regels.",
+    keywords: ["soliscloud app", "local debugging", "lithium battery lv", "battery select", "overdischarge soc", "forcecharge soc", "allow grid charging", "netladen", "s2-wl-st", "can_comm_fail", "solis gems instellingen"]
   },
 
   // --- Enerlution Hybride Omvormers & LiFePO4 Batterijopslag Handleiding ---
