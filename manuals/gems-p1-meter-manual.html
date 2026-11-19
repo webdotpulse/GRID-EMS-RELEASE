@@ -339,7 +339,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware</span>
-          <span class="cover-meta-val">v9.44.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.44.2-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Supported Standards</span>
@@ -1047,6 +1047,13 @@ EOF</code><br><br>
       </div>
       Copy the permanent path (e.g. <code>/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_A50285BI-if00-port0</code>) and paste it directly into the Serial Port field in GEMS!
     </li>
+  </ul>
+
+  <h2 class="subsection-title">Issue 5: Intermittent <code>DSMR CRC mismatch</code> or <code>invalid DSMR CRC hex</code> warnings</h2>
+  <p><strong>Cause:</strong> Electromagnetic interference (EMI) on long unshielded RJ12 cabling or unpowered passive P1 splitters.</p>
+  <ul style="margin: 4px 0 10px 18px; padding: 0;">
+    <li><strong>Built-In GEMS Resilience:</strong> GEMS drains serial P1 streams continuously at 1-second cadence, strips idle-gap UART framing noise before <code>/</code> headers, and automatically retries the next 1 Hz telegram before raising an error.</li>
+    <li><strong>Physical Fix:</strong> Route the RJ12 P1 cable away from high-current AC inverter/charger conductors and replace passive RJ12 Y-splitters with an active buffered P1 splitter.</li>
   </ul>
 
   <div class="callout callout-tip">

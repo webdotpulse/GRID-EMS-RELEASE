@@ -463,6 +463,11 @@ sudo ftdi_eeprom --flash-eeprom ftdi_p1.conf
                 <td><code>gems</code> user missing dialout group</td>
                 <td>Run <code>sudo usermod -a -G dialout gems && sudo systemctl restart gems</code>.</td>
               </tr>
+              <tr>
+                <td><strong>Intermittent <code>DSMR CRC mismatch</code> warnings</strong></td>
+                <td>EMI coupling on unshielded RJ12 cable or passive P1 splitter</td>
+                <td>GEMS automatically drains 1 Hz P1 streams and retries noisy frames; separate the RJ12 cable from AC power conductors and use an active P1 splitter if sharing the port.</td>
+              </tr>
             </tbody>
           </table>
         </div>

@@ -194,7 +194,7 @@ Ontgrendel de **Gecertificeerde installateursmodus** (hangsloticoon 🔒 in **In
    - **Endpoint:** Vast pad `/dev/serial/by-id/...` (`9600 8N1`) of gereserveerd `S2-WL-ST` IPv4-adres op poort `502`, `Modbus ID = 1`.
    - **Rated Power (kW):** Exact AC-typeplaatvermogen (`3.0`, `3.6`, `5.0`, `6.0`, `10.0`).
    - **Poll Interval:** `2–3s` (Directe RS-485 / Gateway) of `5s` (`S2-WL-ST`).
-   - **Phase Wiring:** Exacte fase van de automaat (`L1`, `L2` of `L3`) voor 1-fasemodellen op een 3-fasenbord, of `L1-L2-L3` voor de `S6-EH3P-L`.
+   - **Phase Wiring:** Exacte fase van de automaat (`L1`, `L2` of `L3`) voor 1-fasemodellen op een 3-fasenbord, of `L1-L2-L3` voor de `S6-EH3P-L` (GEMS past op `Auto / Default` automatisch veilige 1-fasige `230 V`-zekeringsbewaking toe; het kiezen van de exacte fase voorkomt afremmen door belasting op andere fasen).
    - **Grid Meter Connected?:** `Aangevinkt` als er een Eastron `SDM72D-M`, `SDM630-M` of Acrel-meter op de Solis `Meter`-poort is aangesloten; anders `Uitgevinkt`.
    - **Battery Connected? & Capacity (kWh):** `Aangevinkt` + totaal geïnstalleerde `UNIV5200`-capaciteit (`5.2` voor 1×, `10.4` voor 2×, `15.7` voor 3×, `20.9` voor 4×).
 

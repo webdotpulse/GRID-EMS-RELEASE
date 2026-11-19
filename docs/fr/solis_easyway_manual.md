@@ -194,7 +194,7 @@ Déverrouillez le **Mode installateur certifié** (icône cadenas 🔒 dans **Pa
    - **Point de terminaison :** Chemin `/dev/serial/by-id/...` (`9600 8N1`) ou IPv4 réservée de la clé `S2-WL-ST` sur le port `502`, `Modbus ID = 1`.
    - **Rated Power (kW) :** Puissance nominale AC exacte (`3.0`, `3.6`, `5.0`, `6.0`, `10.0`).
    - **Poll Interval :** `2–3 s` (RS-485 direct / passerelle) ou `5 s` (`S2-WL-ST`).
-   - **Phase Wiring :** Phase exacte du disjoncteur (`L1`, `L2` ou `L3`) pour un modèle monophasé sur tableau triphasé, ou `L1-L2-L3` pour un `S6-EH3P-L`.
+   - **Phase Wiring :** Phase exacte du disjoncteur (`L1`, `L2` ou `L3`) pour un modèle monophasé sur tableau triphasé, ou `L1-L2-L3` pour un `S6-EH3P-L` (GEMS applique automatiquement un calibrage monophasé `230 V` sécurisé en mode `Auto / Default`, tandis que la sélection de la phase exacte évite tout bridage lié aux autres phases).
    - **Grid Meter Connected? :** `Coché` si un compteur Eastron `SDM72D-M`, `SDM630-M` ou Acrel est raccordé au port `Meter` Solis ; `Décoché` sinon.
    - **Battery Connected? & Capacity (kWh) :** `Coché` + capacité totale installée `UNIV5200` (`5.2` pour 1×, `10.4` pour 2×, `15.7` pour 3×, `20.9` pour 4×).
 

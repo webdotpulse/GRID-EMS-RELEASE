@@ -458,6 +458,11 @@ sudo ftdi_eeprom --flash-eeprom ftdi_p1.conf
                 <td>Utilisateur système <code>gems</code> absent du groupe <code>dialout</code></td>
                 <td>Exécutez <code>sudo usermod -a -G dialout gems && sudo systemctl restart gems</code>.</td>
               </tr>
+              <tr>
+                <td><strong>Avertissements intermittents <code>DSMR CRC mismatch</code></strong></td>
+                <td>Couplage CEM sur câble RJ12 non blindé ou doubleur P1 passif</td>
+                <td>GEMS draine automatiquement le flux 1 Hz et relit immédiatement la trame suivante ; séparez le cordon RJ12 des câbles AC de puissance et privilégiez un répartiteur P1 actif.</td>
+              </tr>
             </tbody>
           </table>
         </div>

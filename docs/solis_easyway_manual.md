@@ -194,7 +194,7 @@ Unlock **Certified Installer Mode** (padlock icon 🔒 in **Settings**):
    - **Endpoint:** Persistent `/dev/serial/by-id/...` (`9600 8N1`) or reserved `S2-WL-ST` IPv4 on Port `502`, `Modbus ID = 1`.
    - **Rated Power (kW):** Exact AC nameplate rating (`3.0`, `3.6`, `5.0`, `6.0`, `10.0`).
    - **Poll Interval:** `2–3s` (Direct RS-485 / Gateway) or `5s` (`S2-WL-ST`).
-   - **Phase Wiring:** Exact breaker phase (`L1`, `L2`, or `L3`) for 1-phase models on 3-phase switchboards, or `L1-L2-L3` for `S6-EH3P-L`.
+   - **Phase Wiring:** Exact breaker phase (`L1`, `L2`, or `L3`) for 1-phase models on 3-phase switchboards, or `L1-L2-L3` for `S6-EH3P-L` (GEMS automatically applies safe `230 V` single-phase main-breaker current scaling if left on `Auto / Default`, while selecting the exact phase prevents unrelated phases from throttling charging).
    - **Grid Meter Connected?:** `Checked` if an Eastron `SDM72D-M`, `SDM630-M`, or Acrel meter is wired to the Solis `Meter` port; `Unchecked` otherwise.
    - **Battery Connected? & Capacity (kWh):** `Checked` + total installed `UNIV5200` kWh (`5.2` for 1×, `10.4` for 2×, `15.7` for 3×, `20.9` for 4×).
 

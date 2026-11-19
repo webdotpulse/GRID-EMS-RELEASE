@@ -251,3 +251,4 @@ You should see clean ASCII telegrams streaming every second:
 | **`cat /dev/ttyUSB0` prints nothing** | RTS Pin 2 is 0V, or P1 port locked | Verify Pin 2 has +5.0V with multimeter. Check meter LCD for padlock icon (request activation on Mijn Fluvius). |
 | **"Permission denied" on `/dev/ttyUSB0`** | `gems` user lacks dialout group permissions | Run `sudo usermod -a -G dialout gems && sudo systemctl restart gems`. |
 | **Device name shifts to `/dev/ttyUSB1`** | Port enumeration changed after reboot | Use `/dev/serial/by-id/<device-id>` instead of `/dev/ttyUSB0` in GEMS settings. |
+| **Intermittent `DSMR CRC mismatch` warnings** | EMI coupling on unshielded RJ12 cable or passive P1 splitter | GEMS automatically drains 1 Hz P1 streams and retries noisy frames; route the RJ12 cable away from high-current AC conductors and use an active P1 splitter if sharing the port. |
