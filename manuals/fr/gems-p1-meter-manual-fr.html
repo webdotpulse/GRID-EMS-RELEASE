@@ -368,7 +368,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Micrologiciel Système</span>
-          <span class="cover-meta-val" data-version-tag="release">v9.45.1-release (Version Officielle)</span>
+          <span class="cover-meta-val" data-version-tag="release">v9.46.0-release (Version Officielle)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Normes Prises en Charge</span>
@@ -460,9 +460,14 @@
         <td>Registres officiels de facturation. Enregistrés dans l'historique GEMS pour générer des rapports énergétiques 100 % conformes à votre facture d'électricité.</td>
       </tr>
       <tr>
-        <td><strong>Consommation Compteur Gaz (m³)</strong></td>
-        <td>Toutes les 5 min</td>
-        <td>Index de gaz transmis sans fil ou par bus M-Bus depuis le compteur communicant de gaz vers le compteur électrique.</td>
+        <td><strong>Consommation Compteur Gaz (m³)</strong><br><code>0-n:24.1.0(003)</code></td>
+        <td>Toutes les 5–60 min</td>
+        <td>Index de gaz naturel transmis sans fil ou par bus M-Bus (canal <code>1–4</code>) depuis le compteur communicant de gaz vers le compteur électrique (compatible DSMR <code>24.2.1</code> et volume compensé belge <code>24.2.3</code>).</td>
+      </tr>
+      <tr>
+        <td><strong>Consommation Compteur d'Eau (m³ / L)</strong><br><code>0-n:24.1.0(007)</code></td>
+        <td>Toutes les 5–60 min</td>
+        <td>Index d'eau potable transmis en M-Bus lorsqu'un compteur d'eau numérique est jumelé au compteur électrique (ex. Belgique Fluvius + Pidpa / De Watergroep / Farys / Water-link ; compteurs d'eau HomeWizard, YouLess, ESPHome et Custom Modbus également pris en charge).</td>
       </tr>
     </tbody>
   </table>
@@ -1033,6 +1038,18 @@ EOF</code><br><br>
         <td>Tension Instantanée Phase L1</td>
         <td><code>231.4*V</code></td>
         <td>Surveillance de la tension secteur (détecte les surtensions réseau d'origine solaire &gt; 253 V).</td>
+      </tr>
+      <tr>
+        <td><strong><code>0-n:24.1.0(003)</code><br><code>0-n:24.2.1</code> / <code>24.2.3</code></strong></td>
+        <td>Canal M-Bus <code>n</code> Compteur Gaz Naturel</td>
+        <td><code>(261119120000W)(01482.345*m3)</code></td>
+        <td>Carte sous-compteur Gaz automatique sur le Tableau de bord &amp; la fenêtre Réseau, cumuls horaires/journaliers/mensuels en m&sup3;, rapports PDF et export MQTT/Modbus.</td>
+      </tr>
+      <tr>
+        <td><strong><code>0-n:24.1.0(007)</code><br><code>0-n:24.2.1</code></strong></td>
+        <td>Canal M-Bus <code>n</code> Compteur d'Eau Potable</td>
+        <td><code>(261119120500W)(00214.650*m3)</code></td>
+        <td>Carte sous-compteur Eau automatique sur le Tableau de bord &amp; la fenêtre Réseau (m&sup3; &amp; litres), cumuls historiques, rapports PDF et export MQTT/Modbus.</td>
       </tr>
     </tbody>
   </table>

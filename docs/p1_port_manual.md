@@ -20,7 +20,8 @@ The P1 port streams authoritative fiscal energy telemetry directly from the util
 | **Phase Current (A) & Voltage (V)** | Every 1s | Monitored across Phase L1, L2, L3 for phase balancing and domestic fuse protection. |
 | **Maximum Monthly Peak Demand (kW)**<br>`OBIS 1-0:1.6.0` | Every telegram | Official maximum 15-minute average demand for the active month, used by GEMS **Smart Adaptive Ceiling**. |
 | **Cumulative Import/Export (kWh)** | Every telegram | Fiscal billing registers (Tariff 1 Day / Peak & Tariff 2 Night / Off-Peak) for 100% accurate energy reports. |
-| **Digital Gas Meter (m³)** | Every 5 min | Gas consumption forwarded wirelessly via M-Bus from the gas meter to the electricity meter. |
+| **Digital Gas Meter (m³)**<br>`0-n:24.1.0(003)` + `24.2.1` / `24.2.3` | Every 5–60 min | Natural gas consumption forwarded wirelessly via M-Bus from the digital gas meter to the electricity meter (including Belgian temperature-compensated `24.2.3`). |
+| **Digital Water Meter (m³ / L)**<br>`0-n:24.1.0(007)` + `24.2.1` | Every 5–60 min | Drinking water consumption forwarded via M-Bus where the water utility pairs to the electricity meter (e.g. Flanders **Pidpa**, **De Watergroep**, **Farys**, **Water-link** with Fluvius; in NL, standalone Wi-Fi/P1 water sensors such as HomeWizard Watermeter, YouLess, or ESPHome are also supported). |
 
 ---
 

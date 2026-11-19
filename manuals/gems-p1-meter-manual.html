@@ -339,7 +339,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware</span>
-          <span class="cover-meta-val">v9.45.1-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.46.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Supported Standards</span>
@@ -431,9 +431,14 @@
         <td>Official utility billing registers. Recorded in GEMS historical database to generate 100% accurate energy reports matching your electric utility bill.</td>
       </tr>
       <tr>
-        <td><strong>Gas Meter Consumption (m³)</strong></td>
-        <td>Every 5 minutes</td>
-        <td>Sub-metered gas consumption transmitted wirelessly over M-Bus from the digital gas meter to the electricity meter.</td>
+        <td><strong>Gas Meter Consumption (m³)</strong><br><code>0-n:24.1.0(003)</code></td>
+        <td>Every 5–60 min</td>
+        <td>Sub-metered natural gas consumption transmitted wirelessly over M-Bus (channel <code>1–4</code>) from the digital gas meter to the electricity meter (supports DSMR <code>24.2.1</code> and Belgian temperature-compensated <code>24.2.3</code>).</td>
+      </tr>
+      <tr>
+        <td><strong>Water Meter Consumption (m³ / L)</strong><br><code>0-n:24.1.0(007)</code></td>
+        <td>Every 5–60 min</td>
+        <td>Sub-metered drinking water consumption transmitted over M-Bus when a digital water meter is paired to the electricity meter (e.g. Belgian Fluvius + Pidpa / De Watergroep / Farys / Water-link; standalone HomeWizard, YouLess, ESPHome, and Custom Modbus water counters are also supported).</td>
       </tr>
     </tbody>
   </table>
@@ -1010,6 +1015,18 @@ EOF</code><br><br>
         <td>Instantaneous Voltage Phase L1</td>
         <td><code>231.4*V</code></td>
         <td>Mains voltage monitoring (detects solar grid overvoltage &gt; 253V).</td>
+      </tr>
+      <tr>
+        <td><strong><code>0-n:24.1.0(003)</code><br><code>0-n:24.2.1</code> / <code>24.2.3</code></strong></td>
+        <td>M-Bus Channel <code>n</code> Natural Gas Meter</td>
+        <td><code>(261119120000W)(01482.345*m3)</code></td>
+        <td>Automatic Dashboard &amp; Grid Modal Gas sub-meter card, hourly/daily/monthly m&sup3; rollups, PDF report totals, and MQTT/Modbus export.</td>
+      </tr>
+      <tr>
+        <td><strong><code>0-n:24.1.0(007)</code><br><code>0-n:24.2.1</code></strong></td>
+        <td>M-Bus Channel <code>n</code> Drinking Water Meter</td>
+        <td><code>(261119120500W)(00214.650*m3)</code></td>
+        <td>Automatic Dashboard &amp; Grid Modal Water sub-meter card (m&sup3; &amp; Liters), hourly/daily/monthly rollups, PDF report totals, and MQTT/Modbus export.</td>
       </tr>
     </tbody>
   </table>

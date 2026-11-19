@@ -20,7 +20,8 @@ Le port P1 transmet directement à GEMS les données métrologiques officielles 
 | **Courant (A) & Tension (V) par Phase** | Toutes les 1 s | Surveillés sur les phases L1, L2 et L3 pour l'équilibrage de phase et la protection du disjoncteur principal. |
 | **Pointe Quart-Horaire Mensuelle Max. (kW)**<br>`OBIS 1-0:1.6.0` | Chaque télégramme | Puissance moyenne maximale officielle sur 15 minutes du mois en cours, exploitée par le **Plafond Adaptatif Intelligent** de GEMS. |
 | **Index Cumulés Import/Export (kWh)** | Chaque télégramme | Index fiscaux (Tarif 1 Jour / Plein & Tarif 2 Nuit / Creux) pour des rapports énergétiques 100 % exacts. |
-| **Compteur Gaz Communicant (m³)** | Toutes les 5 min | Consommation de gaz relayée sans fil en M-Bus du compteur gaz vers le compteur électrique. |
+| **Compteur Gaz Communicant (m³)**<br>`0-n:24.1.0(003)` + `24.2.1` / `24.2.3` | Toutes les 5–60 min | Consommation de gaz naturel relayée sans fil en M-Bus du compteur gaz vers le compteur électrique (y compris le volume compensé en température belge `24.2.3`). |
+| **Compteur d'Eau Communicant (m³ / L)**<br>`0-n:24.1.0(007)` + `24.2.1` | Toutes les 5–60 min | Consommation d'eau potable transmise en M-Bus lorsque le distributeur d'eau est jumelé au compteur électrique (ex. Flandre : **Pidpa**, **De Watergroep**, **Farys**, **Water-link** via Fluvius ; capteurs d'eau autonomes HomeWizard, YouLess et ESPHome également pris en charge). |
 
 ---
 

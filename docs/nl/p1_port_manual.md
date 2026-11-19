@@ -20,7 +20,8 @@ De P1-poort stuurt officiële, facturatienauwkeurige energiemetingen rechtstreek
 | **Fasestroom (A) & Fasespanning (V)** | Elke 1s | Bewaakt over fase L1, L2 en L3 voor fasebalancering en bescherming van de hoofdzekering. |
 | **Maximale Maandelijkse Kwartierpiek (kW)**<br>`OBIS 1-0:1.6.0` | Elk telegram | Officieel geregistreerd maximaal 15-minuten kwartiervermogen van de lopende maand, gebruikt door het **Slim Adaptief Plafond**. |
 | **Cumulatieve Afname/Injectie (kWh)** | Elk telegram | Fiscale telwerken (Tarief 1 Dag / Piek & Tarief 2 Nacht / Dal) voor 100% nauwkeurige energierapporten. |
-| **Digitale Gasmeter (m³)** | Elke 5 min | Gasverbruik draadloos via M-Bus doorgestuurd van de gasmeter naar de elektriciteitsmeter. |
+| **Digitale Gasmeter (m³)**<br>`0-n:24.1.0(003)` + `24.2.1` / `24.2.3` | Elke 5–60 min | Aardgasverbruik draadloos via M-Bus doorgestuurd van de gasmeter naar de elektriciteitsmeter (inclusief Belgisch temperatuurgecompenseerd register `24.2.3`). |
+| **Digitale Watermeter (m³ / L)**<br>`0-n:24.1.0(007)` + `24.2.1` | Elke 5–60 min | Drinkwaterverbruik via M-Bus wanneer de digitale watermeter aan de elektriciteitsmeter is gekoppeld (bijv. Vlaanderen: **Pidpa**, **De Watergroep**, **Farys**, **Water-link** via Fluvius; in Nederland worden daarnaast losse slimme watersensoren zoals HomeWizard Watermeter, YouLess of ESPHome ondersteund). |
 
 ---
 
