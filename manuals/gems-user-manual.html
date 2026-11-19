@@ -784,7 +784,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.46.0</span>
+          <span class="cover-meta-val">GEMS v9.47.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Who This Guide Is For</span>
@@ -1385,33 +1385,38 @@
     </div>
   </div>
 
-  <h2 class="subsection-title">8.3 Fluvius Telecontrol (IEC 60870-5-104)</h2>
+  <h2 class="subsection-title">8.3 Belgian DSO Telecontrol (Fluvius / ORES / RESA — IEC 60870-5-104)</h2>
   <p>
-    Required only for large commercial or high-capacity installations where the Belgian distribution grid operator (Fluvius) installs a physical Telecontrol RTU box in the cabinet:
+    Required only for commercial or high-capacity Belgian installations where the distribution grid operator (Fluvius, ORES, or RESA) installs a physical Telecontrol RTU box in the cabinet:
   </p>
   <table class="data-table">
     <thead>
       <tr>
-        <th style="width:25%;">Fluvius 104 Setting</th>
+        <th style="width:25%;">IEC 60870-5-104 Setting</th>
         <th style="width:20%;">Default Value</th>
         <th style="width:55%;">What It Does &amp; When to Use It</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>Enabled, TCP Port &amp; Common Address (ASDU)</strong></td>
+        <td><strong>Enabled, TCP Port, ASDU &amp; IOA Mapping</strong></td>
         <td><code>Off</code> • Port <code>2404</code> • ASDU <code>1</code></td>
-        <td>Starts the local IEC 60870-5-104 slave server on port <code>2404</code>. Leave <strong>Off</strong> for standard residential homes; enable only when a DNO RTU is installed.</td>
+        <td>Starts the local IEC 60870-5-104 slave server on port <code>2404</code> with configurable 24-bit IOAs (<code>5001–5003</code> &amp; <code>1001–1003</code>). Leave <strong>Off</strong> for standard homes; enable only when a DSO RTU is installed.</td>
       </tr>
       <tr>
         <td><strong>Allowed RTU IP / CIDR &amp; Setpoint Unit Mode</strong></td>
-        <td><code>192.168.1.0/24</code> • <code>kW</code> or <code>%</code></td>
-        <td>Restricts which RTU IP can send curtailment commands and chooses whether ASDU 50 setpoints are interpreted in kilowatts (<code>kw</code>) or percentage of rated plant power (<code>percent</code>).</td>
+        <td><code>192.168.1.0/24</code> • <code>kW/kVAr</code> or <code>%</code></td>
+        <td>Restricts which RTU IP can send commands and chooses whether active (<code>P</code>) and reactive (<code>Q</code>) setpoints (<code>ASDU 48–50 / 61–63</code>) are interpreted in absolute <code>kW / kVAr</code> or percentage of nominal plant capacity (<code>percent</code>).</td>
       </tr>
       <tr>
         <td><strong>Installer Compliance Testing Buttons</strong></td>
-        <td><code>Trip Plant</code>, <code>Set 4.0 kW Limit</code>, <code>Release</code></td>
-        <td>Lets the installer &amp; Fluvius engineer simulate ASDU Type 45 (Emergency Trip) and ASDU Type 50 (Active Power Ceiling) on-site during commissioning acceptance tests.</td>
+        <td><code>Trip</code>, <code>4.0 kW</code>, <code>+2.0 kVAr</code>, <code>Release</code></td>
+        <td>Lets the installer &amp; DSO engineer simulate ASDU 45/58 (Emergency Trip), proportional multi-inverter Active Power Curtailment, and closed-loop Reactive Power (<code>Q</code>) dispatch on-site during acceptance tests.</td>
+      </tr>
+      <tr>
+        <td><strong>External Aggregator / VPP Envelope (BRP/BSP)</strong></td>
+        <td><code>Off</code> • <code>10 kW</code> • Reserve <code>20%</code></td>
+        <td>Optional authenticated interface allowing licensed external BRP/BSP aggregators to send time-bounded (<code>15–900s</code> lease) battery setpoints while GEMS strictly protects your main fuses, reserve SoC floor, EV departure schedule, and Flemish 15-min peak ceiling.</td>
       </tr>
     </tbody>
   </table>

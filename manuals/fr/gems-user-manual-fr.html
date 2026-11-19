@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Version du Système</span>
-          <span class="cover-meta-val">GEMS v9.46.0</span>
+          <span class="cover-meta-val">GEMS v9.47.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">À Qui S'adresse Ce Guide</span>
@@ -1387,33 +1387,38 @@
     </div>
   </div>
 
-  <h2 class="subsection-title">8.3 Téléconduite Fluvius (IEC 60870-5-104)</h2>
+  <h2 class="subsection-title">8.3 Téléconduite GRD Belge (Fluvius / ORES / RESA — IEC 60870-5-104)</h2>
   <p>
-    Requis uniquement sur les installations tertiaires ou de forte puissance où le gestionnaire de réseau (Fluvius) installe un coffret RTU de téléconduite dans l'armoire électrique :
+    Requis uniquement sur les installations tertiaires ou de forte puissance où le gestionnaire de réseau belge (Fluvius, ORES ou RESA) installe un coffret RTU de téléconduite dans l'armoire électrique :
   </p>
   <table class="data-table">
     <thead>
       <tr>
-        <th style="width:25%;">Paramètre Fluvius 104</th>
+        <th style="width:25%;">Paramètre IEC 60870-5-104</th>
         <th style="width:20%;">Valeur par Défaut</th>
         <th style="width:55%;">Fonction &amp; Cas d'Utilisation</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>Activé, Port TCP &amp; Adresse Commune (ASDU)</strong></td>
+        <td><strong>Activé, Port TCP, ASDU &amp; Adressage IOA</strong></td>
         <td><code>Off</code> • Port <code>2404</code> • ASDU <code>1</code></td>
-        <td>Démarre le serveur esclave local IEC 60870-5-104 sur le port <code>2404</code>. Laissez sur <strong>Off</strong> en résidentiel classique ; n'activez qu'en présence d'un coffret RTU GRD.</td>
+        <td>Démarre le serveur esclave local IEC 60870-5-104 sur le port <code>2404</code> avec adressage IOA 24 bits configurable (<code>5001–5003</code> &amp; <code>1001–1003</code>). Laissez sur <strong>Off</strong> en résidentiel classique ; n'activez qu'en présence d'un coffret RTU GRD.</td>
       </tr>
       <tr>
         <td><strong>IP / CIDR RTU Autorisée &amp; Unité de Consigne</strong></td>
-        <td><code>192.168.1.0/24</code> • <code>kW</code> ou <code>%</code></td>
-        <td>Restreint l'adresse IP autorisée à émettre des ordres de bridage et définit si les consignes ASDU 50 sont exprimées en kilowatts (<code>kw</code>) ou en pourcentage de la puissance nominale (<code>percent</code>).</td>
+        <td><code>192.168.1.0/24</code> • <code>kW/kVAr</code> ou <code>%</code></td>
+        <td>Restreint l'adresse IP autorisée à émettre des ordres et définit si les consignes actives (<code>P</code>) et réactives (<code>Q</code>) (<code>ASDU 48–50 / 61–63</code>) sont exprimées en valeur absolue (<code>kw</code>) ou en pourcentage du nominal (<code>percent</code>).</td>
       </tr>
       <tr>
         <td><strong>Boutons de Test de Conformité Installateur</strong></td>
-        <td><code>Trip Plant</code>, <code>Set 4.0 kW Limit</code>, <code>Release</code></td>
-        <td>Permet à l'installateur et à l'agent Fluvius de simuler sur site un ordre ASDU Type 45 (Découplage d'urgence) et ASDU Type 50 (Plafond de puissance active) lors de la réception technique.</td>
+        <td><code>Découplage</code>, <code>4.0 kW</code>, <code>+2.0 kVAr</code>, <code>Libérer</code></td>
+        <td>Permet à l'installateur et à l'agent GRD de simuler sur site un ordre ASDU 45/58 (Découplage d'urgence), un écrêtage actif proportionnel multi-onduleurs et une consigne réactive (<code>Q</code>) lors de la réception technique.</td>
+      </tr>
+      <tr>
+        <td><strong>Enveloppe VPP / Agrégateur Externe (BRP/BSP)</strong></td>
+        <td><code>Off</code> • <code>10 kW</code> • Réserve <code>20%</code></td>
+        <td>Interface authentifiée optionnelle permettant aux agrégateurs BRP/BSP externes agréés d'envoyer des consignes batterie temporisées (bail <code>15–900s</code>) tout en préservant vos disjoncteurs, votre SoC de réserve, vos départs VE et votre pointe quart-horaire flamande.</td>
       </tr>
     </tbody>
   </table>

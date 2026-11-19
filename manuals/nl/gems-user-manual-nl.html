@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Systeemversie</span>
-          <span class="cover-meta-val">GEMS v9.46.0</span>
+          <span class="cover-meta-val">GEMS v9.47.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Voor Wie Is Deze Gids</span>
@@ -1385,33 +1385,38 @@
     </div>
   </div>
 
-  <h2 class="subsection-title">8.3 Fluvius Telecontrole (IEC 60870-5-104)</h2>
+  <h2 class="subsection-title">8.3 Belgische DNB Telecontrole (Fluvius / ORES / RESA — IEC 60870-5-104)</h2>
   <p>
-    Uitsluitend vereist voor grotere zakelijke of decentrale productie-installaties waar de Belgische netbeheerder (Fluvius) een fysieke Telecontrole-RTU in de elektriciteitskast plaatst:
+    Uitsluitend vereist voor grotere zakelijke of decentrale productie-installaties waar de Belgische netbeheerder (Fluvius, ORES of RESA) een fysieke Telecontrole-RTU in de elektriciteitskast plaatst:
   </p>
   <table class="data-table">
     <thead>
       <tr>
-        <th style="width:25%;">Fluvius 104-instelling</th>
+        <th style="width:25%;">IEC 60870-5-104-instelling</th>
         <th style="width:20%;">Standaardwaarde</th>
         <th style="width:55%;">Wat Het Doet &amp; Wanneer Gebruiken</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>Ingeschakeld, TCP-poort &amp; Common Address (ASDU)</strong></td>
+        <td><strong>Ingeschakeld, TCP-poort, ASDU &amp; IOA-mapping</strong></td>
         <td><code>Uit</code> • Poort <code>2404</code> • ASDU <code>1</code></td>
-        <td>Start de lokale IEC 60870-5-104 slave-server op poort <code>2404</code>. Laat op <strong>Uit</strong> staan bij gewone woningen; schakel enkel in wanneer een Fluvius RTU-kast aanwezig is.</td>
+        <td>Start de lokale IEC 60870-5-104 slave-server op poort <code>2404</code> met instelbare 24-bits IOA-adressen (<code>5001–5003</code> &amp; <code>1001–1003</code>). Laat op <strong>Uit</strong> staan bij gewone woningen; schakel enkel in wanneer een DNB RTU-kast aanwezig is.</td>
       </tr>
       <tr>
         <td><strong>Toegestaan RTU-IP / CIDR &amp; Eenheid Setpoint</strong></td>
-        <td><code>192.168.1.0/24</code> • <code>kW</code> of <code>%</code></td>
-        <td>Beperkt welk RTU IP-adres terugregelcommando's mag sturen en kiest of ASDU 50-setpoints in kilowatt (<code>kw</code>) of percentage van het nominale vermogen (<code>percent</code>) worden geïnterpreteerd.</td>
+        <td><code>192.168.1.0/24</code> • <code>kW/kVAr</code> of <code>%</code></td>
+        <td>Beperkt welk RTU IP-adres commando's mag sturen en kiest of actieve (<code>P</code>) en reactieve (<code>Q</code>) setpoints (<code>ASDU 48–50 / 61–63</code>) in absolute <code>kW / kVAr</code> of percentage van het nominale vermogen (<code>percent</code>) worden geïnterpreteerd.</td>
       </tr>
       <tr>
         <td><strong>Testknoppen voor Opleveringskeuring</strong></td>
-        <td><code>Trip Plant</code>, <code>Set 4.0 kW Limit</code>, <code>Release</code></td>
-        <td>Laat de installateur en Fluvius-keurder ter plaatse ASDU Type 45 (Noodafschakeling) en ASDU Type 50 (Vermogensplafond) simuleren tijdens de indienststellingskeuring.</td>
+        <td><code>Noodstop</code>, <code>4.0 kW</code>, <code>+2.0 kVAr</code>, <code>Vrijgave</code></td>
+        <td>Laat de installateur en DNB-keurder ter plaatse ASDU 45/58 (Noodafschakeling), proportionele multi-omvormer P-curtailment en reactieve Q-sturing simuleren tijdens de indienststellingskeuring.</td>
+      </tr>
+      <tr>
+        <td><strong>Externe Aggregator / VPP-enveloppe (BRP/BSP)</strong></td>
+        <td><code>Uit</code> • <code>10 kW</code> • Reserve <code>20%</code></td>
+        <td>Optionele beveiligde interface waarmee erkende externe BRP/BSP-aggregatoren tijdsgebonden (<code>15–900s</code> lease) batterij-setpoints kunnen sturen terwijl GEMS uw hoofdzekering, reserve-SoC, EV-vertrekplanning en Vlaamse kwartierpiek strikt beschermt.</td>
       </tr>
     </tbody>
   </table>

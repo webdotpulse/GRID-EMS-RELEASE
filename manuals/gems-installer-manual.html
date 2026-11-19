@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.46.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.47.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -1327,11 +1327,11 @@
     </tbody>
   </table>
 
-  <!-- ==================== 11. FLUVIUS TELECONTROL (IEC 60870-5-104) ==================== -->
+  <!-- ==================== 11. BELGIAN DSO TELECONTROL (IEC 60870-5-104) ==================== -->
   <div class="page-break"></div>
-  <h1 class="section-title" id="sec-iec104">11. Fluvius Telecontrol (IEC 60870-5-104) Compliance</h1>
+  <h1 class="section-title" id="sec-iec104">11. Belgian DSO Telecontrol (Fluvius / ORES / RESA — IEC 60870-5-104)</h1>
   <p>
-    For commercial or residential installations requiring compliance with Fluvius distribution grid telecontrol directives, GEMS includes an embedded <strong>IEC 60870-5-104 slave server</strong>.
+    For commercial, industrial, and distributed generation installations requiring compliance with Belgian distribution grid telecontrol directives (Synergrid C10/11 across Fluvius, ORES, and RESA), GEMS includes an embedded <strong>IEC 60870-5-104 controlled-station slave server</strong> supporting untagged and <code>CP56Time2a</code> time-tagged commands (<code>ASDU 45/48/49/50</code> &amp; <code>58/61/62/63</code>), Select-Before-Execute, command deactivation (<code>COT 8</code>), proportional multi-inverter active power curtailment, closed-loop reactive power (<code>Q</code>) dispatch, cyclic/spontaneous <code>P/Q/U</code> telemetry with <code>QDS</code> quality flags, and live zero-drop configuration reloads.
   </p>
 
   <h2 class="subsection-title">Telecontrol Configuration Parameters</h2>
@@ -1347,41 +1347,52 @@
       <tr>
         <td><code>iec104_enabled</code></td>
         <td>Disabled</td>
-        <td>Master toggle for the IEC 60870-5-104 telecontrol server daemon.</td>
+        <td>Master toggle for the IEC 60870-5-104 telecontrol server daemon (isolated to Belgian installations).</td>
       </tr>
       <tr>
         <td><code>iec104_port</code></td>
         <td><code>2404</code></td>
-        <td>Standard TCP communication port specified by the IEC 104 standard.</td>
+        <td>Standard TCP communication port specified by the IEC 60870-5-104 standard.</td>
       </tr>
       <tr>
         <td><code>iec104_common_address</code></td>
         <td><code>1</code></td>
-        <td>ASDU Common Address (broadcast station identifier assigned by Fluvius).</td>
+        <td>ASDU Common Address (<code>1–65534</code>; station identifier assigned by Fluvius, ORES, or RESA).</td>
       </tr>
       <tr>
         <td><code>iec104_allowed_ip</code></td>
         <td><code>0.0.0.0</code></td>
-        <td>Hardware IP whitelist. Enter the static IP of the Fluvius Remote Terminal Unit (RTU) to reject unauthorized connections.</td>
+        <td>Hardware IP/CIDR allowlist. Enter the static IP or subnet of the DSO Remote Terminal Unit (RTU) to reject unauthorized connections.</td>
       </tr>
       <tr>
         <td><code>iec104_curtailment_mode</code></td>
         <td><code>kw</code></td>
-        <td>Format of incoming setpoint commands: Absolute Kilowatts (<code>kw</code>) or Percentage of Nominal (<code>percent</code>).</td>
+        <td>Format of incoming active and reactive setpoints: Absolute Power (<code>kw</code> / <code>kVAr</code>) or Percentage of Nominal (<code>percent</code>).</td>
+      </tr>
+      <tr>
+        <td><code>iec104_ioa_*</code></td>
+        <td><code>5001–5003</code> / <code>1001–1003</code></td>
+        <td>Custom 24-bit IOA signal mapping for Active Setpoint (<code>5001</code>), Emergency Trip (<code>5002</code>), Reactive Setpoint <code>Q</code> (<code>5003</code>), and live <code>P/Q/U</code> telemetry (<code>1001/1002/1003</code>).</td>
       </tr>
     </tbody>
   </table>
 
   <h2 class="subsection-title">Installer Telecontrol Compliance Simulation Controls</h2>
   <p>
-    Installers can verify plant emergency response directly in the GEMS UI without waiting for grid operator test signals:
+    Installers can verify plant emergency, active curtailment, and reactive power response directly in the GEMS UI without waiting for grid operator test signals:
   </p>
   <ul style="margin: 6px 0 12px 18px; padding: 0;">
-    <li><strong>🚨 Trip Plant (ASDU 45 Disconnect):</strong> Simulates an emergency disconnect command. GEMS sends an instantaneous zero-power setpoint to all connected inverters.</li>
+    <li><strong>🚨 Trip Plant (ASDU 45):</strong> Simulates an emergency disconnect command. GEMS sends an instantaneous 0 W setpoint to all PV inverters and halts battery charge/discharge.</li>
     <li><strong>✓ Reset Trip:</strong> Restores normal operating state after a trip test.</li>
-    <li><strong>📉 Set 4.0 kW Limit (ASDU 50):</strong> Injects a 4.0 kW active power ceiling command to verify rapid plant curtailment within 5 seconds.</li>
-    <li><strong>Release Curtailment (100 kW):</strong> Restores unconstrained plant generation.</li>
+    <li><strong>📉 Set 4.0 kW Limit (ASDU 50):</strong> Injects a 4.0 kW active power ceiling distributed proportionally by rated kW across all connected PV inverters while clamping forced battery export.</li>
+    <li><strong>⚡ Set +2.0 kVAr Q (ASDU 50):</strong> Dispatches a +2.0 kVAr reactive power setpoint proportionally across reactive-capable inverters (Solis, Huawei, Sungrow, SMA, Fronius, SolarEdge, KOSTAL, ABB/FIMER, Delta, KACO, and Custom Modbus).</li>
+    <li><strong>Release All Setpoints:</strong> Restores unconstrained active and reactive plant operation.</li>
   </ul>
+
+  <h2 class="subsection-title">External Aggregator / VPP Flexibility Dispatch Envelope (BRP/BSP)</h2>
+  <p>
+    For sites enrolled with licensed external BRP/BSP flexibility aggregators, installers can enable the opt-in <strong>External Aggregator / VPP Flexibility Envelope</strong> under <strong>Settings &rarr; Strategy</strong>. External <code>&plusmn;kW</code> charge, discharge, and hold setpoints (authenticated via Bearer token over local <code>POST /api/vpp/dispatch</code> or <strong>GRID-EMS-SERVER</strong> cloud relay with mandatory <code>15–900s</code> deadman leases) remain strictly clamped inside GEMS local safety rails: main-breaker per-phase limits, DSO IEC 60870-5-104 / &sect;14a EnWG precedence, protected <code>vpp_reserve_soc_pct</code> &amp; <code>vpp_max_soc_pct</code> bounds, EV departure catch-up priority, grid-meter-offline <code>0 W</code> failsafe, and (on Flemish sites unless explicitly overridden) the 15-minute <em>Capaciteitstarief</em> peak shield.
+  </p>
 
   <!-- ==================== 12. BATTERY ARBITRAGE & RULES ==================== -->
   <div class="page-break"></div>
