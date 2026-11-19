@@ -206,7 +206,7 @@ GEMS bevat **174 ingebouwde fysieke hardwaretemplates** (plus 6 simulatieprofiel
 * **Behoud van Externe CPO-afrekening:** Is uw laadpaal via OCPP gekoppeld aan een werkgeversvergoedingsdienst of extern CPO-platform, dan regelt GEMS het vermogen lokaal via Modbus TCP *zonder uw zakelijke laadsessie of cloudverbinding te verstoren*.
 * **Ondersteunde Modellen:**
   * **RAEDIAN NEO / NEX AC Wallbox:** Template `raedian_charger`, Poort `502`, Slave ID `1` (dynamische stroom + 1F/3F omschakeling).
-  * **RAEDIAN Gemini Dual AC Wallbox:** Template `raedian_gemini`, Poort `502`, Slave ID `1` (dubbele aansluiting en dynamische 0–64A load balancing).
+  * **RAEDIAN Gemini Dual AC Wallbox:** Template `raedian_gemini`, Poort `502`, Slave ID `1` (dubbele aansluiting en dynamische 0–64A load balancing; schakel *Load management with EMS* in via Gemini WebConfig voor actieve Modbus TCP-stroomregeling).
   * **SolaX Smart EV Charger G2:** Template `solax_evcharger`, Poort `502`, Slave ID `1` (0,01 A resolutie + 1F/3F omschakeling).
   * **KEBA KeContact P30 / P40:** Template `keba_charger`, Poort `502`, Slave ID `255` (1 mA nauwkeurigheid + S10 fase-omschakeling).
   * **Mennekes AMTRON Xtra / Charge Control / 4You:** Template `mennekes_modbus`, Poort `502`, Slave ID `1`.

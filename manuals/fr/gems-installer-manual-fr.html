@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Micrologiciel / Version</span>
-          <span class="cover-meta-val" data-version-tag="release">v9.45.0-release</span>
+          <span class="cover-meta-val" data-version-tag="release">v9.45.1-release</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Architecture Matérielle</span>
@@ -438,7 +438,7 @@
 
     <div class="cover-footer">
       <span>Système de Gestion d'Énergie GEMS (GRID-EMS)</span>
-      <span>Référence Technique Confidentielle • Documentation v9.45.0</span>
+      <span>Référence Technique Confidentielle • Documentation v9.45.1</span>
     </div>
   </div>
 
@@ -620,7 +620,7 @@
     TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)<br>
     curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"<br>
     <br>
-    # 2. Installer le paquet et ses dépendances (ex. sudo dpkg -i gems_9.45.0_arm64.deb)<br>
+    # 2. Installer le paquet et ses dépendances (ex. sudo dpkg -i gems_9.45.1_arm64.deb)<br>
     sudo dpkg -i "gems_${TAG#v}_arm64.deb"<br>
     sudo apt-get install -f -y<br>
     <br>
@@ -964,7 +964,8 @@
         <div class="decision-item-title">Modbus TCP / RTU (Recommandé &amp; Privilégié)</div>
         <div class="decision-item-desc">
           <strong>Réponse inférieure à la seconde :</strong> Module de 6 A à 32 A en moins de 200 ms.<br>
-          <strong>Coexistence split-billing employeur :</strong> N'interfère PAS avec la connexion OCPP cloud de la borne (plateformes de facturation CPO externes ou services de remboursement employeur). Les deux fonctionnent simultanément !
+          <strong>Coexistence split-billing employeur :</strong> N'interfère PAS avec la connexion OCPP cloud de la borne (plateformes de facturation CPO externes ou services de remboursement employeur). Les deux fonctionnent simultanément !<br>
+          <strong>Note RAEDIAN Gemini :</strong> Activez <em>Load management with EMS</em> dans l'interface WebConfig locale Gemini afin d'autoriser le pilotage Modbus TCP sur le port <code>502</code> (sinon la borne reste en télémétrie HTTPS lecture seule).
         </div>
       </div>
       <div class="decision-item" style="border-left: 3px solid #0284c7;">
