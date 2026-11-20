@@ -700,7 +700,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Version Logicielle</span>
-          <span class="cover-meta-val" data-version-release>v9.47.2-release (Tag Officiel)</span>
+          <span class="cover-meta-val" data-version-release>v9.47.3-release (Tag Officiel)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Modèles Natifs</span>
@@ -1211,7 +1211,7 @@
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via port Ethernet interne direct / Ginlong Wi-Fi/LAN stick (Port par défaut : 502 ou 8899</span>
             </td>
             <td>Puissance active de production PV (W, reg 33079), Puissance de charge/décharge batterie (W, reg 33149), SOC batterie (%, reg 33139), Puissance active du compteur réseau (W, reg 33130), Production énergétique cumulée totale (kWh, reg 33029), Courants AC triphasés (0.1A, regs 33073-33075), Tensions triphasées (0.1V, regs 33076-33078).</td>
-            <td>Mode et limite de bridage de puissance active (W / % via registres Holding 3051/3052), consigne de charge et décharge forcée batterie (W via registres 43110/43129/43135/43136).</td>
+            <td>Mode et limite de bridage de puissance active (W / % via registres Holding 43052/43070 sur Hybride et 3051/3052 sur String), consigne de charge et décharge forcée batterie (W via registres 43110/43129/43135/43136).</td>
             <td>Plateforme de référence principale désignée pour les onduleurs solaires hybrides et le stockage par batterie. Exécute un bridage actif en boucle fermée sous la seconde durant les heures spot négatives (Mode Pays-Bas / Zéro-Injection), stocke automatiquement le surplus photovoltaïque, ajuste la puissance lors de l&#039;écrêtage capacitaire flamand et orchestre l&#039;arbitrage EPEX Day-Ahead (charge forcée en heures creuses et décharge en pointe). Les modèles Solis Retrofit fonctionnent de manière transparente en stockage couplé AC indépendant de toute chaîne PV.</td>
           </tr>
           <tr class="matrix-device-row" data-cat="inverter" data-preferred="0">
@@ -4329,7 +4329,7 @@
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Consignes Pilotables</div>
-          <p>Mode et limite de bridage de puissance active (W / % via registres Holding 3051/3052), consigne de charge et décharge forcée batterie (W via registres 43110/43129/43135/43136).</p>
+          <p>Mode et limite de bridage de puissance active (W / % via registres Holding 43052/43070 sur Hybride et 3051/3052 sur String), consigne de charge et décharge forcée batterie (W via registres 43110/43129/43135/43136).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Rôle Pratique &amp; Automatisation</div>

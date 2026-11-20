@@ -699,7 +699,7 @@ Full closed-loop 1-phase SolarEdge HD-Wave & Home Hub control: regulates StorEdg
 Solar PV Active Generation Power (W, reg 33079), Battery Charge/Discharge Power (W, reg 33149), Battery SOC (%, reg 33139), Grid Meter Active Power (W, reg 33130), Total Cumulative Energy Yield (kWh, reg 33029), 3-Phase AC Currents (0.1A, regs 33073-33075), 3-Phase Voltages (0.1V, regs 33076-33078).
 
 #### Controllable Setpoints & Data Written by GEMS
-Active Power Curtailment Mode and Limit (W / % via holding registers 3051/3052), Forced Battery Charging & Discharging Setpoint (W via registers 43110/43129/43135/43136).
+Active Power Curtailment Mode and Limit (W / % via holding registers 43052/43070 on Hybrid and 3051/3052 on String), Forced Battery Charging & Discharging Setpoint (W via registers 43110/43129/43135/43136).
 
 #### What GEMS Actually Does With This Device
 Designated primary reference platform for hybrid solar and battery energy storage. Executes sub-second closed-loop active power curtailment during negative spot price hours (Netherlands Mode / Zero-Export), manages automatic solar surplus sinking into battery storage, dynamically throttles charging during Flanders capacity tariff peak shaving, and orchestrates spot market arbitrage (EPEX Day-Ahead price force charging and peak discharging). Solis Retrofit models operate seamlessly as AC-coupled storage units with dedicated battery control and zero solar PV string dependency.

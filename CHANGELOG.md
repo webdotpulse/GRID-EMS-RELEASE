@@ -14,6 +14,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.47.3] - 2026-11-20
+
+### Fixed
+- **Solis Hybrid Active Power Curtailment (`43052` / `43070`), Unsupported-Register Circuit Breaker & LAN Scan Dongle Protection:**
+  - **Native Solis Hybrid Curtailment Registers:** Added automatic dual-map active power curtailment support across **Solis** S5/S6 Hybrid (`43052` `0.01%` power limit and `43070` limit switch) and Grid-Tied String (`3051` / `3052`) inverters so negative-price solar curtailment and automated commissioning tests succeed natively on Solis Hybrid installations without `illegal data address` rejections.
+  - **Unsupported-Register Circuit Breaker & Non-Blocking Telemetry Polling:** Added a firmware register circuit breaker across the Solis driver and curtailment controller to prevent repeated 2-second Modbus retries and log flooding on read-only or unsupported inverter firmwares, and decoupled Solis control write locks from live grid-meter and battery polling so slow Wi-Fi responses cannot trigger false meter-offline failsafes.
+  - **Zero-Probe LAN Scanner Protection for Active Modbus Dongles:** Updated the local network hardware scanner to skip all TCP port, HTTP/TLS, and unicast discovery probes against IP addresses already managed via Modbus TCP, preventing single-chip Wi-Fi sticks (**Solis** and **Huawei**) from exhausting socket memory during manual device scans.
+
+---
+
 ## [v9.47.2] - 2026-11-19
 
 ### Fixed
