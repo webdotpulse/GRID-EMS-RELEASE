@@ -14,6 +14,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.47.4] - 2026-11-20
+
+### Fixed
+- **P1-Driven Huawei Battery Discharge Stability, Flanders Quarter-End Grid-Charge Clamping, Single-Socket Raedian Gemini Control & Startup Warmup Telemetry:**
+  - **Steady P1-Driven Battery Discharge on Slow Modbus Gateways:** Eliminated rapid 2–4 second battery discharge setpoint oscillation and Modbus timeout bursts on hybrid installations without an internal inverter power sensor (such as **Huawei** `SUN2000` + `LUNA2000` over `SDongleA-05` paired with a 1-second P1 smart meter), waiting for both the grid meter and battery gateway to refresh and decoupling inverter control writes from live telemetry polling while retaining instant step-down whenever grid export occurs.
+  - **Flanders End-of-Quarter Grid-Charge Headroom Cap:** Capped instantaneous battery grid-charge power to the active 15-minute capacity threshold during the final minute of each clock quarter (`:14`, `:29`, `:44`, `:59`) so accumulated sub-threshold quarter headroom never triggers short high-current grid spikes on top of active household or EV loads.
+  - **Single-Socket Raedian Gemini Current Control:** Avoided sending Connector 2 current-limit writes (`33056`) to single-socket **Raedian** Gemini wallboxes before or after connector discovery.
+  - **Clean Post-Restart Cloud Telemetry Warmup:** Waited briefly on controller startup/OTA restart for configured meter, inverter, and battery pollers to complete their initial read before pushing the first cloud snapshot (synchronized with **GRID-EMS-SERVER**), preventing transient all-zero / `0%` Battery SoC dips in 24-hour telemetry charts and CSV exports.
+
+---
+
 ## [v9.47.3] - 2026-11-20
 
 ### Fixed
