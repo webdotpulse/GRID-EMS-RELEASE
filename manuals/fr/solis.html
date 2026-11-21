@@ -568,7 +568,7 @@
             </ul>
           </li>
           <li><strong>Arbitrage &amp; longévité Easyway UNIV5200 :</strong> Réglez <strong>Charging Strategy Mode</strong> = <code>Dynamic 24h Forecast</code>, <strong>Battery Wear Cost</strong> = <strong><code>0.04 €/kWh</code></strong> et activez <strong>Winter / Low-Solar Grid Charge Fallback</strong> (<code>Trigger 25%</code> &rarr; <code>Target 65%</code> sur les <code>2–3 heures les moins chères</code>).</li>
-          <li><strong>Empêcher les bornes VE (Raedian) de vider l'UNIV5200 la nuit :</strong> Ajoutez une règle sous <strong>Optimisation Batterie par Règles Tarifaires</strong> avec <strong>Action = <code>Hold (Idle / No Export)</code></strong> pendant votre plage nocturne de charge VE (par ex. <code>01:00 – 05:00</code>) afin que votre borne <strong>Raedian</strong> tire uniquement l'électricité heures creuses du réseau et conserve 100 % de votre batterie Easyway pour la pointe matinale du foyer !</li>
+          <li><strong>Empêcher les bornes VE (Raedian) de vider l'UNIV5200 :</strong> GEMS active automatiquement un maintien actif à <code>0 W</code> par Remote Control (<code>43135=1, 43136=0, 43129=0</code>) dès qu'une borne <strong>Raedian</strong> pilotée charge depuis le réseau (<code>Now</code> ou créneau heures creuses <code>Eco</code>) ; pour une borne externe non gérée, ajoutez une règle sous <strong>Optimisation Batterie par Règles Tarifaires</strong> avec <strong>Action = <code>Hold (Idle / No Export)</code></strong> (par ex. <code>01:00 – 05:00</code>) pour conserver 100 % de votre batterie Easyway pour la pointe matinale !</li>
         </ol>
 
         <!-- SECTION 8 -->

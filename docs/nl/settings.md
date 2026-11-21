@@ -99,6 +99,7 @@ Instellingen voor de fysieke locatie, tijdsynchronisatie en algemene systeemdiag
 
 * **Bekabeld Ethernetbeheer:** Schakel bekabelde Ethernet-interfaces (`eth0`) rechtstreeks vanuit de browser zonder SSH tussen **Automatisch (DHCP)** en **Statisch IPv4 (Handmatig)** (`IPv4/CIDR`, `Gateway`, `DNS`). Draadloze (`wlan*`) interfaces zijn uitgesloten om deterministische industriële LAN-betrouwbaarheid te garanderen.
 * **Automatische 60-seconden Terugvalbeveiliging:** Bij het toepassen van nieuwe netwerkinstellingen start een veiligheidstimer van 60 seconden. Als u niet binnen de afteltijd op **Bevestigen & behouden** klikt in de browser, zet GEMS NetworkManager automatisch terug naar het vorige werkende IP-profiel om buitensluiting op locatie te voorkomen.
+* **Automatisch LAN-IP Zelfherstel voor Toestellen & Cloud-eindpuntherstel:** Hoewel vaste DHCP-reserveringen in de router aanbevolen blijven voor lokale omvormers, meters en laadpalen, registreert GEMS automatisch het MAC-adres en serienummer van elk online LAN-toestel en werkt het lokale IPv4-adres automatisch bij (zonder actieve Modbus TCP-dongles te verstoren) wanneer een routerherstart een nieuw DHCP-adres toewijst — terwijl ook het eigen lokale IP-adres van GEMS direct in **GRID-EMS-SERVER** wordt ververst zodra de controller een nieuw LAN-IP ontvangt.
 
 ---
 

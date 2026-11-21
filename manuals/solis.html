@@ -573,7 +573,7 @@
             </ul>
           </li>
           <li><strong>Easyway UNIV5200 Arbitrage &amp; Longevity:</strong> Set <strong>Charging Strategy Mode</strong> = <code>Dynamic 24h Forecast</code>, <strong>Battery Wear Cost</strong> = <strong><code>0.04 €/kWh</code></strong>, and enable <strong>Winter / Low-Solar Grid Charge Fallback</strong> (<code>Trigger 25%</code> &rarr; <code>Target 65%</code> over <code>2–3 cheapest hours</code>).</li>
-          <li><strong>Preventing EV Wallboxes (Raedian) from Draining UNIV5200 at Night:</strong> Add a <strong>Custom Battery Cost Optimization Rule</strong> with <strong>Action = <code>Hold (Idle / No Export)</code></strong> during your overnight EV charging window (e.g. <code>01:00 – 05:00</code>) so your <strong>Raedian</strong> wallbox draws strictly from cheap off-peak grid power while preserving 100% of your Easyway battery for the morning household peak!</li>
+          <li><strong>Preventing EV Wallboxes (Raedian) from Draining UNIV5200:</strong> GEMS automatically engages an active <code>0 W</code> Remote Control hold (<code>43135=1, 43136=0, 43129=0</code>) whenever a managed <strong>Raedian</strong> wallbox charges from the grid (<code>Now</code> or cheapest-tariff <code>Eco</code>); for unmanaged external chargers, add a <strong>Custom Battery Cost Optimization Rule</strong> with <strong>Action = <code>Hold (Idle / No Export)</code></strong> during your overnight window (e.g. <code>01:00 – 05:00</code>) to preserve 100% of your Easyway battery for the morning household peak!</li>
         </ol>
 
         <!-- SECTION 8 -->

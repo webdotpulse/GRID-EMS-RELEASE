@@ -422,7 +422,7 @@
         <div class="cover-meta-grid">
           <div class="cover-meta-item">
             <span class="cover-meta-label">Version du Document</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.47.4-release (Version Officielle)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.48.0-release (Version Officielle)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Modèles de Référence Principaux GEMS</span>
@@ -451,7 +451,7 @@
       </div>
 
       <div class="cover-footer">
-        <span>© New Energy Grid &amp; The Charge Grid — Documentation Terrain Propriétaire — Documentation v9.47.4</span>
+        <span>© New Energy Grid &amp; The Charge Grid — Documentation Terrain Propriétaire — Documentation v9.48.0</span>
         <span>Plateforme Cible : Contrôleur Edge GRID-EMS (Raspberry Pi ARM64)</span>
       </div>
     </div>
@@ -1441,9 +1441,9 @@
           <td>Recharge automatiquement les modules UNIV5200 de <code>&le;25 %</code> jusqu'à <code>65 % SOC</code> pendant les 2 à 3 heures nocturnes les moins chères en hiver sombre sans dépasser votre plafond quart-horaire de Flandre !</td>
         </tr>
         <tr>
-          <td><strong>Protection lors de la Charge VE Nocturne</strong><br><em>(ex. avec borne <strong>Raedian</strong>)</em></td>
-          <td>Ajouter Règle Batterie :<br><span class="val-good">Hold (Idle / No Export)</span></td>
-          <td>Empêche une session de charge nocturne sur votre borne <strong>Raedian NEO / NEX / Gemini</strong> de vider la batterie Easyway <code>UNIV5200</code> — conservant 100 % de réserve batterie pour la pointe du matin !</td>
+          <td><strong>Protection lors de la Charge VE Réseau</strong><br><em>(ex. avec borne <strong>Raedian</strong>)</em></td>
+          <td><span class="val-good">Maintien Actif 0 W Auto</span><br><em>(+ règle <code>Hold</code> optionnelle)</em></td>
+          <td>GEMS active automatiquement un maintien actif à <code>0 W</code> par Remote Control (<code>43135=1, 43136=0, 43129=0</code>) lors d'une charge réseau sur votre borne <strong>Raedian NEO / NEX / Gemini</strong> (<code>Now</code> / <code>Eco</code>), évitant toute décharge dans le VE et tout pic réseau BMS à bas SOC !</td>
         </tr>
       </tbody>
     </table>

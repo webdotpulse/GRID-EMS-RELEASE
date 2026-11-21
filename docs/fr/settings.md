@@ -99,6 +99,7 @@ Paramètres relatifs à l'emplacement géographique, à la synchronisation horai
 
 * **Gestion Ethernet Filaire :** Configurez les interfaces Ethernet filaires (`eth0`) entre **Automatique (DHCP)** et **IPv4 Statique (Manuel)** (`IPv4/CIDR`, `Passerelle`, `DNS`) directement depuis le navigateur sans connexion SSH. Les interfaces sans fil (`wlan*`) sont exclues afin de garantir une fiabilité LAN industrielle déterministe.
 * **Rétablissement Automatique après 60 Secondes :** L'application d'un changement réseau arme un compte à rebours de sécurité de 60 secondes. Si vous ne cliquez pas sur **Confirmer et conserver** depuis votre navigateur avant l'expiration du délai, GEMS rétablit automatiquement l'ancien profil IP dans NetworkManager afin d'éviter tout blocage d'accès sur site.
+* **Auto-Réparation d'Adresse IP LAN des Équipements & Actualisation Cloud Automatique :** Bien que les réservations DHCP statiques sur le routeur restent recommandées pour les onduleurs, compteurs et bornes locales, GEMS mémorise automatiquement l'adresse MAC et le numéro de série matériel de chaque appareil LAN en ligne et met à jour son adresse IPv4 en toute sécurité (sans perturber les clés Modbus TCP actives) lorsqu'un redémarrage routeur lui attribue un nouveau bail DHCP — tout en actualisant immédiatement la propre adresse IP locale du contrôleur GEMS dans **GRID-EMS-SERVER** en cas de changement d'IP LAN.
 
 ---
 

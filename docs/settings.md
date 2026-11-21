@@ -99,6 +99,7 @@ Settings related to the physical location, time synchronization, and general sys
 
 * **Wired Ethernet Management:** Configure wired Ethernet (`eth0`) interfaces between **DHCP (Automatic)** and **Static IPv4** (`IPv4/CIDR`, `Gateway`, `DNS`) directly from the browser without SSH access. Wireless (`wlan*`) interfaces are excluded to ensure deterministic industrial LAN reliability.
 * **60-Second Automatic Connectivity Rollback:** Applying a network change arms a 60-second safety timer. Unless you click **Confirm & Keep Network Settings** from the browser before the countdown expires, GEMS automatically reverts NetworkManager to the previous working IP profile to prevent accidental field lockouts.
+* **Automatic LAN Hardware IP Self-Healing & Cloud Endpoint Recovery:** While static router DHCP reservations remain recommended for local inverters, meters, and wallboxes, GEMS automatically records each online LAN device's MAC address and hardware serial number and safely updates its local IPv4 endpoint (without disturbing active Modbus TCP dongles) if a router restart assigns a new DHCP lease—while immediately refreshing GEMS's own local IP address in **GRID-EMS-SERVER** whenever the controller receives a new LAN IP.
 
 ---
 

@@ -422,7 +422,7 @@
         <div class="cover-meta-grid">
           <div class="cover-meta-item">
             <span class="cover-meta-label">Document Version</span>
-            <span class="cover-meta-val">v9.47.4-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.48.0-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">GEMS Primary Reference Templates</span>
@@ -451,7 +451,7 @@
       </div>
 
       <div class="cover-footer">
-        <span>© New Energy Grid &amp; The Charge Grid — Proprietary Field Documentation v9.47.4</span>
+        <span>© New Energy Grid &amp; The Charge Grid — Proprietary Field Documentation v9.48.0</span>
         <span>Target Platform: GRID-EMS Edge Controller (Raspberry Pi ARM64)</span>
       </div>
     </div>
@@ -1443,9 +1443,9 @@
           <td>Automatically tops up UNIV5200 packs from <code>&le;25%</code> to <code>65% SOC</code> during the 2–3 cheapest night hours in dark winter weather without exceeding your Flanders 15-min peak target!</td>
         </tr>
         <tr>
-          <td><strong>Overnight EV Charging Protection</strong><br><em>(e.g. with <strong>Raedian</strong> Wallbox)</em></td>
-          <td>Add Custom Battery Rule:<br><span class="val-good">Hold (Idle / No Export)</span></td>
-          <td>Prevents a night EV boost session on your <strong>Raedian NEO / NEX / Gemini</strong> wallbox from draining the Easyway <code>UNIV5200</code> battery—keeping 100% battery reserve for the morning household peak!</td>
+          <td><strong>EV Grid-Charging Protection</strong><br><em>(e.g. with <strong>Raedian</strong> Wallbox)</em></td>
+          <td><span class="val-good">Automatic Active 0 W Hold</span><br><em>(+ optional <code>Hold</code> rule)</em></td>
+          <td>GEMS automatically engages active <code>0 W</code> Remote Control hold (<code>43135=1, 43136=0, 43129=0</code>) during managed <strong>Raedian NEO / NEX / Gemini</strong> grid charging (<code>Now</code> / <code>Eco</code>), preventing battery-to-EV drain and low-SOC BMS grid spikes!</td>
         </tr>
       </tbody>
     </table>

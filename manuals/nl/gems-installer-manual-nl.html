@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Systeemfirmware / Build</span>
-          <span class="cover-meta-val" data-version-tag="release">v9.47.4-release</span>
+          <span class="cover-meta-val" data-version-tag="release">v9.48.0-release</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware-architectuur</span>
@@ -438,7 +438,7 @@
 
     <div class="cover-footer">
       <span>GEMS Energiebeheersysteem (GRID-EMS)</span>
-      <span>Vertrouwelijke Technische Veldreferentie • Documentatie v9.47.4</span>
+      <span>Vertrouwelijke Technische Veldreferentie • Documentatie v9.48.0</span>
     </div>
   </div>
 
@@ -620,7 +620,7 @@
     TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)<br>
     curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"<br>
     <br>
-    # 2. Installeer pakket en afhankelijkheden (bijv. sudo dpkg -i gems_9.47.4_arm64.deb)<br>
+    # 2. Installeer pakket en afhankelijkheden (bijv. sudo dpkg -i gems_9.48.0_arm64.deb)<br>
     sudo dpkg -i "gems_${TAG#v}_arm64.deb"<br>
     sudo apt-get install -f -y<br>
     <br>
@@ -1581,7 +1581,7 @@
   <ul style="margin: 6px 0 12px 18px; padding: 0;">
     <li><strong>Begeleide Inbedrijfstellingswizard &amp; Scheiding Bewonersmodus vs. Gecertificeerde Installateursmodus:</strong> Start automatisch bij de eerste opstart en doorloopt taalkeuze/locatie (<code>NL</code>, <code>FR</code>, <code>EN</code>), aanmaak van de lokale <strong>Installateurs-PIN/wachtwoord</strong>, hoofdzekering &amp; netstelsel (AREI / NEN 1010), slimme meterdetectie, koppeling van referentiehardware (<strong>Solis</strong> &amp; <strong>RAEDIAN</strong>) en energiecontractselectie. In de dagelijkse <strong>Normale Bewonersmodus</strong> (vergrendeld) ziet de klant een overzichtelijke, veilige interface—live Dashboard-energiestromen, dagelijkse EV-laadkeuze, <strong>Toestellen</strong> (met live <strong>Debug</strong>-diagnose en 1-klik rapportverzending naar <strong>GRID-EMS-SERVER</strong>), <strong>Systeeminformatie</strong> (met <strong>Software-update</strong> en bevestigde <strong>Systeem herstarten</strong>) en het live <strong>Logboek</strong>—terwijl de Netwerkscanner, Cockpit-terminal (<code>:9090</code>), de tabbladen Strategie/Energiecontract/Relais/Netwerk/Meldingen/Cloudserver, het toevoegen/bewerken/verwijderen van toestellen, <strong>Lokale CA &amp; SSL-certificaat</strong>-beheer, back-ups en fabrieksreset netjes verborgen blijven totdat de <strong>Gecertificeerde Installateursmodus</strong> wordt ontgrendeld via het hangsloticoon (met blokkering na 5 foutieve pogingen en PIN-rotatie onder <strong>Instellingen &rarr; Systeeminformatie</strong>).</li>
     <li><strong>Vaste USB-seriële Poortkoppeling (<code>/dev/serial/by-id/*</code>) &amp; Overzichtelijke Toestellenpagina:</strong> Door te binden op vaste hardware-symlinks wisselen USB-P1- en USB-RS485-adapters nooit van poortnummer na een spanningsonderbreking. Op <strong>Instellingen &rarr; Toestellen</strong> staat de optionele kaart <strong>EV-Laadcluster &amp; Dynamic Load Balancing (DLB)</strong> overzichtelijk onderaan onder de individuele toestelkaarten.</li>
-    <li><strong>Ethernet Netwerkconfiguratie met 60-Seconden Terugvalbeveiliging:</strong> Wijs DHCP of een statisch IPv4-adres uitsluitend toe op bekabelde Ethernet-interfaces (<code>eth0</code>) onder <strong>Instellingen &rarr; Netwerk</strong> (draadloze interfaces zijn bewust weggelaten voor maximale industriële betrouwbaarheid in metalen verdeelkasten). Wordt het nieuwe IP-adres niet binnen 60 seconden bevestigd, dan herstelt GEMS automatisch het vorige werkende NetworkManager-profiel.</li>
+    <li><strong>Ethernet Netwerkconfiguratie met 60-Seconden Terugvalbeveiliging &amp; Automatisch DHCP-IP Zelfherstel:</strong> Wijs DHCP of een statisch IPv4-adres uitsluitend toe op bekabelde Ethernet-interfaces (<code>eth0</code>) onder <strong>Instellingen &rarr; Netwerk</strong> (draadloze interfaces zijn bewust weggelaten voor maximale industriële betrouwbaarheid in metalen verdeelkasten). Wordt het nieuwe IP-adres niet binnen 60 seconden bevestigd, dan herstelt GEMS automatisch het vorige werkende NetworkManager-profiel. Daarnaast registreert GEMS automatisch het MAC-adres en serienummer van verbonden LAN-toestellen (omvormers, slimme meters, relais en EV-laadpalen) zodat een gewijzigd DHCP IP-adres na een routerherstart veilig en automatisch wordt bijgewerkt, en ververst GEMS zijn eigen lokale IP-adres direct in <strong>GRID-EMS-SERVER</strong>.</li>
     <li><strong>Interactieve Opleverings- &amp; Aansturingstest (Lokaal &amp; Cloud):</strong> Onder <strong>Instellingen &rarr; Opleveringstest</strong> (én op afstand via <strong>GRID-EMS-SERVER</strong> Toesteldiagnose) voeren installateurs een geautomatiseerde 5-stappenverificatie uit over <strong>Omvormer</strong> (bijv. <strong>Solis</strong> live telemetrie + 80% actieve terugregeling schrijven/teruglezen), <strong>Thuisbatterij</strong> (BMS State-of-Charge + aangehouden <strong>2 minuten actief laden</strong> en <strong>2 minuten actief ontladen</strong> met live BMS-vermogensterugmelding) en <strong>EV-laadpaal</strong> (bijv. <strong>RAEDIAN</strong> live telemetrie + 6,0 A dynamische stroomsturing), waarbij de autonome strategie tijdelijk wordt gepauzeerd en na afloop automatisch veilig wordt hervat. Gedetecteerde verbindings- of configuratiepunten bieden directe <strong>Herstellen &amp; Opnieuw Testen</strong>-acties én een downloadbaar A4 <strong>PDF-Opleveringscertificaat</strong>.</li>
     <li><strong>Cryptografisch Ondertekende Software-updates, Back-up &amp; Hardware Watchdog:</strong> Zowel online OTA-updates als handmatig geüploade <code>.deb</code>-pakketten worden vóór installatie geverifieerd tegen de ingebouwde Ed25519-releasehandtekening van New Energy Grid en SHA-256-controlesom. Exporteer draagbare JSON-back-ups vóór een hardwarewissel, voer beveiligde fabrieksresets uit en vertrouw op <code>systemd</code> <code>WatchdogSec=30</code> in combinatie met de Raspberry Pi hardware-watchdog voor volledig onbeheerd herstel.</li>
   </ul>

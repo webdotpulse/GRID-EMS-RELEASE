@@ -14,6 +14,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.48.0] - 2026-11-21
+
+### Added
+- **Automatic LAN Hardware IP Self-Healing (`MAC` + `Hardware Serial`) & Live Cloud Local IP Recovery:**
+  - **Automatic DHCP IP Relocation for Local LAN Hardware:** Learned and persisted the Layer-2 MAC address and hardware serial number of connected LAN devices (inverters, smart meters, smart relays, and **Raedian** EV wallboxes) during normal operation, and automatically relocated unreachable LAN devices onto their new DHCP IPv4 address after verifying device protocol telemetry and serial identity—while skipping active Modbus TCP dongles (**Solis** and **Huawei**) so ongoing polling is never disturbed.
+  - **Live Controller `ip_local` Cloud Synchronization:** Detected local DHCP IP renewals on the **GEMS** controller itself and immediately refreshed the reported local LAN IP address in **GRID-EMS-SERVER** across both live telemetry and configuration snapshots while maintaining uninterrupted outbound cloud connectivity.
+
+### Fixed
+- **Active `0 W` Hybrid Battery Hold During Grid EV Charging, Dutch EPEX Day-Ahead `null`-Slot Backfill & Self-Healing, Offline Battery SoC Preservation, High-SoC Huawei Taper Handling & Cloud Log Deduplication:**
+  - **Dutch (`NL`) Day-Ahead EPEX `null`-Slot Filtering, `EnergyZero` Gap Backfill & Startup Self-Healing:** Prevented upstream `null` price entries from Fraunhofer `Energy-Charts` (`bzn=NL`) from being decoded as `0.00 €/MWh` and overwriting valid intraday Day-Ahead curves with flat tax-only bars, automatically backfilled any missing Dutch clock hours from `EnergyZero` (expanding hourly fallback slots seamlessly across 15-minute intervals), added one-shot startup self-healing and bidding-zone-switch re-fetching (`BE` ↔ `NL` ↔ `DE-LU`), and immediately pushed refreshed 24-hour forecast curves to **GRID-EMS-SERVER**.
+  - **Active `0 W` Battery Hold on Meter-Equipped Hybrid Inverters (`Solis` & `Huawei`):** Engaged an explicit `0 W` remote-control hold (`43135=1, 43136=0, 43129=0` on **Solis** Hybrid/Retrofit and `47247=0, 47100=1` on meter-equipped **Huawei** inverters) whenever **GEMS** holds a battery during managed grid EV charging (`Now` or cheapest-tariff `Eco` on **Raedian** wallboxes), solar-hold windows, or explicit `Hold` rules—preventing the inverter's internal meter loop from draining the home battery into the EV or triggering low-SoC BMS emergency grid recharges, while ensuring uncommanded BMS grid draw is never subtracted from main-breaker phase protection.
+  - **Offline Battery SoC Telemetry Preservation & Quiet Disconnected State:** Preserved the last known valid Battery State of Charge (`SoC %`) across temporary LAN dropouts and poller reconnections so 24-hour charts and CSV exports never drop to `0%`, and skipped force-charge and main-breaker throttling dispatches for unreachable battery gateways until connectivity is restored.
+  - **Fast Safety Export-Trim Recovery & High-SoC (`97–99%`) BMS Taper Tracking (`Huawei`):** Allowed urgent battery discharge step-down and `0 W` stop commands to retry after a brief 3-second bus settle following a transient `SDongleA-05` Wi-Fi timeout so household load drops never leave a battery exporting to the grid, and detected constant-voltage (CV) BMS charge saturation above `97%` SoC (with 15-second downward pacing during solar export) to eliminate rapid force-charge setpoint swings near full charge.
+  - **Region-Aware Peak Logging, Duplicate-Free Cloud Log Streaming & Resilient `Raedian Gemini` Startup:** Scoped Flanders capacity-peak log labels strictly to Flemish (`BE`) installations, added a ring-buffer high-water timestamp and serialized batch flushing (synchronized with **GRID-EMS-SERVER**) so re-enabled `STREAM_LOGS` sessions never duplicate historical `INFO` lines, and absorbed 1–2 isolated Wi-Fi Modbus TCP startup timeouts on **RAEDIAN Gemini** wallboxes via HTTPS telemetry without locking out port `502` control or logging false WebConfig setup warnings.
+
+---
+
 ## [v9.47.4] - 2026-11-20
 
 ### Fixed
