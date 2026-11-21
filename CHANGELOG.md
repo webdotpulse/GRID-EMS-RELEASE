@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.49.1] - 2026-11-21
+
+### Fixed
+- **Automatic Local OpenSSH Service Activation for Reverse SSH Support Tunnels (`ssh.service` & OTA Package Provisioning):** Enabled the local OpenSSH daemon (`ssh.service`) by default across custom Raspberry Pi OS appliance images (with unique per-unit host key generation on first boot), automatic `.deb` OTA firmware upgrades, and on-demand support tunnel startup so Superadmin `OPEN_SSH_TUNNEL` requests connect reliably without manual service activation.
+
+---
+
 ## [v9.49.0] - 2026-11-21
 
 ### Added
