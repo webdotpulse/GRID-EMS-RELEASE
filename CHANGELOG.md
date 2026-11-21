@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.49.2] - 2026-11-21
+
+### Fixed
+- **Uncommanded Solis Grid-Charge Prevention, Storage Mode Conflict Cleanup & Peak-Hour Self-Use Override:**
+  - **Automatic Solis Storage Mode Conflict Cleanup (`Time-of-Use`, `Backup Reserve` & `Feed-in Priority`):** Cleared conflicting internal **Solis** `Time-of-Use`, `Backup Reserve`, and `Feed-in Priority` mode bits once per connection on startup and mode transitions (while preserving `Off-Grid EPS` and `Battery Wake-Up` flags with zero repetitive flash wear) so residual SolisCloud schedules or reserve modes cannot trigger full-power grid charging when `Self-Use` is restored.
+  - **Immediate P1 Self-Use Discharge Override & Active `0 W` Uncommanded Grid-Charge Blocking:** Scoped battery charge-hold anti-oscillation strictly to **GEMS**-commanded or genuine solar-surplus charging so uncommanded inverter AC grid draw never blocks P1 load-following discharge during expensive tariff hours, and automatically engaged an active `0 W` Remote Control hold (`Uncommanded Grid Charge Blocked`) whenever a battery at or above `10%` SoC draws uncommanded grid power while grid charging is disallowed (preserving `< 10%` SoC BMS low-voltage cell protection and releasing immediately on solar surplus or scheduled off-peak charging).
+
+---
+
 ## [v9.49.1] - 2026-11-21
 
 ### Fixed

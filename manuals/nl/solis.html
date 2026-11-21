@@ -528,8 +528,8 @@
               </tr>
               <tr>
                 <td><code>Storage Mode Select</code></td>
-                <td><strong><code>Self-Use = ON</code></strong><br><em>(Alle TOU-timers &amp; Feed-in Priority = OFF)</em></td>
-                <td>Zorgt voor zuiver autonoom zelfverbruik zonder interne timerconflicten met GEMS.</td>
+                <td><strong><code>Self-Use = ON</code></strong><br><em>(Alle TOU-timers, Backup Reserve &amp; Feed-in Priority = OFF)</em></td>
+                <td>Zorgt voor zuiver autonoom zelfverbruik zonder interne timerconflicten met GEMS (GEMS wist bij het verbinden eenmalig ook conflicterende <code>TOU</code>-, <code>Backup Reserve</code>- en <code>Feed-in Priority</code>-bits).</td>
               </tr>
               <tr>
                 <td><code>Storage Mode Select &rarr; Allow Grid Charging</code></td>
@@ -568,7 +568,7 @@
             </ul>
           </li>
           <li><strong>Easyway UNIV5200 Arbitrage &amp; Celbescherming:</strong> Zet <strong>Charging Strategy Mode</strong> op <code>Dynamic 24h Forecast</code>, <strong>Battery Wear Cost</strong> op <strong><code>0.04 €/kWh</code></strong> en activeer <strong>Winter / Low-Solar Grid Charge Fallback</strong> (<code>Trigger 25%</code> &rarr; <code>Target 65%</code> verspreid over de <code>2–3 goedkoopste uren</code>).</li>
-          <li><strong>Voorkomen dat EV-laadpalen (Raedian) de UNIV5200 leegtrekken:</strong> GEMS schakelt automatisch een actieve <code>0 W</code> Remote Control-blokkering (<code>43135=1, 43136=0, 43129=0</code>) in zodra een beheerde <strong>Raedian</strong>-laadpaal uit het net laadt (<code>Now</code> of goedkoopste-uren <code>Eco</code>); voor niet-gekoppelde laders voegt u een <strong>Regelgebaseerde Batterij-kostenoptimalisatie</strong> toe met <strong>Action = <code>Hold (Idle / No Export)</code></strong> tijdens uw nachtvenster (bijv. <code>01:00 – 05:00</code>) om 100% van uw Easyway-batterijlading te sparen voor de ochtendpiek!</li>
+          <li><strong>Voorkomen dat EV-laadpalen (Raedian) de UNIV5200 leegtrekken &amp; piek-netlaadbeveiliging:</strong> GEMS schakelt automatisch een actieve <code>0 W</code> Remote Control-blokkering (<code>43135=1, 43136=0, 43129=0</code>) in zodra een beheerde <strong>Raedian</strong>-laadpaal uit het net laadt (<code>Now</code> of goedkoopste-uren <code>Eco</code>) of wanneer ongecommandeerd netladen vanaf <code>&ge; 10% SOC</code> buiten toegestane daluren plaatsvindt (terwijl P1-zelfverbruiksontlading ongewenste netafname boven de reserve-SOC direct overstemt en <code>&lt; 10% SOC</code> BMS-celbescherming behouden blijft); voor niet-gekoppelde laders voegt u een <strong>Regelgebaseerde Batterij-kostenoptimalisatie</strong> toe met <strong>Action = <code>Hold (Idle / No Export)</code></strong> tijdens uw nachtvenster (bijv. <code>01:00 – 05:00</code>) om 100% van uw Easyway-batterijlading te sparen voor de ochtendpiek!</li>
         </ol>
 
         <!-- SECTION 8 -->

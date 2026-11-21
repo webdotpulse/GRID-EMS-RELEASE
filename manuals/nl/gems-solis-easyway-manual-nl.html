@@ -422,7 +422,7 @@
         <div class="cover-meta-grid">
           <div class="cover-meta-item">
             <span class="cover-meta-label">Documentversie</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.49.1-release (Officiële Release)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.49.2-release (Officiële Release)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Primaire GEMS Referentietemplates</span>
@@ -1237,8 +1237,8 @@
         </tr>
         <tr>
           <td><span class="menu-path">Storage Mode Select</span><br><strong>Work Mode (Werkmodus)</strong></td>
-          <td><span class="val-good">Self-Use</span> — <strong>ON</strong><br><span class="val-avoid">Time of Charging (TOU) — OFF</span><br><span class="val-avoid">Feed-in Priority — OFF</span></td>
-          <td>Stelt autonoom zon-zelfverbruik in als hardwarebasis! Laat alle 6 interne Solis <em>Time-of-Use</em>-tijdvakken uitgeschakeld (<code>00:00–00:00</code>) zodat interne klokken nooit tegen de realtime batterijsturing van GEMS inwerken.</td>
+          <td><span class="val-good">Self-Use</span> — <strong>ON</strong><br><span class="val-avoid">Time of Charging (TOU) — OFF</span><br><span class="val-avoid">Backup / Feed-in Priority — OFF</span></td>
+          <td>Stelt autonoom zon-zelfverbruik in als hardwarebasis! Laat alle 6 interne Solis <em>Time-of-Use</em>-tijdvakken uitgeschakeld (<code>00:00–00:00</code>); GEMS wist bij het verbinden eenmalig ook conflicterende <code>TOU</code>-, <code>Backup Reserve</code>- en <code>Feed-in Priority</code>-bits (met behoud van <code>Off-Grid EPS</code> en <code>Wake-Up</code>).</td>
         </tr>
         <tr>
           <td><span class="menu-path">Storage Mode Select</span><br><strong>Allow Grid Charging</strong><br><em>(Battery Charge from Grid)</em></td>
@@ -1441,9 +1441,9 @@
           <td>Laadt UNIV5200-modules bij donker winterweer automatisch bij van <code>&le;25%</code> tot <code>65% SOC</code> tijdens de 2–3 goedkoopste nachturen zonder uw Vlaamse 15-minuten pieklimiet te overschrijden!</td>
         </tr>
         <tr>
-          <td><strong>Bescherming bij EV-netladen</strong><br><em>(bv. met <strong>Raedian</strong>-laadpaal)</em></td>
+          <td><strong>Bescherming bij EV- &amp; Piek-netladen</strong><br><em>(bv. met <strong>Raedian</strong>-laadpaal)</em></td>
           <td><span class="val-good">Automatisch 0 W Vasthouden</span><br><em>(+ optionele <code>Hold</code>-regel)</em></td>
-          <td>GEMS schakelt tijdens beheerd netladen op uw <strong>Raedian NEO / NEX / Gemini</strong>-laadpaal (<code>Now</code> / <code>Eco</code>) automatisch een actieve <code>0 W</code> Remote Control-blokkering (<code>43135=1, 43136=0, 43129=0</code>) in tegen leegtrekken en lage-SOC BMS-netpieken!</td>
+          <td>GEMS schakelt tijdens beheerd netladen op uw <strong>Raedian NEO / NEX / Gemini</strong>-laadpaal (<code>Now</code> / <code>Eco</code>) of bij ongecommandeerd netladen vanaf <code>&ge; 10% SOC</code> buiten toegestane daluren automatisch een actieve <code>0 W</code> Remote Control-blokkering (<code>43135=1, 43136=0, 43129=0</code>) in (met behoud van <code>&lt; 10% SOC</code> BMS-celbescherming)!</td>
         </tr>
       </tbody>
     </table>
@@ -1455,7 +1455,7 @@
 
     <h2 class="subsection-title">8.1 Hoe GEMS het Solis Flashgeheugen &amp; de Easyway UNIV5200-cellen Beschermt</h2>
     <ul>
-      <li><strong>Vluchtige Afstandssturing Zonder EEPROM-slijtage:</strong> Eenvoudige sturingen overschrijven elke paar seconden het niet-vluchtige flashregister van de Solis-opslagmodus, waardoor het EEPROM-geheugen van de omvormer binnen een jaar verslijt. GEMS controleert de basisrechten <em>slechts éénmaal</em> en voert alle realtime laad-, ontlaad- en vasthoudmodulatie uitsluitend uit via de <strong>vluchtige RAM Remote Control-registers</strong> van Solis (<code>43135</code> modus, <code>43136</code> laadvermogen en <code>43129</code> ontlaadvermogen) met een 25-seconden watchdog keepalive — met nul slijtage aan het flashgeheugen!</li>
+      <li><strong>Vluchtige Afstandssturing &amp; Modusopschoning Zonder EEPROM-slijtage:</strong> Eenvoudige sturingen overschrijven elke paar seconden het niet-vluchtige flashregister van de Solis-opslagmodus, waardoor het EEPROM-geheugen van de omvormer binnen een jaar verslijt. GEMS controleert de basisrechten en wist conflicterende <code>TOU</code>-, <code>Backup Reserve</code>- en <code>Feed-in Priority</code>-bits <em>slechts éénmaal</em> per verbinding en voert alle realtime laad-, ontlaad- en vasthoudmodulatie uitsluitend uit via de <strong>vluchtige RAM Remote Control-registers</strong> van Solis (<code>43135</code> modus, <code>43136</code> laadvermogen en <code>43129</code> ontlaadvermogen) met een 25-seconden watchdog keepalive — met nul slijtage aan het flashgeheugen!</li>
       <li><strong>Live Dynamische BMS-stroombegrenzing:</strong> Koude winterse bergingen (&lt; 10 °C) en een hoge laadtoestand (&gt; 90% SOC) zorgen ervoor dat het Easyway <code>UNIV5200</code> BMS de toegestane laadstroom automatisch verlaagt. GEMS leest live de BMS laad-/ontlaadstroomlimieten en batterijspanning rechtstreeks uit de Solis-omvormer en begrenst setpoints vloeiend.</li>
       <li><strong>Periodieke 100% LiFePO<sub>4</sub> Top-balancering:</strong> Omdat LiFePO<sub>4</sub>-cellen tussen 20% en 90% SOC een zeer vlakke spanningscurve hebben, houdt het minstens éénmaal per 1–2 weken volladen van de UNIV5200-stapel tot <code>100% SOC</code> via zonne-energie (of occasionele goedkope uren) de SOC-teller van het BMS over alle parallelle modules haarscherp gekalibreerd.</li>
     </ul>
