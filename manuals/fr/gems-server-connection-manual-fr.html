@@ -330,7 +330,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Version Applicable</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.48.0-release (Version Officielle)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.49.0-release (Version Officielle)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Service Cloud Central</span>
@@ -357,7 +357,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Référence Terrain Confidentielle</span>
-        <span>Documentation v9.48.0</span>
+        <span>Documentation v9.49.0</span>
       </div>
     </div>
 
@@ -678,6 +678,11 @@ Content-Type: application/json
           <td><code>target_tag</code> : string (optionnel, dernière version)<br><code>delay_sec</code> : int (défaut 5)</td>
           <td>Lance une mise à jour logicielle OTA vérifiée cryptographiquement (diffusant sa progression sous la source de journal <code>updater</code> avant redémarrage) ou exécute un redémarrage propre du boîtier après acquittement ACK.</td>
         </tr>
+        <tr>
+          <td><code>OPEN_SSH_TUNNEL</code> / <code>CLOSE_SSH_TUNNEL</code></td>
+          <td><code>remote_port</code> : int (42000–45999)<br><code>duration_minutes</code> : int (5–120)</td>
+          <td>Ouvre ou ferme à la demande une session de support SSH inverse sortante liée exclusivement à <code>127.0.0.1</code> sur <strong>GRID-EMS-SERVER</strong> avec clé Ed25519 à usage unique et vérification de clé d'hôte, supprimant automatiquement la clé temporaire à expiration ou fermeture.</td>
+        </tr>
       </tbody>
     </table>
 
@@ -781,7 +786,7 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • Manuel Officiel de Connexion Terrain GRID-EMS-SERVER • Version v9.48.0
+      GEMS (New Energy Grid) • Manuel Officiel de Connexion Terrain GRID-EMS-SERVER • Version v9.49.0
     </div>
 
   </div>

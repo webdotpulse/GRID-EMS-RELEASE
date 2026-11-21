@@ -14,6 +14,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.49.0] - 2026-11-21
+
+### Added
+- **On-Demand Ephemeral Reverse SSH Support Tunnel (`OPEN_SSH_TUNNEL` / `CLOSE_SSH_TUNNEL` — `GRID-EMS-SERVER` Lockstep):**
+  - **Outbound NAT-Friendly Support Access:** Added support for Superadmin-initiated, time-bounded (`5–120 min`) outbound reverse SSH support sessions to **GRID-EMS-SERVER** without opening inbound router ports on site, using single-use Ed25519 keys, pinned server host-key verification, automatic reconnect across brief ISP drops within the active window, immediate revocation on `CLOSE_SSH_TUNNEL` or service stop, and automatic redaction of ephemeral key material in local command logs.
+
+---
+
 ## [v9.48.0] - 2026-11-21
 
 ### Added

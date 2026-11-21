@@ -330,7 +330,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Toepasselijke Release</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.48.0-release (Officiële Release)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.49.0-release (Officiële Release)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Centrale Cloudservice</span>
@@ -357,7 +357,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Vertrouwelijke Veldreferentie</span>
-        <span>Documentatie v9.48.0</span>
+        <span>Documentatie v9.49.0</span>
       </div>
     </div>
 
@@ -678,6 +678,11 @@ Content-Type: application/json
           <td><code>target_tag</code>: string (optioneel, nieuwste)<br><code>delay_sec</code>: int (standaard 5)</td>
           <td>Start een cryptografisch geverifieerde over-the-air software-update (met live statusrapportage onder de logbron <code>updater</code> vóór herstart) of voert na commando-ACK een gecontroleerde systeemherstart uit.</td>
         </tr>
+        <tr>
+          <td><code>OPEN_SSH_TUNNEL</code> / <code>CLOSE_SSH_TUNNEL</code></td>
+          <td><code>remote_port</code>: int (42000–45999)<br><code>duration_minutes</code>: int (5–120)</td>
+          <td>Opent of beëindigt een on-demand uitgaande reverse SSH-supportsessie uitsluitend gebonden aan <code>127.0.0.1</code> op <strong>GRID-EMS-SERVER</strong> met een eenmalige Ed25519-sleutel en hostsleutelverificatie, en verwijdert tijdelijk sleutelmateriaal automatisch na afloop of sluiting.</td>
+        </tr>
       </tbody>
     </table>
 
@@ -781,7 +786,7 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Officiële Verbindingshandleiding • Versie v9.48.0
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Officiële Verbindingshandleiding • Versie v9.49.0
     </div>
 
   </div>

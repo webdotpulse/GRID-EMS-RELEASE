@@ -359,6 +359,11 @@
                   <td>Clés de réglages, <code>execution_mode</code> (<code>direct</code> | <code>scheduled</code> <code>23:59</code>) ou <code>delay_sec</code></td>
                   <td>Applique des paramètres de site validés, lance une mise à jour OTA signée immédiate ou planifiée à <code>23:59</code>, ou effectue un redémarrage propre.</td>
                 </tr>
+                <tr>
+                  <td><code>OPEN_SSH_TUNNEL</code> / <code>CLOSE_SSH_TUNNEL</code></td>
+                  <td><code>remote_port</code>, <code>duration_minutes</code>, clé éphémère</td>
+                  <td>Établit ou ferme un tunnel de support SSH inverse sortant à durée limitée vers le loopback de <strong>GRID-EMS-SERVER</strong> sans ouvrir de ports entrants sur le routeur local.</td>
+                </tr>
               </tbody>
             </table>
           </div>

@@ -359,6 +359,11 @@
                   <td>Setting keys, <code>execution_mode</code> (<code>direct</code> | <code>scheduled</code> <code>23:59</code>), or <code>delay_sec</code></td>
                   <td>Applies validated site parameters, triggers an immediate or scheduled <code>23:59</code> signed OTA package installation, or executes a graceful appliance reboot.</td>
                 </tr>
+                <tr>
+                  <td><code>OPEN_SSH_TUNNEL</code> / <code>CLOSE_SSH_TUNNEL</code></td>
+                  <td><code>remote_port</code>, <code>duration_minutes</code>, ephemeral key</td>
+                  <td>Establishes or closes a time-bounded outbound reverse SSH support tunnel to <strong>GRID-EMS-SERVER</strong> loopback for Superadmin diagnostics without opening inbound site firewall ports.</td>
+                </tr>
               </tbody>
             </table>
           </div>
