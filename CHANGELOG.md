@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.51.0] - 2026-11-22
+
+### Added
+- **Live Solis Inverter Firmware, Hardware Model, Serial Number & BMS Profile Badges (`Settings -> Connected Devices`, `Debug` & `GRID-EMS-SERVER` Lockstep):**
+  - **Automatic Solis Component Identification:** Automatically detected and displayed the hardware model, inverter serial number, **Inverter** DSP/HMI firmware version (matching the SolisCloud / LCD software version format), and configured **BMS** battery profile (such as `Lithium Battery LV` vs. `PYLON_LV`) across **Solis** S5/S6 Hybrid, AC-Coupled Retrofit (`RAI` / `S6-EA1P`), and Grid-Tied String inverters in English, Dutch, and French—so installers can verify firmware prerequisites and immediately spot misconfigured `PYLON_LV` battery profiles (e.g. on **Easyway** `UNIV5200` stacks) both on site and remotely.
+  - **Direct Device Card Firmware & BMS Badges (`Solis` & `Huawei`):** Surfaced detected **Model**, **Inverter**, **BMS** (**Solis**), **Dongle / EMMA**, and **Battery** (**Huawei**) badges directly on **Settings -> Connected Devices** cards in addition to the **Debug** probe view and **GRID-EMS-SERVER** Cloud Portal.
+
+---
+
 ## [v9.50.0] - 2026-11-22
 
 ### Changed

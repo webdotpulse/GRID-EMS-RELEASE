@@ -197,6 +197,7 @@ Ontgrendel de **Gecertificeerde installateursmodus** (hangsloticoon 🔒 in **In
    - **Phase Wiring:** Exacte fase van de automaat (`L1`, `L2` of `L3`) voor 1-fasemodellen op een 3-fasenbord, of `L1-L2-L3` voor de `S6-EH3P-L` (GEMS past op `Auto / Default` automatisch veilige 1-fasige `230 V`-zekeringsbewaking toe; het kiezen van de exacte fase voorkomt afremmen door belasting op andere fasen).
    - **Grid Meter Connected?:** `Aangevinkt` als er een Eastron `SDM72D-M`, `SDM630-M` of Acrel-meter op de Solis `Meter`-poort is aangesloten; anders `Uitgevinkt`.
    - **Battery Connected? & Capacity (kWh):** `Aangevinkt` + totaal geïnstalleerde `UNIV5200`-capaciteit (`5.2` voor 1×, `10.4` voor 2×, `15.7` voor 3×, `20.9` voor 4×).
+4. **Automatische Controle van Firmware, Model & BMS-profiel:** Zodra het toestel **`● Online`** is, leest en toont GEMS automatisch het gedetecteerde **Solis-hardwaremodel**, **serienummer**, de **Omvormer** DSP/HMI-firmwareversie (bijv. `4C0050 (DSP 50 / HMI 4C)`) en het ingestelde **BMS**-batterijprofiel (bijv. `Lithium Battery LV` t.o.v. `PYLON_LV`) rechtstreeks op de toestelkaart onder `Instellingen -> Verbonden Toestellen`, in **Debug** en onder **Verbonden Modbus- & Netwerkhardware** in **GRID-EMS-SERVER** — zodat een foutief gekozen `PYLON_LV`-profiel lokaal én op afstand meteen zichtbaar is.
 
 ---
 

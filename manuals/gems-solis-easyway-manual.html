@@ -422,7 +422,7 @@
         <div class="cover-meta-grid">
           <div class="cover-meta-item">
             <span class="cover-meta-label">Document Version</span>
-            <span class="cover-meta-val">v9.50.0-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.51.0-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">GEMS Primary Reference Templates</span>
@@ -451,7 +451,7 @@
       </div>
 
       <div class="cover-footer">
-        <span>© New Energy Grid &amp; The Charge Grid — Proprietary Field Documentation v9.50.0</span>
+        <span>© New Energy Grid &amp; The Charge Grid — Proprietary Field Documentation v9.51.0</span>
         <span>Target Platform: GRID-EMS Edge Controller (Raspberry Pi ARM64)</span>
       </div>
     </div>
@@ -1355,6 +1355,13 @@
         </tr>
       </tbody>
     </table>
+
+    <div class="callout callout-info">
+      <div class="callout-title">🔍 Automatic Solis Hardware Model, Firmware &amp; BMS Profile Verification</div>
+      <div>
+        Once your Solis inverter shows <strong><code>● Online</code></strong>, GEMS automatically reads and displays the detected <strong>Solis hardware model</strong>, <strong>serial number</strong>, <strong>Inverter</strong> DSP/HMI firmware version (e.g. <code>4C0050 (DSP 50 / HMI 4C)</code>), and configured <strong>BMS</strong> battery profile (e.g. <code>Lithium Battery LV</code> vs. <code>PYLON_LV</code>) directly on the <strong>Settings &rarr; Connected Devices</strong> card, inside <strong>Debug</strong>, and under <strong>Connected Modbus &amp; Network Hardware</strong> in <strong>GRID-EMS-SERVER</strong>—making any misconfigured <code>PYLON_LV</code> setting immediately visible locally and remotely.
+      </div>
+    </div>
 
     <div class="page-break"></div>
 

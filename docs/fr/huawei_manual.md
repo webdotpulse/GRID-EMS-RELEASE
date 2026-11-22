@@ -182,7 +182,7 @@ Déconnectez votre téléphone du Wi-Fi local de l'onduleur, ouvrez GEMS dans vo
 ## 6. Liste de Vérification & Dépannage
 
 ### 6.1 Contrôles Après Mise en Service
-1. Vérifiez que `Huawei Hybrid Inverter` affiche **`● En ligne`** dans `Paramètres -> Appareils connectés` et inspectez la tension, le SOC %, la puissance et les **versions firmware Dongle / Onduleur / Batterie** en direct via **Debug** (également affichées automatiquement sous **Matériel Modbus & Réseau Connecté** dans **GRID-EMS-SERVER**).
+1. Vérifiez que `Huawei Hybrid Inverter` affiche **`● En ligne`** dans `Paramètres -> Appareils connectés` et inspectez la tension, le SOC %, la puissance et les **versions firmware Dongle / EMMA / Onduleur / Batterie** directement sur la carte appareil et via **Debug** (également affichées automatiquement sous **Matériel Modbus & Réseau Connecté** dans **GRID-EMS-SERVER**).
 2. Allumez un appareil domestique d'environ 2 kW et vérifiez sur le **Tableau de bord** que la consommation maison et l'import réseau / la décharge batterie évoluent dans le bon sens.
 3. Ouvrez l'onglet **Journal**, filtrez sur `HuaweiInverterPoller` et vérifiez l'absence d'expirations (*timeouts*) ou d'erreurs de registres.
 4. Vérifiez que l'**application FusionSolar** du client continue de se mettre à jour toutes les 5 minutes.

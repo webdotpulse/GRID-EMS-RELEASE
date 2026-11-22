@@ -197,6 +197,7 @@ Unlock **Certified Installer Mode** (padlock icon 🔒 in **Settings**):
    - **Phase Wiring:** Exact breaker phase (`L1`, `L2`, or `L3`) for 1-phase models on 3-phase switchboards, or `L1-L2-L3` for `S6-EH3P-L` (GEMS automatically applies safe `230 V` single-phase main-breaker current scaling if left on `Auto / Default`, while selecting the exact phase prevents unrelated phases from throttling charging).
    - **Grid Meter Connected?:** `Checked` if an Eastron `SDM72D-M`, `SDM630-M`, or Acrel meter is wired to the Solis `Meter` port; `Unchecked` otherwise.
    - **Battery Connected? & Capacity (kWh):** `Checked` + total installed `UNIV5200` kWh (`5.2` for 1×, `10.4` for 2×, `15.7` for 3×, `20.9` for 4×).
+4. **Automatic Firmware, Model & BMS Profile Verification:** Once **`● Online`**, GEMS automatically reads and displays the detected **Solis hardware model**, **serial number**, **Inverter** DSP/HMI firmware version (e.g. `4C0050 (DSP 50 / HMI 4C)`), and configured **BMS** battery profile (e.g. `Lithium Battery LV` vs. `PYLON_LV`) directly on the `Settings -> Connected Devices` card, inside **Debug**, and under **Connected Modbus & Network Hardware** in **GRID-EMS-SERVER**—so any misconfigured `PYLON_LV` setting is immediately visible locally and remotely.
 
 ---
 

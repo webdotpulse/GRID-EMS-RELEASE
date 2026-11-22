@@ -197,6 +197,7 @@ Déverrouillez le **Mode installateur certifié** (icône cadenas 🔒 dans **Pa
    - **Phase Wiring :** Phase exacte du disjoncteur (`L1`, `L2` ou `L3`) pour un modèle monophasé sur tableau triphasé, ou `L1-L2-L3` pour un `S6-EH3P-L` (GEMS applique automatiquement un calibrage monophasé `230 V` sécurisé en mode `Auto / Default`, tandis que la sélection de la phase exacte évite tout bridage lié aux autres phases).
    - **Grid Meter Connected? :** `Coché` si un compteur Eastron `SDM72D-M`, `SDM630-M` ou Acrel est raccordé au port `Meter` Solis ; `Décoché` sinon.
    - **Battery Connected? & Capacity (kWh) :** `Coché` + capacité totale installée `UNIV5200` (`5.2` pour 1×, `10.4` pour 2×, `15.7` pour 3×, `20.9` pour 4×).
+4. **Vérification Automatique du Firmware, du Modèle & du Profil BMS :** Dès que l'appareil passe **`● En ligne`**, GEMS lit et affiche automatiquement le **modèle matériel Solis**, le **numéro de série**, la version firmware DSP/HMI **Onduleur** (par ex. `4C0050 (DSP 50 / HMI 4C)`) et le profil batterie **BMS** configuré (par ex. `Lithium Battery LV` vs `PYLON_LV`) directement sur la carte `Paramètres -> Appareils connectés`, dans **Debug**, ainsi que sous **Matériel Modbus & Réseau Connecté** dans **GRID-EMS-SERVER** — rendant toute erreur de sélection `PYLON_LV` immédiatement visible sur site comme à distance.
 
 ---
 
