@@ -14,6 +14,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.52.0] - 2026-11-22
+
+### Added
+- **Cloud-Proxied Over-The-Air (OTA) Firmware Delivery & Private Release Repository Support (`Settings -> System Info`, `OTA_UPDATE` & `GRID-EMS-SERVER` Lockstep):**
+  - **Zero-Token Edge Firmware Relay via `GRID-EMS-SERVER`:** Paired **GEMS** controllers now check for new releases and download official `SHA256SUMS`, `.sig`, and `.deb` update packages directly through **GRID-EMS-SERVER** using their existing hardware pairing credentials—allowing `GRID-EMS-RELEASE` to be made private without ever storing GitHub tokens on customer hardware, while retaining automatic direct GitHub API asset fallback and mandatory local SHA-256 + Ed25519 signature verification prior to installation.
+
+---
+
 ## [v9.51.0] - 2026-11-22
 
 ### Added
