@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Version du Système</span>
-          <span class="cover-meta-val">GEMS v9.53.0</span>
+          <span class="cover-meta-val">GEMS v9.54.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">À Qui S'adresse Ce Guide</span>
@@ -1082,22 +1082,22 @@
       <tr>
         <td><strong>🔋 Nœud Batterie</strong></td>
         <td><span style="color:#10b981; font-weight:bold;">● Émeraude</span> (<code>85 % SoC</code>)</td>
-        <td>Puissance de charge/décharge en direct et état de charge (SoC %) de votre batterie <strong>Solis</strong>. <strong>Cliquez sur le cercle</strong> pour inspecter le SoC sur 24h, les flux kW et la température/santé batterie.</td>
+        <td>Puissance de charge/décharge en direct (en W sous 1 kW, en kW dès 1 kW), ligne d'état dédiée (<code>En charge</code> / <code>En décharge</code> / <code>En veille</code>) et état de charge (SoC %) de votre batterie <strong>Solis</strong>. <strong>Cliquez sur le cercle</strong> pour inspecter le SoC sur 24h, les courbes de puissance et la température/santé batterie.</td>
       </tr>
       <tr>
         <td><strong>⚡ Nœud Réseau</strong></td>
-        <td><span style="color:#0d9488; font-weight:bold;">● Sarcelle</span> (<code>-1,2 kW</code>)</td>
+        <td><span style="color:#111827; font-weight:bold;">● Noir</span> (<code>-1,2 kW</code>)</td>
         <td>Bilan net au compteur de rue (Prélèvement depuis la rue vs Injection vers la rue). <strong>Cliquez sur le cercle</strong> pour consulter les tensions par phase (L1/L2/L3), les courbes d'échange, le suivi quart-horaire Flandre et l'historique automatique <strong>Gaz (m&sup3;) &amp; Eau (m&sup3; / L) P1 M-Bus</strong> lorsqu'ils sont jumelés.</td>
       </tr>
       <tr>
         <td><strong>🏠 Charge Maison</strong></td>
-        <td><span style="color:#059669; font-weight:bold;">● Émeraude</span> (<code>0,95 kW</code>)</td>
-        <td>Puissance totale consommée par les équipements domestiques à cet instant. <strong>Cliquez sur le cercle</strong> pour visualiser le profil de consommation sur 24h.</td>
+        <td><span style="color:#059669; font-weight:bold;">● Émeraude</span> (<code>950 W</code>)</td>
+        <td>Puissance totale consommée par les équipements domestiques à cet instant (affichée en W sous 1 kW, ex. <code>950 W</code>). <strong>Cliquez sur le cercle</strong> pour visualiser le profil de consommation sur 24h.</td>
       </tr>
       <tr>
         <td><strong>🚗 Borne VE</strong></td>
-        <td><span style="color:#14b8a6; font-weight:bold;">● Turquoise</span> (<code>7,4 kW</code>)</td>
-        <td>Vitesse de charge et mode actif de votre borne <strong>Raedian</strong>. <strong>Cliquez sur le cercle</strong> pour basculer de mode (<code>Eco</code>, <code>PV Only</code>, <code>Fast</code>, <code>Off</code>) ou suivre les kWh de la session.</td>
+        <td><span style="color:#2563eb; font-weight:bold;">● Bleu</span> (<code>7,4 kW</code>)</td>
+        <td>Vitesse de charge, ligne de flux bleue dédiée et mode actif de votre borne <strong>Raedian</strong>. <strong>Cliquez sur le cercle</strong> pour basculer de mode (<code>Eco</code>, <code>PV Only</code>, <code>Fast</code>, <code>Off</code>) ou suivre les kWh de la session.</td>
       </tr>
       <tr>
         <td><strong>🔥 Relais / Pompe à Chaleur</strong></td>
@@ -1707,8 +1707,8 @@
     </div>
 
     <div class="setting-card green">
-      <div class="setting-name"><span>Sauvegarde &amp; Restauration (.json)</span> <span class="setting-default-pill">Mode Installateur</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Cliquez sur <strong>Exporter la configuration (.json)</strong> pour télécharger une archive portable contenant tous vos appareils, seuils de stratégie, formules tarifaires et règles de relais. Cliquez sur <strong>Importer la configuration (.json)</strong> pour cloner ou restaurer une installation en 5 secondes !</div>
+      <div class="setting-name"><span>Profils de Paramètres Enregistrés &amp; Sauvegarde JSON</span> <span class="setting-default-pill">Mode Installateur</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Cliquez sur <strong>Profils Enregistrés</strong> (dans la barre supérieure des Paramètres ou la carte Sauvegarde) pour enregistrer tous les paramètres du site, équipements matériels, règles de relais et plages batterie avec un <strong>Nom du Profil</strong> et une <strong>Date d'Enregistrement</strong> afin de les <strong>Réutiliser</strong> en 1 clic, ou utilisez <strong>Exporter / Importer la configuration (<code>.json</code>)</strong> pour des archives portables compatibles avec <strong>GRID-EMS-SERVER</strong> !</div>
     </div>
 
     <div class="setting-card purple">

@@ -14,10 +14,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.53.0] - 2026-11-22
+## [v9.54.0] - 2026-11-22
+
+### Added
+- **Named & Dated Reusable Settings Profiles (`Settings -> Saved Profiles`, `System Info` & `GRID-EMS-SERVER` Lockstep):**
+  - **Save, Name, Date & Reuse Complete Configurations Locally and in the Cloud (`EN` / `NL` / `FR`):** Added a **Saved Profiles** manager in the **Settings** header bar and **System Info** backup card across English, Dutch, and French—allowing installers and homeowners to save all site settings, connected hardware devices, smart relay rules, and battery cost schedules under a custom **Profile Name** and **Save Date**, reuse any saved profile in one click (preserving cloud pairing and masked credentials, with an optional toggle to include or skip hardware devices & relay rules), import/export portable `.json` profiles interchangeable with **GRID-EMS-SERVER**, and receive full profile restores dispatched from the Cloud Portal.
 
 ### Changed
-- **Maintenance & Documentation Synchronization (`v9.53.0`):** Synchronized updated trilingual (`EN` / `NL` / `FR`) field manuals, hardware compatibility documentation, and signed appliance packages for release `v9.53.0`.
+- **Power Flow Matrix Watt (`W`) Precision Under `1 kW`, Dedicated Battery Status Line & High-Contrast EV Blue / Grid Black Palette (`PowerFlow`, `Dashboard` & `GRID-EMS-SERVER` Lockstep):**
+  - **Automatic Watt (`W`) Display Below `1 kW` & `5 W` Low-Light Solar PV Threshold:** Power Flow Matrix node readings whose absolute value is below `1 kW` now display in whole Watts (e.g. `154 W` instead of `0.15 kW`), transitioning to `kW` from `1.00 kW` upward, and the **Solar PV** node and animated solar streams now honor the `5 W` inverter standby threshold so low-light generation (e.g. `14 W`) displays accurately instead of showing `0 W`.
+  - **Dedicated Battery Status Line (`EN` / `NL` / `FR`):** Displayed the live battery state (`Charging`, `Discharging`, or `Standby`) on its own separate line above the battery model label in the Power Flow Matrix **Battery** card across English, Dutch, and French.
+  - **Distinct EV Charger Blue & Utility Grid Black Color Coding:** Styled the **EV Charger** (**Raedian**) node, dedicated EV power stream, and EV KPI/analytics visuals in a clear **Blue** (`#2563eb`), and styled the **Utility Grid** node, grid power lines, and analytics grid import bars/curves in high-contrast **Black** (`#111827`, automatically adapting in dark mode).
+
+### Fixed
+- **Day-Ahead Bidding-Zone Isolation, Wi-Fi Modbus Dongle Self-Recovery, Solis S6 / Retrofit Power-Limit Unclamping & Automatic Contract/Coordinate Self-Healing (`GRID-EMS` & `GRID-EMS-SERVER` Lockstep):**
+  - **Quiet Pre-`15:00 CET` Day-Ahead Publication Window & Bidding-Zone Provider Filtering:** Restricted Dutch-only fallback providers (`EnergyZero`) strictly to Dutch (`NL`) bidding-zone queries so Belgian (`BE`) and German/Luxembourg (`DE-LU`) installations never emit spurious cross-border fallback warnings, and treated pending tomorrow Day-Ahead curves prior to `15:00` local exchange publication time as normal `DEBUG` status whenever today's 24-hour curve is already complete.
+  - **Automatic Wi-Fi Modbus Dongle Frame Recovery & Single-Line Error Consolidation (`Solis`, `Huawei` & `Raedian`):** Automatically flushed, settled, reconnected, and retried once whenever a Wi-Fi Modbus TCP stick returns an out-of-sync frame (`bad unit id` / `bad transaction id`), added a one-shot retry for transient **Huawei** `SDongleA-05` upload-window register timeouts, and consolidated duplicate driver + control-loop failure messages into a single clear `ERROR` entry.
+  - **Solis S6 / AC Retrofit Charge & Discharge Power-Limit Unclamping & Live Register Diagnostics:** Verified and raised **Solis** holding registers `43130` (*Battery Charge Limit Power*) and `43131` (*Battery Discharge Limit Power*) up to rated inverter power once per connection whenever Remote Control charge/discharge is engaged—preventing low commissioning limit values from clamping battery output around `~50 W` during peak hours—and exposed live storage-mode, Remote Control, SoC-floor, and BMS current-limit registers in **Hardware Debug Probes** and rate-limited sustained under-discharge warnings.
+  - **Dynamic Contract Metadata Hygiene, Auto-Geocoding & `DEBUG` Log Auto-Expiry:** Kept supplier name, contract title, and import/injection spot data sources (`epex_be`, `epex_nl`, `epex_de_lu`, `energyzero`) synchronized when switching between Belgian and Dutch supplier presets, automatically geocoded non-Brussels site addresses still carrying default coordinates (with an offline country-centroid fallback) on save and startup self-heal, enforced global log-level filtering on ring-buffer and standard output streams, and automatically reverted `DEBUG` logging back to `INFO` on service restart and after 24 hours.
 
 ---
 

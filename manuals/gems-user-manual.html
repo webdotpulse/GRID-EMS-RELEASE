@@ -784,7 +784,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.53.0</span>
+          <span class="cover-meta-val">GEMS v9.54.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Who This Guide Is For</span>
@@ -1081,22 +1081,22 @@
       <tr>
         <td><strong>🔋 Battery Node</strong></td>
         <td><span style="color:#10b981; font-weight:bold;">● Emerald</span> (<code>85% SoC</code>)</td>
-        <td>Live charge/discharge power and State of Charge (%) of your <strong>Solis</strong> battery. <strong>Click the circle</strong> to inspect 24h SoC %, charge/discharge kW, and battery temperature/health.</td>
+        <td>Live charge/discharge power (in W below 1 kW, kW from 1 kW upward), a dedicated status line (<code>Charging</code> / <code>Discharging</code> / <code>Standby</code>), and State of Charge (%) of your <strong>Solis</strong> battery. <strong>Click the circle</strong> to inspect 24h SoC %, charge/discharge curves, and battery temperature/health.</td>
       </tr>
       <tr>
         <td><strong>⚡ Grid Node</strong></td>
-        <td><span style="color:#0d9488; font-weight:bold;">● Teal</span> (<code>-1.2 kW</code>)</td>
+        <td><span style="color:#111827; font-weight:bold;">● Black</span> (<code>-1.2 kW</code>)</td>
         <td>Net street meter power (Import from street vs. Export to street). <strong>Click the circle</strong> to view per-phase voltages (L1/L2/L3), import/export curves, the Flanders 15-minute peak tracker, and automatic <strong>P1 M-Bus Gas (m&sup3;) &amp; Water (m&sup3; / L)</strong> sub-meter history when paired.</td>
       </tr>
       <tr>
         <td><strong>🏠 Home Load Node</strong></td>
-        <td><span style="color:#059669; font-weight:bold;">● Emerald</span> (<code>0.95 kW</code>)</td>
-        <td>Total power consumed by household appliances right now. <strong>Click the circle</strong> to see your 24h domestic consumption profile.</td>
+        <td><span style="color:#059669; font-weight:bold;">● Emerald</span> (<code>950 W</code>)</td>
+        <td>Total power consumed by household appliances right now (readings below 1 kW display in W, e.g. <code>950 W</code>). <strong>Click the circle</strong> to see your 24h domestic consumption profile.</td>
       </tr>
       <tr>
         <td><strong>🚗 EV Charger Node</strong></td>
-        <td><span style="color:#14b8a6; font-weight:bold;">● Bright Teal</span> (<code>7.4 kW</code>)</td>
-        <td>Live charging speed and mode of your <strong>Raedian</strong> wallbox. <strong>Click the circle</strong> to switch modes (<code>Eco</code>, <code>PV Only</code>, <code>Fast</code>, <code>Off</code>) or view session kWh added.</td>
+        <td><span style="color:#2563eb; font-weight:bold;">● Blue</span> (<code>7.4 kW</code>)</td>
+        <td>Live charging speed, distinct blue power line, and mode of your <strong>Raedian</strong> wallbox. <strong>Click the circle</strong> to switch modes (<code>Eco</code>, <code>PV Only</code>, <code>Fast</code>, <code>Off</code>) or view session kWh added.</td>
       </tr>
       <tr>
         <td><strong>🔥 Relay / Heat Pump</strong></td>
@@ -1705,8 +1705,8 @@
     </div>
 
     <div class="setting-card green">
-      <div class="setting-name"><span>Configuration Backup &amp; Restore (.json)</span> <span class="setting-default-pill">Installer Mode</span></div>
-      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Click <strong>Export Configuration</strong> to download a portable <code>.json</code> snapshot containing all your devices, strategy limits, tariff formulas, and relay rules. Click <strong>Import Configuration</strong> to clone or restore a setup in 5 seconds!</div>
+      <div class="setting-name"><span>Saved Settings Profiles &amp; JSON Backup/Restore</span> <span class="setting-default-pill">Installer Mode</span></div>
+      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Click <strong>Saved Profiles</strong> (in the Settings header bar or Backup card) to save all site settings, connected hardware, relay rules, and battery schedules with a custom <strong>Profile Name</strong> and <strong>Save Date</strong> for instant 1-click <strong>Reuse</strong>, or use <strong>Export / Import Configuration (<code>.json</code>)</strong> for portable masked snapshots interchangeable with <strong>GRID-EMS-SERVER</strong>!</div>
     </div>
 
     <div class="setting-card purple">
