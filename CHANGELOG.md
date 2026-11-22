@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.50.0] - 2026-11-22
+
+### Changed
+- **Unified Minimal Pro Interface & New Energy Grid Lime-Emerald-Teal Brand Design (`GRID-EMS` & `GRID-EMS-SERVER` Lockstep):**
+  - **Frosted & Botanical Navigation Chrome (`EN` / `NL` / `FR`):** Refreshed the desktop and mobile navigation shell with grouped **Overview** and **Management** sections, the **New Energy Grid** Lime-Emerald-Teal lightning emblem, active right-edge indicator pills, and seamless Light and Botanical Dark theme transitions across English, Dutch, and French.
+  - **Elevated PowerFlow Stage, Pastel KPI Cards & Cohesive Brand Accents:** Upgraded the live **PowerFlow** diagram, **Dashboard**, **EV Fleet**, **Settings**, and **Mobile Companion** views with soft-tinted Solar, Battery, EV (**Raedian**), and Grid KPI cards, cohesive Lime-Emerald-Teal status badges and charts, and deep-teal **Commissioning & Hardware Verification** banners (**Solis** & **Raedian**).
+
+---
+
 ## [v9.49.2] - 2026-11-21
 
 ### Fixed
