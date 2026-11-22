@@ -5,7 +5,8 @@
 Ce manuel détaille la configuration et le fonctionnement du moteur de stratégie de GEMS (Grid Energy Management System). Véritable cerveau de votre installation énergétique, le moteur de stratégie coordonne le réseau électrique, le solaire photovoltaïque, la batterie, les bornes de recharge VE et les relais intelligents afin d'optimiser votre consommation, maximiser l'autoconsommation, éviter les pénalités de pointe capacitaire et réaliser un arbitrage tarifaire rentable.
 
 > [!TIP]
-> **Télécharger les Manuels Officiels de Terrain (PDF) :**
+> **Télécharger les Manuels Officiels & Guide des Stratégies (PDF) :**
+> - 🧭 **[Guide des Stratégies Optimales par Pays & Installation (PDF)](GRID-EMS-Strategy-Guide-fr.pdf)** (`FR` | [EN](../GRID-EMS-Strategy-Guide.pdf) | [NL](../nl/GRID-EMS-Strategy-Guide-nl.pdf))
 > - 📕 **[Manuel Installateur & Mise en Service GEMS (PDF)](../../manuals/fr/gems-installer-manual-fr.pdf)** (5.7 MB)
 > - 📗 **[Manuel Utilisateur & Particulier GEMS (PDF)](../../manuals/fr/gems-user-manual-fr.pdf)** (3.5 MB)
 > - ☁️ **[Manuel de Connexion Cloud GRID-EMS-SERVER (PDF)](../../manuals/fr/gems-server-connection-manual-fr.pdf)** (1.1 MB)

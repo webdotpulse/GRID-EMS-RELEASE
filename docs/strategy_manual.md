@@ -5,7 +5,8 @@
 This manual provides an in-depth guide to configuring and using the strategy engine within GEMS (Grid Energy Management System). The strategy engine is the core component that coordinates your home energy ecosystem—Grid, Solar, Battery, EV Chargers, and Smart Relays—to optimize energy consumption, maximize self-consumption, avoid peak capacity grid surcharges, and execute cost-effective energy arbitrage.
 
 > [!TIP]
-> **Download Official Field Manuals (PDF):**
+> **Download Official Field Manuals & Strategy Playbook (PDF):**
+> - 🧭 **[GRID-EMS Optimal Strategy Guide — Per Country & Installation (PDF)](GRID-EMS-Strategy-Guide.pdf)** (`EN` | [NL](nl/GRID-EMS-Strategy-Guide-nl.pdf) | [FR](fr/GRID-EMS-Strategy-Guide-fr.pdf))
 > - 📕 **[GEMS Installer & Commissioning Manual (PDF)](../manuals/gems-installer-manual.pdf)** (5.7 MB)
 > - 📗 **[GEMS Homeowner & User Manual (PDF)](../manuals/gems-user-manual.pdf)** (3.5 MB)
 > - ☁️ **[GEMS GRID-EMS-SERVER Connection Manual (PDF)](../manuals/gems-server-connection-manual.pdf)** (1.1 MB)

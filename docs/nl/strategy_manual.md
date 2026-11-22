@@ -5,7 +5,8 @@
 Deze handleiding biedt een diepgaande uitleg over het configureren en gebruiken van de strategie-engine binnen GEMS (Grid Energy Management System). De strategie-engine vormt het kloppende hart van uw energie-installatie en coördineert het elektriciteitsnet, zonnepanelen, thuisbatterijen, EV-laadpalen en slimme relais om het verbruik te optimaliseren, zelfverbruik te maximaliseren, hoge capaciteitstarieven te vermijden en rendabele tariefsturing (arbitrage) uit te voeren.
 
 > [!TIP]
-> **Download Officiële Veldhandleidingen (PDF):**
+> **Download Officiële Veldhandleidingen & Strategiegids (PDF):**
+> - 🧭 **[GRID-EMS Beste Strategie per Land & Installatie (PDF)](GRID-EMS-Strategy-Guide-nl.pdf)** (`NL` | [EN](../GRID-EMS-Strategy-Guide.pdf) | [FR](../fr/GRID-EMS-Strategy-Guide-fr.pdf))
 > - 📕 **[GEMS Installateurs- & Inbedrijfstellingshandleiding (PDF)](../../manuals/nl/gems-installer-manual-nl.pdf)** (5.7 MB)
 > - 📗 **[GEMS Gebruikershandleiding voor Woningeigenaren (PDF)](../../manuals/nl/gems-user-manual-nl.pdf)** (3.5 MB)
 > - ☁️ **[GEMS GRID-EMS-SERVER Verbindingshandleiding (PDF)](../../manuals/nl/gems-server-connection-manual-nl.pdf)** (1.1 MB)

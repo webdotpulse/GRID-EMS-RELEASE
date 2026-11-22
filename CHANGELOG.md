@@ -14,6 +14,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.54.2] - 2026-11-22
+
+### Added
+- **Official Trilingual Optimal Strategy Guide PDF Playbook (`docs/GRID-EMS-Strategy-Guide.pdf`, `docs/nl/GRID-EMS-Strategy-Guide-nl.pdf` & `docs/fr/GRID-EMS-Strategy-Guide-fr.pdf`):**
+  - **4-Page Country & Installation Strategy Selection Playbook (`EN` / `NL` / `FR`):** Published a visual 4-page printable PDF strategy guide across English, Dutch, and French featuring a 10-second 3-step decision flow, a complete Country × Electricity Contract matrix (covering Belgium — Flanders `Fluvius`, Wallonia `ORES / RESA Tarif Impact`, Brussels `Sibelga`, the Netherlands `3×25A` & *terugleverkosten*, Germany `§14a EnWG` & Luxembourg, and France / Austria / international sites), a side-by-side reference of all 6 built-in **1-Click Optimal Strategy Profiles**, 6 residential & all-electric hardware blueprints (**Solis** hybrid/retrofit storage, **Raedian** EV wallboxes, and 4-state **SG-Ready** heat pumps), commercial EV Fleet DLB & C&I telecontrol/VPP recipes, and a 5-minute commissioning checklist.
+
+---
+
 ## [v9.54.1] - 2026-11-22
 
 ### Added

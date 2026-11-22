@@ -25,6 +25,13 @@ window.DOCS_SEARCH_INDEX = [
     snippet: "Fast setup guide to flash the OS image, boot the Raspberry Pi, and access the web UI at ems.local.",
     keywords: ["quickstart", "getting started", "first boot", "ems.local", "fast setup"]
   },
+  {
+    title: "Optimal Strategy Guide Per Country & Installation (PDF)",
+    category: "Overview",
+    url: "../docs/GRID-EMS-Strategy-Guide.pdf",
+    snippet: "Visual 4-page strategy selection playbook: 10-second decision flow, Country x Contract matrix (Flanders, Wallonia, Brussels, Netherlands, Germany, Luxembourg), 6 1-Click presets, and hardware installation setups.",
+    keywords: ["strategy guide", "best strategy", "country", "flanders", "wallonia", "netherlands", "germany", "installation", "1-click preset", "pdf"]
+  },
 
   // --- Installation Manual ---
   {

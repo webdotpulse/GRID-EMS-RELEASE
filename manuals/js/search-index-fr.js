@@ -32,6 +32,13 @@ window.DOCS_SEARCH_INDEX = [
     snippet: "Analyse financière pour installations résidentielles et PME : économies sur le tarif capacitaire, hausse de l'autoconsommation et délai d'amortissement.",
     keywords: ["roi", "rentabilité", "retour sur investissement", "amortissement", "économies", "brochure", "tarif capacitaire", "autoconsommation", "pdf"]
   },
+  {
+    title: "Meilleure Stratégie par Pays & Installation (Guide PDF)",
+    category: "Aperçu",
+    url: "../../docs/fr/GRID-EMS-Strategy-Guide-fr.pdf",
+    snippet: "Guide visuel de sélection en 4 pages : arbre de décision en 10 secondes, matrice Pays x Contrat (Flandre, Wallonie, Bruxelles, Pays-Bas, Allemagne), 6 profils 1-Clic et architectures matérielles.",
+    keywords: ["guide stratégie", "meilleure stratégie", "pays", "flandre", "wallonie", "pays-bas", "allemagne", "installation", "profil 1-clic", "pdf"]
+  },
 
   // --- Manuel d'Installation ---
   {

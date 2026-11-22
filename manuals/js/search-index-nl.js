@@ -32,6 +32,13 @@ window.DOCS_SEARCH_INDEX = [
     snippet: "Financiële analyse voor residentiële en KMO-installaties: besparing op Vlaams capaciteitstarief, verhoging van zelfverbruik en terugverdientijd.",
     keywords: ["roi", "rendement", "terugverdientijd", "besparing", "businesscase", "brochure", "capaciteitstarief", "zelfverbruik", "pdf"]
   },
+  {
+    title: "Beste Strategie per Land & Installatie (Strategiegids PDF)",
+    category: "Overzicht",
+    url: "../../docs/nl/GRID-EMS-Strategy-Guide-nl.pdf",
+    snippet: "Visuele keuzegids in 4 pagina's: beslissingsschema in 10 seconden, Land x Contractmatrix (Vlaanderen, Wallonië, Brussel, Nederland, Duitsland), 6 1-Klik profielen en opstellingen per installatietype.",
+    keywords: ["strategiegids", "beste strategie", "land", "vlaanderen", "wallonië", "nederland", "duitsland", "installatie", "1-klik profiel", "pdf"]
+  },
 
   // --- Installatiehandleiding ---
   {
