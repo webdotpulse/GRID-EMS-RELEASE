@@ -700,7 +700,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Softwareversie</span>
-          <span class="cover-meta-val" data-version-release>v9.54.0-release (Officiële Tag)</span>
+          <span class="cover-meta-val" data-version-release>v9.54.1-release (Officiële Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Ingebouwde Templates</span>
@@ -1210,8 +1210,8 @@
               <span class="badge badge-modbus">MODBUS</span><br>
               <span style="font-size: 7pt; color: #64748b;">Modbus TCP via directe interne Ethernet-poort / Ginlong Wi-Fi/LAN stick (Standaardpoort: 502 of 8899</span>
             </td>
-            <td>Actief PV-opwekkingsvermogen (W, reg 33079), Batterij laad-/ontlaadvermogen (W, reg 33149), Batterij-SOC (%, reg 33139), Actief netmetervermogen (W, reg 33130), Totale cumulatieve energieopbrengst (kWh, reg 33029), 3-fasen AC-stromen (0.1A, regs 33073-33075), 3-fasenspanningen (0.1V, regs 33076-33078).</td>
-            <td>Actieve vermogensbegrenzingsmodus en -limiet (W / % via holding-registers 43052/43070 op Hybride en 3051/3052 op String), geforceerd batterij laad- &amp; ontlaadsetpoint (W via registers 43110/43129/43135/43136).</td>
+            <td>DC PV-opwekkingsvermogen (W, reg 33057) &amp; Actief AC-omvormervermogen (W, reg 33079), Backup-/EPS-poortbelasting (W, reg 33148), Batterij laad-/ontlaadvermogen (W, reg 33149), Batterij-SOC (%, reg 33139), Actief netmetervermogen (W, reg 33130), Totale cumulatieve energieopbrengst (kWh, reg 33029), 3-fasen AC-stromen (0.1A, regs 33073-33075), 3-fasenspanningen (0.1V, regs 33076-33078).</td>
+            <td>Actieve vermogensbegrenzingsmodus en -limiet (W / % via holding-registers 43052/43070 op Hybride en 3051/3052 op String), geforceerd batterij laad- &amp; ontlaadsetpoint (W via Ver3.4 Native Remote Dispatch RAM-blok 44100–44112 wanneer reg 34502=0xAA55 of Remote Control-registers 43110/43135/43129/43136, met eenmalige vrijgave van begrensde stroom-/vermogenslimieten 43117/43118, 43130/43131, 43141/43142 en meterveilige 43073 Backflow/FailSafe-afscherming).</td>
             <td>Aangewezen primair referentieplatform voor hybride zonne-omvormers en batterijopslag. Voert sub-seconde closed-loop vermogensbegrenzing uit tijdens uren met negatieve spotprijzen (Nederland-modus / Zero-Export), slaat automatisch zonne-overschotten op in de batterij, regelt laadvermogen dynamisch bij voor Vlaamse capaciteitspiekbewaking en orkestreert spotmarktarbitrage (geforceerd laden bij lage EPEX Day-Ahead prijzen en ontladen tijdens avondpieken). Solis Retrofit-modellen werken naadloos als AC-gekoppelde batterij-omvormers zonder afhankelijkheid van PV-strings.</td>
           </tr>
           <tr class="matrix-device-row" data-cat="inverter" data-preferred="0">
@@ -4325,11 +4325,11 @@
       <div class="capability-grid">
         <div class="cap-box read">
           <div class="cap-box-title">🔍 Uitgelezen Telemetrie</div>
-          <p>Actief PV-opwekkingsvermogen (W, reg 33079), Batterij laad-/ontlaadvermogen (W, reg 33149), Batterij-SOC (%, reg 33139), Actief netmetervermogen (W, reg 33130), Totale cumulatieve energieopbrengst (kWh, reg 33029), 3-fasen AC-stromen (0.1A, regs 33073-33075), 3-fasenspanningen (0.1V, regs 33076-33078).</p>
+          <p>DC PV-opwekkingsvermogen (W, reg 33057) &amp; Actief AC-omvormervermogen (W, reg 33079), Backup-/EPS-poortbelasting (W, reg 33148), Batterij laad-/ontlaadvermogen (W, reg 33149), Batterij-SOC (%, reg 33139), Actief netmetervermogen (W, reg 33130), Totale cumulatieve energieopbrengst (kWh, reg 33029), 3-fasen AC-stromen (0.1A, regs 33073-33075), 3-fasenspanningen (0.1V, regs 33076-33078).</p>
         </div>
         <div class="cap-box control">
           <div class="cap-box-title">🎛️ Stuurbare Setpoints</div>
-          <p>Actieve vermogensbegrenzingsmodus en -limiet (W / % via holding-registers 43052/43070 op Hybride en 3051/3052 op String), geforceerd batterij laad- &amp; ontlaadsetpoint (W via registers 43110/43129/43135/43136).</p>
+          <p>Actieve vermogensbegrenzingsmodus en -limiet (W / % via holding-registers 43052/43070 op Hybride en 3051/3052 op String), geforceerd batterij laad- &amp; ontlaadsetpoint (W via Ver3.4 Native Remote Dispatch RAM-blok 44100–44112 wanneer reg 34502=0xAA55 of Remote Control-registers 43110/43135/43129/43136, met eenmalige vrijgave van begrensde stroom-/vermogenslimieten 43117/43118, 43130/43131, 43141/43142 en meterveilige 43073 Backflow/FailSafe-afscherming).</p>
         </div>
         <div class="cap-box role">
           <div class="cap-box-title">⚡ Praktische Rol &amp; Automatisering</div>

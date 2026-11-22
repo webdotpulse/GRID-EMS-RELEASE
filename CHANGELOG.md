@@ -14,6 +14,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.54.1] - 2026-11-22
+
+### Added
+- **Multi-Source Zero-Key Day-Ahead Spot Tariff, Solar Forecast & Grid Renewable Fallbacks (`Tariffs`, `Solar Forecast` & `GRID-EMS-SERVER` Lockstep):**
+  - **Automatic European 15-Minute SDAC Day-Ahead Redundancy (`BE`, `NL`, `DE-LU`, `FR`, `AT`):** Expanded automatic Day-Ahead spot price ingestion behind **Fraunhofer ISE Energy-Charts** with the official **Nord Pool Day-Ahead Data Portal** (`15-minute` SDAC quarter-hour wholesale resolution across Belgium, the Netherlands, Germany/Luxembourg, France, and Austria), **Frank Energie** (`15-minute` bare wholesale spot fallback for `NL`), **EnergyZero** (`NL`), and **aWATTar** (`DE-LU` and `AT`)—requiring zero API keys, zero subscriptions, and zero manual setup while preserving strict per-country bidding-zone isolation and wholesale price accuracy (`excl. VAT & taxes`).
+  - **Quarter-Hour Missing-Slot Self-Healing & Solar / Green-Share Fallbacks:** Automatically backfilled individual missing `15-minute` Day-Ahead price slots whenever a primary feed reports partial intra-hour gaps, added **Forecast.Solar** as an automatic zero-key solar production forecast fallback when **Open-Meteo** is temporarily unreachable, and added **Fraunhofer Energy-Charts** grid renewable share fallback during **Elia Open Data** maintenance windows.
+
+### Fixed
+- **Winter / Low-Solar Battery Fallback Safeguard Against Optimistic Weather Forecasts & Mid-Charge Hysteresis (`Strategy`, `Dynamic 24h Forecast` & `GRID-EMS-SERVER` Lockstep):**
+  - **Trailing 24-Hour Solar Recharge Verification:** Updated **Winter / Low-Solar Grid-Charge Fallback** across both live control execution and the **Dynamic 24h Forecast** planner so that whenever actual trailing 24-hour usable solar recharge (`battery_charge_solar_kwh + grid_export_kwh`) fell short of the energy needed to reach the configured **Fallback Target SoC** (e.g. due to uncalibrated roof orientation, winter low-angle shading, snow on panels, or daytime household/EV loads), **GEMS** activates fallback charging during the cheapest tariff hours instead of skipping it on an optimistic weather forecast—while remaining idle whenever trailing solar recharge (or zero-export full-SoC solar charging) confirms sufficient solar yield.
+  - **Continuous Mid-Charge Forecast Hysteresis (`Trigger SoC -> Target SoC`):** Preserved active **Winter Fallback** charging across 15-minute **Dynamic 24h Forecast** recalculations once triggered until the configured **Target SoC** is reached, and avoided throttling active Winter Fallback top-ups down to small midday solar-surplus trickles.
+- **Solis S5/S6 Hybrid & AC-Retrofit (`S6-EA1P` / `RAI`) Full-Power Battery Discharge, Ver3.4 Native Remote Dispatch & Meter-Isolated Backflow Protection (`solis_hybrid`, `solis_retrofit`, `solis_retrofit_battery` & `GRID-EMS-SERVER` Lockstep):**
+  - **Automatic Unclamping of Meterless Backflow/Meter-FailSafe, Stuck AC Output Limits & Low DC Current Ceilings:** Resolved an issue where **Solis** S5/S6 Hybrid and single-phase AC-Coupled Retrofit (`S6-EA1P` / `RAI`) inverters could remain stuck discharging only `~45–55 W` (`~0.8–1.0 A` internal DC draw, `0 W` AC output) despite high battery State of Charge (`90%+`). Automatically cleared conflicting internal `Backflow / Meter-FailSafe` clamps **strictly on installations where no smart meter is wired to the Solis inverter** (preserving `100%` of native hardware `Self-Use` tracking and meter-backed feed-in limits whenever a smart meter is connected to the Solis `Meter` port), released stuck `< 10%` AC output limit gates when curtailment is inactive, and raised abnormally low `< 500 W` battery charge/discharge current ceilings once per connection with zero repetitive flash wear.
+  - **Native Solis Ver3.4 Remote Dispatch Support & Reliable Remote-Control Setpoint Latching:** Added automatic support for **Solis** Ver3.4 volatile RAM Remote Dispatch across single-phase and three-phase inverters, updated legacy Remote Control mode-switch sequencing so forced charge and discharge setpoints always latch reliably on mode entry, and expanded **Hardware Debug Probes** to display live Backflow, Output Limit, DC Current Limit, and Ver3.4 Remote Dispatch diagnostics.
+- **Solis Backup/EPS Port Load Accounting & Idle Hybrid Standby Home Load Reconciliation (`PowerFlow`, `Dashboard` & `GRID-EMS-SERVER` Lockstep):**
+  - **Solis `AC-BACKUP` / EPS Port Load Inclusion:** Included live **Solis** (and OEM **Autarco**) Backup/EPS output port load power in net household consumption across standby, solar generation, battery discharge, and grid-charging states so critical circuits wired to the inverter's Backup port are always reflected in **Home Load**.
+  - **1:1 Grid Import & Home Load Match During Battery Standby:** Included hybrid inverter AC standby self-consumption in **Home Load** whenever **Solar PV** and **Battery** are both idle (`0 W` / `Standby`, e.g. at the minimum SoC reserve floor), eliminating the gap between **Grid Import** and **Home Load** on the live Power Flow Matrix while still excluding battery rectifier losses during active grid charging.
+
+---
+
 ## [v9.54.0] - 2026-11-22
 
 ### Added
