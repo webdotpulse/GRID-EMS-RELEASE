@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.53.0] - 2026-11-22
+
+### Changed
+- **Maintenance & Documentation Synchronization (`v9.53.0`):** Synchronized updated trilingual (`EN` / `NL` / `FR`) field manuals, hardware compatibility documentation, and signed appliance packages for release `v9.53.0`.
+
+---
+
 ## [v9.52.0] - 2026-11-22
 
 ### Added
@@ -36,7 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - **Unified Minimal Pro Interface & New Energy Grid Lime-Emerald-Teal Brand Design (`GRID-EMS` & `GRID-EMS-SERVER` Lockstep):**
   - **Frosted & Botanical Navigation Chrome (`EN` / `NL` / `FR`):** Refreshed the desktop and mobile navigation shell with grouped **Overview** and **Management** sections, the **New Energy Grid** Lime-Emerald-Teal lightning emblem, active right-edge indicator pills, and seamless Light and Botanical Dark theme transitions across English, Dutch, and French.
-  - **Elevated PowerFlow Stage, Pastel KPI Cards & Cohesive Brand Accents:** Upgraded the live **PowerFlow** diagram, **Dashboard**, **EV Fleet**, **Settings**, and **Mobile Companion** views with soft-tinted Solar, Battery, EV (**Raedian**), and Grid KPI cards, cohesive Lime-Emerald-Teal status badges and charts, and deep-teal **Commissioning & Hardware Verification** banners (**Solis** & **Raedian**).
+  - **Interactive Power Flow Matrix, Pastel KPI Cards & Cohesive Brand Accents:** Redesigned the live **Interactive Power Flow Matrix** with elevated **Grid**, **Solar PV** (**Solis**), **Battery** (with circular SoC ring), **Appliance / SG-Ready**, and **EV Charger** (**Raedian**) pill cards plus a circular **Home Load** hub (`100% Solar Fed` / local autonomy indicator) on the multi-bus layout so animated flow streams connect all possible node combinations (`Solar -> Home / EV / Battery / Grid`, `Battery -> Home / EV / Grid`, `Grid -> Home / EV / Battery`, and `Home -> Appliance`), paired with a unified `Live Flow` / `24h` forecast toolbar, soft-tinted KPI cards, and deep-teal **Commissioning & Hardware Verification** banners.
 
 ---
 
