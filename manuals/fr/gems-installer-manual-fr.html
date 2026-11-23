@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Micrologiciel / Version</span>
-          <span class="cover-meta-val" data-version-tag="release">v9.56.2-release</span>
+          <span class="cover-meta-val" data-version-tag="release">v9.57.0-release</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Architecture Matérielle</span>
@@ -438,7 +438,7 @@
 
     <div class="cover-footer">
       <span>Système de Gestion d'Énergie GEMS (GRID-EMS)</span>
-      <span>Référence Technique Confidentielle • Documentation v9.56.2</span>
+      <span>Référence Technique Confidentielle • Documentation v9.57.0</span>
     </div>
   </div>
 
@@ -620,7 +620,7 @@
     TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)<br>
     curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"<br>
     <br>
-    # 2. Installer le paquet et ses dépendances (ex. sudo dpkg -i gems_9.56.2_arm64.deb)<br>
+    # 2. Installer le paquet et ses dépendances (ex. sudo dpkg -i gems_9.57.0_arm64.deb)<br>
     sudo dpkg -i "gems_${TAG#v}_arm64.deb"<br>
     sudo apt-get install -f -y<br>
     <br>
@@ -1213,8 +1213,8 @@
       <div class="decision-item">
         <div class="decision-item-title">Mode 3 : Mode Pays-Bas (Compensation Intelligente &amp; Garde 3×25A)</div>
         <div class="decision-item-desc">
-          <strong>Idéal pour :</strong> Les Pays-Bas (Liander, Enexis, Stedin).<br>
-          Protège les fusibles principaux <code>3×25A</code> phase par phase (évitant le surcoût réseau de plus de 1 000 €/an d'un passage en <code>3×35A</code>), privilégie le stockage local et la charge VE face aux frais d'injection (<em>terugleverkosten</em>), bride lors des heures EPEX NL négatives et désactive intégralement les fonctions belges/flamandes (<em>Capaciteitstarief</em>, GSC, Elia, Super-Dal, IEC-104).
+          <strong>Idéal pour :</strong> Les Pays-Bas (Liander, Enexis, Stedin — Fin du Saldering 2027).<br>
+          Protège les fusibles principaux <code>3×25A</code> phase par phase (évitant le surcoût réseau de plus de 1 000 €/an d'un passage en <code>3×35A</code>), prend en charge les quatre politiques d'injection Post-Saldering dans l'<strong>Assistant Stratégie</strong> (Zéro Injection strict <code>0 W</code>, Plafond Annuel / <em>Terugleverstaffel</em> en kWh/an, garde-fou <em>terugleverkosten</em> au kWh, et bridage EPEX NL dynamique), module fluidement les onduleurs pilotables (ex. <strong>Solis</strong>) même en phase de fin de charge batterie, signale les passerelles PV en lecture seule nécessitant une limitation locale (PEL / Zéro-Export) et désactive intégralement les fonctions belges/flamandes (<em>Capaciteitstarief</em>, GSC, Elia, Super-Dal, IEC-104).
         </div>
       </div>
     </div>

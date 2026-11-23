@@ -14,6 +14,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.57.0] - 2026-11-23
+
+### Added
+- **Netherlands 2027 Post-Saldering & Zero-Injection Readiness Suite (`Strategy Advisor`, `Contract`, `Strategy`, `Hardware` & `GRID-EMS-SERVER` Lockstep):**
+  - **Annual Export Bracket Cap (*Terugleverstaffel*, kWh/yr — `NL` Only):** Added an optional calendar-year grid export cap in **Settings → Energy Contract** and the **Strategy Advisor** (with quick staffel presets `1,000` / `2,000` / `3,000` / `4,000 kWh/yr` and live year-to-date export progress). Once cumulative export reaches your configured supplier bracket ceiling, **GEMS** automatically transitions into strict `0 W` Zero-Export until 1 January to prevent jumping into a higher supplier feed-in fee tier.
+  - **Upgraded Country & Installation Strategy Advisor (`EN` / `NL` / `FR`):** Expanded the Dutch Post-Saldering contract step to support all four feed-in policies (**Strict 0 W Zero Export**, **Annual Export Cap / *Terugleverstaffel***, **Per-kWh *Terugleverkosten* Guard**, and **Dynamic EPEX NL / Uncurtailed**), automatically applies the **2027 Dutch statutory energy tax (`€0.08802/kWh` excl. BTW)**, auto-detects controllable PV inverters (such as **Solis**) vs. monitor-only PV gateways, and surfaces clear advisories when native gateway export limiting is needed or when a solar-only Post-Saldering installation would benefit from battery storage or daytime load shifting.
+  - **Automatic Inverter Curtailment Readiness & Smart Defaults:** Newly added curtailment-capable PV inverters now automatically default to **Allow Curtailment** enabled on Dutch installations or when Active Inverter Curtailment is active, **Settings → Strategy** warns if active curtailment is enabled without a permitted/controllable PV inverter, and Cloud **Strategy Advisor** plans automatically enable curtailment permission on controllable inverters without touching monitor-only PV devices.
+  - **Hardened Closed-Loop Zero-Export Curtailment & Cloud ROI Reporting:** Eliminated curtailment pauses near full battery state-of-charge (`95–99%` BMS Constant-Voltage taper), skipped offline batteries and unplugged/full EV chargers when calculating residual PV export to curtail, treated break-even `€0.00/kWh` net fixed-contract export under Dutch *terugleverkosten* as unprofitable, and synced live Zero-Export curtailment indicators to **GRID-EMS-SERVER** so curtailed solar savings are accurately credited on Dutch fixed contracts.
+
+---
+
 ## [v9.56.2] - 2026-11-23
 
 ### Fixed

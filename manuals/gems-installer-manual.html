@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.56.2-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.57.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -1214,8 +1214,8 @@
       <div class="decision-item">
         <div class="decision-item-title">Mode 3: Netherlands Mode (Smart Saldering &amp; 3×25A Guard)</div>
         <div class="decision-item-desc">
-          <strong>Best for:</strong> The Netherlands (Liander, Enexis, Stedin).<br>
-          Enforces per-phase <code>3×25A</code> main-fuse dynamic load balancing (preventing €1,000+/yr <code>3×35A</code> DSO capacity tier upgrades), prioritizes local PV storage/EV sinking against <em>terugleverkosten</em>, curtails negative EPEX NL hours, and enforces strict country isolation—completely disabling and hiding Flemish <em>Capaciteitstarief</em> peak shaving, Flemish GSC offsets, and Belgian Elia / Super-Dal / IEC-104 features.
+          <strong>Best for:</strong> The Netherlands (Liander, Enexis, Stedin — Post-2027 Saldering Stop).<br>
+          Enforces per-phase <code>3×25A</code> main-fuse dynamic load balancing (preventing €1,000+/yr <code>3×35A</code> DSO capacity tier upgrades), supports all four Dutch Post-Saldering feed-in policies in the <strong>Strategy Advisor</strong> (Strict <code>0 W</code> Zero-Export, Annual Export Bracket Cap / <em>Terugleverstaffel</em> in kWh/yr, linear per-kWh <em>terugleverkosten</em> guard, and Dynamic EPEX NL negative-price curtailment), smoothly curtails controllable inverters (e.g. <strong>Solis</strong>) even during battery CV tapering near full charge, advises when monitor-only PV gateways require native Zero-Export / Power Export Limiting, and enforces strict country isolation—completely disabling and hiding Flemish <em>Capaciteitstarief</em> peak shaving, Flemish GSC offsets, and Belgian Elia / Super-Dal / IEC-104 features.
         </div>
       </div>
     </div>
