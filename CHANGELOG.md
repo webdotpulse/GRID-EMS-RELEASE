@@ -14,6 +14,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.55.1] - 2026-11-23
+
+### Fixed
+- **OCPP 1.6-J Proxy Fuse Arbitration, IEC 60870-5-104 Telecontrol Ramping, Commercial `>100 kW` Curtailment & Control-Loop Reliability:**
+  - **OCPP 1.6-J Upstream CPO Proxy Safety Hardening:** Enforced strict local main-breaker priority whenever proxying EV chargers to external CPO billing platforms by capping external CPO profile stack levels below GEMS's local safety ceiling, preventing profile ID collisions, blocking 1-phase Watt-limit phase inflation, and waiting for charger `ClearChargingProfile` acknowledgments before re-asserting local limits (with an automatic fallback timer).
+  - **Flanders 15-Minute Capacity Peak Accuracy at 1 Hz P1 Polling:** Preserved the complete 15-minute quarter sample history under 1-second P1 smart meter polling so projected quarter peaks and completed monthly peak records remain accurate even on meters without native OBIS `1.4.0` quarter-peak fields.
+  - **Persistent Battery State-of-Charge (`SoC`) History & Non-Blocking External Feeds:** Stored 1-minute averaged battery State of Charge (`battery_soc`) in local history so restart/offline SoC recovery, 24-hour battery planning, and zero-export solar-sufficiency checks work reliably, and decoupled Belgian renewable-share fetches and outbound webhook alerts from control and polling locks so internet or DNS outages can never stall local energy control.
+  - **DSO IEC 60870-5-104 Multi-Step Recovery & Commercial `>100 kW` Curtailment Support:** Fixed active power curtailment tracking so inverters step back up cleanly when DSO telecontrol relaxes curtailment (e.g., `0% → 30% → 60%`), serialized concurrent IEC-104 I-frame sequence numbering and added multi-object setpoint ASDU support, and updated 21 inverter drivers plus the automated commissioning test restore path to honor inverter rated capacities above `100 kW`.
+  - **Fleet `Solar First` VIP Priority, Aggregate EnWG §14a Dimming & Regional Ceiling Precedence:** Restored grid-backup priority for `VIP` bays in Fleet `Solar First` mode, enforced German EnWG §14a dimming across the combined site EV + battery charging load, and ensured Flanders capacity peak shaving and EnWG §14a ceilings always take precedence over cloud cluster boost overrides.
+  - **Inverter & Wallbox Driver Reliability (`Huawei`, `Raedian`, `GoodWe`, `Alpha ESS`, `SofarSolar`, `SolarEdge`, `SMA`):** Serialized Huawei 5-minute watchdog refreshes against battery stop commands so stopped batteries are never re-armed, prevented **Raedian Gemini** chargers on shared RS-485 buses from probing or modifying adjacent wallbox addresses, reset SMA curtailment state cleanly on reconnect, and added driver-side write deduplication across **GoodWe**, **Alpha ESS**, **SofarSolar**, **SolarEdge 3-Phase**, and **Raedian** wallboxes to protect hardware EEPROM longevity.
+  - **Mobile Dashboard, Commissioning Wizard & Installer Verification UI Polish:** Fixed the missing `Solar` savings label on the Mobile Dashboard across English, Dutch, and French, aligned **Commissioning Wizard** country/region values (`BE` lowercase regions + `NL`, `DE`, `LU`, and `Other`) with site settings, cancelled in-flight status polls cleanly when leaving the **Commissioning & Hardware Verification** tab, and restricted client-side API header handling strictly to local GEMS `/api/` requests.
+
+---
+
 ## [v9.55.0] - 2026-11-23
 
 ### Added

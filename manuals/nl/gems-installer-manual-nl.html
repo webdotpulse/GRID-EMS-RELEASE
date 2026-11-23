@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Systeemfirmware / Build</span>
-          <span class="cover-meta-val" data-version-tag="release">v9.55.0-release</span>
+          <span class="cover-meta-val" data-version-tag="release">v9.55.1-release</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware-architectuur</span>
@@ -438,7 +438,7 @@
 
     <div class="cover-footer">
       <span>GEMS Energiebeheersysteem (GRID-EMS)</span>
-      <span>Vertrouwelijke Technische Veldreferentie • Documentatie v9.55.0</span>
+      <span>Vertrouwelijke Technische Veldreferentie • Documentatie v9.55.1</span>
     </div>
   </div>
 
@@ -620,7 +620,7 @@
     TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)<br>
     curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"<br>
     <br>
-    # 2. Installeer pakket en afhankelijkheden (bijv. sudo dpkg -i gems_9.55.0_arm64.deb)<br>
+    # 2. Installeer pakket en afhankelijkheden (bijv. sudo dpkg -i gems_9.55.1_arm64.deb)<br>
     sudo dpkg -i "gems_${TAG#v}_arm64.deb"<br>
     sudo apt-get install -f -y<br>
     <br>
