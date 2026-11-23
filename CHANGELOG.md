@@ -14,10 +14,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [v9.56.1] - 2026-11-23
+## [v9.56.2] - 2026-11-23
 
-### Changed
-- **Maintenance & Documentation Synchronization (`v9.56.1`):** Synchronized updated trilingual (`EN` / `NL` / `FR`) field manuals, hardware compatibility documentation, and signed appliance packages for release `v9.56.1`.
+### Fixed
+- **Dynamic Contract Formula Priority, Huawei SDongle Busy Recovery, Cumulative Wallbox Session Reset & Solis S6 Model Recognition (`GRID-EMS` & `GRID-EMS-SERVER` Lockstep):**
+  - **Wizard-Configured Dynamic Contract Priority:** Ensured installations with legacy `dynamic` contract records automatically apply their saved supplier contract formula (markup, fixed base fee, taxes, and VAT) instead of falling back to an outdated flat markup, synchronized with the **GRID-EMS-SERVER** portal settings view.
+  - **Huawei `SDongleA-05` Busy & Timeout Dispatch Resilience:** Upgraded **Huawei** `SUN2000` + `LUNA2000` battery dispatch commands to absorb multi-frame `SDongleA-05` busy windows and chained busy-to-timeout hiccups cleanly without logging spurious control-loop errors or disabling supported registers, while reducing redundant period refresh writes.
+  - **Automatic EV Session Energy Reset on Cumulative-Counter Wallboxes (`Raedian`):** Detected physical vehicle plug-in transitions on Modbus and HTTPS wallboxes (including **Raedian Gemini**) so per-session delivered energy (`kWh`) resets cleanly to `0` at the start of every new charging session and never drifts while unplugged.
+  - **Extended Solis Polling Headroom & `S6 1P LV Hybrid` Model Identification:** Expanded Modbus poll timeout headroom for **Solis** hybrid and AC-coupled retrofit storage systems to prevent isolated timeout blips under heavy control-loop activity, and mapped **Solis S6 1P LV Hybrid** (`3 kW`, `3.6 kW`, `5 kW`, and `6 kW`) hardware model codes to clear human-readable labels.
 
 ---
 
