@@ -29,18 +29,21 @@ The core control loop executes every second:
 
 ## 2. Global Site Optimization (Strategy Modes)
 
-| Strategy Tab Overview | Operational Strategy Modes |
+| Guided Strategy Advisor (1-Click Setup) | Strategy Tab Overview |
 | :---: | :---: |
-| ![Strategy Tab](../screenshots/settings_strategy.png) | ![Strategy Modes](../screenshots/settings_strategy_modes.png) |
+| ![Strategy Advisor](../screenshots/strategy_advisor.png) | ![Strategy Tab](../screenshots/settings_strategy.png) |
 
-### 2.0 Optimal Strategy Profiles (1-Click Presets)
-At the top of **Settings → Strategy**, GEMS provides region-filtered **1-Click Optimal Strategy Profiles** with built-in **How it works** and **When to use it** guidance:
-1. **Pure Solar Self-Consumption (`ECO`):** Charges the battery strictly from free solar PV surplus (`0 W` paid grid charging, `force_discharge_above_euro = 999`) with uncurtailed PV. Best for fixed or variable electricity contracts.
-2. **Netherlands Zero Net Export (`0-Export & Terugleverkosten Shield` — `NL` Only):** Routes surplus solar to **Raedian** EV wallboxes and **Solis** storage first (`price_and_solar` with `force_charge_below_euro = 0`), then smoothly curtails inverter output down to local house load (`active_inverter_curtailment = true`, `min_profitable_export_price = 999`) so net grid injection stays at `0 W` on both fixed/variable and dynamic Dutch contracts.
-3. **Flanders Capacity Peak Shield (`Fluvius` — `BE` + `flanders` Only):** Guards your rolling 15-minute *Capaciteitstarief* ceiling (`2.50 kW` floor + `200 W` safety buffer) via `hybrid` solar + spot forecasting, negative-price curtailment, and winter low-SoC reserve protection.
-4. **Wallonia `Tarif Impact` Shifter (`ORES / RESA` — `BE` + `wallonia` Only):** Pre-charges during Wallonian `ECO` slots (`01:00–07:00` & `11:00–17:00`) and reserves stored battery energy to cover the `17:00–22:00` `PIC` distribution tariff peak.
-5. **Dynamic Tariff — Smart 24h Forecast:** All-round `dynamic_forecast` profile combining Open-Meteo solar forecasts, learned household load, negative-price curtailment (`0.00 €/kWh`), and load-following discharge (`force_discharge_above_euro = 999`).
-6. **Dynamic Tariff — Active Spread Arbitrage:** Extends `dynamic_forecast` for larger batteries (`10+ kWh`), charging below `0.05 €/kWh` and actively exporting excess battery energy above `0.35 €/kWh` when the spread beats battery wear (`0.04 €/kWh`).
+### 2.0 Guided Strategy Advisor (Step-by-Step Country & Installation Configurator)
+Instead of cluttering **Settings → Strategy** with preset cards, GEMS provides a dedicated **Strategy Advisor** page in the main sidebar (**Configuration → Strategy Advisor**, also linked from the top banner in **Settings → Strategy**). It walks homeowners and installers through four concise steps and applies the complete configuration in **one click**:
+1. **Location & Automatic Country Detection:** Enter your street address or postal code + city to automatically detect and set your **Country** (`BE`, `NL`, `DE`, `LU`, or `OTHER`), **Grid / DSO Region** (`flanders`, `wallonia`, `brussels`, `netherlands`, `de-lu`, `luxembourg`, `other`), **Time Zone**, and **Open-Meteo Solar Coordinates** (works both online and offline via postal-code/city inference).
+2. **Physical Grid & Regional DSO Rules:** Configures your phase topology (`1×230V`, `3×400V+N`, `3×230V Delta`) and main breaker amps, while surfacing *only* the mechanisms for your detected jurisdiction (Fluvius 15-minute *Capaciteitstarief* + Flemish GSC, Wallonia CWaPE *Tarif Impact* `ORES / RESA`, Dutch fixed breaker tier protection, or German `§14a EnWG` *SteuVE* dimming).
+3. **Electricity Contract:** Selects **Dynamic Spot (`15m` / `60m`)**, **Fixed / Variable**, or **Day / Night Dual-Tariff**, plus supplier formula presets, Dutch post-saldering feed-in rules (`Zero Net Export` `0 W` shield vs. per-kWh *terugleverkosten*), or Belgian `Super-Dal` (`01:00–07:00`).
+4. **On-Site Equipment & 1-Click Apply:** Auto-detects connected **Solis** PV/battery systems, **Raedian** EV chargers, SG-Ready heat pumps, and multi-charger EV Fleets, then applies every site parameter and matching device flag (active inverter curtailment, EV daily mode & departure target) in a single click:
+   - **Pure Solar Self-Consumption (`ECO`):** Selected automatically on fixed/variable contracts without feed-in penalties (`0 W` paid grid charging, `force_discharge_above_euro = 999`).
+   - **Netherlands Zero Net Export (`0-Export Shield` — `NL`):** Diverts solar to EV & battery first, then smoothly curtails PV output (`min_profitable_export_price = 999`) so net grid injection stays at `0 W`.
+   - **Flanders Capacity Peak Shield / 24h Smart Forecast (`Fluvius` — `BE` Flanders):** Protects your rolling 15-minute kW ceiling (`2.50 kW` floor + `200 W` buffer) with GSC-aware curtailment and winter low-SoC reserve.
+   - **Wallonia `Tarif Impact` Shifter (`ORES / RESA` — `BE` Wallonia):** Pre-charges in cheap `ECO` windows (`01:00–07:00` & `11:00–17:00`) and bridges the `17:00–22:00` `PIC` tariff band.
+   - **Dynamic Tariff — Smart 24h Forecast & Active Spread Arbitrage (`10+ kWh` BESS):** Combines 24h Open-Meteo solar predictions, household load, and EPEX spot prices (plus active spike export `> €0.35/kWh` for large batteries).
 
 ### 2.1 Eco Mode (Maximum Self-Consumption)
 **Goal:** Maximize direct self-consumption of rooftop solar generation and minimize grid reliance.

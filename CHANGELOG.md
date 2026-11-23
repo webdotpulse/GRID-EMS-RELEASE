@@ -14,11 +14,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.55.0] - 2026-11-23
+
+### Added
+- **Guided Step-by-Step Country & Installation Strategy Advisor (`Sidebar -> Strategy Advisor` & `GRID-EMS-SERVER` Lockstep):**
+  - **Automatic Location-Based Country, Region, Timezone & Solar Coordinate Detection (`EN` / `NL` / `FR`):** Added a dedicated **Strategy Advisor** page in the main navigation across English, Dutch, and French that automatically detects the installation **Country** (`Belgium`, `Netherlands`, `Germany`, `Luxembourg`, or `Other / International`), **Regional Grid Operator** (`Flanders / Fluvius`, `Wallonia / ORES-RESA`, `Brussels / Sibelga`, `Netherlands`, `Germany`, `Luxembourg`), **Time Zone**, and **Open-Meteo Solar Coordinates** directly from the entered street address or postal code + city (both online and offline).
+  - **4-Step Guided Questionnaire & 1-Click Apply:** Walks homeowners and certified installers step by step through **Location → Physical Grid & Regional DSO Rules → Electricity Contract → On-Site Equipment** (auto-seeded from connected **Solis** inverters/batteries, **Raedian** EV wallboxes, SG-Ready heat pumps, and EV Fleet clusters) with a live Strategy Blueprint preview, applying all optimal site parameters and matching hardware flags (active inverter curtailment, daily EV mode & departure target) in a single click.
+
+### Changed
+- **Decluttered Strategy Settings Tab (`Settings -> Strategy` & `GRID-EMS-SERVER` Lockstep):** Replaced the 6-card preset grid inside **Settings -> Strategy** with a compact banner linking directly to the dedicated **Strategy Advisor** page so advanced parameter cards remain clean and uncluttered while guided 1-click setup stays one click away.
+
+---
+
 ## [v9.54.2] - 2026-11-22
 
 ### Added
 - **Official Trilingual Optimal Strategy Guide PDF Playbook (`docs/GRID-EMS-Strategy-Guide.pdf`, `docs/nl/GRID-EMS-Strategy-Guide-nl.pdf` & `docs/fr/GRID-EMS-Strategy-Guide-fr.pdf`):**
-  - **4-Page Country & Installation Strategy Selection Playbook (`EN` / `NL` / `FR`):** Published a visual 4-page printable PDF strategy guide across English, Dutch, and French featuring a 10-second 3-step decision flow, a complete Country × Electricity Contract matrix (covering Belgium — Flanders `Fluvius`, Wallonia `ORES / RESA Tarif Impact`, Brussels `Sibelga`, the Netherlands `3×25A` & *terugleverkosten*, Germany `§14a EnWG` & Luxembourg, and France / Austria / international sites), a side-by-side reference of all 6 built-in **1-Click Optimal Strategy Profiles**, 6 residential & all-electric hardware blueprints (**Solis** hybrid/retrofit storage, **Raedian** EV wallboxes, and 4-state **SG-Ready** heat pumps), commercial EV Fleet DLB & C&I telecontrol/VPP recipes, and a 5-minute commissioning checklist.
+  - **4-Page Country & Installation Strategy Selection Playbook (`EN` / `NL` / `FR`):** Published a visual 4-page printable PDF strategy guide across English, Dutch, and French featuring a 10-second 3-step decision flow, a complete Country × Electricity Contract matrix (covering Belgium — Flanders `Fluvius`, Wallonia `ORES / RESA Tarif Impact`, Brussels `Sibelga`, the Netherlands `3×25A` & *terugleverkosten*, Germany `§14a EnWG` & Luxembourg, and France / Austria / international sites), a side-by-side reference of all 6 core **Strategy Advisor Blueprints**, 6 residential & all-electric hardware blueprints (**Solis** hybrid/retrofit storage, **Raedian** EV wallboxes, and 4-state **SG-Ready** heat pumps), commercial EV Fleet DLB & C&I telecontrol/VPP recipes, and a 5-minute commissioning checklist.
 
 ---
 

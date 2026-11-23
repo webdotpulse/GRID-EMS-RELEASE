@@ -28,18 +28,21 @@ La boucle de régulation principale s'exécute chaque seconde :
 
 ## 2. Optimisation Globale du Site (Modes de Stratégie)
 
-| Aperçu de l'Onglet Stratégie | Modes de Stratégie Opérationnels |
+| Conseiller Stratégique Guidé (Configuration 1-Clic) | Aperçu de l'Onglet Stratégie |
 | :---: | :---: |
-| ![Onglet Stratégie](../../screenshots/settings_strategy.png) | ![Modes de Stratégie](../../screenshots/settings_strategy_modes.png) |
+| ![Conseiller Stratégique](../../screenshots/strategy_advisor.png) | ![Onglet Stratégie](../../screenshots/settings_strategy.png) |
 
-### 2.0 Profils de Stratégie Optimaux (Préréglages 1-Clic)
-En haut de **Paramètres → Stratégie**, GEMS propose des **Profils de Stratégie Optimaux en 1 clic** filtrés par région, accompagnés d'explications claires (**Fonctionnement** et **Quand l'utiliser**) :
-1. **Autoconsommation Solaire Pure (`ÉCO`) :** Charge la batterie exclusivement via le surplus photovoltaïque gratuit (`0 W` de charge réseau payante, `force_discharge_above_euro = 999`) sans bridage PV. Idéal pour les contrats fixes ou variables.
-2. **Pays-Bas Zéro Injection Nette (`Bouclier 0-Export & Terugleverkosten` — `NL` Uniquement) :** Dirige d'abord le surplus solaire vers les bornes **Raedian** et le stockage **Solis** (`price_and_solar` avec `force_charge_below_euro = 0`), puis module progressivement l'onduleur PV sur la charge domestique (`active_inverter_curtailment = true`, `min_profitable_export_price = 999`) afin de maintenir l'injection nette à `0 W` sur les contrats néerlandais fixes, variables ou dynamiques.
-3. **Flandre Bouclier Capacitaire (`Fluvius` — `BE` + `flanders` Uniquement) :** Protège votre plafond quart-horaire *Capaciteitstarief* (`2,50 kW` minimum + marge `200 W`) via `hybrid`, l'écrêtement des prix négatifs et le secours hivernal.
-4. **Wallonie Pilotage `Tarif Impact` (`ORES / RESA` — `BE` + `wallonia` Uniquement) :** Précharge durant les plages `ECO` wallonnes (`01:00–07:00` & `11:00–17:00`) et réserve la batterie pour couvrir la pointe `PIC` (`17:00–22:00`).
-5. **Tarif Dynamique — Prévision Intelligente 24h :** Profil polyvalent `dynamic_forecast` combinant prévisions solaires Open-Meteo, profil de consommation appris, bridage des prix négatifs (`0,00 €/kWh`) et décharge sur demande locale (`force_discharge_above_euro = 999`).
-6. **Tarif Dynamique — Arbitrage Actif des Écarts :** Étend `dynamic_forecast` pour les batteries de grande capacité (`10+ kWh`), chargeant sous `0,05 €/kWh` et réinjectant au-dessus de `0,35 €/kWh` lorsque l'écart dépasse le coût d'usure (`0,04 €/kWh`).
+### 2.0 Conseiller Stratégique Guidé (Configurateur Étape par Étape par Pays & Installation)
+Afin de garder **Paramètres → Stratégie** clair et épuré, GEMS propose une page dédiée **Conseiller Stratégique** dans la barre latérale (**Configuration → Conseiller Stratégique**, également accessible depuis la bannière en haut de **Paramètres → Stratégie**). Elle guide particuliers et installateurs en quatre étapes rapides et applique l'ensemble des réglages en **un seul clic** :
+1. **Localisation & Détection Automatique du Pays :** Saisissez l'adresse ou le code postal + ville pour définir automatiquement le **Pays** (`BE`, `NL`, `DE`, `LU` ou `OTHER`), la **Région GRD** (`flanders`, `wallonia`, `brussels`, `netherlands`, `de-lu`, `luxembourg`, `other`), le **Fuseau Horaire** et les **Coordonnées Solaires Open-Meteo** (en ligne ou hors ligne via le code postal).
+2. **Raccordement Physique & Règles Régionales GRD :** Configure la topologie réseau (`1×230V`, `3×400V+N`, `3×230V Delta`) et le disjoncteur principal, tout en affichant uniquement les mécanismes applicables à votre région (*Capaciteitstarief* Fluvius 15 min + GSC flamands, *Tarif Impact* CWaPE wallon `ORES / RESA`, protection du calibre aux Pays-Bas ou modulation allemande `§14a EnWG` *SteuVE*).
+3. **Contrat d'Électricité :** Sélectionne **Spot Dynamique (`15m` / `60m`)**, **Fixe / Variable** ou **Bi-Horaire Jour / Nuit**, avec préréglages fournisseurs, politique d'injection néerlandaise (`Zéro Injection Nette` `0 W` vs pénalité par kWh) ou plage `Super-Creux` belge (`01h00–07h00`).
+4. **Équipements sur Site & Application en 1 Clic :** Détecte automatiquement les onduleurs/batteries **Solis**, bornes **Raedian**, pompes à chaleur SG-Ready et flottes VE, puis applique tous les paramètres et options matérielles en un clic :
+   - **Autoconsommation Solaire Pure (`ÉCO`) :** Sélectionnée sur contrats fixes/variables sans pénalité d'injection (`0 W` de charge réseau payante, `force_discharge_above_euro = 999`).
+   - **Pays-Bas Zéro Injection Nette (`Bouclier 0-Export` — `NL`) :** Oriente le surplus vers le VE et la batterie puis bride progressivement l'onduleur PV (`min_profitable_export_price = 999`) pour maintenir `0 W` d'injection.
+   - **Flandre Bouclier Capacitaire / Prévision 24h (`Fluvius` — Flandre) :** Protège le plafond quart-horaire (`2,50 kW` + marge `200 W`) avec prise en compte des certificats verts GSC et réserve hivernale.
+   - **Wallonie Pilotage `Tarif Impact` (`ORES / RESA` — Wallonie) :** Précharge durant les créneaux `ECO` (`01h00–07h00` & `11h00–17h00`) et couvre la pointe `PIC` (`17h00–22h00`) sur batterie.
+   - **Tarif Dynamique — Prévision 24h & Arbitrage Actif des Écarts (`10+ kWh` BESS) :** Combine prévisions solaires Open-Meteo, charge domestique et prix EPEX spot (avec réinjection sur pics extrêmes `> 0,35 €/kWh` pour les grandes batteries).
 
 ### 2.1 Mode Éco (Autoconsommation Maximale)
 **Objectif :** Maximiser l'autoconsommation directe de la production solaire photovoltaïque et limiter le recours au réseau.

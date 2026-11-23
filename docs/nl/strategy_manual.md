@@ -28,18 +28,21 @@ De centrale regellus wordt elke seconde uitgevoerd:
 
 ## 2. Globale Site-optimalisatie (Strategiemodi)
 
-| Overzicht Tabblad Strategie | Operationele Strategiemodi |
+| Begeleide Strategie-Adviseur (1-Klik Configuratie) | Overzicht Tabblad Strategie |
 | :---: | :---: |
-| ![Tabblad Strategie](../../screenshots/settings_strategy.png) | ![Strategiemodi](../../screenshots/settings_strategy_modes.png) |
+| ![Strategie-Adviseur](../../screenshots/strategy_advisor.png) | ![Tabblad Strategie](../../screenshots/settings_strategy.png) |
 
-### 2.0 Optimale Strategieprofielen (1-Klik Presets)
-Bovenaan **Instellingen → Strategie** biedt GEMS regiobewuste **1-Klik Optimale Strategieprofielen** met ingebouwde uitleg over **Hoe het werkt** en **Wanneer gebruiken**:
-1. **Puur Zon-Zelfverbruik (`ECO`):** Laadt de thuisbatterij uitsluitend met gratis zonne-overschot (`0 W` betaalde netlading, `force_discharge_above_euro = 999`) zonder omvormer-aftopping. Ideaal bij vaste of variabele contracten.
-2. **Nederland Nul-Teruglevering (`0-Export & Terugleverkosten Schild` — Enkel `NL`):** Stuurt zonne-overschot eerst naar **Raedian** EV-laadpalen en **Solis** batterijopslag (`price_and_solar` met `force_charge_below_euro = 0`) en regelt daarna de zonne-omvormer traploos terug op het actuele woningverbruik (`active_inverter_curtailment = true`, `min_profitable_export_price = 999`) zodat de netto teruglevering op `0 W` blijft bij zowel vaste/variabele als dynamische Nederlandse contracten.
-3. **Vlaanderen Capaciteitspiek-Schild (`Fluvius` — Enkel `BE` + `flanders`):** Bewaakt uw rollende 15-minuten kwartierpiek (`2,50 kW` minimum + `200 W` veiligheidsmarge) met `hybrid` zon-/prijssturing, terugregeling bij negatieve prijzen en winterreserve.
-4. **Wallonië `Tarif Impact` Sturing (`ORES / RESA` — Enkel `BE` + `wallonia`):** Laadt bij tijdens Waalse `ECO`-uren (`01:00–07:00` & `11:00–17:00`) en reserveert batterijcapaciteit om de `17:00–22:00` `PIC`-avondpiek te overbruggen.
-5. **Dynamisch Tarief — Slimme 24u Voorspelling:** Allround `dynamic_forecast`-profiel met Open-Meteo zonneprognoses, aangeleerd verbruiksprofiel, terugregeling bij negatieve prijzen (`0,00 €/kWh`) en lastvolgende ontlading (`force_discharge_above_euro = 999`).
-6. **Dynamisch Tarief — Actieve Prijs-Spread Handel:** Breidt `dynamic_forecast` uit voor grotere batterijen (`10+ kWh`): laadt onder `0,05 €/kWh` en levert actief terug boven `0,35 €/kWh` zodra de marge hoger is dan de slijtagekost (`0,04 €/kWh`).
+### 2.0 Begeleide Strategie-Adviseur (Stapsgewijze Configurator per Land & Installatie)
+Om **Instellingen → Strategie** overzichtelijk te houden, beschikt GEMS over een aparte pagina **Strategie-Adviseur** in de hoofdnavigatie (**Configuratie → Strategie-Adviseur**, ook bereikbaar via de banner bovenaan **Instellingen → Strategie**). Deze doorloopt vier korte stappen en activeert de volledige configuratie met **één klik**:
+1. **Locatie & Automatische Landherkenning:** Vul het installatieadres of postcode + woonplaats in om automatisch **Land** (`BE`, `NL`, `DE`, `LU` of `OTHER`), **Netbeheerregio** (`flanders`, `wallonia`, `brussels`, `netherlands`, `de-lu`, `luxembourg`, `other`), **Tijdzone** en **Open-Meteo Zonnecoördinaten** in te stellen (zowel online als offline via postcode-/stadsherkenning).
+2. **Fysieke Netaansluiting & Regionale Netregels:** Configureert uw fasetopologie (`1×230V`, `3×400V+N`, `3×230V Delta`) en hoofdzekering, en toont uitsluitend de regels voor uw regio (Fluvius 15-minuten *Capaciteitstarief* + Vlaamse GSC, Waalse CWaPE *Tarif Impact* `ORES / RESA`, Nederlandse zekeringbewaking of Duitse `§14a EnWG` *SteuVE*-dimregeling).
+3. **Elektriciteitscontract:** Selecteert **Dynamisch Spotcontract (`15m` / `60m`)**, **Vast / Variabel** of **Dag-/Nachttarief**, inclusief leveranciersformules, Nederlands terugleverbeleid (`Zero Net Export` `0 W`-schild vs. *terugleverkosten* per kWh) of Belgisch `Super-Dal` (`01:00–07:00`).
+4. **Aanwezige Toestellen & 1-Klik Toepassen:** Herkent automatisch gekoppelde **Solis** omvormers/batterijen, **Raedian** EV-laadpalen, SG-Ready warmtepompen en laadpleinen, en past alle parameters én toestelopties met één klik toe:
+   - **Puur Zon-Zelfverbruik (`ECO`):** Automatisch bij vaste/variabele contracten zonder terugleverboete (`0 W` betaald netladen, `force_discharge_above_euro = 999`).
+   - **Nederland Zero Net Export (`0-Export Schild` — `NL`):** Stuurt zonne-overschot eerst naar EV & batterij en regelt daarna de PV-omvormer traploos terug (`min_profitable_export_price = 999`) zodat netto teruglevering op `0 W` blijft.
+   - **Vlaanderen Capaciteitspiek-Schild / 24u Slimme Prognose (`Fluvius` — Vlaanderen):** Bewaakt uw rollende kwartierpiek (`2,50 kW` minimum + `200 W` marge) met GSC-bewuste aftopping en winterreserve.
+   - **Wallonië `Tarif Impact` Sturing (`ORES / RESA` — Wallonië):** Laadt bij tijdens goedkope `ECO`-uren (`01:00–07:00` & `11:00–17:00`) en overbrugt de dure `17:00–22:00` `PIC`-avondpiek.
+   - **Dynamisch Tarief — Slimme 24u Prognose & Actieve Spread-Arbitrage (`10+ kWh` BESS):** Combineert Open-Meteo zonneprognoses, verbruiksprofiel en EPEX-spotprijzen (inclusief actieve export bij avondpieken `> €0,35/kWh` voor grotere batterijen).
 
 ### 2.1 Eco-modus (Maximaal Zelfverbruik)
 **Doel:** Het directe zelfverbruik van opgewekte zonne-energie maximaliseren en netafname minimaliseren.
