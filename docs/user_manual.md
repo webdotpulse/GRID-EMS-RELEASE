@@ -208,7 +208,7 @@ GEMS includes **174 native hardware templates** (plus 6 built-in simulation prof
 * **CPO / Billing Coexistence:** If your charger connects to an employer billing reimbursement platform or external CPO via OCPP, GEMS controls charging power locally over Modbus TCP *without interfering with or disconnecting your cloud billing service*.
 * **Supported Models:**
   * **RAEDIAN NEO / NEX AC Wallbox:** Template `raedian_charger`, Port `502`, Slave ID `1` (dynamic current + 1P/3P switching).
-  * **RAEDIAN Gemini Dual AC Wallbox:** Template `raedian_gemini`, Port `502`, Slave ID `1` (dual sockets and dynamic 0–64A load balancing; enable *Load management with EMS* in Gemini WebConfig to activate Modbus TCP current control).
+  * **RAEDIAN Gemini Dual AC Wallbox:** Template `raedian_gemini`, Port `502`, Slave ID `1` (dual sockets with unified `#1` | `#2` split-bay card in the Interactive Power Flow Matrix, independent per-socket charge modes, and dynamic 0–64A load balancing; enable *Load management with EMS* in Gemini WebConfig to activate Modbus TCP current control).
   * **SolaX Smart EV Charger G2:** Template `solax_evcharger`, Port `502`, Slave ID `1` (0.01A current control + 1P/3P phase switching).
   * **KEBA KeContact P30 / P40:** Template `keba_charger`, Port `502`, Slave ID `255` (1mA precision + S10 phase switching).
   * **Mennekes AMTRON Xtra / Charge Control / 4You:** Template `mennekes_modbus`, Port `502`, Slave ID `1`.

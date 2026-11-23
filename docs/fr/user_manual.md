@@ -207,7 +207,7 @@ GEMS embarque **174 modèles matériels physiques natifs** (plus 6 profils de si
 * **Coexistence avec Facturation CPO Externe :** Si la borne est reliée en OCPP à une plateforme externe de facturation CPO ou de remboursement employeur, GEMS module la puissance localement en Modbus TCP *sans perturber ni couper la connexion de facturation cloud*.
 * **Modèles Pris en Charge :**
   * **RAEDIAN NEO / NEX AC Wallbox :** Modèle `raedian_charger`, Port `502`, Slave ID `1` (courant dynamique + bascule 1P/3P).
-  * **RAEDIAN Gemini Dual AC Wallbox :** Modèle `raedian_gemini`, Port `502`, Slave ID `1` (double prise et équilibrage dynamique 0–64A ; activez *Load management with EMS* dans l'interface WebConfig Gemini pour le pilotage Modbus TCP).
+  * **RAEDIAN Gemini Dual AC Wallbox :** Modèle `raedian_gemini`, Port `502`, Slave ID `1` (double prise avec carte unifiée `#1` | `#2` dans la Matrice Interactive des Flux d'Énergie, modes de charge indépendants par prise et équilibrage dynamique 0–64A ; activez *Load management with EMS* dans l'interface WebConfig Gemini pour le pilotage Modbus TCP).
   * **SolaX Smart EV Charger G2 :** Modèle `solax_evcharger`, Port `502`, Slave ID `1` (précision 0,01 A + bascule 1P/3P).
   * **KEBA KeContact P30 / P40 :** Modèle `keba_charger`, Port `502`, Slave ID `255` (précision 1 mA + commutation de phase S10).
   * **Mennekes AMTRON Xtra / Charge Control / 4You :** Modèle `mennekes_modbus`, Port `502`, Slave ID `1`.

@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.56.0] - 2026-11-23
+
+### Added
+- **Unified Dual-Socket EV Charger Card in the Interactive Power Flow Matrix (`Dashboard` & `GRID-EMS-SERVER` Lockstep):**
+  - **Integrated `#1` | `#2` Split-Bay Station Card (`EN` / `NL` / `FR`):** Dual-socket EV chargers such as the **RAEDIAN Gemini** (connected via Modbus TCP/HTTPS or OCPP) now render as a single unified pedestal card on the Interactive Power Flow Matrix—displaying combined station power fed by one blue energy stream alongside an integrated two-socket split strip showing live per-socket status dots (`Charging`, `Plugged`, `Waiting`, `Idle`, `Off`, `Fault`), live socket power, and active mode badges across desktop and mobile screens.
+  - **Independent Per-Socket Charge Modes & Auto-Collapse:** Clicking the station header opens the combined EV overview, while clicking Socket `#1` or `#2` jumps directly into that socket's controls (`Off`, `PV Only`, `Eco`, `Fast`) without affecting the sibling socket's mode or charging budget; single-socket hardware variants automatically remain compact single-socket cards.
+
+---
+
 ## [v9.55.1] - 2026-11-23
 
 ### Fixed
