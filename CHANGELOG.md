@@ -14,6 +14,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.59.0] - 2026-11-25
+
+### Added
+- **Independent Primary String / MPPT 1 Peak (`kWp`) Configuration on Solar & Hybrid Inverters (`Settings -> Devices -> Inverter` & `GRID-EMS-SERVER` Lockstep):**
+  - **Decoupled AC Inverter Rating (`kW`) vs. DC Panel Peak (`kWp`) (`EN` / `NL` / `FR`):** Added an explicit **Primary String / MPPT 1 Peak (`kWp`)** field inside **PV Array Geometry & Dual-MPPT Orientation** across English, Dutch, and French. Installers and homeowners can now keep **Rated Power (`kW`)** at the inverter's physical AC nameplate (for example, `5.0 kW` on a **Solis** hybrid inverter so active curtailment percentages and battery AC charge/discharge headroom remain exact) while entering the true connected DC solar panel capacity (for example, `3.5 kWp` single-array or `2.0 kWp` + `1.5 kWp` dual-MPPT) for immediate Day-1 solar forecasting accuracy. Leaving **MPPT 1 Peak (`kWp`)** at `0` automatically matches **Rated Power (`kW`)** for seamless backwards compatibility.
+
+---
+
 ## [v9.58.0] - 2026-11-25
 
 ### Added
