@@ -415,6 +415,16 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
           </div>
         </section>
 
+        <!-- Section 8: Pre-Pairing Hardware Check-In & Remote Authorization Lock -->
+        <section id="beacon" class="docs-section">
+          <h2>8. Pre-Pairing Hardware Check-In &amp; Remote Authorization Lock</h2>
+          <p>As soon as a <strong>GEMS</strong> controller connects to the internet—even before cloud pairing—it sends a lightweight, privacy-safe hardware check-in to <strong>GRID-EMS-SERVER</strong> with its hardware serial, firmware version, and an anonymized summary of configured equipment types (such as <strong>Solis</strong> inverters/batteries and <strong>Raedian</strong> EV chargers). No client personal data or local credentials are transmitted prior to cloud pairing.</p>
+          <ul>
+            <li><strong>Alive (Unpaired) Visibility:</strong> Pre-registered units appear as <em>Alive (Unpaired)</em> in Hardware Fleet Inventory so operators know hardware is online before commissioning.</li>
+            <li><strong>Remote Optimization Lock:</strong> If an unauthorized, cloned, or disabled unit is locked by a Superadmin, the local UI displays a non-dismissible <strong>Optimization Locked</strong> banner while holding connected equipment in safe passive mode until approved or unlocked.</li>
+          </ul>
+        </section>
+
         <!-- Bottom Navigation Footer -->
         <div class="doc-footer-nav">
           <a href="configuration.html" class="footer-nav-btn prev">

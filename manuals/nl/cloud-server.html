@@ -415,6 +415,16 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
           </div>
         </section>
 
+        <!-- Section 8: Pre-Pairing Hardware-Aanmelding & Autorisatievergrendeling -->
+        <section id="beacon" class="docs-section">
+          <h2>8. Pre-Pairing Hardware-Aanmelding &amp; Autorisatievergrendeling</h2>
+          <p>Zodra een <strong>GEMS</strong>-controller verbinding heeft met het internet—nog vóór cloud-koppeling—verstuurt het toestel een lichte, privacyvriendelijke hardware-aanmelding naar <strong>GRID-EMS-SERVER</strong> met het hardware-serienummer, de firmwareversie en een geanonimiseerd overzicht van geconfigureerde apparatuurtypes (zoals <strong>Solis</strong>-omvormers/batterijen en <strong>Raedian</strong>-laadpalen). Er worden geen persoonsgegevens of lokale wachtwoorden verzonden vóór cloud-koppeling.</p>
+          <ul>
+            <li><strong>Actief (Niet gekoppeld):</strong> Voorgeregistreerde units verschijnen als <em>Actief (Niet gekoppeld)</em> in de vlootinventaris zodat beheerders direct zien dat hardware online is.</li>
+            <li><strong>Optimalisatievergrendeling op Afstand:</strong> Als een ongeregistreerde, gekloonde of uitgeschakelde unit door een Superadmin wordt vergrendeld, toont de lokale UI een rode meldingsbalk <strong>Optimalisatie vergrendeld</strong> en houdt apparatuur in veilige passieve modus tot ontgrendeling.</li>
+          </ul>
+        </section>
+
         <!-- Bottom Navigation Footer -->
         <div class="doc-footer-nav">
           <a href="configuration.html" class="footer-nav-btn prev">

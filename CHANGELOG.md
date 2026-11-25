@@ -14,6 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.60.0] - 2026-11-25
+
+### Added
+- **Automatic Pre-Pairing Hardware Check-In & Remote Authorization Lock (`Settings -> Cloud Server` & `GRID-EMS-SERVER` Lockstep):**
+  - **Privacy-Safe Pre-Pairing Phone-Home (`EN` / `NL` / `FR`):** **GEMS** controllers now automatically send a lightweight, privacy-safe hardware check-in to **GRID-EMS-SERVER** as soon as internet connectivity is available—even before cloud pairing—reporting firmware version, hardware identity verification, and an anonymized summary of configured equipment types (**Solis** inverters/batteries, **Raedian** EV chargers, meters, heat pumps) with zero personal homeowner data or local credentials.
+  - **Remote Optimization Lock & Instant Re-Check:** When a Superadmin locks or disables an unauthorized or cloned unit on **GRID-EMS-SERVER**, the controller transitions connected equipment into safe passive mode, halts autonomous optimization and manual control overrides, persists the lock safely across restarts, and displays a clear trilingual **Optimization Locked** banner with a **Re-check Authorization** button so newly approved units resume operation immediately.
+
+---
+
 ## [v9.59.0] - 2026-11-25
 
 ### Added

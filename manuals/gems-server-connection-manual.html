@@ -328,7 +328,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.59.0-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.60.0-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Central Cloud Service</span>
@@ -355,7 +355,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.59.0</span>
+        <span>Documentation v9.60.0</span>
       </div>
     </div>
 
@@ -792,8 +792,15 @@ curl -Iv https://ems.newenergygrid.com/api/status
 sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_device_id, cloud_serial_number FROM site_settings WHERE id = 1;"
     </pre>
 
+    <h2 class="subsection-title">8.2 Pre-Pairing Hardware Check-In &amp; Remote Authorization Lock</h2>
+    <p>As soon as a <strong>GEMS</strong> controller connects to the internet—even before cloud pairing is completed—it periodically sends a lightweight, privacy-safe hardware check-in to <strong>GRID-EMS-SERVER</strong> containing its hardware serial, firmware version, and an anonymized count of configured equipment categories (such as <strong>Solis</strong> inverters/batteries and <strong>Raedian</strong> EV chargers). No homeowner personal data, site address, or local credentials are transmitted prior to cloud pairing.</p>
+    <ul>
+      <li><strong>Pre-Pairing Status &amp; Re-Check:</strong> In <strong>Settings → Cloud Server</strong>, installers can view the unit's current <strong>Pre-Pairing Hardware Check-In</strong> status (<em>Authorized</em> or <em>Optimization Locked</em>) and click <strong>Check Now</strong> to verify connectivity and authorization immediately.</li>
+      <li><strong>Remote Optimization Lock:</strong> If an unregistered, cloned, or disabled unit is locked by a Superadmin, a red <strong>Optimization Locked</strong> banner displays the hardware serial number and reason while holding connected hardware in safe passive mode. Once the Superadmin approves or unlocks the unit in <strong>GRID-EMS-SERVER</strong>, clicking <strong>Re-check Authorization</strong> (or waiting up to 2 minutes) immediately restores full autonomous optimization.</li>
+    </ul>
+
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.59.0
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.60.0
     </div>
 
   </div>

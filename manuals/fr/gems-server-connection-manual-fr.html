@@ -330,7 +330,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Version Applicable</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.59.0-release (Version Officielle)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.60.0-release (Version Officielle)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Service Cloud Central</span>
@@ -357,7 +357,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Référence Terrain Confidentielle</span>
-        <span>Documentation v9.59.0</span>
+        <span>Documentation v9.60.0</span>
       </div>
     </div>
 
@@ -792,8 +792,15 @@ curl -Iv https://ems.newenergygrid.com/api/status
 sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_device_id, cloud_serial_number FROM site_settings WHERE id = 1;"
     </pre>
 
+    <h2 class="subsection-title">8.2 Signalement Matériel Avant Appairage &amp; Verrouillage d'Autorisation</h2>
+    <p>Dès qu'un contrôleur <strong>GEMS</strong> dispose d'une connexion Internet—avant même l'appairage cloud—il envoie périodiquement un signal matériel léger et respectueux de la vie privée à <strong>GRID-EMS-SERVER</strong> incluant son numéro de série matériel, sa version firmware et un résumé anonymisé des catégories d'équipements configurés (tels que les onduleurs/batteries <strong>Solis</strong> et bornes <strong>Raedian</strong>). Aucune donnée personnelle du client ni aucun identifiant local n'est transmis avant l'appairage cloud.</p>
+    <ul>
+      <li><strong>Statut &amp; Vérification Immédiate :</strong> Dans <strong>Paramètres → Serveur Cloud</strong>, les installateurs peuvent consulter le statut de <strong>Signalement matériel avant appairage</strong> (<em>Autorisé</em> ou <em>Optimisation verrouillée</em>) et cliquer sur <strong>Vérifier maintenant</strong>.</li>
+      <li><strong>Verrouillage d'Optimisation à Distance :</strong> Si une unité non enregistrée, clonée ou désactivée est verrouillée par un Superadmin, un bandeau rouge <strong>Optimisation verrouillée</strong> affiche le numéro de série matériel et maintient les équipements connectés en mode passif sûr. Dès approbation ou déverrouillage dans <strong>GRID-EMS-SERVER</strong>, un clic sur <strong>Vérifier l'autorisation</strong> (ou une attente maximale de 2 minutes) rétablit immédiatement l'optimisation autonome.</li>
+    </ul>
+
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • Manuel Officiel de Connexion Terrain GRID-EMS-SERVER • Version v9.59.0
+      GEMS (New Energy Grid) • Manuel Officiel de Connexion Terrain GRID-EMS-SERVER • Version v9.60.0
     </div>
 
   </div>

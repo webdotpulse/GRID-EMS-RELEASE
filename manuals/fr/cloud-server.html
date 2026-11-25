@@ -415,6 +415,16 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
           </div>
         </section>
 
+        <!-- Section 8: Signalement Matériel Avant Appairage & Verrouillage d'Autorisation -->
+        <section id="beacon" class="docs-section">
+          <h2>8. Signalement Matériel Avant Appairage &amp; Verrouillage d'Autorisation</h2>
+          <p>Dès qu'un contrôleur <strong>GEMS</strong> se connecte à Internet—avant même l'appairage cloud—il envoie un signal matériel léger et respectueux de la vie privée à <strong>GRID-EMS-SERVER</strong> contenant son numéro de série matériel, sa version firmware et un résumé anonymisé des équipements configurés (tels que <strong>Solis</strong> et <strong>Raedian</strong>). Aucune donnée personnelle client ni identifiant local n'est transmis avant l'appairage.</p>
+          <ul>
+            <li><strong>En ligne (Non appairé) :</strong> Les unités pré-enregistrées apparaissent comme <em>En ligne (Non appairé)</em> dans l'inventaire matériel avant même la mise en service.</li>
+            <li><strong>Verrouillage d'Optimisation à Distance :</strong> Si une unité non enregistrée, clonée ou désactivée est verrouillée par un Superadmin, l'interface locale affiche un bandeau rouge <strong>Optimisation verrouillée</strong> et maintient les équipements en mode passif sûr jusqu'au déverrouillage.</li>
+          </ul>
+        </section>
+
         <!-- Bottom Navigation Footer -->
         <div class="doc-footer-nav">
           <a href="configuration.html" class="footer-nav-btn prev">

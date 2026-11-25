@@ -330,7 +330,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Toepasselijke Release</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.59.0-release (Officiële Release)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.60.0-release (Officiële Release)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Centrale Cloudservice</span>
@@ -357,7 +357,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Vertrouwelijke Veldreferentie</span>
-        <span>Documentatie v9.59.0</span>
+        <span>Documentatie v9.60.0</span>
       </div>
     </div>
 
@@ -792,8 +792,15 @@ curl -Iv https://ems.newenergygrid.com/api/status
 sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_device_id, cloud_serial_number FROM site_settings WHERE id = 1;"
     </pre>
 
+    <h2 class="subsection-title">8.2 Pre-Pairing Hardware-Aanmelding &amp; Autorisatievergrendeling</h2>
+    <p>Zodra een <strong>GEMS</strong>-controller verbinding maakt met het internet—nog vóór cloud-koppeling is voltooid—verstuurt het toestel periodiek een lichte, privacyvriendelijke hardware-aanmelding naar <strong>GRID-EMS-SERVER</strong> met het hardware-serienummer, de firmwareversie en een geanonimiseerd overzicht van geconfigureerde apparatuurtypes (zoals <strong>Solis</strong>-omvormers/batterijen en <strong>Raedian</strong>-laadpalen). Er worden geen persoonsgegevens van bewoners of lokale wachtwoorden verzonden vóór cloud-koppeling.</p>
+    <ul>
+      <li><strong>Status &amp; Direct Controleren:</strong> Onder <strong>Instellingen → Cloudserver</strong> zien installateurs de actuele status van de <strong>Pre-pairing hardware-aanmelding</strong> (<em>Geautoriseerd</em> of <em>Optimalisatie vergrendeld</em>) met de knop <strong>Nu controleren</strong>.</li>
+      <li><strong>Optimalisatievergrendeling op Afstand:</strong> Wanneer een ongeregistreerde, gekloonde of uitgeschakelde unit door een Superadmin wordt vergrendeld, toont de lokale interface een rode meldingsbalk <strong>Optimalisatie vergrendeld</strong> met het serienummer en plaatst de apparatuur in veilige passieve modus. Zodra het toestel in <strong>GRID-EMS-SERVER</strong> is goedgekeurd of ontgrendeld, hervat de autonome optimalisatie direct na klikken op <strong>Autorisatie opnieuw controleren</strong> (of automatisch binnen 2 minuten).</li>
+    </ul>
+
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Officiële Verbindingshandleiding • Versie v9.59.0
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Officiële Verbindingshandleiding • Versie v9.60.0
     </div>
 
   </div>
