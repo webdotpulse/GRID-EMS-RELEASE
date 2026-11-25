@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.61.0] - 2026-11-25
+
+### Changed
+- **Unified GRID Suite App Icons, Favicons, PWA Icons & Brand Emblems (`GRID-EMS-SERVER` Lockstep):** Updated the local controller's vector favicon, multi-size browser favicons, iOS Apple Touch icon, Android adaptive/maskable PWA icons, Web App Manifest, and in-app brand emblems to the unified **GRID** emerald-to-aqua (`#00b87c` → `#54a8c7`) rounded icon with a crisp white energy bolt—matching **GRID-EMS-SERVER** and the broader **New Energy Grid** application suite on desktop tabs and mobile home screens.
+
+---
+
 ## [v9.60.0] - 2026-11-25
 
 ### Added
