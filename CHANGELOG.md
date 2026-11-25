@@ -14,6 +14,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.58.0] - 2026-11-25
+
+### Added
+- **Weather-Forecasted SG-Ready Thermal Pre-Heating (`Settings -> Strategy`, `Solar Forecast` & `GRID-EMS-SERVER` Lockstep):**
+  - **Proactive Cold-Snap Heat Pump Buffering (`EN` / `NL` / `FR`):** Added **Weather-Aware SG-Ready Thermal Pre-Heating** with a configurable **Cold-Snap Outdoor Temperature Threshold (`-15°C` to `+15°C`, default `2.0°C`)** in **Settings → Strategy** and synchronized 1:1 with **GRID-EMS-SERVER**. Whenever the 12-hour Open-Meteo `temperature_2m` forecast predicts an outdoor cold snap and solar surplus or cheap dynamic tariff hours are available, **GEMS** automatically commands 4-state **SG-Ready** heat pumps into **State 3 (Solar / Thermal Boost)** ahead of freezing evening conditions—strictly subordinate to main-breaker and Flanders capacity peak limits.
+  - **24-Hour Outdoor Temperature (`°C`) Overlay:** Added the live 24-hour Open-Meteo outdoor temperature curve directly inside the **Solar 24h Forecast** modal across English, Dutch, and French.
+- **Sub-Device Fault Watchdog Reporting, Multi-Site Physical Energy Sharing Sync & Local LAN PWA Installability (`Cloud Server`, `Dashboard` & `GRID-EMS-SERVER` Lockstep):**
+  - **Granular Sub-Device & P1 Meter Failsafe Cloud Reporting:** Extended cloud telemetry frames with live P1/grid meter failsafe status and per-device communication fault indicators so **GRID-EMS-SERVER** immediately notifies homeowners and installers if an individual inverter, wallbox, or meter drops offline (and automatically confirms recovery) even while the **GEMS** controller itself remains online.
+  - **Cloud Multi-Site Physical Energy Sharing Synchronization:** Added seamless synchronization of optional **Multi-Site Physical Energy Sharing** cluster membership and active participation status from **GRID-EMS-SERVER** for multi-building installations within the same organization and bidding zone (strictly physical `Wh` energy balancing, zero billing or token settlement).
+  - **Standalone Local LAN Web App Manifest (`PWA`) & Pre-Release CI Verification Gate:** Added a native Web App Manifest so homeowners can install local **GEMS** (`http://ems.local`) as a full-screen standalone smartphone or tablet app, and gated automated firmware release tagging behind mandatory backend test and frontend build verification.
+
+---
+
 ## [v9.57.0] - 2026-11-23
 
 ### Added

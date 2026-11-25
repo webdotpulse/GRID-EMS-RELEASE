@@ -330,7 +330,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Toepasselijke Release</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.57.0-release (Officiële Release)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.58.0-release (Officiële Release)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Centrale Cloudservice</span>
@@ -357,7 +357,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Vertrouwelijke Veldreferentie</span>
-        <span>Documentatie v9.57.0</span>
+        <span>Documentatie v9.58.0</span>
       </div>
     </div>
 
@@ -689,9 +689,16 @@ Content-Type: application/json
     <h2 class="subsection-title">5.2 Commandobevestiging &amp; Auditlogboek</h2>
     <p>Na lokale uitvoering bevestigt GEMS het resultaat via een POST-verzoek naar <code>/api/v1/device/commands/{id}/ack</code> met de status (<code>executed</code> of <code>failed</code>) en uitvoeringsdetails. Een realtime auditlogboek van alle uitgevoerde commando's wordt direct weergegeven op het tabblad <strong>Cloudserver</strong> in GEMS.</p>
 
+    <h2 class="subsection-title">5.3 Subtoestel-storingsbewaking, Weersafhankelijk Voorverwarmen &amp; Fysiek Energiedelen</h2>
+    <ul>
+      <li><strong>Subtoestel- &amp; Meter-noodloopbewaking:</strong> Telemetrieframes bevatten <code>meter_failsafe_active</code>, <code>faulted_hardware_count</code> en <code>faulted_hardware_names</code> zodat <strong>GRID-EMS-SERVER</strong> gericht storingen en herstelmeldingen (inclusief versleutelde mobiele Web Push-berichten) verstuurt wanneer een individuele omvormer, laadpaal of P1-meter uitvalt terwijl de Raspberry Pi online blijft.</li>
+      <li><strong>Weersafhankelijk SG-Ready Thermisch Voorverwarmen:</strong> Bidirectionele <code>SiteSettings</code>-synchronisatie omvat <code>thermal_weather_aware_enabled</code> en <code>thermal_cold_snap_threshold_c</code> (<code>-15&deg;C</code> tot <code>+15&deg;C</code>), waarmee 4-standen SG-Ready warmtepompen (<code>Stand 3</code>) proactief thermische energie bufferen bij zonne-overschot of lage dynamische spotprijzen voorafgaand aan een voorspelde Open-Meteo <code>temperature_2m</code>-koudegolf.</li>
+      <li><strong>Cloud Multi-Site Fysiek Energiedelen:</strong> Telemetrieresponsen leveren optioneel <code>cluster_id</code>, <code>cluster_name</code> en <code>cluster_participating</code> terug wanneer een installatie deelneemt aan een fysiek energiedeelcluster binnen dezelfde organisatie en biedzone (uitsluitend fysieke <code>Wh</code>-afstemming, zonder facturatie).</li>
+    </ul>
+
     <!-- ==================== SECTION 6: UI COMMISSIONING GUIDE ==================== -->
     <h1 class="section-title">6. Stapsgewijze Inbedrijfstelling via de Webinterface</h1>
-    <p>Het in bedrijf stellen van de cloudverbinding op locatie duurt minder dan twee minuten via de GEMS-webinterface:</p>
+    <p>Het in bedrijf stellen van de cloudverbinding op locatie duurt minder dan twee minuten via de GEMS-webinterface (of direct met een smartphonecamera via het afdrukbare <strong>QR-inbedrijfstellingslabel</strong> op <code>/commission/qr</code>, waarbij het koppelingstoken veilig in het lokale <code>#token=...</code> URL-fragment blijft):</p>
 
     <div class="manual-screenshot">
       <img src="../assets/screenshots/settings_cloud.png" alt="GEMS Cloudserver Instellingen-interface">
@@ -786,7 +793,7 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Officiële Verbindingshandleiding • Versie v9.57.0
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Officiële Verbindingshandleiding • Versie v9.58.0
     </div>
 
   </div>

@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Systeemversie</span>
-          <span class="cover-meta-val">GEMS v9.57.0</span>
+          <span class="cover-meta-val">GEMS v9.58.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Voor Wie Is Deze Gids</span>
@@ -1656,6 +1656,13 @@
     </tbody>
   </table>
 
+  <div class="callout callout-info">
+    <div class="callout-title">🌡️ Weersafhankelijk SG-Ready Thermisch Voorverwarmen (<code>temperature_2m</code>)</div>
+    <p style="margin:0;">
+      Onder <strong>Instellingen &rarr; Strategie</strong> schakelt u <strong>Weersafhankelijk SG-Ready Thermisch Voorverwarmen</strong> in (met instelbare <strong>Koudegolf-drempel</strong> tussen <code>-15&deg;C</code> en <code>+15&deg;C</code>, standaard <code>2,0&deg;C</code>). GEMS activeert automatisch <strong>SG-Ready Stand 3</strong> bij zonne-overschot of goedkope dynamische spotprijzen voorafgaand aan een voorspelde 12-uurs Open-Meteo buitentemperatuurdaling—met strikt behoud van hoofdzekering- en Vlaamse capaciteitspieklimieten.
+    </p>
+  </div>
+
   <!-- ==================== 11. SETTINGS TAB 5: NETWORK ==================== -->
   <div class="page-break"></div>
   <h1 class="section-title" id="sec-tab-network">11. Instellingentabblad 5: Bekabeld Ethernet-netwerk &amp; 60s Terugvalbeveiliging</h1>
@@ -1763,12 +1770,17 @@
   <div class="setting-card-grid">
     <div class="setting-card green">
       <div class="setting-name"><span>Cloudsynchronisatie &amp; Koppelingstoken</span> <span class="setting-default-pill">PAIR-XXXX-TCG</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Plak uw 16-cijferige koppelingstoken van <code>https://ems.newenergygrid.com</code> en klik op <strong>Pair &amp; Connect Now</strong>. Gebruikt uitsluitend uitgaande TLS 1.3-versleuteling—<strong>geen enkele poort hoeft op uw router te worden opengezet</strong>!</div>
+      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Plak uw 16-cijferige koppelingstoken van <code>https://ems.newenergygrid.com</code> en klik op <strong>Pair &amp; Connect Now</strong> (of scan het afdrukbare <strong>QR-inbedrijfstellingslabel</strong> op <code>/commission/qr</code>). Gebruikt uitsluitend uitgaande TLS 1.3-versleuteling—<strong>geen enkele poort hoeft op uw router te worden opengezet</strong>!</div>
     </div>
 
     <div class="setting-card">
       <div class="setting-name"><span>Test Telemetry Push &amp; Commando-auditlogboek</span> <span class="setting-default-pill">Live Verificatie</span></div>
       <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Bekijk uw <strong>Device ID</strong>, <strong>Synchronisatielatentie (ms)</strong> en <strong>Laatste Telemetrie-push</strong>. Klik op <strong>Test Telemetry Push</strong> om direct een testpakket te sturen, of controleer in het auditlogboek elk op afstand ontvangen en bevestigd stuurcommando.</div>
+    </div>
+
+    <div class="setting-card purple" style="grid-column: span 2;">
+      <div class="setting-name"><span>Multi-Site Energiedelen, 400-Dagen Contract-Backtester &amp; Mobiele Web Push</span> <span class="setting-default-pill">Cloudportaal-extra's</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Gekoppeld aan <strong>GRID-EMS-SERVER</strong> profiteert u bovendien van de <strong>Historische 400-Dagen Contract-Backtester</strong> (vergelijkt Vaste, Tweevoudige en Dynamische contracten op uw echte uurhistoriek in de Strategie-Adviseur), <strong>Multi-Site Fysiek Energiedelen</strong> binnen dezelfde organisatie en biedzone, en versleutelde <strong>Mobiele Web Push-meldingen</strong> bij subtoestelstoringen, piekwaarschuwingen en verbindingsherstel.</div>
     </div>
   </div>
 

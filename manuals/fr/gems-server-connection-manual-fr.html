@@ -330,7 +330,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Version Applicable</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.57.0-release (Version Officielle)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.58.0-release (Version Officielle)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Service Cloud Central</span>
@@ -357,7 +357,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Référence Terrain Confidentielle</span>
-        <span>Documentation v9.57.0</span>
+        <span>Documentation v9.58.0</span>
       </div>
     </div>
 
@@ -689,9 +689,16 @@ Content-Type: application/json
     <h2 class="subsection-title">5.2 Acquittement des Commandes &amp; Piste d'Audit</h2>
     <p>Après exécution locale, GEMS acquitte le résultat via une requête POST sur <code>/api/v1/device/commands/{id}/ack</code> en précisant le statut (<code>executed</code> ou <code>failed</code>) et les notes d'exécution. Un journal d'audit complet de toutes les commandes exécutées s'affiche en temps réel dans l'onglet <strong>Serveur Cloud</strong> de GEMS.</p>
 
+    <h2 class="subsection-title">5.3 Surveillance des Sous-Équipements, Préchauffage Météo &amp; Partage d'Énergie Multi-Sites</h2>
+    <ul>
+      <li><strong>Surveillance des Défauts Sous-Équipements &amp; Repli Compteur :</strong> Les trames télémétriques incluent <code>meter_failsafe_active</code>, <code>faulted_hardware_count</code> et <code>faulted_hardware_names</code> afin que <strong>GRID-EMS-SERVER</strong> émette et clôture automatiquement des alertes ciblées (y compris par notifications Web Push mobiles chiffrées) même lorsque le contrôleur Raspberry Pi demeure en ligne.</li>
+      <li><strong>Préchauffage Thermique SG-Ready Guidé par la Météo :</strong> La synchronisation bidirectionnelle <code>SiteSettings</code> inclut <code>thermal_weather_aware_enabled</code> et <code>thermal_cold_snap_threshold_c</code> (<code>-15&deg;C</code> à <code>+15&deg;C</code>), permettant de préchauffer les pompes à chaleur SG-Ready 4 états (<code>État 3</code>) lors d'un surplus solaire ou d'heures spot creuses avant une vague de froid prévue par Open-Meteo (<code>temperature_2m</code>).</li>
+      <li><strong>Partage Physique d'Énergie Multi-Sites Cloud :</strong> Les réponses télémétriques renvoient en option <code>cluster_id</code>, <code>cluster_name</code> et <code>cluster_participating</code> lorsqu'un site participe à un cluster de partage physique d'énergie au sein de la même organisation et zone de prix (coordination purement physique en <code>Wh</code>, sans facturation financière).</li>
+    </ul>
+
     <!-- ==================== SECTION 6: UI COMMISSIONING GUIDE ==================== -->
     <h1 class="section-title">6. Guide de Mise en Service Pas à Pas via l'Interface Web</h1>
-    <p>La mise en service terrain de la connexion cloud prend moins de deux minutes depuis l'interface web GEMS :</p>
+    <p>La mise en service terrain de la connexion cloud prend moins de deux minutes depuis l'interface web GEMS (ou instantanément par appareil photo mobile grâce à l'<strong>Étiquette QR de Mise en Service</strong> sur <code>/commission/qr</code>, qui conserve le jeton d'appairage exclusivement dans le fragment local <code>#token=...</code> du navigateur) :</p>
 
     <div class="manual-screenshot">
       <img src="../assets/screenshots/settings_cloud.png" alt="Interface des paramètres Serveur Cloud GEMS">
@@ -786,7 +793,7 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • Manuel Officiel de Connexion Terrain GRID-EMS-SERVER • Version v9.57.0
+      GEMS (New Energy Grid) • Manuel Officiel de Connexion Terrain GRID-EMS-SERVER • Version v9.58.0
     </div>
 
   </div>

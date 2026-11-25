@@ -784,7 +784,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.57.0</span>
+          <span class="cover-meta-val">GEMS v9.58.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Who This Guide Is For</span>
@@ -1656,6 +1656,13 @@
     </tbody>
   </table>
 
+  <div class="callout callout-info">
+    <div class="callout-title">🌡️ Weather-Forecasted SG-Ready Thermal Pre-Heating (<code>temperature_2m</code>)</div>
+    <p style="margin:0;">
+      In <strong>Settings &rarr; Strategy</strong>, enabling <strong>Weather-Aware SG-Ready Thermal Pre-Heating</strong> (with a configurable <strong>Cold-Snap Threshold</strong> between <code>-15&deg;C</code> and <code>+15&deg;C</code>, default <code>2.0&deg;C</code>) automatically triggers <strong>SG-Ready State 3</strong> during afternoon solar surplus or cheap dynamic tariff hours ahead of a forecasted 12-hour Open-Meteo outdoor temperature drop—while strictly honoring local main-breaker and Flanders capacity peak limits.
+    </p>
+  </div>
+
   <!-- ==================== 11. SETTINGS TAB 5: NETWORK ==================== -->
   <div class="page-break"></div>
   <h1 class="section-title" id="sec-tab-network">11. Settings Tab 5: Wired Ethernet Network &amp; 60s Safety Rollback</h1>
@@ -1763,12 +1770,17 @@
   <div class="setting-card-grid">
     <div class="setting-card green">
       <div class="setting-name"><span>Cloud Sync Toggle &amp; Pairing Token</span> <span class="setting-default-pill">PAIR-XXXX-TCG</span></div>
-      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Paste your 16-character pairing token from <code>https://ems.newenergygrid.com</code> and click <strong>Pair &amp; Connect Now</strong>. Uses outbound-only TLS 1.3 encryption—<strong>zero router port forwarding required</strong>!</div>
+      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Paste your 16-character pairing token from <code>https://ems.newenergygrid.com</code> and click <strong>Pair &amp; Connect Now</strong> (or scan the printable <strong>QR Commissioning Label</strong> on <code>/commission/qr</code>). Uses outbound-only TLS 1.3 encryption—<strong>zero router port forwarding required</strong>!</div>
     </div>
 
     <div class="setting-card">
       <div class="setting-name"><span>Test Telemetry Push &amp; Command Audit Log</span> <span class="setting-default-pill">Live Verification</span></div>
       <div class="setting-meta-row"><span class="badge-what">What It Does</span> View your <strong>Device ID</strong>, <strong>Sync Latency (ms)</strong>, and <strong>Last Telemetry Push</strong> timestamp. Click <strong>Test Telemetry Push</strong> to force an immediate packet sync, or inspect the <strong>Dispatched Cloud Commands</strong> audit log to see every remote mode change acknowledged by your unit.</div>
+    </div>
+
+    <div class="setting-card purple" style="grid-column: span 2;">
+      <div class="setting-name"><span>Multi-Site Energy Sharing, 400-Day Contract Backtester &amp; Mobile Web Push</span> <span class="setting-default-pill">Cloud Portal Extras</span></div>
+      <div class="setting-meta-row"><span class="badge-what">What It Does</span> When paired with <strong>GRID-EMS-SERVER</strong>, you also unlock <strong>Historical 400-Day Contract Backtesting</strong> (comparing Fixed, Dual, and Dynamic tariffs on your real hourly load in Strategy Advisor), <strong>Multi-Site Physical Energy Sharing</strong> across sites in the same organization and bidding zone, and encrypted <strong>Mobile Web Push Notifications</strong> for sub-device faults, peak ceiling warnings, and connectivity recovery.</div>
     </div>
   </div>
 

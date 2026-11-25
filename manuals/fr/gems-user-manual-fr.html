@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Version du Système</span>
-          <span class="cover-meta-val">GEMS v9.57.0</span>
+          <span class="cover-meta-val">GEMS v9.58.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">À Qui S'adresse Ce Guide</span>
@@ -1658,6 +1658,13 @@
     </tbody>
   </table>
 
+  <div class="callout callout-info">
+    <div class="callout-title">🌡️ Préchauffage Thermique SG-Ready Guidé par la Météo (<code>temperature_2m</code>)</div>
+    <p style="margin:0;">
+      Dans <strong>Paramètres &rarr; Stratégie</strong>, l'activation du <strong>Préchauffage Thermique SG-Ready Météo</strong> (avec un <strong>Seuil de Vague de Froid</strong> réglable de <code>-15&deg;C</code> à <code>+15&deg;C</code>, <code>2,0&deg;C</code> par défaut) déclenche automatiquement l'<strong>État 3 SG-Ready</strong> lors d'un surplus solaire ou d'heures spot creuses avant une chute de température extérieure prévue sur 12 heures par Open-Meteo — tout en respectant strictement le disjoncteur principal et le plafond capacitaire flamand.
+    </p>
+  </div>
+
   <!-- ==================== 11. SETTINGS TAB 5: NETWORK ==================== -->
   <div class="page-break"></div>
   <h1 class="section-title" id="sec-tab-network">11. Onglet Paramètres 5 : Réseau Ethernet Filaire &amp; Rétablissement 60s</h1>
@@ -1765,12 +1772,17 @@
   <div class="setting-card-grid">
     <div class="setting-card green">
       <div class="setting-name"><span>Synchronisation Cloud &amp; Jeton d'Appairage</span> <span class="setting-default-pill">PAIR-XXXX-TCG</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Collez votre jeton d'appairage à 16 caractères généré sur <code>https://ems.newenergygrid.com</code> et cliquez sur <strong>Pair &amp; Connect Now</strong>. Repose exclusivement sur des connexions sortantes chiffrées TLS 1.3 — <strong>aucune ouverture de port (port forwarding) sur votre routeur n'est requise</strong> !</div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Collez votre jeton d'appairage à 16 caractères généré sur <code>https://ems.newenergygrid.com</code> et cliquez sur <strong>Pair &amp; Connect Now</strong> (ou scannez l'<strong>Étiquette QR de Mise en Service</strong> sur <code>/commission/qr</code>). Repose exclusivement sur des connexions sortantes chiffrées TLS 1.3 — <strong>aucune ouverture de port (port forwarding) sur votre routeur n'est requise</strong> !</div>
     </div>
 
     <div class="setting-card">
       <div class="setting-name"><span>Test d'Envoi Télémétrie &amp; Journal d'Audit</span> <span class="setting-default-pill">Vérification Temps Réel</span></div>
       <div class="setting-meta-row"><span class="badge-what">Fonction</span> Consultez l'<strong>ID d'appareil</strong>, la <strong>Latence de synchronisation (ms)</strong> et l'horodatage du dernier envoi. Cliquez sur <strong>Test Telemetry Push</strong> pour forcer un envoi immédiat, ou inspectez le journal <strong>Dispatched Cloud Commands</strong> retraçant chaque changement de mode distant acquitté par votre contrôleur.</div>
+    </div>
+
+    <div class="setting-card purple" style="grid-column: span 2;">
+      <div class="setting-name"><span>Partage d'Énergie Multi-Sites, Backtester 400 Jours &amp; Web Push Mobile</span> <span class="setting-default-pill">Services Portail Cloud</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Une fois appairé à <strong>GRID-EMS-SERVER</strong>, vous bénéficiez également du <strong>Backtester Historique de Contrats sur 400 Jours</strong> (comparaison des contrats Fixes, Bi-horaires et Dynamiques sur votre consommation réelle dans le Conseiller Stratégique), du <strong>Partage Physique d'Énergie Multi-Sites</strong> au sein de la même organisation et zone de prix, ainsi que des <strong>Notifications Web Push Mobiles Chiffrées</strong> en cas de défaut sous-équipement, d'approche du plafond capacitaire ou de rétablissement réseau.</div>
     </div>
   </div>
 

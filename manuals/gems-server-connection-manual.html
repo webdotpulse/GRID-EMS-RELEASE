@@ -328,7 +328,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.57.0-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.58.0-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Central Cloud Service</span>
@@ -355,7 +355,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.57.0</span>
+        <span>Documentation v9.58.0</span>
       </div>
     </div>
 
@@ -689,9 +689,16 @@ Content-Type: application/json
     <h2 class="subsection-title">5.2 Command Acknowledgment & Audit Trail</h2>
     <p>Following local execution, GEMS acknowledges the result by posting to <code>/api/v1/device/commands/{id}/ack</code> with status (<code>executed</code> or <code>failed</code>) and execution notes. An audit log of all executed commands is displayed in real-time on the GEMS Cloud tab.</p>
 
+    <h2 class="subsection-title">5.3 Sub-Device Fault Watchdog, Weather-Aware Pre-Heating &amp; Multi-Site Energy Sharing</h2>
+    <ul>
+      <li><strong>Sub-Device &amp; Meter Failsafe Watchdog:</strong> Telemetry frames include <code>meter_failsafe_active</code>, <code>faulted_hardware_count</code>, and <code>faulted_hardware_names</code> so <strong>GRID-EMS-SERVER</strong> raises and auto-resolves targeted sub-device alerts (and encrypted mobile Web Push notifications) even while the Raspberry Pi controller remains online.</li>
+      <li><strong>Weather-Forecasted SG-Ready Thermal Pre-Heating Lockstep:</strong> Bidirectional <code>SiteSettings</code> sync includes <code>thermal_weather_aware_enabled</code> and <code>thermal_cold_snap_threshold_c</code> (<code>-15&deg;C</code> to <code>+15&deg;C</code>), pre-heating 4-state SG-Ready heat pumps (<code>State 3</code>) during solar surplus or cheap dynamic tariff hours ahead of forecasted Open-Meteo <code>temperature_2m</code> cold snaps.</li>
+      <li><strong>Cloud Multi-Site Physical Energy Sharing:</strong> Telemetry responses return optional <code>cluster_id</code>, <code>cluster_name</code>, and <code>cluster_participating</code> metadata when an installation participates in an organization-scoped physical Energy Sharing cluster within the same bidding zone (strictly physical <code>Wh</code> coordination, zero financial billing).</li>
+    </ul>
+
     <!-- ==================== SECTION 6: UI COMMISSIONING GUIDE ==================== -->
     <h1 class="section-title">6. Step-by-Step UI Commissioning Guide</h1>
-    <p>Field commissioning of the cloud connection requires less than two minutes in the GEMS Web UI:</p>
+    <p>Field commissioning of the cloud connection requires less than two minutes in the GEMS Web UI (or instantly via smartphone camera using the printable <strong>QR-Code Commissioning Label</strong> on <code>/commission/qr</code>, which keeps the pairing token inside the browser-only <code>#token=...</code> URL fragment):</p>
 
     <div class="manual-screenshot">
       <img src="assets/screenshots/settings_cloud.png" alt="GEMS Cloud Server Settings Interface">
@@ -786,7 +793,7 @@ sqlite3 /opt/gems/gems.db "SELECT id, cloud_enabled, cloud_server_url, cloud_dev
     </pre>
 
     <div style="margin-top: 40px; padding-top: 16px; border-top: 2px solid #e2e8f0; text-align: center; font-size: 8pt; color: #94a3b8;">
-      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.57.0
+      GEMS (New Energy Grid) • GRID-EMS-SERVER Official Field Connection Manual • Version v9.58.0
     </div>
 
   </div>
