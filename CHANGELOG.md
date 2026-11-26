@@ -14,6 +14,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.62.0] - 2026-11-26
+
+### Added
+- **2027 Benelux Regulatory, Synergrid C10/11, SunSpec 700-Series & EU CRA (`2024/2847`) Readiness Suite (`Strategy`, `Contract`, `Devices`, `System Info` & `GRID-EMS-SERVER` Lockstep):**
+  - **Wallonia Mandatory 7d/7 Classic Bihoraire Schedule (`BE` + `wallonia` Only):** Dual-tariff (`belgium_dual_tariff`) and peak/off-peak fixed contracts on Walloon installations now automatically enforce the mandatory CWaPE / ORES / RESA **7-days/week Bihoraire** time-of-use windows (**Off-Peak:** `22:00–07:00` and `11:00–17:00`; **Peak:** `07:00–11:00` and `17:00–22:00`, Monday through Sunday) consistently across live pricing, the 24-Hour Tariff Visualizer, Smart EV slot selection, 24-Hour Dynamic Battery Forecasting, and savings calculations—while keeping Flanders, Brussels, the Netherlands, and all other regions strictly on their existing weekday/weekend schedules.
+  - **Flanders 2026/2027 VNR `Capaciteitstarief`, Configurable Peak Rate & Year-Aware Belgian Excise:** Upgraded Flemish peak-shaving savings calculations to use the year-aware statutory **Vlaamse Nutsregulator (VNR)** average (`2026`: `€53.39/kW/yr`; `2027+`: `€57.74/kW/yr` excl. VAT) with automatic residential `6%` VAT alignment so reported savings match Fluvius bills; added an optional Flanders-only **Capacity Tariff Rate (`€/kW/yr` excl. VAT)** field (`0` = automatic VNR average, or custom `20.0–150.0 €/kW/yr`, strictly isolated outside Flanders); and exposed year-aware **2026 (`€0.0422/kWh`) vs. 2027 (`€0.0392/kWh`)** Belgian federal special excise and Fluvius / ORES / RESA / Sibelga DNO presets without overwriting custom saved tax values.
+  - **Belgian Synergrid C10/11 Plug & Play Storage (`800 W` AC Cap) Guardrail (`BE` Only):** Added an optional per-device **Synergrid C10/11 Plug & Play `800 W` AC Cap** toggle on battery, hybrid, and retrofit storage devices (such as **Solis** storage) on Belgian sites that strictly clamps bidirectional AC charge and discharge setpoints to `800 W` (`800 VA`), accompanied by localized English, Dutch, and French commissioning guidance on Synergrid C10/26 homologation and mandatory 30-day DSO notification above `800 VA`.
+  - **SunSpec 700-Series (`Models 701 & 704`) DER Discovery & Control Support:** Extended SunSpec inverter drivers and hardware discovery with automatic fallback to **Model 701** (DER AC measurement when legacy Models `101–103` are absent) and **Model 704** (active power curtailment and reactive power dispatch when Model `123` is absent) for IEEE 1547 / EN 50549 / Synergrid C10/11 compliance while preserving zero-EEPROM-wear refresh pacing.
+  - **EU Cyber Resilience Act (CRA `2024/2847`) Support-Lifecycle Metadata (`/.well-known/security.txt` & `Settings -> System Info`):** Updated the coordinated vulnerability disclosure endpoint and localized **Security & Firmware Support Policy** card to explicitly state **New Energy Grid**'s minimum 5-year signed security update support lifecycle (through at least `2031-12-31`) and coordinated 24-hour early-warning / 72-hour vulnerability notification commitment under Regulation (EU) 2024/2847, while keeping hardware CPU/RAM/disk load metrics excluded.
+
+---
+
 ## [v9.61.0] - 2026-11-25
 
 ### Changed

@@ -784,7 +784,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.61.0</span>
+          <span class="cover-meta-val">GEMS v9.62.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Who This Guide Is For</span>
@@ -1363,8 +1363,8 @@
 
   <div class="setting-card-grid">
     <div class="setting-card green">
-      <div class="setting-name"><span>Capacity Peak Limit (kW)</span> <span class="setting-default-pill">Default: 2.50 kW</span></div>
-      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Your target ceiling for the Flanders 15-minute rolling average grid import (Fluvius bills a minimum baseline of <code>2.50 kW</code>).</div>
+      <div class="setting-name"><span>Capacity Peak Limit (kW) &amp; VNR Tariff Rate</span> <span class="setting-default-pill">2.50 kW • Auto VNR</span></div>
+      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Your target ceiling for the Flanders 15-minute rolling average grid import (Fluvius bills a minimum baseline of <code>2.50 kW</code>). Peak-shaving savings automatically apply the year-aware Flemish VNR average (<code>2026: €53.39</code> / <code>2027+: €57.74/kW/yr</code> excl. VAT + 6% VAT) or your optional custom <strong>Capacity Tariff (€/kW/yr excl. VAT)</strong> (<code>20–150 €/kW/yr</code>).</div>
       <div class="setting-meta-row"><span class="badge-tip">Smart Adaptive Ceiling</span> If an unavoidable spike (e.g. <code>3.8 kW</code> when the battery was empty) occurs mid-month, GEMS automatically raises its active ceiling to <code>3.8 kW</code> for the rest of that month so you enjoy faster charging at zero extra grid cost, then resets to <code>2.50 kW</code> on the 1st of the next month!</div>
     </div>
 
@@ -1576,8 +1576,8 @@
   <h2 class="subsection-title">DNO Regional Presets, Wallonia <code>Tarif Impact</code> &amp; Live 24-Hour Tariff Visualizer</h2>
   <div class="setting-card-grid">
     <div class="setting-card">
-      <div class="setting-name"><span>DNO Presets, 2027 Excise &amp; Wallonia <code>Tarif Impact</code></span> <span class="setting-default-pill">Fluvius / ORES / RESA / NL</span></div>
-      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Click your regional grid operator preset (<strong>Fluvius</strong>, <strong>ORES</strong>, <strong>RESA</strong>, <strong>Sibelga</strong>, 2027 Belgian federal special excise <code>0.0392 €/kWh</code>, or <strong>NL 2026/2027</strong>) to fill <strong>Distribution &amp; Taxes (€/kWh excl. VAT)</strong> and <strong>VAT Rate</strong> (<code>0.06</code> BE / <code>0.21</code> NL). In Wallonia, you can also enable the CWaPE 7-days/week <strong><code>Tarif Impact</code></strong> (<code>ECO</code> 01–07h &amp; 11–17h, <code>MEDIUM</code> 07–11h &amp; 22–01h, <code>PIC</code> 17–22h).</div>
+      <div class="setting-name"><span>DNO Presets, 2026/2027 Excise, Wallonia 7d/7 Bihoraire &amp; <code>Tarif Impact</code></span> <span class="setting-default-pill">Fluvius / ORES / RESA / NL</span></div>
+      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Click your regional grid operator preset (<strong>Fluvius</strong>, <strong>ORES</strong>, <strong>RESA</strong>, <strong>Sibelga</strong>, year-aware Belgian federal special excise <code>2026: 0.0422</code> / <code>2027+: 0.0392 €/kWh</code>, or <strong>NL 2026/2027</strong>) to fill <strong>Distribution &amp; Taxes (€/kWh excl. VAT)</strong> and <strong>VAT Rate</strong> (<code>0.06</code> BE / <code>0.21</code> NL). In Wallonia, classic dual-tariff contracts automatically follow the mandatory <strong>7d/7 Bihoraire</strong> schedule (Off-Peak <code>22:00–07:00</code> &amp; <code>11:00–17:00</code> Mon–Sun), and you can also enable the CWaPE 7-days/week <strong><code>Tarif Impact</code></strong> (<code>ECO</code> 01–07h &amp; 11–17h, <code>MEDIUM</code> 07–11h &amp; 22–01h, <code>PIC</code> 17–22h).</div>
     </div>
 
     <div class="setting-card green">
@@ -1723,7 +1723,7 @@
 
     <div class="setting-card amber">
       <div class="setting-name"><span>Local CA &amp; SSL Certificate + PIN &amp; EU CRA Security Policy</span> <span class="setting-default-pill">HTTPS &amp; EU CRA</span></div>
-      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Download the GEMS <strong>Root CA Certificate (<code>.crt</code>)</strong> or add custom local domains (e.g. <code>gems.home.lan</code>) with instant hot-reload, rotate your <strong>Installer PIN</strong>, and view the New Energy Grid <strong>Security &amp; Firmware Support Policy</strong> badge linking to <code>/.well-known/security.txt</code>.</div>
+      <div class="setting-meta-row"><span class="badge-what">What It Does</span> Download the GEMS <strong>Root CA Certificate (<code>.crt</code>)</strong> or add custom local domains (e.g. <code>gems.home.lan</code>) with instant hot-reload, rotate your <strong>Installer PIN</strong>, and view the New Energy Grid <strong>Security &amp; Firmware Support Policy</strong> card confirming our <strong>minimum 5-year signed security update lifecycle</strong> (through at least <code>2031-12-31</code>) and coordinated <strong>24h/72h vulnerability handling</strong> under EU CRA Regulation <code>2024/2847</code> (<code>/.well-known/security.txt</code>).</div>
     </div>
   </div>
 

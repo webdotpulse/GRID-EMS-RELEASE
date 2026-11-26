@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.61.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.62.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -1129,7 +1129,7 @@
           - Optional NL Post-2027 <code>fixed_feed_in_cost_kwh</code> &amp; <code>&ge; 50%</code> statutory floor check
         </td>
         <td>
-          Choose when the customer does <strong>not</strong> have a dynamic contract. Supports Dutch post-saldering <em>terugleverkosten</em> and Wallonia CWaPE <code>Tarif Impact</code> DNO schedules.
+          Choose when the customer does <strong>not</strong> have a dynamic contract. Supports the mandatory <strong>Wallonia 7d/7 Classic Bihoraire</strong> schedule (<code>22:00–07:00</code> &amp; <code>11:00–17:00</code> Off-Peak, Mon–Sun), Dutch post-saldering <em>terugleverkosten</em>, and Wallonia CWaPE <code>Tarif Impact</code> DNO schedules.
         </td>
       </tr>
       <tr>
@@ -1149,7 +1149,7 @@
         <td>Belgian EPEX Spot Day-Ahead 15m / 60m contracts</td>
         <td>
           <strong>Pre-mapped suppliers:</strong> TotalEnergies Pixel Dynamic, Mega Smart/Cosy, Bolt Dynamisch, Engie Dynamic, Dats 24, Luminus, Eneco, Frank Energie, Ecopower, Octa+, Trevion, Aspiravi.<br>
-          Includes <code>15m</code> vs <code>60m</code> spot granularity, 2027 Belgian federal special excise (<code>0.0392 €/kWh</code>), and Wallonia CWaPE <code>Tarif Impact</code> (<code>ECO</code>/<code>MEDIUM</code>/<code>PIC</code>).
+          Includes <code>15m</code> vs <code>60m</code> spot granularity, year-aware Belgian federal special excise (<code>2026: 0.0422</code> / <code>2027+: 0.0392 €/kWh</code> excl. 6% VAT) + DNO presets, and Wallonia CWaPE <code>Tarif Impact</code> (<code>ECO</code>/<code>MEDIUM</code>/<code>PIC</code>).
         </td>
         <td>
           <strong>Default for dynamic contracts in Belgium.</strong> Select customer segment (Residential vs Business), grid region, and closing date to pre-fill the exact formula.
@@ -1236,6 +1236,13 @@
         <td><strong>2.50 kW</strong></td>
         <td>
           The baseline monthly peak ceiling. In Flanders, Fluvius bills a minimum capacity baseline of 2.50 kW regardless of consumption. Keeping peaks at or below 2.50 kW minimizes the distribution bill.
+        </td>
+      </tr>
+      <tr>
+        <td><code>capacity_tariff_kw_year</code></td>
+        <td><strong>0 (Auto VNR)</strong></td>
+        <td>
+          <em>(Flanders <code>BE</code> only; <code>0</code> or <code>20–150 €/kW/yr</code> excl. VAT.)</em> When left at <code>0</code>, GEMS automatically applies the year-aware statutory <strong>Vlaamse Nutsregulator (VNR)</strong> average (<code>2026: €53.39</code> / <code>2027+: €57.74/kW/yr</code> excl. VAT) &times; <code>1.06</code> (6% BE VAT) so verified peak savings match Fluvius bills. Strictly reset to <code>0</code> outside Flanders.
         </td>
       </tr>
       <tr>
@@ -1331,7 +1338,7 @@
   <div class="page-break"></div>
   <h1 class="section-title" id="sec-iec104">11. Belgian DSO Telecontrol (Fluvius / ORES / RESA — IEC 60870-5-104)</h1>
   <p>
-    For commercial, industrial, and distributed generation installations requiring compliance with Belgian distribution grid telecontrol directives (Synergrid C10/11 across Fluvius, ORES, and RESA), GEMS includes an embedded <strong>IEC 60870-5-104 controlled-station slave server</strong> supporting untagged and <code>CP56Time2a</code> time-tagged commands (<code>ASDU 45/48/49/50</code> &amp; <code>58/61/62/63</code>), Select-Before-Execute, command deactivation (<code>COT 8</code>), proportional multi-inverter active power curtailment, closed-loop reactive power (<code>Q</code>) dispatch, cyclic/spontaneous <code>P/Q/U</code> telemetry with <code>QDS</code> quality flags, and live zero-drop configuration reloads.
+    For commercial, industrial, and distributed generation installations requiring compliance with Belgian distribution grid telecontrol directives (Synergrid C10/11 across Fluvius, ORES, and RESA), GEMS includes an embedded <strong>IEC 60870-5-104 controlled-station slave server</strong> supporting untagged and <code>CP56Time2a</code> time-tagged commands (<code>ASDU 45/48/49/50</code> &amp; <code>58/61/62/63</code>), Select-Before-Execute, command deactivation (<code>COT 8</code>), proportional multi-inverter active power curtailment, closed-loop reactive power (<code>Q</code>) dispatch (including automatic <strong>SunSpec 700-Series Models 701 &amp; 704</strong> DER measurement, active curtailment, and reactive fallback when Models 101–103 / 123 are absent), cyclic/spontaneous <code>P/Q/U</code> telemetry with <code>QDS</code> quality flags, and live zero-drop configuration reloads. For residential P1-driven Belgian Plug &amp; Play batteries, enable the per-device <strong>Synergrid C10/11 800 W AC Cap (<code>plug_in_800w_cap</code>)</strong> on <code>BE</code> installations to clamp bidirectional charge/discharge setpoints strictly to <code>800 W</code> (<code>800 VA</code>; C10/26 homologated devices and mandatory 30-day DSO notification above <code>800 VA</code>).
   </p>
 
   <h2 class="subsection-title">Telecontrol Configuration Parameters</h2>

@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Version du Système</span>
-          <span class="cover-meta-val">GEMS v9.61.0</span>
+          <span class="cover-meta-val">GEMS v9.62.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">À Qui S'adresse Ce Guide</span>
@@ -1365,8 +1365,8 @@
 
   <div class="setting-card-grid">
     <div class="setting-card green">
-      <div class="setting-name"><span>Plafond de Pointe Capacitaire (kW)</span> <span class="setting-default-pill">Défaut : 2,50 kW</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Votre plafond cible pour la puissance quart-horaire moyenne prélevée en Flandre (Fluvius facture un forfait minimal incompressible de <code>2,50 kW</code>).</div>
+      <div class="setting-name"><span>Plafond de Pointe Capacitaire (kW) &amp; Tarif VNR</span> <span class="setting-default-pill">2,50 kW • Auto VNR</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Votre plafond cible pour la puissance quart-horaire moyenne prélevée en Flandre (Fluvius facture un forfait minimal incompressible de <code>2,50 kW</code>). Les économies d'écrêtage utilisent automatiquement la moyenne annuelle VNR (<code>2026 : 53,39 €</code> / <code>2027+ : 57,74 €/kW/an</code> HTVA + TVA 6 %) ou votre <strong>Tarif Capacitaire (€/kW/an HTVA)</strong> personnalisé (<code>20–150 €/kW/an</code>).</div>
       <div class="setting-meta-row"><span class="badge-tip">Plafond Adaptatif Intelligent</span> Si une pointe inévitable (ex. <code>3,8 kW</code> alors que la batterie était vide) survient en cours de mois, GEMS relève automatiquement son plafond actif à <code>3,8 kW</code> jusqu'à la fin du mois pour vous offrir davantage de confort sans aucun surcoût réseau, puis se réinitialise à <code>2,50 kW</code> le 1er du mois suivant !</div>
     </div>
 
@@ -1578,8 +1578,8 @@
   <h2 class="subsection-title">Préréglages GRD Régionaux, <code>Tarif Impact</code> Wallon &amp; Visualiseur Tarifaire 24h en Direct</h2>
   <div class="setting-card-grid">
     <div class="setting-card">
-      <div class="setting-name"><span>Préréglages GRD, Accise 2027 &amp; <code>Tarif Impact</code> Wallon</span> <span class="setting-default-pill">Fluvius / ORES / RESA / NL</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Cliquez sur votre gestionnaire de réseau régional (<strong>Fluvius</strong>, <strong>ORES</strong>, <strong>RESA</strong>, <strong>Sibelga</strong>, accise fédérale belge 2027 <code>0,0392 €/kWh</code> ou <strong>NL 2026/2027</strong>) pour renseigner les <strong>Coûts GRD &amp; Taxes (€/kWh HTVA)</strong> et la <strong>TVA</strong> (<code>0.06</code> BE / <code>0.21</code> NL). En Wallonie, activez la grille officielle CWaPE <strong><code>Tarif Impact</code></strong> 7j/7 (<code>ECO</code> 01–07h &amp; 11–17h, <code>MEDIUM</code> 07–11h &amp; 22–01h, <code>PIC</code> 17–22h).</div>
+      <div class="setting-name"><span>Préréglages GRD, Accise 2026/2027, Bihoraire 7j/7 &amp; <code>Tarif Impact</code></span> <span class="setting-default-pill">Fluvius / ORES / RESA / NL</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Cliquez sur votre gestionnaire de réseau régional (<strong>Fluvius</strong>, <strong>ORES</strong>, <strong>RESA</strong>, <strong>Sibelga</strong>, accise fédérale belge par année <code>2026 : 0,0422</code> / <code>2027+ : 0,0392 €/kWh</code> ou <strong>NL 2026/2027</strong>) pour renseigner les <strong>Coûts GRD &amp; Taxes (€/kWh HTVA)</strong> et la <strong>TVA</strong> (<code>0.06</code> BE / <code>0.21</code> NL). En Wallonie, les contrats bihoraires classiques appliquent automatiquement la grille obligatoire <strong>Bihoraire 7j/7</strong> (Heures creuses <code>22h00–07h00</code> &amp; <code>11h00–17h00</code> lun–dim), et vous pouvez également activer la grille CWaPE 7j/7 <strong><code>Tarif Impact</code></strong> (<code>ECO</code> 01–07h &amp; 11–17h, <code>MEDIUM</code> 07–11h &amp; 22–01h, <code>PIC</code> 17–22h).</div>
     </div>
 
     <div class="setting-card green">
@@ -1725,7 +1725,7 @@
 
     <div class="setting-card amber">
       <div class="setting-name"><span>Autorité CA Locale, SSL, PIN &amp; Politique EU CRA</span> <span class="setting-default-pill">HTTPS &amp; EU CRA</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Téléchargez le <strong>Certificat Racine CA GEMS (<code>.crt</code>)</strong> ou ajoutez des domaines locaux (ex. <code>gems.home.lan</code>) avec rechargement instantané, modifiez votre <strong>Code PIN Installateur</strong> et consultez la <strong>Politique de Sécurité &amp; Support Firmware</strong> New Energy Grid reliée à <code>/.well-known/security.txt</code>.</div>
+      <div class="setting-meta-row"><span class="badge-what">Fonction</span> Téléchargez le <strong>Certificat Racine CA GEMS (<code>.crt</code>)</strong> ou ajoutez des domaines locaux (ex. <code>gems.home.lan</code>) avec rechargement instantané, modifiez votre <strong>Code PIN Installateur</strong> et consultez la carte <strong>Politique de Sécurité &amp; Support Firmware</strong> New Energy Grid attestant notre <strong>cycle minimal de 5 ans de mises à jour de sécurité signées</strong> (au moins jusqu'au <code>2031-12-31</code>) et le traitement coordonné des vulnérabilités en <strong>24 h / 72 h</strong> selon le règlement EU CRA <code>2024/2847</code> (<code>/.well-known/security.txt</code>).</div>
     </div>
   </div>
 

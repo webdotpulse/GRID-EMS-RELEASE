@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Systeemversie</span>
-          <span class="cover-meta-val">GEMS v9.61.0</span>
+          <span class="cover-meta-val">GEMS v9.62.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Voor Wie Is Deze Gids</span>
@@ -1363,8 +1363,8 @@
 
   <div class="setting-card-grid">
     <div class="setting-card green">
-      <div class="setting-name"><span>Capaciteitspiek-limiet (kW)</span> <span class="setting-default-pill">Standaard: 2,50 kW</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Uw streefplafond voor het Vlaamse voortschrijdende 15-minutengemiddelde (Fluvius rekent wettelijk minimaal <code>2,50 kW</code> aan).</div>
+      <div class="setting-name"><span>Capaciteitspiek-limiet (kW) &amp; VNR-Tarief</span> <span class="setting-default-pill">2,50 kW • Auto VNR</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Uw streefplafond voor het Vlaamse voortschrijdende 15-minutengemiddelde (Fluvius rekent wettelijk minimaal <code>2,50 kW</code> aan). Piekbesparingen gebruiken automatisch het jaarbewuste Vlaamse VNR-gemiddelde (<code>2026: € 53,39</code> / <code>2027+: € 57,74/kW/jr</code> excl. btw + 6% btw) of uw optionele eigen <strong>Capaciteitstarief (€/kW/jr excl. btw)</strong> (<code>20–150 €/kW/jr</code>).</div>
       <div class="setting-meta-row"><span class="badge-tip">Slim Adaptief Plafond</span> Ontstaat er halverwege de maand toch een onvermijdelijke piek (bijv. <code>3,8 kW</code> terwijl de batterij leeg was)? Dan verhoogt GEMS het plafond automatisch naar <code>3,8 kW</code> voor de rest van die maand zodat u sneller kunt laden zonder één cent extra netkosten, en reset het op de 1e van de volgende maand terug naar <code>2,50 kW</code>!</div>
     </div>
 
@@ -1576,8 +1576,8 @@
   <h2 class="subsection-title">Regionale Netbeheerderspresets, Waalse <code>Tarif Impact</code> &amp; Live 24-uurs Tariefvisualisatie</h2>
   <div class="setting-card-grid">
     <div class="setting-card">
-      <div class="setting-name"><span>Netbeheerder-presets, 2027 Accijns &amp; Waalse <code>Tarif Impact</code></span> <span class="setting-default-pill">Fluvius / ORES / RESA / NL</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Klik op uw regionale netbeheerder (<strong>Fluvius</strong>, <strong>ORES</strong>, <strong>RESA</strong>, <strong>Sibelga</strong>, Belgische federale accijns 2027 <code>0,0392 €/kWh</code> of <strong>NL 2026/2027</strong>) om <strong>Nettarieven &amp; Heffingen (€/kWh excl. btw)</strong> en het <strong>BTW-tarief</strong> (<code>0.06</code> BE / <code>0.21</code> NL) in te vullen. In Wallonië activeert u hier tevens het officiële CWaPE <strong><code>Tarif Impact</code></strong> (<code>ECO</code> 01–07u &amp; 11–17u, <code>MEDIUM</code> 07–11u &amp; 22–01u, <code>PIC</code> 17–22u).</div>
+      <div class="setting-name"><span>Netbeheerder-presets, 2026/2027 Accijns, Waals 7d/7 Bihoraire &amp; <code>Tarif Impact</code></span> <span class="setting-default-pill">Fluvius / ORES / RESA / NL</span></div>
+      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Klik op uw regionale netbeheerder (<strong>Fluvius</strong>, <strong>ORES</strong>, <strong>RESA</strong>, <strong>Sibelga</strong>, jaarbewuste Belgische federale accijns <code>2026: 0,0422</code> / <code>2027+: 0,0392 €/kWh</code> of <strong>NL 2026/2027</strong>) om <strong>Nettarieven &amp; Heffingen (€/kWh excl. btw)</strong> en het <strong>BTW-tarief</strong> (<code>0.06</code> BE / <code>0.21</code> NL) in te vullen. In Wallonië volgen klassieke tweevoudige contracten automatisch het verplichte <strong>7d/7 Bihoraire</strong>-schema (Daluren <code>22:00–07:00</code> &amp; <code>11:00–17:00</code> ma–zo), en kunt u tevens het officiële CWaPE <strong><code>Tarif Impact</code></strong> (<code>ECO</code> 01–07u &amp; 11–17u, <code>MEDIUM</code> 07–11u &amp; 22–01u, <code>PIC</code> 17–22u) activeren.</div>
     </div>
 
     <div class="setting-card green">
@@ -1723,7 +1723,7 @@
 
     <div class="setting-card amber">
       <div class="setting-name"><span>Lokale CA &amp; SSL-certificaat + PIN &amp; EU CRA-beleid</span> <span class="setting-default-pill">HTTPS &amp; EU CRA</span></div>
-      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Download het GEMS <strong>Root-CA-certificaat (<code>.crt</code>)</strong> of voeg eigen lokale domeinen toe (bijv. <code>gems.home.lan</code>) met direct herladen, wijzig uw <strong>Installateurs-PIN</strong> en raadpleeg het New Energy Grid <strong>Beveiligings- &amp; Firmware-ondersteuningsbeleid</strong> met koppeling naar <code>/.well-known/security.txt</code>.</div>
+      <div class="setting-meta-row"><span class="badge-what">Wat Het Doet</span> Download het GEMS <strong>Root-CA-certificaat (<code>.crt</code>)</strong> of voeg eigen lokale domeinen toe (bijv. <code>gems.home.lan</code>) met direct herladen, wijzig uw <strong>Installateurs-PIN</strong> en raadpleeg het New Energy Grid <strong>Beveiligings- &amp; Firmware-ondersteuningsbeleid</strong> met onze garantie op <strong>minimaal 5 jaar ondertekende beveiligingsupdates</strong> (minstens t/m <code>2031-12-31</code>) en gecoördineerde <strong>24u/72u kwetsbaarheidsafhandeling</strong> conform EU CRA Verordening <code>2024/2847</code> (<code>/.well-known/security.txt</code>).</div>
     </div>
   </div>
 

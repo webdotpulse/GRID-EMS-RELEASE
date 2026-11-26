@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Micrologiciel / Version</span>
-          <span class="cover-meta-val" data-version-tag="release">v9.61.0-release</span>
+          <span class="cover-meta-val" data-version-tag="release">v9.62.0-release</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Architecture Matérielle</span>
@@ -438,7 +438,7 @@
 
     <div class="cover-footer">
       <span>Système de Gestion d'Énergie GEMS (GRID-EMS)</span>
-      <span>Référence Technique Confidentielle • Documentation v9.61.0</span>
+      <span>Référence Technique Confidentielle • Documentation v9.62.0</span>
     </div>
   </div>
 
@@ -620,7 +620,7 @@
     TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)<br>
     curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"<br>
     <br>
-    # 2. Installer le paquet et ses dépendances (ex. sudo dpkg -i gems_9.61.0_arm64.deb)<br>
+    # 2. Installer le paquet et ses dépendances (ex. sudo dpkg -i gems_9.62.0_arm64.deb)<br>
     sudo dpkg -i "gems_${TAG#v}_arm64.deb"<br>
     sudo apt-get install -f -y<br>
     <br>
@@ -1128,7 +1128,7 @@
           - Option NL Post-2027 <code>fixed_feed_in_cost_kwh</code> &amp; plancher légal <code>&ge; 50 %</code>
         </td>
         <td>
-          Choisissez cette option hors contrat dynamique. Prend en charge les frais d'injection NL post-saldering et la grille wallonne CWaPE <code>Tarif Impact</code>.
+          Choisissez cette option hors contrat dynamique. Prend en charge la grille obligatoire <strong>Bihoraire Classique Wallonne 7j/7</strong> (<code>22h00–07h00</code> &amp; <code>11h00–17h00</code> Heures creuses, lun–dim), les frais d'injection NL post-saldering et la grille wallonne CWaPE <code>Tarif Impact</code>.
         </td>
       </tr>
       <tr>
@@ -1148,7 +1148,7 @@
         <td>Contrats belges 15m / 60m indexés EPEX Spot Day-Ahead</td>
         <td>
           <strong>Fournisseurs préconfigurés :</strong> TotalEnergies Pixel Dynamic, Mega Smart/Cosy, Bolt Dynamisch, Engie Dynamic, Dats 24, Luminus, Eneco, Frank Energie, Ecopower, Octa+, Trevion, Aspiravi.<br>
-          Inclut le règlement <code>15m</code>/<code>60m</code>, l'accise fédérale belge 2027 (<code>0,0392 €/kWh</code>) et le <code>Tarif Impact</code> CWaPE wallon (<code>ECO</code>/<code>MEDIUM</code>/<code>PIC</code>).
+          Inclut le règlement <code>15m</code>/<code>60m</code>, l'accise fédérale belge par année (<code>2026 : 0,0422</code> / <code>2027+ : 0,0392 €/kWh</code> HTVA 6 %) + préréglages GRD et le <code>Tarif Impact</code> CWaPE wallon (<code>ECO</code>/<code>MEDIUM</code>/<code>PIC</code>).
         </td>
         <td>
           <strong>Choix par défaut pour les contrats dynamiques en Belgique.</strong> Sélectionnez le segment (Résidentiel 6 % vs Professionnel 21 % TVA), la région et la date de souscription.
@@ -1235,6 +1235,13 @@
         <td><strong>2,50 kW</strong></td>
         <td>
           Plafond mensuel de référence. En Flandre, Fluvius facture un forfait minimal légal de 2,50 kW quelle que soit la consommation. Maintenir les pointes quart-horaires à 2,50 kW ou moins garantit la facture réseau minimale.
+        </td>
+      </tr>
+      <tr>
+        <td><code>capacity_tariff_kw_year</code></td>
+        <td><strong>0 (Auto VNR)</strong></td>
+        <td>
+          <em>(Flandre <code>BE</code> uniquement ; <code>0</code> ou <code>20–150 €/kW/an</code> HTVA.)</em> À <code>0</code>, GEMS applique automatiquement la moyenne légale annuelle du <strong>Vlaamse Nutsregulator (VNR)</strong> (<code>2026 : 53,39 €</code> / <code>2027+ : 57,74 €/kW/an</code> HTVA) &times; <code>1,06</code> (TVA 6 % BE) pour aligner les économies de pointe sur les factures Fluvius. Remis à <code>0</code> hors Flandre.
         </td>
       </tr>
       <tr>
@@ -1330,7 +1337,7 @@
   <div class="page-break"></div>
   <h1 class="section-title" id="sec-iec104">11. Téléconduite GRD Belge (Fluvius / ORES / RESA — IEC 60870-5-104)</h1>
   <p>
-    Pour les installations tertiaires, industrielles et de production décentralisée soumises aux prescriptions de téléconduite des gestionnaires de réseau belges (Synergrid C10/11 chez Fluvius, ORES et RESA), GEMS intègre nativement un <strong>serveur esclave IEC 60870-5-104</strong> prenant en charge les ordres standards et horodatés <code>CP56Time2a</code> (<code>ASDU 45/48/49/50</code> &amp; <code>58/61/62/63</code>), Select-Before-Execute, la désactivation (<code>COT 8</code>), l'écrêtage proportionnel multi-onduleurs de puissance active, le pilotage en boucle fermée de la puissance réactive (<code>Q</code>), la télémétrie cyclique/spontanée <code>P/Q/U</code> avec indicateurs de qualité <code>QDS</code> et le rechargement à chaud sans coupure TCP.
+    Pour les installations tertiaires, industrielles et de production décentralisée soumises aux prescriptions de téléconduite des gestionnaires de réseau belges (Synergrid C10/11 chez Fluvius, ORES et RESA), GEMS intègre nativement un <strong>serveur esclave IEC 60870-5-104</strong> prenant en charge les ordres standards et horodatés <code>CP56Time2a</code> (<code>ASDU 45/48/49/50</code> &amp; <code>58/61/62/63</code>), Select-Before-Execute, la désactivation (<code>COT 8</code>), l'écrêtage proportionnel multi-onduleurs de puissance active, le pilotage en boucle fermée de la puissance réactive (<code>Q</code>) (incluant la bascule automatique <strong>SunSpec Série 700 Modèles 701 &amp; 704</strong> pour les mesures AC DER, le bridage actif et le pilotage réactif lorsque les Modèles 101–103 / 123 sont absents), la télémétrie cyclique/spontanée <code>P/Q/U</code> avec indicateurs de qualité <code>QDS</code> et le rechargement à chaud sans coupure TCP. Pour les batteries résidentielles Plug &amp; Play belges pilotées par P1, activez l'option par appareil <strong>Plafond AC 800 W Synergrid C10/11 (<code>plug_in_800w_cap</code>)</strong> sur les sites <code>BE</code> afin de limiter strictement les consignes bidirectionnelles charge/décharge à <code>800 W</code> (<code>800 VA</code> ; homologation C10/26 et déclaration obligatoire au GRD sous 30 jours au-delà de <code>800 VA</code>).
   </p>
 
   <h2 class="subsection-title">Paramètres de Configuration du Télécontrôle</h2>
