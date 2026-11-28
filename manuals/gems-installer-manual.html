@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Firmware / Build</span>
-          <span class="cover-meta-val">v9.62.0-release (Official Tag)</span>
+          <span class="cover-meta-val">v9.63.0-release (Official Tag)</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware Architecture</span>
@@ -989,7 +989,7 @@
     <tbody>
       <tr>
         <td><code>Bay Number &amp; Fleet Priority</code></td>
-        <td>Bay <code>1–64</code> • <code>VIP</code>, <code>High</code>, <code>Normal</code>, <code>Low</code>, <code>Solar Only</code></td>
+        <td>Bay <code>1–256</code> • <code>VIP</code>, <code>High</code>, <code>Normal</code>, <code>Low</code>, <code>Solar Only</code></td>
         <td>Assigns physical bay number and strict Priority Queue rank (<code>VIP &gt; High &gt; Normal &gt; Low &gt; Solar Only</code>): <strong>Low</strong> yields to Normal bays under load constraints while keeping grid/off-peak access, whereas <strong>Solar Only</strong> pauses when no surplus solar is available.</td>
       </tr>
       <tr>
@@ -1000,7 +1000,7 @@
       <tr>
         <td><code>Fleet DLB Active &amp; Zero-Touch Auto Onboard</code></td>
         <td>Toggles (Bottom of Devices Tab)</td>
-        <td>Activates multi-charger Dynamic Load Balancing (up to 64 bays) and automatically registers incoming OCPP 1.6-J chargers upon <code>BootNotification</code>.</td>
+        <td>Activates multi-charger Dynamic Load Balancing (up to <strong>256 OCPP 1.6-J stations</strong> or 64 Modbus TCP stations on Raspberry Pi 5) and automatically registers incoming OCPP 1.6-J chargers upon <code>BootNotification</code>.</td>
       </tr>
       <tr>
         <td><code>Cluster Max Current (A) &amp; Arbitration Mode</code></td>

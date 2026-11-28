@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Systeemversie</span>
-          <span class="cover-meta-val">GEMS v9.62.0</span>
+          <span class="cover-meta-val">GEMS v9.63.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Voor Wie Is Deze Gids</span>
@@ -1246,7 +1246,7 @@
 
   <h2 class="subsection-title">Specifieke EV-laadpaalvelden &amp; Optionele EV-Laadcluster DLB-module</h2>
   <p>
-    Bij het configureren van een EV-laadpaal (of wanneer u onderaan het tabblad Toestellen de module <strong>EV-Laadcluster &amp; DLB</strong> activeert voor parkings tot 64 laadpunten) zijn deze gespecialiseerde instellingen beschikbaar:
+    Bij het configureren van een EV-laadpaal (of wanneer u onderaan het tabblad Toestellen de module <strong>EV-Laadcluster &amp; DLB</strong> activeert voor parkings tot <strong>256 OCPP 1.6-J laadstations</strong> of 64 Modbus TCP laadstations) zijn deze gespecialiseerde instellingen beschikbaar:
   </p>
 
   <table class="data-table">
@@ -1260,7 +1260,7 @@
     <tbody>
       <tr>
         <td><strong>Laadpuntnummer &amp; Vlootprioriteit</strong></td>
-        <td>Laadpunt <code>1–64</code><br><code>VIP</code>, <code>Hoog</code>, <code>Normaal</code>, <code>Laag</code>, <code>Enkel Zon</code></td>
+        <td>Laadpunt <code>1–256</code><br><code>VIP</code>, <code>Hoog</code>, <code>Normaal</code>, <code>Laag</code>, <code>Enkel Zon</code></td>
         <td>Wijst een parkeervaknummer en laadprioriteit toe (<code>VIP &gt; Hoog &gt; Normaal &gt; Laag &gt; Enkel Zon</code>): <strong>VIP</strong> voor directie/bezoekers, <strong>Hoog</strong>, <strong>Normaal</strong>, <strong>Laag</strong> (maakt bij krapte plaats voor Normale laadpunten maar behoudt toegang tot netstroom) of <strong>Enkel Zon</strong> (pauzeert zonder zonne-overschot).</td>
       </tr>
       <tr>
@@ -1271,7 +1271,7 @@
       <tr>
         <td><strong>Vloot-DLB Actief &amp; Zero-Touch Auto Onboard</strong></td>
         <td>Schakelaars in Clusterkaart</td>
-        <td>Activeert Dynamic Load Balancing over 32 tot 64 laadpalen. Met <strong>Zero-Touch Auto Onboard</strong> wordt elke nieuwe OCPP-laadpaal gericht op <code>ws://ems.local/ocpp/{id}</code> automatisch toegevoegd bij de eerste <code>BootNotification</code>!</td>
+        <td>Activeert Dynamic Load Balancing tot <strong>256 OCPP 1.6-J laadstations</strong> (of 64 Modbus TCP laadstations op Raspberry Pi 5). Met <strong>Zero-Touch Auto Onboard</strong> wordt elke nieuwe OCPP-laadpaal gericht op <code>ws://&lt;gems-ip&gt;:8887/{id}</code> of <code>ws://ems.local/ocpp/{id}</code> automatisch toegevoegd bij de eerste <code>BootNotification</code>!</td>
       </tr>
       <tr>
         <td><strong>Cluster Max. Stroom (A) &amp; DLB-verdeling</strong></td>

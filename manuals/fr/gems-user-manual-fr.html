@@ -785,7 +785,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Version du Système</span>
-          <span class="cover-meta-val">GEMS v9.62.0</span>
+          <span class="cover-meta-val">GEMS v9.63.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">À Qui S'adresse Ce Guide</span>
@@ -1246,7 +1246,7 @@
 
   <h2 class="subsection-title">Champs Spécifiques aux Bornes VE &amp; Module Optionnel Cluster Flotte DLB</h2>
   <p>
-    Lors de la configuration d'une borne VE (ou en activant <strong>Cluster de Flotte VE &amp; DLB</strong> au bas de l'onglet Appareils pour les parkings multi-bornes jusqu'à 64 emplacements), ces réglages spécialisés sont proposés :
+    Lors de la configuration d'une borne VE (ou en activant <strong>Cluster de Flotte VE &amp; DLB</strong> au bas de l'onglet Appareils pour les parkings multi-bornes jusqu'à <strong>256 bornes OCPP 1.6-J</strong> ou 64 bornes Modbus TCP), ces réglages spécialisés sont proposés :
   </p>
 
   <table class="data-table">
@@ -1260,7 +1260,7 @@
     <tbody>
       <tr>
         <td><strong>Emplacement &amp; Priorité Flotte</strong></td>
-        <td>Place <code>1–64</code><br><code>VIP</code>, <code>Haute</code>, <code>Normale</code>, <code>Basse</code>, <code>Solaire Seul</code></td>
+        <td>Place <code>1–256</code><br><code>VIP</code>, <code>Haute</code>, <code>Normale</code>, <code>Basse</code>, <code>Solaire Seul</code></td>
         <td>Attribue un numéro d'emplacement et une priorité de charge (<code>VIP &gt; Haute &gt; Normale &gt; Basse &gt; Solaire Seul</code>) : <strong>VIP</strong> pour la direction/visiteurs urgents, <strong>Haute</strong>, <strong>Normale</strong>, <strong>Basse</strong> (cède le pas aux bornes Normales lors des pointes tout en gardant l'accès réseau) ou <strong>Solaire Seul</strong> (suspendu hors surplus solaire).</td>
       </tr>
       <tr>
@@ -1271,7 +1271,7 @@
       <tr>
         <td><strong>DLB Flotte Actif &amp; Auto-Enregistrement</strong></td>
         <td>Interrupteurs Carte Flotte</td>
-        <td>Active l'équilibrage dynamique multi-bornes jusqu'à 32/64 bornes. Avec <strong>Zero-Touch Auto Onboard</strong>, toute nouvelle borne OCPP pointant vers <code>ws://ems.local/ocpp/{id}</code> est ajoutée automatiquement dès son premier <code>BootNotification</code> !</td>
+        <td>Active l'équilibrage dynamique multi-bornes jusqu'à <strong>256 bornes OCPP 1.6-J</strong> (ou 64 bornes Modbus TCP sur Raspberry Pi 5). Avec <strong>Zero-Touch Auto Onboard</strong>, toute nouvelle borne OCPP pointant vers <code>ws://&lt;gems-ip&gt;:8887/{id}</code> ou <code>ws://ems.local/ocpp/{id}</code> est ajoutée automatiquement dès son premier <code>BootNotification</code> !</td>
       </tr>
       <tr>
         <td><strong>Courant Max. Cluster (A) &amp; Arbitrage DLB</strong></td>

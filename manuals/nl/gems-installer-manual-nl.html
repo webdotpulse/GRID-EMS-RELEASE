@@ -415,7 +415,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">Systeemfirmware / Build</span>
-          <span class="cover-meta-val" data-version-tag="release">v9.62.0-release</span>
+          <span class="cover-meta-val" data-version-tag="release">v9.63.0-release</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Hardware-architectuur</span>
@@ -438,7 +438,7 @@
 
     <div class="cover-footer">
       <span>GEMS Energiebeheersysteem (GRID-EMS)</span>
-      <span>Vertrouwelijke Technische Veldreferentie • Documentatie v9.62.0</span>
+      <span>Vertrouwelijke Technische Veldreferentie • Documentatie v9.63.0</span>
     </div>
   </div>
 
@@ -620,7 +620,7 @@
     TAG=$(curl -fsSL https://api.github.com/repos/webdotpulse/GRID-EMS-RELEASE/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)<br>
     curl -fLO "https://github.com/webdotpulse/GRID-EMS-RELEASE/releases/download/${TAG}/gems_${TAG#v}_arm64.deb"<br>
     <br>
-    # 2. Installeer pakket en afhankelijkheden (bijv. sudo dpkg -i gems_9.62.0_arm64.deb)<br>
+    # 2. Installeer pakket en afhankelijkheden (bijv. sudo dpkg -i gems_9.63.0_arm64.deb)<br>
     sudo dpkg -i "gems_${TAG#v}_arm64.deb"<br>
     sudo apt-get install -f -y<br>
     <br>
@@ -988,7 +988,7 @@
     <tbody>
       <tr>
         <td><code>Laadpuntnummer &amp; Vlootprioriteit</code></td>
-        <td>Laadpunt <code>1–64</code> • <code>VIP</code>, <code>Hoog</code>, <code>Normaal</code>, <code>Laag</code>, <code>Enkel Zon</code></td>
+        <td>Laadpunt <code>1–256</code> • <code>VIP</code>, <code>Hoog</code>, <code>Normaal</code>, <code>Laag</code>, <code>Enkel Zon</code></td>
         <td>Wijst het fysieke parkeervak en de strikte Priority Queue-rangorde toe (<code>VIP &gt; Hoog &gt; Normaal &gt; Laag &gt; Enkel Zon</code>): <strong>Laag</strong> maakt bij stroomtekort plaats voor Normale laadpunten maar behoudt toegang tot net- en dalstroom, terwijl <strong>Enkel Zon</strong> pauzeert zodra er geen zonne-overschot beschikbaar is.</td>
       </tr>
       <tr>
@@ -999,7 +999,7 @@
       <tr>
         <td><code>Vloot-DLB Actief &amp; Zero-Touch Auto Onboard</code></td>
         <td>Schakelaars (Onderaan tabblad Toestellen)</td>
-        <td>Activeert Dynamic Load Balancing over meerdere laadpalen (tot 64 laadpunten) en registreert binnenkomende OCPP 1.6-J laadpalen automatisch bij hun eerste <code>BootNotification</code>.</td>
+        <td>Activeert Dynamic Load Balancing over meerdere laadpalen (tot <strong>256 OCPP 1.6-J laadstations</strong> of 64 Modbus TCP laadstations op Raspberry Pi 5) en registreert binnenkomende OCPP 1.6-J laadpalen automatisch bij hun eerste <code>BootNotification</code>.</td>
       </tr>
       <tr>
         <td><code>Cluster Max. Stroom (A) &amp; Verdelingsmodus</code></td>

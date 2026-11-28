@@ -414,7 +414,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Version Applicable</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.62.0-release (Version Officielle)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.63.0-release (Version Officielle)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Cycle du Moteur DLB</span>
@@ -422,7 +422,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Capacité Maximale du Cluster</span>
-            <span class="cover-meta-val">Jusqu'à 32 Bornes (64 sur Raspberry Pi 5)</span>
+            <span class="cover-meta-val">Jusqu'à 256 Bornes OCPP 1.6-J (64 Modbus TCP sur Raspberry Pi 5)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Matériel de Référence Privilégié</span>
@@ -441,7 +441,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Référence Terrain Confidentielle</span>
-        <span>Documentation v9.62.0</span>
+        <span>Documentation v9.63.0</span>
       </div>
     </div>
 
@@ -514,7 +514,7 @@
     <h1 class="section-title">Section 1 : Fondations Architecturales &amp; Topologie Système</h1>
     
     <h2 class="subsection-title">1.1 Clustering Multi-Bornes sur Raspberry Pi</h2>
-    <p>GEMS transforme un Raspberry Pi 4 ou Raspberry Pi 5 standard en un contrôleur industriel de parc de recharge multi-emplacements. Un seul nœud edge GEMS orchestre jusqu'à <strong>32 bornes de recharge</strong> (extensible à 64 emplacements sur Raspberry Pi 5) sous une enveloppe électrique globale rigoureusement maîtrisée.</p>
+    <p>GEMS transforme un Raspberry Pi 4 ou Raspberry Pi 5 standard en un contrôleur industriel de parc de recharge multi-emplacements. Un seul nœud edge GEMS sur Raspberry Pi 5 (4 Go ou 8 Go de RAM avec SSD M.2 NVMe) orchestre jusqu'à <strong>256 bornes de recharge OCPP 1.6-J</strong> (ou jusqu'à <strong>64 bornes Modbus TCP</strong> ; plafond configurable par défaut à 32 et extensible jusqu'à 256 dans les Paramètres du cluster) sous une enveloppe électrique globale rigoureusement maîtrisée.</p>
     <p>Le contrôleur de cluster mesure en temps réel la consommation totale du site via un compteur communicant (télégramme P1 ou compteur d'énergie Modbus), détermine instantanément le talon de consommation hors recharge, et répartit dynamiquement toute la capacité électrique restante entre les emplacements actifs.</p>
 
     <h2 class="subsection-title">1.2 Soustraction de la Charge de Fond &amp; Répartition par Phase</h2>
@@ -783,7 +783,7 @@
     </ol>
 
     <h2 class="subsection-title">5.2 Assistant d'Ajout Groupé de Bornes</h2>
-    <p>Pour les chantiers comprenant de 4 à 32 bornes installées simultanément, utilisez l'assistant <strong>Ajout groupé de bornes</strong> (<em>Bulk Add Stations</em>) depuis le Cockpit Flotte VE :</p>
+    <p>Pour les chantiers comprenant plusieurs bornes installées simultanément (jusqu'à 32 bornes par lot, répétable jusqu'au plafond configuré de <strong>256 bornes</strong>), utilisez l'assistant <strong>Ajout groupé de bornes</strong> (<em>Bulk Add Stations</em>) depuis le Cockpit Flotte VE :</p>
 
     <table class="data-table">
       <thead>
@@ -1009,8 +1009,8 @@ ws://&lt;IP_LOCALE_GEMS&gt;:8080/api/ocpp/{chargePointId}</pre>
         </tr>
         <tr>
           <td>Une nouvelle borne n'est pas auto-intégrée.</td>
-          <td>L'option Zero-Touch Auto-Onboarding est désactivée, ou la capacité maximale du cluster (32 bornes) est atteinte.</td>
-          <td>Ouvrez les Paramètres du cluster, cochez <em>Zero-Touch Auto-Onboarding</em> et vérifiez le nombre total de bornes enregistrées.</td>
+          <td>L'option Zero-Touch Auto-Onboarding est désactivée, ou la limite configurée <code>Max Fleet Stations</code> (32 par défaut, extensible jusqu'à 256) est atteinte.</td>
+          <td>Ouvrez Paramètres &rarr; Appareils (module Flotte VE), vérifiez que <em>Zero-Touch Auto-Onboarding</em> est coché et augmentez <em>Max Fleet Stations</em> (jusqu'à 256) si nécessaire.</td>
         </tr>
       </tbody>
     </table>

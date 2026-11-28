@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.63.0] - 2026-11-28
+
+### Changed
+- **256-Station EV Fleet Cluster Capacity, UI Bay Ceiling & Standard Connection Limit (`gems.service`, `Devices`, `Manuals`):** Increased the standard system file-descriptor limit (`LimitNOFILE=4096:65536`) in the packaged `gems.service` unit, raised the EV charger bay number selector in **Settings -> Devices** from `1–64` to `1–256`, and updated all English, Dutch, and French field manuals, Strategy Guide PDFs, and README descriptions to clearly reflect support for clusters of up to **256 OCPP 1.6-J charging stations** (and up to 64 Modbus TCP stations on Raspberry Pi 5).
+
+---
+
 ## [v9.62.0] - 2026-11-26
 
 ### Added

@@ -414,7 +414,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Applicable Release</span>
-            <span class="cover-meta-val">v9.62.0-release (Official Tag)</span>
+            <span class="cover-meta-val">v9.63.0-release (Official Tag)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Balancing Engine Cycle</span>
@@ -422,7 +422,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Maximum Cluster Capacity</span>
-            <span class="cover-meta-val">Up to 32 Stations (64 on Raspberry Pi 5)</span>
+            <span class="cover-meta-val">Up to 256 OCPP 1.6-J Stations (64 Modbus TCP on Raspberry Pi 5)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Preferred Reference Hardware</span>
@@ -441,7 +441,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Confidential Field Reference</span>
-        <span>Documentation v9.62.0</span>
+        <span>Documentation v9.63.0</span>
       </div>
     </div>
 
@@ -514,7 +514,7 @@
     <h1 class="section-title">Section 1: Architectural Foundations & System Topology</h1>
     
     <h2 class="subsection-title">1.1 Multi-Station Fleet Clustering on Raspberry Pi</h2>
-    <p>GEMS transforms an off-the-shelf Raspberry Pi 4 or Raspberry Pi 5 into a carrier-grade, industrial multi-bay EV charge controller. A single GEMS edge node orchestrates up to <strong>32 charging stations</strong> (expandable to 64 bays on Raspberry Pi 5) under a tightly coordinated global electrical ceiling.</p>
+    <p>GEMS transforms an off-the-shelf Raspberry Pi 4 or Raspberry Pi 5 into a carrier-grade, industrial multi-bay EV charge controller. A single GEMS edge node on Raspberry Pi 5 (4GB or 8GB RAM with M.2 NVMe SSD) orchestrates up to <strong>256 OCPP 1.6-J charging stations</strong> (or up to <strong>64 Modbus TCP stations</strong>; default configurable ceiling starts at 32 and scales to 256 in Cluster Settings) under a tightly coordinated global electrical ceiling.</p>
     <p>The cluster controller monitors total site consumption in real time via a smart meter (P1 telegram or Modbus energy meter), calculates instantaneous non-charger base loads, and dynamically distributes all remaining electrical capacity across all active charging bays.</p>
 
     <h2 class="subsection-title">1.2 Baseline Load Subtraction & Per-Phase Distribution</h2>
@@ -787,7 +787,7 @@
     </ol>
 
     <h2 class="subsection-title">5.2 Bulk Station Provisioning Wizard</h2>
-    <p>For installations with 4 to 32 charging stations installed simultaneously, use the <strong>Bulk Add Stations</strong> wizard in the EV Fleet Cockpit:</p>
+    <p>For installations with multiple charging stations deployed simultaneously (up to 32 stations per batch, repeatable up to your configured ceiling of <strong>256 stations</strong>), use the <strong>Bulk Add Stations</strong> wizard in the EV Fleet Cockpit:</p>
 
     <table class="data-table">
       <thead>
@@ -1013,8 +1013,8 @@ ws://&lt;GEMS_LOCAL_IP&gt;:8080/api/ocpp/{chargePointId}</pre>
         </tr>
         <tr>
           <td>New wallbox is not auto-onboarded.</td>
-          <td>Zero-Touch Auto-Onboarding is disabled, or maximum cluster capacity (32 stations) has been reached.</td>
-          <td>Open Cluster Settings, ensure <em>Zero-Touch Auto Onboarding</em> is checked, and verify station count.</td>
+          <td>Zero-Touch Auto-Onboarding is disabled, or the configured <code>Max Fleet Stations</code> limit (default 32, configurable up to 256) has been reached.</td>
+          <td>Open Settings &rarr; Devices (Fleet module), ensure <em>Zero-Touch Auto Onboard</em> is checked, and raise <em>Max Fleet Stations</em> (up to 256) as needed.</td>
         </tr>
       </tbody>
     </table>

@@ -784,7 +784,7 @@
       <div class="cover-meta-grid">
         <div class="cover-meta-item">
           <span class="cover-meta-label">System Release</span>
-          <span class="cover-meta-val">GEMS v9.62.0</span>
+          <span class="cover-meta-val">GEMS v9.63.0</span>
         </div>
         <div class="cover-meta-item">
           <span class="cover-meta-label">Who This Guide Is For</span>
@@ -1245,7 +1245,7 @@
 
   <h2 class="subsection-title">EV Charger Specific Fields &amp; Optional EV Fleet Cluster DLB Module</h2>
   <p>
-    When configuring an EV Charger (or clicking <strong>Enable Fleet Cluster &amp; DLB</strong> at the bottom of the Devices tab for multi-charger parking lots up to 64 bays), these specialized settings appear:
+    When configuring an EV Charger (or clicking <strong>Enable Fleet Cluster &amp; DLB</strong> at the bottom of the Devices tab for multi-charger parking lots up to <strong>256 OCPP 1.6-J stations</strong> or 64 Modbus TCP stations), these specialized settings appear:
   </p>
 
   <table class="data-table">
@@ -1259,7 +1259,7 @@
     <tbody>
       <tr>
         <td><strong>Bay Number &amp; Fleet Priority</strong></td>
-        <td>Bay <code>1–64</code><br><code>VIP</code>, <code>High</code>, <code>Normal</code>, <code>Low</code>, <code>Solar Only</code></td>
+        <td>Bay <code>1–256</code><br><code>VIP</code>, <code>High</code>, <code>Normal</code>, <code>Low</code>, <code>Solar Only</code></td>
         <td>Assigns a parking bay number and charging priority (<code>VIP &gt; High &gt; Normal &gt; Low &gt; Solar Only</code>): <strong>VIP</strong> for directors/urgent guests, <strong>High</strong>, <strong>Normal</strong>, <strong>Low</strong> (yields to Normal bays under load constraints while keeping grid/off-peak access), or <strong>Solar Only</strong> (pauses when no solar surplus is available).</td>
       </tr>
       <tr>
@@ -1270,7 +1270,7 @@
       <tr>
         <td><strong>Fleet DLB Active &amp; Zero-Touch Auto Onboard</strong></td>
         <td>Toggles in Fleet Card</td>
-        <td>Activates multi-charger Dynamic Load Balancing across up to 32/64 chargers. When <strong>Zero-Touch Auto Onboard</strong> is enabled, any new OCPP charger pointed at <code>ws://ems.local/ocpp/{id}</code> is added automatically upon <code>BootNotification</code>!</td>
+        <td>Activates multi-charger Dynamic Load Balancing across up to <strong>256 OCPP 1.6-J stations</strong> (or 64 Modbus TCP stations on Raspberry Pi 5). When <strong>Zero-Touch Auto Onboard</strong> is enabled, any new OCPP charger pointed at <code>ws://&lt;gems-ip&gt;:8887/{id}</code> or <code>ws://ems.local/ocpp/{id}</code> is added automatically upon <code>BootNotification</code>!</td>
       </tr>
       <tr>
         <td><strong>Cluster Max Current (A) &amp; DLB Arbitration Mode</strong></td>

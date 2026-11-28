@@ -414,7 +414,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Toepasselijke Release</span>
-            <span class="cover-meta-val" data-version-tag="release">v9.62.0-release (Officiële Release)</span>
+            <span class="cover-meta-val" data-version-tag="release">v9.63.0-release (Officiële Release)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Balanceringscyclus</span>
@@ -422,7 +422,7 @@
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Maximale Clustercapaciteit</span>
-            <span class="cover-meta-val">Tot 32 Laadpunten (64 op Raspberry Pi 5)</span>
+            <span class="cover-meta-val">Tot 256 OCPP 1.6-J Laadstations (64 Modbus TCP op Raspberry Pi 5)</span>
           </div>
           <div class="cover-meta-item">
             <span class="cover-meta-label">Aanbevolen Referentiehardware</span>
@@ -441,7 +441,7 @@
 
       <div class="cover-footer">
         <span>© 2026 New Energy Grid • Vertrouwelijke Veldreferentie</span>
-        <span>Documentatie v9.62.0</span>
+        <span>Documentatie v9.63.0</span>
       </div>
     </div>
 
@@ -514,7 +514,7 @@
     <h1 class="section-title">Hoofdstuk 1: Architecturale Grondslagen &amp; Systeemtopologie</h1>
     
     <h2 class="subsection-title">1.1 Multi-Laadpaal Clustering op Raspberry Pi</h2>
-    <p>GEMS transformeert een standaard Raspberry Pi 4 of Raspberry Pi 5 tot een industriële multi-laadpuntcontroller. Eén enkele GEMS-edge-node stuurt tot <strong>32 laadstations</strong> aan (uitbreidbaar tot 64 laadpunten op Raspberry Pi 5) binnen een strak gecoördineerd globaal stroomplafond.</p>
+    <p>GEMS transformeert een standaard Raspberry Pi 4 of Raspberry Pi 5 tot een industriële multi-laadpuntcontroller. Eén enkele GEMS-edge-node op Raspberry Pi 5 (4GB of 8GB RAM met M.2 NVMe SSD) stuurt tot <strong>256 OCPP 1.6-J laadstations</strong> aan (of tot <strong>64 Modbus TCP laadstations</strong>; het standaard instelbare plafond start op 32 en is uitbreidbaar tot 256 in de Clusterinstellingen) binnen een strak gecoördineerd globaal stroomplafond.</p>
     <p>De clustercontroller bewaakt in realtime het totale gebouwverbruik via een slimme meter (P1-telegram of Modbus-energiemeter), bepaalt ogenblikkelijk de niet-EV-basisbelasting en verdeelt alle resterende stroomcapaciteit dynamisch over de actieve laadpunten.</p>
 
     <h2 class="subsection-title">1.2 Aftrek van Basisbelasting &amp; Verdeling per Fase</h2>
@@ -783,7 +783,7 @@
     </ol>
 
     <h2 class="subsection-title">5.2 Wizard voor Laadpalen in Bulk Toevoegen</h2>
-    <p>Voor projecten waarbij 4 tot 32 laadpunten tegelijkertijd worden geplaatst, gebruikt u de wizard <strong>Laadpalen in bulk toevoegen</strong> (<em>Bulk Add Stations</em>) in de EV-Laadcluster Cockpit:</p>
+    <p>Voor projecten waarbij meerdere laadpunten tegelijkertijd worden geplaatst (tot 32 laadstations per batch, herhaalbaar tot het ingestelde plafond van <strong>256 laadstations</strong>), gebruikt u de wizard <strong>Laadpalen in bulk toevoegen</strong> (<em>Bulk Add Stations</em>) in de EV-Laadcluster Cockpit:</p>
 
     <table class="data-table">
       <thead>
@@ -1009,8 +1009,8 @@ ws://&lt;GEMS_LOKAAL_IP&gt;:8080/api/ocpp/{chargePointId}</pre>
         </tr>
         <tr>
           <td>Nieuwe wallbox wordt niet automatisch toegevoegd.</td>
-          <td>Zero-Touch Auto-Onboarding staat uitgeschakeld, of de maximale clustercapaciteit (32 stations) is bereikt.</td>
-          <td>Open Clusterinstellingen, controleer of <em>Zero-Touch Auto-Onboarding</em> is aangevinkt en controleer het huidige aantal laadstations.</td>
+          <td>Zero-Touch Auto-Onboarding staat uitgeschakeld, of de ingestelde limiet <code>Max Fleet Stations</code> (standaard 32, instelbaar tot 256) is bereikt.</td>
+          <td>Open Instellingen &rarr; Toestellen (EV-Vlootmodule), controleer of <em>Zero-Touch Auto-Onboarding</em> is aangevinkt en verhoog <em>Max Fleet Stations</em> (tot 256) indien nodig.</td>
         </tr>
       </tbody>
     </table>
