@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [v9.63.1] - 2026-11-28
+
+### Changed
+- **Maintenance & Documentation Synchronization (`v9.63.1`):** Synchronized updated trilingual (`EN` / `NL` / `FR`) field manuals, hardware compatibility documentation, and signed appliance packages for release `v9.63.1`.
+
+---
+
 ## [v9.63.0] - 2026-11-28
 
 ### Changed
